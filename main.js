@@ -77,16 +77,16 @@ window.goToDetails = function(id) {
     window.location.href = `details.html?id=${id}`;
 };
 
-import { deleteDoc, doc as firestoreDoc } from "https://gstatic.com";
 
 window.deleteAd = async function(firebaseId) {
-    if (confirm("Are you sure you want to delete this ad?")) {
-        try {
-            await deleteDoc(firestoreDoc(db, "marketplace_ads", firebaseId));
-            alert("Ad deleted successfully");
-        } catch (error) {
-            console.error("Error deleting document: ", error);
-        }
+    if (!confirm("Are you sure you want to delete this ad?")) return;
+
+    try {
+        await deleteDoc(doc(db, "marketplace_ads", firebaseId));
+        alert("Ad deleted successfully");
+    } catch (error) {
+        console.error("Error deleting ad:", error);
+        alert("Failed to delete ad.");
     }
 };
 
@@ -136,12 +136,13 @@ window.applyFilters = function() {
     const query = searchInput.value.toLowerCase().trim();
 
     if (!query) {
-        renderAds(globalAds, "listings");  // If search is empty, show all ads
+      globalAds.sort((a, b) => new Date(b.date) - new Date(a.date)); 
+        renderAds(globalAds, "listings");// If search is empty, show all ads
         return;
     }
 
     const filteredAds = globalAds.filter(ad =>
-        ad.title.toLowerCase().includes(query) || 
+        (ad.title || "").toLowerCase().includes(query) || 
         (ad.category || "").toLowerCase().includes(query)
     );
 
@@ -177,7 +178,8 @@ window.renderAds = function(adsArray, containerId = "listings") {
     container.innerHTML = adsArray.map(ad => {
         const uniqueId = ad.firebaseId;
         const image = Array.isArray(ad.image) ? ad.image[0] : (ad.image || 'https://via.placeholder.com/300');
-
+const currentUser = auth.currentUser;
+const showDelete = currentUser && currentUser.uid === ad.userId;
         return `
         <div class="card">
             <div onclick="goToDetails('${uniqueId}')" style="cursor:pointer;">
@@ -189,8 +191,7 @@ window.renderAds = function(adsArray, containerId = "listings") {
                 <p>📍 ${ad.location || "No location"}</p>
                 <p><b>$${ad.price}</b></p>
 
-                <button onclick="deleteAd('${uniqueId}')">Delete</button>
-            </div>
+${showDelete ? `<button onclick="deleteAd('${uniqueId}')">Delete</button>` : ""}            </div>
         </div>
         `;
     }).join("");
