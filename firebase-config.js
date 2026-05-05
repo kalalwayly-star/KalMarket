@@ -27,4 +27,5 @@ const rtdb = getDatabase(app);  // Realtime Database
 const storage = getStorage(app); // Initialize Firebase Storage
 
 // Export services for use in other files
+export const auth = getAuth(app);
 export { auth, db, rtdb, storage };  
