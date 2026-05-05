@@ -1,9 +1,17 @@
+import { storage } from "./firebase-config.js";
+import {
+    ref,
+    uploadBytes,
+    getDownloadURL
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
+
 import { auth, db } from './firebase-config.js';  // Correct import from firebase-config.js
 
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 import { collection, addDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-
+// Global variables for uploaded images
+let uploadedImages = [];
 
 // Firebase Auth state listener
 onAuthStateChanged(auth, (user) => {
@@ -24,22 +32,17 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-// Global variables for uploaded images
-let uploadedImages = [];
 
-// Handles photo upload and preview
-window.handlePhotoUpload = function (event) {
+
+window.handlePhotoUpload = async function (event) {
     const files = Array.from(event.target.files || []);
     const preview = document.getElementById("galleryPreview");
 
     if (!preview || !files.length) return;
 
-    // Limit total to 10
-    const remainingSlots = 10 - uploadedImages.length;
-    const filesToAdd = files.slice(0, remainingSlots);
+    for (let file of files) {
 
-    filesToAdd.forEach(file => {
-        // Preview image
+        // Show preview immediately
         const img = document.createElement("img");
         img.src = URL.createObjectURL(file);
         img.style.width = "100px";
@@ -47,15 +50,22 @@ window.handlePhotoUpload = function (event) {
         img.style.objectFit = "cover";
         preview.appendChild(img);
 
-        // Convert to base64
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            uploadedImages.push(e.target.result);
-        };
-        reader.readAsDataURL(file);
-    });
+        try {
+            // Upload to Firebase Storage
+            const storageRef = ref(storage, `ads/${Date.now()}_${file.name}`);
 
-    // Reset input so same file can be selected again
+            const snapshot = await uploadBytes(storageRef, file);
+
+            const url = await getDownloadURL(snapshot.ref);
+
+            uploadedImages.push(url);
+
+        } catch (error) {
+            console.error("Upload failed:", error);
+            alert("Image upload failed");
+        }
+    }
+
     event.target.value = "";
 };
 
