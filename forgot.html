@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password - Classified Site</title>
+    <!-- FIX: Corrected Font Awesome Link -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">    <!-- FIX: Updated versioning to match your latest CSS save -->
+    <link rel="stylesheet" href="style.css?v=1.2">
+</head>
+<body class="auth-page-body">
+
+<div class="auth-wrapper">
+    <div class="form-card">
+        <h2 id="formTitle">Reset Password</h2>
+        <p id="formSubtitle" class="subtitle">Enter your email to find your account.</p>
+
+        <!-- STAGE 1: Email Check -->
+        <div id="emailSection" class="form-stage">
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" id="resetEmail" placeholder="name@example.com" required>
+            </div>
+            <button type="button" class="btn-primary" onclick="checkUser()">Verify Email</button>
+        </div>
+
+       
+
+        <!-- STAGE 3: New Password (Hidden by default) -->
+        <div id="resetFields" class="form-stage" style="display:none;">
+            <div class="input-group">
+                <label>New Password</label>
+                <input type="password" id="newPassword" placeholder="Min. 7 characters" required>
+                <!-- Eye icon will now show because of Font Awesome fix -->
+                <i class="fas fa-eye" id="toggleNewPass"></i>
+            </div>
+            <div class="input-group">
+                <label>Confirm New Password</label>
+                <input type="password" id="confirmPassword" placeholder="Repeat password" required>
+                <i class="fas fa-eye" id="toggleConfirmPass"></i>
+            </div>
+            <button type="button" class="btn-primary" onclick="finalizeReset()">Update Password</button>
+        </div>
+
+        <div class="divider"><span>OR</span></div>
+
+        <div style="text-align: center;">
+            <a href="login.html" class="back-link" style="text-decoration: none; color: #007bff; font-size: 14px;">
+                <i class="fas fa-arrow-left"></i> Back to Login
+            </a>
+        </div>
+    </div>
+</div>
+<script src="languages.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const lang = localStorage.getItem("lang") || "en";
+    applyLanguage(lang);
+});
+</script>
+<script src="forgot.js"></script>
+</body>
+</html>
