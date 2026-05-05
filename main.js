@@ -175,24 +175,36 @@ window.renderAds = function(adsArray, containerId = "listings") {
         return;
     }
 
-    container.innerHTML = adsArray.map(ad => {
-        const uniqueId = ad.firebaseId;
-        const image = Array.isArray(ad.image) ? ad.image[0] : (ad.image || 'https://via.placeholder.com/300');
-const currentUser = auth.currentUser;
-const showDelete = currentUser && currentUser.uid === ad.userId;
-        return `
-        <div class="card">
-            <div onclick="goToDetails('${uniqueId}')" style="cursor:pointer;">
-                <img src="${image}" style="width:100%; height:200px; object-fit:cover;">
-            </div>
+  container.innerHTML = adsArray.map(ad => {
+    const uniqueId = ad.firebaseId;
 
-            <div class="card-content">
-                <h3>${ad.title}</h3>
-                <p>📍 ${ad.location || "No location"}</p>
-                <p><b>$${ad.price}</b></p>
+    const currentUser = auth.currentUser;
+    const showDelete = currentUser && currentUser.uid === ad.userId;
 
-${showDelete ? `<button onclick="deleteAd('${uniqueId}')">Delete</button>` : ""}            </div>
+    const images = Array.isArray(ad.image)
+        ? ad.image
+        : [ad.image || 'https://via.placeholder.com/300'];
+
+    return `
+    <div class="card">
+
+        <div class="slider" id="slider-${uniqueId}">
+            ${images.map((img, index) => `
+                <img src="${img}" class="slide ${index === 0 ? 'active' : ''}">
+            `).join("")}
+
+            <button class="prev" onclick="changeSlide('${uniqueId}', -1)">‹</button>
+            <button class="next" onclick="changeSlide('${uniqueId}', 1)">›</button>
         </div>
-        `;
-    }).join("");
-};
+
+        <div class="card-content">
+            <h3>${ad.title}</h3>
+            <p>📍 ${ad.location || "No location"}</p>
+            <p><b>$${ad.price}</b></p>
+
+            ${showDelete ? `<button onclick="deleteAd('${uniqueId}')">Delete</button>` : ""}
+        </div>
+
+    </div>
+    `;
+}).join("");
