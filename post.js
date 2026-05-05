@@ -139,7 +139,6 @@ function saveNewAd(event) {
     }
 }
 
-// Finalize ad and post it to Firestore
 function finalizeAd() {
     const user = auth.currentUser;
 
@@ -148,24 +147,50 @@ function finalizeAd() {
         return;
     }
 
-    // Get the form data
+    const title = document.getElementById("adTitle")?.value.trim();
+    if (!title) {
+        alert("Title is required");
+        return;
+    }
+
     const condition = document.querySelector('input[name="condition"]:checked')?.value || "N/A";
 
     const newAd = {
         userId: user.uid,
         userEmail: user.email,
         category: document.getElementById("postCategory")?.value || "",
-        title: document.getElementById("adTitle")?.value || "",
+        title,
         price: document.getElementById("adPrice")?.value || "",
         location: document.getElementById("adLocation")?.value || "",
         description: document.getElementById("adDesc")?.value || "",
-        condition: condition,
+        condition,
         image: uploadedImages.length ? uploadedImages : ["https://via.placeholder.com/300"],
-
         date: new Date().toLocaleDateString(),
         lat: window.currentAdLat || null,
         lng: window.currentAdLng || null
     };
+
+    const adsCollectionRef = collection(db, "marketplace_ads");
+
+    addDoc(adsCollectionRef, newAd)
+        .then(() => {
+            alert("Ad posted successfully!");
+            window.location.href = "index.html";
+        })
+        .catch(err => {
+            console.error("Firestore error:", err);
+
+            const btn = document.getElementById("postBtn");
+            if (btn) {
+                btn.disabled = false;
+                btn.innerText = "Post Ad";
+            }
+
+            alert("Error: " + err.message);
+        });
+}
+
+   
 
     // Save the ad to Firestore
     const adsCollectionRef = collection(db, "marketplace_ads");
@@ -177,6 +202,11 @@ function finalizeAd() {
         .catch(err => {
             console.error("Firestore error:", err);
             alert("Error: " + err.message);
+const btn = document.getElementById("postBtn");
+if (btn) {
+    btn.disabled = false;
+    btn.innerText = "Post Ad";
+}
         });
 }
 
