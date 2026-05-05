@@ -205,6 +205,19 @@ window.renderAds = function(adsArray, containerId = "listings") {
             ${showDelete ? `<button onclick="deleteAd('${uniqueId}')">Delete</button>` : ""}
         </div>
 
+window.changeSlide = function(adId, direction) {
+    const slider = document.getElementById(`slider-${adId}`);
+    const slides = slider.querySelectorAll(".slide");
+
+    let currentIndex = [...slides].findIndex(s => s.classList.contains("active"));
+
+    slides[currentIndex].classList.remove("active");
+
+    currentIndex = (currentIndex + direction + slides.length) % slides.length;
+
+    slides[currentIndex].classList.add("active");
+};
+
     </div>
     `;
 }).join("");
