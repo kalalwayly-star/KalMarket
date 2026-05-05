@@ -383,7 +383,37 @@ img {
     background-color: #fcfcfc;
     margin-top: 10px;
 }
+.slider {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
 
+.slide {
+    display: none;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.slide.active {
+    display: block;
+}
+
+.slider button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.slider .prev { left: 5px; }
+.slider .next { right: 5px; }
 
 
 
