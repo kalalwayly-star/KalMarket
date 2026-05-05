@@ -1,0 +1,401 @@
+/* --- 1. GLOBAL & RESET --- */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  background: #f6f6f6;
+  color: #333;
+}
+
+/* Stacks Header, Content, and Footer vertically */
+.auth-page-body, .details-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* --- 2. HEADER & LANGUAGES --- */
+.header {
+  background: #4b2aad;
+  color: white !important;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.language-nav a, .nav a.text, .nav a {
+    color: white !important;
+    background: transparent !important;
+    text-decoration: none;
+    padding: 5px 12px;
+    font-size: 14px;
+    border: none !important;
+}
+
+.language-nav a:hover {
+    text-decoration: underline;
+}
+
+/* --- 3. HERO & SEARCH --- */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #204fbc;
+    color: white;
+}
+
+#hero_title {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 40px auto;
+    max-width: 800px;
+    width: 100%;
+}
+
+.search-container input, .search-container select {
+    padding: 15px 25px !important;
+    font-size: 1.1rem !important;
+    border-radius: 8px !important;
+    border: none;
+}
+
+.search-container button {
+    padding: 15px 30px !important;
+    font-size: 1.1rem;
+    border-radius: 8px;
+}
+
+/* --- 4. LAYOUTS (Category Sidebar) --- */
+.main-content-wrapper {
+    display: flex;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.category-sidebar {
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.ads-display-area {
+    flex-grow: 1;
+}
+
+.category-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 50px;
+}
+
+/* --- 5. MY ADS PAGE (Rows) --- */
+.ads-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.myad-card {
+    display: flex !important;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    height: 160px;
+    border: 1px solid #eee;
+}
+
+.myad-img-wrapper {
+    width: 220px !important;
+    height: 160px !important;
+    flex-shrink: 0;
+}
+
+.myad-img-wrapper img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+.myad-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* --- 6. DETAIL PAGE --- */
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    align-items: start;
+}
+
+.main-image {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    max-height: 500px;
+    display: flex;
+    justify-content: center;
+}
+
+.main-image img {
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+.description-section {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.content-sidebar {
+    position: sticky;
+    top: 20px;
+}
+
+/* --- 7. FORMS --- */
+.form-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 35px;
+    max-width: 600px;
+    margin: 40px auto;
+}
+.form-card {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 500px;
+    margin: 40px auto; /* Centers the login box */
+}
+
+.form-card input, .form-card select, .form-card textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.feature-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+/* --- 8. FOOTER --- */
+footer {
+    background: #4b2aad;
+    color: white !important;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: auto; /* Pushes to bottom */
+}
+
+footer a {
+    color: white !important;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+/* --- 9. BUTTONS --- */
+.btn-primary, .btn-secondary, .btn {
+    height: 45px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary { background-color: #007bff; color: white; }
+.btn-secondary { background-color: #f8f9fa; color: #333; border: 1px solid #ddd; }
+
+/* General image fix */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Image wrapper */
+.myad-img-wrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+/* Image inside card */
+.myad-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* keeps it nicely cropped */
+}
+  .ad-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}  
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+/* GRID LAYOUT */
+.ads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* CARD */
+.ad-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* IMAGE WRAPPER (KEY FIX) */
+.ad-img-wrapper {
+    width: 100%;
+    height: 180px;   /* controls size */
+    overflow: hidden;
+}
+
+/* IMAGE */
+.ad-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* THIS fixes stretching */
+}
+
+/* CONTENT */
+.ad-content {
+    padding: 10px;
+}
+img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+}
+.grid {
+    display: grid;
+}
+.ad-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.ad-img-wrapper {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.ad-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* Make container position reference */
+.password-group {
+    position: relative;
+}
+
+/* Style input so icon doesn't overlap text */
+.password-group input {
+    width: 100%;
+    padding-right: 40px; /* space for icon */
+}
+
+/* Position the eye icon inside input */
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 70%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #333;
+    font-size: 16px;
+}
+/* Makes categories look clickable */
+.cat-card, .btn-search, .btn-link {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+/* Optional: Slight lift effect on hover */
+.cat-card:hover {
+    transform: translateY(-3px);
+    opacity: 0.8;
+}
+.cat-card, .btn-search, .btn-link, .card {
+    cursor: pointer !important;
+}
+.input-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.category-details {
+    background-color: #fcfcfc;
+    margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
