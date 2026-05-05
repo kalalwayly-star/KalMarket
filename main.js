@@ -1,14 +1,11 @@
 import { auth, db, rtdb } from "./firebase-config.js";
 
 // Full URLs for Auth
-import { onAuthStateChanged, signOut } from "https://gstatic.com";
-
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 // Full URLs for Realtime Database
-import { ref, onValue, remove } from "https://gstatic.com";
-
+import { ref, onValue, remove } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
 // Full URLs for Firestore
-import { collection, onSnapshot, query } from "https://gstatic.com";
-
+import { collection, onSnapshot, query, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 // Global variable to store ads
 let globalAds = [];
