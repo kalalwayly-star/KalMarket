@@ -1,39 +1,38 @@
-import { storage } from "./firebase-config.js";
+import { storage, auth, db } from "./firebase-config.js";
+
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
 import {
     ref,
     uploadBytes,
     getDownloadURL
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
 
-import { auth, db } from './firebase-config.js';  // Correct import from firebase-config.js
-
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
-
-// Global variables for uploaded images
 let uploadedImages = [];
 
-// Firebase Auth state listener
+/* =========================
+   AUTH STATE
+========================= */
 onAuthStateChanged(auth, (user) => {
     const loginLink = document.getElementById("loginLink");
     const logoutBtn = document.getElementById("logoutBtn");
     const emailSpan = document.getElementById("emailSpan");
 
     if (user) {
-        // User is logged in
-        if (loginLink) loginLink.style.display = "none";
-        if (logoutBtn) logoutBtn.style.display = "inline-block";
-        if (emailSpan) emailSpan.innerText = user.email;
+        loginLink && (loginLink.style.display = "none");
+        logoutBtn && (logoutBtn.style.display = "inline-block");
+        emailSpan && (emailSpan.innerText = user.email);
     } else {
-        // User is logged out
-        if (loginLink) loginLink.style.display = "inline-block";
-        if (logoutBtn) logoutBtn.style.display = "none";
-        if (emailSpan) emailSpan.innerText = "";
+        loginLink && (loginLink.style.display = "inline-block");
+        logoutBtn && (logoutBtn.style.display = "none");
+        emailSpan && (emailSpan.innerText = "");
     }
 });
 
-
-
+/* =========================
+   IMAGE UPLOAD (FIREBASE STORAGE)
+========================= */
 window.handlePhotoUpload = async function (event) {
     const files = Array.from(event.target.files || []);
     const preview = document.getElementById("galleryPreview");
@@ -41,8 +40,6 @@ window.handlePhotoUpload = async function (event) {
     if (!preview || !files.length) return;
 
     for (let file of files) {
-
-        // Show preview immediately
         const img = document.createElement("img");
         img.src = URL.createObjectURL(file);
         img.style.width = "100px";
@@ -51,17 +48,12 @@ window.handlePhotoUpload = async function (event) {
         preview.appendChild(img);
 
         try {
-            // Upload to Firebase Storage
             const storageRef = ref(storage, `ads/${Date.now()}_${file.name}`);
-
             const snapshot = await uploadBytes(storageRef, file);
-
             const url = await getDownloadURL(snapshot.ref);
-
             uploadedImages.push(url);
-
-        } catch (error) {
-            console.error("Upload failed:", error);
+        } catch (err) {
+            console.error(err);
             alert("Image upload failed");
         }
     }
@@ -69,48 +61,44 @@ window.handlePhotoUpload = async function (event) {
     event.target.value = "";
 };
 
-// Handles category change and form display
+/* =========================
+   CATEGORY HANDLER
+========================= */
 window.handleCategoryChange = function () {
-    const categorySelect = document.getElementById("postCategory");
-    if (!categorySelect) return;
+    const select = document.getElementById("postCategory");
+    if (!select) return;
 
-    const selectedValue = categorySelect.value;
+    const value = select.value;
 
-    document.querySelectorAll(".category-details").forEach(section => {
-        section.style.display = "none";
+    document.querySelectorAll(".category-details").forEach(el => {
+        el.style.display = "none";
     });
 
-    const commonFields = document.getElementById("commonFields");
-    if (commonFields) commonFields.style.display = "block";
-
-    const categoryMap = {
+    const map = {
         "Cars & Trucks": "section-Cars",
         "Real Estate": "section-RealEstate",
         "Electronics": "section-Electronics",
         "Furniture": "section-Furniture"
     };
 
-    const sectionId = categoryMap[selectedValue];
-    if (sectionId) {
-        const section = document.getElementById(sectionId);
-        if (section) section.style.display = "block";
-    }
+    const section = document.getElementById(map[value]);
+    if (section) section.style.display = "block";
 
     const conditionBox = document.getElementById("globalCondition");
-    const hideConditionFor = ["Pets", "Jobs", "Real Estate", "Services"];
+    const hideFor = ["Jobs", "Real Estate", "Services", "Pets"];
 
     if (conditionBox) {
-        conditionBox.style.display = hideConditionFor.includes(selectedValue)
-            ? "none"
-            : "block";
+        conditionBox.style.display = hideFor.includes(value) ? "none" : "block";
     }
 };
 
-// Handles ad posting
+/* =========================
+   SAVE AD ENTRY POINT
+========================= */
 function saveNewAd(event) {
     event.preventDefault();
-    const user = auth.currentUser;
 
+    const user = auth.currentUser;
     if (!user) {
         alert("Login required");
         return;
@@ -122,47 +110,17 @@ function saveNewAd(event) {
         btn.innerText = "Posting...";
     }
 
-    // Set a timeout for location retrieval
-    let locationTimeout = setTimeout(() => {
-        console.log("Location timed out, posting anyway...");
-        finalizeAd();
-    }, 2000);
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            pos => {
-                clearTimeout(locationTimeout); // Got location, cancel the timeout
-                window.currentAdLat = pos.coords.latitude;
-                window.currentAdLng = pos.coords.longitude;
-                finalizeAd();
-            },
-            () => {
-                clearTimeout(locationTimeout);
-                finalizeAd();
-            },
-            { timeout: 1500 } // Don't wait too long
-        );
-    } else {
-        clearTimeout(locationTimeout);
-        finalizeAd();
-    }
+    finalizeAd();
 }
 
+/* =========================
+   FINALIZE & FIRESTORE SAVE
+========================= */
 function finalizeAd() {
     const user = auth.currentUser;
+    if (!user) return;
 
-    if (!user) {
-        alert("You are not logged in");
-        return;
-    }
-
-    const titleEl = document.getElementById("adTitle");
-    const priceEl = document.getElementById("adPrice");
-    const locationEl = document.getElementById("adLocation");
-    const descEl = document.getElementById("adDesc");
-    const categoryEl = document.getElementById("postCategory");
-
-    const title = titleEl?.value.trim();
+    const title = document.getElementById("adTitle")?.value.trim();
     if (!title) {
         alert("Title is required");
         return;
@@ -171,27 +129,24 @@ function finalizeAd() {
     const newAd = {
         userId: user.uid,
         userEmail: user.email,
-        category: categoryEl?.value || "",
-        title: title,
-        price: priceEl?.value || "",
-        location: locationEl?.value || "",
-        description: descEl?.value || "",
+        category: document.getElementById("postCategory")?.value || "",
+        title,
+        price: document.getElementById("adPrice")?.value || "",
+        location: document.getElementById("adLocation")?.value || "",
+        description: document.getElementById("adDesc")?.value || "",
         condition: document.querySelector('input[name="condition"]:checked')?.value || "N/A",
-        image: (uploadedImages && uploadedImages.length)
-            ? uploadedImages
-            : ["https://via.placeholder.com/300"],
+        image: uploadedImages.length ? uploadedImages : ["https://via.placeholder.com/300"],
         date: new Date().toLocaleDateString(),
-        lat: window.currentAdLat ?? null,
-        lng: window.currentAdLng ?? null
+        lat: window.currentAdLat || null,
+        lng: window.currentAdLng || null
     };
 
-    const adsCollectionRef = collection(db, "marketplace_ads");
+    const refDB = collection(db, "marketplace_ads");
 
-    addDoc(adsCollectionRef, newAd)
+    addDoc(refDB, newAd)
         .then(() => {
             alert("Ad posted successfully!");
 
-            // reset button safely
             const btn = document.getElementById("postBtn");
             if (btn) {
                 btn.disabled = false;
@@ -201,7 +156,7 @@ function finalizeAd() {
             window.location.href = "index.html";
         })
         .catch(err => {
-            console.error("Firestore error:", err);
+            console.error(err);
 
             const btn = document.getElementById("postBtn");
             if (btn) {
@@ -209,57 +164,60 @@ function finalizeAd() {
                 btn.innerText = "Post Ad";
             }
 
-            alert("Error: " + err.message);
+            alert(err.message);
         });
 }
-   
 
-    // Save the ad to Firestore
-    const adsCollectionRef = collection(db, "marketplace_ads");
-    addDoc(adsCollectionRef, newAd)
-        .then(() => {
-            alert("Ad posted successfully!");
-            window.location.href = "index.html";  // Redirect after posting
-        })
-        .catch(err => {
-            console.error("Firestore error:", err);
-            alert("Error: " + err.message);
-const btn = document.getElementById("postBtn");
-if (btn) {
-    btn.disabled = false;
-    btn.innerText = "Post Ad";
-}
-        });
-
-
-// Initialize form events
+/* =========================
+   INIT EVENTS
+========================= */
 document.addEventListener("DOMContentLoaded", () => {
-    handleCategoryChange(); // Set category change handler
+    handleCategoryChange();
 
-    // Event listener for category change
     document.getElementById("postCategory")
         ?.addEventListener("change", handleCategoryChange);
 
-
-    // Event listener for photo upload
     document.getElementById("photoInput")
         ?.addEventListener("change", handlePhotoUpload);
 
-    // Event listener for form submission
     document.getElementById("postForm")
         ?.addEventListener("submit", saveNewAd);
 });
-paypal.Buttons({
-    createOrder: function(data, actions) {
-        return actions.order.create({
-            purchase_units: [{
-                amount: { value: '5.00' }
-            }]
-        });
-    },
-    onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-            alert('Payment completed by ' + details.payer.name.given_name);
-        });
-    }
-}).render('#paypal-button-container');
+
+// =========================
+// PAYPAL PAYMENT (SAFE)
+// =========================
+function initPayPal() {
+    const container = document.getElementById("paypal-button-container");
+    if (!container || typeof paypal === "undefined") return;
+
+    paypal.Buttons({
+        createOrder: function (data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: "5.00" // change price if needed
+                    }
+                }]
+            });
+        },
+
+        onApprove: function (data, actions) {
+            return actions.order.capture().then(function (details) {
+                alert("Payment completed by " + details.payer.name.given_name);
+
+                // OPTIONAL: mark ad as paid
+                window.isPaid = true;
+            });
+        },
+
+        onError: function (err) {
+            console.error("PayPal error:", err);
+            alert("Payment failed. Try again.");
+        }
+
+    }).render("#paypal-button-container");
+}
+
+// run after page loads
+document.addEventListener("DOMContentLoaded", initPayPal);
