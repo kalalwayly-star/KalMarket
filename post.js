@@ -217,7 +217,7 @@ if (btn) {
     btn.innerText = "Post Ad";
 }
         });
-}
+
 
 // Initialize form events
 document.addEventListener("DOMContentLoaded", () => {
