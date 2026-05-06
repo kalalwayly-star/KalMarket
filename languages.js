@@ -1,7 +1,6 @@
 // Set the default language to English or the language from localStorage
 let currentLanguage = localStorage.getItem("language") || "en";
 
-// Load the selected language and update the page content
 function loadLanguage(language) {
     fetch(`${language}.json`)
         .then(response => {
@@ -14,9 +13,11 @@ function loadLanguage(language) {
         })
         .catch(error => {
             console.error("Error loading language file:", error);
-            // Fallback to English if the file is missing or broken
+
             if (language !== "en") {
                 loadLanguage("en");
+            } else {
+                console.error("Critical: English language file is missing.");
             }
         });
 }
