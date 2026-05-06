@@ -103,7 +103,7 @@ window.filterByCategory = function(category) {
     if (category === 'All') {
         filteredAds = allAds;  // If 'All' is selected, show all ads
     } else {
-        filteredAds = allAds.filter(ad => ad.category === category);  // Filter by selected category
+    const filteredAds = globalAds.filter(ad => ad.category === category);
     }
 
     // Log filtered ads for debugging
@@ -133,7 +133,7 @@ window.resetFilters = function() {
 // UPDATED: Apply Filters (search)
 window.applyFilters = function() {
     const searchInput = document.getElementById('searchInput');
-    const query = searchInput.value.toLowerCase().trim();
+    const query = document.getElementById("searchInput").value.toLowerCase().trim();
 
     if (!query) {
       globalAds.sort((a, b) => new Date(b.date) - new Date(a.date)); 
