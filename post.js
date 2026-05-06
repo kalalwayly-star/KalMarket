@@ -227,6 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("postCategory")
         ?.addEventListener("change", handleCategoryChange);
 
+
     // Event listener for photo upload
     document.getElementById("photoInput")
         ?.addEventListener("change", handlePhotoUpload);
