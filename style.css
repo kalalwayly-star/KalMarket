@@ -415,7 +415,10 @@ img {
 .slider .prev { left: 5px; }
 .slider .next { right: 5px; }
 
-
+.upload-icon {
+    width: 16px;
+    height: 16px;
+}
 
 
 
