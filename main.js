@@ -165,51 +165,69 @@ window.renderAds = function(adsArray, containerId = "listings") {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    container.innerHTML = "";  // Clear the existing ads in the container
+    container.innerHTML = "";
 
-    // Log the filtered ads for debugging
     console.log("Filtered ads:", adsArray);
 
     if (!adsArray || adsArray.length === 0) {
-        container.innerHTML = `<p style="text-align:center;">No items found.</p>`;  // If no ads match
+        container.innerHTML = `<p style="text-align:center;">No items found.</p>`;
         return;
     }
 
-  container.innerHTML = adsArray.map(ad => {
-    const uniqueId = ad.firebaseId;
+    container.innerHTML = adsArray.map(ad => {
+        const uniqueId = ad.firebaseId;
 
-    const currentUser = auth.currentUser;
-    const showDelete = currentUser && currentUser.uid === ad.userId;
+        const currentUser = auth.currentUser;
+        const showDelete = currentUser && currentUser.uid === ad.userId;
 
-    const images = Array.isArray(ad.image)
-        ? ad.image
-        : [ad.image || 'https://via.placeholder.com/300'];
+        const images = Array.isArray(ad.image)
+            ? ad.image
+            : [ad.image || 'https://via.placeholder.com/300'];
 
-    return `
-    <div class="card">
+        return `
+        <div class="card">
 
-        <div class="slider" id="slider-${uniqueId}">
-            ${images.map((img, index) => `
-                <img src="${img}" class="slide ${index === 0 ? 'active' : ''}">
-            `).join("")}
+            <div class="slider" id="slider-${uniqueId}">
+                ${images.map((img, index) => `
+                    <img src="${img}" 
+                         class="slide ${index === 0 ? 'active' : ''}" 
+                         onclick="goToDetails('${uniqueId}')">
+                `).join("")}
 
-            <button class="prev" onclick="changeSlide('${uniqueId}', -1)">‹</button>
-            <button class="next" onclick="changeSlide('${uniqueId}', 1)">›</button>
+                ${images.length > 1 ? `
+                    <button class="prev" onclick="event.stopPropagation(); changeSlide('${uniqueId}', -1)">‹</button>
+                    <button class="next" onclick="event.stopPropagation(); changeSlide('${uniqueId}', 1)">›</button>
+                ` : ""}
+            </div>
+
+            <div class="card-content">
+                <h3>${ad.title}</h3>
+                <p>📍 ${ad.location || "No location"}</p>
+                <p><b>$${ad.price}</b></p>
+
+                ${showDelete ? `<button onclick="deleteAd('${uniqueId}')">Delete</button>` : ""}
+            </div>
+
         </div>
+        `;
+    }).join("");
+};
 
-        <div class="card-content">
-            <h3>${ad.title}</h3>
-            <p>📍 ${ad.location || "No location"}</p>
-            <p><b>$${ad.price}</b></p>
-
-            ${showDelete ? `<button onclick="deleteAd('${uniqueId}')">Delete</button>` : ""}
-        </div>
-
+/* =========================
+   IMAGE SLIDER FUNCTION
+========================= */
 window.changeSlide = function(adId, direction) {
     const slider = document.getElementById(`slider-${adId}`);
-    const slides = slider.querySelectorAll(".slide");
+    if (!slider) return;
 
-    let currentIndex = [...slides].findIndex(s => s.classList.contains("active"));
+    const slides = slider.querySelectorAll(".slide");
+    if (!slides.length) return;
+
+    let currentIndex = [...slides].findIndex(slide =>
+        slide.classList.contains("active")
+    );
+
+    if (currentIndex === -1) currentIndex = 0;
 
     slides[currentIndex].classList.remove("active");
 
@@ -217,7 +235,3 @@ window.changeSlide = function(adId, direction) {
 
     slides[currentIndex].classList.add("active");
 };
-
-    </div>
-    `;
-}).join("");
