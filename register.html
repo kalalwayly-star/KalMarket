@@ -3,64 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account - Classified Site</title>
-    <!-- FIX: Corrected Font Awesome Link -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">    <!-- FIX: Updated versioning to v=1.2 to match your latest CSS save -->
+    <title data-i18n="register_page_title">Create Account - Classified Site</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Main CSS -->
     <link rel="stylesheet" href="style.css?v=1.2">
 </head>
+
 <body class="auth-page-body">
 
 <div class="auth-wrapper">
     <div class="form-card">
-        <h2>Create Account</h2>
-        <p class="subtitle">Join our marketplace today.</p>
-        
-        <!-- Error Message Placeholder -->
-        <div id="error-message" class="error-text" style="text-align: center; margin-bottom: 15px;"></div>
 
-        <!-- Step 1: Basic Info -->
-        <!-- Password -->
-<div class="input-group">
-    <label>Password</label>
+        <!-- Header -->
+        <h2 data-i18n="create_account_title">Create Account</h2>
+        <p class="subtitle" data-i18n="register_subtitle">
+            Join our marketplace today.
+        </p>
 
-    <input type="password"
-           id="registerPassword"
-           data-i18n-placeholder="enter_password"
-           placeholder="Enter your password">
+        <!-- Error Message -->
+        <div id="error-message" class="error-text" style="text-align:center; margin-bottom:15px;"></div>
 
-    <i class="fas fa-eye" id="toggleRegPassword"></i>
-</div>
+        <!-- Registration Form -->
+        <form id="registerForm" onsubmit="event.preventDefault(); register();">
 
-<!-- Button -->
-<button type="button" class="btn-primary" onclick="register()">
-    Create Account
-</button>
-        
-        <div class="divider"><span>OR</span></div>
+            <!-- Email -->
+            <div class="input-group">
+                <label data-i18n="label_email">Email Address</label>
+                <input
+                    type="email"
+                    id="registerEmail"
+                    data-i18n-placeholder="enter_email"
+                    placeholder="Enter your email"
+                    required
+                >
+            </div>
 
-       <div style="text-align: center;">
-    <p style="font-size: 14px; color: #666;">
-        <span data-i18n="already_have_account">Already have an account?</span> 
-        <a href="login.html" data-i18n="login_here" style="color: #007bff; text-decoration: none; font-weight: bold;">Login here</a>
-    </p>
-</div>
+            <!-- Password -->
+            <div class="input-group password-group">
+                <label data-i18n="label_password">Password</label>
+
+                <input
+                    type="password"
+                    id="registerPassword"
+                    data-i18n-placeholder="enter_password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+                <i class="fas fa-eye toggle-password" id="toggleRegPassword"></i>
+            </div>
+
+            <!-- Register Button -->
+            <button
+                type="submit"
+                class="btn-primary"
+                data-i18n="create_account_btn"
+            >
+                Create Account
+            </button>
+
+        </form>
+
+        <!-- Divider -->
+        <div class="divider">
+            <span data-i18n="or_divider">OR</span>
+        </div>
+
+        <!-- Login Redirect -->
+        <div style="text-align:center;">
+            <p style="font-size:14px; color:#666;">
+                <span data-i18n="already_have_account">
+                    Already have an account?
+                </span>
+
+                <a
+                    href="login.html"
+                    data-i18n="login_here"
+                    style="color:#007bff; text-decoration:none; font-weight:bold;"
+                >
+                    Login here
+                </a>
+            </p>
+        </div>
 
     </div>
 </div>
 
-<script>
-    // Eye toggle for registration page
-    const toggleBtn = document.getElementById('toggleRegPassword');
-    const passInput = document.getElementById('loginPassword');
+<!-- Language Script -->
+<script src="languages.js"></script>
 
-    if (toggleBtn) {
-        toggleBtn.addEventListener('click', function() {
-            const isPass = passInput.type === 'password';
-            passInput.type = isPass ? 'text' : 'password';
-            this.classList.toggle('fa-eye-slash');
-        });
-    }
-</script>
+<!-- Register Logic -->
 <script type="module" src="register.js"></script>
 
 </body>
