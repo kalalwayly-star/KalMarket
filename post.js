@@ -72,38 +72,37 @@ window.handlePhotoUpload = async function (event) {
 // Handles category change and form display
 window.handleCategoryChange = function () {
     const categorySelect = document.getElementById("postCategory");
-    const commonFields = document.getElementById("commonFields");
-    const conditionBox = document.getElementById("globalCondition");
-
-    // Safety: If the select isn't found, stop here
     if (!categorySelect) return;
 
     const selectedValue = categorySelect.value;
 
-    // Hide all extra category sections
-    document.querySelectorAll(".category-details").forEach(sec => sec.style.display = "none");
+    document.querySelectorAll(".category-details").forEach(section => {
+        section.style.display = "none";
+    });
 
-    // Show main fields (Title, Price, Description)
+    const commonFields = document.getElementById("commonFields");
     if (commonFields) commonFields.style.display = "block";
 
-    // Display category-specific sections
-   const categoryMap = {
-    "Cars & Trucks": "section-Cars",
-    "Real Estate": "section-RealEstate",
-    "Electronics": "section-Electronics",
-    "Furniture": "section-Furniture"
-};
+    const categoryMap = {
+        "Cars & Trucks": "section-Cars",
+        "Real Estate": "section-RealEstate",
+        "Electronics": "section-Electronics",
+        "Furniture": "section-Furniture"
+    };
 
     const sectionId = categoryMap[selectedValue];
     if (sectionId) {
-        const el = document.getElementById(sectionId);
-        if (el) el.style.display = "block";
+        const section = document.getElementById(sectionId);
+        if (section) section.style.display = "block";
     }
 
-    // Show/hide condition box based on category
+    const conditionBox = document.getElementById("globalCondition");
     const hideConditionFor = ["Pets", "Jobs", "Real Estate", "Services"];
+
     if (conditionBox) {
-        conditionBox.style.display = hideConditionFor.includes(selectedValue) ? "none" : "block";
+        conditionBox.style.display = hideConditionFor.includes(selectedValue)
+            ? "none"
+            : "block";
     }
 };
 
