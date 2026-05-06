@@ -419,7 +419,18 @@ img {
     width: 16px;
     height: 16px;
 }
+.radio-group {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
 
 
 
