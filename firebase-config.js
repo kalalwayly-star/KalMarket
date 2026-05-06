@@ -4,6 +4,7 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-aut
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 import { getDatabase } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js"; // Import Firebase Storage
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
 // Firebase config (replace with your Firebase credentials)
 const firebaseConfig = {
