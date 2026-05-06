@@ -1,10 +1,8 @@
-// Import Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 import { getDatabase } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
-import { getStorage } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js"; // Import Firebase Storage
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import { getStorage } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
 
 // Firebase config (replace with your Firebase credentials)
 const firebaseConfig = {
@@ -18,14 +16,11 @@ const firebaseConfig = {
   measurementId: "G-FFHYQC4YJV"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Auth, Firestore, Realtime Database, and Storage
+const auth = getAuth(app);
 const db = getFirestore(app);
-const rtdb = getDatabase(app);  // Realtime Database
-const storage = getStorage(app); // Initialize Firebase Storage
+const rtdb = getDatabase(app);
+const storage = getStorage(app);
 
-// Export services for use in other files
-export const auth = getAuth(app);
-export { auth, db, rtdb, storage };  
+export { auth, db, rtdb, storage };
