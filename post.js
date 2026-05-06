@@ -87,12 +87,12 @@ window.handleCategoryChange = function () {
     if (commonFields) commonFields.style.display = "block";
 
     // Display category-specific sections
-    const categoryMap = {
-        "Cars & Trucks": "section-Cars",
-        "Real Estate": "section-RealEstate",
-        "Electronics": "section-Electronics",
-        "Furniture": "section-Furniture"
-    };
+   const categoryMap = {
+    "Cars & Trucks": "section-Cars",
+    "Real Estate": "section-RealEstate",
+    "Electronics": "section-Electronics",
+    "Furniture": "section-Furniture"
+};
 
     const sectionId = categoryMap[selectedValue];
     if (sectionId) {
