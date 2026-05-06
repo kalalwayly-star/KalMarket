@@ -156,27 +156,33 @@ function finalizeAd() {
         return;
     }
 
-    const title = document.getElementById("adTitle")?.value.trim();
+    const titleEl = document.getElementById("adTitle");
+    const priceEl = document.getElementById("adPrice");
+    const locationEl = document.getElementById("adLocation");
+    const descEl = document.getElementById("adDesc");
+    const categoryEl = document.getElementById("postCategory");
+
+    const title = titleEl?.value.trim();
     if (!title) {
         alert("Title is required");
         return;
     }
 
-    const condition = document.querySelector('input[name="condition"]:checked')?.value || "N/A";
-
     const newAd = {
         userId: user.uid,
         userEmail: user.email,
-        category: document.getElementById("postCategory")?.value || "",
-        title,
-        price: document.getElementById("adPrice")?.value || "",
-        location: document.getElementById("adLocation")?.value || "",
-        description: document.getElementById("adDesc")?.value || "",
-        condition,
-        image: uploadedImages.length ? uploadedImages : ["https://via.placeholder.com/300"],
+        category: categoryEl?.value || "",
+        title: title,
+        price: priceEl?.value || "",
+        location: locationEl?.value || "",
+        description: descEl?.value || "",
+        condition: document.querySelector('input[name="condition"]:checked')?.value || "N/A",
+        image: (uploadedImages && uploadedImages.length)
+            ? uploadedImages
+            : ["https://via.placeholder.com/300"],
         date: new Date().toLocaleDateString(),
-        lat: window.currentAdLat || null,
-        lng: window.currentAdLng || null
+        lat: window.currentAdLat ?? null,
+        lng: window.currentAdLng ?? null
     };
 
     const adsCollectionRef = collection(db, "marketplace_ads");
@@ -184,6 +190,14 @@ function finalizeAd() {
     addDoc(adsCollectionRef, newAd)
         .then(() => {
             alert("Ad posted successfully!");
+
+            // reset button safely
+            const btn = document.getElementById("postBtn");
+            if (btn) {
+                btn.disabled = false;
+                btn.innerText = "Post Ad";
+            }
+
             window.location.href = "index.html";
         })
         .catch(err => {
@@ -198,7 +212,6 @@ function finalizeAd() {
             alert("Error: " + err.message);
         });
 }
-
    
 
     // Save the ad to Firestore
