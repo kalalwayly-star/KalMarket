@@ -1,82 +1,59 @@
-/ storage.js
+// storage.js
+// SAFE helper functions for Marketplace
 
-// 1. Get all ads from memory
-function getAllAds() {
-    // Master key used by both main.js and storage.js
-    let ads = JSON.parse(localStorage.getItem("marketplace_ads")) || [];
-    
-    // INITIALIZE WITH SAMPLE DATA (if empty)
-    if (ads.length === 0) {
-        ads = [
-            { 
-                id: 101, 
-                title: "Modern Villa", 
-                category: "Real Estate", 
-                location: "Dubai", 
-                lat: 25.2048, 
-                lng: 55.2708, 
-                price: "200,000", 
-                image: "https://placeholder.com",
-                status: "Active",
-                userEmail: "test@test.com"
-            },
-            { 
-                id: 102, 
-                title: "Sport Sedan", 
-                category: "Cars & Trucks", 
-                location: "Riyadh", 
-                lat: 24.7136, 
-                lng: 46.6753, 
-                price: "45,000", 
-                image: "https://placeholder.com",
-                status: "Active",
-                userEmail: "test@test.com"
-            },
-            { 
-                id: 103, 
-                title: "Office Desk", 
-                category: "Furniture", 
-                location: "Cairo", 
-                lat: 30.0444, 
-                lng: 31.2357, 
-                price: "300", 
-                image: "https://placeholder.com",
-                status: "Active",
-                userEmail: "test@test.com"
-            }
-        ];
-        localStorage.setItem("marketplace_ads", JSON.stringify(ads));
-    }
-    return ads;
+/* =========================
+   GET USER ADS FROM CACHE
+========================= */
+function getCachedAds() {
+    return JSON.parse(localStorage.getItem("cached_ads")) || [];
 }
 
-// 2. Save a completely new list (used for deleting or updating)
-function saveAdsList(adsArray) {
-    localStorage.setItem("marketplace_ads", JSON.stringify(adsArray));
+/* =========================
+   SAVE CACHE
+========================= */
+function saveCachedAds(adsArray) {
+    localStorage.setItem("cached_ads", JSON.stringify(adsArray));
 }
 
-// 3. Add a single new ad to the existing list
-function saveToLocalStorage(adObject) {
-    const ads = getAllAds();
-    ads.push(adObject);
-    saveAdsList(ads);
+/* =========================
+   FIND AD BY ID
+========================= */
+function getCachedAdById(id) {
+    const ads = getCachedAds();
+
+    return ads.find(ad =>
+        String(ad.firebaseId) === String(id)
+    );
 }
 
-// 4. Utility to find a single ad by ID
-function getAdById(id) {
-    const ads = getAllAds();
-    return ads.find(ad => String(ad.id) === String(id));
-}
+/* =========================
+   MODERATION QUEUE
+========================= */
+function sendToModerationQueue(ad, fraudData = {}) {
 
-// 5. Moderation Logic
-function sendToModerationQueue(ad, fraudData) {
-    const queue = JSON.parse(localStorage.getItem("moderationQueue")) || [];
+    const queue =
+        JSON.parse(localStorage.getItem("moderationQueue")) || [];
+
     queue.push({
         ...ad,
-        fraudScore: fraudData.score,
-        fraudReasons: fraudData.reasons,
-        riskLevel: fraudData.riskLevel,
+
+        fraudScore: fraudData.score || 0,
+        fraudReasons: fraudData.reasons || [],
+        riskLevel: fraudData.riskLevel || "low",
+
         createdAt: Date.now()
     });
-    localStorage.setItem("moderationQueue", JSON.stringify(queue));
+
+    localStorage.setItem(
+        "moderationQueue",
+        JSON.stringify(queue)
+    );
 }
+
+/* =========================
+   EXPOSE TO WINDOW
+========================= */
+window.getCachedAds = getCachedAds;
+window.saveCachedAds = saveCachedAds;
+window.getCachedAdById = getCachedAdById;
+window.sendToModerationQueue = sendToModerationQueue;
