@@ -55,11 +55,9 @@ function updateText(translations, language) {
 
 // Set up language buttons and switcher
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Handle Button Clicks (English, Spanish, French, Arabic)
+    // 1. Handle Button Clicks (English, Arabic)
     const langButtons = {
         "lang-en": "en",
-        "lang-es": "es",
-        "lang-fr": "fr",
         "lang-ar": "ar"
     };
 
