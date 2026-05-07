@@ -180,9 +180,13 @@ window.renderAds = function(adsArray, containerId = "listings") {
         const currentUser = auth.currentUser;
         const showDelete = currentUser && currentUser.uid === ad.userId;
 
-        const images = Array.isArray(ad.image)
-            ? ad.image
-            : [ad.image || 'https://via.placeholder.com/300'];
+        const fallbackImage = "https://dummyimage.com/300x200/cccccc/000000&text=No+Image";
+
+const images = Array.isArray(ad.image)
+    ? ad.image.filter(img => img && img.startsWith("http"))
+    : (ad.image && ad.image.startsWith("http"))
+        ? [ad.image]
+        : [fallbackImage];
 
         return `
         <div class="card">
