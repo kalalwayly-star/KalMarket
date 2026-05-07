@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="admin_dashboard_title">Admin Dashboard | My Marketplace</title>
+
+    <link rel="stylesheet" href="style.css?v=1.2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            background: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .admin-wrapper {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .admin-header h1 {
+            margin: 0;
+            color: #007bff;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+        }
+
+        .admin-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .admin-card h2 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .report-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background: #fafafa;
+        }
+
+        .report-card img {
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .report-card h3 {
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+
+        .report-card p {
+            margin: 6px 0;
+            color: #555;
+        }
+
+        .admin-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        .logout-btn {
+            background: #333;
+            color: white;
+        }
+
+        .home-btn {
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: gray;
+            padding: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid #ddd;
+            background: white;
+        }
+
+        @media (max-width: 900px) {
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="container admin-header">
+
+        <h1 data-i18n="admin_dashboard">Admin Dashboard</h1>
+
+        <div>
+            <a href="index.html" class="admin-btn home-btn" data-i18n="back_home">
+                Back Home
+            </a>
+
+            <button onclick="adminLogout()" class="admin-btn logout-btn" data-i18n="logout_btn">
+                Logout
+            </button>
+        </div>
+
+    </div>
+</header>
+
+<!-- MAIN -->
+<main class="admin-wrapper">
+
+    <div class="admin-grid">
+
+        <!-- ADS MANAGEMENT -->
+        <section class="admin-card">
+            <h2 data-i18n="manage_ads">Manage Marketplace Ads</h2>
+
+            <div id="moderationList">
+                <p class="empty-state" data-i18n="loading_ads">
+                    Loading ads...
+                </p>
+            </div>
+        </section>
+
+        <!-- USER REPORTS -->
+        <section class="admin-card">
+            <h2 data-i18n="user_reports">User Reports</h2>
+
+            <div id="reportList">
+                <p class="empty-state" data-i18n="loading_reports">
+                    Loading reports...
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <p data-i18n="footer_copy">© 2026 My Marketplace Admin Panel</p>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="languages.js"></script>
+<script type="module" src="admin.js"></script>
+
+</body>
+</html>
