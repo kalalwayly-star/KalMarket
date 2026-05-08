@@ -65,31 +65,56 @@ window.handlePhotoUpload = async function (event) {
    CATEGORY HANDLER
 ========================= */
 window.handleCategoryChange = function () {
-    const select = document.getElementById("postCategory");
-    if (!select) return;
+    const categorySelect = document.getElementById("postCategory");
+    if (!categorySelect) return;
 
-    const value = select.value;
+    const selectedValue = categorySelect.value.trim();
 
-    document.querySelectorAll(".category-details").forEach(el => {
-        el.style.display = "none";
+    // Hide all category sections first
+    document.querySelectorAll(".category-details").forEach(section => {
+        section.style.display = "none";
     });
 
-    const map = {
+    // Always show common fields
+    const commonFields = document.getElementById("commonFields");
+    if (commonFields) {
+        commonFields.style.display = "block";
+    }
+
+    // Match EXACT dropdown values
+    const categoryMap = {
         "Cars & Trucks": "section-Cars",
         "Real Estate": "section-RealEstate",
         "Electronics": "section-Electronics",
-        "Furniture": "section-Furniture"
+        "Furniture": "section-Furniture",
+        "Jobs": "section-Jobs",
+        "Services": "section-Services",
+        "Pets": "section-Pets"
     };
 
-    const section = document.getElementById(map[value]);
-    if (section) section.style.display = "block";
+    const targetSectionId = categoryMap[selectedValue];
 
+    if (targetSectionId) {
+        const targetSection = document.getElementById(targetSectionId);
+
+        if (targetSection) {
+            targetSection.style.display = "block";
+        } else {
+            console.warn("Missing section:", targetSectionId);
+        }
+    }
+
+    // Condition visibility
     const conditionBox = document.getElementById("globalCondition");
-    const hideFor = ["Jobs", "Real Estate", "Services", "Pets"];
+    const hideConditionFor = ["Pets", "Jobs", "Real Estate", "Services"];
 
     if (conditionBox) {
-        conditionBox.style.display = hideFor.includes(value) ? "none" : "block";
+        conditionBox.style.display = hideConditionFor.includes(selectedValue)
+            ? "none"
+            : "block";
     }
+
+    console.log("Selected category:", selectedValue);
 };
 
 /* =========================
