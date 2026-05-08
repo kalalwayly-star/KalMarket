@@ -135,22 +135,34 @@
 
 <!-- Featured Ad Checkbox Section with Two Checkboxes -->
 <div class="feature-container">
+    <!-- No feature option -->
     <label class="feature-card">
-        <input type="checkbox" id="isFeatured5Days" class="feature-input">
+        <input type="radio" name="feature_selection" value="none" class="feature-input" checked>
+        <div class="feature-content">
+            <span class="feature-text">Standard Listing (Free)</span>
+            <span class="status-badge">Not interested</span>
+        </div>
+    </label>
+
+    <!-- 5 Days option -->
+    <label class="feature-card">
+        <input type="radio" name="feature_selection" value="5days" id="isFeatured5Days" class="feature-input">
         <div class="feature-content">
             <span class="feature-text" data-i18n="label_featured">✨ Feature this ad for</span>
             <span class="price-badge" id="price-5-days">$4.99 for 5 days</span>
         </div>
     </label>
 
+    <!-- 10 Days option -->
     <label class="feature-card">
-        <input type="checkbox" id="isFeatured10Days" class="feature-input">
+        <input type="radio" name="feature_selection" value="10days" id="isFeatured10Days" class="feature-input">
         <div class="feature-content">
             <span class="feature-text" data-i18n="label_featured">✨ Feature this ad for</span>
             <span class="price-badge" id="price-10-days">$8.99 for 10 days</span>
         </div>
     </label>
 </div>
+
 
 
 
