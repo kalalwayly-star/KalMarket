@@ -439,7 +439,44 @@ img {
     border-radius: 8px;
     background: #fafafa;
 }
+.form-section {
+  border: none;
+  padding: 0;
+  margin: 20px 0;
+  font-family: sans-serif;
+}
 
+.condition-label {
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+  color: #333;
+}
+
+.condition-group {
+  display: flex;
+  gap: 20px; /* Even spacing between options */
+  align-items: center;
+}
+
+.condition-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: #555;
+  transition: color 0.2s;
+}
+
+.condition-option:hover {
+  color: #000;
+}
+
+.condition-option input[type="radio"] {
+  margin-right: 8px; /* Precise gap between circle and text */
+  cursor: pointer;
+  accent-color: #007bff; /* Professional blue theme */
+}
 
 
 
