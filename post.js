@@ -127,19 +127,21 @@ function finalizeAd() {
     }
 
     const newAd = {
-        userId: user.uid,
-        userEmail: user.email,
-        category: document.getElementById("postCategory")?.value || "",
-        title,
-        price: document.getElementById("adPrice")?.value || "",
-        location: document.getElementById("adLocation")?.value || "",
-        description: document.getElementById("adDesc")?.value || "",
-        condition: document.querySelector('input[name="condition"]:checked')?.value || "N/A",
-        image: uploadedImages.length ? uploadedImages :https://dummyimage.com/300x200/cccccc/000000&text=No+Image
-        date: new Date().toLocaleDateString(),
-        lat: window.currentAdLat || null,
-        lng: window.currentAdLng || null
-    };
+    userId: user.uid,
+    userEmail: user.email,
+    category: document.getElementById("postCategory")?.value || "",
+    title,
+    price: document.getElementById("adPrice")?.value || "",
+    location: document.getElementById("adLocation")?.value || "",
+    description: document.getElementById("adDesc")?.value || "",
+    condition: document.querySelector('input[name="condition"]:checked')?.value || "N/A",
+    image: uploadedImages.length
+        ? uploadedImages
+        : ["https://dummyimage.com/300x200/cccccc/000000&text=No+Image"],
+    date: new Date().toLocaleDateString(),
+    lat: window.currentAdLat || null,
+    lng: window.currentAdLng || null
+};
 
     const refDB = collection(db, "marketplace_ads");
 
