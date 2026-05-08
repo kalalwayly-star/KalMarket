@@ -134,18 +134,24 @@
 
 
 <!-- Featured Ad Checkbox Section with Two Checkboxes -->
-<div class="form-group feature-box">
-    <label class="featured-label">
-        <input type="checkbox" id="isFeatured5Days" class="featured-checkbox">
-        <span data-i18n="label_featured">✨ Feature this ad for</span>
-        <span class="price-option" id="price-5-days">$4.99 for 5 days</span>
+<div class="feature-container">
+    <label class="feature-card">
+        <input type="checkbox" id="isFeatured5Days" class="feature-input">
+        <div class="feature-content">
+            <span class="feature-text" data-i18n="label_featured">✨ Feature this ad for</span>
+            <span class="price-badge" id="price-5-days">$4.99 for 5 days</span>
+        </div>
     </label>
-    <label class="featured-label">
-        <input type="checkbox" id="isFeatured10Days" class="featured-checkbox">
-        <span data-i18n="label_featured">✨ Feature this ad for</span>
-        <span class="price-option" id="price-10-days">$8.99 for 10 days</span>
+
+    <label class="feature-card">
+        <input type="checkbox" id="isFeatured10Days" class="feature-input">
+        <div class="feature-content">
+            <span class="feature-text" data-i18n="label_featured">✨ Feature this ad for</span>
+            <span class="price-badge" id="price-10-days">$8.99 for 10 days</span>
+        </div>
     </label>
 </div>
+
 
 
 <!-- PayPal Button Container (Hidden initially) -->
