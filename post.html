@@ -96,27 +96,56 @@
     <textarea id="adDesc" required></textarea>
 </div>
 
-<!-- Car Specific Fields (Only shown for "Cars & Trucks" category) -->
-<div id="carFields" style="display: none;">
-    <label for="carMake">Car Make:</label>
-    <input type="text" id="carMake" />
+<div id="section-Cars" class="category-details" style="display:none;">
 
-    <label for="carModel">Car Model:</label>
-    <input type="text" id="carModel" />
+    <h3>Vehicle Information</h3>
 
-    <label for="carYear">Car Year:</label>
-    <input type="number" id="carYear" />
+    <div class="form-row">
+        <div class="input-group">
+            <label>Make</label>
+            <input type="text" id="carMake" placeholder="Toyota">
+        </div>
 
-    <label for="carMileage">Mileage (km):</label>
-    <input type="number" id="carMileage" />
+        <div class="input-group">
+            <label>Model</label>
+            <input type="text" id="carModel" placeholder="Camry">
+        </div>
+    </div>
 
-    <label for="carFuelType">Fuel Type:</label>
-    <select id="carFuelType">
-        <option value="Gasoline">Gasoline</option>
-        <option value="Electric">Electric</option>
-        <option value="Hybrid">Hybrid</option>
-        <option value="Diezel">Diezel</option>    
-    </select>
+    <div class="form-row">
+        <div class="input-group">
+            <label>Year</label>
+            <input type="number" id="carYear" placeholder="2022">
+        </div>
+
+        <div class="input-group">
+            <label>Mileage</label>
+            <input type="number" id="carMileage" placeholder="50000">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="input-group">
+            <label>Transmission</label>
+            <select id="carTransmission">
+                <option value="">Select</option>
+                <option>Automatic</option>
+                <option>Manual</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Fuel Type</label>
+            <select id="carFuel">
+                <option value="">Select</option>
+                <option>Gasoline</option>
+                <option>Diesel</option>
+                <option>Electric</option>
+                <option>Hybrid</option>
+            </select>
+        </div>
+    </div>
+
 </div>
 
 <!-- Condition Fields (For applicable categories) -->
