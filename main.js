@@ -96,67 +96,95 @@ window.deleteAd = async function(firebaseId) {
    FILTERS (CLEAN VERSION)
 ========================= */
 // UPDATED: filterByCategory
+/* =========================
+   FILTERS (FULL FIXED VERSION)
+========================= */
+
+// CATEGORY FILTER
 window.filterByCategory = function(category) {
-    const allAds = getAds();
+
+    if (!globalAds || globalAds.length === 0) {
+        renderAds([], "listings");
+        return;
+    }
+
     let filteredAds = [];
 
-    if (category === 'All') {
-        filteredAds = allAds;  // If 'All' is selected, show all ads
+    // Show all ads
+    if (!category || category === "All" || category === "All Categories") {
+        filteredAds = globalAds;
     } else {
-    const filteredAds = globalAds.filter(ad => ad.category === category);
+        filteredAds = globalAds.filter(ad =>
+            (ad.category || "").trim().toLowerCase() === category.trim().toLowerCase()
+        );
     }
 
-    // Log filtered ads for debugging
+    console.log("Category selected:", category);
     console.log("Filtered ads:", filteredAds);
 
-    // Render filtered ads
     renderAds(filteredAds, "listings");
 
-    // Show or hide "No items found" message based on the filtered results
-    const noItemsMessage = document.getElementById('no-items-message');
-    if (filteredAds.length === 0) {
-        noItemsMessage.style.display = 'block';  // Show "No items found" if no ads match
-    } else {
-        noItemsMessage.style.display = 'none';  // Hide message if ads are found
+    const noItemsMessage = document.getElementById("no-items-message");
+    if (noItemsMessage) {
+        noItemsMessage.style.display = filteredAds.length === 0 ? "block" : "none";
     }
 };
 
-// UPDATED: Reset Filters
+
+// RESET FILTERS
 window.resetFilters = function() {
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) searchInput.value = '';  // Reset search input
-    renderAds(getAds(), "listings");  // Render all ads
-    const noItemsMessage = document.getElementById('no-items-message');
-    noItemsMessage.style.display = 'none';  // Hide "No items found" message
+
+    const searchInput = document.getElementById("searchInput");
+    if (searchInput) {
+        searchInput.value = "";
+    }
+
+    renderAds(globalAds, "listings");
+
+    const noItemsMessage = document.getElementById("no-items-message");
+    if (noItemsMessage) {
+        noItemsMessage.style.display = "none";
+    }
 };
 
-// UPDATED: Apply Filters (search)
-window.applyFilters = function() {
-    const searchInput = document.getElementById('searchInput');
-    const query = document.getElementById("searchInput").value.toLowerCase().trim();
 
+// SEARCH FILTER
+window.applyFilters = function() {
+
+    const searchInput = document.getElementById("searchInput");
+    if (!searchInput) return;
+
+    const query = searchInput.value.toLowerCase().trim();
+
+    // Empty search = show all ads
     if (!query) {
-      globalAds.sort((a, b) => new Date(b.date) - new Date(a.date)); 
-        renderAds(globalAds, "listings");// If search is empty, show all ads
+        renderAds(globalAds, "listings");
+
+        const noItemsMessage = document.getElementById("no-items-message");
+        if (noItemsMessage) {
+            noItemsMessage.style.display = "none";
+        }
+
         return;
     }
 
     const filteredAds = globalAds.filter(ad =>
-        (ad.title || "").toLowerCase().includes(query) || 
-        (ad.category || "").toLowerCase().includes(query)
+        (ad.title || "").toLowerCase().includes(query) ||
+        (ad.category || "").toLowerCase().includes(query) ||
+        (ad.location || "").toLowerCase().includes(query) ||
+        (ad.description || "").toLowerCase().includes(query)
     );
+
+    console.log("Search query:", query);
+    console.log("Search results:", filteredAds);
 
     renderAds(filteredAds, "listings");
 
-    // Show or hide the "No items found" message based on the filtered results
-    const noItemsMessage = document.getElementById('no-items-message');
-    if (filteredAds.length === 0) {
-        noItemsMessage.style.display = 'block';  // Show "No items found" if no matching ads
-    } else {
-        noItemsMessage.style.display = 'none';  // Hide message if ads are found
+    const noItemsMessage = document.getElementById("no-items-message");
+    if (noItemsMessage) {
+        noItemsMessage.style.display = filteredAds.length === 0 ? "block" : "none";
     }
 };
-
 
 /* =========================
    RENDER ADS
