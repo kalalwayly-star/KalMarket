@@ -1,127 +1,165 @@
-// Import Firebase and other utilities from correct sources
-import { auth, db, rtdb } from "./firebase-config.js";  // Firebase services from your config
+import { db, auth } from "./firebase-config.js";
 
-// Import Firebase Authentication methods
-import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import {
+    doc,
+    getDoc,
+    collection,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-// Import Firestore methods
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
-// Initialize variables
-let currentUserEmail = "Guest";
-let ad;
-const adId = new URLSearchParams(window.location.search).get("id");
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
-// Check auth state
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        currentUserEmail = user.email;
-    }
-});
+/* =========================
+   GET AD ID FROM URL
+========================= */
+const params = new URLSearchParams(window.location.search);
+const adId = params.get("id");
 
-// Initialize the details page
-async function initDetailsPage() {
+/* =========================
+   LOAD AD DETAILS
+========================= */
+async function loadAdDetails() {
+
     if (!adId) {
-        window.location.href = "index.html";
+        alert("Ad not found.");
         return;
     }
 
     try {
         const adRef = doc(db, "marketplace_ads", adId);
-        const snapshot = await getDoc(adRef);
+        const adSnap = await getDoc(adRef);
 
-        if (!snapshot.exists()) {
-            alert("Ad not found!");
-            window.location.href = "index.html";
+        if (!adSnap.exists()) {
+            alert("Ad not found.");
             return;
         }
 
-        ad = snapshot.data();
-        renderAdDetails();
+        const ad = adSnap.data();
+
+        // Title
+        document.getElementById("adTitle").innerText = ad.title || "No Title";
+
+        // Category
+        document.getElementById("adCategory").innerText = ad.category || "";
+
+        // Price
+        document.getElementById("adPrice").innerText = `$${ad.price || "0"}`;
+
+        // Location
+        document.getElementById("adLocation").innerText = ad.location || "Unknown";
+
+        // Description
+        document.getElementById("adDesc").innerText = ad.description || "No description provided.";
+
+        // Images
+        const imageContainer = document.getElementById("adImageContainer");
+
+        const fallbackImage = "https://dummyimage.com/600x400/cccccc/000000&text=No+Image";
+
+        let images = [];
+
+        if (Array.isArray(ad.image)) {
+            images = ad.image.filter(img => img && img.startsWith("http"));
+        } else if (ad.image && ad.image.startsWith("http")) {
+            images = [ad.image];
+        }
+
+        if (images.length === 0) {
+            images = [fallbackImage];
+        }
+
+        imageContainer.innerHTML = images.map(img => `
+            <img src="${img}" 
+                 style="width:100%; max-height:500px; object-fit:cover; margin-bottom:10px; border-radius:10px;">
+        `).join("");
+
+        // Store seller info globally
+        window.currentSellerId = ad.userId;
+        window.currentSellerEmail = ad.userEmail;
+
     } catch (error) {
         console.error("Error loading ad:", error);
         alert("Failed to load ad details.");
     }
 }
 
-// Render the ad details
-function renderAdDetails() {
-    setText("adTitle", ad.title);
-    setText("adPrice", `$${ad.price}`);
-    setText("adCategory", ad.category);
-    setText("adLocation", ad.location || "Local");
-    setText("adDesc", ad.description || getText("no_description"));
-    renderImages();
-}
+/* =========================
+   SEND MESSAGE
+========================= */
+window.sendMessage = async function() {
 
-// Render images
-function renderImages() {
-    const imgContainer = document.getElementById("adImageContainer");
-    if (!imgContainer) return;
+    const user = auth.currentUser;
 
-    let photoList = Array.isArray(ad.image) ? ad.image : (ad.image ? [ad.image] : ["https://via.placeholder.com/300"]);
-
-    imgContainer.innerHTML = `
-        <div style="width:100%; text-align:center; background:#f4f4f4; border-radius:10px; overflow:hidden; margin-bottom:15px; border:1px solid #ddd;">
-            <img id="mainDisplayImg" src="${photoList[0]}" style="max-width:100%; max-height:500px; object-fit:contain; display: block; margin: 0 auto;">
-        </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:10px;">
-            ${photoList.length > 1 ? photoList.map(img => `
-                <img src="${img}" onclick="document.getElementById('mainDisplayImg').src='${img}'"
-                     style="width:70px; height:70px; object-fit:cover; cursor:pointer; border-radius:5px; border:1px solid #ccc;">
-            `).join('') : ""}
-        </div>
-    `;
-}
-
-// Send a message to the seller
-window.sendMessage = function() {
-    if (currentUserEmail === "Guest") {
+    if (!user) {
         alert("Please login first.");
         window.location.href = "login.html";
         return;
     }
 
-    const messageInput = document.getElementById("messageText");
-    const text = messageInput?.value.trim();
+    const messageText = document.getElementById("messageText").value.trim();
 
-    if (!text) return;
+    if (!messageText) {
+        alert("Message cannot be empty.");
+        return;
+    }
 
-    const newMessage = {
-        adTitle: ad.title,
-        senderEmail: currentUserEmail,
-        receiverEmail: ad.userEmail,
-        text: text,
-        date: new Date().toLocaleString()
-    };
-
-    const messagesRef = ref(rtdb, "marketplace_messages");
-    push(messagesRef, newMessage)
-        .then(() => {
-            alert("Message sent!");
-            if (messageInput) messageInput.value = "";
-        })
-        .catch(err => alert("Error: " + err.message));
-}
-
-// Report an ad
-window.submitReport = function() {
-    const reason = document.getElementById("reportReason")?.value;
-    if (!reason) return alert("Please select a reason.");
-
-    const reportRef = ref(rtdb, "flaggedAds");
-    push(reportRef, { adId, reason, timestamp: new Date().toISOString() })
-        .then(() => {
-            alert("Report submitted.");
-            closeModal();
+    try {
+        await addDoc(collection(db, "marketplace_messages"), {
+            adId: adId,
+            senderId: user.uid,
+            senderEmail: user.email,
+            receiverId: window.currentSellerId,
+            receiverEmail: window.currentSellerEmail,
+            message: messageText,
+            createdAt: serverTimestamp()
         });
-}
 
-// Helper functions
-function setText(id, value) {
-    const el = document.getElementById(id);
-    if (el) el.innerText = value;
-}
+        alert("Message sent successfully!");
+        document.getElementById("messageText").value = "";
 
-function getText(key) {
-    return (window.translations && window.translations[key]) ? window.translations[key] : key;
-}
+    } catch (error) {
+        console.error("Message error:", error);
+        alert("Failed to send message.");
+    }
+};
+
+/* =========================
+   REPORT SYSTEM
+========================= */
+window.showReportModal = function() {
+    document.getElementById("reportModal").style.display = "block";
+};
+
+window.closeModal = function() {
+    document.getElementById("reportModal").style.display = "none";
+};
+
+window.submitReport = async function() {
+
+    const reason = document.getElementById("reportReason").value;
+
+    try {
+        await addDoc(collection(db, "flaggedAds"), {
+            adId,
+            reason,
+            timestamp: new Date().toISOString()
+        });
+
+        alert("Report submitted.");
+        closeModal();
+
+    } catch (error) {
+        console.error("Report failed:", error);
+        alert("Failed to submit report.");
+    }
+};
+
+/* =========================
+   INIT
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+    loadAdDetails();
+});
