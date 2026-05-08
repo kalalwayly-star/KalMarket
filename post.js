@@ -83,13 +83,23 @@ window.handleCategoryChange = function () {
 
     // Match EXACT dropdown values
     const categoryMap = {
-        "Cars & Trucks": "section-Cars",
+        
         "Real Estate": "section-RealEstate",
+        "Cars & Trucks": "section-Cars",
         "Electronics": "section-Electronics",
+        "Auto Accessories": "section-Auto Accessories",
         "Furniture": "section-Furniture",
         "Jobs": "section-Jobs",
+         "Fashion": "section-Fashion",
+         "Pets": "section-Pets",
+         "Sports": "section-Sports",
+         "Books": "section-Books",
+         "Appliances": "section-Appliances",
+         "Toys": "section-Toys",
         "Services": "section-Services",
-        "Pets": "section-Pets"
+         "Garden": "section-Garden",
+         "Health": "section-Health",
+        "Baby": "section-Baby"
     };
 
     const targetSectionId = categoryMap[selectedValue];
