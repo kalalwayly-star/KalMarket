@@ -237,7 +237,7 @@ const images = Array.isArray(ad.image)
                 <p>📍 ${ad.location || "No location"}</p>
                 <p><b>$${ad.price}</b></p>
 
-                ${showDelete ? `<button onclick="deleteAd('${uniqueId}')">Delete</button>` : ""}
+               
             </div>
 
         </div>
