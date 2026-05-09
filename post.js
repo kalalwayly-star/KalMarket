@@ -105,20 +105,18 @@ window.handlePhotoUpload = async function (event) {
             });
 
             // DELETE IMAGE
-            deleteBtn.addEventListener("click", function (e) {
-                e.preventDefault();
-                e.stopPropagation();
+           deleteBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
 
-                // REMOVE PREVIEW
-                wrapper.remove();
+    wrapper.remove();
 
-                // REMOVE FROM SAVED ARRAY
-                uploadedImages = uploadedImages.filter(
-                    image => image.id !== imageId
-                );
+    uploadedImages = uploadedImages.filter(
+        image => image.id !== imageId
+    );
 
-                console.log("Remaining images:", uploadedImages);
-            });
+    console.log("Remaining images:", uploadedImages);
+});
 
         } catch (error) {
             console.error("Upload failed:", error);
