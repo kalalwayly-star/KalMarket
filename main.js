@@ -91,16 +91,6 @@ window.deleteAd = async function(firebaseId) {
 };
 
 
-
-/* =========================
-   FILTERS (CLEAN VERSION)
-========================= */
-// UPDATED: filterByCategory
-// Add this inside DOMContentLoaded section in main.js
-document.getElementById("searchBtn")
-    ?.addEventListener("click", applyFilters);
-
-
 /* =========================
    FIX #2 — CATEGORY FILTER
 ========================= */
