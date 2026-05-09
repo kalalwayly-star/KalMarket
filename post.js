@@ -205,8 +205,20 @@ function finalizeAd() {
         });
 }
 
-/* =========================
-   INIT EVENTS
+
+   document.addEventListener("DOMContentLoaded", () => {
+    handleCategoryChange();
+
+    document.getElementById("postCategory")
+        ?.addEventListener("change", handleCategoryChange);
+
+    document.getElementById("photoInput")
+        ?.addEventListener("change", handlePhotoUpload);
+
+    document.getElementById("postForm")
+        ?.addEventListener("submit", saveNewAd);
+});
+
 ========================= */
 document.addEventListener("DOMContentLoaded", () => {
     const featuredCheckbox = document.getElementById("featuredAd");
