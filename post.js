@@ -33,6 +33,9 @@ onAuthStateChanged(auth, (user) => {
 /* =========================
    IMAGE UPLOAD (FIREBASE STORAGE)
 ========================= */
+/* =========================
+   IMAGE UPLOAD WITH DELETE ICON
+========================= */
 window.handlePhotoUpload = async function (event) {
     const files = Array.from(event.target.files || []);
     const preview = document.getElementById("galleryPreview");
@@ -40,32 +43,73 @@ window.handlePhotoUpload = async function (event) {
     if (!preview || !files.length) return;
 
     for (let file of files) {
-        // LOCAL PREVIEW ONLY
+        // Create unique ID for each image
+        const imageId = `${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+
+        // Main wrapper
+        const wrapper = document.createElement("div");
+        wrapper.style.position = "relative";
+        wrapper.style.display = "inline-block";
+        wrapper.style.margin = "5px";
+
+        // Image preview
         const img = document.createElement("img");
         img.src = URL.createObjectURL(file);
         img.style.width = "100px";
         img.style.height = "100px";
         img.style.objectFit = "cover";
-        preview.appendChild(img);
+        img.style.borderRadius = "8px";
+        img.style.border = "1px solid #ccc";
+
+        // Delete button
+        const deleteBtn = document.createElement("button");
+        deleteBtn.innerHTML = "✕";
+        deleteBtn.type = "button";
+        deleteBtn.style.position = "absolute";
+        deleteBtn.style.top = "5px";
+        deleteBtn.style.right = "5px";
+        deleteBtn.style.width = "24px";
+        deleteBtn.style.height = "24px";
+        deleteBtn.style.border = "none";
+        deleteBtn.style.borderRadius = "50%";
+        deleteBtn.style.background = "rgba(0,0,0,0.7)";
+        deleteBtn.style.color = "white";
+        deleteBtn.style.cursor = "pointer";
+        deleteBtn.style.fontSize = "14px";
+        deleteBtn.style.fontWeight = "bold";
+
+        wrapper.appendChild(img);
+        wrapper.appendChild(deleteBtn);
+        preview.appendChild(wrapper);
 
         try {
-            // UPLOAD TO FIREBASE STORAGE
+            // Upload image
             const storageRef = ref(storage, `ads/${Date.now()}_${file.name}`);
             const snapshot = await uploadBytes(storageRef, file);
-
-            // GET PERMANENT DOWNLOAD URL
             const url = await getDownloadURL(snapshot.ref);
 
-            // SAVE PERMANENT URL
-            uploadedImages.push(url);
+            // Save with ID
+            uploadedImages.push({
+                id: imageId,
+                url: url
+            });
+
+            // Delete functionality
+            deleteBtn.addEventListener("click", () => {
+                wrapper.remove();
+
+                uploadedImages = uploadedImages.filter(
+                    image => image.id !== imageId
+                );
+            });
 
         } catch (err) {
             console.error("Image upload error:", err);
+            wrapper.remove();
             alert("Image upload failed");
         }
     }
 
-    // RESET INPUT
     event.target.value = "";
 };
 
