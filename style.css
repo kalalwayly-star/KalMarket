@@ -713,7 +713,20 @@ img {
     transition: width 0.3s ease;
 }
 
+.preview-wrapper {
+    position: relative;
+    display: inline-block;
+    margin: 8px;
+}
 
+.delete-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 99999;
+    pointer-events: auto;
+    cursor: pointer;
+}
 
 
 
