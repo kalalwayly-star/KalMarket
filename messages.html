@@ -25,13 +25,29 @@
       </div>
       
       <!-- Tabs: Received/Sent -->
-     <div class="message-tabs" style="margin-bottom: 20px;">
-    <button onclick="changeTab('received')" id="btnReceived" class="btn text active" data-i18n="received">
-        <i class="fas fa-inbox"></i> Received
+     <!-- =========================
+     MESSAGES PAGE TABS
+========================= -->
+<div class="messages-tabs" style="display:flex; gap:10px; margin-bottom:20px; justify-content:center; flex-wrap:wrap;">
+
+    <button 
+        id="btnReceived"
+        onclick="changeTab('received')"
+        class="tab-btn active"
+        data-i18n="received_messages"
+        style="padding:10px 18px; border:none; border-radius:8px; background:#007bff; color:white; cursor:pointer; font-weight:bold;">
+        Inbox / Received Messages
     </button>
-    <button onclick="changeTab('sent')" id="btnSent" class="btn text" data-i18n="sent">
-        <i class="fas fa-paper-plane"></i> Sent
+
+    <button 
+        id="btnSent"
+        onclick="changeTab('sent')"
+        class="tab-btn"
+        data-i18n="sent_messages"
+        style="padding:10px 18px; border:none; border-radius:8px; background:#f1f1f1; color:#333; cursor:pointer; font-weight:bold;">
+        Sent Messages
     </button>
+
 </div>
 
 
