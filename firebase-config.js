@@ -3,6 +3,8 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-aut
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 import { getDatabase } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
+import { initializeFirestore } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
 
 // Firebase config (replace with your Firebase credentials)
 const firebaseConfig = {
@@ -19,8 +21,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
-const db = getFirestore(app);
 const rtdb = getDatabase(app);
 const storage = getStorage(app);
+const db = initializeFirestore(app, {
+    experimentalForceLongPolling: true,
+    useFetchStreams: false
+});
 
 export { auth, db, rtdb, storage };
