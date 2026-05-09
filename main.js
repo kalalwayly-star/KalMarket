@@ -96,40 +96,48 @@ window.deleteAd = async function(firebaseId) {
    FILTERS (CLEAN VERSION)
 ========================= */
 // UPDATED: filterByCategory
+// Add this inside DOMContentLoaded section in main.js
+document.getElementById("searchBtn")
+    ?.addEventListener("click", applyFilters);
+
+
 /* =========================
-   FILTERS (FULL FIXED VERSION)
+   FIX #2 — CATEGORY FILTER
 ========================= */
 
-// CATEGORY FILTER
+// REPLACE your full filterByCategory function with this:
+
 window.filterByCategory = function(category) {
+
+    let filteredAds = [];
 
     if (!globalAds || globalAds.length === 0) {
         renderAds([], "listings");
         return;
     }
 
-    let filteredAds = [];
-
-    // Show all ads
-    if (!category || category === "All" || category === "All Categories") {
+    // Normalize category matching
+    if (
+        category === "All" ||
+        category === "all" ||
+        category.trim() === ""
+    ) {
         filteredAds = globalAds;
     } else {
         filteredAds = globalAds.filter(ad =>
-            (ad.category || "").trim().toLowerCase() === category.trim().toLowerCase()
+            (ad.category || "").trim().toLowerCase() ===
+            category.trim().toLowerCase()
         );
     }
-
-    console.log("Category selected:", category);
-    console.log("Filtered ads:", filteredAds);
 
     renderAds(filteredAds, "listings");
 
     const noItemsMessage = document.getElementById("no-items-message");
     if (noItemsMessage) {
-        noItemsMessage.style.display = filteredAds.length === 0 ? "block" : "none";
+        noItemsMessage.style.display =
+            filteredAds.length === 0 ? "block" : "none";
     }
 };
-
 
 // RESET FILTERS
 window.resetFilters = function() {
@@ -152,19 +160,10 @@ window.resetFilters = function() {
 window.applyFilters = function() {
 
     const searchInput = document.getElementById("searchInput");
-    if (!searchInput) return;
+    const query = searchInput?.value.toLowerCase().trim() || "";
 
-    const query = searchInput.value.toLowerCase().trim();
-
-    // Empty search = show all ads
     if (!query) {
         renderAds(globalAds, "listings");
-
-        const noItemsMessage = document.getElementById("no-items-message");
-        if (noItemsMessage) {
-            noItemsMessage.style.display = "none";
-        }
-
         return;
     }
 
@@ -175,17 +174,14 @@ window.applyFilters = function() {
         (ad.description || "").toLowerCase().includes(query)
     );
 
-    console.log("Search query:", query);
-    console.log("Search results:", filteredAds);
-
     renderAds(filteredAds, "listings");
 
     const noItemsMessage = document.getElementById("no-items-message");
     if (noItemsMessage) {
-        noItemsMessage.style.display = filteredAds.length === 0 ? "block" : "none";
+        noItemsMessage.style.display =
+            filteredAds.length === 0 ? "block" : "none";
     }
 };
-
 /* =========================
    RENDER ADS
 ========================= */
