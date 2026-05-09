@@ -89,7 +89,7 @@ async function loadAdDetails() {
 /* =========================
    SEND MESSAGE
 ========================= */
-window.sendMessage = async function() {
+window.sendMessage = async function () {
 
     const user = auth.currentUser;
 
@@ -109,12 +109,14 @@ window.sendMessage = async function() {
     try {
         await addDoc(collection(db, "marketplace_messages"), {
             adId: adId,
+            adTitle: document.getElementById("adTitle").innerText || "",
             senderId: user.uid,
             senderEmail: user.email,
             receiverId: window.currentSellerId,
             receiverEmail: window.currentSellerEmail,
             message: messageText,
-            createdAt: serverTimestamp()
+            createdAt: serverTimestamp(),
+            status: "sent"
         });
 
         alert("Message sent successfully!");
@@ -125,7 +127,6 @@ window.sendMessage = async function() {
         alert("Failed to send message.");
     }
 };
-
 /* =========================
    REPORT SYSTEM
 ========================= */
