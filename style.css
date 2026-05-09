@@ -728,7 +728,29 @@ img {
     cursor: pointer;
 }
 
+@media (max-width: 600px) {
 
+    #galleryPreview {
+        justify-content: center;
+    }
+
+    .preview-wrapper {
+        width: 80px;
+        height: 80px;
+    }
+
+    .upload-dropzone {
+        padding: 12px;
+    }
+
+    .main-text {
+        font-size: 14px;
+    }
+
+    .sub-text {
+        font-size: 12px;
+    }
+}
 
 
 
