@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <title data-i18n="post_page_title">Post Ad | Marketplace</title>
     <link rel="stylesheet" href="style.css">
-        <!-- PayPal SDK -->
-<div id="paypal-button-container"></div>
+<script src="https://www.paypal.com/sdk/js?client-id=BAALjbSyVpTywXL1shHMGKfQdSGCjgfLPchku1LlvChOCvK1gNTdU8nZrp9ApWOBqKZuIbDXVecCGOSqjE&components=buttons&currency=CAD"></script>
 
 </head>
 <body>
@@ -32,7 +31,7 @@
         <option value="Electronics" data-i18n="cat_electronics">Electronics</option>
         <option value="Auto Accessories" data-i18n="cat_auto accessories">Auto Accessories</option>
         <option value="Furniture" data-i18n="cat_furniture">Furniture</option>
-        <option value="Job" data-i18n="cat_job">Job</option>
+        <option value="Job" data-i18n="cat_job">Jobs</option>
         <option value="Fashion" data-i18n="cat_fashion">Fashion</option>
         <option value="Pets" data-i18n="cat_pets">Pets</option>
         <option value="Sports" data-i18n="cat_sports">Sports</option>
@@ -202,58 +201,10 @@
             <span class="price-badge" id="price-10-days">$8.99 for 10 days</span>
         </div>
        
-   <!-- =========================
-FIXED PAYPAL + POST.HTML ISSUES
-Replace ONLY the broken sections below
-========================= -->
-
-<!-- REMOVE THIS FROM <head> -->
-<!-- WRONG:
-<div id="paypal-button-container"></div>
--->
-
-<!-- =========================
-FEATURE SECTION (KEEP ONLY ONE PAYPAL CONTAINER)
-========================= -->
-<div class="feature-container">
-
-    <!-- Free -->
-    <label class="feature-card">
-        <input type="radio" name="feature_selection" value="none" class="feature-input" checked>
-        <div class="feature-content">
-            <span class="feature-text">Standard Listing (Free)</span>
-            <span class="status-badge">Not interested</span>
-        </div>
-    </label>
-
-    <!-- 5 Days -->
-    <label class="feature-card">
-        <input type="radio" name="feature_selection" value="5days" id="isFeatured5Days" class="feature-input">
-        <div class="feature-content">
-            <span class="feature-text">✨ Feature this ad</span>
-            <span class="price-badge">$4.99 CAD for 5 days</span>
-        </div>
-    </label>
-
-    <!-- 10 Days -->
-    <label class="feature-card">
-        <input type="radio" name="feature_selection" value="10days" id="isFeatured10Days" class="feature-input">
-        <div class="feature-content">
-            <span class="feature-text">🚀 Premium Feature</span>
-            <span class="price-badge">$8.99 CAD for 10 days</span>
-        </div>
-    </label>
-
 </div>
-
+<div id="paypal-button-container" style="display:none; margin-top:20px;"></div>
 <!-- SINGLE PAYPAL BUTTON CONTAINER -->
 <div id="paypal-button-container" style="display:none; margin-top:20px;"></div>
-
-
-<!-- =========================
-CORRECT PAYPAL SDK
-========================= -->
-<script src="https://www.paypal.com/sdk/js?client-id=BAALjbSyVpTywXL1shHMGKfQdSGCjgfLPchku1LlvChOCvK1gNTdU8nZrp9ApWOBqKZuIbDXVecCGOSqjE&components=buttons&currency=CAD"></script>
 
 
 <!-- =========================
@@ -263,17 +214,7 @@ POST BUTTON
     Post Ad Now
 </button>
 
-
-<!-- =========================
-SCRIPTS
-========================= -->
-<script src="languages.js"></script>
-<script type="module" src="post.js"></script>
-
-                
-
-                
-                        <div class="card" onclick="goToDetails('ad-id-123')">
+ <div class="card" onclick="goToDetails('ad-id-123')">
 
 
     <!-- CORE SCRIPTS -->
