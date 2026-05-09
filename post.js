@@ -209,52 +209,57 @@ function finalizeAd() {
    INIT EVENTS
 ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-    handleCategoryChange();
+    const featuredCheckbox = document.getElementById("featuredAd");
+    const paypalContainer = document.getElementById("paypal-button-container");
 
-    document.getElementById("postCategory")
-        ?.addEventListener("change", handleCategoryChange);
-
-    document.getElementById("photoInput")
-        ?.addEventListener("change", handlePhotoUpload);
-
-    document.getElementById("postForm")
-        ?.addEventListener("submit", saveNewAd);
+    if (featuredCheckbox) {
+        featuredCheckbox.addEventListener("change", () => {
+            if (featuredCheckbox.checked) {
+                paypalContainer.style.display = "block";
+                initPayPal();
+            } else {
+                paypalContainer.style.display = "none";
+                paypalContainer.innerHTML = "";
+            }
+        });
+    }
 });
 
-// =========================
-// PAYPAL PAYMENT (SAFE)
-// =========================
 function initPayPal() {
-    const container = document.getElementById("paypal-button-container");
-    if (!container || typeof paypal === "undefined") return;
+    const paypalContainer = document.getElementById("paypal-button-container");
+
+    if (!paypalContainer) return;
+
+    paypalContainer.innerHTML = "";
+
+    if (typeof paypal === "undefined") {
+        console.error("PayPal SDK not loaded");
+        return;
+    }
 
     paypal.Buttons({
-        createOrder: function (data, actions) {
+        createOrder: function(data, actions) {
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: "5.00" // change price if needed
+                        value: "5.00"
                     }
                 }]
             });
         },
 
-        onApprove: function (data, actions) {
-            return actions.order.capture().then(function (details) {
-                alert("Payment completed by " + details.payer.name.given_name);
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert("Payment successful! Your ad will be featured.");
 
-                // OPTIONAL: mark ad as paid
-                window.isPaid = true;
+                localStorage.setItem("featuredAdPaid", "true");
             });
         },
 
-        onError: function (err) {
-            console.error("PayPal error:", err);
-            alert("Payment failed. Try again.");
+        onError: function(err) {
+            console.error("PayPal Error:", err);
+            alert("Payment failed.");
         }
 
     }).render("#paypal-button-container");
 }
-
-// run after page loads
-document.addEventListener("DOMContentLoaded", initPayPal);
