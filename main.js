@@ -11,6 +11,11 @@ import { collection, onSnapshot, query, deleteDoc, doc } from "https://www.gstat
 let globalAds = [];
 
 document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("searchBtn")
+    ?.addEventListener("click", applyFilters);
+
+document.getElementById("resetBtn")
+    ?.addEventListener("click", resetFilters);
 
     const userInfoDiv = document.getElementById("user-info-header");
     const emailSpan = document.getElementById("header-user-email");
@@ -99,42 +104,36 @@ window.deleteAd = async function(firebaseId) {
 
 // CATEGORY FILTER
 window.filterByCategory = function(category) {
-
     if (!globalAds || globalAds.length === 0) {
         renderAds([], "listings");
         return;
     }
 
-    let filteredAds = [];
+    let filteredAds;
 
-    // Show all ads
-    if (!category || category === "All" || category === "All Categories") {
+    if (category === "All") {
         filteredAds = globalAds;
     } else {
         filteredAds = globalAds.filter(ad =>
-            (ad.category || "").trim().toLowerCase() === category.trim().toLowerCase()
+            (ad.category || "").trim().toLowerCase() ===
+            category.trim().toLowerCase()
         );
     }
-
-    console.log("Category selected:", category);
-    console.log("Filtered ads:", filteredAds);
 
     renderAds(filteredAds, "listings");
 
     const noItemsMessage = document.getElementById("no-items-message");
     if (noItemsMessage) {
-        noItemsMessage.style.display = filteredAds.length === 0 ? "block" : "none";
+        noItemsMessage.style.display =
+            filteredAds.length === 0 ? "block" : "none";
     }
 };
 
 
 // RESET FILTERS
 window.resetFilters = function() {
-
     const searchInput = document.getElementById("searchInput");
-    if (searchInput) {
-        searchInput.value = "";
-    }
+    if (searchInput) searchInput.value = "";
 
     renderAds(globalAds, "listings");
 
@@ -144,25 +143,17 @@ window.resetFilters = function() {
     }
 };
 
-
 // SEARCH FILTER
 window.applyFilters = function() {
+    const query = document.getElementById("searchInput")
+        ?.value.toLowerCase()
+        .trim() || "";
 
-    const searchInput = document.getElementById("searchInput");
-    if (!searchInput) return;
-
-    const query = searchInput.value.toLowerCase().trim();
-
-    // Empty search = show all ads
     if (!query) {
         renderAds(globalAds, "listings");
-
-        const noItemsMessage = document.getElementById("no-items-message");
-        if (noItemsMessage) {
-            noItemsMessage.style.display = "none";
-        }
         return;
     }
+
     const filteredAds = globalAds.filter(ad =>
         (ad.title || "").toLowerCase().includes(query) ||
         (ad.category || "").toLowerCase().includes(query) ||
@@ -170,17 +161,14 @@ window.applyFilters = function() {
         (ad.description || "").toLowerCase().includes(query)
     );
 
-    console.log("Search query:", query);
-    console.log("Search results:", filteredAds);
-
     renderAds(filteredAds, "listings");
 
     const noItemsMessage = document.getElementById("no-items-message");
     if (noItemsMessage) {
-        noItemsMessage.style.display = filteredAds.length === 0 ? "block" : "none";
+        noItemsMessage.style.display =
+            filteredAds.length === 0 ? "block" : "none";
     }
 };
-
 /* =========================
    RENDER ADS
 ========================= */
