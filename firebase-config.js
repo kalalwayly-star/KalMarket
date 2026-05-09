@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 import { getDatabase } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
 import { initializeFirestore } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
