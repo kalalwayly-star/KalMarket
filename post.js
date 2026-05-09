@@ -39,6 +39,9 @@ onAuthStateChanged(auth, (user) => {
 /* =========================
    IMAGE UPLOAD WITH WORKING DELETE
 ========================= */
+/* =========================
+   IMAGE UPLOAD + RELIABLE DELETE FIX
+========================= */
 window.handlePhotoUpload = async function (event) {
     const files = Array.from(event.target.files || []);
     const preview = document.getElementById("galleryPreview");
@@ -46,18 +49,16 @@ window.handlePhotoUpload = async function (event) {
     if (!preview || !files.length) return;
 
     for (let file of files) {
+        const imageId = `${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
 
-        // UNIQUE IMAGE ID
-        const imageId = `${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
-
-        // WRAPPER
+        // IMAGE CONTAINER
         const wrapper = document.createElement("div");
-        wrapper.className = "preview-image-wrapper";
         wrapper.style.position = "relative";
         wrapper.style.display = "inline-block";
-        wrapper.style.margin = "5px";
+        wrapper.style.margin = "8px";
+        wrapper.style.pointerEvents = "auto";
 
-        // IMAGE
+        // PREVIEW IMAGE
         const img = document.createElement("img");
         img.src = URL.createObjectURL(file);
         img.style.width = "100px";
@@ -65,66 +66,68 @@ window.handlePhotoUpload = async function (event) {
         img.style.objectFit = "cover";
         img.style.borderRadius = "8px";
         img.style.border = "1px solid #ccc";
+        img.style.display = "block";
 
         // DELETE BUTTON
         const deleteBtn = document.createElement("button");
-        deleteBtn.innerHTML = "✕";
         deleteBtn.type = "button";
-        deleteBtn.className = "delete-photo-btn";
+        deleteBtn.innerHTML = "✕";
 
         deleteBtn.style.position = "absolute";
-        deleteBtn.style.top = "5px";
-        deleteBtn.style.right = "5px";
-        deleteBtn.style.width = "24px";
-        deleteBtn.style.height = "24px";
+        deleteBtn.style.top = "4px";
+        deleteBtn.style.right = "4px";
+        deleteBtn.style.width = "26px";
+        deleteBtn.style.height = "26px";
         deleteBtn.style.border = "none";
         deleteBtn.style.borderRadius = "50%";
-        deleteBtn.style.background = "red";
-        deleteBtn.style.color = "white";
-        deleteBtn.style.cursor = "pointer";
-        deleteBtn.style.zIndex = "999";
-        deleteBtn.style.fontSize = "14px";
+        deleteBtn.style.background = "rgba(255,0,0,0.9)";
+        deleteBtn.style.color = "#fff";
+        deleteBtn.style.fontSize = "16px";
         deleteBtn.style.fontWeight = "bold";
+        deleteBtn.style.cursor = "pointer";
+        deleteBtn.style.zIndex = "9999";
+        deleteBtn.style.pointerEvents = "auto";
 
-        // APPEND
         wrapper.appendChild(img);
         wrapper.appendChild(deleteBtn);
         preview.appendChild(wrapper);
 
         try {
-            // UPLOAD
+            // UPLOAD TO FIREBASE
             const storageRef = ref(storage, `ads/${Date.now()}_${file.name}`);
             const snapshot = await uploadBytes(storageRef, file);
             const url = await getDownloadURL(snapshot.ref);
 
-            // STORE
+            // SAVE IMAGE
             uploadedImages.push({
                 id: imageId,
                 url: url
             });
 
-            // DELETE FUNCTION
-            deleteBtn.onclick = function () {
+            // DELETE IMAGE
+            deleteBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
 
-                // REMOVE UI
+                // REMOVE PREVIEW
                 wrapper.remove();
 
-                // REMOVE FROM ARRAY
+                // REMOVE FROM SAVED ARRAY
                 uploadedImages = uploadedImages.filter(
                     image => image.id !== imageId
                 );
 
-                console.log("Deleted image:", imageId);
-                console.log(uploadedImages);
-            };
+                console.log("Remaining images:", uploadedImages);
+            });
 
-        } catch (err) {
-            console.error("Image upload error:", err);
+        } catch (error) {
+            console.error("Upload failed:", error);
             wrapper.remove();
             alert("Image upload failed");
         }
     }
 
+    // RESET INPUT
     event.target.value = "";
 };
 
