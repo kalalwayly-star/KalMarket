@@ -88,6 +88,19 @@ window.handlePhotoUpload = async function (event) {
         deleteBtn.style.zIndex = "9999";
         deleteBtn.style.pointerEvents = "auto";
 
+         deleteBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    wrapper.remove();
+
+    uploadedImages = uploadedImages.filter(
+        image => image.id !== imageId
+    );
+
+    console.log("Remaining images:", uploadedImages);
+});
+
         wrapper.appendChild(img);
         wrapper.appendChild(deleteBtn);
         preview.appendChild(wrapper);
@@ -102,21 +115,7 @@ window.handlePhotoUpload = async function (event) {
             uploadedImages.push({
                 id: imageId,
                 url: url
-            });
-
-            // DELETE IMAGE
-           deleteBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    wrapper.remove();
-
-    uploadedImages = uploadedImages.filter(
-        image => image.id !== imageId
-    );
-
-    console.log("Remaining images:", uploadedImages);
-});
+            });          
 
         } catch (error) {
             console.error("Upload failed:", error);
