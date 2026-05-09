@@ -205,39 +205,58 @@ function finalizeAd() {
         });
 }
 
+// =========================
+// PAGE INIT (COMBINED FIXED VERSION)
+// =========================
+document.addEventListener("DOMContentLoaded", () => {
 
-   document.addEventListener("DOMContentLoaded", () => {
-    handleCategoryChange();
-
+    // CATEGORY CHANGE
     document.getElementById("postCategory")
         ?.addEventListener("change", handleCategoryChange);
 
+    handleCategoryChange();
+
+    // PHOTO UPLOAD
     document.getElementById("photoInput")
         ?.addEventListener("change", handlePhotoUpload);
 
+    // POST FORM SUBMIT
     document.getElementById("postForm")
         ?.addEventListener("submit", saveNewAd);
-});
 
-========================= */
-document.addEventListener("DOMContentLoaded", () => {
-    const featuredCheckbox = document.getElementById("featuredAd");
+    // FEATURED OPTIONS
+    const featureOptions = document.querySelectorAll('input[name="feature_selection"]');
     const paypalContainer = document.getElementById("paypal-button-container");
 
-    if (featuredCheckbox) {
-        featuredCheckbox.addEventListener("change", () => {
-            if (featuredCheckbox.checked) {
+    featureOptions.forEach(option => {
+        option.addEventListener("change", () => {
+
+            if (!paypalContainer) return;
+
+            if (option.value === "5days") {
                 paypalContainer.style.display = "block";
-                initPayPal();
+                initPayPal("4.99", 5);
+
+            } else if (option.value === "10days") {
+                paypalContainer.style.display = "block";
+                initPayPal("8.99", 10);
+
             } else {
                 paypalContainer.style.display = "none";
                 paypalContainer.innerHTML = "";
+                localStorage.removeItem("featuredAdPaid");
+                localStorage.removeItem("featuredDays");
             }
         });
-    }
+    });
+
 });
 
-function initPayPal() {
+
+// =========================
+// PAYPAL INIT
+// =========================
+function initPayPal(price, days) {
     const paypalContainer = document.getElementById("paypal-button-container");
 
     if (!paypalContainer) return;
@@ -250,11 +269,12 @@ function initPayPal() {
     }
 
     paypal.Buttons({
+
         createOrder: function(data, actions) {
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: "5.00"
+                        value: price
                     }
                 }]
             });
@@ -262,9 +282,11 @@ function initPayPal() {
 
         onApprove: function(data, actions) {
             return actions.order.capture().then(function(details) {
-                alert("Payment successful! Your ad will be featured.");
+
+                alert(`Payment successful! Your ad is featured for ${days} days.`);
 
                 localStorage.setItem("featuredAdPaid", "true");
+                localStorage.setItem("featuredDays", days);
             });
         },
 
@@ -275,3 +297,4 @@ function initPayPal() {
 
     }).render("#paypal-button-container");
 }
+  
