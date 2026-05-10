@@ -910,4 +910,192 @@ body {
     }
 }
 
+# About Us Page + Footer Link for Your Marketplace Website
+
+## ✅ Footer Link (Add to your site footer)
+
+```html
+<footer class="site-footer">
+    <div class="footer-links">
+        <a href="about.html" data-i18n="about_us">About Us</a>
+        <a href="terms.html" data-i18n="terms_of_use">Terms of Use</a>
+        <a href="privacy.html" data-i18n="privacy_policy">Privacy Policy</a>
+        <a href="contact.html" data-i18n="contact_us">Contact Us</a>
+    </div>
+</footer>
+```
+
+---
+
+## ✅ Footer CSS
+
+```css
+.site-footer {
+    background: #111;
+    color: white;
+    padding: 20px 15px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    color: #f0c040;
+}
+
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+```
+
+---
+
+# ✅ about.html Page
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="about_us">About Us</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="page-header">
+    <h1 data-i18n="about_us">About Us</h1>
+</header>
+
+<main class="about-container">
+    <section>
+        <h2 data-i18n="welcome_marketplace">Welcome to Our Marketplace</h2>
+        <p data-i18n="about_intro">
+            Our platform connects buyers and sellers in a safe, simple, and modern marketplace.
+            We help users buy, sell, and discover products locally and globally with confidence.
+        </p>
+    </section>
+
+    <section>
+        <h2 data-i18n="our_mission">Our Mission</h2>
+        <p data-i18n="mission_text">
+            Our mission is to provide an easy-to-use classified platform where people can trade securely,
+            grow businesses, and connect with their communities.
+        </p>
+    </section>
+
+    <section>
+        <h2 data-i18n="why_choose_us">Why Choose Us?</h2>
+        <ul>
+            <li data-i18n="feature_safe">Secure user accounts</li>
+            <li data-i18n="feature_easy">Easy ad posting</li>
+            <li data-i18n="feature_global">Multi-language global access</li>
+            <li data-i18n="feature_modern">Modern mobile-friendly experience</li>
+        </ul>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-links">
+        <a href="about.html" data-i18n="about_us">About Us</a>
+        <a href="terms.html" data-i18n="terms_of_use">Terms of Use</a>
+        <a href="privacy.html" data-i18n="privacy_policy">Privacy Policy</a>
+        <a href="contact.html" data-i18n="contact_us">Contact Us</a>
+    </div>
+</footer>
+
+</body>
+</html>
+```
+
+---
+
+## ✅ About Page CSS
+
+```css
+.about-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 30px 20px;
+    line-height: 1.8;
+}
+
+.about-container h2 {
+    margin-top: 25px;
+    color: #222;
+}
+
+.about-container p,
+.about-container li {
+    color: #444;
+    font-size: 16px;
+}
+
+.page-header {
+    text-align: center;
+    padding: 30px 15px;
+    background: #f8f8f8;
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        padding: 20px 15px;
+    }
+
+    .about-container p,
+    .about-container li {
+        font-size: 15px;
+    }
+}
+.about-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 30px 20px;
+    line-height: 1.8;
+}
+
+.about-container h2 {
+    margin-top: 25px;
+    color: #222;
+}
+
+.about-container p,
+.about-container li {
+    color: #444;
+    font-size: 16px;
+}
+
+.page-header {
+    text-align: center;
+    padding: 30px 15px;
+    background: #f8f8f8;
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        padding: 20px 15px;
+    }
+
+    .about-container p,
+    .about-container li {
+        font-size: 15px;
+    }
+}
+
 
