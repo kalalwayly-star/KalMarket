@@ -63,7 +63,10 @@ window.login = async function () {
         }
     }
 };
-
+function login(event) {
+    event.preventDefault();
+    // your login code here
+}
 /* =========================
    PASSWORD TOGGLE
 ========================= */
