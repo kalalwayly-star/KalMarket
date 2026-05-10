@@ -63,10 +63,13 @@ window.login = async function () {
         }
     }
 };
+
 function login(event) {
     event.preventDefault();
-    // your login code here
+    console.log("Login working");
 }
+
+window.login = login;
 /* =========================
    PASSWORD TOGGLE
 ========================= */
