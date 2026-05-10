@@ -1182,4 +1182,64 @@ body {
         gap: 10px;
     }
 }
+/* ABOUT BUSINESS GROWTH SECTION */
 
+.about-business-growth {
+    max-width: 950px;
+    margin: 50px auto;
+    padding: 40px 30px;
+    background: linear-gradient(135deg, #f8f9fa, #eef4ff);
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.about-business-growth h2 {
+    font-size: 32px;
+    color: #1f2937;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.about-business-growth p {
+    font-size: 17px;
+    color: #4b5563;
+    line-height: 1.9;
+    margin-bottom: 18px;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-business-growth p:last-child {
+    margin-bottom: 0;
+}
+
+/* Optional subtle highlight line */
+.about-business-growth::before {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 4px;
+    background: #2563eb;
+    margin: 0 auto 25px;
+    border-radius: 10px;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    .about-business-growth {
+        margin: 30px 15px;
+        padding: 25px 18px;
+    }
+
+    .about-business-growth h2 {
+        font-size: 24px;
+    }
+
+    .about-business-growth p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+}
