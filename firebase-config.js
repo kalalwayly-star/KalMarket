@@ -10,7 +10,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyDBT8jv057_JQL6pIUYk-U_LQ8uJHlFi-o",
   authDomain: "kal-marketplace.firebaseapp.com",
   databaseURL: "https://kal-marketplace-default-rtdb.firebaseio.com",
-  projectId: "kal-marketplace",
+  projectId: "kal-marketplace.firebasestorage.app",
   storageBucket: "kalmarket-bucket"
   messagingSenderId: "745728416819",
   appId: "1:745728416819:web:da2dfb86cc5b79fb0d1746",
