@@ -910,26 +910,6 @@ body {
     }
 }
 
-# About Us Page + Footer Link for Your Marketplace Website
-
-## ✅ Footer Link (Add to your site footer)
-
-```html
-<footer class="site-footer">
-    <div class="footer-links">
-        <a href="about.html" data-i18n="about_us">About Us</a>
-        <a href="terms.html" data-i18n="terms_of_use">Terms of Use</a>
-        <a href="privacy.html" data-i18n="privacy_policy">Privacy Policy</a>
-        <a href="contact.html" data-i18n="contact_us">Contact Us</a>
-    </div>
-</footer>
-```
-
----
-
-## ✅ Footer CSS
-
-```css
 .site-footer {
     background: #111;
     color: white;
