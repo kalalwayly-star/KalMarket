@@ -29,7 +29,13 @@ window.register = async function () {
         errorBox.innerText = "Password must be at least 6 characters.";
         return;
     }
+const termsAccepted = document.getElementById("termsAgreement");
 
+if (!termsAccepted.checked) {
+    alert(translations[currentLanguage]?.must_accept_terms || "You must agree to the Terms of Use and Privacy Policy before registering.");
+    return;
+}
+    
     try {
         // Create Firebase account
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
