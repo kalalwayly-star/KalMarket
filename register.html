@@ -52,10 +52,17 @@
                     placeholder="Enter your password"
                     required
                 >
-
                 <i class="fas fa-eye toggle-password" id="toggleRegPassword"></i>
             </div>
-
+<div class="terms-box">
+    <label class="terms-label">
+        <input type="checkbox" id="termsAgreement" required>
+        <span data-i18n="agree_terms_prefix">I agree to the</span>
+        <a href="terms.html" target="_blank" data-i18n="terms_of_use">Terms of Use</a>
+        <span data-i18n="and_text">and</span>
+        <a href="privacy.html" target="_blank" data-i18n="privacy_policy">Privacy Policy</a>
+    </label>
+</div>
             <!-- Register Button -->
             <button
                 type="submit"
