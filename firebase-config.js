@@ -10,8 +10,8 @@ const firebaseConfig = {
   apiKey: "AIzaSyDBT8jv057_JQL6pIUYk-U_LQ8uJHlFi-o",
   authDomain: "kal-marketplace.firebaseapp.com",
   databaseURL: "https://kal-marketplace-default-rtdb.firebaseio.com",
-  projectId: "kal-marketplace.firebasestorage.app",
-  storageBucket: "kal marketplace.appspot.com",
+  projectId: "kal-marketplace", // Fix: Project ID usually doesn't end in .app
+  storageBucket: "kal-marketplace.appspot.com", // Fix: No spaces allowed here
   messagingSenderId: "745728416819",
   appId: "1:745728416819:web:da2dfb86cc5b79fb0d1746",
   measurementId: "G-FFHYQC4YJV"
