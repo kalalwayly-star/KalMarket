@@ -6,7 +6,8 @@ import {
 /* =========================
    LOGIN FUNCTION
 ========================= */
-window.login = async function () {
+window.login = async function (event) {
+    event.preventDefault();
     const email = document.getElementById("loginEmail")?.value.trim();
     const password = document.getElementById("loginPassword")?.value;
     const errorBox = document.getElementById("error-message");
@@ -64,16 +65,7 @@ window.login = async function () {
     }
 };
 
-function login(event) {
-    event.preventDefault();
 
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
-
-    console.log("Logging in:", email);
-}
-
-window.login = login;
 /* =========================
    PASSWORD TOGGLE
 ========================= */
