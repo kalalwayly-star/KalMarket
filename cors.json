@@ -1,0 +1,8 @@
+[
+  {
+    "origin": ["https://kalalwayly-star.github.io"],
+    "method": ["GET", "POST", "PUT", "DELETE", "HEAD"],
+    "responseHeader": ["Content-Type", "x-firebase-storage-stored-upl"],
+    "maxAgeSeconds": 3600
+  }
+]
