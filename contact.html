@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="contact_us">Contact Us</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="page-header">
+    <h1 data-i18n="contact_us">Contact Us</h1>
+</header>
+
+<main class="contact-container">
+
+    <section class="contact-intro">
+        <h2 data-i18n="get_in_touch">Get In Touch</h2>
+        <p data-i18n="contact_intro_text">
+            We’re here to help. If you have questions, concerns, business inquiries, or need support, feel free to contact us.
+        </p>
+    </section>
+
+    <section class="contact-form-section">
+        <form id="contactForm">
+
+            <div class="form-group">
+                <label for="name" data-i18n="full_name">Full Name</label>
+                <input type="text" id="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email" data-i18n="email_address">Email Address</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="subject" data-i18n="subject">Subject</label>
+                <input type="text" id="subject" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message" data-i18n="message">Message</label>
+                <textarea id="message" rows="6" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" data-i18n="send_message">
+                Send Message
+            </button>
+
+        </form>
+    </section>
+
+    <section class="contact-details">
+        <h2 data-i18n="contact_information">Contact Information</h2>
+
+        <p>
+            <strong data-i18n="email_label">Email:</strong>
+            support@yoursite.com
+        </p>
+
+        <p>
+            <strong data-i18n="business_label">Business:</strong>
+            info@yoursite.com
+        </p>
+
+        <p>
+            <strong data-i18n="response_time">Response Time:</strong>
+            <span data-i18n="response_time_text">Within 24–48 hours</span>
+        </p>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-links">
+        <a href="about.html" data-i18n="about_us">About Us</a>
+        <a href="terms.html" data-i18n="terms_of_use">Terms of Use</a>
+        <a href="privacy.html" data-i18n="privacy_policy">Privacy Policy</a>
+        <a href="contact.html" data-i18n="contact_us">Contact Us</a>
+    </div>
+</footer>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    alert(
+        translations?.[currentLanguage]?.message_sent ||
+        "Your message has been sent successfully."
+    );
+
+    this.reset();
+});
+</script>
+
+</body>
+</html>
