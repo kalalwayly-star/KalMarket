@@ -189,7 +189,6 @@ window.handleCategoryChange = function () {
 ========================= */
 function saveNewAd(event) {
     event.preventDefault();
-
     const user = auth.currentUser;
 
     if (!user) {
@@ -197,8 +196,14 @@ function saveNewAd(event) {
         return;
     }
 
-    const btn = document.getElementById("postBtn");
+    // NEW CHECK: Ensure images are finished uploading
+    const photoInput = document.getElementById("photoInput");
+    if (photoInput.files.length > 0 && uploadedImages.length === 0) {
+        alert("Please wait for photos to finish uploading...");
+        return;
+    }
 
+    const btn = document.getElementById("postBtn");
     if (btn) {
         btn.disabled = true;
         btn.innerText = "Posting...";
@@ -240,9 +245,12 @@ function finalizeAd() {
         condition: document.querySelector('input[name="condition"]:checked')?.value || "N/A",
 
         // IMPORTANT FIX:
-        image: uploadedImages.length > 0
-            ? uploadedImages
-            : ["https://dummyimage.com/300x200/cccccc/000000&text=No+Image"],
+       // Corrected code:
+// This maps the array of objects {id, url} to just an array of URL strings
+image: uploadedImages.length > 0 
+    ? uploadedImages.map(img => img.url) 
+    : ["https://placeholder.com"],
+
 
         date: new Date().toLocaleDateString(),
         lat: window.currentAdLat || null,
