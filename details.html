@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
    <meta charset="UTF-8">
-   <title>Ad Details | My Marketplace</title>
+   <title>Ad Details | Kal Market</title>
    <link rel="stylesheet" href="style.css">
    <style>
        /* Basic Fix for Grid Layout */
@@ -26,7 +26,7 @@
 
 <header class="header">
    <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto;">
-       <h1>My Marketplace</h1>
+       <h1>Kal Market</h1>
        <div class="nav">
            <a href="index.html" class="btn text" data-i18n="back_home">Back to Browse</a>
        </div>
@@ -92,10 +92,17 @@
 <!-- Report Modal Popup -->
 <div id="reportModal">
     <h3 data-i18n="report_ad">Report Ad</h3>
-    <select id="reportReason" style="width: 100%; padding: 10px; margin: 10px 0;">
-        <option value="scam" data-i18n="report_scam">Scam</option>
-        <option value="illegal" data-i18n="report_illegal">Illegal Item</option>
-    </select>
+   <select id="reportReason" required>
+    <option value="" data-i18n="select_reason">Select a reason</option>
+    <option value="scam" data-i18n="report_scam">Scam or Fraud</option>
+    <option value="illegal" data-i18n="report_illegal">Illegal Item or Service</option>
+    <option value="spam" data-i18n="report_spam">Spam or Duplicate Listing</option>
+    <option value="fake" data-i18n="report_fake">Fake or Misleading Listing</option>
+    <option value="inappropriate" data-i18n="report_inappropriate">Inappropriate Content</option>
+    <option value="counterfeit" data-i18n="report_counterfeit">Counterfeit Product</option>
+    <option value="harassment" data-i18n="report_harassment">Harassment or Abuse</option>
+    <option value="other" data-i18n="report_other">Other Policy Violation</option>
+</select>
     <div style="display: flex; gap: 10px;">
         <button onclick="submitReport()" class="btn" data-i18n="submit_report" style="background: #28a745; color: white; border: none; padding: 10px;">Submit</button>
         <button onclick="closeModal()" class="btn" data-i18n="cancel" style="background: #ccc; border: none; padding: 10px;">Cancel</button>
