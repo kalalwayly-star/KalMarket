@@ -66,7 +66,11 @@ window.login = async function () {
 
 function login(event) {
     event.preventDefault();
-    console.log("Login working");
+
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    console.log("Logging in:", email);
 }
 
 window.login = login;
