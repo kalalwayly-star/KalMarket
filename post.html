@@ -29,7 +29,7 @@
         <option value="Real Estate" data-i18n="cat_realestate">Real Estate</option>
         <option value="Cars & Trucks" data-i18n="cat_cars_trucks">Cars and Trucks</option>
         <option value="Electronics" data-i18n="cat_electronics">Electronics</option>
-        <option value="Auto Accessories" data-i18n="cat_auto accessories">Auto Accessories</option>
+        <option value="Auto Accessories" data-i18n="cat_auto_accessories">Auto Accessories</option>
         <option value="Furniture" data-i18n="cat_furniture">Furniture</option>
         <option value="Job" data-i18n="cat_job">Jobs</option>
         <option value="Fashion" data-i18n="cat_fashion">Fashion</option>
@@ -83,126 +83,125 @@
 
 <div id="section-Cars" class="category-details" style="display:none;">
 
-    <h3>Vehicle Information</h3>
+    <h3 data-i18n="vehicle_information">Vehicle Information</h3>
 
     <div class="form-row">
         <div class="input-group">
-            <label>Make</label>
-            <input type="text" id="carMake" placeholder="Toyota">
+            <label data-i18n="label_make">Make</label>
+            <input type="text" id="carMake" data-i18n-placeholder="placeholder_make" placeholder="Toyota">
         </div>
 
         <div class="input-group">
-            <label>Model</label>
-            <input type="text" id="carModel" placeholder="Camry">
+            <label data-i18n="label_model">Model</label>
+            <input type="text" id="carModel" data-i18n-placeholder="placeholder_model" placeholder="Camry">
         </div>
     </div>
 
     <div class="form-row">
         <div class="input-group">
-            <label>Year</label>
-            <input type="number" id="carYear" placeholder="2022">
+            <label data-i18n="label_year">Year</label>
+            <input type="number" id="carYear" data-i18n-placeholder="placeholder_year" placeholder="2022">
         </div>
 
         <div class="input-group">
-            <label>Mileage</label>
-            <input type="number" id="carMileage" placeholder="50000">
+            <label data-i18n="label_mileage">Mileage</label>
+            <input type="number" id="carMileage" data-i18n-placeholder="placeholder_mileage" placeholder="50000">
         </div>
     </div>
 
     <div class="form-row">
         <div class="input-group">
-            <label>Transmission</label>
+            <label data-i18n="label_transmission">Transmission</label>
             <select id="carTransmission">
-                <option value="">Select</option>
-                <option>Automatic</option>
-                <option>Manual</option>
+                <option value="" data-i18n="select_option">Select</option>
+                <option data-i18n="transmission_automatic">Automatic</option>
+                <option data-i18n="transmission_manual">Manual</option>
             </select>
         </div>
 
         <div class="input-group">
-            <label>Fuel Type</label>
+            <label data-i18n="label_fuel_type">Fuel Type</label>
             <select id="carFuel">
-                <option value="">Select</option>
-                <option>Gasoline</option>
-                <option>Diesel</option>
-                <option>Electric</option>
-                <option>Hybrid</option>
+                <option value="" data-i18n="select_option">Select</option>
+                <option data-i18n="fuel_gasoline">Gasoline</option>
+                <option data-i18n="fuel_diesel">Diesel</option>
+                <option data-i18n="fuel_electric">Electric</option>
+                <option data-i18n="fuel_hybrid">Hybrid</option>
             </select>
         </div>
     </div>
 
 </div>
-                
-               <!-- Common Fields: Title, Price, Description -->
+
+<!-- Common Fields -->
 <div id="commonFields">
-    <label for="adTitle">Title:</label>
+    <label for="adTitle" data-i18n="label_title">Title:</label>
     <input type="text" id="adTitle" required />
 
-    <label for="adPrice">Price:</label>
+    <label for="adPrice" data-i18n="label_price">Price:</label>
     <input type="number" id="adPrice" required />
 
-    <label for="adLocation">Location:</label>
+    <label for="adLocation" data-i18n="label_location">Location:</label>
     <input type="text" id="adLocation" required />
 
-    <label for="adDesc">Description:</label>
+    <label for="adDesc" data-i18n="label_description">Description:</label>
     <textarea id="adDesc" required></textarea>
 </div>
 
-
-
-<!-- Condition Fields (For applicable categories) -->
+<!-- Condition -->
 <div class="form-container">
   <fieldset id="conditionFields" class="form-section">
-    <legend class="condition-label">Condition</legend>
-    
+    <legend class="condition-label" data-i18n="condition_label">Condition</legend>
+
     <div class="condition-group">
       <label class="condition-option">
         <input type="radio" name="condition" value="New">
-        <span>New</span>
+        <span data-i18n="opt_new">New</span>
       </label>
 
       <label class="condition-option">
         <input type="radio" name="condition" value="Used">
-        <span>Used</span>
+        <span data-i18n="opt_used">Used</span>
       </label>
 
       <label class="condition-option">
         <input type="radio" name="condition" value="Refurbished">
-        <span>Refurbished</span>
+        <span data-i18n="opt_refurbished">Refurbished</span>
       </label>
     </div>
   </fieldset>
 </div>
 
-
-<!-- Featured Ad Checkbox Section with Two Checkboxes -->
+<!-- Featured Section -->
 <div class="feature-container">
-    <!-- No feature option -->
+
+    <!-- Free -->
     <label class="feature-card">
         <input type="radio" name="feature_selection" value="none" class="feature-input" checked>
         <div class="feature-content">
-            <span class="feature-text">Standard Listing (Free)</span>
-            <span class="status-badge">Not interested</span>
+            <span class="feature-text" data-i18n="standard_listing">Standard Listing (Free)</span>
+            <span class="status-badge" data-i18n="not_interested">Not interested</span>
         </div>
     </label>
 
-    <!-- 5 Days option -->
+    <!-- 5 Days -->
     <label class="feature-card">
         <input type="radio" name="feature_selection" value="5days" id="isFeatured5Days" class="feature-input">
         <div class="feature-content">
             <span class="feature-text" data-i18n="label_featured">✨ Feature this ad for</span>
-            <span class="price-badge" id="price-5-days">$4.99 for 5 days</span>
+            <span class="price-badge" id="price-5-days" data-i18n="featured_5_days">$4.99 for 5 days</span>
         </div>
     </label>
 
-    <!-- 10 Days option -->
+    <!-- 10 Days -->
     <label class="feature-card">
         <input type="radio" name="feature_selection" value="10days" id="isFeatured10Days" class="feature-input">
         <div class="feature-content">
             <span class="feature-text" data-i18n="label_featured">✨ Feature this ad for</span>
-            <span class="price-badge" id="price-10-days">$8.99 for 10 days</span>
+            <span class="price-badge" id="price-10-days" data-i18n="featured_10_days">$8.99 for 10 days</span>
         </div>
-       
+    </label>
+
 </div>
 <div id="paypal-button-container" style="display:none; margin-top:20px;"></div>
 <!-- SINGLE PAYPAL BUTTON CONTAINER -->
