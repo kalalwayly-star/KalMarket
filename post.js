@@ -160,7 +160,7 @@ window.handleCategoryChange = function () {
         "Services": "section-Services",
         "Garden": "section-Garden",
         "Health": "section-Health",
-        "Baby": "section-Baby"
+        "Baby": "section-Baby",
         "Buy&Sale": "section-Buy&Sale"
     };
 
