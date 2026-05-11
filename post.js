@@ -195,7 +195,7 @@ window.handleCategoryChange = function () {
         "Garden": "section-Garden",
         "Health": "section-Health",
         "Baby": "section-Baby",
-        "Buy&Sale": "section-Buy&Sale"
+        "Buy & Sale": "section-Buy & Sale"
     };
 
     const targetSectionId = categoryMap[selectedValue];
