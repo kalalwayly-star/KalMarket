@@ -160,8 +160,7 @@ window.handlePhotoUpload = async function (event) {
         wrapper.appendChild(deleteBtn);
         preview.appendChild(wrapper);
 
-        try {
-            // UPLOAD TO FIREBASE
+       
             try {
     // COMPRESS BEFORE UPLOAD
     const originalFile = file;
