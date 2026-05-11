@@ -29,7 +29,7 @@ onAuthStateChanged(auth, (user) => {
         if (emailSpan) emailSpan.innerText = "";
     }
 });
-async function compressImage(file, maxWidth = 1200, quality = 0.7) {
+async function compressImage(file, maxWidth = 800, quality = 0.7) {
     return new Promise((resolve, reject) => {
         const img = new Image();
         const reader = new FileReader();
@@ -151,40 +151,38 @@ window.handlePhotoUpload = async function (event) {
         preview.appendChild(wrapper);
     }
        
-           try {
-    // COMPRESS BEFORE UPLOAD
+          
+ 
+   // 1. Show the "Uploading..." UI before starting
+showLoadingSpinner(); 
+
+try {
     const originalFile = file;
+    // Ensure compressImage is also awaited properly
     const compressedFile = await compressImage(originalFile);
+    console.log("Uploading:", compressedFile.name);
 
-    console.log("Uploading compressed file:", compressedFile);
-
-    // UPLOAD TO FIREBASE
-    const storageRef = ref(storage, `ads/${Date.now()}_${compressedFile.name}`);
+    // 2. Fix the naming: use Date.now() (Capital D)
+    const fileName = `${Date.now()}_${compressedFile.name}`;
+    const storageRef = ref(storage, `ads/${fileName}`);
 
     const snapshot = await uploadBytes(storageRef, compressedFile);
-
-    console.log("Upload successful:", snapshot);
-
     const url = await getDownloadURL(snapshot.ref);
 
-    console.log("Image URL:", url);
-
-    // SAVE IMAGE
-    uploadedImages.push({
-        id: imageId,
-        url: url
-    });
+    // 3. Save the image to your array
+    uploadedImages.push({ id: imageId, url: url });
+    console.log("Success! Image URL:", url);
 
 } catch (error) {
     console.error("Upload failed:", error);
-
-    wrapper.remove();
-
     alert("Image upload failed: " + error.message);
+} finally {
+    // 4. CRITICAL: This runs no matter what. 
+    // Use this to hide your "Wait until upload complete" message.
+    hideLoadingSpinner(); 
+    wrapper.remove(); // If wrapper is your progress bar
 }
-    // RESET INPUT
-    event.target.value = "";
-};
+
 
 /* =========================
    CATEGORY HANDLER
