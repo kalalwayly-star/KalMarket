@@ -29,7 +29,62 @@ onAuthStateChanged(auth, (user) => {
         if (emailSpan) emailSpan.innerText = "";
     }
 });
+async function compressImage(file, maxWidth = 1200, quality = 0.7) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        const reader = new FileReader();
 
+        reader.onload = e => {
+            img.src = e.target.result;
+        };
+
+        img.onload = () => {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+
+            let width = img.width;
+            let height = img.height;
+
+            // Resize while keeping aspect ratio
+            if (width > maxWidth) {
+                height *= maxWidth / width;
+                width = maxWidth;
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+
+            ctx.drawImage(img, 0, 0, width, height);
+
+            canvas.toBlob(
+                blob => {
+                    if (!blob) {
+                        reject(new Error("Compression failed"));
+                        return;
+                    }
+
+                    const compressedFile = new File(
+                        [blob],
+                        file.name,
+                        {
+                            type: "image/jpeg",
+                            lastModified: Date.now()
+                        }
+                    );
+
+                    resolve(compressedFile);
+                },
+                "image/jpeg",
+                quality
+            );
+        };
+
+        img.onerror = reject;
+        reader.onerror = reject;
+
+        reader.readAsDataURL(file);
+    });
+}
 /* =========================
    IMAGE UPLOAD (FIREBASE STORAGE)
 ========================= */
@@ -107,9 +162,15 @@ window.handlePhotoUpload = async function (event) {
 
         try {
             // UPLOAD TO FIREBASE
-            const storageRef = ref(storage, `ads/${Date.now()}_${file.name}`);
-            const snapshot = await uploadBytes(storageRef, file);
-            const url = await getDownloadURL(snapshot.ref);
+            try {
+    // COMPRESS BEFORE UPLOAD
+    const originalFile = file;
+    const compressedFile = await compressImage(originalFile);
+
+    // UPLOAD TO FIREBASE
+    const storageRef = ref(storage, `ads/${Date.now()}_${compressedFile.name}`);
+    const snapshot = await uploadBytes(storageRef, compressedFile);
+    const url = await getDownloadURL(snapshot.ref);
 
             // SAVE IMAGE
             uploadedImages.push({
