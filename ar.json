@@ -201,12 +201,31 @@
 "opt_new": "جديد",
 "opt_used": "مستعمل",
 "opt_refurbished": "مجدد",
+
+"uploading": "جاري الرفع...",
+"max_images_text": "الحد الأقصى 10 صور • JPG, PNG, WEBP",
+    "vehicle_information": "معلومات المركبة",
+"label_model": "الموديل",
+"placeholder_make": "تويوتا",
+"placeholder_model": "كامري",
+"placeholder_year": "2022",
+"placeholder_mileage": "50000",
+"label_mileage": "المسافة المقطوعة",
+"label_transmission": "ناقل الحركة",
+"label_fuel_type": "نوع الوقود",
+"select_option": "اختر",
+"transmission_automatic": "أوتوماتيك",
+"transmission_manual": "يدوي",
+"fuel_gasoline": "بنزين",
+"fuel_diesel": "ديزل",
+"fuel_electric": "كهربائي",
+"fuel_hybrid": "هجين",
+"condition_label": "الحالة",
+"opt_refurbished": "مجدد",
 "standard_listing": "إعلان عادي (مجاني)",
 "not_interested": "غير مهتم",
 "featured_5_days": "4.99 دولار لمدة 5 أيام",
-"featured_10_days": "8.99 دولار لمدة 10 أيام",
-"uploading": "جاري الرفع...",
-"max_images_text": "الحد الأقصى 10 صور • JPG, PNG, WEBP"
+"featured_10_days": "8.99 دولار لمدة 10 أيام"
 
 
 
