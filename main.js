@@ -219,7 +219,7 @@ const images = Array.isArray(ad.image)
                 <h3>${ad.title}</h3>
                 <p>📍 ${ad.location || "No location"}</p>
                 <p><b>$${ad.price}</b></p>
-
+<p><strong>Condition:</strong> ${ad.condition || "N/A"}</p>
                
             </div>
 
