@@ -151,29 +151,37 @@ window.handlePhotoUpload = async function (event) {
         preview.appendChild(wrapper);
 
        
-            try {
+           try {
     // COMPRESS BEFORE UPLOAD
     const originalFile = file;
     const compressedFile = await compressImage(originalFile);
 
+    console.log("Uploading compressed file:", compressedFile);
+
     // UPLOAD TO FIREBASE
     const storageRef = ref(storage, `ads/${Date.now()}_${compressedFile.name}`);
+
     const snapshot = await uploadBytes(storageRef, compressedFile);
+
+    console.log("Upload successful:", snapshot);
+
     const url = await getDownloadURL(snapshot.ref);
 
-            // SAVE IMAGE
-            uploadedImages.push({
-                id: imageId,
-                url: url
-            });          
+    console.log("Image URL:", url);
 
-        } catch (error) {
-            console.error("Upload failed:", error);
-            wrapper.remove();
-            alert("Image upload failed");
-        }
-    }
+    // SAVE IMAGE
+    uploadedImages.push({
+        id: imageId,
+        url: url
+    });
 
+} catch (error) {
+    console.error("Upload failed:", error);
+
+    wrapper.remove();
+
+    alert("Image upload failed: " + error.message);
+}
     // RESET INPUT
     event.target.value = "";
 };
