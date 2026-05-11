@@ -286,10 +286,7 @@ function finalizeAd() {
         return;
     }
 
-// This maps the array of objects {id, url} to just an array of URL strings
-image: uploadedImages.length > 0 
-    ? uploadedImages.map(img => img.url) 
-    : ["https://placeholder.com"],    
+
 navigator.geolocation.getCurrentPosition(
     (position) => {
         window.currentAdLat = position.coords.latitude;
@@ -310,9 +307,10 @@ navigator.geolocation.getCurrentPosition(
         description: document.getElementById("adDesc")?.value || "",
         condition: document.querySelector('input[name="condition"]:checked')?.value || "N/A",
 
-        // IMPORTANT FIX:
-       // Corrected code:
-
+        // This maps the array of objects {id, url} to just an array of URL strings
+image: uploadedImages.length > 0 
+    ? uploadedImages.map(img => img.url) 
+    : ["https://placeholder.com"],    
 
 
         date: new Date().toLocaleDateString(),
