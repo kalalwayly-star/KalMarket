@@ -297,29 +297,28 @@ navigator.geolocation.getCurrentPosition(
     }
 );
     
-    const newAd = {
-        userId: user.uid,
-        userEmail: user.email,
-        category: document.getElementById("postCategory")?.value || "",
-        title: title,
-        price: document.getElementById("adPrice")?.value || "",
-        location: document.getElementById("adLocation")?.value || "",
-        description: document.getElementById("adDesc")?.value || "",
-        condition: document.querySelector('input[name="condition"]:checked')?.value || "N/A",
+   const newAd = {
+    userId: user.uid,
+    userEmail: user.email,
+    category: document.getElementById("postCategory")?.value || "",
+    title: title,
+    price: document.getElementById("adPrice")?.value || "",
+    location: document.getElementById("adLocation")?.value || "",
+    description: document.getElementById("adDesc")?.value || "",
+    condition: document.querySelector('input[name="condition"]:checked')?.value || "N/A",
 
-        // This maps the array of objects {id, url} to just an array of URL strings
-image: uploadedImages.length > 0 
-    ? uploadedImages.map(img => img.url) 
-    : ["https://placeholder.com"],    
+    image: Array.isArray(uploadedImages) && uploadedImages.length > 0
+        ? uploadedImages.map(img => img.url || img)
+        : ["https://placeholder.com"],
 
+    date: new Date().toLocaleDateString(),
 
-        date: new Date().toLocaleDateString(),
-        lat: window.currentAdLat || null,
-        lng: window.currentAdLng || null,
+    lat: window.currentAdLat || null,
+    lng: window.currentAdLng || null,
 
-        featured: localStorage.getItem("featuredAdPaid") === "true",
-        featuredDays: parseInt(localStorage.getItem("featuredDays")) || 0
-    };
+    featured: localStorage.getItem("featuredAdPaid") === "true",
+    featuredDays: parseInt(localStorage.getItem("featuredDays")) || 0
+};
 
     addDoc(collection(db, "marketplace_ads"), newAd)
         .then(() => {
