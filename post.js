@@ -87,6 +87,9 @@ async function compressImage(file, maxWidth = 800, quality = 0.7) {
 }
 
   
+/* =========================
+   FIXED PHOTO UPLOAD HANDLER
+========================= */
 window.handlePhotoUpload = async function (event) {
     const files = Array.from(event.target.files || []);
     const preview = document.getElementById("galleryPreview");
@@ -96,14 +99,12 @@ window.handlePhotoUpload = async function (event) {
     for (let file of files) {
         const imageId = `${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
 
-        // IMAGE CONTAINER
+        // --- CREATE PREVIEW UI ---
         const wrapper = document.createElement("div");
         wrapper.style.position = "relative";
         wrapper.style.display = "inline-block";
         wrapper.style.margin = "8px";
-        wrapper.style.pointerEvents = "auto";
 
-        // PREVIEW IMAGE
         const img = document.createElement("img");
         img.src = URL.createObjectURL(file);
         img.style.width = "100px";
@@ -111,77 +112,54 @@ window.handlePhotoUpload = async function (event) {
         img.style.objectFit = "cover";
         img.style.borderRadius = "8px";
         img.style.border = "1px solid #ccc";
-        img.style.display = "block";
+        img.style.opacity = "0.5"; // Dimmed while uploading
 
-        // DELETE BUTTON
         const deleteBtn = document.createElement("button");
         deleteBtn.type = "button";
         deleteBtn.innerHTML = "✕";
-
         deleteBtn.style.position = "absolute";
         deleteBtn.style.top = "4px";
         deleteBtn.style.right = "4px";
-        deleteBtn.style.width = "26px";
-        deleteBtn.style.height = "26px";
-        deleteBtn.style.border = "none";
+        deleteBtn.style.background = "red";
+        deleteBtn.style.color = "white";
         deleteBtn.style.borderRadius = "50%";
-        deleteBtn.style.background = "rgba(255,0,0,0.9)";
-        deleteBtn.style.color = "#fff";
-        deleteBtn.style.fontSize = "16px";
-        deleteBtn.style.fontWeight = "bold";
         deleteBtn.style.cursor = "pointer";
-        deleteBtn.style.zIndex = "9999";
-        deleteBtn.style.pointerEvents = "auto";
 
-         deleteBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    wrapper.remove();
-
-    uploadedImages = uploadedImages.filter(
-        image => image.id !== imageId
-    );
-
-    console.log("Remaining images:", uploadedImages);
-});
+        deleteBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            wrapper.remove();
+            uploadedImages = uploadedImages.filter(img => img.id !== imageId);
+        });
 
         wrapper.appendChild(img);
         wrapper.appendChild(deleteBtn);
         preview.appendChild(wrapper);
+
+        // --- START UPLOAD ---
+        try {
+            const compressedFile = await compressImage(file);
+            // Fix: Date.now() must be capitalized
+            const storageRef = ref(storage, `ads/${Date.now()}_${compressedFile.name}`);
+            const snapshot = await uploadBytes(storageRef, compressedFile);
+            const url = await getDownloadURL(snapshot.ref);
+
+            // Add to your global array
+            uploadedImages.push({ id: imageId, url: url });
+            
+            // Mark as finished visually
+            img.style.opacity = "1"; 
+            console.log("Image ready:", url);
+
+        } catch (error) {
+            console.error("Upload failed:", error);
+            wrapper.remove();
+            alert("Image failed: " + error.message);
+        }
     }
-       
-          
- 
-   // 1. Show the "Uploading..." UI before starting
-showLoadingSpinner(); 
+    // Clear input so user can re-select same file if they want
+    event.target.value = "";
+};
 
-try {
-    const originalFile = file;
-    // Ensure compressImage is also awaited properly
-    const compressedFile = await compressImage(originalFile);
-    console.log("Uploading:", compressedFile.name);
-
-    // 2. Fix the naming: use Date.now() (Capital D)
-    const fileName = `${Date.now()}_${compressedFile.name}`;
-    const storageRef = ref(storage, `ads/${fileName}`);
-
-    const snapshot = await uploadBytes(storageRef, compressedFile);
-    const url = await getDownloadURL(snapshot.ref);
-
-    // 3. Save the image to your array
-    uploadedImages.push({ id: imageId, url: url });
-    console.log("Success! Image URL:", url);
-
-} catch (error) {
-    console.error("Upload failed:", error);
-    alert("Image upload failed: " + error.message);
-} finally {
-    // 4. CRITICAL: This runs no matter what. 
-    // Use this to hide your "Wait until upload complete" message.
-    hideLoadingSpinner(); 
-    wrapper.remove(); // If wrapper is your progress bar
-}
 
 
 /* =========================
@@ -252,13 +230,16 @@ function saveNewAd(event) {
         alert("Login required");
         return;
     }
-
-    // NEW CHECK: Ensure images are finished uploading
+    // Add this inside saveNewAd
     const photoInput = document.getElementById("photoInput");
-    if (photoInput.files.length > 0 && uploadedImages.length === 0) {
-        alert("Please wait for photos to finish uploading...");
+    const pendingFiles = photoInput ? photoInput.files.length : 0;
+
+    if (pendingFiles > 0 && uploadedImages.length < pendingFiles) {
+        alert("Images are still uploading. Please wait a moment.");
         return;
     }
+
+   
 
     const btn = document.getElementById("postBtn");
     if (btn) {
