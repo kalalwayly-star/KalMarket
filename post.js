@@ -149,7 +149,7 @@ window.handlePhotoUpload = async function (event) {
         wrapper.appendChild(img);
         wrapper.appendChild(deleteBtn);
         preview.appendChild(wrapper);
-
+    }
        
            try {
     // COMPRESS BEFORE UPLOAD
