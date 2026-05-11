@@ -1243,3 +1243,8 @@ body {
         line-height: 1.7;
     }
 }
+.top-bar {
+    display: block !important;
+    visibility: visible !important;
+    width: 100%;
+}
