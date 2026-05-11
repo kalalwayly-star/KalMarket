@@ -138,6 +138,7 @@
 "login_subtitle": "يرجى إدخال بياناتك لتسجيل الدخول.",
 "placeholder_password": "كلمة المرور",
 "or_divider": "أو",
+    "register_subtitle": "انضم إلى سوقنا اليوم.",
     "register_page_title": "إنشاء حساب ",
 "create_account_btn": "إنشاء حساب جديد",
 "already_have_account": "لديك حساب بالفعل؟",
