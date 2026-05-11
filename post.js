@@ -85,16 +85,7 @@ async function compressImage(file, maxWidth = 1200, quality = 0.7) {
         reader.readAsDataURL(file);
     });
 }
-/* =========================
-   IMAGE UPLOAD (FIREBASE STORAGE)
-========================= */
-/* =========================
-   IMAGE UPLOAD WITH DELETE ICON
-========================= */
-/* =========================
-   IMAGE UPLOAD WITH WORKING DELETE
-========================= */
-/* =========================
+
    IMAGE UPLOAD + RELIABLE DELETE FIX
 ========================= */
 window.handlePhotoUpload = async function (event) {
