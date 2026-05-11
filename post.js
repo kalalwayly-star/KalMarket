@@ -286,6 +286,16 @@ function finalizeAd() {
         return;
     }
 
+navigator.geolocation.getCurrentPosition(
+    (position) => {
+        window.currentAdLat = position.coords.latitude;
+        window.currentAdLng = position.coords.longitude;
+    },
+    (error) => {
+        console.error("Location error:", error);
+    }
+);
+    
     const newAd = {
         userId: user.uid,
         userEmail: user.email,
