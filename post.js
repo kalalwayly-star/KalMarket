@@ -86,8 +86,7 @@ async function compressImage(file, maxWidth = 1200, quality = 0.7) {
     });
 }
 
-   IMAGE UPLOAD + RELIABLE DELETE FIX
-========================= */
+  
 window.handlePhotoUpload = async function (event) {
     const files = Array.from(event.target.files || []);
     const preview = document.getElementById("galleryPreview");
