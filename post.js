@@ -292,6 +292,7 @@ navigator.geolocation.getCurrentPosition(
     userEmail: user.email,
     category: document.getElementById("postCategory")?.value || "",
     title: title,
+    views: 0,
     price: document.getElementById("adPrice")?.value || "",
     location: document.getElementById("adLocation")?.value || "",
     description: document.getElementById("adDesc")?.value || "",
