@@ -88,8 +88,8 @@
     "ad_details": "تفاصيل الإعلان",
         "contact_seller": "تواصل مع البائع",
     "messages_title": "الرسائل",
-        "no_messages": "لا توجد رسائل",
-
+       
+"no_messages_found": "لا توجد رسائل",
     "reply": "رد",
 "from": "من",
 "to": "إلى",
