@@ -6,7 +6,7 @@ import { ref, onValue, remove } from "https://www.gstatic.com/firebasejs/12.12.1
 // Full URLs for Firestore
 import { collection, onSnapshot, query, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-// Global variable to store ads
+
 let globalAds = [];
 
 document.addEventListener("DOMContentLoaded", () => {
