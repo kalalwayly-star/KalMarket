@@ -209,15 +209,16 @@ window.handleCategoryChange = function () {
         }
     }
 
-    // Convert everything to lowercase to avoid matching errors
-const selectedValue = categorySelect.value.trim().toLowerCase();
-const hideConditionFor = ["pets", "jobs", "real estate", "services"];
+    const conditionBox = document.getElementById("globalCondition");
+    const hideConditionFor = ["Pets", "Jobs", "Real Estate", "Services"];
 
-if (conditionBox) {
-    conditionBox.style.display = hideConditionFor.includes(selectedValue) 
-        ? "none" 
-        : "block";
-}
+    if (conditionBox) {
+        conditionBox.style.display = hideConditionFor.includes(selectedValue)
+            ? "none"
+            : "block";
+    }
+
+
 
     
 };
