@@ -209,7 +209,7 @@ window.handleCategoryChange = function () {
         }
     }
 
-    const conditionBox = document.getElementById("globalCondition");
+const conditionBox = document.getElementById("conditionFields");
     const hideConditionFor = ["Pets", "Jobs", "Real Estate", "Services"];
 
     if (conditionBox) {
