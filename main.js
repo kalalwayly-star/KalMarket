@@ -1,6 +1,5 @@
 import { auth, db, rtdb } from "./firebase-config.js";
-
-// Full URLs for Auth
+import { doc, updateDoc, increment, getDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";// Full URLs for Auth
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 // Full URLs for Realtime Database
 import { ref, onValue, remove } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
@@ -95,7 +94,28 @@ window.deleteAd = async function(firebaseId) {
     }
 };
 
+async function trackVisitor() {
+    if (!localStorage.getItem("siteVisited")) {
+        localStorage.setItem("siteVisited", "true");
 
+        const statsRef = doc(db, "site_stats", "global");
+
+        await updateDoc(statsRef, {
+            visitors: increment(1)
+        });
+    }
+}
+
+async function displayVisitorCount() {
+    const statsRef = doc(db, "site_stats", "global");
+
+    const snap = await getDoc(statsRef);
+
+    if (snap.exists()) {
+        document.getElementById("visitorCount").textContent =
+            `👥 Visitors: ${snap.data().visitors}`;
+    }
+}
 /* =========================
    FIX #2 — CATEGORY FILTER
 ========================= */
@@ -250,3 +270,6 @@ window.changeSlide = function(adId, direction) {
 
     slides[currentIndex].classList.add("active");
 };
+
+trackVisitor();
+displayVisitorCount();
