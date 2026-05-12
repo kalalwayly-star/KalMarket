@@ -91,8 +91,8 @@ function renderMessages(filterText = "") {
 
     // 3. DISPLAY: Build the HTML
     if (filtered.length === 0) {
-        container.innerHTML = `<p style="text-align:center; padding:20px;">No messages found.</p>`;    
-    } else {
+    container.innerHTML = `<p data-i18n="no_messages_found" style="text-align:center; padding:20px;">No messages found.</p>`;
+} else {
         container.innerHTML = filtered.map(m => `
             <div class="message-card" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 8px; background: white; position: relative;">
                 <h4 style="margin:0;">Re: ${m.adTitle || "Marketplace Ad"}</h4>
