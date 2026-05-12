@@ -209,14 +209,17 @@ window.handleCategoryChange = function () {
         }
     }
 
-    const conditionBox = document.getElementById("globalCondition");
-    const hideConditionFor = ["Pets", "Jobs", "Real Estate", "Services"];
+    // Convert everything to lowercase to avoid matching errors
+const selectedValue = categorySelect.value.trim().toLowerCase();
+const hideConditionFor = ["pets", "jobs", "real estate", "services"];
 
-    if (conditionBox) {
-        conditionBox.style.display = hideConditionFor.includes(selectedValue)
-            ? "none"
-            : "block";
-    }
+if (conditionBox) {
+    conditionBox.style.display = hideConditionFor.includes(selectedValue) 
+        ? "none" 
+        : "block";
+}
+
+    
 };
 
 /* =========================
