@@ -1,5 +1,5 @@
 import { auth, db, rtdb } from "./firebase-config.js";
-import { doc, updateDoc, increment, getDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";// Full URLs for Auth
+import { updateDoc, increment, getDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";// Full URLs for Auth
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 // Full URLs for Realtime Database
 import { ref, onValue, remove } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
