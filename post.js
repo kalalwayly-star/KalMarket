@@ -10,6 +10,18 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
 
 let uploadedImages = [];
+let pendingUploads = 0;
+
+navigator.geolocation.getCurrentPosition(
+    (position) => {
+        window.currentAdLat = position.coords.latitude;
+        window.currentAdLng = position.coords.longitude;
+    },
+    (error) => {
+        console.error("Location error:", error);
+    }
+);
+   
 
 /* =========================
    AUTH STATE
@@ -97,6 +109,7 @@ window.handlePhotoUpload = async function (event) {
     if (!preview || !files.length) return;
 
     for (let file of files) {
+        pendingUploads++;
         const imageId = `${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
 
         // --- CREATE PREVIEW UI ---
@@ -144,8 +157,12 @@ window.handlePhotoUpload = async function (event) {
             const url = await getDownloadURL(snapshot.ref);
 
             // Add to your global array
-            uploadedImages.push({ id: imageId, url: url });
-            
+uploadedImages.push({
+    id: imageId,
+    url: url
+});
+
+pendingUploads--;            
             // Mark as finished visually
             img.style.opacity = "1"; 
             console.log("Image ready:", url);
@@ -154,6 +171,7 @@ window.handlePhotoUpload = async function (event) {
             console.error("Upload failed:", error);
             wrapper.remove();
             alert("Image failed: " + error.message);
+            pendingUploads--;
         }
     }
     // Clear input so user can re-select same file if they want
@@ -217,9 +235,6 @@ const conditionBox = document.getElementById("conditionFields");
             ? "none"
             : "block";
     }
-
-
-
     
 };
 
@@ -236,14 +251,10 @@ function saveNewAd(event) {
     }
     // Add this inside saveNewAd
     const photoInput = document.getElementById("photoInput");
-    const pendingFiles = photoInput ? photoInput.files.length : 0;
-
-    if (pendingFiles > 0 && uploadedImages.length < pendingFiles) {
-        alert("Images are still uploading. Please wait a moment.");
-        return;
-    }
-
-   
+   if (pendingUploads > 0) {
+    alert("Please wait for photos to finish uploading...");
+    return;
+}
 
     const btn = document.getElementById("postBtn");
     if (btn) {
@@ -277,16 +288,7 @@ function finalizeAd() {
     }
 
 
-navigator.geolocation.getCurrentPosition(
-    (position) => {
-        window.currentAdLat = position.coords.latitude;
-        window.currentAdLng = position.coords.longitude;
-    },
-    (error) => {
-        console.error("Location error:", error);
-    }
-);
-    
+ 
    const newAd = {
     userId: user.uid,
     userEmail: user.email,
