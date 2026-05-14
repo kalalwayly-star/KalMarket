@@ -5,6 +5,7 @@ import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/
 import { ref, onValue, remove } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
 // Full URLs for Firestore
 import { collection, onSnapshot, query, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+import { setDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 
 let globalAds = [];
@@ -100,9 +101,9 @@ async function trackVisitor() {
 
         const statsRef = doc(db, "site_stats", "global");
 
-        await updateDoc(statsRef, {
+        await setDoc(statsRef, {
             visitors: increment(1)
-        });
+        }, { merge: true });
     }
 }
 
@@ -270,6 +271,7 @@ window.changeSlide = function(adId, direction) {
 
     slides[currentIndex].classList.add("active");
 };
-
-trackVisitor();
-displayVisitorCount();
+document.addEventListener("DOMContentLoaded", async () => {
+    await trackVisitor();
+    await displayVisitorCount();
+});
