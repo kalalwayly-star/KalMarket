@@ -439,7 +439,113 @@ footer,
     display: inline-flex;
     align-items: center;
 }
+/* =========================
+   FEATURE LISTING BOX
+   Matches condition box style
+========================= */
 
+.feature-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+    margin-top: 20px !important;
+    width: 100% !important;
+}
+
+/* Each option card */
+.feature-card {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding: 18px 20px !important;
+    border: 2px solid #d0d7de !important;
+    border-radius: 10px !important;
+    background: #fff !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease-in-out !important;
+    box-sizing: border-box !important;
+}
+
+/* Hover */
+.feature-card:hover {
+    border-color: #007bff !important;
+    background: #f8fbff !important;
+}
+
+/* Selected */
+.feature-card:has(.feature-input:checked) {
+    border-color: #007bff !important;
+    background: #eef6ff !important;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.12) !important;
+}
+
+/* Radio button */
+.feature-input {
+    width: 18px !important;
+    height: 18px !important;
+    margin-right: 16px !important;
+    flex-shrink: 0 !important;
+    accent-color: #007bff !important;
+}
+
+/* Main content layout */
+.feature-content {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    gap: 15px !important;
+}
+
+/* Left side text */
+.feature-text {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: #222 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    line-height: 1.4 !important;
+}
+
+/* Badge styles */
+.price-badge {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    color: #1e7e34 !important;
+    background: #d4edda !important;
+    padding: 6px 14px !important;
+    border-radius: 50px !important;
+    white-space: nowrap !important;
+}
+
+.status-badge {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #6c757d !important;
+    background: #e9ecef !important;
+    padding: 6px 14px !important;
+    border-radius: 50px !important;
+    white-space: nowrap !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .feature-card {
+        padding: 14px !important;
+    }
+
+    .feature-content {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+    }
+
+    .price-badge,
+    .status-badge {
+        align-self: flex-start !important;
+    }
+}
 
 
 
