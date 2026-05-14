@@ -6,6 +6,8 @@ import {
     collection,
     addDoc,
     serverTimestamp
+    updateDoc,
+    increment
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 import {
@@ -38,6 +40,17 @@ async function loadAdDetails() {
         }
 
         const ad = adSnap.data();
+        /* Increase ad views */
+await updateDoc(adRef, {
+    views: increment(1)
+});
+
+/* Reload updated data */
+const updatedSnap = await getDoc(adRef);
+const updatedAd = updatedSnap.data();
+
+/* Replace old ad object */
+Object.assign(ad, updatedAd);
 
         // Title
         document.getElementById("adTitle").innerText = ad.title || "No Title";
@@ -50,6 +63,9 @@ async function loadAdDetails() {
 
         // Location
         document.getElementById("adLocation").innerText = ad.location || "Unknown";
+        if (document.getElementById("viewCount")) {
+    document.getElementById("viewCount").innerText = ad.views || 0;
+}
 
         // Description
         document.getElementById("adDesc").innerText = ad.description || "No description provided.";
