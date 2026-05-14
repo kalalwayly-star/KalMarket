@@ -380,7 +380,65 @@ footer,
     align-items: center;
     gap: 8px;
 }
+/* =========================
+   UNIFIED FORM FIELD STYLE (MATCH CONDITION BOX)
+========================= */
 
+/* base shared box style */
+.condition-group,
+.feature-container {
+    border: 2px solid #d0d7de;
+    border-radius: 8px;
+    padding: 12px;
+    background: #fff;
+}
+
+/* blue focus style like condition box */
+.condition-group:focus-within,
+.feature-container:focus-within {
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.15);
+}
+
+/* each feature card stays clean inside box */
+.feature-card {
+    display: flex;
+    align-items: center;
+    padding: 10px 8px;
+    border: none; /* IMPORTANT: remove inner border */
+    border-radius: 6px;
+}
+
+/* radio alignment fix */
+.feature-input {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    accent-color: #007bff;
+}
+
+/* keep text aligned */
+.feature-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* make spacing tighter like condition box */
+.feature-text {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* badges stay centered */
+.price-badge,
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+}
 
 
 
