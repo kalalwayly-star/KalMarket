@@ -54,20 +54,44 @@ async function loadAdDetails() {
         // Description
         document.getElementById("adDesc").innerText = ad.description || "No description provided.";
 
+        console.log("AD IMAGES:", ad.images);
+
         // Images
        const imageContainer = document.getElementById("adImageContainer");
 
-const fallbackImage = "https://dummyimage.com/600x400/cccccc/000000&text=No+Image";
+const fallback = "https://dummyimage.com/600x400/cccccc/000000&text=No+Image";
 
-const images = Array.isArray(ad.image)
-    ? ad.image
-    : ad.image
-        ? [ad.image]
-        : [fallbackImage];
+let main = [];
+let gallery = [];
+
+// Handle different possible structures safely
+if (ad.images) {
+    if (typeof ad.images.main === "string") {
+        main = [ad.images.main];
+    }
+
+    if (Array.isArray(ad.images.gallery)) {
+        gallery = ad.images.gallery;
+    } else if (typeof ad.images.gallery === "string") {
+        gallery = ad.images.gallery.split(",");
+    }
+
+    // CASE: images stored directly as array
+    if (Array.isArray(ad.images)) {
+        main = ad.images;
+        gallery = [];
+    }
+}
+
+const images = [...main, ...gallery].filter(Boolean);
+
+if (images.length === 0) {
+    images.push(fallback);
+}
 
 imageContainer.innerHTML = images.map(img => `
     <img src="${img}" 
-         style="width:100%; max-height:500px; object-fit:cover; margin-bottom:10px; border-radius:10px;">
+        style="width:100%; max-height:500px; object-fit:cover; margin-bottom:10px; border-radius:10px;">
 `).join("");
 
         // Store seller info globally
