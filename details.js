@@ -56,47 +56,54 @@ async function loadAdDetails() {
 
 
         // Images
-      const imageContainer = document.getElementById("adImageContainer");
+        const imageContainer = document.getElementById("adImageContainer");
 
-const fallback = "https://dummyimage.com/600x400/cccccc/000000&text=No+Image";
+        const fallback = "https://dummyimage.com/600x400/cccccc/000000&text=No+Image";
 
-let images = [];
+        let images = [];
 
-// CASE 1: array of images
-if (Array.isArray(ad.images)) {
-    images = ad.images;
-}
+        // CASE 1: array of images
+        if (Array.isArray(ad.images)) {
+            images = ad.images;
+        }
 
-// CASE 2: object with main + gallery
-else if (ad.images && typeof ad.images === "object") {
-    if (typeof ad.images.main === "string") {
-        images.push(ad.images.main);
-    }
+        // CASE 2: object with main + gallery
+        else if (ad.images && typeof ad.images === "object") {
+            if (typeof ad.images.main === "string") {
+                images.push(ad.images.main);
+            }
 
-    if (Array.isArray(ad.images.gallery)) {
-        images.push(...ad.images.gallery);
-    }
+            if (Array.isArray(ad.images.gallery)) {
+                images.push(...ad.images.gallery);
+            }
 
-    // sometimes gallery stored as string
-    if (typeof ad.images.gallery === "string") {
-        images.push(...ad.images.gallery.split(","));
-    }
-}
+            // sometimes gallery stored as string
+            if (typeof ad.images.gallery === "string") {
+                images.push(...ad.images.gallery.split(","));
+            }
+        }
 
-// clean invalid values
-images = images.filter(img => typeof img === "string" && img.startsWith("http"));
+        // clean invalid values
+        images = images.filter(img => typeof img === "string" && img.startsWith("http"));
 
-if (images.length === 0) {
-    images = [fallback];
-}
+        if (images.length === 0) {
+            images = [fallback];
+        }
 
-imageContainer.innerHTML = images.map(img => `
-    <img src="${img}" 
-        style="width:100%; max-height:500px; object-fit:cover; margin-bottom:10px; border-radius:10px;">
-`).join("");
+        imageContainer.innerHTML = images.map(img => `
+            <img src="${img}" 
+                style="width:100%; max-height:500px; object-fit:cover; margin-bottom:10px; border-radius:10px;">
+        `).join("");
+
         // Store seller info globally
         window.currentSellerId = ad.userId;
         window.currentSellerEmail = ad.userEmail;
+
+        /* ========================================================
+           CRITICAL FIX: RUN THE PROBE HERE, RIGHT AFTER IMAGES ARE INJECTED
+        ======================================================== */
+        const data = await probeimageurls();
+        console.log("Probed Image Data:", data);
 
     } catch (error) {
         console.error("Error loading ad:", error);
@@ -145,6 +152,7 @@ window.sendMessage = async function () {
         alert("Failed to send message.");
     }
 };
+
 /* =========================
    REPORT SYSTEM
 ========================= */
@@ -177,8 +185,31 @@ window.submitReport = async function() {
 };
 
 /* =========================
+   IMAGE PROBER FUNCTIONS
+========================= */
+async function probeimageurls() { 
+    const images = Array.from(document.querySelectorAll('img')); 
+    const results = []; 
+    for (const img of images) { 
+        results.push({ 
+            src: img.src, 
+            currentsrc: img.currentSrc, 
+            naturalwidth: img.naturalWidth, 
+            complete: img.complete, 
+            error: img.naturalWidth === 0 && img.complete 
+        }); 
+    } 
+    const perfentries = performance.getEntriesByType("resource")
+        .filter(e => e.initiatorType === "img")
+        .map(e => ({ name: e.name, duration: e.duration })); 
+        
+    return { imagestates: results, resourceentries: perfentries }; 
+}
+
+/* =========================
    INIT
 ========================= */
 document.addEventListener("DOMContentLoaded", () => {
     loadAdDetails();
 });
+
