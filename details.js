@@ -5,7 +5,7 @@ import {
     getDoc,
     collection,
     addDoc,
-    serverTimestamp
+    serverTimestamp,
     updateDoc,
     increment
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
@@ -63,8 +63,10 @@ Object.assign(ad, updatedAd);
 
         // Location
         document.getElementById("adLocation").innerText = ad.location || "Unknown";
-       
-
+        
+        if (document.getElementById("viewCount")) {
+    document.getElementById("viewCount").innerText = ad.views || 0;
+}
         // Description
         document.getElementById("adDesc").innerText = ad.description || "No description provided.";
 
