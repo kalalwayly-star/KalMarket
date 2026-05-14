@@ -96,25 +96,30 @@ window.deleteAd = async function(firebaseId) {
 };
 
 async function trackVisitor() {
-    if (!localStorage.getItem("siteVisited")) {
-        localStorage.setItem("siteVisited", "true");
+    if (!sessionStorage.getItem("visited")) {
+        sessionStorage.setItem("visited", "true");
 
         const statsRef = doc(db, "site_stats", "global");
 
-        await setDoc(statsRef, {
+        await updateDoc(statsRef, {
             visitors: increment(1)
-        }, { merge: true });
+        }).catch(async () => {
+            await setDoc(statsRef, {
+                visitors: 1
+            });
+        });
     }
 }
 
 async function displayVisitorCount() {
     const statsRef = doc(db, "site_stats", "global");
-
     const snap = await getDoc(statsRef);
 
-    if (snap.exists()) {
-        document.getElementById("visitorCount").textContent =
-            `👥 Visitors: ${snap.data().visitors}`;
+    const count = snap.exists() ? snap.data().visitors : 0;
+
+    const el = document.getElementById("visitorCount");
+    if (el) {
+        el.textContent = `👥 Visitors: ${count}`;
     }
 }
 /* =========================
@@ -272,6 +277,7 @@ window.changeSlide = function(adId, direction) {
     slides[currentIndex].classList.add("active");
 };
 document.addEventListener("DOMContentLoaded", async () => {
+    initMain();
     await trackVisitor();
     await displayVisitorCount();
 });
