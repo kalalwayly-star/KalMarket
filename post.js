@@ -1,13 +1,13 @@
 import { storage, auth, db } from "./firebase-config.js";
 
-import { onAuthStateChanged } from "gstatic.com";
-import { collection, addDoc } from "gstatic.com";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 import {
     ref,
     uploadBytes,
     getDownloadURL
-} from "gstatic.com";
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
 
 let uploadedImages = [];
 let pendingUploads = 0;
@@ -41,7 +41,6 @@ onAuthStateChanged(auth, (user) => {
         if (emailSpan) emailSpan.innerText = "";
     }
 });
-
 async function compressImage(file, maxWidth = 800, quality = 0.7) {
     return new Promise((resolve, reject) => {
         const img = new Image();
@@ -238,11 +237,11 @@ window.handleCategoryChange = function () {
     
 };
 
-/* =========================
-   SAVE AD ENTRY POINT
-========================= */
+/* ========================================================
+   COMPLETED AND CORRECTED SAVE AD FUNCTION
+======================================================== */
 async function saveNewAd(event) {
-    if (event) event.preventDefault();
+    event.preventDefault();
     const user = auth.currentUser;
 
     if (!user) {
@@ -261,6 +260,7 @@ async function saveNewAd(event) {
         btn.innerText = "Posting...";
     }
 
+    // Fix: Convert object array to raw string URL array
     const finalImageUrls = uploadedImages.map(item => item.url);
 
     try {
@@ -271,7 +271,10 @@ async function saveNewAd(event) {
             location: document.getElementById("postLocation")?.value || "Unknown",
             description: document.getElementById("postDescription")?.value || "",
             condition: document.getElementById("postCondition")?.value || "N/A",
+            
+            // Matches main.js and details.js variable expectations
             image: finalImageUrls, 
+            
             userId: user.uid,
             userEmail: user.email,
             views: 0,
@@ -293,6 +296,16 @@ async function saveNewAd(event) {
         }
     }
 }
+
+/* =========================
+   INITIALIZATION
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+    const postForm = document.getElementById("postAdForm");
+    if (postForm) {
+        postForm.addEventListener("submit", saveNewAd);
+    }
+});
 
 /* ========================================================
    PAYPAL INTEGRATION SECTION
