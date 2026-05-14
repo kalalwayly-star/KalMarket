@@ -57,43 +57,44 @@ async function loadAdDetails() {
         console.log("AD IMAGES:", ad.images);
 
         // Images
-       const imageContainer = document.getElementById("adImageContainer");
+      const imageContainer = document.getElementById("adImageContainer");
 
 const fallback = "https://dummyimage.com/600x400/cccccc/000000&text=No+Image";
 
-let main = [];
-let gallery = [];
+let images = [];
 
-// Handle different possible structures safely
-if (ad.images) {
+// CASE 1: array of images
+if (Array.isArray(ad.images)) {
+    images = ad.images;
+}
+
+// CASE 2: object with main + gallery
+else if (ad.images && typeof ad.images === "object") {
     if (typeof ad.images.main === "string") {
-        main = [ad.images.main];
+        images.push(ad.images.main);
     }
 
     if (Array.isArray(ad.images.gallery)) {
-        gallery = ad.images.gallery;
-    } else if (typeof ad.images.gallery === "string") {
-        gallery = ad.images.gallery.split(",");
+        images.push(...ad.images.gallery);
     }
 
-    // CASE: images stored directly as array
-    if (Array.isArray(ad.images)) {
-        main = ad.images;
-        gallery = [];
+    // sometimes gallery stored as string
+    if (typeof ad.images.gallery === "string") {
+        images.push(...ad.images.gallery.split(","));
     }
 }
 
-const images = [...main, ...gallery].filter(Boolean);
+// clean invalid values
+images = images.filter(img => typeof img === "string" && img.startsWith("http"));
 
 if (images.length === 0) {
-    images.push(fallback);
+    images = [fallback];
 }
 
 imageContainer.innerHTML = images.map(img => `
     <img src="${img}" 
         style="width:100%; max-height:500px; object-fit:cover; margin-bottom:10px; border-radius:10px;">
 `).join("");
-
         // Store seller info globally
         window.currentSellerId = ad.userId;
         window.currentSellerEmail = ad.userEmail;
