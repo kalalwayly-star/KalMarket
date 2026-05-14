@@ -54,46 +54,44 @@ async function loadAdDetails() {
         // Description
         document.getElementById("adDesc").innerText = ad.description || "No description provided.";
 
-
         // Images
-        const imageContainer = document.getElementById("adImageContainer");
+const imageContainer = document.getElementById("adImageContainer");
+const fallback = "dummyimage.com";
+let images = [];
 
-        const fallback = "https://dummyimage.com/600x400/cccccc/000000&text=No+Image";
+// CASE 1: array of images (Using ad.image instead of ad.images)
+if (Array.isArray(ad.image)) {
+    images = ad.image;
+}
 
-        let images = [];
+// CASE 2: object with main + gallery
+else if (ad.image && typeof ad.image === "object") {
+    if (typeof ad.image.main === "string") {
+        images.push(ad.image.main);
+    }
 
-        // CASE 1: array of images
-        if (Array.isArray(ad.images)) {
-            images = ad.images;
-        }
+    if (Array.isArray(ad.image.gallery)) {
+        images.push(...ad.image.gallery);
+    }
 
-        // CASE 2: object with main + gallery
-        else if (ad.images && typeof ad.images === "object") {
-            if (typeof ad.images.main === "string") {
-                images.push(ad.images.main);
-            }
+    // sometimes gallery stored as string
+    if (typeof ad.image.gallery === "string") {
+        images.push(...ad.image.gallery.split(","));
+    }
+}
 
-            if (Array.isArray(ad.images.gallery)) {
-                images.push(...ad.images.gallery);
-            }
+// clean invalid values
+images = images.filter(img => typeof img === "string" && img.startsWith("http"));
 
-            // sometimes gallery stored as string
-            if (typeof ad.images.gallery === "string") {
-                images.push(...ad.images.gallery.split(","));
-            }
-        }
+if (images.length === 0) {
+    images = [fallback];
+}
 
-        // clean invalid values
-        images = images.filter(img => typeof img === "string" && img.startsWith("http"));
+imageContainer.innerHTML = images.map(img => `
+    <img src="${img}" 
+        style="width:100%; max-height:500px; object-fit:cover; margin-bottom:10px; border-radius:10px;">
+`).join("");
 
-        if (images.length === 0) {
-            images = [fallback];
-        }
-
-        imageContainer.innerHTML = images.map(img => `
-            <img src="${img}" 
-                style="width:100%; max-height:500px; object-fit:cover; margin-bottom:10px; border-radius:10px;">
-        `).join("");
 
         // Store seller info globally
         window.currentSellerId = ad.userId;
