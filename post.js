@@ -151,17 +151,18 @@ window.handlePhotoUpload = async function (event) {
         // --- START UPLOAD ---
         try {
             const compressedFile = await compressImage(file);
+            // Fix: Date.now() must be capitalized
             const storageRef = ref(storage, `ads/${Date.now()}_${compressedFile.name}`);
             const snapshot = await uploadBytes(storageRef, compressedFile);
             const url = await getDownloadURL(snapshot.ref);
 
             // Add to your global array
-            uploadedImages.push({
-                id: imageId,
-                url: url
-            });
+uploadedImages.push({
+    id: imageId,
+    url: url
+});
 
-            pendingUploads--;            
+pendingUploads--;            
             // Mark as finished visually
             img.style.opacity = "1"; 
             console.log("Image ready:", url);
@@ -226,7 +227,7 @@ window.handleCategoryChange = function () {
         }
     }
 
-    const conditionBox = document.getElementById("conditionFields");
+const conditionBox = document.getElementById("conditionFields");
     const hideConditionFor = ["Pets", "Jobs", "Real Estate", "Services"];
 
     if (conditionBox) {
@@ -237,10 +238,10 @@ window.handleCategoryChange = function () {
     
 };
 
-/* ========================================================
-   COMPLETED AND CORRECTED SAVE AD FUNCTION
-======================================================== */
-async function saveNewAd(event) {
+/* =========================
+   SAVE AD ENTRY POINT
+========================= */
+function saveNewAd(event) {
     event.preventDefault();
     const user = auth.currentUser;
 
@@ -248,11 +249,12 @@ async function saveNewAd(event) {
         alert("Login required");
         return;
     }
-
-    if (pendingUploads > 0) {
-        alert("Please wait for photos to finish uploading...");
-        return;
-    }
+    // Add this inside saveNewAd
+    const photoInput = document.getElementById("photoInput");
+   if (pendingUploads > 0) {
+    alert("Please wait for photos to finish uploading...");
+    return;
+}
 
     const btn = document.getElementById("postBtn");
     if (btn) {
@@ -260,101 +262,167 @@ async function saveNewAd(event) {
         btn.innerText = "Posting...";
     }
 
-    // Fix: Convert object array to raw string URL array
-    const finalImageUrls = uploadedImages.map(item => item.url);
+    finalizeAd();
+}
 
-    try {
-        const adData = {
-            title: document.getElementById("postTitle")?.value || "",
-            price: document.getElementById("postPrice")?.value || "0",
-            category: document.getElementById("postCategory")?.value || "",
-            location: document.getElementById("postLocation")?.value || "Unknown",
-            description: document.getElementById("postDescription")?.value || "",
-            condition: document.getElementById("postCondition")?.value || "N/A",
-            
-            // Matches main.js and details.js variable expectations
-            image: finalImageUrls, 
-            
-            userId: user.uid,
-            userEmail: user.email,
-            views: 0,
-            createdAt: new Date().toISOString(),
-            lat: window.currentAdLat || null,
-            lng: window.currentAdLng || null
-        };
+/* =========================
+   FINALIZE & FIRESTORE SAVE
+========================= */
+function finalizeAd() {
+    const user = auth.currentUser;
 
-        await addDoc(collection(db, "marketplace_ads"), adData);
-        alert("Ad posted successfully!");
-        window.location.href = "index.html";
+    if (!user) return;
 
-    } catch (error) {
-        console.error("Error creating listing:", error);
-        alert("Failed to save ad: " + error.message);
+    const title = document.getElementById("adTitle")?.value.trim();
+
+    if (!title) {
+        alert("Title is required");
+
+        const btn = document.getElementById("postBtn");
         if (btn) {
             btn.disabled = false;
             btn.innerText = "Post Ad";
         }
+
+        return;
     }
+
+
+ 
+   const newAd = {
+    userId: user.uid,
+    userEmail: user.email,
+    category: document.getElementById("postCategory")?.value || "",
+    title: title,
+    views: 0,
+    price: document.getElementById("adPrice")?.value || "",
+    location: document.getElementById("adLocation")?.value || "",
+    description: document.getElementById("adDesc")?.value || "",
+    condition: document.querySelector('input[name="condition"]:checked')?.value || "N/A",
+
+    image: Array.isArray(uploadedImages) && uploadedImages.length > 0
+        ? uploadedImages.map(img => img.url || img)
+        : ["https://placeholder.com"],
+
+    date: new Date().toLocaleDateString(),
+
+    lat: window.currentAdLat || null,
+    lng: window.currentAdLng || null,
+
+    featured: localStorage.getItem("featuredAdPaid") === "true",
+    featuredDays: parseInt(localStorage.getItem("featuredDays")) || 0
+};
+
+    addDoc(collection(db, "marketplace_ads"), newAd)
+        .then(() => {
+            alert("Ad posted successfully!");
+
+            // RESET
+            uploadedImages = [];
+            localStorage.removeItem("featuredAdPaid");
+            localStorage.removeItem("featuredDays");
+
+            window.location.href = "index.html";
+        })
+        .catch((err) => {
+            console.error("Firestore save error:", err);
+
+            const btn = document.getElementById("postBtn");
+            if (btn) {
+                btn.disabled = false;
+                btn.innerText = "Post Ad";
+            }
+
+            alert(err.message);
+        });
 }
 
 /* =========================
-   INITIALIZATION
+   PAGE INIT
 ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-    const postForm = document.getElementById("postAdForm");
-    if (postForm) {
-        postForm.addEventListener("submit", saveNewAd);
-    }
+
+    document.getElementById("postCategory")
+        ?.addEventListener("change", handleCategoryChange);
+
+    handleCategoryChange();
+
+    document.getElementById("photoInput")
+        ?.addEventListener("change", handlePhotoUpload);
+
+    document.getElementById("postForm")
+        ?.addEventListener("submit", saveNewAd);
+
+    const featureOptions = document.querySelectorAll('input[name="feature_selection"]');
+    const paypalContainer = document.getElementById("paypal-button-container");
+
+    featureOptions.forEach(option => {
+        option.addEventListener("change", () => {
+
+            if (!paypalContainer) return;
+
+            if (option.value === "5days") {
+                paypalContainer.style.display = "block";
+                initPayPal("4.99", 5);
+
+            } else if (option.value === "10days") {
+                paypalContainer.style.display = "block";
+                initPayPal("8.99", 10);
+
+            } else {
+                paypalContainer.style.display = "none";
+                paypalContainer.innerHTML = "";
+
+                localStorage.removeItem("featuredAdPaid");
+                localStorage.removeItem("featuredDays");
+            }
+        });
+    });
+
 });
 
-/* ========================================================
-   PAYPAL INTEGRATION SECTION
-======================================================== */
-function initPayPal() {
+/* =========================
+   PAYPAL INIT
+========================= */
+function initPayPal(price, days) {
+    const paypalContainer = document.getElementById("paypal-button-container");
+
+    if (!paypalContainer) return;
+
+    paypalContainer.innerHTML = "";
+
     if (typeof paypal === "undefined") {
-        console.warn("PayPal SDK script not found on this page.");
+        console.error("PayPal SDK not loaded");
         return;
     }
 
     paypal.Buttons({
-        createOrder: function(data, actions) {
-            if (pendingUploads > 0) {
-                alert("Please wait for photos to finish uploading before payment.");
-                return false;
-            }
-            if (!auth.currentUser) {
-                alert("Please login first.");
-                return false;
-            }
 
+        createOrder: function (data, actions) {
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: "5.00" 
+                        value: price
                     }
                 }]
             });
         },
-        onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                console.log("Transaction completed by " + details.payer.name.given_name);
-                saveNewAd(); 
+
+        onApprove: function (data, actions) {
+            return actions.order.capture().then(function () {
+
+                alert(`Payment successful! Your ad is featured for ${days} days.`);
+
+                localStorage.setItem("featuredAdPaid", "true");
+                localStorage.setItem("featuredDays", days);
             });
         },
-        onError: function(err) {
+
+        onError: function (err) {
             console.error("PayPal Error:", err);
-            alert("Payment process failed. Please try again.");
+            alert("Payment failed.");
         }
+
     }).render("#paypal-button-container");
 }
-
-/* =========================
-   INIT
-========================= */
-document.addEventListener("DOMContentLoaded", () => {
-    const postForm = document.getElementById("postAdForm");
-    if (postForm) {
-        postForm.addEventListener("submit", saveNewAd);
-    }
-    initPayPal();
-});
+  
