@@ -55,17 +55,24 @@ async function loadAdDetails() {
         document.getElementById("adDesc").innerText = ad.description || "No description provided.";
 
         // Images
-const imageContainer = document.getElementById("adImageContainer");
-const fallback = "dummyimage.com";
+// =========================
+// IMAGE GALLERY SYSTEM
+// =========================
+
+const mainImage = document.getElementById("mainAdImage");
+const thumbnailGallery = document.getElementById("thumbnailGallery");
+const fallback = "https://dummyimage.com/600x400/cccccc/000000&text=No+Image";
+
 let images = [];
 
-// CASE 1: array of images (Using ad.image instead of ad.images)
+/* CASE 1: array */
 if (Array.isArray(ad.image)) {
     images = ad.image;
 }
 
-// CASE 2: object with main + gallery
+/* CASE 2: object */
 else if (ad.image && typeof ad.image === "object") {
+
     if (typeof ad.image.main === "string") {
         images.push(ad.image.main);
     }
@@ -74,25 +81,47 @@ else if (ad.image && typeof ad.image === "object") {
         images.push(...ad.image.gallery);
     }
 
-    // sometimes gallery stored as string
     if (typeof ad.image.gallery === "string") {
         images.push(...ad.image.gallery.split(","));
     }
 }
 
-// clean invalid values
-images = images.filter(img => typeof img === "string" && img.startsWith("http"));
+/* Clean bad images */
+images = images.filter(img =>
+    typeof img === "string" &&
+    img.startsWith("http")
+);
 
+/* Fallback */
 if (images.length === 0) {
     images = [fallback];
 }
 
-imageContainer.innerHTML = images.map(img => `
-    <img src="${img}" 
-        style="width:100%; max-height:500px; object-fit:cover; margin-bottom:10px; border-radius:10px;">
-`).join("");
+/* Set main image */
+mainImage.src = images[0];
 
+/* Build thumbnails */
+thumbnailGallery.innerHTML = "";
 
+images.forEach((imgUrl, index) => {
+    const thumb = document.createElement("img");
+    thumb.src = imgUrl;
+
+    if (index === 0) {
+        thumb.classList.add("active");
+    }
+
+    thumb.addEventListener("click", () => {
+        mainImage.src = imgUrl;
+
+        document.querySelectorAll("#thumbnailGallery img")
+            .forEach(img => img.classList.remove("active"));
+
+        thumb.classList.add("active");
+    });
+
+    thumbnailGallery.appendChild(thumb);
+});
         // Store seller info globally
         window.currentSellerId = ad.userId;
         window.currentSellerEmail = ad.userEmail;
