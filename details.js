@@ -55,26 +55,20 @@ async function loadAdDetails() {
         document.getElementById("adDesc").innerText = ad.description || "No description provided.";
 
         // Images
-        const imageContainer = document.getElementById("adImageContainer");
+       const imageContainer = document.getElementById("adImageContainer");
 
-        const fallbackImage = "https://dummyimage.com/600x400/cccccc/000000&text=No+Image";
+const fallbackImage = "https://dummyimage.com/600x400/cccccc/000000&text=No+Image";
 
-        let images = [];
+const images = Array.isArray(ad.image)
+    ? ad.image
+    : ad.image
+        ? [ad.image]
+        : [fallbackImage];
 
-        if (Array.isArray(ad.image)) {
-            images = ad.image.filter(img => img && img.startsWith("http"));
-        } else if (ad.image && ad.image.startsWith("http")) {
-            images = [ad.image];
-        }
-
-        if (images.length === 0) {
-            images = [fallbackImage];
-        }
-
-        imageContainer.innerHTML = images.map(img => `
-            <img src="${img}" 
-                 style="width:100%; max-height:500px; object-fit:cover; margin-bottom:10px; border-radius:10px;">
-        `).join("");
+imageContainer.innerHTML = images.map(img => `
+    <img src="${img}" 
+         style="width:100%; max-height:500px; object-fit:cover; margin-bottom:10px; border-radius:10px;">
+`).join("");
 
         // Store seller info globally
         window.currentSellerId = ad.userId;
