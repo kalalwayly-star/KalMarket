@@ -279,3 +279,56 @@ footer,
     flex-direction: column;
   }
 }
+
+/* =========================
+   POST AD FORM FIX (SAFE OVERRIDES)
+========================= */
+
+/* Upload box fix */
+.upload-dropzone {
+    padding: 18px !important;
+    min-height: 95px !important;
+    max-height: 120px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Camera icon fix */
+.upload-dropzone .camera-icon {
+    width: 22px !important;
+    height: 22px !important;
+    margin-right: 10px !important;
+}
+
+/* Condition + radio alignment fix */
+.condition-group,
+.radio-group {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    flex-wrap: wrap !important;
+}
+
+.condition-option,
+.radio-group label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    line-height: 1 !important;
+}
+
+.condition-option input,
+.radio-group input[type="radio"] {
+    margin: 0 !important;
+    width: 16px !important;
+    height: 16px !important;
+    accent-color: #007bff !important;
+}
+
+
+
+
+
+
+
