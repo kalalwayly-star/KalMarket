@@ -323,74 +323,62 @@ footer,
     margin: 0 !important;
     width: 16px !important;
     height: 16px !important;
-    accent-color: #007bff !important;
-}
+    accent-color: #007bff !important;   
+   
+}       
 /* =========================
-   PAYMENT BOX (PAYPAL STYLE)
+   FEATURE CARD ALIGNMENT FIX (INCLUDING PAYPAL)
 ========================= */
 
-.payment-container {
-    margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.payment-card {
+.feature-card {
     display: flex;
     align-items: center;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 14px;
-    cursor: pointer;
-    transition: 0.2s ease;
-    background: #fff;
+    padding: 14px 16px;
 }
 
-.payment-card:hover {
-    border-color: #007bff;
-    background: #f8fbff;
-}
-
-/* hide radio but keep functional */
-.payment-card input[type="radio"] {
+/* make radio align properly with text */
+.feature-input {
+    width: 18px;
+    height: 18px;
     margin-right: 12px;
-    width: 16px;
-    height: 16px;
-    accent-color: #007bff;
+    flex-shrink: 0;
 }
 
-/* layout inside card */
-.payment-content {
+/* force consistent layout inside all cards */
+.feature-content {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
+    gap: 10px;
 }
 
-.payment-left {
+/* left side (text area) stays aligned */
+.feature-text {
+    font-size: 14px;
+    font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    color: #333;
 }
 
-.payment-logo {
-    width: 24px;
-    height: 24px;
+/* badges stay centered vertically */
+.price-badge,
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
 }
 
-/* description text */
-.payment-desc {
-    font-size: 12px;
-    color: #666;
-    margin-top: 4px;
+/* PayPal specific alignment fix */
+.paypal-card .feature-content {
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* selected state */
-.payment-card:has(input[type="radio"]:checked) {
-    border-color: #007bff;
-    background: #eef6ff;
+.paypal-card .feature-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 
