@@ -54,7 +54,6 @@ async function loadAdDetails() {
         // Description
         document.getElementById("adDesc").innerText = ad.description || "No description provided.";
 
-        console.log("AD IMAGES:", ad.images);
 
         // Images
       const imageContainer = document.getElementById("adImageContainer");
