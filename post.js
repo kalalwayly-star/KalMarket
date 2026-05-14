@@ -1,13 +1,13 @@
 import { storage, auth, db } from "./firebase-config.js";
 
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+import { onAuthStateChanged } from "gstatic.com";
+import { collection, addDoc } from "gstatic.com";
 
 import {
     ref,
     uploadBytes,
     getDownloadURL
-} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
+} from "gstatic.com";
 
 let uploadedImages = [];
 let pendingUploads = 0;
@@ -179,6 +179,7 @@ window.handlePhotoUpload = async function (event) {
 };
 
 
+
 /* =========================
    CATEGORY HANDLER
 ========================= */
@@ -234,6 +235,7 @@ window.handleCategoryChange = function () {
             ? "none"
             : "block";
     }
+    
 };
 
 /* =========================
@@ -259,7 +261,6 @@ async function saveNewAd(event) {
         btn.innerText = "Posting...";
     }
 
-    // Map global image object structure into standard string URL references for index & details pages
     const finalImageUrls = uploadedImages.map(item => item.url);
 
     try {
@@ -270,10 +271,7 @@ async function saveNewAd(event) {
             location: document.getElementById("postLocation")?.value || "Unknown",
             description: document.getElementById("postDescription")?.value || "",
             condition: document.getElementById("postCondition")?.value || "N/A",
-            
-            // Singular mapping property resolves downstream loading errors
             image: finalImageUrls, 
-            
             userId: user.uid,
             userEmail: user.email,
             views: 0,
@@ -307,7 +305,6 @@ function initPayPal() {
 
     paypal.Buttons({
         createOrder: function(data, actions) {
-            // Basic parameter validation before charging the user
             if (pendingUploads > 0) {
                 alert("Please wait for photos to finish uploading before payment.");
                 return false;
@@ -320,7 +317,7 @@ function initPayPal() {
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: "5.00" // Set your specific ad posting fee here
+                        value: "5.00" 
                     }
                 }]
             });
@@ -328,7 +325,6 @@ function initPayPal() {
         onApprove: function(data, actions) {
             return actions.order.capture().then(function(details) {
                 console.log("Transaction completed by " + details.payer.name.given_name);
-                // Call database routine immediately upon confirmation
                 saveNewAd(); 
             });
         },
@@ -336,20 +332,16 @@ function initPayPal() {
             console.error("PayPal Error:", err);
             alert("Payment process failed. Please try again.");
         }
-    }).render("#paypal-button-container"); // Renders inside your matching HTML container div
+    }).render("#paypal-button-container");
 }
 
 /* =========================
-   INIT LOGIC
+   INIT
 ========================= */
 document.addEventListener("DOMContentLoaded", () => {
     const postForm = document.getElementById("postAdForm");
     if (postForm) {
         postForm.addEventListener("submit", saveNewAd);
     }
-    
-    // Fire up PayPal payment interface blocks
     initPayPal();
 });
-
-  
