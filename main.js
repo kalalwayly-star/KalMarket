@@ -7,8 +7,58 @@ import { ref, onValue, remove } from "https://www.gstatic.com/firebasejs/12.12.1
 import { collection, onSnapshot, query, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 import { setDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
+const symbolMap = {
+    USD: "$",
+    CAD: "$",
+    AUD: "$",
+    EUR: "€",
+    GBP: "£",
 
-let globalAds = [];
+    SAR: "﷼",
+    AED: "د.إ",
+    QAR: "ر.ق",
+    KWD: "د.ك",
+    BHD: ".د.ب",
+    OMR: "ر.ع",
+
+    IQD: "ع.د",
+    JOD: "د.أ",
+    LBP: "ل.ل",
+    EGP: "ج.م",
+    LYD: "ل.د",
+    TND: "د.ت",
+    DZD: "د.ج",
+    MAD: "د.م",
+
+    TRY: "₺",
+    INR: "₹",
+    PKR: "₨",
+    BDT: "৳",
+    LKR: "Rs",
+
+    CNY: "¥",
+    JPY: "¥",
+    KRW: "₩",
+
+    RUB: "₽",
+    UAH: "₴",
+
+    CHF: "CHF",
+    NOK: "kr",
+    SEK: "kr",
+    DKK: "kr",
+
+    ZAR: "R",
+    NGN: "₦",
+    GHS: "₵",
+    KES: "KSh",
+
+    BRL: "R$",
+    MXN: "$",
+    ARS: "$",
+    CLP: "$",
+    COP: "$"
+};let globalAds = [];
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("searchBtn")
