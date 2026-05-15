@@ -596,7 +596,185 @@ footer,
         align-self: flex-start !important;
     }
 }
+/* =========================
+   FINAL MOBILE PERFECT FIX
+   Safe global responsive improvements
+========================= */
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Prevent horizontal scroll */
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Responsive forms */
+.form-card,
+.ad-gallery,
+.description-section,
+.feature-container,
+.condition-group {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Better mobile spacing */
+@media (max-width: 768px) {
+
+    body {
+        font-size: 15px;
+    }
+
+    /* Main wrappers */
+    .main-content-wrapper,
+    .detail-grid,
+    .search-container,
+    .ads-grid {
+        width: 100% !important;
+        padding: 12px !important;
+        margin: 0 auto !important;
+    }
+
+    /* Form card */
+    .form-card {
+        padding: 20px !important;
+        margin: 20px auto !important;
+        border-radius: 12px !important;
+    }
+
+    /* Inputs */
+    .form-card input,
+    .form-card select,
+    .form-card textarea {
+        font-size: 16px !important;
+        padding: 14px !important;
+    }
+
+    /* Upload zone */
+    .upload-dropzone {
+        min-height: 100px !important;
+        padding: 20px !important;
+        text-align: center;
+    }
+
+    /* Condition radios */
+    .condition-group,
+    .radio-group {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+        width: 100% !important;
+    }
+
+    .condition-option,
+    .radio-group label {
+        width: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        font-size: 15px !important;
+    }
+
+    .condition-option input,
+    .radio-group input[type="radio"] {
+        flex-shrink: 0 !important;
+    }
+
+    /* Feature cards */
+    .feature-container {
+        gap: 12px !important;
+    }
+
+    .feature-card {
+        width: 100% !important;
+        padding: 16px !important;
+        flex-direction: row !important;
+        align-items: flex-start !important;
+    }
+
+    .feature-content {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        width: 100% !important;
+        gap: 8px !important;
+    }
+
+    .feature-text {
+        width: 100% !important;
+        font-size: 15px !important;
+        line-height: 1.4 !important;
+    }
+
+    .price-badge,
+    .status-badge {
+        align-self: flex-start !important;
+        max-width: 100%;
+        white-space: nowrap !important;
+    }
+
+    /* Search section */
+    .search-container input,
+    .search-container select,
+    .search-container button {
+        width: 100% !important;
+    }
+
+    /* Header */
+    .header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    /* Sidebar */
+    .category-sidebar {
+        width: 100% !important;
+    }
+
+    /* Ads cards */
+    .ads-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Detail gallery thumbnails */
+    .thumbnail-gallery {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+
+    /* Buttons */
+    .btn,
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
+}
+
+/* Small phone optimization */
+@media (max-width: 480px) {
+
+    .form-card {
+        padding: 15px !important;
+    }
+
+    .feature-card {
+        padding: 14px !important;
+    }
+
+    .thumbnail-gallery {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    h1, h2, h3 {
+        font-size: 90%;
+    }
+}
 
 
 
