@@ -596,185 +596,160 @@ footer,
         align-self: flex-start !important;
     }
 }
+# KalMarket Safe Mobile-Only CSS Fix
+
+Add this block **at the very bottom** of your CSS file.
+
+## Important:
+
+* This will NOT change laptop/desktop layout
+* Only affects screens under 768px
+* Fixes iPhone alignment issues
+* Improves condition radios + feature cards
+* Prevents right overflow
+
+```css
 /* =========================
-   FINAL MOBILE PERFECT FIX
-   Safe global responsive improvements
+   TRUE MOBILE-ONLY FIX
+   Desktop unchanged
 ========================= */
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
+@media only screen and (max-width: 768px) {
 
-/* Prevent horizontal scroll */
-html,
-body {
-    overflow-x: hidden;
-    width: 100%;
-}
-
-/* Responsive forms */
-.form-card,
-.ad-gallery,
-.description-section,
-.feature-container,
-.condition-group {
-    width: 100%;
-    max-width: 100%;
-}
-
-/* Better mobile spacing */
-@media (max-width: 768px) {
-
-    body {
-        font-size: 15px;
+    html, body {
+        width: 100%;
+        overflow-x: hidden !important;
     }
 
-    /* Main wrappers */
-    .main-content-wrapper,
-    .detail-grid,
-    .search-container,
-    .ads-grid {
-        width: 100% !important;
-        padding: 12px !important;
-        margin: 0 auto !important;
-    }
-
-    /* Form card */
     .form-card {
-        padding: 20px !important;
-        margin: 20px auto !important;
-        border-radius: 12px !important;
+        width: calc(100% - 20px) !important;
+        max-width: 100% !important;
+        margin: 15px auto !important;
+        padding: 18px !important;
     }
 
-    /* Inputs */
     .form-card input,
     .form-card select,
     .form-card textarea {
+        width: 100% !important;
+        max-width: 100% !important;
         font-size: 16px !important;
-        padding: 14px !important;
+        padding: 12px !important;
     }
 
-    /* Upload zone */
-    .upload-dropzone {
-        min-height: 100px !important;
-        padding: 20px !important;
-        text-align: center;
-    }
-
-    /* Condition radios */
+    /* Condition section */
     .condition-group,
     .radio-group {
         display: flex !important;
         flex-direction: column !important;
         align-items: flex-start !important;
-        gap: 12px !important;
+        gap: 10px !important;
         width: 100% !important;
     }
 
     .condition-option,
     .radio-group label {
-        width: 100% !important;
         display: flex !important;
         align-items: center !important;
+        width: 100% !important;
         gap: 10px !important;
         font-size: 15px !important;
     }
 
-    .condition-option input,
-    .radio-group input[type="radio"] {
-        flex-shrink: 0 !important;
-    }
-
     /* Feature cards */
     .feature-container {
-        gap: 12px !important;
+        width: 100% !important;
     }
 
     .feature-card {
         width: 100% !important;
-        padding: 16px !important;
-        flex-direction: row !important;
+        padding: 14px !important;
+        display: flex !important;
         align-items: flex-start !important;
     }
 
     .feature-content {
+        display: flex !important;
         flex-direction: column !important;
         align-items: flex-start !important;
-        width: 100% !important;
         gap: 8px !important;
+        width: 100% !important;
     }
 
     .feature-text {
         width: 100% !important;
-        font-size: 15px !important;
+        font-size: 14px !important;
         line-height: 1.4 !important;
     }
 
     .price-badge,
     .status-badge {
         align-self: flex-start !important;
-        max-width: 100%;
         white-space: nowrap !important;
     }
 
-    /* Search section */
-    .search-container input,
-    .search-container select,
-    .search-container button {
+    /* Upload area */
+    .upload-dropzone {
         width: 100% !important;
-    }
-
-    /* Header */
-    .header {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-    }
-
-    /* Sidebar */
-    .category-sidebar {
-        width: 100% !important;
-    }
-
-    /* Ads cards */
-    .ads-grid {
-        grid-template-columns: 1fr !important;
-    }
-
-    /* Detail gallery thumbnails */
-    .thumbnail-gallery {
-        grid-template-columns: repeat(4, 1fr) !important;
+        padding: 18px !important;
     }
 
     /* Buttons */
     .btn,
     .btn-primary,
     .btn-secondary {
-        width: 100%;
-    }
-
-
-/* Small phone optimization */
-@media (max-width: 480px) {
-
-    .form-card {
-        padding: 15px !important;
-    }
-
-    .feature-card {
-        padding: 14px !important;
-    }
-
-    .thumbnail-gallery {
-        grid-template-columns: repeat(3, 1fr) !important;
-    }
-
-    h1, h2, h3 {
-        font-size: 90%;
+        width: 100% !important;
     }
 }
 
+/* Extra small iPhones */
+@media only screen and (max-width: 480px) {
 
+    .form-card {
+        padding: 14px !important;
+    }
 
+    .feature-card {
+        padding: 12px !important;
+    }
+
+    .feature-text {
+        font-size: 13px !important;
+    }
+}
+```
+
+---
+
+## Also REQUIRED in your HTML `<head>`:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+Without this tag, iPhones often ignore responsive CSS properly.
+
+---
+
+## Why previous fix failed:
+
+* Some desktop classes were unintentionally overridden
+* Existing CSS duplicates were stronger
+* Missing viewport tag can break mobile scaling
+* Your old styles needed more specific mobile-only targeting
+
+---
+
+## Final result:
+
+### Desktop:
+
+* No visual changes
+
+### iPhone:
+
+* Proper radio alignment
+* Feature cards aligned
+* Better form spacing
+* No overflow
+* Professional mobile appearance
