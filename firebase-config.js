@@ -25,7 +25,9 @@ const auth = getAuth(app);
 const rtdb = getDatabase(app);
 const storage = getStorage(app);
 
-const db = getFirestore(app);
-
+const db = initializeFirestore(app, {
+    experimentalForceLongPolling: true,
+    useFetchStreams: false
+});
 
 export { auth, db, rtdb, storage };
