@@ -25,6 +25,6 @@ const storage = getStorage(app);
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 const db = getFirestore(app);
-});
+
 
 export { auth, db, rtdb, storage };
