@@ -21,7 +21,16 @@ navigator.geolocation.getCurrentPosition(
         console.error("Location error:", error);
     }
 );
-   
+   // NEW: country detection (add BELOW it)
+async function getUserCountry() {
+    try {
+        const res = await fetch("https://ipapi.co/json/");
+        const data = await res.json();
+        return data.country_name;
+    } catch (e) {
+        return null;
+    }
+}
 
 /* =========================
    AUTH STATE
