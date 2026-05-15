@@ -754,7 +754,7 @@ body {
     .btn-secondary {
         width: 100%;
     }
-}
+
 
 /* Small phone optimization */
 @media (max-width: 480px) {
