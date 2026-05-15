@@ -22,9 +22,9 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const rtdb = getDatabase(app);
 const storage = getStorage(app);
-const db = initializeFirestore(app, {
-    experimentalForceLongPolling: true,
-    useFetchStreams: false
+import { getFirestore } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+const db = getFirestore(app);
 });
 
 export { auth, db, rtdb, storage };
