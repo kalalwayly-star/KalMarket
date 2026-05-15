@@ -39,11 +39,29 @@ async function loadAdDetails() {
             return;
         }
 
-        const ad = adSnap.data();
-        /* Increase ad views */
-await updateDoc(adRef, {
-    views: increment(1)
-});
+        let ad = adSnap.data();
+
+        /* =========================
+           SAFE VIEW COUNTER UPDATE
+        ========================= */
+        try {
+            await updateDoc(adRef, {
+                views: increment(1)
+            });
+
+            // Reload updated data after increment
+            const updatedSnap = await getDoc(adRef);
+
+            if (updatedSnap.exists()) {
+                ad = updatedSnap.data();
+            }
+
+        } catch (viewError) {
+            console.warn("View count update failed:", viewError);
+            // Page still loads even if view update is blocked
+        }
+
+        /* Continue rendering ad normally below */
 
 /* Reload updated data */
 const updatedSnap = await getDoc(adRef);
