@@ -423,7 +423,8 @@ currency: currency,
 };
 
     if (country && countryCurrencyMap[country] && currencySelect) {
-        currencySelect.value = countryCurrencyMap[country].code;
+    currencySelect.value = countryCurrencyMap[country].code;
+}
         console.log("Auto currency set:", currencySelect.value);
     }
 
