@@ -38,7 +38,12 @@ const symbolMap = {
     BRL: "R$",
     MXN: "$"
 };
+
 const container = document.getElementById("myAdsContainer");
+
+if (!container) {
+    console.error("myAdsContainer not found.");
+}
 
 // Wait for login state
 onAuthStateChanged(auth, async (user) => {
@@ -76,23 +81,24 @@ async function loadUserAds(userId) {
                 ? ad.image[0]
                 : (ad.image || "https://via.placeholder.com/300");
 
-        html += `
-    <div class="card">
-        <img src="${image}" alt="${ad.title}" class="ad-image">
+            html += `
+                <div class="card">
+                    <img src="${image}" alt="${ad.title}" class="ad-image">
 
-        <div class="card-content">
-            <h3>${ad.title}</h3>
-            <p>📍 ${ad.location || "No location"}</p>
-            <p><b>${symbolMap[ad.currency] || ad.currency || "$"} ${ad.price}</b></p>
-            <p><strong>Condition:</strong> ${ad.condition || "N/A"}</p>
-            <p>👁️ ${ad.views || 0} views</p>
+                    <div class="card-content">
+                        <h3>${ad.title}</h3>
+                        <p>📍 ${ad.location || "No location"}</p>
+                        <p><b>${symbolMap[ad.currency] || ad.currency || "$"} ${ad.price}</b></p>
+                        <p><strong>Condition:</strong> ${ad.condition || "N/A"}</p>
+                        <p>👁️ ${ad.views || 0} views</p>
 
-            <button onclick="deleteMyAd('${adId}')">
-                Delete
-            </button>
-        </div>
-    </div>
-`;
+                        <button onclick="deleteMyAd('${adId}')">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            `;
+        });
 
         container.innerHTML = html;
 
