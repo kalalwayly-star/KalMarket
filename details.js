@@ -134,8 +134,8 @@ Object.assign(ad, updatedAd);
         document.getElementById("adCategory").innerText = ad.category || "";
 
         // Price
-        const symbol = symbolMap[ad.currency] || ad.currency || "$";
-document.getElementById("adPrice").innerText = `${symbol} ${ad.price || "0"}`;
+        document.getElementById("adPrice").innerText =
+`${symbol} ${ad.price || "0"} ${ad.currency || ""}`;
 
         // Location
         document.getElementById("adLocation").innerText = ad.location || "Unknown";
