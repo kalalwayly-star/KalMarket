@@ -428,7 +428,7 @@ currency: currency,
         console.log("Auto currency set:", currencySelect.value);
     }
 
-});
+);
 
     document.getElementById("postCategory")
         ?.addEventListener("change", handleCategoryChange);
@@ -467,7 +467,7 @@ currency: currency,
         });
     });
 
-});
+
 
 /* =========================
    PAYPAL INIT
