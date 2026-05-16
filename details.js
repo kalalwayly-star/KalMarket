@@ -14,7 +14,64 @@ import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
+
+const symbolMap = {
+    USD: "$",
+    CAD: "$",
+    AUD: "$",
+    EUR: "€",
+    GBP: "£",
+
+    SAR: "﷼",
+    AED: "د.إ",
+    QAR: "ر.ق",
+    KWD: "د.ك",
+    BHD: ".د.ب",
+    OMR: "ر.ع",
+
+    IQD: "ع.د",
+    JOD: "د.أ",
+    LBP: "ل.ل",
+    EGP: "ج.م",
+    LYD: "ل.د",
+    TND: "د.ت",
+    DZD: "د.ج",
+    MAD: "د.م",
+
+    TRY: "₺",
+    INR: "₹",
+    PKR: "₨",
+    BDT: "৳",
+    LKR: "Rs",
+
+    CNY: "¥",
+    JPY: "¥",
+    KRW: "₩",
+
+    RUB: "₽",
+    UAH: "₴",
+
+    CHF: "CHF",
+    NOK: "kr",
+    SEK: "kr",
+    DKK: "kr",
+
+    ZAR: "R",
+    NGN: "₦",
+    GHS: "₵",
+    KES: "KSh",
+
+    BRL: "R$",
+    MXN: "$",
+    ARS: "$",
+    CLP: "$",
+    COP: "$"
+};
+
+
+
 /* =========================
+
    GET AD ID FROM URL
 ========================= */
 const params = new URLSearchParams(window.location.search);
@@ -77,7 +134,8 @@ Object.assign(ad, updatedAd);
         document.getElementById("adCategory").innerText = ad.category || "";
 
         // Price
-        document.getElementById("adPrice").innerText = `$${ad.price || "0"}`;
+        const symbol = symbolMap[ad.currency] || ad.currency || "$";
+document.getElementById("adPrice").innerText = `${symbol} ${ad.price || "0"}`;
 
         // Location
         document.getElementById("adLocation").innerText = ad.location || "Unknown";
