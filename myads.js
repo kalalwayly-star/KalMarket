@@ -13,7 +13,31 @@ import {
     doc
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-
+const symbolMap = {
+    USD: "$",
+    CAD: "$",
+    AUD: "$",
+    EUR: "€",
+    GBP: "£",
+    SAR: "﷼",
+    AED: "د.إ",
+    IQD: "ع.د",
+    JOD: "د.أ",
+    EGP: "ج.م",
+    INR: "₹",
+    PKR: "₨",
+    CNY: "¥",
+    JPY: "¥",
+    KRW: "₩",
+    CHF: "CHF",
+    NOK: "kr",
+    SEK: "kr",
+    DKK: "kr",
+    ZAR: "R",
+    NGN: "₦",
+    BRL: "R$",
+    MXN: "$"
+};
 const container = document.getElementById("myAdsContainer");
 
 // Wait for login state
@@ -52,12 +76,23 @@ async function loadUserAds(userId) {
                 ? ad.image[0]
                 : (ad.image || "https://via.placeholder.com/300");
 
-         html += <div class="card-content"> 
-        <h3>${ad.title}</h3> <p>📍 ${ad.location || "No location"}</p> 
-        <p><b>${symbolMap[ad.currency] || ad.currency || "$"} ${ad.price}</b></p> 
-        <p><strong>Condition:</strong> ${ad.condition || "N/A"}</p> 
-        <p>👁️ ${ad.views || 0} views</p> </div> 
-        <button onclick="deleteMyAd('${adId}')"> Delete </button> </div> </div> ; });
+        html += `
+    <div class="card">
+        <img src="${image}" alt="${ad.title}" class="ad-image">
+
+        <div class="card-content">
+            <h3>${ad.title}</h3>
+            <p>📍 ${ad.location || "No location"}</p>
+            <p><b>${symbolMap[ad.currency] || ad.currency || "$"} ${ad.price}</b></p>
+            <p><strong>Condition:</strong> ${ad.condition || "N/A"}</p>
+            <p>👁️ ${ad.views || 0} views</p>
+
+            <button onclick="deleteMyAd('${adId}')">
+                Delete
+            </button>
+        </div>
+    </div>
+`;
 
         container.innerHTML = html;
 
