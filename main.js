@@ -294,8 +294,7 @@ const images = Array.isArray(ad.image)
             <div class="card-content">
                 <h3>${ad.title}</h3>
                 <p>📍 ${ad.location || "No location"}</p>
-                <p><b>$${ad.price}</b></p>
-<p><strong>Condition:</strong> ${ad.condition || "N/A"}</p>
+<p><b>${symbolMap[ad.currency] || ad.currency || "$"} ${ad.price}</b></p><p><strong>Condition:</strong> ${ad.condition || "N/A"}</p>
                <p>👁️ ${ad.views || 0} views</p>
             </div>
 
