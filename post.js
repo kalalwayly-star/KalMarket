@@ -302,9 +302,9 @@ const currency = document.getElementById("currency")?.value || "USD";
     category: document.getElementById("postCategory")?.value || "",
     title: title,
     views: 0,
+    location: document.getElementById("adLocation")?.value || "",  
     price: document.getElementById("adPrice")?.value || "",
     currency: currency,
-    location: document.getElementById("adLocation")?.value || "",
     description: document.getElementById("adDesc")?.value || "",
     condition: document.querySelector('input[name="condition"]:checked')?.value || "N/A",
     image: Array.isArray(uploadedImages) && uploadedImages.length > 0
