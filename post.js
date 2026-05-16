@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/f
 import { collection, addDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 import {
-    ref,
+    ref as storageRef,
     uploadBytes,
     getDownloadURL
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
@@ -161,8 +161,8 @@ window.handlePhotoUpload = async function (event) {
         try {
             const compressedFile = await compressImage(file);
             // Fix: Date.now() must be capitalized
-            const storageRef = ref(storage, `ads/${Date.now()}_${compressedFile.name}`);
-            const snapshot = await uploadBytes(storageRef, compressedFile);
+const fileRef = storageRef(storage, `ads/${Date.now()}_${compressedFile.name}`);          
+const snapshot = await uploadBytes(fileRef, compressedFile);      
             const url = await getDownloadURL(snapshot.ref);
 
             // Add to your global array
