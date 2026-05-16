@@ -28,8 +28,7 @@ async function getUserCountry() {
         const data = await res.json();
         return data.country_name;
     } catch (e) {
-        return null;
-    }
+return "United States";    }
 }
 
 /* =========================
@@ -422,10 +421,26 @@ const currency = document.getElementById("currency")?.value || "USD";
         "New Zealand": { code: "NZD" }
     };
 
-    if (currencySelect && country && countryCurrencyMap[country]) {
-        currencySelect.value = countryCurrencyMap[country].code;
-        console.log("Auto currency set:", currencySelect.value);
+   if (currencySelect && country && countryCurrencyMap[country]) {
+    const currencyCode = countryCurrencyMap[country].code;
+
+    // Check if option exists
+    let optionExists = Array.from(currencySelect.options).some(
+        option => option.value === currencyCode
+    );
+
+    // If missing, create it
+    if (!optionExists) {
+        const newOption = document.createElement("option");
+        newOption.value = currencyCode;
+        newOption.textContent = currencyCode;
+        currencySelect.appendChild(newOption);
     }
+
+    currencySelect.value = currencyCode;
+
+    console.log("Auto currency set:", currencyCode);
+}
 
 });
     document.getElementById("postCategory")
