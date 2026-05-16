@@ -12,58 +12,7 @@ import {
     deleteDoc,
     doc
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
-const symbolMap = {
-    USD: "$",
-    CAD: "$",
-    AUD: "$",
-    EUR: "€",
-    GBP: "£",
 
-    SAR: "﷼",
-    AED: "د.إ",
-    QAR: "ر.ق",
-    KWD: "د.ك",
-    BHD: ".د.ب",
-    OMR: "ر.ع",
-
-    IQD: "ع.د",
-    JOD: "د.أ",
-    LBP: "ل.ل",
-    EGP: "ج.م",
-    LYD: "ل.د",
-    TND: "د.ت",
-    DZD: "د.ج",
-    MAD: "د.م",
-
-    TRY: "₺",
-    INR: "₹",
-    PKR: "₨",
-    BDT: "৳",
-    LKR: "Rs",
-
-    CNY: "¥",
-    JPY: "¥",
-    KRW: "₩",
-
-    RUB: "₽",
-    UAH: "₴",
-
-    CHF: "CHF",
-    NOK: "kr",
-    SEK: "kr",
-    DKK: "kr",
-
-    ZAR: "R",
-    NGN: "₦",
-    GHS: "₵",
-    KES: "KSh",
-
-    BRL: "R$",
-    MXN: "$",
-    ARS: "$",
-    CLP: "$",
-    COP: "$"
-};
 
 const container = document.getElementById("myAdsContainer");
 
@@ -103,23 +52,12 @@ async function loadUserAds(userId) {
                 ? ad.image[0]
                 : (ad.image || "https://via.placeholder.com/300");
 
-           html += `
-    <div class="card">
-        <img src="${image}" alt="${ad.title}" class="ad-image">
-
-        <div class="card-content">
-            <h3>${ad.title}</h3>
-            <p>📍 ${ad.location || "No location"}</p>
-            <p><b>${symbolMap[ad.currency] || ad.currency || "$"} ${ad.price}</b></p>
-            <p><strong>Condition:</strong> ${ad.condition || "N/A"}</p>
-            <p>👁️ ${ad.views || 0} views</p>
-
-            <button onclick="deleteMyAd('${adId}')">
-                Delete
-            </button>
-        </div>
-    </div>
-`;
+         html += <div class="card-content"> 
+        <h3>${ad.title}</h3> <p>📍 ${ad.location || "No location"}</p> 
+        <p><b>${symbolMap[ad.currency] || ad.currency || "$"} ${ad.price}</b></p> 
+        <p><strong>Condition:</strong> ${ad.condition || "N/A"}</p> 
+        <p>👁️ ${ad.views || 0} views</p> </div> 
+        <button onclick="deleteMyAd('${adId}')"> Delete </button> </div> </div> ; });
 
         container.innerHTML = html;
 
