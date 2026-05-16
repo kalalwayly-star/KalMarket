@@ -120,12 +120,7 @@ async function loadAdDetails() {
 
         /* Continue rendering ad normally below */
 
-/* Reload updated data */
-const updatedSnap = await getDoc(adRef);
-const updatedAd = updatedSnap.data();
 
-/* Replace old ad object */
-Object.assign(ad, updatedAd);
 
         // Title
         document.getElementById("adTitle").innerText = ad.title || "No Title";
@@ -134,7 +129,9 @@ Object.assign(ad, updatedAd);
         document.getElementById("adCategory").innerText = ad.category || "";
 
         // Price
-        document.getElementById("adPrice").innerText =
+        const symbol = symbolMap[ad.currency] || ad.currency || "$";
+
+document.getElementById("adPrice").innerText =
 `${symbol} ${ad.price || "0"} ${ad.currency || ""}`;
 
         // Location
