@@ -283,8 +283,7 @@ function finalizeAd() {
     if (!user) return;
 
     const title = document.getElementById("adTitle")?.value.trim();
-    const currency = document.getElementById("currency").value;
-
+const currency = document.getElementById("currency")?.value || "USD";
     if (!title) {
         alert("Title is required");
 
