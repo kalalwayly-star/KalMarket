@@ -303,10 +303,10 @@ const currency = document.getElementById("currency")?.value || "USD";
     title: title,
     views: 0,
     price: document.getElementById("adPrice")?.value || "",
+    currency: currency,
     location: document.getElementById("adLocation")?.value || "",
     description: document.getElementById("adDesc")?.value || "",
     condition: document.querySelector('input[name="condition"]:checked')?.value || "N/A",
-currency: currency,
     image: Array.isArray(uploadedImages) && uploadedImages.length > 0
         ? uploadedImages.map(img => img.url || img)
         : ["https://placeholder.com"],
