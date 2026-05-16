@@ -352,84 +352,82 @@ currency: currency,
     const country = await getUserCountry();
     const currencySelect = document.getElementById("currency");
 
-   const countryCurrencyMap = {
-    // North America
-    "United States": { code: "USD" },
-    "Canada": { code: "CAD" },
-    "Mexico": { code: "MXN" },
+    const countryCurrencyMap = {
+        // North America
+        "United States": { code: "USD" },
+        "Canada": { code: "CAD" },
+        "Mexico": { code: "MXN" },
 
-    // Europe
-    "United Kingdom": { code: "GBP" },
-    "Germany": { code: "EUR" },
-    "France": { code: "EUR" },
-    "Italy": { code: "EUR" },
-    "Spain": { code: "EUR" },
-    "Netherlands": { code: "EUR" },
-    "Belgium": { code: "EUR" },
-    "Switzerland": { code: "CHF" },
-    "Sweden": { code: "SEK" },
-    "Norway": { code: "NOK" },
-    "Denmark": { code: "DKK" },
-    "Poland": { code: "PLN" },
+        // Europe
+        "United Kingdom": { code: "GBP" },
+        "Germany": { code: "EUR" },
+        "France": { code: "EUR" },
+        "Italy": { code: "EUR" },
+        "Spain": { code: "EUR" },
+        "Netherlands": { code: "EUR" },
+        "Belgium": { code: "EUR" },
+        "Switzerland": { code: "CHF" },
+        "Sweden": { code: "SEK" },
+        "Norway": { code: "NOK" },
+        "Denmark": { code: "DKK" },
+        "Poland": { code: "PLN" },
 
-    // Middle East
-    "Saudi Arabia": { code: "SAR" },
-    "United Arab Emirates": { code: "AED" },
-    "Qatar": { code: "QAR" },
-    "Kuwait": { code: "KWD" },
-    "Bahrain": { code: "BHD" },
-    "Oman": { code: "OMR" },
-    "Iraq": { code: "IQD" },
-    "Jordan": { code: "JOD" },
-    "Lebanon": { code: "LBP" },
-    "Egypt": { code: "EGP" },
-    "Morocco": { code: "MAD" },
-    "Tunisia": { code: "TND" },
-    "Algeria": { code: "DZD" },
+        // Middle East
+        "Saudi Arabia": { code: "SAR" },
+        "United Arab Emirates": { code: "AED" },
+        "Qatar": { code: "QAR" },
+        "Kuwait": { code: "KWD" },
+        "Bahrain": { code: "BHD" },
+        "Oman": { code: "OMR" },
+        "Iraq": { code: "IQD" },
+        "Jordan": { code: "JOD" },
+        "Lebanon": { code: "LBP" },
+        "Egypt": { code: "EGP" },
+        "Morocco": { code: "MAD" },
+        "Tunisia": { code: "TND" },
+        "Algeria": { code: "DZD" },
 
-    // Asia
-    "India": { code: "INR" },
-    "Pakistan": { code: "PKR" },
-    "Bangladesh": { code: "BDT" },
-    "Sri Lanka": { code: "LKR" },
-    "China": { code: "CNY" },
-    "Japan": { code: "JPY" },
-    "South Korea": { code: "KRW" },
-    "Philippines": { code: "PHP" },
-    "Indonesia": { code: "IDR" },
-    "Malaysia": { code: "MYR" },
-    "Singapore": { code: "SGD" },
-    "Thailand": { code: "THB" },
-    "Vietnam": { code: "VND" },
+        // Asia
+        "India": { code: "INR" },
+        "Pakistan": { code: "PKR" },
+        "Bangladesh": { code: "BDT" },
+        "Sri Lanka": { code: "LKR" },
+        "China": { code: "CNY" },
+        "Japan": { code: "JPY" },
+        "South Korea": { code: "KRW" },
+        "Philippines": { code: "PHP" },
+        "Indonesia": { code: "IDR" },
+        "Malaysia": { code: "MYR" },
+        "Singapore": { code: "SGD" },
+        "Thailand": { code: "THB" },
+        "Vietnam": { code: "VND" },
 
-    // Africa
-    "Nigeria": { code: "NGN" },
-    "Ghana": { code: "GHS" },
-    "Kenya": { code: "KES" },
-    "South Africa": { code: "ZAR" },
-    "Ethiopia": { code: "ETB" },
-    "Tanzania": { code: "TZS" },
+        // Africa
+        "Nigeria": { code: "NGN" },
+        "Ghana": { code: "GHS" },
+        "Kenya": { code: "KES" },
+        "South Africa": { code: "ZAR" },
+        "Ethiopia": { code: "ETB" },
+        "Tanzania": { code: "TZS" },
 
-    // South America
-    "Brazil": { code: "BRL" },
-    "Argentina": { code: "ARS" },
-    "Chile": { code: "CLP" },
-    "Colombia": { code: "COP" },
-    "Peru": { code: "PEN" },
+        // South America
+        "Brazil": { code: "BRL" },
+        "Argentina": { code: "ARS" },
+        "Chile": { code: "CLP" },
+        "Colombia": { code: "COP" },
+        "Peru": { code: "PEN" },
 
-    // Oceania
-    "Australia": { code: "AUD" },
-    "New Zealand": { code: "NZD" }
-};
+        // Oceania
+        "Australia": { code: "AUD" },
+        "New Zealand": { code: "NZD" }
+    };
 
-    if (country && countryCurrencyMap[country] && currencySelect) {
-    currencySelect.value = countryCurrencyMap[country].code;
-}
+    if (currencySelect && country && countryCurrencyMap[country]) {
+        currencySelect.value = countryCurrencyMap[country].code;
         console.log("Auto currency set:", currencySelect.value);
     }
 
-);
-
+});
     document.getElementById("postCategory")
         ?.addEventListener("change", handleCategoryChange);
 
