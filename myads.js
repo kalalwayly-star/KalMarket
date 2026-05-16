@@ -52,12 +52,13 @@ async function loadUserAds(userId) {
                 : (ad.image || "https://via.placeholder.com/300");
 
             html += `
-                <div class="card">
-                    <img src="${image}" alt="${ad.title}">
-                    <div class="card-content">
-                        <h3>${ad.title || "Untitled Ad"}</h3>
-                        <p>📍 ${ad.location || "No location"}</p>
-                        <p><b>$${ad.price || "0"}</b></p>
+                <div class="card-content">
+    <h3>${ad.title}</h3>
+    <p>📍 ${ad.location || "No location"}</p>
+    <p><b>${symbolMap[ad.currency] || ad.currency || "$"} ${ad.price}</b></p>
+    <p><strong>Condition:</strong> ${ad.condition || "N/A"}</p>
+    <p>👁️ ${ad.views || 0} views</p>
+</div>
 
                         <button onclick="deleteMyAd('${adId}')">
                             Delete
