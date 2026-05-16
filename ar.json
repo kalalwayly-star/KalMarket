@@ -259,12 +259,10 @@
   "terms_final_text": "من خلال التسجيل أو استخدام كال ماركت، فإنك تقر بتحمل المسؤولية الكاملة عن أفعالك وتُخلي مسؤولية المنصة ومالكيها ومطوريها والشركاء التابعين لها من أي مطالبات قانونية أو مسؤوليات أو أضرار ناتجة عن الاستخدام.",
   "agree_continue": "أوافق - متابعة التسجيل",
   "footer_copy": "© 2026 كال ماركت. جميع الحقوق محفوظة.",
-    
   "currency_label": "العملة",
   "currency_usd": "USD ($) - الدولار الأمريكي",
   "currency_cad": "CAD ($) - الدولار الكندي",
   "currency_mxn": "MXN ($) - البيزو المكسيكي",
-
   "currency_gbp": "GBP (£) - الجنيه البريطاني",
   "currency_eur": "EUR (€) - اليورو",
   "currency_chf": "CHF (CHF) - الفرنك السويسري",
@@ -272,7 +270,6 @@
   "currency_nok": "NOK (kr) - الكرونة النرويجية",
   "currency_dkk": "DKK (kr) - الكرونة الدنماركية",
   "currency_pln": "PLN (zł) - الزلوتي البولندي",
-
   "currency_sar": "SAR (﷼) - الريال السعودي",
   "currency_aed": "AED (د.إ) - الدرهم الإماراتي",
   "currency_qar": "QAR (﷼) - الريال القطري",
@@ -286,7 +283,6 @@
   "currency_mad": "MAD (د.م.) - الدرهم المغربي",
   "currency_tnd": "TND (د.ت) - الدينار التونسي",
   "currency_dzd": "DZD (د.ج) - الدينار الجزائري",
-
   "currency_inr": "INR (₹) - الروبية الهندية",
   "currency_pkr": "PKR (₨) - الروبية الباكستانية",
   "currency_bdt": "BDT (৳) - التاكا البنغلاديشية",
@@ -300,24 +296,19 @@
   "currency_sgd": "SGD ($) - الدولار السنغافوري",
   "currency_thb": "THB (฿) - البات التايلندي",
   "currency_vnd": "VND (₫) - الدونغ الفيتنامي",
-
   "currency_ngn": "NGN (₦) - النايرا النيجيرية",
   "currency_ghs": "GHS (₵) - السيدي الغاني",
   "currency_kes": "KES (KSh) - الشلن الكيني",
   "currency_zar": "ZAR (R) - الراند الجنوب أفريقي",
   "currency_etb": "ETB (Br) - البر الإثيوبي",
   "currency_tzs": "TZS (TSh) - الشلن التنزاني",
-
   "currency_brl": "BRL (R$) - الريال البرازيلي",
   "currency_ars": "ARS ($) - البيزو الأرجنتيني",
   "currency_clp": "CLP ($) - البيزو التشيلي",
   "currency_cop": "COP ($) - البيزو الكولومبي",
   "currency_pen": "PEN (S/) - السول البيروفي",
-
   "currency_aud": "AUD ($) - الدولار الأسترالي",
   "currency_nzd": "NZD ($) - الدولار النيوزيلندي"
-
-
 
 
 }
