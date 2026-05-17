@@ -596,23 +596,6 @@ footer,
         align-self: flex-start !important;
     }
 }
-# KalMarket Safe Mobile-Only CSS Fix
-
-Add this block **at the very bottom** of your CSS file.
-
-## Important:
-
-* This will NOT change laptop/desktop layout
-* Only affects screens under 768px
-* Fixes iPhone alignment issues
-* Improves condition radios + feature cards
-* Prevents right overflow
-
-```css
-/* =========================
-   TRUE MOBILE-ONLY FIX
-   Desktop unchanged
-========================= */
 
 @media only screen and (max-width: 768px) {
 
@@ -702,7 +685,6 @@ Add this block **at the very bottom** of your CSS file.
     }
 }
 
-/* Extra small iPhones */
 @media only screen and (max-width: 480px) {
 
     .form-card {
@@ -717,39 +699,3 @@ Add this block **at the very bottom** of your CSS file.
         font-size: 13px !important;
     }
 }
-```
-
----
-
-## Also REQUIRED in your HTML `<head>`:
-
-```html
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-```
-
-Without this tag, iPhones often ignore responsive CSS properly.
-
----
-
-## Why previous fix failed:
-
-* Some desktop classes were unintentionally overridden
-* Existing CSS duplicates were stronger
-* Missing viewport tag can break mobile scaling
-* Your old styles needed more specific mobile-only targeting
-
----
-
-## Final result:
-
-### Desktop:
-
-* No visual changes
-
-### iPhone:
-
-* Proper radio alignment
-* Feature cards aligned
-* Better form spacing
-* No overflow
-* Professional mobile appearance
