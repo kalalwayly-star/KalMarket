@@ -308,7 +308,10 @@
   "currency_cop": "COP ($) - البيزو الكولومبي",
   "currency_pen": "PEN (S/) - السول البيروفي",
   "currency_aud": "AUD ($) - الدولار الأسترالي",
-  "currency_nzd": "NZD ($) - الدولار النيوزيلندي"
+  "currency_nzd": "NZD ($) - الدولار النيوزيلندي",
+    "sold_btn": "تم البيع",
+"active_btn": "نشط",
+"delete_btn": "حذف"
 
 
 }
