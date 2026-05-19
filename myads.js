@@ -82,8 +82,8 @@ async function loadUserAds(userId) {
                 : (ad.image || "https://via.placeholder.com/300");
 
             html += `
-                <div class="card">
-                    <img src="${image}" alt="${ad.title}" class="ad-image">
+<div class="card" data-status="${ad.status || 'active'}">                 
+<img src="${image}" alt="${ad.title}" class="ad-image">
 
                     <div class="card-content">
                         <h3>${ad.title}</h3>
@@ -101,6 +101,39 @@ async function loadUserAds(userId) {
         });
 
         container.innerHTML = html;
+
+        // FILTER BUTTONS
+const filterButtons = document.querySelectorAll(".filter-btn");
+const cards = document.querySelectorAll(".card");
+
+filterButtons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        // Active button style
+        filterButtons.forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+        button.classList.add("active");
+
+        const filter = button.dataset.filter;
+
+        cards.forEach((card) => {
+
+            const status = card.dataset.status;
+
+            if (filter === "all" || status === filter) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+
+        });
+
+    });
+
+});
 
     } catch (error) {
         console.error("Error loading ads:", error);
