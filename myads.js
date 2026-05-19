@@ -10,9 +10,9 @@ import {
     where,
     getDocs,
     deleteDoc,
-    doc
+    doc,
+    updateDoc
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
-
 const symbolMap = {
     USD: "$",
     CAD: "$",
@@ -92,9 +92,26 @@ async function loadUserAds(userId) {
                         <p><strong>Condition:</strong> ${ad.condition || "N/A"}</p>
                         <p>👁️ ${ad.views || 0} views</p>
 
-                        <button onclick="deleteMyAd('${adId}')">
-                            Delete
-                        </button>
+                        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+
+    <button onclick="markAsSold('${adId}')"
+        style="background:orange;"
+        data-i18n="sold_btn">
+        Sold
+    </button>
+
+    <button onclick="markAsActive('${adId}')"
+        style="background:green;"
+        data-i18n="active_btn">
+        Active
+    </button>
+
+    <button onclick="deleteMyAd('${adId}')"
+        data-i18n="delete_btn">
+        Delete
+    </button>
+
+</div>
                     </div>
                 </div>
             `;
