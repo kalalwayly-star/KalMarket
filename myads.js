@@ -171,3 +171,41 @@ window.deleteMyAd = async function(adId) {
         alert("Failed to delete ad.");
     }
 };
+// MARK AS SOLD
+window.markAsSold = async function(adId) {
+
+    try {
+
+        await updateDoc(doc(db, "marketplace_ads", adId), {
+            status: "sold"
+        });
+
+        alert("Ad marked as sold!");
+        location.reload();
+
+    } catch (error) {
+
+        console.error(error);
+        alert("Failed to update ad.");
+    }
+};
+
+
+// MARK AS ACTIVE
+window.markAsActive = async function(adId) {
+
+    try {
+
+        await updateDoc(doc(db, "marketplace_ads", adId), {
+            status: "active"
+        });
+
+        alert("Ad marked as active!");
+        location.reload();
+
+    } catch (error) {
+
+        console.error(error);
+        alert("Failed to update ad.");
+    }
+};
