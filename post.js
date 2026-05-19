@@ -301,6 +301,7 @@ const currency = document.getElementById("currency")?.value || "USD";
     category: document.getElementById("postCategory")?.value || "",
     title: title,
     views: 0,
+    status: "active",
     location: document.getElementById("adLocation")?.value || "",  
     price: document.getElementById("adPrice")?.value || "",
     currency: currency,
