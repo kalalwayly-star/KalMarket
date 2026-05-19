@@ -116,10 +116,25 @@
         <p id="userGreeting" style="color:gray; margin-top:5px;"></p>
     </div>
 <div class="myads-filters">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="active">Active</button>
-    <button class="filter-btn" data-filter="pending">Pending</button>
-    <button class="filter-btn" data-filter="sold">Sold</button>
+    <button class="filter-btn active" data-filter="all" data-i18n="all_ads">All</button>
+
+    <button class="filter-btn"
+        data-filter="active"
+        data-i18n="active_btn">
+        Active
+    </button>
+
+    <button class="filter-btn"
+        data-filter="pending"
+        data-i18n="pending_btn">
+        Pending
+    </button>
+
+    <button class="filter-btn"
+        data-filter="sold"
+        data-i18n="sold_btn">
+        Sold
+    </button>
 </div>
     <!-- ADS GRID -->
     <div id="myAdsContainer" class="ads-grid">
