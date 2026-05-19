@@ -54,7 +54,34 @@
         .card-content button:hover {
             background: #b52b3a;
         }
+/* FILTER BUTTONS */
+.myads-filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
 
+.filter-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #e5e5e5;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.filter-btn.active {
+    background: #007bff;
+    color: white;
+}
+
+.filter-btn:hover {
+    opacity: 0.9;
+}
         .loading {
             text-align: center;
             color: gray;
@@ -83,10 +110,17 @@
 <main class="myads-container" style="max-width:1200px; margin:20px auto; padding:0 15px;">
 
     <div class="section-header">
+<!-- FILTER BUTTONS -->
+
         <h2 data-i18n="your_active_listings">Your Active Listings</h2>
         <p id="userGreeting" style="color:gray; margin-top:5px;"></p>
     </div>
-
+<div class="myads-filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="active">Active</button>
+    <button class="filter-btn" data-filter="pending">Pending</button>
+    <button class="filter-btn" data-filter="sold">Sold</button>
+</div>
     <!-- ADS GRID -->
     <div id="myAdsContainer" class="ads-grid">
         <p class="loading" data-i18n="loading_ads">Loading your ads...</p>
