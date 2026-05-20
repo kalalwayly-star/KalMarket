@@ -105,6 +105,11 @@ async function loadUserAds(userId) {
         data-i18n="active_btn">
         Active
     </button>
+     <button onclick="markAsPending('${adId}')"
+        style="background:#ffc107;"
+        data-i18n="pending_btn">
+        Pending
+    </button>
 
     <button onclick="deleteMyAd('${adId}')"
         data-i18n="delete_btn">
@@ -208,4 +213,24 @@ window.markAsActive = async function(adId) {
         console.error(error);
         alert("Failed to update ad.");
     }
+};
+// MARK AS PENDING
+window.markAsPending = async function(adId) {
+
+    try {
+
+        await updateDoc(doc(db, "marketplace_ads", adId), {
+            status: "pending"
+        });
+
+        alert("Ad marked as pending!");
+        location.reload();
+
+    } catch (error) {
+
+        console.error(error);
+        alert("Failed to update ad.");
+
+    }
+
 };
