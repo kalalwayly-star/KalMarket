@@ -97,6 +97,7 @@ async function loadAdDetails() {
         }
 
         let ad = adSnap.data();
+        const isSold = ad.status === "sold";
 
         /* =========================
            SAFE VIEW COUNTER UPDATE
@@ -214,6 +215,29 @@ images.forEach((imgUrl, index) => {
         // Store seller info globally
         window.currentSellerId = ad.userId;
         window.currentSellerEmail = ad.userEmail;
+
+        // SOLD ITEM UI
+if (isSold) {
+
+    const messageBox = document.getElementById("messageText");
+
+    if (messageBox) {
+        messageBox.disabled = true;
+        messageBox.placeholder = "This item has been sold.";
+    }
+
+    const sendBtn = document.querySelector(
+        'button[onclick="sendMessage()"]'
+    );
+
+    if (sendBtn) {
+        sendBtn.disabled = true;
+        sendBtn.innerText = "Sold";
+        sendBtn.style.background = "gray";
+        sendBtn.style.cursor = "not-allowed";
+    }
+
+}
 
         /* ========================================================
            CRITICAL FIX: RUN THE PROBE HERE, RIGHT AFTER IMAGES ARE INJECTED
