@@ -309,11 +309,20 @@
   "currency_pen": "PEN (S/) - السول البيروفي",
   "currency_aud": "AUD ($) - الدولار الأسترالي",
   "currency_nzd": "NZD ($) - الدولار النيوزيلندي",
-    "all_ads": "الكل",
-"pending_btn": "قيد المراجعة",
+   
     "sold_btn": "تم البيع",
 "active_btn": "نشط",
-"delete_btn": "حذف"
+"delete_btn": "حذف",
+     "sold_btn": "تم البيع",
+  "pending_btn": "قيد المراجعة",
+
+  "all_ads": "الكل",
+  "pending_filter": "قيد المراجعة",
+  "active_filter": "نشط",
+  "sold_filter": "مباع",
+
+  "sold_label": "تم البيع",
+  "pending_label": "قيد المراجعة"
 
 
 }
