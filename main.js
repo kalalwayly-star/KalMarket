@@ -279,8 +279,11 @@ const images = Array.isArray(ad.image)
         <div class="card ${ad.status === 'sold' ? 'sold-card' : ''}">
 
     ${ad.status === "sold" ? `
-        <div class="sold-badge">SOLD</div>
+        <div class="sold-badge" data-i18n="sold_label">
+            SOLD
+        </div>
     ` : ""}
+
     ${ad.status === "pending" ? `
         <div class="pending-badge" data-i18n="pending_label">
             Pending
