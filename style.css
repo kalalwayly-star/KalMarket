@@ -801,3 +801,16 @@ footer,
     z-index: 100;
     font-size: 14px;
 }
+/* PENDING ADS */
+.pending-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #ffc107;
+    color: black;
+    padding: 6px 12px;
+    font-weight: bold;
+    border-radius: 6px;
+    z-index: 100;
+    font-size: 14px;
+}
