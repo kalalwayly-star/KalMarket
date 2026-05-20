@@ -281,6 +281,11 @@ const images = Array.isArray(ad.image)
     ${ad.status === "sold" ? `
         <div class="sold-badge">SOLD</div>
     ` : ""}
+    ${ad.status === "pending" ? `
+        <div class="pending-badge" data-i18n="pending_label">
+            Pending
+        </div>
+    ` : ""}
 
             <div class="slider" id="slider-${uniqueId}">
                 ${images.map((img, index) => `
