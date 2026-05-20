@@ -783,9 +783,13 @@ footer,
         padding: 4px 6px !important;
     }
 }
-/* SOLD ADS */
-.sold-card {
-    opacity: 0.8;
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+
     position: relative;
 }
 
