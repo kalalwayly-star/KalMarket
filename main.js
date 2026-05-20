@@ -276,7 +276,11 @@ const images = Array.isArray(ad.image)
         : [fallbackImage];
 
         return `
-        <div class="card">
+        <div class="card ${ad.status === 'sold' ? 'sold-card' : ''}">
+
+    ${ad.status === "sold" ? `
+        <div class="sold-badge">SOLD</div>
+    ` : ""}
 
             <div class="slider" id="slider-${uniqueId}">
                 ${images.map((img, index) => `
