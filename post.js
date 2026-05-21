@@ -320,35 +320,38 @@ const currency = document.getElementById("currency")?.value || "USD";
     featuredDays: parseInt(localStorage.getItem("featuredDays")) || 0
 };
 
-    addDoc(collection(db, "notifications"), {
-    userId: user.uid,
-    message: localStorage.getItem("language") === "ar"
-        ? "تم نشر إعلانك بنجاح"
-        : "Your ad was posted successfully",
+   .then(async () => {
 
-    createdAt: new Date(),
-    read: false
+    // NOTIFICATION
+    await addDoc(collection(db, "notifications"), {
+        userId: user.uid,
+        message: localStorage.getItem("language") === "ar"
+            ? "تم نشر إعلانك بنجاح"
+            : "Your ad was posted successfully",
+
+        createdAt: new Date(),
+        read: false
+    });
+
+    // RESET
+    uploadedImages = [];
+    localStorage.removeItem("featuredAdPaid");
+    localStorage.removeItem("featuredDays");
+
+    window.location.href = "index.html";
+})
+.catch((err) => {
+    console.error("Firestore save error:", err);
+
+    const btn = document.getElementById("postBtn");
+
+    if (btn) {
+        btn.disabled = false;
+        btn.innerText = "Post Ad";
+    }
+
+    alert(err.message);
 });
-
-            // RESET
-            uploadedImages = [];
-            localStorage.removeItem("featuredAdPaid");
-            localStorage.removeItem("featuredDays");
-
-            window.location.href = "index.html";
-        })
-        .catch((err) => {
-            console.error("Firestore save error:", err);
-
-            const btn = document.getElementById("postBtn");
-            if (btn) {
-                btn.disabled = false;
-                btn.innerText = "Post Ad";
-            }
-
-            alert(err.message);
-        });
-}
 
 /* =========================
    PAGE INIT
