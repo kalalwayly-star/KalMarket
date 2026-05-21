@@ -322,9 +322,11 @@ const currency = document.getElementById("currency")?.value || "USD";
 
     addDoc(collection(db, "marketplace_ads"), newAd)
         .then(() => {
-           alert(currentLang === "ar"
-    ? "تم نشر إعلانك بنجاح!"
-    : "Ad posted successfully!");
+          alert(
+    localStorage.getItem("language") === "ar"
+        ? "تم نشر إعلانك بنجاح!"
+        : "Ad posted successfully!"
+);
 
             // RESET
             uploadedImages = [];
