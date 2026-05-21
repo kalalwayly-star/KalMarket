@@ -319,7 +319,7 @@ const currency = document.getElementById("currency")?.value || "USD";
     featured: localStorage.getItem("featuredAdPaid") === "true",
     featuredDays: parseInt(localStorage.getItem("featuredDays")) || 0
 };
-
+addDoc(collection(db, "marketplace_ads"), newAd)
    .then(async () => {
 
     // NOTIFICATION
@@ -352,7 +352,7 @@ const currency = document.getElementById("currency")?.value || "USD";
 
     alert(err.message);
 });
-
+}
 /* =========================
    PAGE INIT
 ========================= */
