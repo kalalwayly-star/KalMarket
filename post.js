@@ -320,13 +320,15 @@ const currency = document.getElementById("currency")?.value || "USD";
     featuredDays: parseInt(localStorage.getItem("featuredDays")) || 0
 };
 
-    addDoc(collection(db, "marketplace_ads"), newAd)
-        .then(() => {
-          alert(
-    localStorage.getItem("language") === "ar"
-        ? "تم نشر إعلانك بنجاح!"
-        : "Ad posted successfully!"
-);
+    addDoc(collection(db, "notifications"), {
+    userId: user.uid,
+    message: localStorage.getItem("language") === "ar"
+        ? "تم نشر إعلانك بنجاح"
+        : "Your ad was posted successfully",
+
+    createdAt: new Date(),
+    read: false
+});
 
             // RESET
             uploadedImages = [];
