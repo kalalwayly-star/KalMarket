@@ -256,6 +256,7 @@ const conditionBox = document.getElementById("conditionFields");
 
     });
 }
+            };
 /* =========================
    SAVE AD ENTRY POINT
 ========================= */
