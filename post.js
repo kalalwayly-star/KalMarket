@@ -238,14 +238,24 @@ window.handleCategoryChange = function () {
 const conditionBox = document.getElementById("conditionFields");
     const hideConditionFor = ["Pets", "Jobs", "Real Estate", "Services"];
 
-    if (conditionBox) {
-        conditionBox.style.display = hideConditionFor.includes(selectedValue)
-            ? "none"
-            : "block";
-    }
-    
-};
+   if (conditionBox) {
 
+    const shouldHide = hideConditionFor.includes(selectedValue);
+
+    conditionBox.style.display = shouldHide
+        ? "none"
+        : "block";
+
+    document.querySelectorAll('input[name="condition"]').forEach(input => {
+
+        input.required = !shouldHide;
+
+        if (shouldHide) {
+            input.checked = false;
+        }
+
+    });
+}
 /* =========================
    SAVE AD ENTRY POINT
 ========================= */
