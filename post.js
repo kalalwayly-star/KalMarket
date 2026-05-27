@@ -236,7 +236,13 @@ window.handleCategoryChange = function () {
     }
 
 const conditionBox = document.getElementById("conditionFields");
-    const hideConditionFor = ["Pets", "Jobs", "Real Estate", "Services"];
+   const hideConditionFor = [
+    "Pets",
+    "Jobs",
+    "jobs",
+    "Real Estate",
+    "Services"
+];
 
    if (conditionBox) {
 
