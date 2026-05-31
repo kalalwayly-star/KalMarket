@@ -246,20 +246,21 @@ window.sendReply = async function(id) {
             status: "unread"
         });
 
-        emailjs.send("service_quc10ww", "template_yl7gl6l", {
-    to_email: original.senderEmail,
-    to_name: original.senderEmail,
-    from_email: currentUser.email,
-    message: text,
-    ad_id: original.adId,
-    lang: localStorage.getItem("language") || "en"
-})
-.then(res => {
-    console.log("Email sent:", res);
-})
-.catch(err => {
-    console.error("Email failed:", err);
-});
+       try {
+    const res = await emailjs.send("service_quc10ww", "template_yl7gl6l", {
+        to_email: original.senderEmail,
+        to_name: original.senderEmail,
+        from_email: currentUser.email,
+        message: text,
+        ad_id: original.adId,
+        lang: localStorage.getItem("language") || "en"
+    });
+
+    console.log("EMAIL SENT SUCCESS:", res);
+
+} catch (err) {
+    console.error("EMAILJS ERROR:", err);
+}
         alert("Reply sent successfully!");
         input.value = "";
         toggleReply(id);
