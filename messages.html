@@ -192,6 +192,15 @@ function deleteMessage(id) {
   window.onload = renderMessages;
 
   </script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+emailjs.init({
+    publicKey: "BROErfJOK1VBkXT3S"
+});
+</script>
+
+  
 <script src="languages.js"></script> 
 <script src="storage.js"></script>
 <script type="module" src="messages.js"></script>
