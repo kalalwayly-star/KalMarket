@@ -21,6 +21,8 @@ import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
+console.log("EmailJS loaded:", typeof emailjs);
+
 // ===============================
 // GLOBAL VARIABLES
 // ===============================
