@@ -21,15 +21,6 @@ import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
- emailjs.send("service_quc10ww", "template_yl7gl6l", {
-    to_email: window.currentSellerEmail,
-    to_name: window.currentSellerEmail,
-    from_email: user.email,
-    message: messageText,
-    ad_id: adId,
-    lang: localStorage.getItem("language") || "en"
-});
-
 // ===============================
 // GLOBAL VARIABLES
 // ===============================
@@ -255,6 +246,20 @@ window.sendReply = async function(id) {
             status: "unread"
         });
 
+        emailjs.send("service_quc10ww", "template_yl7gl6l", {
+    to_email: original.senderEmail,
+    to_name: original.senderEmail,
+    from_email: currentUser.email,
+    message: text,
+    ad_id: original.adId,
+    lang: localStorage.getItem("language") || "en"
+})
+.then(res => {
+    console.log("Email sent:", res);
+})
+.catch(err => {
+    console.error("Email failed:", err);
+});
         alert("Reply sent successfully!");
         input.value = "";
         toggleReply(id);
