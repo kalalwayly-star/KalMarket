@@ -235,7 +235,25 @@ window.sendReply = async function(id) {
     const original = globalMessages.find(msg => msg.firebaseId === id);
     if (!original) return;
 
+    const lang = localStorage.getItem("language") || "en";
+
+    const emailMessage =
+        lang === "ar"
+            ? `لديك رد جديد على إعلانك في كال ماركت
+
+📦 الإعلان: ${original.adTitle}
+💬 الرسالة:
+${text}
+👤 من: ${currentUser.email}`
+            : `You have a new reply on your KalMarket ad
+
+Ad: ${original.adTitle}
+Message:
+${text}
+From: ${currentUser.email}`;
+
     try {
+        // 1. Save reply in Firestore
         await addDoc(collection(db, "marketplace_messages"), {
             adId: original.adId,
             adTitle: original.adTitle,
@@ -247,54 +265,36 @@ window.sendReply = async function(id) {
             createdAt: serverTimestamp(),
             status: "unread"
         });
-const emailMessage =
-    localStorage.getItem("language") === "ar"
-        ? `لديك رسالة جديدة على كال ماركت
 
-رقم الإعلان: ${adId}
+        // 2. Send EmailJS notification
+        try {
+            const res = await emailjs.send("service_quc10ww", "template_yl7gl6l", {
+                to_email: original.senderEmail,
+                to_name: original.senderEmail,
+                from_email: currentUser.email,
+                message: emailMessage,
+                ad_id: original.adId,
+                lang: lang
+            });
 
-الرسالة:
-${messageText}
+            console.log("EMAIL SENT SUCCESS:", res);
 
-من:
-${user.email}`
-        : `You have received a new message on KalMarket
+        } catch (err) {
+            console.error("EMAILJS ERROR:", err);
+        }
 
-Ad ID: ${adId}
-
-Message:
-${messageText}
-
-From:
-${user.email}`;
-        
-       try {
-    const res = await emailjs.send("service_quc10ww", "template_yl7gl6l", {
-        to_email: original.senderEmail,
-        to_name: original.senderEmail,
-        from_email: currentUser.email,
-        message: text,
-        ad_id: original.adId,
-        lang: localStorage.getItem("language") || "en"
-    });
-
-    console.log("EMAIL SENT SUCCESS:", res);
-
-} catch (err) {
-    console.error("EMAILJS ERROR:", err);
-}
         alert("Reply sent successfully!");
         input.value = "";
         toggleReply(id);
 
-   catch (error) {
-    console.error("Reply error:", error);
+    } catch (error) {
+        console.error("Reply error:", error);
 
-    alert(
-        "Reply failed:\n" +
-        (error.message || JSON.stringify(error))
-    );
-}
+        alert(
+            "Reply failed:\n" +
+            (error.message || JSON.stringify(error))
+        );
+    }
 };
 
 // ===============================
