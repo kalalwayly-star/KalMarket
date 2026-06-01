@@ -283,7 +283,27 @@ window.sendMessage = async function () {
             createdAt: serverTimestamp(),
             status: "sent"
         });
+const emailMessage =
+    localStorage.getItem("language") === "ar"
+        ? `لديك رسالة جديدة على كال ماركت
 
+رقم الإعلان: ${adId}
+
+الرسالة:
+${messageText}
+
+من:
+${user.email}`
+        : `You have received a new message on KalMarket
+
+Ad ID: ${adId}
+
+Message:
+${messageText}
+
+From:
+${user.email}`;
+        
 try {
     const res = await emailjs.send("service_quc10ww", "template_yl7gl6l", {
         to_email: window.currentSellerEmail,
