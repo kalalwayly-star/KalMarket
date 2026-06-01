@@ -284,6 +284,22 @@ window.sendMessage = async function () {
             status: "sent"
         });
 
+try {
+    const res = await emailjs.send("service_quc10ww", "template_yl7gl6l", {
+        to_email: window.currentSellerEmail,
+        to_name: window.currentSellerEmail,
+        from_email: user.email,
+        message: messageText,
+        ad_id: adId,
+        lang: localStorage.getItem("language") || "en"
+    });
+
+    console.log("EMAIL SENT SUCCESS:", res);
+
+} catch (err) {
+    console.error("EMAILJS ERROR:", err);
+}
+        
         alert("Message sent successfully!");
         document.getElementById("messageText").value = "";
 
