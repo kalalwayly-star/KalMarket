@@ -287,10 +287,14 @@ ${user.email}`;
         input.value = "";
         toggleReply(id);
 
-    } catch (error) {
-        console.error("Reply error:", error);
-        alert("Failed to send reply.");
-    }
+   catch (error) {
+    console.error("Reply error:", error);
+
+    alert(
+        "Reply failed:\n" +
+        (error.message || JSON.stringify(error))
+    );
+}
 };
 
 // ===============================
