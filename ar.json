@@ -322,7 +322,18 @@
   "sold_filter": "مباع",
 
   "sold_label": "تم البيع",
-  "pending_label": "قيد المراجعة"
+  "pending_label": "قيد المراجعة",
+    
+  "reset_password": "إعادة تعيين كلمة المرور",
+  "reset_subtitle": "أدخل بريدك الإلكتروني للعثور على حسابك.",
+  "email_address": "البريد الإلكتروني",
+  "verify_email": "التحقق من البريد الإلكتروني",
+  "new_password": "كلمة المرور الجديدة",
+  "confirm_new_password": "تأكيد كلمة المرور الجديدة",
+  "update_password": "تحديث كلمة المرور",
+  "or": "أو",
+  "back_to_login": "العودة إلى تسجيل الدخول"
+
 
 
 }
