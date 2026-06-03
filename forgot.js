@@ -18,11 +18,12 @@ window.checkUser = async function() {
 
         await sendPasswordResetEmail(auth, email);
 
-        alert(
-            localStorage.getItem("language") === "ar"
-                 ? "تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني. إذا لم تجده في البريد الوارد، يرجى التحقق من مجلد الرسائل غير المرغوب فيها (Spam)."
+       const message =
+    localStorage.getItem("language") === "ar"
+        ? "تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني. إذا لم تجده في البريد الوارد، يرجى التحقق من مجلد الرسائل غير المرغوب فيها (Spam)."
         : "A password reset email has been sent to your inbox. If you don't see it, please check your Spam/Junk folder.";
-        );
+
+alert(message);
 
     } catch (error) {
 
