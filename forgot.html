@@ -12,16 +12,35 @@
 
 <div class="auth-wrapper">
     <div class="form-card">
-        <h2 id="formTitle">Reset Password</h2>
-        <p id="formSubtitle" class="subtitle">Enter your email to find your account.</p>
+        <h2 id="formTitle" data-i18n="reset_password">
+    Reset Password
+</h2>
+
+<p id="formSubtitle" class="subtitle" data-i18n="reset_subtitle">
+    Enter your email to find your account.
+</p>
 
         <!-- STAGE 1: Email Check -->
         <div id="emailSection" class="form-stage">
             <div class="input-group">
-                <label>Email Address</label>
-                <input type="email" id="resetEmail" placeholder="name@example.com" required>
+                <label data-i18n="email_address">
+    Email Address
+</label>
+
+<input
+    type="email"
+    id="resetEmail"
+    placeholder="name@example.com"
+    required
+>
             </div>
-            <button type="button" class="btn-primary" onclick="checkUser()">Verify Email</button>
+            <button
+    type="button"
+    class="btn-primary"
+    onclick="checkUser()"
+    data-i18n="verify_email">
+    Verify Email
+</button>
         </div>
 
        
@@ -29,25 +48,55 @@
         <!-- STAGE 3: New Password (Hidden by default) -->
         <div id="resetFields" class="form-stage" style="display:none;">
             <div class="input-group">
-                <label>New Password</label>
-                <input type="password" id="newPassword" placeholder="Min. 7 characters" required>
+                <label data-i18n="new_password">
+    New Password
+</label>
+
+<input
+    type="password"
+    id="newPassword"
+    placeholder="Min. 7 characters"
+    required
+>
                 <!-- Eye icon will now show because of Font Awesome fix -->
                 <i class="fas fa-eye" id="toggleNewPass"></i>
             </div>
             <div class="input-group">
-                <label>Confirm New Password</label>
-                <input type="password" id="confirmPassword" placeholder="Repeat password" required>
+                <label data-i18n="confirm_new_password">
+    Confirm New Password
+</label>
+
+<input
+    type="password"
+    id="confirmPassword"
+    placeholder="Repeat password"
+    required
+>
                 <i class="fas fa-eye" id="toggleConfirmPass"></i>
             </div>
-            <button type="button" class="btn-primary" onclick="finalizeReset()">Update Password</button>
+            <button
+    type="button"
+    class="btn-primary"
+    onclick="finalizeReset()"
+    data-i18n="update_password">
+    Update Password
+</button>
         </div>
 
-        <div class="divider"><span>OR</span></div>
-
+<div class="divider">
+    <span data-i18n="or">OR</span>
+</div>
         <div style="text-align: center;">
-            <a href="login.html" class="back-link" style="text-decoration: none; color: #007bff; font-size: 14px;">
-                <i class="fas fa-arrow-left"></i> Back to Login
-            </a>
+           <a href="login.html"
+   class="back-link"
+   style="text-decoration: none; color: #007bff; font-size: 14px;">
+
+    <i class="fas fa-arrow-left"></i>
+    <span data-i18n="back_to_login">
+        Back to Login
+    </span>
+
+</a>
         </div>
     </div>
 </div>
