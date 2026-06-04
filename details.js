@@ -126,6 +126,14 @@ async function loadAdDetails() {
         // Title
         document.getElementById("adTitle").innerText = ad.title || "No Title";
         document.title = ad.title + " | KalMarket";
+        const meta = document.getElementById("metaDescription");
+
+if (meta) {
+    meta.setAttribute(
+        "content",
+        ad.description || ad.title
+    );
+}
 
         // Category
         document.getElementById("adCategory").innerText = ad.category || "";
