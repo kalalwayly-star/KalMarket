@@ -1,13 +1,15 @@
 import { storage, auth, db } from "./firebase-config.js";
 
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+import { collection, addDoc, serverTimestamp,  Timestamp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 import {
     ref as storageRef,
     uploadBytes,
     getDownloadURL
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
+
+
 
 let uploadedImages = [];
 let pendingUploads = 0;
@@ -236,38 +238,21 @@ window.handleCategoryChange = function () {
     }
 
 const conditionBox = document.getElementById("conditionFields");
-   const hideConditionFor = [
-    "Pets",
-    "Jobs",
-    "jobs",
-    "Real Estate",
-    "Services"
-];
+    const hideConditionFor = ["Pets", "Jobs", "Real Estate", "Services"];
 
-   if (conditionBox) {
+    if (conditionBox) {
+        conditionBox.style.display = hideConditionFor.includes(selectedValue)
+            ? "none"
+            : "block";
+    }
+    
+};
 
-    const shouldHide = hideConditionFor.includes(selectedValue);
-
-    conditionBox.style.display = shouldHide
-        ? "none"
-        : "block";
-
-    document.querySelectorAll('input[name="condition"]').forEach(input => {
-
-        input.required = !shouldHide;
-
-        if (shouldHide) {
-            input.checked = false;
-        }
-
-    });
-}
-            };
 /* =========================
    SAVE AD ENTRY POINT
 ========================= */
-function saveNewAd(event) {
-    event.preventDefault();
+async function saveNewAd(event) {
+   event.preventDefault();
     const user = auth.currentUser;
 
     if (!user) {
@@ -287,19 +272,24 @@ function saveNewAd(event) {
         btn.innerText = "Posting...";
     }
 
-    finalizeAd();
+     finalizeAd();
 }
 
 /* =========================
    FINALIZE & FIRESTORE SAVE
 ========================= */
-function finalizeAd() {
+async function finalizeAd() {
+
     const user = auth.currentUser;
 
-    if (!user) return;
+    if (!user) {
+        alert("Login required");
+        return;
+    }
 
     const title = document.getElementById("adTitle")?.value.trim();
-const currency = document.getElementById("currency")?.value || "USD";
+    const currency = document.getElementById("currency")?.value || "USD";
+
     if (!title) {
         alert("Title is required");
 
@@ -312,64 +302,143 @@ const currency = document.getElementById("currency")?.value || "USD";
         return;
     }
 
-   const newAd = {
-    userId: user.uid,
-    userEmail: user.email,
-    category: document.getElementById("postCategory")?.value || "",
-    title: title,
-    views: 0,
-    status: "active",
-    location: document.getElementById("adLocation")?.value || "",  
-    price: document.getElementById("adPrice")?.value || "",
-    currency: currency,
-    description: document.getElementById("adDesc")?.value || "",
-    condition: document.querySelector('input[name="condition"]:checked')?.value || "N/A",
-    image: Array.isArray(uploadedImages) && uploadedImages.length > 0
-        ? uploadedImages.map(img => img.url || img)
-        : ["https://placeholder.com"],
+    const featuredDays = parseInt(localStorage.getItem("featuredDays")) || 0;
+    let featuredUntil = null;
 
-    date: new Date().toLocaleDateString(),
-
-    lat: window.currentAdLat || null,
-    lng: window.currentAdLng || null,
-
-    featured: localStorage.getItem("featuredAdPaid") === "true",
-    featuredDays: parseInt(localStorage.getItem("featuredDays")) || 0
-};
-addDoc(collection(db, "marketplace_ads"), newAd)
-   .then(async () => {
-
-    // NOTIFICATION
-    await addDoc(collection(db, "notifications"), {
-        userId: user.uid,
-        message: localStorage.getItem("language") === "ar"
-            ? "تم نشر إعلانك بنجاح"
-            : "Your ad was posted successfully",
-
-        createdAt: new Date(),
-        read: false
-    });
-
-    // RESET
-    uploadedImages = [];
-    localStorage.removeItem("featuredAdPaid");
-    localStorage.removeItem("featuredDays");
-
-    window.location.href = "index.html";
-})
-.catch((err) => {
-    console.error("Firestore save error:", err);
-
-    const btn = document.getElementById("postBtn");
-
-    if (btn) {
-        btn.disabled = false;
-        btn.innerText = "Post Ad";
+    if (featuredDays > 0) {
+        const date = new Date();
+        date.setDate(date.getDate() + featuredDays);
+        featuredUntil = Timestamp.fromDate(date);
     }
 
-    alert(err.message);
-});
-}
+    // Safe radio button selection
+    let selectedCondition = "N/A";
+
+    try {
+        const checkedRadio = document.querySelector('input[name="condition"]:checked');
+
+        if (checkedRadio) {
+            selectedCondition = checkedRadio.value;
+        }
+
+    } catch (radioError) {
+
+        console.warn("Could not read condition radio buttons:", radioError);
+
+    }
+
+    // Safe image handling
+    let finalImages = ["https://placeholder.com"];
+
+    try {
+
+        if (
+            typeof uploadedImages !== "undefined" &&
+            Array.isArray(uploadedImages) &&
+            uploadedImages.length > 0
+        ) {
+
+            finalImages = uploadedImages.map(img =>
+                img ? (img.url || img) : "https://placeholder.com"
+            );
+
+        }
+
+    } catch (imageError) {
+
+        console.warn("Uploaded images array error:", imageError);
+
+    }
+
+    const newAd = {
+
+        userId: user.uid,
+        userEmail: user.email || "",
+
+        category: document.getElementById("postCategory")?.value || "Uncategorized",
+        title: title,
+
+        featured: featuredDays > 0,
+        featuredDays: featuredDays,
+        featuredUntil: featuredUntil,
+
+        views: 0,
+        status: "active",
+
+        location: document.getElementById("adLocation")?.value || "",
+        price: document.getElementById("adPrice")?.value || "",
+        currency: currency,
+
+        description: document.getElementById("adDesc")?.value || "",
+        condition: selectedCondition,
+
+        image: finalImages,
+
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+
+        lat: window.currentAdLat || null,
+        lng: window.currentAdLng || null
+    };
+
+    try {
+
+        // Save ad
+const docRef = await addDoc(
+    collection(db, "marketplace_ads"),
+    newAd
+);
+
+alert("Ad saved successfully!\n\nID: " + docRef.id);
+
+        // Create notification
+        const isArabic = localStorage.getItem("language") === "ar";
+
+        await addDoc(
+            collection(db, "notifications"),
+            {
+                userId: user.uid,
+                message: isArabic
+                    ? "تم نشر إعلانك بنجاح"
+                    : "Your ad was posted successfully",
+
+                createdAt: serverTimestamp(),
+                read: false
+            }
+        );
+
+        // Reset upload array
+        if (typeof uploadedImages !== "undefined") {
+            uploadedImages = [];
+        }
+
+        // Clear featured settings
+        localStorage.removeItem("featuredAdPaid");
+        localStorage.removeItem("featuredDays");
+
+        // Go back to home page
+        window.location.href = "index.html";
+
+    } 
+    catch (err) {
+
+        console.error("Firestore submission failed:", err);
+
+        alert(
+    "FIREBASE ERROR\n\n" +
+    "Code: " + (err.code || "Unknown") +
+    "\n\nMessage:\n" +
+    (err.message || "No message")
+);
+
+        const btn = document.getElementById("postBtn");
+
+        if (btn) {
+            btn.disabled = false;
+            btn.innerText = "Post Ad";
+        }
+    }
+
 /* =========================
    PAGE INIT
 ========================= */
@@ -478,9 +547,9 @@ addDoc(collection(db, "marketplace_ads"), newAd)
     document.getElementById("photoInput")
         ?.addEventListener("change", handlePhotoUpload);
 
-    document.getElementById("postForm")
-        ?.addEventListener("submit", saveNewAd);
-
+   document.getElementById("postForm")
+    ?.addEventListener("submit", saveNewAd);
+    
     const featureOptions = document.querySelectorAll('input[name="feature_selection"]');
     const paypalContainer = document.getElementById("paypal-button-container");
 
@@ -512,45 +581,135 @@ addDoc(collection(db, "marketplace_ads"), newAd)
 /* =========================
    PAYPAL INIT
 ========================= */
+/* =========================
+   PAYPAL INIT
+========================= */
 function initPayPal(price, days) {
+
     const paypalContainer = document.getElementById("paypal-button-container");
 
-    if (!paypalContainer) return;
-
-    paypalContainer.innerHTML = "";
-
-    if (typeof paypal === "undefined") {
-        console.error("PayPal SDK not loaded");
+    if (!paypalContainer) {
+        console.error("PayPal container not found");
         return;
     }
 
+    // Clear old button
+    paypalContainer.innerHTML = "";
+
+    // Check PayPal SDK
+    if (typeof paypal === "undefined") {
+        console.error("PayPal SDK not loaded");
+        alert("Payment system is not ready. Please refresh the page.");
+        return;
+    }
+
+
     paypal.Buttons({
 
-        createOrder: function (data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: price
-                    }
-                }]
-            });
+        style: {
+            layout: "vertical",
+            color: "gold",
+            shape: "rect",
+            label: "paypal"
         },
+
+
+        createOrder: function (data, actions) {
+
+            return actions.order.create({
+
+                purchase_units: [
+                    {
+                        description: `KalMarket Featured Ad - ${days} Days`,
+
+                        amount: {
+                            currency_code: "CAD",
+                            value: price
+                        }
+                    }
+                ]
+
+            });
+
+        },
+
 
         onApprove: function (data, actions) {
-            return actions.order.capture().then(function () {
 
-                alert(`Payment successful! Your ad is featured for ${days} days.`);
+            return actions.order.capture()
+                .then(function(details) {
 
-                localStorage.setItem("featuredAdPaid", "true");
-                localStorage.setItem("featuredDays", days);
-            });
+
+                    console.log(
+                        "Payment completed:",
+                        details
+                    );
+
+
+                    alert(
+                        `Payment successful! Your ad is featured for ${days} days.`
+                    );
+
+
+                    // Save payment status
+                    localStorage.setItem(
+                        "featuredAdPaid",
+                        "true"
+                    );
+
+
+                    localStorage.setItem(
+                        "featuredDays",
+                        days
+                    );
+
+
+                    localStorage.setItem(
+                        "paypalOrderID",
+                        data.orderID
+                    );
+
+
+                    // Continue posting ad
+                    // You can call your submit function here later
+
+
+                });
+
         },
 
-        onError: function (err) {
-            console.error("PayPal Error:", err);
-            alert("Payment failed.");
+
+        onCancel: function () {
+
+            alert(
+                "Payment cancelled. Your ad was not featured."
+            );
+
+            localStorage.removeItem(
+                "featuredAdPaid"
+            );
+
+        },
+
+
+        onError: function(err) {
+
+            console.error(
+                "PayPal Error:",
+                err
+            );
+
+
+            alert(
+                "Payment failed. Please try again."
+            );
+
         }
 
-    }).render("#paypal-button-container");
+
+    }).render(
+        "#paypal-button-container"
+    );
+
 }
   
