@@ -1,11 +1,28 @@
 import { auth, db, rtdb } from "./firebase-config.js";
-import { updateDoc, increment, getDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";// Full URLs for Auth
-import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-// Full URLs for Realtime Database
-import { ref, onValue, remove } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
-// Full URLs for Firestore
-import { collection, onSnapshot, query, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
-import { setDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+import { 
+    onAuthStateChanged, 
+    signOut 
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+import { 
+    ref, 
+    onValue, 
+    remove 
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
+
+import {
+    collection,
+    onSnapshot,
+    query,
+    orderBy,
+    deleteDoc,
+    doc,
+    updateDoc,
+    increment,
+    getDoc,
+    setDoc
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 const symbolMap = {
     USD: "$",
@@ -62,10 +79,14 @@ const symbolMap = {
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("searchBtn")
-    ?.addEventListener("click", applyFilters);
+?.addEventListener("click", () => {
+    window.applyFilters();
+});
 
 document.getElementById("resetBtn")
-    ?.addEventListener("click", resetFilters);
+?.addEventListener("click", () => {
+    window.resetFilters();
+});
 
     const userInfoDiv = document.getElementById("user-info-header");
     const emailSpan = document.getElementById("header-user-email");
@@ -99,27 +120,100 @@ document.getElementById("resetBtn")
 /* =========================
    ADS LOAD FROM FIREBASE
 ========================= */
+/* =========================
+   ADS LOAD FROM FIREBASE (FIXED)
+========================= */
+let mainInitialized = false;
+
 function initMain() {
+    if (mainInitialized) return;
+    mainInitialized = true;
+
     const listingsContainer = document.getElementById("listings");
     if (!listingsContainer) return;
 
-    // Correct way to get ads from Firestore (where post.js sends them)
-    const adsCollection = collection(db, "marketplace_ads");
+    const adsQuery = query(
+        collection(db, "marketplace_ads"),
+        orderBy("featured", "desc"),
+        orderBy("createdAt", "desc")
+    );
 
-    onSnapshot(adsCollection, (snapshot) => {
+    onSnapshot(adsQuery, (snapshot) => {
         globalAds = [];
-        snapshot.forEach((doc) => {
-            // Firestore uses doc.id for the key and doc.data() for the info
-            globalAds.push({ ...doc.data(), firebaseId: doc.id });
+        const now = new Date();
+
+        snapshot.forEach((docSnap) => {
+            const ad = docSnap.data();
+
+            // Check if featured period expired
+            let isFeatured = ad.featured || false;
+            if (isFeatured && ad.featuredUntil && ad.featuredUntil.toDate() < now) {
+                isFeatured = false;
+            }
+
+            globalAds.push({
+                ...ad,
+                featured: isFeatured,
+                firebaseId: docSnap.id
+            });
         });
 
+        // FIXED SAFETY SORTING (Handles local pending serverTimestamps)
+               // 2. Safe Timestamp Resolution for Mobile Devices
+        globalAds.sort((a, b) => {
+            if (a.featured !== b.featured) {
+                return b.featured - a.featured;
+            }
+
+            let timeA = 0;
+            let timeB = 0;
+
+            try {
+                if (a && a.createdAt) {
+                    if (typeof a.createdAt.toDate === 'function') timeA = a.createdAt.toDate().getTime();
+                    else if (a.createdAt.seconds) timeA = a.createdAt.seconds * 1000;
+                    else if (typeof a.createdAt.toMillis === 'function') timeA = a.createdAt.toMillis();
+                    else timeA = Date.now(); 
+                }
+            } catch(e) { timeA = Date.now(); }
+
+            try {
+                if (b && b.createdAt) {
+                    if (typeof b.createdAt.toDate === 'function') timeB = b.createdAt.toDate().getTime();
+                    else if (b.createdAt.seconds) timeB = b.createdAt.seconds * 1000;
+                    else if (typeof b.createdAt.toMillis === 'function') timeB = b.createdAt.toMillis();
+                    else timeB = Date.now();
+                }
+            } catch(e) { timeB = Date.now(); }
+
+            return timeB - timeA;
+        });
+
+        // FIXED SAFETY LOGGING LOOP (Will not crash WebView rendering)
+        try {
+            console.log("========== FINAL ADS ORDER ==========");
+            globalAds.forEach((ad, index) => {
+                let adDateString = "Pending Server...";
+                if (ad && ad.createdAt && typeof ad.createdAt.toDate === 'function') {
+                    try {
+                        adDateString = ad.createdAt.toDate().toString();
+                    } catch(dateErr) {
+                        adDateString = "Resolving...";
+                    }
+                }
+                console.log(index + 1, ad.title || "No Title", "Featured:", ad.featured, "Date:", adDateString);
+            });
+        } catch (logError) {
+            console.warn("Logging notice ignored to prevent WebView crash:", logError);
+        }
+
+        // GUARANTEED EXECUTION: Render runs outside the logging scope
         renderAds(globalAds, "listings");
+
+    }, (error) => {
+        console.error("Firestore Error:", error);
     });
 }
-
-
-document.addEventListener("DOMContentLoaded", initMain);
-
 
 /* =========================
    GLOBAL HELPERS
@@ -291,6 +385,11 @@ const images = Array.isArray(ad.image)
     ` : ""}
 
             <div class="slider" id="slider-${uniqueId}">
+             ${ad.featured ? `
+        <div class="featured-badge">
+            ⭐ FEATURED
+        </div>
+    ` : ""}
                 ${images.map((img, index) => `
                     <img src="${img}" 
                          class="slide ${index === 0 ? 'active' : ''}" 
@@ -304,12 +403,7 @@ const images = Array.isArray(ad.image)
             </div>
 
             <div class="card-content">
-<h3>
-    <a href="details.html?id=${uniqueId}">
-        ${ad.title}
-    </a>
-</h3>                
-<p>📍 ${ad.location || "No location"}</p>
+<h3><a href="details.html?id=${uniqueId}">${ad.title}</a></h3>                <p>📍 ${ad.location || "No location"}</p>
 <p><b>${symbolMap[ad.currency] || ad.currency || "$"} ${ad.price}</b></p><p><strong>Condition:</strong> ${ad.condition || "N/A"}</p>
                <p>👁️ ${ad.views || 0} views</p>
             </div>
