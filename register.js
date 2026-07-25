@@ -40,6 +40,19 @@ if (!termsAccepted.checked) {
         // Create Firebase account
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
+        await setDoc(doc(db, "userTrustScores", user.uid), {
+    uid: user.uid,
+    email: user.email,
+    trustScore: 50,
+    flaggedCount: 0,
+    approvedAds: 0,
+    deletedAds: 0,
+    successfulSales: 0,
+    reportsReceived: 0,
+    riskLevel: "Medium",
+    remindersEnabled: true,
+    createdAt: serverTimestamp()
+});
 
         // Optional display name
         await updateProfile(user, {
