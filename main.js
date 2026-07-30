@@ -291,7 +291,10 @@ window.filterByCategory = function(category) {
     }
 
     renderAds(filteredAds, "listings");
-
+document.getElementById("listings").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+});
     const noItemsMessage = document.getElementById("no-items-message");
     if (noItemsMessage) {
         noItemsMessage.style.display =
