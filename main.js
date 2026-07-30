@@ -314,22 +314,27 @@ window.resetFilters = function() {
 };
 
 // SEARCH FILTER
-window.applyFilters = function() {
+window.applyFilters = function () {
     const query = document.getElementById("searchInput")
-        ?.value.toLowerCase()
-        .trim() || "";
+        ?.value.toLowerCase().trim() || "";
 
-    if (!query) {
-        renderAds(globalAds, "listings");
-        return;
-    }
+    const location = document.getElementById("locationInput")
+        ?.value.toLowerCase().trim() || "";
 
-    const filteredAds = globalAds.filter(ad =>
-        (ad.title || "").toLowerCase().includes(query) ||
-        (ad.category || "").toLowerCase().includes(query) ||
-        (ad.location || "").toLowerCase().includes(query) ||
-        (ad.description || "").toLowerCase().includes(query)
-    );
+    const filteredAds = globalAds.filter(ad => {
+
+        const matchesSearch =
+            !query ||
+            (ad.title || "").toLowerCase().includes(query) ||
+            (ad.category || "").toLowerCase().includes(query) ||
+            (ad.description || "").toLowerCase().includes(query);
+
+        const matchesLocation =
+            !location ||
+            (ad.location || "").toLowerCase().includes(location);
+
+        return matchesSearch && matchesLocation;
+    });
 
     renderAds(filteredAds, "listings");
 
