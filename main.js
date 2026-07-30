@@ -309,7 +309,10 @@ window.resetFilters = function() {
     if (searchInput) searchInput.value = "";
 
     renderAds(globalAds, "listings");
-
+document.getElementById("listings").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+});
     const noItemsMessage = document.getElementById("no-items-message");
     if (noItemsMessage) {
         noItemsMessage.style.display = "none";
@@ -340,7 +343,10 @@ window.applyFilters = function () {
     });
 
     renderAds(filteredAds, "listings");
-
+document.getElementById("listings").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+});
     const noItemsMessage = document.getElementById("no-items-message");
     if (noItemsMessage) {
         noItemsMessage.style.display =
