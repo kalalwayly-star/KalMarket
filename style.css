@@ -878,4 +878,18 @@ featured-badge {
     font-size:18px;
     margin-bottom:25px;
 }
+/* ======================================================
+   KalMarket Homepage Redesign (Overrides)
+   ====================================================== */
+/* HERO OVERRIDES */
 
+.header {
+    background: linear-gradient(135deg, #5d2de1, #7b3ff2) !important;
+    padding: 20px 0 10px !important;
+}
+
+.hero {
+    background: linear-gradient(135deg, #5d2de1, #7b3ff2) !important;
+    margin-top: -1px;
+    padding: 40px 20px 70px !important;
+}
