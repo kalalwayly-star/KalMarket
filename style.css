@@ -969,3 +969,13 @@ featured-badge {
 .category-card:hover {
     border-color: #7b3ff2 !important;
 }
+/* =========================
+   Search Heading Color
+   ========================= */
+
+.search-description,
+.hero h1,
+.hero h2,
+.hero-title {
+    color: #7b3ff2 !important;
+}
