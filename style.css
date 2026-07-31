@@ -889,12 +889,6 @@ featured-badge {
     background: linear-gradient(135deg, #5d2de1, #7b3ff2) !important;
 }
 
-
-.hero {
-    background: linear-gradient(135deg, #5d2de1, #7b3ff2) !important;
-}
-
-
 /* Remove old blue buttons */
 
 .btn-primary,
@@ -969,4 +963,50 @@ featured-badge {
 .search-container button {
     background: #7b3ff2 !important;
     color: white !important;
+}
+/* ======================================================
+   KalMarket Homepage Redesign (Overrides)
+   ====================================================== */
+
+
+/* HERO + HEADER PURPLE THEME */
+
+.header {
+    background: linear-gradient(135deg, #5d2de1, #7b3ff2) !important;
+}
+
+
+.hero {
+    background: linear-gradient(135deg, #5d2de1, #7b3ff2) !important;
+}
+
+
+/* Remove old blue buttons */
+
+.btn-primary,
+.search-btn,
+.post-btn {
+    background: #7b3ff2 !important;
+    border-color: #7b3ff2 !important;
+}
+
+
+.btn-primary:hover,
+.search-btn:hover,
+.post-btn:hover {
+    background: #5d2de1 !important;
+}
+
+
+/* Search box */
+
+.search-container input {
+    border-color: #7b3ff2 !important;
+}
+
+
+/* Category cards */
+
+.category-card:hover {
+    border-color: #7b3ff2 !important;
 }
