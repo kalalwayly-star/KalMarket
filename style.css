@@ -924,3 +924,49 @@ featured-badge {
 .category-card:hover {
     border-color: #7b3ff2 !important;
 }
+/* ======================================================
+   Search Area - White Redesign
+   ====================================================== */
+
+.search-container,
+.search-box,
+.hero-search,
+.search-area {
+    background: white !important;
+    background-color: white !important;
+}
+
+
+/* Search title / description text */
+
+.search-container h1,
+.search-container h2,
+.search-container p,
+.search-description {
+    color: #333 !important;
+}
+
+
+/* Input fields */
+
+.search-container input,
+.search-container select {
+    background: white !important;
+    color: #333 !important;
+    border: 1px solid #ddd !important;
+}
+
+
+/* Input placeholder */
+
+.search-container input::placeholder {
+    color: #888 !important;
+}
+
+
+/* Search button stays purple */
+
+.search-container button {
+    background: #7b3ff2 !important;
+    color: white !important;
+}
