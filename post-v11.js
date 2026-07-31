@@ -9,8 +9,6 @@ import {
     getDownloadURL
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
 
-
-
 let uploadedImages = [];
 let pendingUploads = 0;
 
@@ -107,7 +105,6 @@ async function compressImage(file, maxWidth = 800, quality = 0.7) {
         reader.readAsDataURL(file);
     });
 }
-
   
 /* =========================
    FIXED PHOTO UPLOAD HANDLER
@@ -171,7 +168,6 @@ uploadedImages.push({
     id: imageId,
     url: url
 });
-
 pendingUploads--;            
             // Mark as finished visually
             img.style.opacity = "1"; 
@@ -187,8 +183,6 @@ pendingUploads--;
     // Clear input so user can re-select same file if they want
     event.target.value = "";
 };
-
-
 
 /* =========================
    CATEGORY HANDLER
@@ -244,8 +238,7 @@ const conditionBox = document.getElementById("conditionFields");
         conditionBox.style.display = hideConditionFor.includes(selectedValue)
             ? "none"
             : "block";
-    }
-    
+    }   
 };
 
 /* =========================
@@ -544,8 +537,8 @@ alert("Ad saved successfully!\n\nID: " + docRef.id);
 
     handleCategoryChange();
 
-    document.getElementById("photoInput")
-        ?.addEventListener("change", handlePhotoUpload);
+   document.getElementById("photoInput")
+    ?.addEventListener("change", window.handlePhotoUpload);
 
    document.getElementById("postForm")
     ?.addEventListener("submit", saveNewAd);
@@ -575,8 +568,6 @@ alert("Ad saved successfully!\n\nID: " + docRef.id);
             }
         });
     });
-
-
 
 /* =========================
    PAYPAL INIT
