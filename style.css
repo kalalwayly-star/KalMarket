@@ -883,55 +883,37 @@ featured-badge {
    ====================================================== */
 
 
-/* HERO + HEADER PURPLE THEME */
+/* =========================
+   NAV / HEADER PURPLE THEME
+   ========================= */
 
 .header {
     background: linear-gradient(135deg, #5d2de1, #7b3ff2) !important;
 }
 
-/* Remove old blue buttons */
 
-.btn-primary,
-.search-btn,
-.post-btn {
-    background: #7b3ff2 !important;
-    border-color: #7b3ff2 !important;
+/* =========================
+   HERO AREA WHITE
+   ========================= */
+
+.hero {
+    background: white !important;
 }
 
 
-.btn-primary:hover,
-.search-btn:hover,
-.post-btn:hover {
-    background: #5d2de1 !important;
-}
-
-
-/* Search box */
-
-.search-container input {
-    border-color: #7b3ff2 !important;
-}
-
-
-/* Category cards */
-
-.category-card:hover {
-    border-color: #7b3ff2 !important;
-}
-/* ======================================================
-   Search Area - White Redesign
-   ====================================================== */
+/* =========================
+   SEARCH AREA WHITE
+   ========================= */
 
 .search-container,
 .search-box,
 .hero-search,
 .search-area {
     background: white !important;
-    background-color: white !important;
 }
 
 
-/* Search title / description text */
+/* Search text */
 
 .search-container h1,
 .search-container h2,
@@ -941,7 +923,9 @@ featured-badge {
 }
 
 
-/* Input fields */
+/* =========================
+   SEARCH FIELDS
+   ========================= */
 
 .search-container input,
 .search-container select {
@@ -951,61 +935,36 @@ featured-badge {
 }
 
 
-/* Input placeholder */
-
 .search-container input::placeholder {
     color: #888 !important;
 }
 
 
-/* Search button stays purple */
-
-.search-container button {
-    background: #7b3ff2 !important;
-    color: white !important;
-}
-/* ======================================================
-   KalMarket Homepage Redesign (Overrides)
-   ====================================================== */
-
-
-/* HERO + HEADER PURPLE THEME */
-
-.header {
-    background: linear-gradient(135deg, #5d2de1, #7b3ff2) !important;
-}
-
-
-.hero {
-    background: linear-gradient(135deg, #5d2de1, #7b3ff2) !important;
-}
-
-
-/* Remove old blue buttons */
+/* =========================
+   BUTTONS PURPLE
+   ========================= */
 
 .btn-primary,
 .search-btn,
-.post-btn {
+.post-btn,
+.search-container button {
     background: #7b3ff2 !important;
     border-color: #7b3ff2 !important;
+    color: white !important;
 }
 
 
 .btn-primary:hover,
 .search-btn:hover,
-.post-btn:hover {
+.post-btn:hover,
+.search-container button:hover {
     background: #5d2de1 !important;
 }
 
 
-/* Search box */
-
-.search-container input {
-    border-color: #7b3ff2 !important;
-}
-
-
-/* Category cards */
+/* =========================
+   CATEGORY CARDS
+   ========================= */
 
 .category-card:hover {
     border-color: #7b3ff2 !important;
