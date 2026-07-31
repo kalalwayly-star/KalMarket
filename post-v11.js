@@ -431,7 +431,7 @@ alert("Ad saved successfully!\n\nID: " + docRef.id);
             btn.innerText = "Post Ad";
         }
     }
-
+}
 /* =========================
    PAGE INIT
 ========================= */
