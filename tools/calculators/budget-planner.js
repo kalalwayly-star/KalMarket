@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
         .getElementById("calculateBudgetBtn")
         .addEventListener("click", calculateBudget);
 
+    document
+        .getElementById("resetBudgetBtn")
+        .addEventListener("click", resetBudget);
+
 });
 
 function calculateBudget() {
