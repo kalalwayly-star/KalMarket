@@ -979,3 +979,52 @@ featured-badge {
 .hero-title {
     color: #7b3ff2 !important;
 }
+/* ==============================
+   KalMarket Business Hub Cards
+   ============================== */
+
+.hub-container {
+    padding: 40px 20px;
+}
+
+
+.hub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+
+.hub-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+
+.hub-card:hover {
+    transform: translateY(-5px);
+}
+
+
+.hub-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+
+.hub-card a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #5d2de1;
+    font-weight: bold;
+}
+
+
+
+
+
+
