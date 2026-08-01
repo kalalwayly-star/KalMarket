@@ -128,3 +128,37 @@ else {
     "Your business is breaking even.";
 
 }
+let recommendations = [];
+
+if (profit < 0) {
+
+    recommendations.push("⚠️ Your business is operating at a loss.");
+
+}
+
+if (inventory > revenue * 0.40) {
+
+    recommendations.push("📦 Inventory costs are high. Reduce slow-moving stock.");
+
+}
+
+if (rent > revenue * 0.20) {
+
+    recommendations.push("🏢 Rent is consuming a large portion of your revenue.");
+
+}
+
+if (marketing > revenue * 0.15) {
+
+    recommendations.push("📣 Review your marketing return on investment.");
+
+}
+
+if (profit > 0) {
+
+    recommendations.push("✅ Your business is profitable. Consider reinvesting part of your profit for future growth.");
+
+}
+
+document.getElementById("recommendations").innerHTML =
+    recommendations.join("<br><br>");
