@@ -1084,6 +1084,12 @@ featured-badge {
     font-weight:bold;
     color:#5d2de1;
 }
+.profit {
+    border-left: 6px solid #22c55e;
+}
 
+.loss {
+    border-left: 6px solid #ef4444;
+}
 
 
