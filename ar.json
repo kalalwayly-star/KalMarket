@@ -339,8 +339,36 @@
     "hero_subtitle": "اشترِ • بع • بدّل • اعثر على الخدمات المحلية",
     "free_badge": "🟢 نشر الإعلانات مجاني 100٪",
 
-    "vehicle_report_banner": "🚗 احصل على تقرير تاريخ السيارة مجانًا - اضغط هنا"
+    "vehicle_report_banner": "🚗 احصل على تقرير تاريخ السيارة مجانًا - اضغط هنا",
+    
+  "business_hub_title": "🧰 مركز أعمال كال ماركت",
+  "business_hub_description": "أدوات مجانية، حاسبات، أدلة وموارد تساعدك على الشراء والبيع وتنمية أعمالك.",
+
+  "tools_resources_title": "الأدوات والموارد",
+
+  "startup_cost_calculator": "حاسبة تكلفة بدء المشروع",
+  "startup_cost_description": "قم بتقدير المبلغ الذي تحتاجه لبدء مشروعك التجاري.",
+
+  "business_budget_planner": "مخطط ميزانية الأعمال",
+  "business_budget_description": "خطط لدخلك ومصروفاتك وميزانية مشروعك.",
+
+  "business_guides": "أدلة الأعمال",
+  "business_guides_description": "تعلم كيفية بدء وتطوير أنواع مختلفة من الأعمال.",
+
+  "checklists": "قوائم التحقق",
+  "checklists_description": "قوائم مفيدة للمشترين والبائعين ورواد الأعمال.",
+
+  "open_tool": "فتح الأداة ←",
+  "read_guides": "قراءة الأدلة ←",
+  "view_checklists": "عرض القوائم ←",
+
+  "startup_cost_needed_description": "قم بتقدير التكاليف اللازمة لبدء مشروعك.",
+
+  "business_guides_manage_description": "تعرف على كيفية بدء وإدارة وتنمية مشروع تجاري.",
+
+  "checklists_helpful_description": "قوائم تحقق مفيدة للمشترين والبائعين ورواد الأعمال."
 }
+
 
 
 
