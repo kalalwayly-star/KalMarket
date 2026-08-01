@@ -65,6 +65,15 @@ document.getElementById("resultsSection").scrollIntoView({
     behavior: "smooth",
     block: "start"
 });
+const profitCard = document.getElementById("profitCard");
+
+if (profit >= 0) {
+    profitCard.classList.remove("loss");
+    profitCard.classList.add("profit");
+} else {
+    profitCard.classList.remove("profit");
+    profitCard.classList.add("loss");
+}
 }
 
 function resetBudget() {
