@@ -67,6 +67,29 @@ document.getElementById("resultsSection").scrollIntoView({
 });
 }
 
+function resetBudget() {
+
+    document.getElementById("monthlyRevenue").value = "";
+    document.getElementById("rentExpense").value = "";
+    document.getElementById("utilitiesExpense").value = "";
+    document.getElementById("payrollExpense").value = "";
+    document.getElementById("inventoryExpense").value = "";
+    document.getElementById("marketingExpense").value = "";
+    document.getElementById("insuranceExpense").value = "";
+    document.getElementById("otherExpense").value = "";
+
+    document.getElementById("totalExpenses").textContent =
+        formatCurrency(0);
+
+    document.getElementById("estimatedProfit").textContent =
+        formatCurrency(0);
+
+    document.getElementById("profitMargin").textContent = "0%";
+
+    document.getElementById("monthlyRevenue").focus();
+
+}
+
 function formatCurrency(amount) {
 
     return amount.toLocaleString("en-CA", {
