@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     .getElementById("calculateBudgetBtn")
     .addEventListener("click", calculateBudget);
 
+
+   
     document
         .getElementById("resetBudgetBtn")
         .addEventListener("click", resetBudget);
@@ -74,8 +76,57 @@ if (profit >= 0) {
     profitCard.classList.remove("profit");
     profitCard.classList.add("loss");
 }
-}
+   function generateRecommendations(
+    revenue,
+    rent,
+    utilities,
+    payroll,
+    inventory,
+    marketing,
+    insurance,
+    other,
+    totalExpenses,
+    profit,
+    margin
+) {
 
+    const recommendations = [];
+
+    // Recommendation logic will go here
+
+    document.getElementById("recommendations").innerHTML =
+        recommendations
+            .map(item =>
+                `<div class="recommendation-item">${item}</div>`)
+            .join("");
+
+}
+}
+function generateRecommendations(
+    revenue,
+    rent,
+    utilities,
+    payroll,
+    inventory,
+    marketing,
+    insurance,
+    other,
+    totalExpenses,
+    profit,
+    margin
+) {
+
+    const recommendations = [];
+
+    recommendations.push("Business recommendations will appear here.");
+
+    document.getElementById("recommendations").innerHTML =
+        recommendations
+            .map(item =>
+                `<div class="recommendation-item">${item}</div>`)
+            .join("");
+
+}
 function resetBudget() {
 
     document.getElementById("monthlyRevenue").value = "";
@@ -107,58 +158,4 @@ function formatCurrency(amount) {
     });
 
 }
-const summary =
-document.getElementById("budgetSummary");
 
-if (profit > 0) {
-
-    summary.textContent =
-    "Your business is currently profitable.";
-
-}
-else if (profit < 0) {
-
-    summary.textContent =
-    "Your expenses are higher than your revenue.";
-
-}
-else {
-
-    summary.textContent =
-    "Your business is breaking even.";
-
-}
-let recommendations = [];
-
-if (profit < 0) {
-
-    recommendations.push("⚠️ Your business is operating at a loss.");
-
-}
-
-if (inventory > revenue * 0.40) {
-
-    recommendations.push("📦 Inventory costs are high. Reduce slow-moving stock.");
-
-}
-
-if (rent > revenue * 0.20) {
-
-    recommendations.push("🏢 Rent is consuming a large portion of your revenue.");
-
-}
-
-if (marketing > revenue * 0.15) {
-
-    recommendations.push("📣 Review your marketing return on investment.");
-
-}
-
-if (profit > 0) {
-
-    recommendations.push("✅ Your business is profitable. Consider reinvesting part of your profit for future growth.");
-
-}
-
-document.getElementById("recommendations").innerHTML =
-    recommendations.join("<br><br>");
