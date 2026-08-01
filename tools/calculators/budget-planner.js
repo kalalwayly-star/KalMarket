@@ -4,12 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .getElementById("calculateBudgetBtn")
     .addEventListener("click", calculateBudget);
 
-const inputs = document.querySelectorAll(".calculator-card input");
-
-inputs.forEach(input => {
-    input.addEventListener("input", calculateBudget);
-});
-
     document
         .getElementById("resetBudgetBtn")
         .addEventListener("click", resetBudget);
