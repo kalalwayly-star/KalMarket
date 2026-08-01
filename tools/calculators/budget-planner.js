@@ -107,3 +107,24 @@ function formatCurrency(amount) {
     });
 
 }
+const summary =
+document.getElementById("budgetSummary");
+
+if (profit > 0) {
+
+    summary.textContent =
+    "Your business is currently profitable.";
+
+}
+else if (profit < 0) {
+
+    summary.textContent =
+    "Your expenses are higher than your revenue.";
+
+}
+else {
+
+    summary.textContent =
+    "Your business is breaking even.";
+
+}
