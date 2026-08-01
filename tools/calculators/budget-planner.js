@@ -61,7 +61,7 @@ document.getElementById("resultsSection").scrollIntoView({
     behavior: "smooth",
     block: "start"
 });
-
+}
 
 function formatCurrency(amount) {
 
