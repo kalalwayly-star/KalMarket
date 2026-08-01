@@ -57,8 +57,11 @@ function calculateBudget() {
 
     document.getElementById("profitMargin").textContent =
         margin.toFixed(1) + "%";
+document.getElementById("resultsSection").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+});
 
-}
 
 function formatCurrency(amount) {
 
