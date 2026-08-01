@@ -156,3 +156,164 @@
 </section>
 
 </main>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title data-i18n="budget_planner_title">
+        Business Budget Planner | KalMarket
+    </title>
+
+    <link rel="stylesheet" href="../../style.css?v=2">
+</head>
+
+<body>
+
+<!-- Copy your existing KalMarket header here -->
+<!-- Remember to change all links to ../../ -->
+
+<main>
+
+<section class="hero business-hub-hero">
+
+    <h2 data-i18n="budget_planner_title">
+        📊 Business Budget Planner
+    </h2>
+
+    <p data-i18n="budget_planner_intro">
+        Plan your monthly income and expenses to estimate your business profit.
+    </p>
+
+</section>
+
+
+<section class="calculator-container">
+
+<div class="calculator-card">
+
+<h3 data-i18n="monthly_revenue">
+Monthly Revenue
+</h3>
+
+<input
+type="number"
+id="monthlyRevenue"
+placeholder="0.00">
+
+
+
+<h3 data-i18n="monthly_expenses">
+Monthly Expenses
+</h3>
+
+
+<input
+type="number"
+id="rentExpense"
+placeholder="Rent / Shop">
+
+
+<input
+type="number"
+id="utilitiesExpense"
+placeholder="Utilities">
+
+
+<input
+type="number"
+id="payrollExpense"
+placeholder="Payroll">
+
+
+<input
+type="number"
+id="inventoryExpense"
+placeholder="Inventory / Materials">
+
+
+<input
+type="number"
+id="marketingExpense"
+placeholder="Marketing">
+
+
+<input
+type="number"
+id="insuranceExpense"
+placeholder="Insurance">
+
+
+<input
+type="number"
+id="otherExpense"
+placeholder="Other Expenses">
+
+<button
+id="calculateBudgetBtn"
+class="btn primary"
+data-i18n="calculate_budget">
+
+Calculate Budget
+
+</button>
+
+</div>
+
+</section>
+
+<section class="results-grid">
+
+<div class="result-card">
+
+<h4 data-i18n="total_expenses">
+Total Expenses
+</h4>
+
+<p id="totalExpenses">
+$0.00
+</p>
+
+</div>
+
+<div class="result-card">
+
+<h4 data-i18n="estimated_profit">
+Estimated Profit
+</h4>
+
+<p id="estimatedProfit">
+$0.00
+</p>
+
+</div>
+
+<div class="result-card">
+
+<h4 data-i18n="profit_margin">
+Profit Margin
+</h4>
+
+<p id="profitMargin">
+0%
+</p>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- Copy your existing KalMarket footer here -->
+
+<script src="budget-planner.js"></script>
+
+</body>
+</html>
+
+
+
+    
