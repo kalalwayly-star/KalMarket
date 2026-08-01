@@ -1028,7 +1028,62 @@ featured-badge {
     font-size: 28px;
 }
 
+/* ==========================================
+   Business Budget Planner
+   ========================================== */
 
+.calculator-container{
+    max-width:800px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.calculator-card{
+    background:#fff;
+    border-radius:12px;
+    padding:30px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.calculator-card h3{
+    margin-top:20px;
+}
+
+.calculator-card input{
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    margin-bottom:15px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.results-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    max-width:900px;
+    margin:40px auto;
+}
+
+.result-card{
+    background:#fff;
+    border-radius:12px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.result-card h4{
+    margin-bottom:15px;
+}
+
+.result-card p{
+    font-size:28px;
+    font-weight:bold;
+    color:#5d2de1;
+}
 
 
 
