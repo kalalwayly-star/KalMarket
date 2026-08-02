@@ -88,7 +88,12 @@ generateRecommendations(
     profit,
     margin
 );
-
+calculateHealthScore(
+    revenue,
+    totalExpenses,
+    profit,
+    margin
+);
 
 document.getElementById("resultsSection").scrollIntoView({
     behavior: "smooth",
