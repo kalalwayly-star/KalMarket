@@ -100,7 +100,7 @@ if (profit >= 0) {
                 `<div class="recommendation-item">${item}</div>`)
             .join("");
 
-}
+
 }
 function generateRecommendations(
     revenue,
