@@ -173,6 +173,88 @@ function formatCurrency(amount) {
 
         currency: "CAD"
 
+function generateStartupRecommendations(
+    setupTotal,
+    equipmentTotal,
+    inventoryTotal,
+    reserve,
+    startupTotal
+) {
+
+    const recommendations = [];
+
+
+    if (equipmentTotal > startupTotal * 0.40) {
+
+        recommendations.push(
+            "🛠 Equipment is your biggest investment. Consider buying used equipment or starting with essential items only."
+        );
+
+    }
+
+
+    if (inventoryTotal > startupTotal * 0.35) {
+
+        recommendations.push(
+            "📦 Inventory cost is high. Consider starting with a smaller inventory and increasing stock after sales grow."
+        );
+
+    }
+
+
+    if (reserve < startupTotal * 0.10) {
+
+        recommendations.push(
+            "💰 Your emergency reserve is low. Try to keep extra cash available for unexpected expenses."
+        );
+
+    }
+
+
+    if (startupTotal < 10000) {
+
+        recommendations.push(
+            "🟢 Your startup cost is relatively low. Focus on controlling expenses and growing gradually."
+        );
+
+    }
+
+
+    if (startupTotal >= 10000 && startupTotal < 50000) {
+
+        recommendations.push(
+            "🟡 Your startup investment is moderate. Create a clear monthly plan before spending."
+        );
+
+    }
+
+
+    if (startupTotal >= 50000) {
+
+        recommendations.push(
+            "🔴 Your startup investment is high. Review every major expense before committing."
+        );
+
+    }
+
+
+    if (recommendations.length === 0) {
+
+        recommendations.push(
+            "✅ Your startup budget appears balanced."
+        );
+
+    }
+
+    document.getElementById("startupRecommendations").innerHTML =
+        recommendations
+        .map(item =>
+            `<div class="recommendation-item">${item}</div>`
+        )
+        .join("");
+}
+        
+
     });
 
 }
