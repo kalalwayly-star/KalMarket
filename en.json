@@ -22,6 +22,15 @@
   "footer_terms": "Terms of Service",
   "footer_safety": "Safety Tips",
   "footer_privacy_header": "Privacy Policy",
-  "footer_privacy": "Privacy Policy"
+  "footer_privacy": "Privacy Policy",
+  "priority_action_plan": "Priority Action Plan",
+"inventory_high": "📦 Inventory cost is high. Consider starting with a smaller inventory and increasing stock after sales grow.",
+"reserve_low": "💰 Your emergency reserve is low. Try to keep extra cash available for unexpected expenses.",
+"startup_moderate": "🟡 Your startup investment is moderate. Create a clear monthly plan before spending.",
+"startup_high": "🔴 Your startup investment is high. Review every major expense before committing.",
+"action_reduce_inventory": "Reduce your initial inventory by 15–20%.",
+"action_increase_reserve": "Increase your emergency reserve before opening.",
+"action_cashflow_plan": "Prepare a monthly cash-flow budget.",
+"action_review_expenses": "Review all major startup expenses before investing."
   
 }
