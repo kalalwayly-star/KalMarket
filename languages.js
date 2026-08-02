@@ -69,7 +69,7 @@ function loadLanguage(language) {
 
     // Apply alignment to body to ensure Arabic moves to the right
     document.body.style.textAlign = isArabic ? "right" : "left";
-}
+
 
 // Set up language buttons and switcher
 document.addEventListener("DOMContentLoaded", () => {
