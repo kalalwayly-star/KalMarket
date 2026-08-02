@@ -20,12 +20,16 @@ function loadLanguage(language) {
             return response.json();
         })
         .then(translations => {
+
             window.translations = translations;
 
             localStorage.setItem("language", language);
+
             updateText(translations, language);
+
         })
         .catch(error => {
+
             console.error("Error loading language file:", error);
 
             if (language !== "en") {
@@ -33,28 +37,9 @@ function loadLanguage(language) {
             } else {
                 console.error("Critical: English language file is missing.");
             }
+
         });
 }
-
-    // Save translations globally
-   .then(translations => {
-    window.translations = translations;
-
-    localStorage.setItem("language", language);
-
-    updateText(translations, language);
-
-})
-.catch(error => {
-    console.error("Error loading language file:", error);
-
-    if (language !== "en") {
-        loadLanguage("en");
-    } else {
-        console.error("Critical: English language file is missing.");
-    }
-});
-
 // Update text and placeholders in the DOM based on translations
 function updateText(translations, language) {
     // 1. TEXT CONTENT (using data-i18n attributes)
