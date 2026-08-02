@@ -72,12 +72,33 @@ if (profit >= 0) {
     profitCard.classList.remove("profit");
     profitCard.classList.add("loss");
 }
+
+
+// CALL recommendation function
+generateRecommendations(
+    revenue,
+    rent,
+    utilities,
+    payroll,
+    inventory,
+    marketing,
+    insurance,
+    other,
+    totalExpenses,
+    profit,
+    margin
+);
+
+
 document.getElementById("resultsSection").scrollIntoView({
     behavior: "smooth",
     block: "start"
 });
+
 }
-  
+
+
+// Recommendation function starts here
 function generateRecommendations(
     revenue,
     rent,
