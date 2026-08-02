@@ -106,7 +106,13 @@ function calculateStartupCost() {
 
     document.getElementById("setupTotal").textContent =
         formatCurrency(setupTotal);
-
+generateStartupRecommendations(
+    setupTotal,
+    equipmentTotal,
+    inventoryTotal,
+    reserve,
+    startupTotal
+);
 
     document.getElementById("equipmentTotal").textContent =
         formatCurrency(equipmentTotal);
@@ -157,11 +163,7 @@ function resetStartupCost() {
 
     document.getElementById("startupTotal").textContent =
         formatCurrency(0);
-
-
 }
-
-
 
 function formatCurrency(amount) {
 
@@ -223,25 +225,20 @@ function generateStartupRecommendations(
         recommendations.push(
             "🟡 Your startup investment is moderate. Create a clear monthly plan before spending."
         );
-
     }
-
 
     if (startupTotal >= 50000) {
 
         recommendations.push(
             "🔴 Your startup investment is high. Review every major expense before committing."
         );
-
     }
-
 
     if (recommendations.length === 0) {
 
         recommendations.push(
             "✅ Your startup budget appears balanced."
         );
-
     }
 
     document.getElementById("startupRecommendations").innerHTML =
@@ -251,8 +248,5 @@ function generateStartupRecommendations(
         )
         .join("");
 }
-        
-
     });
-
 }
