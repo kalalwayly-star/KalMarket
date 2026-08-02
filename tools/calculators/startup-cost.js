@@ -138,11 +138,12 @@ const businessLoan =
 
 const recommendedReserve = startupTotal * 0.10;
 
-document.getElementById("personalInvestment").textContent =
-    formatCurrency(personalInvestment);
+document.getElementById("personalInvestmentPercent").textContent =
+    fundingOption;
 
-document.getElementById("businessLoan").textContent =
-    formatCurrency(businessLoan);
+
+document.getElementById("businessLoanPercent").textContent =
+    100 - fundingOption;
 
 document.getElementById("recommendedReserve").textContent =
     formatCurrency(recommendedReserve);
