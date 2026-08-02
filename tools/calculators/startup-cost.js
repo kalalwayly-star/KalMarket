@@ -11,8 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-
-
 function calculateStartupCost() {
 
 
