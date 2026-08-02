@@ -282,6 +282,94 @@ if (marketingPercent > 15) {
 document.getElementById("recommendations").innerHTML =
     recommendations.join("");
 }
+
+function calculateHealthScore(
+    revenue,
+    totalExpenses,
+    profit,
+    margin
+) {
+
+    let score = 50;
+
+
+    // Profit factor
+    if (profit > 0) {
+        score += 25;
+    } else {
+        score -= 25;
+    }
+
+
+    // Profit margin factor
+    if (margin >= 20) {
+        score += 15;
+    } 
+    else if (margin >= 10) {
+        score += 8;
+    }
+    else {
+        score -= 5;
+    }
+
+
+    // Expense control
+    const expenseRatio =
+        revenue > 0
+        ? (totalExpenses / revenue) * 100
+        : 100;
+
+
+    if (expenseRatio < 70) {
+        score += 10;
+    }
+    else if (expenseRatio > 100) {
+        score -= 10;
+    }
+
+
+    // Keep score between 0-100
+    score = Math.max(0, Math.min(score, 100));
+
+
+    document.getElementById("healthScore").textContent =
+        score + " / 100";
+
+
+    let message;
+
+
+    if (score >= 80) {
+
+        message =
+        "🟢 Excellent. Your business appears financially healthy.";
+
+    }
+    else if (score >= 60) {
+
+        message =
+        "🟡 Good. Your business is stable but has room for improvement.";
+
+    }
+    else if (score >= 40) {
+
+        message =
+        "🟠 Needs attention. Review expenses and improve profitability.";
+
+    }
+    else {
+
+        message =
+        "🔴 High risk. Focus on reducing costs and increasing revenue.";
+
+    }
+
+
+    document.getElementById("healthMessage").textContent =
+        message;
+
+}
+
 function resetBudget() {
 
     document.getElementById("monthlyRevenue").value = "";
