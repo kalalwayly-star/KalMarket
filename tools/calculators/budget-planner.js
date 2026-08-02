@@ -111,7 +111,7 @@ function generateRecommendations(
     totalExpenses,
     profit,
     margin
-) {}
+) {
 
     const recommendations = [];
 
@@ -207,5 +207,5 @@ function formatCurrency(amount) {
         currency: "CAD"
     });
 
-}
+}}
 
