@@ -461,9 +461,30 @@
 
   "equipment_costs": "🛠 تكاليف المعدات",
 
-  "inventory_costs": "📦 تكاليف المخزون"
+  "inventory_costs": "📦 تكاليف المخزون",
+    
+"budget_planner_title": "📊 مخطط ميزانية الأعمال",
+"budget_planner_intro": "خطط لإيراداتك ومصروفاتك الشهرية لتقدير أرباح مشروعك.",
 
-}
+"monthly_revenue": "الإيرادات الشهرية",
+"monthly_expenses": "المصروفات الشهرية",
+
+"rent_shop": "الإيجار / المحل",
+"utilities": "المرافق",
+"payroll": "الرواتب",
+"inventory_materials": "المخزون / المواد",
+"marketing": "التسويق",
+"insurance": "التأمين",
+"other_expenses": "مصروفات أخرى",
+
+"calculate_budget": "احسب الميزانية",
+
+"total_expenses": "إجمالي المصروفات",
+"estimated_profit": "الربح المتوقع",
+"profit_margin": "هامش الربح",
+
+"business_recommendations": "💡 توصيات الأعمال",
+"business_health_score": "📊 درجة صحة المشروع"}
 
 
 
