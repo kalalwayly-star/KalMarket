@@ -177,6 +177,7 @@ ${marketingPercent > 15
 
 document.getElementById("recommendations").innerHTML =
     recommendations.join("");
+}
 function resetBudget() {
 
     document.getElementById("monthlyRevenue").value = "";
