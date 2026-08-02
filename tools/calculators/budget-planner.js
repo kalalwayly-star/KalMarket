@@ -205,6 +205,75 @@ if (profit < 0) {
     `);
 
 }
+// Action Plan Recommendations
+
+if (profit < 0) {
+
+    const neededIncrease = Math.abs(profit);
+
+    recommendations.push(`
+    <div class="recommendation-item">
+    🛠️ <strong>Action Plan:</strong><br>
+    Your business needs about 
+    ${formatCurrency(neededIncrease)} more revenue or expense reduction 
+    to reach break-even.
+    <br><br>
+    Consider reducing unnecessary costs, improving sales, or increasing profitable services.
+    </div>
+    `);
+
+}
+
+
+if (inventoryPercent > 40) {
+
+    recommendations.push(`
+    <div class="recommendation-item">
+    📦 <strong>Inventory Action:</strong><br>
+    Review slow-moving inventory and avoid purchasing stock that does not sell quickly.
+    Improve cash flow by keeping only necessary inventory.
+    </div>
+    `);
+
+}
+
+
+if (payrollPercent > 35) {
+
+    recommendations.push(`
+    <div class="recommendation-item">
+    👥 <strong>Payroll Action:</strong><br>
+    Review employee scheduling, productivity, and workload distribution.
+    Make sure payroll expenses are creating enough sales value.
+    </div>
+    `);
+
+}
+
+
+if (rentPercent > 20) {
+
+    recommendations.push(`
+    <div class="recommendation-item">
+    🏢 <strong>Rent Action:</strong><br>
+    Consider negotiating your lease, reducing unused space, or increasing revenue from your current location.
+    </div>
+    `);
+
+}
+
+
+if (marketingPercent > 15) {
+
+    recommendations.push(`
+    <div class="recommendation-item">
+    📣 <strong>Marketing Action:</strong><br>
+    Track which marketing activities bring customers.
+    Focus your budget on campaigns that generate real sales.
+    </div>
+    `);
+
+}
 document.getElementById("recommendations").innerHTML =
     recommendations.join("");
 }
