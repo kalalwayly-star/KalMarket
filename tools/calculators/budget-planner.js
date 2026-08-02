@@ -132,6 +132,12 @@ if (revenue <= 0) {
             .join("");
  return;
 }
+
+const rentPercent = (rent / revenue) * 100;
+const payrollPercent = (payroll / revenue) * 100;
+const inventoryPercent = (inventory / revenue) * 100;
+const marketingPercent = (marketing / revenue) * 100;
+   
 function resetBudget() {
 
     document.getElementById("monthlyRevenue").value = "";
