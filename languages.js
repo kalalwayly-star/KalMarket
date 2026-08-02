@@ -3,12 +3,38 @@ let currentLanguage = localStorage.getItem("language") || "en";
 window.translations = {};
 
 function loadLanguage(language) {
-    fetch(`${language}.json`)
+
+    let languagePath;
+
+    if (window.location.pathname.includes("/tools/")) {
+        languagePath = `../../${language}.json`;
+    } else {
+        languagePath = `${language}.json`;
+    }
+
+    fetch(languagePath)
         .then(response => {
-            if (!response.ok) throw new Error(`Could not load ${language}.json`);
+            if (!response.ok) {
+                throw new Error(`Could not load ${language}.json`);
+            }
             return response.json();
         })
         .then(translations => {
+            window.translations = translations;
+
+            localStorage.setItem("language", language);
+            updateText(translations, language);
+        })
+        .catch(error => {
+            console.error("Error loading language file:", error);
+
+            if (language !== "en") {
+                loadLanguage("en");
+            } else {
+                console.error("Critical: English language file is missing.");
+            }
+        });
+}
 
     // Save translations globally
     window.translations = translations;
