@@ -310,9 +310,13 @@ function generateStartupRecommendations(
 
 
     // Very high startup cost
-    if (startupTotal > 100000) {
-        score -= 10;
-    }
+    // Startup size
+if (startupTotal >= 50000) {
+    score -= 20;
+}
+else if (startupTotal >= 10000) {
+    score -= 10;
+}
 
 
     if (score < 0) {
