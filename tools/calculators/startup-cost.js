@@ -139,6 +139,12 @@ document.getElementById("businessLoan").textContent =
 
 document.getElementById("recommendedReserve").textContent =
     formatCurrency(recommendedReserve);
+    calculateReadinessScore(
+    startupTotal,
+    reserve,
+    equipmentTotal,
+    inventoryTotal
+);
 
     document.getElementById("startupResults").scrollIntoView({
         behavior: "smooth",
@@ -146,9 +152,6 @@ document.getElementById("recommendedReserve").textContent =
     });
 
 }
-
-
-
 
 function resetStartupCost() {
 
@@ -263,4 +266,79 @@ function generateStartupRecommendations(
         )
         .join("");
 }
-    
+ function calculateReadinessScore(
+    startupTotal,
+    reserve,
+    equipmentTotal,
+    inventoryTotal
+) {
+
+    let score = 100;
+
+
+    // Emergency reserve check
+    if (reserve < startupTotal * 0.10) {
+        score -= 20;
+    }
+
+
+    // Equipment cost check
+    if (equipmentTotal > startupTotal * 0.40) {
+        score -= 15;
+    }
+
+
+    // Inventory check
+    if (inventoryTotal > startupTotal * 0.35) {
+        score -= 15;
+    }
+
+
+    // Very high startup cost
+    if (startupTotal > 100000) {
+        score -= 10;
+    }
+
+
+    if (score < 0) {
+        score = 0;
+    }
+
+
+    let message;
+
+
+    if (score >= 80) {
+
+        message =
+        "🟢 Excellent. Your startup plan appears well prepared.";
+
+    }
+    else if (score >= 60) {
+
+        message =
+        "🟡 Good. Your plan is reasonable but can be improved.";
+
+    }
+    else if (score >= 40) {
+
+        message =
+        "🟠 Needs attention. Review your startup expenses.";
+
+    }
+    else {
+
+        message =
+        "🔴 High risk. Reduce costs and improve your funding plan.";
+
+    }
+
+
+    document.getElementById("readinessScore").textContent =
+        score + " / 100";
+
+
+    document.getElementById("readinessMessage").textContent =
+        message;
+
+}   
