@@ -118,14 +118,19 @@ function generateRecommendations(
 
     const recommendations = [];
 
-    recommendations.push("Business recommendations will appear here.");
+// Prevent division by zero
+if (revenue <= 0) {
 
+    recommendations.push(`
+        <strong>⚠️ No Revenue Entered</strong><br>
+        Enter your monthly revenue to receive personalized business recommendations.
+    `);
     document.getElementById("recommendations").innerHTML =
         recommendations
             .map(item =>
                 `<div class="recommendation-item">${item}</div>`)
             .join("");
-
+ return;
 }
 function resetBudget() {
 
