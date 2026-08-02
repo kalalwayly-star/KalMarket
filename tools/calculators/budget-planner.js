@@ -134,7 +134,7 @@ const rentPercent = (rent / revenue) * 100;
 const payrollPercent = (payroll / revenue) * 100;
 const inventoryPercent = (inventory / revenue) * 100;
 const marketingPercent = (marketing / revenue) * 100;
-
+};
 // Rent
 recommendations.push(`
 <div class="recommendation-item">
