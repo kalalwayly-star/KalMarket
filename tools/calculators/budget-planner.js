@@ -114,6 +114,48 @@ const payrollPercent = (payroll / revenue) * 100;
 const inventoryPercent = (inventory / revenue) * 100;
 const marketingPercent = (marketing / revenue) * 100;
 } 
+// Rent
+recommendations.push(`
+<div class="recommendation-item">
+🏢 <strong>Rent:</strong> ${rentPercent.toFixed(1)}% of revenue.<br>
+${rentPercent > 20
+    ? "Your rent is higher than the recommended 20%. Consider negotiating your lease, sharing space, or increasing monthly sales."
+    : "Your rent expense is within a healthy range."}
+</div>
+`);
+
+// Payroll
+recommendations.push(`
+<div class="recommendation-item">
+👥 <strong>Payroll:</strong> ${payrollPercent.toFixed(1)}% of revenue.<br>
+${payrollPercent > 35
+    ? "Payroll costs are high. Review staffing efficiency, scheduling, or productivity."
+    : "Payroll costs look reasonable."}
+</div>
+`);
+
+// Inventory
+recommendations.push(`
+<div class="recommendation-item">
+📦 <strong>Inventory:</strong> ${inventoryPercent.toFixed(1)}% of revenue.<br>
+${inventoryPercent > 40
+    ? "Inventory investment is high. Reduce slow-moving stock and improve inventory turnover."
+    : "Inventory levels appear healthy."}
+</div>
+`);
+
+// Marketing
+recommendations.push(`
+<div class="recommendation-item">
+📣 <strong>Marketing:</strong> ${marketingPercent.toFixed(1)}% of revenue.<br>
+${marketingPercent > 15
+    ? "Marketing spending is relatively high. Measure which campaigns generate sales."
+    : "Marketing spending is within a normal range."}
+</div>
+`);
+
+document.getElementById("recommendations").innerHTML =
+    recommendations.join("");
 function resetBudget() {
 
     document.getElementById("monthlyRevenue").value = "";
