@@ -216,7 +216,7 @@ function generateStartupRecommendations(
 
     const recommendations = [];
     const actionPlan = [];
-
+ const t = window.translations || {};
 
     if (equipmentTotal > startupTotal * 0.40) {
 
@@ -230,11 +230,11 @@ function generateStartupRecommendations(
     if (inventoryTotal > startupTotal * 0.35) {
 
         recommendations.push(
-   window.t["inventory_high"]
+   t["inventory_high"]
 );
 
 actionPlan.push(
-    window.t["action_reduce_inventory"]
+    t["action_reduce_inventory"]
 );
 
     }
@@ -243,11 +243,11 @@ actionPlan.push(
     if (reserve < startupTotal * 0.10) {
 
         recommendations.push(
-    window.t["reserve_low"]
+  t["reserve_low"]
 );
 
 actionPlan.push(
-    window.t["action_increase_reserve"]
+   t["action_increase_reserve"]
 );
 
     }
@@ -256,11 +256,11 @@ actionPlan.push(
     if (startupTotal < 10000) {
 
        recommendations.push(
-    window.t["startup_moderate"]
+   t["startup_moderate"]
 );
 
 actionPlan.push(
-    window.t["action_cashflow_plan"]
+   t["action_cashflow_plan"]
 );
 
     }
@@ -269,22 +269,22 @@ actionPlan.push(
     if (startupTotal >= 10000 && startupTotal < 50000) {
 
         recommendations.push(
-    window.t["startup_high"]
+    t["startup_high"]
 );
 
 actionPlan.push(
-    window.t["action_review_expenses"]
+    t["action_review_expenses"]
 );
     }
 
     if (startupTotal >= 50000) {
 
         recommendations.push(
-    window.t["startup_high"]
+    t["startup_high"]
 );
 
 actionPlan.push(
-    window.t["action_review_expenses"]
+   t["action_review_expenses"]
 );
     }
 
