@@ -76,32 +76,7 @@ if (profit >= 0) {
     profitCard.classList.remove("profit");
     profitCard.classList.add("loss");
 }
-   function generateRecommendations(
-    revenue,
-    rent,
-    utilities,
-    payroll,
-    inventory,
-    marketing,
-    insurance,
-    other,
-    totalExpenses,
-    profit,
-    margin
-) {
-
-    const recommendations = [];
-
-    // Recommendation logic will go here
-
-    document.getElementById("recommendations").innerHTML =
-        recommendations
-            .map(item =>
-                `<div class="recommendation-item">${item}</div>`)
-            .join("");
-
-
-}
+  
 function generateRecommendations(
     revenue,
     rent,
@@ -132,7 +107,7 @@ if (revenue <= 0) {
             .join("");
  return;
 }
-
+}
 const rentPercent = (rent / revenue) * 100;
 const payrollPercent = (payroll / revenue) * 100;
 const inventoryPercent = (inventory / revenue) * 100;
