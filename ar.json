@@ -406,7 +406,28 @@
 
 "action_cashflow_plan": "إعداد ميزانية شهرية للتدفق النقدي.",
 
-"action_review_expenses": "مراجعة جميع مصاريف بدء المشروع الرئيسية قبل الاستثمار."
+"action_review_expenses": "مراجعة جميع مصاريف بدء المشروع الرئيسية قبل الاستثمار.",
+
+"business_registration": "تسجيل الأعمال",
+  "licenses_permits": "التراخيص والتصاريح",
+  "legal_accounting": "الخدمات القانونية والمحاسبة",
+  "website_branding": "الموقع الإلكتروني والعلامة التجارية",
+
+  "security_deposit": "التأمين للموقع",
+  "first_month_rent": "إيجار الشهر الأول",
+  "renovation": "التجديد والتجهيز",
+  "signs_signage": "اللافتات واللوحات",
+
+  "tools_machines": "الأدوات والآلات",
+  "computers": "أجهزة الكمبيوتر",
+  "furniture": "الأثاث",
+
+  "initial_inventory": "المخزون الأولي",
+  "materials_supplies": "المواد والمستلزمات",
+
+  "emergency_cash_reserve": "احتياطي نقدي للطوارئ",
+
+  "funding_option": "خيارات التمويل"
 }
 
 
