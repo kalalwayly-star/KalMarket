@@ -174,7 +174,37 @@ ${marketingPercent > 15
     : "Marketing spending is within a normal range."}
 </div>
 `);
+if (profit < 0) {
 
+    recommendations.push(`
+    <div class="recommendation-item">
+    ⚠️ <strong>Business Loss:</strong><br>
+    Your expenses are higher than your revenue. 
+    Reduce unnecessary expenses or increase sales to improve profitability.
+    </div>
+    `);
+
+} else if (margin < 10) {
+
+    recommendations.push(`
+    <div class="recommendation-item">
+    ⚠️ <strong>Low Profit Margin:</strong><br>
+    Your business is profitable, but the margin is low. 
+    Look for ways to reduce costs or increase prices/value.
+    </div>
+    `);
+
+} else {
+
+    recommendations.push(`
+    <div class="recommendation-item">
+    ✅ <strong>Healthy Profit:</strong><br>
+    Your business is generating a good profit margin. 
+    Consider reinvesting in growth.
+    </div>
+    `);
+
+}
 document.getElementById("recommendations").innerHTML =
     recommendations.join("");
 }
