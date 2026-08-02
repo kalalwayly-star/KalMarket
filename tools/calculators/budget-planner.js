@@ -111,7 +111,7 @@ function generateRecommendations(
     totalExpenses,
     profit,
     margin
-) {
+) {}
 
     const recommendations = [];
 
