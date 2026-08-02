@@ -4,12 +4,26 @@ window.translations = {};
 
 function loadLanguage(language) {
 
-    let languagePath;
+    let languagePath = `${language}.json`;
 
     if (window.location.pathname.includes("/tools/")) {
-        languagePath = `../../${language}.json`;
-    } else {
-        languagePath = `${language}.json`;
+
+        const depth = window.location.pathname
+            .split("/")
+            .filter(Boolean)
+            .length;
+
+        if (window.location.pathname.includes("/calculators/") ||
+            window.location.pathname.includes("/guides/") ||
+            window.location.pathname.includes("/checklists/")) {
+
+            languagePath = `../../${language}.json`;
+
+        } else {
+
+            languagePath = `../${language}.json`;
+
+        }
     }
 
     fetch(languagePath)
@@ -34,24 +48,10 @@ function loadLanguage(language) {
 
             if (language !== "en") {
                 loadLanguage("en");
-            } else {
-                console.error("Critical: English language file is missing.");
             }
 
         });
 }
-// Update text and placeholders in the DOM based on translations
-function updateText(translations, language) {
-    // 1. TEXT CONTENT (using data-i18n attributes)
-    document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        if (translations[key]) {
-            el.innerText = translations[key];
-        } else {
-            console.warn(`Missing translation key: ${key}`);
-        }
-    });
-
     // 2. PLACEHOLDERS (Critical for Post Ad page inputs)
     document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
         const key = el.getAttribute("data-i18n-placeholder");
