@@ -172,6 +172,8 @@ function formatCurrency(amount) {
         style: "currency",
 
         currency: "CAD"
+    });
+}
 
 function generateStartupRecommendations(
     setupTotal,
@@ -248,5 +250,4 @@ function generateStartupRecommendations(
         )
         .join("");
 }
-    });
-}
+    
