@@ -125,9 +125,16 @@ generateStartupRecommendations(
     document.getElementById("startupTotal").textContent =
         formatCurrency(startupTotal);
 
-const personalInvestment = startupTotal * 0.30;
+const fundingOption =
+    Number(document.getElementById("fundingOption").value) || 30;
 
-const businessLoan = startupTotal * 0.70;
+
+const personalInvestment =
+    startupTotal * (fundingOption / 100);
+
+
+const businessLoan =
+    startupTotal * ((100 - fundingOption) / 100);
 
 const recommendedReserve = startupTotal * 0.10;
 
