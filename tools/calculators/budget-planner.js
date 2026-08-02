@@ -67,6 +67,7 @@ document.getElementById("resultsSection").scrollIntoView({
     behavior: "smooth",
     block: "start"
 });
+}
 const profitCard = document.getElementById("profitCard");
 
 if (profit >= 0) {
