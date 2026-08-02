@@ -484,7 +484,12 @@
 "profit_margin": "هامش الربح",
 
 "business_recommendations": "💡 توصيات الأعمال",
-"business_health_score": "📊 درجة صحة المشروع"}
+"business_health_score": "📊 درجة صحة المشروع",
+"health_initial_message": "احسب ميزانيتك لمعرفة مستوى صحة مشروعك."
+
+
+
+}
 
 
 
