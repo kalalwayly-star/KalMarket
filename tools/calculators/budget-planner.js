@@ -63,12 +63,7 @@ function calculateBudget() {
 
     document.getElementById("profitMargin").textContent =
         margin.toFixed(1) + "%";
-document.getElementById("resultsSection").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-});
-}
-const profitCard = document.getElementById("profitCard");
+   const profitCard = document.getElementById("profitCard");
 
 if (profit >= 0) {
     profitCard.classList.remove("loss");
@@ -76,6 +71,11 @@ if (profit >= 0) {
 } else {
     profitCard.classList.remove("profit");
     profitCard.classList.add("loss");
+}
+document.getElementById("resultsSection").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+});
 }
   
 function generateRecommendations(
@@ -108,12 +108,12 @@ if (revenue <= 0) {
             .join("");
  return;
 }
-}
+
 const rentPercent = (rent / revenue) * 100;
 const payrollPercent = (payroll / revenue) * 100;
 const inventoryPercent = (inventory / revenue) * 100;
 const marketingPercent = (marketing / revenue) * 100;
-   
+} 
 function resetBudget() {
 
     document.getElementById("monthlyRevenue").value = "";
