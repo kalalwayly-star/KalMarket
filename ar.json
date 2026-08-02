@@ -452,7 +452,7 @@
 
   "business_readiness_score": "درجة جاهزية المشروع",
     "readiness_initial_message": "احسب خطة بدء مشروعك لمعرفة درجة الجاهزية.",
-    {
+    
   "startup_cost_title": "💰 حاسبة تكلفة بدء المشروع",
 
   "business_setup_costs": "🏢 تكاليف تأسيس المشروع",
@@ -462,7 +462,7 @@
   "equipment_costs": "🛠 تكاليف المعدات",
 
   "inventory_costs": "📦 تكاليف المخزون"
-}
+
 }
 
 
