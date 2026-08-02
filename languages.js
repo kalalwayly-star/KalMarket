@@ -91,6 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // Get translated text from JavaScript
 window.t = function (key) {
 
-    return window.translations[key] || key;
+    return window.translations[key] || "";
 
 };
