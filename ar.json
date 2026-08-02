@@ -450,7 +450,8 @@
 
   "recommended_reserve": "الاحتياطي النقدي الموصى به",
 
-  "business_readiness_score": "درجة جاهزية المشروع"
+  "business_readiness_score": "درجة جاهزية المشروع",
+    "readiness_initial_message": "احسب خطة بدء مشروعك لمعرفة درجة الجاهزية."
 }
 
 
