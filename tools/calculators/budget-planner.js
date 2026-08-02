@@ -207,5 +207,5 @@ function formatCurrency(amount) {
         currency: "CAD"
     });
 
-}}
+}
 
