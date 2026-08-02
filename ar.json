@@ -485,9 +485,9 @@
 
 "business_recommendations": "💡 توصيات الأعمال",
 "business_health_score": "📊 درجة صحة المشروع",
-"health_initial_message": "احسب ميزانيتك لمعرفة مستوى صحة مشروعك."
-
-
+"health_initial_message": "احسب ميزانيتك لمعرفة مستوى صحة مشروعك.",
+"profit_calculator": "حاسبة الأرباح",
+"profit_calculator_description": "احسب أرباح مشروعك ومصروفاتك وهامش الربح."
 
 }
 
