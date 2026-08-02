@@ -215,6 +215,7 @@ function generateStartupRecommendations(
 ) {
 
     const recommendations = [];
+    const actionPlan = [];
 
 
     if (equipmentTotal > startupTotal * 0.40) {
@@ -229,8 +230,12 @@ function generateStartupRecommendations(
     if (inventoryTotal > startupTotal * 0.35) {
 
         recommendations.push(
-            "📦 Inventory cost is high. Consider starting with a smaller inventory and increasing stock after sales grow."
-        );
+    translations["inventory_high"]
+);
+
+actionPlan.push(
+    translations["action_reduce_inventory"]
+);
 
     }
 
@@ -238,17 +243,25 @@ function generateStartupRecommendations(
     if (reserve < startupTotal * 0.10) {
 
         recommendations.push(
-            "💰 Your emergency reserve is low. Try to keep extra cash available for unexpected expenses."
-        );
+    translations["reserve_low"]
+);
+
+actionPlan.push(
+    translations["action_increase_reserve"]
+);
 
     }
 
 
     if (startupTotal < 10000) {
 
-        recommendations.push(
-            "🟢 Your startup cost is relatively low. Focus on controlling expenses and growing gradually."
-        );
+       recommendations.push(
+    translations["startup_moderate"]
+);
+
+actionPlan.push(
+    translations["action_cashflow_plan"]
+);
 
     }
 
@@ -256,15 +269,23 @@ function generateStartupRecommendations(
     if (startupTotal >= 10000 && startupTotal < 50000) {
 
         recommendations.push(
-            "🟡 Your startup investment is moderate. Create a clear monthly plan before spending."
-        );
+    translations["startup_high"]
+);
+
+actionPlan.push(
+    translations["action_review_expenses"]
+);
     }
 
     if (startupTotal >= 50000) {
 
         recommendations.push(
-            "🔴 Your startup investment is high. Review every major expense before committing."
-        );
+    translations["startup_high"]
+);
+
+actionPlan.push(
+    translations["action_review_expenses"]
+);
     }
 
     if (recommendations.length === 0) {
@@ -275,11 +296,32 @@ function generateStartupRecommendations(
     }
 
     document.getElementById("startupRecommendations").innerHTML =
-        recommendations
+
+    recommendations
         .map(item =>
             `<div class="recommendation-item">${item}</div>`
         )
-        .join("");
+        .join("")
+
+    +
+
+    (actionPlan.length > 0
+        ? `
+        <hr>
+
+        <h4 data-i18n="priority_action_plan">
+            ⚠️ Priority Action Plan
+        </h4>
+
+        <ol class="action-plan">
+
+            ${actionPlan
+                .map(item => `<li>${item}</li>`)
+                .join("")}
+
+        </ol>
+        `
+        : "");
 }
  function calculateReadinessScore(
     startupTotal,
