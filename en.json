@@ -49,6 +49,8 @@
 
 "action_cashflow_plan": "Prepare a monthly cash-flow budget.",
 
-"action_review_expenses": "Review all major startup expenses before investing."
+"action_review_expenses": "Review all major startup expenses before investing.",
+  "profit_calculator": "Profit Calculator",
+"profit_calculator_description": "Calculate your business profit, expenses, and profit margin."
   
 }
