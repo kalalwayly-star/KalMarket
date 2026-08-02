@@ -1,5 +1,6 @@
 // Set the default language to English or the language from localStorage
 let currentLanguage = localStorage.getItem("language") || "en";
+window.translations = {};
 
 function loadLanguage(language) {
     fetch(`${language}.json`)
@@ -8,9 +9,15 @@ function loadLanguage(language) {
             return response.json();
         })
         .then(translations => {
-            localStorage.setItem("language", language);
-            updateText(translations, language);
-        })
+
+    // Save translations globally
+    window.translations = translations;
+
+    localStorage.setItem("language", language);
+
+    updateText(translations, language);
+
+})
         .catch(error => {
             console.error("Error loading language file:", error);
 
@@ -81,3 +88,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. Initial Load on page open
     loadLanguage(currentLanguage);
 });
+// Get translated text from JavaScript
+window.t = function (key) {
+
+    return window.translations[key] || key;
+
+};
