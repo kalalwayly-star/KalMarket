@@ -230,11 +230,11 @@ function generateStartupRecommendations(
     if (inventoryTotal > startupTotal * 0.35) {
 
         recommendations.push(
-    t["inventory_high"]
+   window.t["inventory_high"]
 );
 
 actionPlan.push(
-    t["action_reduce_inventory"]
+    window.t["action_reduce_inventory"]
 );
 
     }
@@ -243,11 +243,11 @@ actionPlan.push(
     if (reserve < startupTotal * 0.10) {
 
         recommendations.push(
-    t["reserve_low"]
+    window.t["reserve_low"]
 );
 
 actionPlan.push(
-    t["action_increase_reserve"]
+    window.t["action_increase_reserve"]
 );
 
     }
@@ -256,11 +256,11 @@ actionPlan.push(
     if (startupTotal < 10000) {
 
        recommendations.push(
-    t["startup_moderate"]
+    window.t["startup_moderate"]
 );
 
 actionPlan.push(
-    t["action_cashflow_plan"]
+    window.t["action_cashflow_plan"]
 );
 
     }
@@ -269,22 +269,22 @@ actionPlan.push(
     if (startupTotal >= 10000 && startupTotal < 50000) {
 
         recommendations.push(
-    t["startup_high"]
+    window.t["startup_high"]
 );
 
 actionPlan.push(
-    t["action_review_expenses"]
+    window.t["action_review_expenses"]
 );
     }
 
     if (startupTotal >= 50000) {
 
         recommendations.push(
-    t["startup_high"]
+    window.t["startup_high"]
 );
 
 actionPlan.push(
-    t["action_review_expenses"]
+    window.t["action_review_expenses"]
 );
     }
 
