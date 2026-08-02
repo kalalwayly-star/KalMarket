@@ -53,23 +53,43 @@ function loadLanguage(language) {
         });
 }
 function updateText(translations, language) {
-    // 2. PLACEHOLDERS (Critical for Post Ad page inputs)
+
+    // 1. Translate normal text
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+
+        const key = el.getAttribute("data-i18n");
+
+        if (translations[key]) {
+            el.textContent = translations[key];
+        } else {
+            console.warn("Missing translation:", key);
+        }
+
+    });
+
+    // 2. Translate placeholders
     document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+
         const key = el.getAttribute("data-i18n-placeholder");
+
         if (translations[key]) {
             el.placeholder = translations[key];
         }
+
     });
 
-    // 3. DIRECTION & LAYOUT SUPPORT
+    // 3. RTL / LTR support
     const isArabic = (language === "ar");
-    
-    // Set text direction
-    document.documentElement.setAttribute("dir", isArabic ? "rtl" : "ltr");
+
+    document.documentElement.setAttribute(
+        "dir",
+        isArabic ? "rtl" : "ltr"
+    );
+
     document.documentElement.lang = language;
 
-    // Apply alignment to body to ensure Arabic moves to the right
-    document.body.style.textAlign = isArabic ? "right" : "left";
+    document.body.style.textAlign =
+        isArabic ? "right" : "left";
 }
 
 // Set up language buttons and switcher
