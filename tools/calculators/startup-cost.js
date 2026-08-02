@@ -125,7 +125,20 @@ generateStartupRecommendations(
     document.getElementById("startupTotal").textContent =
         formatCurrency(startupTotal);
 
+const personalInvestment = startupTotal * 0.30;
 
+const businessLoan = startupTotal * 0.70;
+
+const recommendedReserve = startupTotal * 0.10;
+
+document.getElementById("personalInvestment").textContent =
+    formatCurrency(personalInvestment);
+
+document.getElementById("businessLoan").textContent =
+    formatCurrency(businessLoan);
+
+document.getElementById("recommendedReserve").textContent =
+    formatCurrency(recommendedReserve);
 
     document.getElementById("startupResults").scrollIntoView({
         behavior: "smooth",
