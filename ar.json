@@ -427,7 +427,30 @@
 
   "emergency_cash_reserve": "احتياطي نقدي للطوارئ",
 
-  "funding_option": "خيارات التمويل"
+  "funding_option": "خيارات التمويل",
+    "reserve_funds": "الأموال الاحتياطية",
+  "emergency_cash_reserve": "احتياطي نقدي للطوارئ",
+
+  "funding_option": "خيار التمويل",
+
+  "personal_investment": "الاستثمار الشخصي",
+  "business_loan": "قرض تجاري مقترح",
+
+  "calculate": "احسب",
+  "reset": "إعادة تعيين",
+
+  "total_setup": "تكاليف التأسيس",
+  "total_equipment": "تكاليف المعدات",
+  "total_inventory": "تكاليف المخزون",
+  "total_startup": "إجمالي تكلفة بدء المشروع",
+
+  "startup_recommendations": "توصيات بدء المشروع",
+
+  "funding_breakdown": "تفصيل التمويل",
+
+  "recommended_reserve": "الاحتياطي النقدي الموصى به",
+
+  "business_readiness_score": "درجة جاهزية المشروع"
 }
 
 
