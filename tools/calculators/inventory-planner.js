@@ -241,73 +241,17 @@ function updateInventoryHealth(
     inventoryValue
 ) {
 
-    let html = "";
-
-    if (currentStock <= reorderPoint) {
-
-        html = `
-        <div class="strategy-box warning">
-
-            <h4>🟠 Inventory Needs Attention</h4>
-
-            <p>
-            Your inventory has reached the reorder point.
-            Place a new order soon to avoid running out of stock.
-            </p>
-
-        </div>`;
-
-    }
-    else if (daysRemaining < 14) {
-
-        html = `
-        <div class="strategy-box warning">
-
-            <h4>🟡 Inventory Running Low</h4>
-
-            <p>
-            You have less than two weeks of inventory remaining.
-            Plan your next purchase soon.
-            </p>
-
-        </div>`;
-
-    }
-    else if (inventoryValue > 10000) {
-
-        html = `
-        <div class="strategy-box">
-
-            <h4>🔵 High Inventory Investment</h4>
-
-            <p>
-            A large amount of cash is tied up in inventory.
-            Review whether your stock level is higher than necessary.
-            </p>
-
-        </div>`;
-
-    }
-    else {
-
-        html = `
+    document.getElementById("inventoryHealth").innerHTML = `
         <div class="strategy-box success">
-
-            <h4>🟢 Excellent Inventory Health</h4>
-
+            <h4>TEST</h4>
             <p>
-            Your inventory level is balanced and your reorder timing looks healthy.
+                Current Stock: ${currentStock}<br>
+                Reorder Point: ${reorderPoint}<br>
+                Days Remaining: ${daysRemaining}<br>
+                Inventory Value: ${inventoryValue}
             </p>
-
-        </div>`;
-
-    }
-console.log(html);
-document.getElementById("inventoryHealth").innerHTML = `
-
-<p data-i18n="inventory_health_placeholder">
-Your inventory health will appear here.
-</p>`;
+        </div>
+    `;
 }
 
 function resetInventory() {
