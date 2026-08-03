@@ -73,6 +73,9 @@
 "net_profit": "Net Profit",
 "profit_recommendations": "💡 Profit Recommendations",
   "pricing_strategy": "Smart Pricing Strategy Calculator",
-"pricing_strategy_description": "Compare different prices and sales volumes to find the most profitable strategy for your business."
+"pricing_strategy_description": "Compare different prices and sales volumes to find the most profitable strategy for your business.",
+  "inventory_planner": "Inventory & Stock Planner",
+
+"inventory_planner_description": "Manage inventory, calculate reorder points, and optimize stock levels."
   
 }
