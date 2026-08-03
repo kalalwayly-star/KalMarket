@@ -1236,3 +1236,13 @@ featured-badge {
     }
 
 }
+.best-row {
+    background: #fff8d9 !important;
+    font-weight: bold;
+    border-left: 5px solid #f5b700;
+}
+
+
+.best-row td:first-child {
+    color: #b88600;
+}
