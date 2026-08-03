@@ -620,7 +620,26 @@
 
 "inventory_manager_intro": "إدارة المخزون، ومراقبة مستويات البضائع، وحساب نقطة إعادة الطلب، واتخاذ قرارات شراء أكثر ذكاءً.",
 
-"inventory_manager_description": "إدارة المخزون، ومراقبة مستويات البضائع، وتحسين قرارات الشراء."
+"inventory_manager_description": "إدارة المخزون، ومراقبة مستويات البضائع، وتحسين قرارات الشراء.",
+    "inventory_health": "📊 صحة المخزون",
+
+"inventory_health_placeholder": "ستظهر هنا حالة صحة المخزون.",
+
+"inventory_needs_attention": "🟠 المخزون يحتاج إلى انتباه",
+
+"inventory_needs_attention_desc": "وصل مخزونك إلى نقطة إعادة الطلب. يُنصح بطلب كمية جديدة قريبًا لتجنب نفاد المخزون.",
+
+"inventory_running_low": "🟡 المخزون منخفض",
+
+"inventory_running_low_desc": "لديك مخزون يكفي لأقل من أسبوعين. خطط لطلب شراء جديد قريبًا.",
+
+"high_inventory_investment": "🔵 استثمار كبير في المخزون",
+
+"high_inventory_investment_desc": "هناك مبلغ كبير من المال مرتبط بالمخزون. راجع مستوى المخزون واستراتيجية الشراء.",
+
+"excellent_inventory_health": "🟢 حالة المخزون ممتازة",
+
+"excellent_inventory_health_desc": "مستوى المخزون لديك متوازن وتوقيت إعادة الطلب مناسب."
 }
 
 
