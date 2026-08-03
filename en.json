@@ -86,6 +86,13 @@
 "inventory_manager_description": "Manage inventory, monitor stock levels, and optimize purchasing decisions.",
   "mortgage_calculator": "🏠 Smart Mortgage Calculator",
 
-"mortgage_calculator_description": "Calculate mortgage payments, interest costs, and loan details."
+"mortgage_calculator_description": "Calculate mortgage payments, interest costs, and loan details.",
+  "extra_payment": "💡 Extra Payment Option",
+
+"extra_monthly_payment": "Extra Monthly Payment",
+
+"interest_savings": "💰 Interest Savings",
+
+"time_saved": "⏳ Time Saved"
   
 }
