@@ -22,6 +22,8 @@ function calculateMortgage() {
 
     const loanTerm =
         Number(document.getElementById("loanTerm").value) || 0;
+    const extraPayment =
+    Number(document.getElementById("extraPayment")?.value) || 0;
 
     // Loan calculation
 
@@ -57,7 +59,47 @@ function calculateMortgage() {
     const totalInterest =
         totalPayments - loanAmount;
     
-const monthlyInterest =
+    // Extra payment calculation
+
+let savedInterest = 0;
+let yearsSaved = 0;
+
+
+if (extraPayment > 0 && monthlyRate > 0) {
+
+    let balance = loanAmount;
+    let months = 0;
+    let interestPaid = 0;
+
+
+    while (balance > 0 && months < numberOfPayments) {
+
+        let interest =
+            balance * monthlyRate;
+
+
+        let principal =
+            monthlyPayment + extraPayment - interest;
+
+
+        balance -= principal;
+
+
+        interestPaid += interest;
+
+        months++;
+
+    }
+
+
+    savedInterest =
+        totalInterest - interestPaid;
+
+
+    yearsSaved =
+        (numberOfPayments - months) / 12;
+
+}const monthlyInterest =
     loanAmount * monthlyRate;
 
 const monthlyPrincipal =
@@ -76,6 +118,13 @@ const monthlyPrincipal =
 
     document.getElementById("totalInterestResult").textContent =
         formatCurrency(totalInterest);
+
+    document.getElementById("interestSavingsResult").textContent =
+    formatCurrency(savedInterest);
+
+
+document.getElementById("timeSavedResult").textContent =
+    yearsSaved.toFixed(1) + " Years";
     
 document.getElementById("monthlyInterestResult").textContent =
     formatCurrency(monthlyInterest);
@@ -168,7 +217,12 @@ function resetMortgage() {
 
     document.getElementById("totalInterestResult").textContent =
         formatCurrency(0);
+document.getElementById("interestSavingsResult").textContent =
+    formatCurrency(0);
 
+
+document.getElementById("timeSavedResult").textContent =
+    "0 Years";
     document.getElementById("mortgageRecommendation").innerHTML = `
         <p>
         Calculate your mortgage to see recommendations.
