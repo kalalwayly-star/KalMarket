@@ -10,6 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+console.log("variableCost:", document.getElementById("variableCost"));
+console.log("rentCost:", document.getElementById("rentCost"));
+console.log("insuranceCost:", document.getElementById("insuranceCost"));
+console.log("utilitiesCost:", document.getElementById("utilitiesCost"));
+console.log("payrollCost:", document.getElementById("payrollCost"));
+console.log("marketingCost:", document.getElementById("marketingCost"));
+console.log("otherFixedCost:", document.getElementById("otherFixedCost"));
+
 function analyzePricing() {
 
     const variableCost =
