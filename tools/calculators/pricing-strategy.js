@@ -43,7 +43,7 @@ function analyzePricing() {
         Number(document.getElementById("sales4").value) || 0,
          Number(document.getElementById("sales5").value) || 0,
          Number(document.getElementById("sales6").value) || 0,
-         Number(document.getElementById("sales4").value) || 0
+         Number(document.getElementById("sales7").value) || 0
     ];
 
     let results = [];
