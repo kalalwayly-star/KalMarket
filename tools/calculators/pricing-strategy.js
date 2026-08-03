@@ -190,7 +190,9 @@ function displayPricingResults(results, bestStrategy) {
 
             <td>${formatCurrency(item.totalCost)}</td>
 
-            <td>${formatCurrency(item.profit)}</td>
+            <td class="${item.profit < 0 ? 'negative-profit' : 'positive-profit'}">
+    ${formatCurrency(item.profit)}
+</td>
 
         </tr>
 
