@@ -169,29 +169,53 @@ function generateAmortizationTable(
     const tbody =
         document.getElementById("scheduleBody");
 
+    if (!tbody) return;
+
     tbody.innerHTML = "";
 
     let balance = loanAmount;
 
+    // Start from next month
+    let paymentDate = new Date();
+    paymentDate.setMonth(paymentDate.getMonth() + 1);
+
+
     for (let payment = 1; payment <= numberOfPayments; payment++) {
+
 
         const interest =
             balance * monthlyRate;
 
+
         const principal =
             monthlyPayment - interest;
 
+
         balance -= principal;
+
 
         if (balance < 0) balance = 0;
 
-        const row = document.createElement("tr");
+
+        const formattedDate =
+            paymentDate.toLocaleDateString(
+                "en-CA",
+                {
+                    year: "numeric",
+                    month: "short"
+                }
+            );
+
+
+        const row =
+            document.createElement("tr");
+
 
         row.innerHTML = `
 
             <td>${payment}</td>
 
-            <td>${payment}</td>
+            <td>${formattedDate}</td>
 
             <td>${formatCurrency(monthlyPayment)}</td>
 
@@ -203,10 +227,20 @@ function generateAmortizationTable(
 
         `;
 
+
         tbody.appendChild(row);
 
-        if (balance <= 0)
+
+        // Move to next month
+
+        paymentDate.setMonth(
+            paymentDate.getMonth() + 1
+        );
+
+
+        if (balance <= 0) {
             break;
+        }
 
     }
 
