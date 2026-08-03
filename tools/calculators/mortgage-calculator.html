@@ -220,12 +220,20 @@ placeholder="Interest Rate">
 Loan Term (Years)
 </label>
 
-<input
-type="number"
-id="loanTerm"
-data-i18n-placeholder="loan_term"
-placeholder="Loan Term"
-value="25">
+<label data-i18n="loan_term">
+    Loan Term (Years)
+</label>
+
+<select id="loanTerm">
+
+    <option value="10">10 Years</option>
+    <option value="15">15 Years</option>
+    <option value="20">20 Years</option>
+    <option value="25" selected>25 Years</option>
+    <option value="30">30 Years</option>
+    <option value="35">35 Years</option>
+
+</select>
 
 
 </div>
