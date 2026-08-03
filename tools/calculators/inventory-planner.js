@@ -235,6 +235,7 @@ function generateInventoryRecommendation(
 }
 
 function updateInventoryHealth(
+console.log("Inventory Health function is running");
     currentStock,
     reorderPoint,
     daysRemaining,
@@ -304,6 +305,7 @@ function updateInventoryHealth(
     }
 
 document.getElementById("inventoryHealth").innerHTML = `
+console.log(html);
 <p data-i18n="inventory_health_placeholder">
 Your inventory health will appear here.
 </p>`;
