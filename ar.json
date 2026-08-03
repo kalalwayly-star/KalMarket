@@ -510,7 +510,88 @@
 "profit_recommendations": "💡 توصيات الأرباح",
 "cost_of_goods": "تكلفة المنتجات المباعة",
     "pricing_strategy": "حاسبة استراتيجية التسعير الذكية",
-"pricing_strategy_description": "قارن بين أسعار البيع المختلفة وأحجام المبيعات للعثور على أفضل استراتيجية ربحية لمشروعك."
+"pricing_strategy_description": "قارن بين أسعار البيع المختلفة وأحجام المبيعات للعثور على أفضل استراتيجية ربحية لمشروعك.",
+    "pricing_strategy_title": "🎯 حاسبة استراتيجية التسعير الذكية",
+
+  "pricing_strategy_intro": "قارن بين أسعار البيع المختلفة وكميات المبيعات للعثور على الاستراتيجية الأكثر ربحية لمشروعك.",
+
+  "product_information": "📦 معلومات المنتج / الخدمة",
+
+  "product_service_name": "اسم المنتج أو الخدمة",
+
+  "variable_cost_per_unit": "التكلفة المتغيرة لكل وحدة / خدمة",
+
+  "monthly_fixed_costs": "🏢 التكاليف الثابتة الشهرية",
+
+  "other_fixed_costs": "تكاليف ثابتة أخرى",
+
+  "pricing_options": "💲 خيارات التسعير",
+
+  "sales_forecast": "📈 توقعات المبيعات الشهرية",
+
+  "analyze_pricing": "تحليل التسعير",
+
+  "pricing_analysis_results": "📊 نتائج تحليل التسعير",
+
+  "pricing_results_placeholder": "قم بتشغيل التحليل لمقارنة استراتيجيات التسعير.",
+
+
+  "pricing_recommendation": "💡 توصية استراتيجية التسعير",
+
+  "run_analysis_recommendation": "قم بتشغيل التحليل للحصول على توصية التسعير.",
+
+
+  "volume_strategy": "🟢 استراتيجية زيادة المبيعات",
+
+  "premium_strategy": "🔵 استراتيجية التسعير المميز",
+
+
+  "break_even_analysis": "📉 تحليل نقطة التعادل",
+
+  "run_analysis_break_even": "قم بتشغيل التحليل لحساب نقطة التعادل.",
+
+  "units_needed": "عدد الوحدات المطلوبة",
+
+  "revenue_needed": "الإيرادات المطلوبة",
+
+
+  "price_change_simulator": "📈 محاكي تغيير السعر",
+
+  "current_price": "السعر الحالي",
+
+  "current_sales": "المبيعات الشهرية الحالية",
+
+  "price_change_percent": "نسبة تغيير السعر %",
+
+  "sales_change_percent": "نسبة تغير المبيعات المتوقعة %",
+
+  "simulate_price": "محاكاة تغيير السعر",
+
+  "simulation_results": "📊 نتائج المحاكاة",
+
+  "run_simulation": "قم بتشغيل المحاكاة لمقارنة استراتيجية التسعير الجديدة.",
+
+
+  "positive_result": "🟢 نتيجة إيجابية",
+
+  "negative_result": "🔴 نتيجة سلبية",
+
+  "current_revenue": "الإيرادات الحالية",
+
+  "new_price": "السعر الجديد",
+
+  "new_sales": "المبيعات الجديدة",
+
+  "new_revenue": "الإيرادات الجديدة",
+
+  "difference": "الفرق",
+
+
+  "profit_chart": "📊 تحليل اتجاه الأرباح",
+
+  "selling_price": "سعر البيع",
+
+  "profit": "الربح"
 
 }
 
