@@ -677,7 +677,12 @@
 
   "next_order_date": "📅 موعد الطلب المقترح التالي",
 
-  "inventory_recommendation": "💡 توصية المخزون"
+  "inventory_recommendation": "💡 توصية المخزون",
+    
+"mortgage_calculator": "🏠 حاسبة الرهن العقاري الذكية",
+
+"mortgage_calculator_description": "احسب أقساط الرهن العقاري، وتكاليف الفائدة، وتفاصيل القرض."
+
 
 }
 
