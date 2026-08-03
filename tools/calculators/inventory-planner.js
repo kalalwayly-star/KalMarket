@@ -91,7 +91,6 @@ nextOrderDate.setDate(
     Math.max(0, Math.floor(daysRemaining - deliveryDays))
 
 );
-
     // =============================
     // Display Results
     // =============================
@@ -113,8 +112,17 @@ nextOrderDate.setDate(
 
     document.getElementById("suggestedOrderResult").textContent =
         suggestedOrder;
+document.getElementById("cashLockedResult").textContent =
+    formatCurrency(cashLocked);
 
+document.getElementById("stockCoverageResult").textContent =
+    stockCoverage.toFixed(1) + " Days";
 
+document.getElementById("turnoverResult").textContent =
+    inventoryTurnover.toFixed(2);
+
+document.getElementById("nextOrderDateResult").textContent =
+    nextOrderDate.toLocaleDateString();
 
     generateInventoryRecommendation(
         currentStock,
@@ -124,8 +132,6 @@ nextOrderDate.setDate(
     );
 
 }
-
-
 
 function generateInventoryRecommendation(
     currentStock,
