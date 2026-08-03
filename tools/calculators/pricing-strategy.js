@@ -218,6 +218,7 @@ function displayPricingResults(results, bestStrategy) {
         html;
     generatePricingRecommendation(bestStrategy);
     calculateBreakEven(bestStrategy);
+    createProfitChart(results);
 }
 
 function resetPricing() {
@@ -466,4 +467,108 @@ function simulatePriceChange() {
     ${message}
 
     `;
+}
+function createProfitChart(results) {
+
+
+    const ctx =
+        document
+        .getElementById("profitChart")
+        .getContext("2d");
+
+
+    const prices =
+        results.map(item => item.price);
+
+
+    const profits =
+        results.map(item => item.profit);
+
+
+
+    if (window.profitChartInstance) {
+
+        window.profitChartInstance.destroy();
+
+    }
+
+
+
+    window.profitChartInstance =
+    new Chart(ctx, {
+
+        type: "line",
+
+        data: {
+
+            labels: prices,
+
+            datasets: [
+
+                {
+
+                    label: "Profit",
+
+                    data: profits,
+
+                    tension:0.3,
+
+                    borderWidth:3
+
+                }
+
+            ]
+
+        },
+
+
+        options: {
+
+            responsive:true,
+
+            plugins: {
+
+                legend: {
+
+                    display:true
+
+                }
+
+            },
+
+
+            scales: {
+
+                x: {
+
+                    title: {
+
+                        display:true,
+
+                        text:"Selling Price"
+
+                    }
+
+                },
+
+
+                y: {
+
+                    title: {
+
+                        display:true,
+
+                        text:"Profit"
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    });
+
+
 }
