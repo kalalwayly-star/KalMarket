@@ -213,6 +213,7 @@ function displayPricingResults(results, bestStrategy) {
 
     document.getElementById("pricingResults").innerHTML =
         html;
+    generatePricingRecommendation(bestStrategy);
 }
 
 function resetPricing() {
@@ -230,7 +231,6 @@ function resetPricing() {
 
 function formatCurrency(amount) {
 
-
     return amount.toLocaleString("en-CA", {
 
         style: "currency",
@@ -239,4 +239,51 @@ function formatCurrency(amount) {
 
     });
 
+}
+function generatePricingRecommendation(bestStrategy) {
+
+    let recommendation = "";
+
+    const averagePrice =
+        (
+            bestStrategy.price +
+            bestStrategy.price
+        ) / 2;
+
+    if (bestStrategy.price <= averagePrice) {
+
+        recommendation = `
+        <div class="strategy-box">
+
+            <h4>
+            🟢 Volume Strategy
+            </h4>
+
+            <p>
+            Your best result comes from a competitive price.
+            Focus on selling more units and attracting more customers.
+            </p>
+
+        </div>
+        `;
+    } 
+    else {
+
+        recommendation = `
+        <div class="strategy-box">
+
+            <h4>
+            🔵 Premium Strategy
+            </h4>
+
+            <p>
+            Your best result comes from a higher price.
+            Focus on quality, customer value, and service experience.
+            </p>
+
+        </div>
+        `;
+    }
+    document.getElementById("pricingRecommendation").innerHTML =
+        recommendation;
 }
