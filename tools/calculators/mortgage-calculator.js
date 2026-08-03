@@ -7,6 +7,19 @@ document.addEventListener("DOMContentLoaded", () => {
     document
         .getElementById("resetMortgageBtn")
         ?.addEventListener("click", resetMortgage);
+    document
+.getElementById("toggleScheduleBtn")
+?.addEventListener("click", () => {
+
+    const container =
+        document.getElementById("scheduleContainer");
+
+    container.style.display =
+        container.style.display === "none"
+            ? "block"
+            : "none";
+
+});
 });
 
 function calculateMortgage() {
