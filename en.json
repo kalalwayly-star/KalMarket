@@ -71,6 +71,8 @@
 "yearly": "Yearly",
 "calculate_profit": "Calculate Profit",
 "net_profit": "Net Profit",
-"profit_recommendations": "💡 Profit Recommendations"
+"profit_recommendations": "💡 Profit Recommendations",
+  "pricing_strategy": "Smart Pricing Strategy Calculator",
+"pricing_strategy_description": "Compare different prices and sales volumes to find the most profitable strategy for your business."
   
 }
