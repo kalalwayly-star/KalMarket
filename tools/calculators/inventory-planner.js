@@ -68,7 +68,29 @@ function calculateInventory() {
             Math.ceil(monthlySales - currentStock + safetyStock)
         );
 
+const cashLocked =
+    inventoryValue;
 
+
+const stockCoverage =
+    daysRemaining;
+
+
+const inventoryTurnover =
+    currentStock > 0
+        ? monthlySales / currentStock
+        : 0;
+
+
+const nextOrderDate = new Date();
+
+nextOrderDate.setDate(
+
+    nextOrderDate.getDate() +
+
+    Math.max(0, Math.floor(daysRemaining - deliveryDays))
+
+);
 
     // =============================
     // Display Results
