@@ -1282,3 +1282,87 @@ featured-badge {
     color:#d60000;
     font-weight:bold;
 }
+/* =====================================
+   Mortgage Amortization Table
+===================================== */
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+
+.results-table th {
+
+    padding: 14px;
+
+    text-align: center;
+
+    background: #5d2de1;
+
+    color: white;
+
+    font-weight: 600;
+
+}
+
+
+.results-table td {
+
+    padding: 12px;
+
+    text-align: center;
+
+    border-bottom: 1px solid #eee;
+
+    font-size: 14px;
+
+}
+
+
+.results-table tr:hover {
+
+    background: #f7f3ff;
+
+}
+
+
+.results-table td:nth-child(5) {
+
+    color: #d9534f;
+
+}
+
+
+.results-table td:nth-child(4) {
+
+    color: #198754;
+
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+
+    .results-table th,
+    .results-table td {
+
+        padding: 8px;
+
+        font-size: 12px;
+
+    }
+
+}
