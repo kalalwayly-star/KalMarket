@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document
         .getElementById("resetPricingBtn")
         ?.addEventListener("click", resetPricing);
+    document
+.getElementById("simulatePriceBtn")
+?.addEventListener("click", simulatePriceChange);
 
 });
 
@@ -356,6 +359,111 @@ function calculateBreakEven(bestStrategy) {
         </p>
 
     </div>
+
+    `;
+}
+function simulatePriceChange() {
+
+
+    const currentPrice =
+        Number(document.getElementById("currentPrice").value) || 0;
+
+    const currentSales =
+        Number(document.getElementById("currentSales").value) || 0;
+
+    const priceChange =
+        Number(document.getElementById("priceChangePercent").value) || 0;
+
+    const salesChange =
+        Number(document.getElementById("salesChangePercent").value) || 0;
+
+    const newPrice =
+        currentPrice * (1 + priceChange / 100);
+
+    const newSales =
+        Math.round(
+            currentSales * (1 + salesChange / 100)
+        );
+
+    const oldRevenue =
+        currentPrice * currentSales;
+
+    const newRevenue =
+        newPrice * newSales;
+
+    const difference =
+        newRevenue - oldRevenue;
+
+    let message;
+
+
+    if (difference > 0) {
+
+        message = `
+        <div class="strategy-box">
+
+        <h4>
+        🟢 Positive Result
+        </h4>
+
+        <p>
+        This price change may increase your revenue.
+        </p>
+
+        </div>
+        `;
+
+    } else {
+
+        message = `
+        <div class="strategy-box">
+
+        <h4>
+        🔴 Negative Result
+        </h4>
+
+        <p>
+        This price change may reduce your revenue.
+        Consider adjusting your strategy.
+        </p>
+
+        </div>
+        `;
+    }
+
+    document.getElementById("priceSimulationResults").innerHTML = `
+
+    <div class="strategy-box">
+
+    <p>
+    <strong>Current Revenue:</strong>
+    ${formatCurrency(oldRevenue)}
+    </p>
+
+    <p>
+    <strong>New Price:</strong>
+    ${formatCurrency(newPrice)}
+    </p>
+
+    <p>
+    <strong>New Sales:</strong>
+    ${newSales}
+    units
+    </p>
+
+    <p>
+    <strong>New Revenue:</strong>
+    ${formatCurrency(newRevenue)}
+    </p>
+
+    <p>
+    <strong>Difference:</strong>
+    ${formatCurrency(difference)}
+    </p>
+
+    </div>
+
+    ${message}
 
     `;
 }
