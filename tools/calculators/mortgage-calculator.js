@@ -154,6 +154,58 @@ document.getElementById("monthlyPrincipalResult").textContent =
 
 }
 
+function generateAmortizationTable(
+    loanAmount,
+    monthlyRate,
+    monthlyPayment,
+    numberOfPayments
+) {
+
+    const tbody =
+        document.getElementById("scheduleBody");
+
+    tbody.innerHTML = "";
+
+    let balance = loanAmount;
+
+    for (let payment = 1; payment <= numberOfPayments; payment++) {
+
+        const interest =
+            balance * monthlyRate;
+
+        const principal =
+            monthlyPayment - interest;
+
+        balance -= principal;
+
+        if (balance < 0) balance = 0;
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+
+            <td>${payment}</td>
+
+            <td>${payment}</td>
+
+            <td>${formatCurrency(monthlyPayment)}</td>
+
+            <td>${formatCurrency(principal)}</td>
+
+            <td>${formatCurrency(interest)}</td>
+
+            <td>${formatCurrency(balance)}</td>
+
+        `;
+
+        tbody.appendChild(row);
+
+        if (balance <= 0)
+            break;
+
+    }
+
+}
 
 function generateMortgageRecommendation(
     monthlyPayment,
