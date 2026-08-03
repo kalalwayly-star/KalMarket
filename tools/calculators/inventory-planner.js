@@ -91,12 +91,7 @@ nextOrderDate.setDate(
     Math.max(0, Math.floor(daysRemaining - deliveryDays))
 
 );
-    updateInventoryHealth(
-    currentStock,
-    reorderPoint,
-    daysRemaining,
-    inventoryValue
-);
+   
     // =============================
     // Display Results
     // =============================
@@ -136,7 +131,12 @@ document.getElementById("nextOrderDateResult").textContent =
         daysRemaining,
         inventoryValue
     );
-
+ updateInventoryHealth(
+    currentStock,
+    reorderPoint,
+    daysRemaining,
+    inventoryValue
+);
 }
 
 function generateInventoryRecommendation(
