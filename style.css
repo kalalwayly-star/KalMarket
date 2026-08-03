@@ -1271,5 +1271,14 @@ featured-badge {
     border-left:5px solid #f5b700;
     padding:20px;
     border-radius:10px;
+}
+.simulation-positive {
+    color: #138a36;
+    font-weight:bold;
+}
 
+
+.simulation-negative {
+    color:#d60000;
+    font-weight:bold;
 }
