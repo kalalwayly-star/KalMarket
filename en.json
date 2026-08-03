@@ -76,6 +76,13 @@
 "pricing_strategy_description": "Compare different prices and sales volumes to find the most profitable strategy for your business.",
   "inventory_planner": "Inventory & Stock Planner",
 
-"inventory_planner_description": "Manage inventory, calculate reorder points, and optimize stock levels."
+"inventory_planner_description": "Manage inventory, calculate reorder points, and optimize stock levels.",
+  "inventory_manager": "Smart Inventory Manager",
+
+"inventory_manager_title": "📦 Smart Inventory Manager",
+
+"inventory_manager_intro": "Manage inventory, monitor stock levels, calculate reorder points, and make smarter purchasing decisions.",
+
+"inventory_manager_description": "Manage inventory, monitor stock levels, and optimize purchasing decisions."
   
 }
