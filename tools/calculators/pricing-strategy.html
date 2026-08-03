@@ -373,8 +373,84 @@ Run the analysis to compare pricing strategies.
         </p>
 
     </div>
-
 </section>   
+<section class="calculator-container">
+
+<div class="calculator-card">
+
+<h3 data-i18n="price_change_simulator">
+📈 Price Change Simulator
+</h3>
+
+
+<label data-i18n="current_price">
+Current Price
+</label>
+
+<input 
+type="number"
+id="currentPrice"
+placeholder="Current Selling Price">
+
+
+<label data-i18n="current_sales">
+Current Monthly Sales
+</label>
+
+<input 
+type="number"
+id="currentSales"
+placeholder="Current Units Sold">
+
+
+<label data-i18n="price_change_percent">
+Price Change %
+</label>
+
+<input 
+type="number"
+id="priceChangePercent"
+value="10">
+
+
+<label data-i18n="sales_change_percent">
+Expected Sales Change %
+</label>
+
+<input 
+type="number"
+id="salesChangePercent"
+value="-5">
+
+
+<button
+id="simulatePriceBtn"
+class="btn primary"
+data-i18n="simulate_price">
+
+Simulate Price Change
+
+</button>
+
+</div>
+
+</section>
+
+<section class="recommendation-card">
+
+<h3 data-i18n="simulation_results">
+📊 Simulation Results
+</h3>
+
+<div id="priceSimulationResults">
+
+<p data-i18n="run_simulation">
+Run the simulation to compare your new pricing.
+</p>
+
+</div>
+</section>
+        
     </main>
 <script src="../../languages.js"></script>
 <script src="pricing-strategy.js"></script>
