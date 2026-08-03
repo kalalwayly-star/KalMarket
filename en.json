@@ -51,6 +51,16 @@
 
 "action_review_expenses": "Review all major startup expenses before investing.",
   "profit_calculator": "Profit Calculator",
-"profit_calculator_description": "Calculate your business profit, expenses, and profit margin."
+"profit_calculator_description": "Calculate your business profit, expenses, and profit margin.",
+  "profit_negative": "🔴 Your business is not profitable yet. Review your expenses and pricing.",
+"profit_low_margin": "🟡 Your profit margin is low. Consider reducing costs or increasing prices.",
+"profit_good_margin": "🟢 Your profit margin is healthy. Keep monitoring your business performance.",
+"expenses_high": "⚠️ Your expenses are high compared to your revenue. Look for ways to reduce costs.",
+"profit_balanced": "✅ Your profit and expenses appear balanced.",
+
+"health_excellent": "🟢 Excellent. Your business appears financially healthy.",
+"health_good": "🟡 Good. Your business is doing well but can be improved.",
+"health_attention": "🟠 Needs attention. Review your expenses and profit strategy.",
+"health_risk": "🔴 High risk. Reduce costs and improve your business plan."
   
 }
