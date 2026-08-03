@@ -591,7 +591,26 @@
 
   "selling_price": "سعر البيع",
 
-  "profit": "الربح"
+  "profit": "الربح",
+    "pricing_options": "💲 خيارات التسعير",
+
+"price_option_1": "خيار السعر 1",
+"price_option_2": "خيار السعر 2",
+"price_option_3": "خيار السعر 3",
+"price_option_4": "خيار السعر 4",
+"price_option_5": "خيار السعر 5",
+"price_option_6": "خيار السعر 6",
+"price_option_7": "خيار السعر 7",
+
+"sales_forecast": "📈 توقعات المبيعات الشهرية",
+
+"sales_option_1": "خيار المبيعات 1",
+"sales_option_2": "خيار المبيعات 2",
+"sales_option_3": "خيار المبيعات 3",
+"sales_option_4": "خيار المبيعات 4",
+"sales_option_5": "خيار المبيعات 5",
+"sales_option_6": "خيار المبيعات 6",
+"sales_option_7": "خيار المبيعات 7"
 
 }
 
