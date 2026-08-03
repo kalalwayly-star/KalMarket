@@ -54,10 +54,14 @@ function calculateMortgage() {
     const totalPayments =
         monthlyPayment * numberOfPayments;
 
-
     const totalInterest =
         totalPayments - loanAmount;
+    
+const monthlyInterest =
+    loanAmount * monthlyRate;
 
+const monthlyPrincipal =
+    monthlyPayment - monthlyInterest;
 
     // Display results
 
@@ -72,7 +76,14 @@ function calculateMortgage() {
 
     document.getElementById("totalInterestResult").textContent =
         formatCurrency(totalInterest);
+    
+document.getElementById("monthlyInterestResult").textContent =
+    formatCurrency(monthlyInterest);
 
+
+document.getElementById("monthlyPrincipalResult").textContent =
+    formatCurrency(monthlyPrincipal); 
+    
     generateMortgageRecommendation(
         monthlyPayment,
         totalInterest,
