@@ -1,0 +1,149 @@
+
+
+<main>
+
+<section class="hero business-hub-hero">
+
+<h2 data-i18n="tax_calculator_title">
+🧾 Smart Tax Estimator Calculator
+</h2>
+
+<p data-i18n="tax_calculator_intro">
+Estimate your taxes and plan your savings.
+</p>
+
+</section>
+
+
+
+<section class="calculator-container">
+
+<div class="calculator-card">
+
+<h3 data-i18n="income_information">
+💰 Income Information
+</h3>
+
+
+<label data-i18n="annual_income">
+Annual Income
+</label>
+
+<input
+type="number"
+id="annualIncome"
+placeholder="Annual Income">
+
+
+<label data-i18n="employment_type">
+Employment Type
+</label>
+
+<select id="employmentType">
+
+<option value="employee">
+Employee
+</option>
+
+<option value="self-employed">
+Self-Employed
+</option>
+
+</select>
+
+
+</div>
+
+</section>
+
+
+
+
+<section class="calculator-container">
+
+<div class="calculator-card">
+
+<h3 data-i18n="deductions">
+📉 Deductions
+</h3>
+
+
+<label data-i18n="business_expenses">
+Business Expenses
+</label>
+
+<input
+type="number"
+id="businessExpenses"
+placeholder="Business Expenses"
+value="0">
+
+
+</div>
+
+</section>
+
+
+
+<section class="calculator-container">
+
+<div class="calculator-card">
+
+<h3 data-i18n="location">
+📍 Province
+</h3>
+
+
+<select id="province">
+
+<option value="MB">
+Manitoba
+</option>
+
+<option value="ON">
+Ontario
+</option>
+
+<option value="AB">
+Alberta
+</option>
+
+<option value="BC">
+British Columbia
+</option>
+
+<option value="SK">
+Saskatchewan
+</option>
+
+
+</select>
+
+
+</div>
+
+</section>
+
+
+
+<div class="button-group">
+
+<button
+id="calculateTaxBtn"
+class="btn primary">
+
+Calculate Tax
+
+</button>
+
+
+<button
+id="resetTaxBtn"
+class="btn">
+
+Reset
+
+</button>
+
+
+</div>
