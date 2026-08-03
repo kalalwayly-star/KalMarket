@@ -237,6 +237,8 @@ function updateInventoryHealth(
     inventoryValue
 ) {
 
+    const t = window.translations || {};
+
     let html = "";
 
     if (currentStock <= reorderPoint) {
@@ -244,65 +246,69 @@ function updateInventoryHealth(
         html = `
         <div class="strategy-box warning">
 
-            <h4>🟠 Inventory Needs Attention</h4>
+            <h4>${t.inventory_needs_attention || "🟠 Inventory Needs Attention"}</h4>
 
             <p>
-            Your inventory has reached the reorder point.
-            Place a new order soon to avoid running out of stock.
+            ${t.inventory_needs_attention_desc || 
+            "Your inventory has reached the reorder point. Place a new order soon to avoid running out of stock."}
             </p>
 
         </div>`;
 
     }
+
     else if (daysRemaining < 14) {
 
         html = `
         <div class="strategy-box warning">
 
-            <h4>🟡 Inventory Running Low</h4>
+            <h4>${t.inventory_running_low || "🟡 Inventory Running Low"}</h4>
 
             <p>
-            You have less than two weeks of inventory remaining.
-            Plan your next purchase soon.
+            ${t.inventory_running_low_desc || 
+            "You have less than two weeks of inventory remaining. Plan your next purchase soon."}
             </p>
 
         </div>`;
 
     }
+
     else if (inventoryValue > 10000) {
 
         html = `
         <div class="strategy-box">
 
-            <h4>🔵 High Inventory Investment</h4>
+            <h4>${t.high_inventory_investment || "🔵 High Inventory Investment"}</h4>
 
             <p>
-            A large amount of cash is tied up in inventory.
-            Review your stock level and purchasing strategy.
+            ${t.high_inventory_investment_desc || 
+            "A large amount of cash is tied up in inventory. Review your stock level and purchasing strategy."}
             </p>
 
         </div>`;
 
     }
+
     else {
 
         html = `
         <div class="strategy-box success">
 
-            <h4>🟢 Excellent Inventory Health</h4>
+            <h4>${t.excellent_inventory_health || "🟢 Excellent Inventory Health"}</h4>
 
             <p>
-            Your inventory level is balanced and your reorder timing looks healthy.
+            ${t.excellent_inventory_health_desc || 
+            "Your inventory level is balanced and your reorder timing looks healthy."}
             </p>
 
         </div>`;
 
     }
 
+
     document.getElementById("inventoryHealth").innerHTML = html;
 
 }
-
 function resetInventory() {
 
     document
