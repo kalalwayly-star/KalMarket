@@ -270,23 +270,73 @@ Reset
 </button>
 
 </div>
+    
+<section class="results-grid">
 
-<section class="recommendation-card">
+    <div class="result-card">
 
-<h3 data-i18n="inventory_results">
-📊 Inventory Analysis
+        <h4 data-i18n="daily_sales">
+            Daily Sales
+        </h4>
 
-</h3>
+        <p id="dailySalesResult">0</p>
 
-<div id="inventoryResults">
+    </div>
 
-<p data-i18n="run_inventory_analysis">
-Run the calculation to analyze your inventory.
 
-</p>
+    <div class="result-card">
 
-</div>
+        <h4 data-i18n="reorder_point">
+            Reorder Point
+        </h4>
 
+        <p id="reorderPointResult">0</p>
+
+    </div>
+
+
+    <div class="result-card">
+
+        <h4 data-i18n="days_remaining">
+            Days of Stock Remaining
+        </h4>
+
+        <p id="daysRemainingResult">0</p>
+
+    </div>
+
+
+    <div class="result-card">
+
+        <h4 data-i18n="inventory_value">
+            Inventory Value
+        </h4>
+
+        <p id="inventoryValueResult">$0.00</p>
+
+    </div>
+
+
+    <div class="result-card">
+
+        <h4 data-i18n="profit_per_unit">
+            Profit Per Unit
+        </h4>
+
+        <p id="profitPerUnitResult">$0.00</p>
+
+    </div>
+
+
+    <div class="result-card">
+
+        <h4 data-i18n="suggested_order">
+            Suggested Order
+        </h4>
+
+        <p id="suggestedOrderResult">0</p>
+
+    </div>
 
 </section>
 
@@ -306,6 +356,20 @@ Run the calculation to analyze your inventory.
 
 
 </section>
+<section class="recommendation-card">
 
+    <h3 data-i18n="inventory_health">
+        📊 Inventory Health
+    </h3>
+
+    <div id="inventoryHealth">
+
+        <p data-i18n="inventory_health_placeholder">
+            Your inventory health will appear here.
+        </p>
+
+    </div>
+
+</section>
 
 </main>
