@@ -143,3 +143,155 @@
 
 </div>
 </header>
+    <main>
+<section class="hero business-hub-hero">
+
+    <h2 data-i18n="pricing_strategy_title">
+        🎯 Smart Pricing Strategy Calculator
+    </h2>
+
+    <p data-i18n="pricing_strategy_intro">
+        Compare different selling prices and sales volumes to find the most profitable strategy for your business.
+    </p>
+
+</section>
+
+<section class="calculator-container">
+
+<div class="calculator-card">
+
+<h3 data-i18n="product_information">
+📦 Product / Service Information
+</h3>
+
+<input
+type="text"
+id="productName"
+data-i18n-placeholder="product_service_name"
+placeholder="Product or Service Name">
+
+<input
+type="number"
+id="variableCost"
+data-i18n-placeholder="variable_cost_per_unit"
+placeholder="Variable Cost Per Unit / Service">
+
+</div>
+
+</section>
+<section class="calculator-container">
+
+<div class="calculator-card">
+
+<h3 data-i18n="monthly_fixed_costs">
+🏢 Monthly Fixed Costs
+</h3>
+
+<input type="number" id="rentCost"
+data-i18n-placeholder="rent_shop"
+placeholder="Rent / Shop">
+
+<input type="number" id="insuranceCost"
+data-i18n-placeholder="insurance"
+placeholder="Insurance">
+
+<input type="number" id="utilitiesCost"
+data-i18n-placeholder="utilities"
+placeholder="Utilities">
+
+<input type="number" id="payrollCost"
+data-i18n-placeholder="payroll"
+placeholder="Payroll">
+
+<input type="number" id="marketingCost"
+data-i18n-placeholder="marketing"
+placeholder="Marketing">
+
+<input type="number" id="otherFixedCost"
+data-i18n-placeholder="other_fixed_costs"
+placeholder="Other Fixed Costs">
+
+</div>
+
+</section>
+<section class="calculator-container">
+
+<div class="calculator-card">
+
+<h3 data-i18n="pricing_options">
+💲 Pricing Options
+</h3>
+
+<input type="number" id="price1" value="40">
+
+<input type="number" id="price2" value="60">
+
+<input type="number" id="price3" value="80">
+
+<input type="number" id="price4" value="100">
+
+</div>
+
+</section>
+<section class="calculator-container">
+
+<div class="calculator-card">
+
+<h3 data-i18n="sales_forecast">
+📈 Monthly Sales Forecast
+</h3>
+
+<input type="number" id="sales1" value="50">
+
+<input type="number" id="sales2" value="100">
+
+<input type="number" id="sales3" value="150">
+
+<input type="number" id="sales4" value="200">
+
+</div>
+
+</section>
+
+  <div class="button-group">
+
+<button
+id="analyzePricingBtn"
+class="btn primary"
+data-i18n="analyze_pricing">
+
+Analyze Pricing
+
+</button>
+
+<button
+id="resetPricingBtn"
+class="btn"
+data-i18n="reset">
+
+Reset
+
+</button>
+
+</div>   
+<section class="recommendation-card">
+
+<h3 data-i18n="pricing_analysis_results">
+📊 Pricing Analysis Results
+</h3>
+
+<div id="pricingResults">
+
+<p data-i18n="pricing_results_placeholder">
+Run the analysis to compare pricing strategies.
+</p>
+
+</div>
+
+</section>
+        
+    </main>
+
+</body>
+</html>
+
