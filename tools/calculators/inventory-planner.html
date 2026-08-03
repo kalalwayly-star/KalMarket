@@ -195,17 +195,13 @@ placeholder="Selling Price">
 
 </section>
 
-
-
 <section class="calculator-container">
 
 <div class="calculator-card">
 
-
 <h3 data-i18n="sales_information">
 📈 Sales Information
 </h3>
-
 
 <input
 type="number"
@@ -220,23 +216,17 @@ id="deliveryDays"
 data-i18n-placeholder="delivery_time"
 placeholder="Supplier Delivery Time (Days)">
 
-
 </div>
 
 </section>
-
-
-
 
 <section class="calculator-container">
 
 <div class="calculator-card">
 
-
 <h3 data-i18n="inventory_settings">
 📦 Inventory Settings
 </h3>
-
 
 <input
 type="number"
@@ -245,22 +235,21 @@ data-i18n-placeholder="current_stock"
 placeholder="Current Stock Quantity">
 
 
+<label data-i18n="safety_stock">
+Safety Stock
+</label>
+
 <input
 type="number"
-id="orderQuantity"
-data-i18n-placeholder="order_quantity"
-placeholder="Recommended Order Quantity">
-
+id="safetyStock"
+data-i18n-placeholder="safety_stock"
+placeholder="Safety Stock"
+value="20">
 
 </div>
-
 </section>
 
-
-
-
 <div class="button-group">
-
 
 <button
 id="calculateInventoryBtn"
@@ -271,7 +260,6 @@ Calculate Inventory
 
 </button>
 
-
 <button
 id="resetInventoryBtn"
 class="btn"
@@ -281,21 +269,14 @@ Reset
 
 </button>
 
-
 </div>
 
-
-
-
-
 <section class="recommendation-card">
-
 
 <h3 data-i18n="inventory_results">
 📊 Inventory Analysis
 
 </h3>
-
 
 <div id="inventoryResults">
 
