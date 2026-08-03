@@ -39,12 +39,7 @@ function calculateInventory() {
     const safetyStock =
         Number(document.getElementById("safetyStock").value) || 0;
 
-updateInventoryHealth(
-    currentStock,
-    reorderPoint,
-    daysRemaining,
-    inventoryValue
-);
+
 
     // =============================
     // Calculations
@@ -95,6 +90,12 @@ nextOrderDate.setDate(
 
     Math.max(0, Math.floor(daysRemaining - deliveryDays))
 
+);
+    updateInventoryHealth(
+    currentStock,
+    reorderPoint,
+    daysRemaining,
+    inventoryValue
 );
     // =============================
     // Display Results
