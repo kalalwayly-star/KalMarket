@@ -176,28 +176,38 @@ function displayPricingResults(results, bestStrategy) {
 
     `;
 
-    results.forEach(item => {
+   results.forEach(item => {
 
-        html += `
+    const isBest =
+        item.price === bestStrategy.price &&
+        item.sales === bestStrategy.sales &&
+        item.profit === bestStrategy.profit;
 
-        <tr>
 
-            <td>${formatCurrency(item.price)}</td>
+    html += `
 
-            <td>${item.sales}</td>
+    <tr class="${isBest ? 'best-row' : ''}">
 
-            <td>${formatCurrency(item.revenue)}</td>
+        <td>
+            ${isBest ? "⭐ Best Choice<br>" : ""}
+            ${formatCurrency(item.price)}
+        </td>
 
-            <td>${formatCurrency(item.totalCost)}</td>
+        <td>${item.sales}</td>
 
-            <td class="${item.profit < 0 ? 'negative-profit' : 'positive-profit'}">
-    ${formatCurrency(item.profit)}
-</td>
+        <td>${formatCurrency(item.revenue)}</td>
 
-        </tr>
+        <td>${formatCurrency(item.totalCost)}</td>
 
-        `;
-    });
+        <td class="${item.profit < 0 ? 'negative-profit' : 'positive-profit'}">
+            ${formatCurrency(item.profit)}
+        </td>
+
+    </tr>
+
+    `;
+
+});
 
     html += `</table>`;
 
