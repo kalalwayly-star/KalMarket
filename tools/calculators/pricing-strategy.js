@@ -214,6 +214,7 @@ function displayPricingResults(results, bestStrategy) {
     document.getElementById("pricingResults").innerHTML =
         html;
     generatePricingRecommendation(bestStrategy);
+    calculateBreakEven(bestStrategy);
 }
 
 function resetPricing() {
@@ -286,4 +287,75 @@ function generatePricingRecommendation(bestStrategy) {
     }
     document.getElementById("pricingRecommendation").innerHTML =
         recommendation;
+}
+function calculateBreakEven(bestStrategy) {
+
+    const fixedCosts = getFixedCosts();
+
+    const contribution =
+        bestStrategy.price -
+        (
+            Number(document.getElementById("variableCost").value) || 0
+        );
+
+    if (contribution <= 0) {
+
+        document.getElementById("breakEvenResults").innerHTML = `
+
+        <div class="strategy-box">
+
+            <h4>
+            ⚠️ Cannot Calculate Break-Even
+            </h4>
+
+            <p>
+            Your selling price must be higher than your product cost.
+            </p>
+
+        </div>
+
+        `;
+
+        return;
+    }
+
+    const breakEvenUnits =
+        Math.ceil(
+            fixedCosts / contribution
+        );
+
+    const breakEvenRevenue =
+        breakEvenUnits *
+        bestStrategy.price;
+
+    document.getElementById("breakEvenResults").innerHTML = `
+
+    <div class="strategy-box">
+
+        <h4>
+        📉 Break-Even Point
+        </h4>
+
+        <p>
+        <strong>
+        Units Needed:
+        </strong>
+
+        ${breakEvenUnits}
+        units/month
+
+        </p>
+
+        <p>
+        <strong>
+        Revenue Needed:
+        </strong>
+
+        ${formatCurrency(breakEvenRevenue)}
+
+        </p>
+
+    </div>
+
+    `;
 }
