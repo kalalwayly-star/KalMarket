@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
         .getElementById("resetMortgageBtn")
         ?.addEventListener("click", resetMortgage);
     document
+.getElementById("downloadPdfBtn")
+?.addEventListener("click", downloadMortgagePDF);
+    document
 .getElementById("toggleScheduleBtn")
 ?.addEventListener("click", () => {
 
@@ -334,7 +337,6 @@ document.getElementById("timeSavedResult").textContent =
     `;
 }
 
-
 function formatCurrency(amount) {
 
     return amount.toLocaleString("en-CA", {
@@ -344,5 +346,65 @@ function formatCurrency(amount) {
         currency: "CAD"
 
     });
+}
+function downloadMortgagePDF() {
+
+    const { jsPDF } = window.jspdf;
+
+    const pdf = new jsPDF();
+
+    pdf.setFontSize(18);
+
+    pdf.text(
+        "Mortgage Amortization Schedule",
+        20,
+        20
+    );
+
+    let y = 35;
+
+    pdf.setFontSize(10);
+
+    pdf.text(
+        "Payment | Date | Payment | Principal | Interest | Balance",
+        20,
+        y
+    );
+
+    y += 10;
+
+    const rows =
+        document.querySelectorAll(
+            "#scheduleBody tr"
+        );
+
+    rows.forEach(row => {
+
+        const data =
+            Array.from(row.children)
+            .map(cell => cell.textContent)
+            .join(" | ");
+
+        pdf.text(
+            data,
+            20,
+            y
+        );
+
+        y += 7;
+
+        if (y > 280) {
+
+            pdf.addPage();
+
+            y = 20;
+
+        }
+
+    });
+
+    pdf.save(
+        "mortgage-amortization.pdf"
+    );
 
 }
