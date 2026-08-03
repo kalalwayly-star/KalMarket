@@ -681,9 +681,15 @@
     
 "mortgage_calculator": "🏠 حاسبة الرهن العقاري الذكية",
 
-"mortgage_calculator_description": "احسب أقساط الرهن العقاري، وتكاليف الفائدة، وتفاصيل القرض."
+"mortgage_calculator_description": "احسب أقساط الرهن العقاري، وتكاليف الفائدة، وتفاصيل القرض.",
+    
+"extra_payment": "💡 خيار الدفعة الإضافية",
 
+"extra_monthly_payment": "الدفعة الشهرية الإضافية",
 
+"interest_savings": "💰 توفير الفائدة",
+
+"time_saved": "⏳ الوقت الموفر"
 }
 
 
