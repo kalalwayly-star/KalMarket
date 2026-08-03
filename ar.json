@@ -639,7 +639,46 @@
 
 "excellent_inventory_health": "🟢 حالة المخزون ممتازة",
 
-"excellent_inventory_health_desc": "مستوى المخزون لديك متوازن وتوقيت إعادة الطلب مناسب."
+"excellent_inventory_health_desc": "مستوى المخزون لديك متوازن وتوقيت إعادة الطلب مناسب.",
+    
+  "selling_price": "سعر البيع",
+
+  "sales_information": "📈 معلومات المبيعات",
+
+  "monthly_sales": "متوسط المبيعات الشهرية",
+
+  "delivery_time": "مدة تسليم المورد (بالأيام)",
+
+  "inventory_settings": "📦 إعدادات المخزون",
+
+  "current_stock": "الكمية الحالية في المخزون",
+
+  "safety_stock": "المخزون الاحتياطي",
+
+  "calculate_inventory": "حساب المخزون",
+
+  "daily_sales": "المبيعات اليومية",
+
+  "reorder_point": "نقطة إعادة الطلب",
+
+  "days_remaining": "أيام المخزون المتبقية",
+
+  "inventory_value": "قيمة المخزون",
+
+  "profit_per_unit": "الربح لكل وحدة",
+
+  "suggested_order": "الطلب المقترح",
+
+  "cash_locked_inventory": "💰 النقد المرتبط بالمخزون",
+
+  "stock_coverage": "📦 تغطية المخزون",
+
+  "inventory_turnover": "🔄 دوران المخزون",
+
+  "next_order_date": "📅 موعد الطلب المقترح التالي",
+
+  "inventory_recommendation": "💡 توصية المخزون"
+
 }
 
 
