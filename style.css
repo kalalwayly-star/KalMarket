@@ -1121,3 +1121,118 @@ featured-badge {
 .button-group .btn {
     flex: 1;
 }
+/* ======================================================
+   Smart Pricing Strategy Calculator
+   ====================================================== */
+
+.pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+.pricing-table th {
+    background: #5d2de1;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    font-weight: 600;
+}
+
+
+.pricing-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+
+.pricing-table tr:hover {
+    background: #f8f5ff;
+}
+
+
+/* Best Strategy Box */
+
+.best-strategy {
+    background: #f3f0ff;
+    border-left: 5px solid #5d2de1;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+}
+
+
+.best-strategy h3 {
+    margin-top: 0;
+    color: #5d2de1;
+}
+
+
+.best-strategy p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+
+/* Negative profit */
+
+.negative-profit {
+    color: #d60000;
+    font-weight: bold;
+}
+
+
+/* Positive profit */
+
+.positive-profit {
+    color: #138a36;
+    font-weight: bold;
+}
+
+
+
+/* Pricing input sections */
+
+.calculator-card input {
+    margin-bottom: 12px;
+}
+
+
+.calculator-card label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+
+
+/* Results card */
+
+#pricingResults {
+    margin-top: 20px;
+}
+
+
+
+/* Mobile table scrolling */
+
+@media(max-width:768px){
+
+    .pricing-table {
+        display:block;
+        overflow-x:auto;
+        white-space:nowrap;
+    }
+
+
+    .pricing-table th,
+    .pricing-table td {
+        padding:10px;
+    }
+
+}
