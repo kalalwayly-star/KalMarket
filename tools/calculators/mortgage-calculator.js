@@ -151,7 +151,12 @@ document.getElementById("monthlyPrincipalResult").textContent =
         totalInterest,
         loanAmount
     );
-
+generateAmortizationTable(
+    loanAmount,
+    monthlyRate,
+    monthlyPayment,
+    numberOfPayments
+);
 }
 
 function generateAmortizationTable(
