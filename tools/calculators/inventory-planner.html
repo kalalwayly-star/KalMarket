@@ -1,0 +1,186 @@
+
+
+
+<main>
+
+<section class="hero business-hub-hero">
+
+    <h2 data-i18n="inventory_planner_title">
+        📦 Inventory & Stock Planning Calculator
+    </h2>
+
+    <p data-i18n="inventory_planner_intro">
+        Plan your inventory, calculate reorder points, and manage your stock efficiently.
+    </p>
+
+</section>
+
+
+<section class="calculator-container">
+
+<div class="calculator-card">
+
+
+<h3 data-i18n="product_information">
+📦 Product Information
+</h3>
+
+
+<input
+type="text"
+id="productName"
+data-i18n-placeholder="product_service_name"
+placeholder="Product Name">
+
+
+<input
+type="number"
+id="unitCost"
+data-i18n-placeholder="unit_cost"
+placeholder="Cost Per Unit">
+
+
+<input
+type="number"
+id="sellingPrice"
+data-i18n-placeholder="selling_price"
+placeholder="Selling Price">
+
+
+</div>
+
+</section>
+
+
+
+<section class="calculator-container">
+
+<div class="calculator-card">
+
+
+<h3 data-i18n="sales_information">
+📈 Sales Information
+</h3>
+
+
+<input
+type="number"
+id="monthlySales"
+data-i18n-placeholder="monthly_sales"
+placeholder="Average Monthly Sales">
+
+
+<input
+type="number"
+id="deliveryDays"
+data-i18n-placeholder="delivery_time"
+placeholder="Supplier Delivery Time (Days)">
+
+
+</div>
+
+</section>
+
+
+
+
+<section class="calculator-container">
+
+<div class="calculator-card">
+
+
+<h3 data-i18n="inventory_settings">
+📦 Inventory Settings
+</h3>
+
+
+<input
+type="number"
+id="currentStock"
+data-i18n-placeholder="current_stock"
+placeholder="Current Stock Quantity">
+
+
+<input
+type="number"
+id="orderQuantity"
+data-i18n-placeholder="order_quantity"
+placeholder="Recommended Order Quantity">
+
+
+</div>
+
+</section>
+
+
+
+
+<div class="button-group">
+
+
+<button
+id="calculateInventoryBtn"
+class="btn primary"
+data-i18n="calculate_inventory">
+
+Calculate Inventory
+
+</button>
+
+
+<button
+id="resetInventoryBtn"
+class="btn"
+data-i18n="reset">
+
+Reset
+
+</button>
+
+
+</div>
+
+
+
+
+
+<section class="recommendation-card">
+
+
+<h3 data-i18n="inventory_results">
+📊 Inventory Analysis
+
+</h3>
+
+
+<div id="inventoryResults">
+
+<p data-i18n="run_inventory_analysis">
+Run the calculation to analyze your inventory.
+
+</p>
+
+</div>
+
+
+</section>
+
+
+
+<section class="recommendation-card">
+
+
+<h3 data-i18n="inventory_recommendation">
+
+💡 Inventory Recommendation
+
+</h3>
+
+
+<div id="inventoryRecommendation"></div>
+
+
+</section>
+
+
+</main>
