@@ -1242,7 +1242,26 @@ featured-badge {
     border-left: 5px solid #f5b700;
 }
 
-
 .best-row td:first-child {
     color: #b88600;
+}
+.strategy-box {
+
+    background: #f8f8ff;
+    border-left: 5px solid #5d2de1;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.strategy-box h4 {
+
+    margin-top:0;
+    color:#5d2de1;
+
+}
+
+.strategy-box p {
+
+    line-height:1.6;
 }
