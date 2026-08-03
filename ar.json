@@ -508,7 +508,9 @@
 "calculate_profit": "احسب الربح",
 "net_profit": "صافي الربح",
 "profit_recommendations": "💡 توصيات الأرباح",
-"cost_of_goods": "تكلفة المنتجات المباعة"
+"cost_of_goods": "تكلفة المنتجات المباعة",
+    "pricing_strategy": "حاسبة استراتيجية التسعير الذكية",
+"pricing_strategy_description": "قارن بين أسعار البيع المختلفة وأحجام المبيعات للعثور على أفضل استراتيجية ربحية لمشروعك."
 
 }
 
