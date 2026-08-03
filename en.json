@@ -83,6 +83,9 @@
 
 "inventory_manager_intro": "Manage inventory, monitor stock levels, calculate reorder points, and make smarter purchasing decisions.",
 
-"inventory_manager_description": "Manage inventory, monitor stock levels, and optimize purchasing decisions."
+"inventory_manager_description": "Manage inventory, monitor stock levels, and optimize purchasing decisions.",
+  "mortgage_calculator": "🏠 Smart Mortgage Calculator",
+
+"mortgage_calculator_description": "Calculate mortgage payments, interest costs, and loan details."
   
 }
