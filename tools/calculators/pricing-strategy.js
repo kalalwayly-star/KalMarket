@@ -30,14 +30,20 @@ function analyzePricing() {
         Number(document.getElementById("price1").value) || 0,
         Number(document.getElementById("price2").value) || 0,
         Number(document.getElementById("price3").value) || 0,
-        Number(document.getElementById("price4").value) || 0
+        Number(document.getElementById("price4").value) || 0,
+        Number(document.getElementById("price5").value) || 0,
+        Number(document.getElementById("price6").value) || 0,
+        Number(document.getElementById("price7").value) || 0
     ];
 
     const salesVolumes = [
         Number(document.getElementById("sales1").value) || 0,
         Number(document.getElementById("sales2").value) || 0,
         Number(document.getElementById("sales3").value) || 0,
-        Number(document.getElementById("sales4").value) || 0
+        Number(document.getElementById("sales4").value) || 0,
+         Number(document.getElementById("sales5").value) || 0,
+         Number(document.getElementById("sales6").value) || 0,
+         Number(document.getElementById("sales4").value) || 0
     ];
 
     let results = [];
