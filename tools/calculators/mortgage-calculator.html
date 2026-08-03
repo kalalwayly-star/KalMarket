@@ -1,0 +1,206 @@
+
+
+
+
+<main>
+
+<section class="hero business-hub-hero">
+
+    <h2 data-i18n="mortgage_calculator_title">
+        🏠 Smart Mortgage Calculator
+    </h2>
+
+    <p data-i18n="mortgage_calculator_intro">
+        Calculate your mortgage payments, total interest, and loan costs.
+    </p>
+
+</section>
+
+
+<section class="calculator-container">
+
+<div class="calculator-card">
+
+<h3 data-i18n="home_information">
+🏠 Home Information
+</h3>
+
+
+<label data-i18n="home_price">
+Home Price
+</label>
+
+<input
+type="number"
+id="homePrice"
+data-i18n-placeholder="home_price"
+placeholder="Home Price">
+
+
+<label data-i18n="down_payment">
+Down Payment
+</label>
+
+<input
+type="number"
+id="downPayment"
+data-i18n-placeholder="down_payment"
+placeholder="Down Payment">
+
+
+</div>
+
+</section>
+
+
+
+<section class="calculator-container">
+
+<div class="calculator-card">
+
+<h3 data-i18n="loan_details">
+💰 Loan Details
+</h3>
+
+
+<label data-i18n="interest_rate">
+Interest Rate (%)
+</label>
+
+<input
+type="number"
+id="interestRate"
+data-i18n-placeholder="interest_rate"
+placeholder="Interest Rate">
+
+
+<label data-i18n="loan_term">
+Loan Term (Years)
+</label>
+
+<input
+type="number"
+id="loanTerm"
+data-i18n-placeholder="loan_term"
+placeholder="Loan Term"
+value="25">
+
+
+</div>
+
+</section>
+
+
+
+<div class="button-group">
+
+<button
+id="calculateMortgageBtn"
+class="btn primary"
+data-i18n="calculate_mortgage">
+
+Calculate Mortgage
+
+</button>
+
+
+<button
+id="resetMortgageBtn"
+class="btn"
+data-i18n="reset">
+
+Reset
+
+</button>
+
+</div>
+
+
+
+
+<section class="results-grid">
+
+
+<div class="result-card">
+
+<h4 data-i18n="loan_amount">
+Loan Amount
+</h4>
+
+<p id="loanAmountResult">
+$0.00
+</p>
+
+</div>
+
+
+
+<div class="result-card">
+
+<h4 data-i18n="monthly_payment">
+Monthly Payment
+</h4>
+
+<p id="monthlyPaymentResult">
+$0.00
+</p>
+
+</div>
+
+
+
+<div class="result-card">
+
+<h4 data-i18n="total_payments">
+Total Payments
+</h4>
+
+<p id="totalPaymentsResult">
+$0.00
+</p>
+
+</div>
+
+
+
+<div class="result-card">
+
+<h4 data-i18n="total_interest">
+Total Interest Paid
+</h4>
+
+<p id="totalInterestResult">
+$0.00
+</p>
+
+</div>
+
+
+</section>
+
+
+
+<section class="recommendation-card">
+
+<h3 data-i18n="mortgage_recommendation">
+💡 Mortgage Recommendation
+</h3>
+
+
+<div id="mortgageRecommendation">
+
+<p data-i18n="mortgage_placeholder">
+Calculate your mortgage to see recommendations.
+</p>
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+<script src="mortgage-calculator.js"></script>
+
