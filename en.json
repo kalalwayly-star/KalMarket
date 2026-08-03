@@ -61,6 +61,16 @@
 "health_excellent": "🟢 Excellent. Your business appears financially healthy.",
 "health_good": "🟡 Good. Your business is doing well but can be improved.",
 "health_attention": "🟠 Needs attention. Review your expenses and profit strategy.",
-"health_risk": "🔴 High risk. Reduce costs and improve your business plan."
+"health_risk": "🔴 High risk. Reduce costs and improve your business plan.",
+  "profit_calculator_title": "📈 Profit Calculator",
+"profit_calculator_intro": "Calculate your business profit and understand your financial performance.",
+"income": "💰 Income",
+"expenses": "📉 Expenses",
+"period": "📅 Period",
+"monthly": "Monthly",
+"yearly": "Yearly",
+"calculate_profit": "Calculate Profit",
+"net_profit": "Net Profit",
+"profit_recommendations": "💡 Profit Recommendations"
   
 }
