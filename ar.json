@@ -698,8 +698,74 @@
  "calculate_tax": "احسب الضريبة",
 "reset": "إعادة تعيين",
     "tax_planning_assistant": "🧠 مساعد التخطيط الضريبي",
-"tax_planning_description": "حلل الدخل والمصاريف والأرباح والضرائب مع توصيات ذكية للتخطيط المالي."
+"tax_planning_description": "حلل الدخل والمصاريف والأرباح والضرائب مع توصيات ذكية للتخطيط المالي.",
     
+  "tax_planning_assistant": "🧠 مساعد التخطيط الضريبي",
+  "tax_planning_description": "حلل الدخل والمصاريف والأرباح والضرائب مع توصيات ذكية للتخطيط المالي",
+
+  "choose_income_type": "👤 اختر نوع الدخل",
+
+  "employee": "موظف",
+  "self_employed": "عمل حر",
+  "business_owner": "صاحب عمل",
+
+  "employee_information": "👤 معلومات الموظف",
+  "annual_salary": "الراتب السنوي",
+  "other_income": "دخل آخر",
+  "rrsp_contributions": "مساهمات RRSP",
+  "other_deductions": "خصومات أخرى",
+
+  "shelter_cost": "🏠 تكلفة السكن الشهرية",
+  "utilities_cost": "💡 المرافق والخدمات الشهرية",
+  "living_expenses": "🍎 مصاريف المعيشة الشهرية",
+  "transportation_cost": "🚗 مصاريف المواصلات الشهرية",
+  "other_living_expenses": "👕 مصاريف أخرى شهرية",
+
+  "self_employed_information": "🧑‍💼 معلومات العمل الحر",
+  "business_revenue": "إيرادات العمل",
+  "cost_of_goods": "تكلفة البضاعة المباعة",
+  "operating_expenses": "المصاريف التشغيلية",
+  "vehicle_expenses": "مصاريف المركبة",
+  "equipment_expenses": "مصاريف المعدات",
+  "home_office_expenses": "مصاريف المكتب المنزلي",
+
+  "business_information": "🏢 معلومات الشركة",
+  "company_revenue": "إيرادات الشركة",
+  "payroll": "الرواتب",
+  "inventory_costs": "تكاليف المخزون",
+  "business_rent": "إيجار العمل",
+  "utilities": "الخدمات والمرافق",
+  "marketing": "التسويق",
+
+  "calculate_plan": "احسب الخطة",
+  "reset": "إعادة تعيين",
+
+  "revenue": "💰 الإيرادات",
+  "expenses": "📉 المصاريف",
+  "net_income": "📊 صافي الدخل",
+  "profit_margin": "📈 هامش الربح",
+  "estimated_tax": "🧾 الضريبة التقديرية",
+  "monthly_tax_savings": "📅 التوفير الشهري للضرائب",
+
+  "available_income": "💵 الدخل المتبقي بعد المصاريف",
+
+  "gst_estimate": "🧾 تقدير ضريبة GST/HST",
+  "cpp_estimate": "🏦 تقدير مساهمة CPP",
+  "total_reserve": "💰 الاحتياطي الشهري المقترح",
+
+  "financial_recommendation": "💡 التوصية المالية",
+
+  "refund": "استرداد",
+  "owing": "مستحق الدفع",
+
+  "low_profit_margin": "🟡 هامش ربح منخفض",
+  "low_profit_message": "عملك يحقق إيرادات، ولكن المصاريف تستهلك جزءاً كبيراً من الدخل. راجع الأسعار والتكاليف التشغيلية.",
+
+  "healthy_financial_position": "🟢 وضع مالي جيد",
+  "healthy_financial_message": "الدخل والمصاريف يظهران توازناً مالياً جيداً.",
+
+  "business_loss_detected": "🔴 تم اكتشاف خسارة",
+  "business_loss_message": "المصاريف أعلى من الدخل. راجع الأسعار والتكاليف والتدفق النقدي."
 }
 
 
