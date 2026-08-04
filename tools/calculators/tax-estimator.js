@@ -37,10 +37,7 @@ const gstOwing =
     // Taxable income
 
     const taxableIncome =
-        Math.max(
-            0,
-            annualIncome - businessExpenses
-        );
+    annualIncome - businessExpenses;
 
     // Simple estimated federal tax
 
