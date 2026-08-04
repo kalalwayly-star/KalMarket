@@ -98,6 +98,10 @@
 
 "tax_disclaimer":"This calculator provides estimated tax information for educational and planning purposes only. Tax rates, deductions, credits, and government regulations may change over time. Please consult the Canada Revenue Agency (CRA) or a qualified tax professional before making financial or tax decisions.",
 
-"tax_calculator_description":"Estimate income tax, GST/HST, monthly tax savings, and smart tax planning."
+"tax_calculator_description":"Estimate income tax, GST/HST, monthly tax savings, and smart tax planning.",
   
+  "tax_planning_assistant": "🧠 Tax Planning Assistant",
+"tax_planning_description": "Analyze income, expenses, profit, taxes, and financial planning with smart recommendations."
+
+
 }
