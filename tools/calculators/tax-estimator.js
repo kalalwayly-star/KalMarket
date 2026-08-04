@@ -22,9 +22,11 @@ function calculateTax() {
     const employmentType =
         document.getElementById("employmentType").value;
 
-    const province =
-        document.getElementById("province").value;
+   const country =
+document.getElementById("country").value;
 
+const region =
+document.getElementById("region").value;
 const gstCollected =
     Number(document.getElementById("gstCollected").value) || 0;
 
