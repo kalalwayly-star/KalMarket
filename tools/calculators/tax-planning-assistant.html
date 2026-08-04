@@ -1,0 +1,438 @@
+
+
+<body>
+
+
+<header class="header">
+
+<h1 data-i18n="tax_planning_assistant">
+🧠 Tax Planning Assistant
+</h1>
+
+</header>
+
+
+
+<main>
+
+
+<section class="calculator-container">
+
+
+<div class="calculator-card">
+
+
+<h3 data-i18n="choose_income_type">
+👤 Choose Income Type
+</h3>
+
+
+<select id="incomeType">
+
+
+<option value="">
+Select Type
+</option>
+
+
+<option value="employee">
+Employee
+</option>
+
+
+<option value="self-employed">
+Self-Employed
+</option>
+
+
+<option value="business">
+Business Owner
+</option>
+
+
+</select>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- Dynamic Fields -->
+
+<div id="employeeFields" style="display:none;">
+
+
+<section class="calculator-container">
+
+<div class="calculator-card">
+
+
+<h3>
+👤 Employee Information
+</h3>
+
+
+<label>
+Annual Salary
+</label>
+
+<input 
+type="number"
+id="salary"
+placeholder="Annual Salary">
+
+
+<label>
+Other Income
+</label>
+
+<input 
+type="number"
+id="otherIncome"
+placeholder="Other Income">
+
+
+<label>
+RRSP Contributions
+</label>
+
+<input 
+type="number"
+id="rrsp"
+placeholder="RRSP Contributions">
+
+
+<label>
+Other Deductions
+</label>
+
+<input 
+type="number"
+id="employeeDeductions"
+placeholder="Other Deductions">
+
+
+</div>
+
+</section>
+
+
+</div>
+
+
+
+
+
+
+<div id="selfEmployeeFields" style="display:none;">
+
+
+<section class="calculator-container">
+
+<div class="calculator-card">
+
+
+<h3>
+🧑‍💼 Self-Employed Information
+</h3>
+
+
+<label>
+Business Revenue
+</label>
+
+<input
+type="number"
+id="businessRevenue"
+placeholder="Business Revenue">
+
+
+<label>
+Cost of Goods Sold
+</label>
+
+<input
+type="number"
+id="costOfGoods"
+placeholder="Cost of Goods Sold">
+
+
+<label>
+Operating Expenses
+</label>
+
+<input
+type="number"
+id="operatingExpenses"
+placeholder="Operating Expenses">
+
+
+<label>
+Vehicle Expenses
+</label>
+
+<input
+type="number"
+id="vehicleExpenses"
+placeholder="Vehicle Expenses">
+
+
+<label>
+Equipment Expenses
+</label>
+
+<input
+type="number"
+id="equipmentExpenses"
+placeholder="Equipment Expenses">
+
+
+<label>
+Home Office Expenses
+</label>
+
+<input
+type="number"
+id="homeOfficeExpenses"
+placeholder="Home Office Expenses">
+
+
+</div>
+
+</section>
+
+
+</div>
+
+
+
+
+
+
+
+<div id="businessFields" style="display:none;">
+
+
+<section class="calculator-container">
+
+<div class="calculator-card">
+
+
+<h3>
+🏢 Business Owner Information
+</h3>
+
+
+<label>
+Company Revenue
+</label>
+
+<input
+type="number"
+id="companyRevenue"
+placeholder="Company Revenue">
+
+
+<label>
+Payroll
+</label>
+
+<input
+type="number"
+id="payroll"
+placeholder="Payroll">
+
+
+<label>
+Inventory Costs
+</label>
+
+<input
+type="number"
+id="inventoryCosts"
+placeholder="Inventory Costs">
+
+
+<label>
+Rent
+</label>
+
+<input
+type="number"
+id="businessRent"
+placeholder="Rent">
+
+
+<label>
+Utilities
+</label>
+
+<input
+type="number"
+id="utilities"
+placeholder="Utilities">
+
+
+<label>
+Marketing
+</label>
+
+<input
+type="number"
+id="marketing"
+placeholder="Marketing">
+
+
+</div>
+
+</section>
+
+
+</div>
+
+
+
+
+
+
+<div class="button-group">
+
+
+<button
+id="calculatePlanningBtn"
+class="btn primary">
+
+Calculate Plan
+
+</button>
+
+
+
+<button
+id="resetPlanningBtn"
+class="btn">
+
+Reset
+
+</button>
+
+
+</div>
+
+
+
+
+
+<section class="results-grid">
+
+
+<div class="result-card">
+
+<h4>
+💰 Revenue
+</h4>
+
+<p id="planningRevenue">
+$0.00
+</p>
+
+</div>
+
+
+
+<div class="result-card">
+
+<h4>
+📉 Expenses
+</h4>
+
+<p id="planningExpenses">
+$0.00
+</p>
+
+</div>
+
+
+
+
+<div class="result-card">
+
+<h4>
+📊 Net Income
+</h4>
+
+<p id="planningIncome">
+$0.00
+</p>
+
+</div>
+
+
+
+<div class="result-card">
+
+<h4>
+📈 Profit Margin
+</h4>
+
+<p id="profitMargin">
+0%
+</p>
+
+</div>
+
+
+
+<div class="result-card">
+
+<h4>
+🧾 Estimated Tax
+</h4>
+
+<p id="planningTax">
+$0.00
+</p>
+
+</div>
+
+<div class="result-card">
+
+<h4>
+📅 Monthly Tax Savings
+</h4>
+
+<p id="planningSavings">
+$0.00
+</p>
+
+</div>
+
+</section>
+
+<section class="recommendation-card">
+
+<h3>
+💡 Financial Recommendation
+</h3>
+<div id="planningRecommendation">
+<p>
+Complete your information to receive recommendations.
+</p>
+</div>
+
+</section>
+
+</main>
+
+
+<script src="tax-planning-assistant.js"></script>
+
+
+</body>
+
+</html>
