@@ -1354,3 +1354,40 @@ featured-badge {
     line-height: 1.7;
     font-size: 15px;
 }
+/* GST Section */
+
+.input-group {
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+
+}
+
+.input-group label {
+
+    font-weight: 600;
+    color: #5d2de1;
+    font-size: 15px;
+
+}
+
+.input-group input {
+
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: .25s;
+
+}
+
+.input-group input:focus {
+
+    border-color: #5d2de1;
+    outline: none;
+    box-shadow: 0 0 8px rgba(93,45,225,.15);
+
+}
