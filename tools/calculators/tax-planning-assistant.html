@@ -162,36 +162,29 @@
 👤 Choose Income Type
 </h3>
 
+```html
 <select id="incomeType">
 
+    <option value="" data-i18n="select_type">
+        Select Type
+    </option>
 
-<option value="">
-Select Type
-</option>
+    <option value="employee" data-i18n="employee">
+        Employee
+    </option>
 
+    <option value="self-employed" data-i18n="self_employed">
+        Self-Employed
+    </option>
 
-<option value="employee">
-Employee
-</option>
-
-
-<option value="self-employed">
-Self-Employed
-</option>
-
-
-<option value="business">
-Business Owner
-</option>
-
+    <option value="business" data-i18n="business_owner">
+        Business Owner
+    </option>
 
 </select>
 
-</div>
 
-</section>
-
-<!-- Dynamic Fields -->
+<!-- ================= EMPLOYEE ================= -->
 
 <div id="employeeFields" style="display:none;">
 
@@ -199,458 +192,345 @@ Business Owner
 
 <div class="calculator-card">
 
-
-<h3>
+<h3 data-i18n="employee_information">
 👤 Employee Information
 </h3>
 
-<label>
-Annual Salary
-</label>
+<label data-i18n="annual_salary">Annual Salary</label>
 
-<input 
+<input
 type="number"
 id="salary"
+data-i18n-placeholder="annual_salary"
 placeholder="Annual Salary">
 
+<label data-i18n="other_income">Other Income</label>
 
-<label>
-Other Income
-</label>
-
-<input 
+<input
 type="number"
 id="otherIncome"
+data-i18n-placeholder="other_income"
 placeholder="Other Income">
 
+<label data-i18n="rrsp_contributions">RRSP Contributions</label>
 
-<label>
-RRSP Contributions
-</label>
-
-<input 
+<input
 type="number"
 id="rrsp"
+data-i18n-placeholder="rrsp_contributions"
 placeholder="RRSP Contributions">
 
+<label data-i18n="other_deductions">Other Deductions</label>
 
-<label>
-Other Deductions
-</label>
-
-<input 
+<input
 type="number"
 id="employeeDeductions"
+data-i18n-placeholder="other_deductions"
 placeholder="Other Deductions">
 
-<label>
-🏠 Monthly Shelter Cost
-</label>
+<label data-i18n="shelter_cost">🏠 Monthly Shelter Cost</label>
 
 <input
 type="number"
 id="shelterCost"
+data-i18n-placeholder="shelter_cost"
 placeholder="Rent or Mortgage">
 
-
-<label>
-💡 Monthly Utilities
-</label>
+<label data-i18n="utilities_cost">💡 Monthly Utilities</label>
 
 <input
 type="number"
 id="utilitiesCost"
+data-i18n-placeholder="utilities_cost"
 placeholder="Utilities">
 
-
-<label>
-🍎 Monthly Living Expenses
-</label>
+<label data-i18n="living_expenses">🍎 Monthly Living Expenses</label>
 
 <input
 type="number"
 id="livingExpenses"
+data-i18n-placeholder="living_expenses"
 placeholder="Food and Household">
 
-
-<label>
-🚗 Monthly Transportation
-</label>
+<label data-i18n="transportation_cost">🚗 Monthly Transportation</label>
 
 <input
 type="number"
 id="transportationCost"
+data-i18n-placeholder="transportation_cost"
 placeholder="Vehicle / Transit">
 
-
-<label>
-👕 Other Monthly Expenses
-</label>
+<label data-i18n="other_living_expenses">👕 Other Monthly Expenses</label>
 
 <input
 type="number"
 id="otherLivingExpenses"
+data-i18n-placeholder="other_living_expenses"
 placeholder="Other Expenses">
-    
+
 </div>
 
 </section>
 
 </div>
 
-<div id="selfEmployeeFields" style="display:none;">
 
+<!-- ================= SELF EMPLOYED ================= -->
+
+<div id="selfEmployeeFields" style="display:none;">
 
 <section class="calculator-container">
 
 <div class="calculator-card">
 
-<h3>
+<h3 data-i18n="self_employed_information">
 🧑‍💼 Self-Employed Information
 </h3>
 
-<label>
-Business Revenue
-</label>
+<label data-i18n="business_revenue">Business Revenue</label>
 
 <input
 type="number"
 id="businessRevenue"
+data-i18n-placeholder="business_revenue"
 placeholder="Business Revenue">
 
-<label>
-Cost of Goods Sold
-</label>
+<label data-i18n="cost_of_goods">Cost of Goods Sold</label>
 
 <input
 type="number"
 id="costOfGoods"
+data-i18n-placeholder="cost_of_goods"
 placeholder="Cost of Goods Sold">
 
-
-<label>
-Operating Expenses
-</label>
+<label data-i18n="operating_expenses">Operating Expenses</label>
 
 <input
 type="number"
 id="operatingExpenses"
+data-i18n-placeholder="operating_expenses"
 placeholder="Operating Expenses">
 
-
-<label>
-Vehicle Expenses
-</label>
+<label data-i18n="vehicle_expenses">Vehicle Expenses</label>
 
 <input
 type="number"
 id="vehicleExpenses"
+data-i18n-placeholder="vehicle_expenses"
 placeholder="Vehicle Expenses">
 
-
-<label>
-Equipment Expenses
-</label>
+<label data-i18n="equipment_expenses">Equipment Expenses</label>
 
 <input
 type="number"
 id="equipmentExpenses"
+data-i18n-placeholder="equipment_expenses"
 placeholder="Equipment Expenses">
 
-
-<label>
-Home Office Expenses
-</label>
+<label data-i18n="home_office_expenses">Home Office Expenses</label>
 
 <input
 type="number"
 id="homeOfficeExpenses"
+data-i18n-placeholder="home_office_expenses"
 placeholder="Home Office Expenses">
 
-<label>
-🧾 GST/HST Collected
-</label>
+<label data-i18n="gst_collected">🧾 GST/HST Collected</label>
 
 <input
 type="number"
 id="gstCollectedPlanning"
+data-i18n-placeholder="gst_collected"
 placeholder="GST/HST Collected">
 
-
-<label>
-📥 GST/HST Paid
-</label>
+<label data-i18n="gst_paid">📥 GST/HST Paid</label>
 
 <input
 type="number"
 id="gstPaidPlanning"
+data-i18n-placeholder="gst_paid"
 placeholder="GST/HST Paid">
+
 </div>
 
 </section>
 
-
 </div>
 
 
-<div id="businessFields" style="display:none;">
+<!-- ================= BUSINESS OWNER ================= -->
 
+<div id="businessFields" style="display:none;">
 
 <section class="calculator-container">
 
 <div class="calculator-card">
 
-
-<h3>
+<h3 data-i18n="business_information">
 🏢 Business Owner Information
 </h3>
 
-
-<label>
-Company Revenue
-</label>
+<label data-i18n="company_revenue">Company Revenue</label>
 
 <input
 type="number"
 id="companyRevenue"
+data-i18n-placeholder="company_revenue"
 placeholder="Company Revenue">
 
-
-<label>
-Payroll
-</label>
+<label data-i18n="payroll">Payroll</label>
 
 <input
 type="number"
 id="payroll"
+data-i18n-placeholder="payroll"
 placeholder="Payroll">
 
-
-<label>
-Inventory Costs
-</label>
+<label data-i18n="inventory_costs">Inventory Costs</label>
 
 <input
 type="number"
 id="inventoryCosts"
+data-i18n-placeholder="inventory_costs"
 placeholder="Inventory Costs">
 
-
-<label>
-Rent
-</label>
+<label data-i18n="business_rent">Rent</label>
 
 <input
 type="number"
 id="businessRent"
+data-i18n-placeholder="business_rent"
 placeholder="Rent">
 
-
-<label>
-Utilities
-</label>
+<label data-i18n="utilities">Utilities</label>
 
 <input
 type="number"
 id="utilities"
+data-i18n-placeholder="utilities"
 placeholder="Utilities">
 
-
-<label>
-Marketing
-</label>
+<label data-i18n="marketing">Marketing</label>
 
 <input
 type="number"
 id="marketing"
+data-i18n-placeholder="marketing"
 placeholder="Marketing">
 
-<label>
-🧾 GST/HST Collected
-</label>
+<label data-i18n="gst_collected">🧾 GST/HST Collected</label>
 
 <input
 type="number"
-id="gstCollectedPlanning"
+id="gstCollectedBusiness"
+data-i18n-placeholder="gst_collected"
 placeholder="GST/HST Collected">
 
-<label>
-📥 GST/HST Paid
-</label>
+<label data-i18n="gst_paid">📥 GST/HST Paid</label>
 
 <input
 type="number"
-id="gstPaidPlanning"
+id="gstPaidBusiness"
+data-i18n-placeholder="gst_paid"
 placeholder="GST/HST Paid">
-    
+
 </div>
 
 </section>
 
-
 </div>
+
 
 <div class="button-group">
 
-
 <button
 id="calculatePlanningBtn"
-class="btn primary">
-
+class="btn primary"
+data-i18n="calculate_plan">
 Calculate Plan
-
 </button>
 
 <button
 id="resetPlanningBtn"
-class="btn">
-
+class="btn"
+data-i18n="reset">
 Reset
-
 </button>
 
-
 </div>
+
 
 <section class="results-grid">
 
-
 <div class="result-card">
-
-<h4>
-💰 Revenue
-</h4>
-
-<p id="planningRevenue">
-$0.00
-</p>
-
+<h4 data-i18n="revenue">💰 Revenue</h4>
+<p id="planningRevenue">$0.00</p>
 </div>
 
 <div class="result-card">
-
-<h4>
-📉 Expenses
-</h4>
-
-<p id="planningExpenses">
-$0.00
-</p>
-
+<h4 data-i18n="expenses">📉 Expenses</h4>
+<p id="planningExpenses">$0.00</p>
 </div>
 
 <div class="result-card">
-
-<h4>
-📊 Net Income
-</h4>
-
-<p id="planningIncome">
-$0.00
-</p>
-
+<h4 data-i18n="net_income">📊 Net Income</h4>
+<p id="planningIncome">$0.00</p>
 </div>
 
 <div class="result-card">
-
-<h4>
-📈 Profit Margin
-</h4>
-
-<p id="profitMargin">
-0%
-</p>
-
+<h4 data-i18n="profit_margin">📈 Profit Margin</h4>
+<p id="profitMargin">0%</p>
 </div>
 
 <div class="result-card">
-
-<h4>
-🧾 Estimated Tax
-</h4>
-
-<p id="planningTax">
-$0.00
-</p>
-
+<h4 data-i18n="estimated_tax">🧾 Estimated Tax</h4>
+<p id="planningTax">$0.00</p>
 </div>
 
 <div class="result-card">
-
-<h4>
-📅 Monthly Tax Savings
-</h4>
-
-<p id="planningSavings">
-$0.00
-</p>
-
+<h4 data-i18n="monthly_tax_savings">📅 Monthly Tax Savings</h4>
+<p id="planningSavings">$0.00</p>
 </div>
 
 <div class="result-card">
-
-<h4>
-💵 Remaining Cash After Costs
-</h4>
-
-<p id="availableIncomeResult">
-$0.00
-</p>
-
+<h4 data-i18n="remaining_cash_after_costs">💵 Remaining Cash After Costs</h4>
+<p id="availableIncomeResult">$0.00</p>
 </div>
-    
-<div class="result-card">
-
-    <h4 data-i18n="gst_estimate">
-        🧾 GST/HST Estimate
-    </h4>
-
-    <p id="gstPlanningResult">
-        $0.00
-    </p>
-
-</div>
-
 
 <div class="result-card">
-
-    <h4 data-i18n="cpp_estimate">
-        🏦 CPP Estimate
-    </h4>
-
-    <p id="cppPlanningResult">
-        $0.00
-    </p>
-
+<h4 data-i18n="gst_estimate">🧾 GST/HST Estimate</h4>
+<p id="gstPlanningResult">$0.00</p>
 </div>
-
 
 <div class="result-card">
-
-    <h4 data-i18n="total_reserve">
-        💰 Recommended Monthly Reserve
-    </h4>
-
-    <p id="totalReserveResult">
-        $0.00
-    </p>
-
+<h4 data-i18n="cpp_estimate">🏦 CPP Estimate</h4>
+<p id="cppPlanningResult">$0.00</p>
 </div>
-    
+
+<div class="result-card">
+<h4 data-i18n="total_reserve">💰 Recommended Monthly Reserve</h4>
+<p id="totalReserveResult">$0.00</p>
+</div>
+
 </section>
 
 <section class="recommendation-card">
 
-<h3>
+<h3 data-i18n="financial_recommendation">
 💡 Financial Recommendation
 </h3>
+
 <div id="planningRecommendation">
-<p>
+
+<p data-i18n="planning_placeholder">
 Complete your information to receive recommendations.
 </p>
+
 </div>
 
 </section>
+```
+
 
 </main>
 
