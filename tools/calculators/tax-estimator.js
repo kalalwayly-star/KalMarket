@@ -255,6 +255,15 @@ function resetTax() {
     `
     Calculate your tax estimate to see recommendations.
     `;
+}
+function formatCurrency(amount) {
 
+    return new Intl.NumberFormat(
+        "en-CA",
+        {
+            style: "currency",
+            currency: "CAD"
+        }
+    ).format(amount);
 
 }
