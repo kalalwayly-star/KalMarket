@@ -1504,3 +1504,21 @@ featured-badge {
 }
 
 }
+/* Tax Balance Status */
+
+.tax-refund {
+    color: #16a34a;
+    font-weight: 700;
+}
+
+
+.tax-owing {
+    color: #dc2626;
+    font-weight: 700;
+}
+
+
+.tax-zero {
+    color: #555;
+    font-weight: 600;
+}
