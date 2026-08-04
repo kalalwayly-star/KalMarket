@@ -31,7 +31,17 @@ function calculateTax() {
     const province =
         document.getElementById("province").value;
 
+const gstCollected =
+    Number(document.getElementById("gstCollected").value) || 0;
 
+const gstPaid =
+    Number(document.getElementById("gstPaid").value) || 0;
+
+const gstOwing =
+    gstCollected - gstPaid;
+
+const quarterlySavings =
+    totalTax / 4;
 
     // Taxable income
 
@@ -174,7 +184,17 @@ function calculateTax() {
 
     document.getElementById("monthlyTaxSavingsResult").textContent =
         formatCurrency(monthlySavings);
+document.getElementById("gstCollectedResult").textContent =
+    formatCurrency(gstCollected);
 
+document.getElementById("gstPaidResult").textContent =
+    formatCurrency(gstPaid);
+
+document.getElementById("gstOwingResult").textContent =
+    formatCurrency(gstOwing);
+
+document.getElementById("quarterlyTaxResult").textContent =
+    formatCurrency(quarterlySavings);
 
 
     generateTaxRecommendation(
