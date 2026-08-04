@@ -162,7 +162,24 @@ value="0">
 
 </section>
 
+<label data-i18n="gst_collected_input">
+GST/HST Collected
+</label>
 
+<input
+type="number"
+id="gstCollected"
+placeholder="GST/HST Collected">
+
+
+<label data-i18n="gst_paid_input">
+GST/HST Paid
+</label>
+
+<input
+type="number"
+id="gstPaid"
+placeholder="GST/HST Paid">
 
 <section class="calculator-container">
 
@@ -331,10 +348,62 @@ Reset
 
     </div>
 
-
 </section>
 
+<section class="results-grid">
 
+    <div class="result-card">
+
+        <h4 data-i18n="gst_collected">
+            💰 GST/HST Collected
+        </h4>
+
+        <p id="gstCollectedResult">
+            $0.00
+        </p>
+
+    </div>
+
+
+    <div class="result-card">
+
+        <h4 data-i18n="gst_paid">
+            🧾 GST/HST Paid
+        </h4>
+
+        <p id="gstPaidResult">
+            $0.00
+        </p>
+
+    </div>
+
+
+    <div class="result-card">
+
+        <h4 data-i18n="gst_owing">
+            📌 GST/HST Owing
+        </h4>
+
+        <p id="gstOwingResult">
+            $0.00
+        </p>
+
+    </div>
+
+
+    <div class="result-card">
+
+        <h4 data-i18n="quarterly_tax">
+            📅 Quarterly Savings
+        </h4>
+
+        <p id="quarterlyTaxResult">
+            $0.00
+        </p>
+
+    </div>
+
+</section>
 
 <section class="recommendation-card">
 
