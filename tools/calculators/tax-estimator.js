@@ -40,9 +40,6 @@ const gstPaid =
 const gstOwing =
     gstCollected - gstPaid;
 
-const quarterlySavings =
-    totalTax / 4;
-
     // Taxable income
 
     const taxableIncome =
@@ -112,8 +109,6 @@ const quarterlySavings =
 
     }
 
-
-
     const provincialTax =
         taxableIncome * provincialRate;
 
@@ -123,7 +118,6 @@ const quarterlySavings =
 
     let extraAdjustment = 0;
 
-
     if (employmentType === "self-employed") {
 
         extraAdjustment =
@@ -131,25 +125,19 @@ const quarterlySavings =
 
     }
 
-
-
     const totalTax =
         federalTax +
         provincialTax +
         extraAdjustment;
 
-
-
     const afterTax =
         annualIncome - totalTax;
-
-
 
     const monthlySavings =
         totalTax / 12;
 
-
-
+const quarterlySavings =
+    totalTax / 4;
 
     // Display results
 
