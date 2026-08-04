@@ -84,6 +84,28 @@ Number(document.getElementById("rrsp").value) || 0;
 
 const deductions =
 Number(document.getElementById("employeeDeductions").value) || 0;
+const shelter =
+Number(document.getElementById("shelterCost").value) || 0;
+
+const utilities =
+Number(document.getElementById("utilitiesCost").value) || 0;
+
+const living =
+Number(document.getElementById("livingExpenses").value) || 0;
+
+const transportation =
+Number(document.getElementById("transportationCost").value) || 0;
+
+const otherLiving =
+Number(document.getElementById("otherLivingExpenses").value) || 0;
+
+
+const monthlyLivingExpenses =
+shelter +
+utilities +
+living +
+transportation +
+otherLiving;
 
 revenue =
 salary + otherIncome;
