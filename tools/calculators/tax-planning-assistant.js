@@ -215,8 +215,6 @@ document.getElementById("gstPaidPlanning")?.value
 gstEstimate =
 gstCollected - gstPaid;
 
-
-
 // simplified CPP planning estimate
 
 cppEstimate =
@@ -228,11 +226,20 @@ netIncome * 0.12
 
 }
 
-
 const totalReserve =
 (monthlySavings * 12 + cppEstimate) / 12;
-// Results
 
+let availableIncome = 0;
+
+
+if(type === "employee") {
+
+availableIncome =
+(revenue - estimatedTax) -
+(monthlyLivingExpenses * 12);
+
+}
+// Results
 
 document.getElementById("planningRevenue")
 .textContent =
