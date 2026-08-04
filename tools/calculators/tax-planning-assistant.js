@@ -264,6 +264,10 @@ formatCurrency(estimatedTax);
 document.getElementById("planningSavings")
 .textContent =
 formatCurrency(monthlySavings);
+
+    document.getElementById("availableIncomeResult")
+.textContent =
+formatCurrency(availableIncome);
     
 document.getElementById("gstPlanningResult")
 .textContent =
