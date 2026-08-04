@@ -70,35 +70,68 @@ const gstOwing =
 
     // Provincial estimate
 
-    let provincialRate = 0.10;
+   let regionalRate = 0;
 
 
-    if (province === "MB") {
+if (country === "CA") {
 
-        provincialRate = 0.108;
 
-    }
+    if (region === "MB") {
 
-    else if (province === "ON") {
-
-        provincialRate = 0.11;
+        regionalRate = 0.108;
 
     }
 
-    else if (province === "AB") {
+    else if (region === "ON") {
 
-        provincialRate = 0.10;
-
-    }
-
-    else if (province === "BC") {
-
-        provincialRate = 0.08;
+        regionalRate = 0.11;
 
     }
 
-    const provincialTax =
-        taxableIncome * provincialRate;
+    else if (region === "AB") {
+
+        regionalRate = 0.10;
+
+    }
+
+    else if (region === "BC") {
+
+        regionalRate = 0.08;
+
+    }
+
+}
+
+
+else if (country === "US") {
+
+
+    // Temporary USA estimate
+    // We will improve state rules later
+
+    if (region === "CA") {
+
+        regionalRate = 0.09;
+
+    }
+
+    else if (region === "TX") {
+
+        regionalRate = 0;
+
+    }
+
+    else if (region === "NY") {
+
+        regionalRate = 0.06;
+
+    }
+
+
+}
+
+   const regionalTax =
+    taxableIncome * regionalRate;
 
 
 
@@ -115,7 +148,7 @@ const gstOwing =
 
     const totalTax =
         federalTax +
-        provincialTax +
+        regionalTax +
         extraAdjustment;
 
     const afterTax =
@@ -147,7 +180,7 @@ const quarterlySavings =
 
 
     document.getElementById("provincialTaxResult").textContent =
-        formatCurrency(provincialTax);
+        formatCurrency(regionalTax));
 
 
     document.getElementById("totalTaxResult").textContent =
