@@ -771,7 +771,6 @@
 
 "remaining_cash_after_costs": "💵 النقد المتبقي بعد التكاليف",
 },
-```json
 {
   "income_information": "💰 معلومات الدخل",
   "annual_income": "الدخل السنوي",
