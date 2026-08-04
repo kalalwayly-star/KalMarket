@@ -769,8 +769,57 @@
   "business_loss_message": "المصاريف أعلى من الدخل. راجع الأسعار والتكاليف والتدفق النقدي.",
     "planning_placeholder": "أكمل معلوماتك للحصول على توصيات ذكية.",
 
-"remaining_cash_after_costs": "💵 النقد المتبقي بعد التكاليف"
+"remaining_cash_after_costs": "💵 النقد المتبقي بعد التكاليف",
+},
+```json
+{
+  "income_information": "💰 معلومات الدخل",
+  "annual_income": "الدخل السنوي",
+  "employment_type": "نوع العمل",
+  "employee": "موظف",
+  "self_employed": "عمل حر",
+
+  "deductions": "📉 الخصومات",
+  "business_expenses": "مصاريف العمل",
+
+  "gst_information": "🧾 معلومات GST / HST",
+  "gst_collected_input": "💰 ضريبة GST/HST المحصلة",
+  "gst_paid_input": "📥 ضريبة GST/HST المدفوعة",
+  "gst_collected_placeholder": "إجمالي ضريبة GST/HST المحصلة",
+  "gst_paid_placeholder": "إجمالي ضريبة GST/HST المدفوعة",
+
+  "location": "📍 المقاطعة",
+
+  "calculate_tax": "احسب الضريبة",
+  "reset": "إعادة تعيين",
+
+  "gross_income": "💰 إجمالي الدخل",
+  "deductions_amount": "📉 إجمالي الخصومات",
+  "taxable_income": "📊 الدخل الخاضع للضريبة",
+
+  "federal_tax": "🇨🇦 تقدير الضريبة الفيدرالية",
+  "provincial_tax": "📍 تقدير ضريبة المقاطعة",
+  "total_tax": "🧾 إجمالي الضريبة التقديرية",
+
+  "after_tax_income": "💵 الدخل بعد الضريبة",
+  "monthly_tax_savings": "📅 المبلغ المقترح للادخار الشهري للضريبة",
+
+  "gst_collected": "💰 ضريبة GST/HST المحصلة",
+  "gst_paid": "📥 ضريبة GST/HST المدفوعة",
+  "gst_owing": "📌 ضريبة GST/HST المستحقة",
+  "quarterly_tax": "📅 الاحتياطي الضريبي ربع السنوي",
+
+  "tax_recommendation": "💡 توصية ضريبية",
+  "tax_placeholder": "احسب الضريبة للحصول على توصيات مخصصة.",
+
+  "MB": "مانيتوبا",
+  "ON": "أونتاريو",
+  "AB": "ألبرتا",
+  "BC": "كولومبيا البريطانية",
+  "SK": "ساسكاتشوان"
 }
+
+
 
 
 
