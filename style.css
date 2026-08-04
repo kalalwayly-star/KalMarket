@@ -1489,3 +1489,18 @@ featured-badge {
     background: #f4efff;
 
 }
+@media(max-width:600px){
+
+.button-group{
+
+    flex-direction:column;
+
+}
+
+.button-group::before{
+
+    display:none;
+
+}
+
+}
