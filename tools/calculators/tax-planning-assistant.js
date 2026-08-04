@@ -168,7 +168,47 @@ netIncome * 0.25
 const monthlySavings =
 estimatedTax / 12;
 
+let gstEstimate = 0;
 
+let cppEstimate = 0;
+
+
+if(
+type === "self-employed" ||
+type === "business"
+){
+
+const gstCollected =
+Number(
+document.getElementById("gstCollectedPlanning")?.value
+) || 0;
+
+
+const gstPaid =
+Number(
+document.getElementById("gstPaidPlanning")?.value
+) || 0;
+
+
+gstEstimate =
+gstCollected - gstPaid;
+
+
+
+// simplified CPP planning estimate
+
+cppEstimate =
+netIncome > 0
+?
+netIncome * 0.12
+:
+0;
+
+}
+
+
+const totalReserve =
+(monthlySavings * 12 + cppEstimate) / 12;
 // Results
 
 
