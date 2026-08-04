@@ -196,24 +196,47 @@ const taxBalanceElement =
 document.getElementById("taxBalanceResult");
 
 
-if (taxBalance > 0) {
+if (taxBalanceElement) {
 
-    taxBalanceElement.textContent =
-    "Owing: " + formatCurrency(taxBalance);
+    taxBalanceElement.classList.remove(
+        "tax-refund",
+        "tax-owing",
+        "tax-zero"
+    );
 
-}
 
-else if (taxBalance < 0) {
+    if (taxBalance > 0) {
 
-    taxBalanceElement.textContent =
-    "Refund: " + formatCurrency(Math.abs(taxBalance));
+        taxBalanceElement.textContent =
+        "Owing to Government: " + formatCurrency(taxBalance);
 
-}
+        taxBalanceElement.classList.add(
+            "tax-owing"
+        );
 
-else {
+    }
 
-    taxBalanceElement.textContent =
-    "No balance owing";
+    else if (taxBalance < 0) {
+
+        taxBalanceElement.textContent =
+        "Tax Refund: " + formatCurrency(Math.abs(taxBalance));
+
+        taxBalanceElement.classList.add(
+            "tax-refund"
+        );
+
+    }
+
+    else {
+
+        taxBalanceElement.textContent =
+        "No Balance Owing";
+
+        taxBalanceElement.classList.add(
+            "tax-zero"
+        );
+
+    }
 
 }
 
