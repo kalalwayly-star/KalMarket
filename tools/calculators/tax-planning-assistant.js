@@ -235,8 +235,20 @@ formatCurrency(estimatedTax);
 document.getElementById("planningSavings")
 .textContent =
 formatCurrency(monthlySavings);
+    
+document.getElementById("gstPlanningResult")
+.textContent =
+formatCurrency(gstEstimate);
 
-generatePlanningRecommendation(
+
+document.getElementById("cppPlanningResult")
+.textContent =
+formatCurrency(cppEstimate);
+
+
+document.getElementById("totalReserveResult")
+.textContent =
+formatCurrency(totalReserve);generatePlanningRecommendation(
 netIncome,
 profitMargin,
 revenue,
