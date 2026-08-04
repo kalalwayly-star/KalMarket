@@ -180,7 +180,7 @@ const quarterlySavings =
 
 
     document.getElementById("provincialTaxResult").textContent =
-        formatCurrency(regionalTax));
+        formatCurrency(regionalTax);
 
 
     document.getElementById("totalTaxResult").textContent =
