@@ -269,9 +269,20 @@ formatCurrency(monthlySavings);
 .textContent =
 formatCurrency(availableIncome);
     
-document.getElementById("gstPlanningResult")
-.textContent =
-formatCurrency(gstEstimate);
+if (gstEstimate < 0) {
+
+    document.getElementById("gstPlanningResult")
+    .textContent =
+    "Refund: " + formatCurrency(Math.abs(gstEstimate));
+
+}
+else {
+
+    document.getElementById("gstPlanningResult")
+    .textContent =
+    "Owing: " + formatCurrency(gstEstimate);
+
+}
 
 
 document.getElementById("cppPlanningResult")
