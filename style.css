@@ -1277,7 +1277,6 @@ featured-badge {
     font-weight:bold;
 }
 
-
 .simulation-negative {
     color:#d60000;
     font-weight:bold;
@@ -1291,7 +1290,6 @@ featured-badge {
     overflow-x: auto;
     margin-top: 20px;
 }
-
 
 .results-table {
     width: 100%;
@@ -1316,53 +1314,43 @@ featured-badge {
 
 }
 
-
 .results-table td {
-
     padding: 12px;
-
     text-align: center;
-
     border-bottom: 1px solid #eee;
-
     font-size: 14px;
-
 }
-
-
 .results-table tr:hover {
-
     background: #f7f3ff;
-
 }
-
-
 .results-table td:nth-child(5) {
-
     color: #d9534f;
-
 }
-
-
 .results-table td:nth-child(4) {
-
     color: #198754;
-
 }
-
 
 /* Mobile */
 
 @media (max-width: 768px) {
-
-
     .results-table th,
     .results-table td {
-
         padding: 8px;
-
         font-size: 12px;
-
     }
+}
+/* ===========================================
+   Disclaimer
+=========================================== */
 
+.disclaimer-card {
+    margin-top: 25px;
+    background: #fff9e6;
+    border-left: 6px solid #f4b400;
+}
+
+.disclaimer-card p {
+    color: #555;
+    line-height: 1.7;
+    font-size: 15px;
 }
