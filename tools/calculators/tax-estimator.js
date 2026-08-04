@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function calculateTax() {
 
+    const taxPaid =
+    Number(document.getElementById("taxPaid").value) || 0;
+
     const annualIncome =
         Number(document.getElementById("annualIncome").value) || 0;
 
@@ -151,6 +154,9 @@ else if (country === "US") {
         regionalTax +
         extraAdjustment;
 
+    const taxBalance =
+    totalTax - taxPaid;
+    
     const afterTax =
         annualIncome - totalTax;
 
@@ -186,6 +192,30 @@ const quarterlySavings =
     document.getElementById("totalTaxResult").textContent =
         formatCurrency(totalTax);
 
+const taxBalanceElement =
+document.getElementById("taxBalanceResult");
+
+
+if (taxBalance > 0) {
+
+    taxBalanceElement.textContent =
+    "Owing: " + formatCurrency(taxBalance);
+
+}
+
+else if (taxBalance < 0) {
+
+    taxBalanceElement.textContent =
+    "Refund: " + formatCurrency(Math.abs(taxBalance));
+
+}
+
+else {
+
+    taxBalanceElement.textContent =
+    "No balance owing";
+
+}
 
     document.getElementById("afterTaxResult").textContent =
         formatCurrency(afterTax);
