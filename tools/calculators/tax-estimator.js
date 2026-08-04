@@ -11,22 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-
-
 function calculateTax() {
-
 
     const annualIncome =
         Number(document.getElementById("annualIncome").value) || 0;
 
-
     const businessExpenses =
         Number(document.getElementById("businessExpenses").value) || 0;
 
-
     const employmentType =
         document.getElementById("employmentType").value;
-
 
     const province =
         document.getElementById("province").value;
@@ -47,8 +41,6 @@ const gstOwing =
             0,
             annualIncome - businessExpenses
         );
-
-
 
     // Simple estimated federal tax
 
@@ -76,9 +68,6 @@ const gstOwing =
             ((taxableIncome - 114750) * 0.26);
 
     }
-
-
-
 
     // Provincial estimate
 
@@ -194,22 +183,15 @@ document.getElementById("quarterlyTaxResult").textContent =
 
 }
 
-
-
-
-
 function generateTaxRecommendation(
     totalTax,
     monthlySavings,
     employmentType
 ) {
 
-
     let message = "";
 
-
     if (employmentType === "self-employed") {
-
 
         message = `
         <div class="strategy-box warning">
@@ -227,7 +209,6 @@ function generateTaxRecommendation(
     }
 
     else {
-
 
         message = `
 
