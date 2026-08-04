@@ -155,31 +155,52 @@ Business Expenses
 type="number"
 id="businessExpenses"
 placeholder="Business Expenses"
-value="0">
+value="">
 
 
 </div>
 
 </section>
 
-<label data-i18n="gst_collected_input">
-GST/HST Collected
-</label>
+<section class="calculator-container">
 
-<input
-type="number"
-id="gstCollected"
-placeholder="GST/HST Collected">
+    <div class="calculator-card">
 
+        <h3 data-i18n="gst_information">
+            🧾 GST / HST Information
+        </h3>
 
-<label data-i18n="gst_paid_input">
-GST/HST Paid
-</label>
+        <div class="input-group">
 
-<input
-type="number"
-id="gstPaid"
-placeholder="GST/HST Paid">
+            <label data-i18n="gst_collected_input">
+                💰 GST/HST Collected
+            </label>
+
+            <input
+                type="number"
+                id="gstCollected"
+                data-i18n-placeholder="gst_collected_placeholder"
+                placeholder="Total GST/HST Collected">
+
+        </div>
+
+        <div class="input-group">
+
+            <label data-i18n="gst_paid_input">
+                📥 GST/HST Paid
+            </label>
+
+            <input
+                type="number"
+                id="gstPaid"
+                data-i18n-placeholder="gst_paid_placeholder"
+                placeholder="Total GST/HST Paid">
+
+        </div>
+
+    </div>
+
+</section>
 
 <section class="calculator-container">
 
