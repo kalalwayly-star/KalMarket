@@ -1539,5 +1539,17 @@ featured-badge {
     padding-bottom:10px;
 
     border-bottom:2px solid #e7e2ff;
+}
+.result-card{
+
+    transition:.25s;
+
+}
+
+.result-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 8px 20px rgba(93,45,225,.15);
 
 }
