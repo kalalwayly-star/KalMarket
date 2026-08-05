@@ -311,16 +311,14 @@ function generateTaxRecommendation(
         Recommended monthly savings:
         ${formatCurrency(monthlySavings)}
         </p>
-
         </div>
-
         `;
-
     }
 
     document.getElementById("taxRecommendation").innerHTML =
         message;
 }
+
 
 function resetTax() {
 
@@ -341,6 +339,7 @@ function resetTax() {
     Calculate your tax estimate to see recommendations.
     `;
 }
+
 function formatCurrency(amount) {
 
     return new Intl.NumberFormat(
@@ -350,5 +349,59 @@ function formatCurrency(amount) {
             currency: "CAD"
         }
     ).format(amount);
-
 }
+document
+    .getElementById("employmentType")
+    .addEventListener("change", updateTaxEstimatorUI);
+
+
+function updateTaxEstimatorUI() {
+
+    const employment =
+        document.getElementById("employmentType").value;
+
+    const gstSection =
+        document.getElementById("gstSection");
+
+    const gstResults =
+        document.getElementById("gstResultsSection");
+
+    const businessExpensesLabel =
+        document.querySelector('label[data-i18n="business_expenses"]');
+
+    const businessExpensesInput =
+        document.getElementById("businessExpenses");
+
+    if (employment === "employee") {
+
+        // Hide GST sections
+        gstSection.style.display = "none";
+        gstResults.style.display = "none";
+
+        // Rename field
+        businessExpensesLabel.setAttribute(
+    "data-i18n",
+    "employment_deductions"
+);
+
+applyTranslations();
+
+        businessExpensesInput.placeholder =
+            "RRSP, Union Dues, Employment Expenses";
+    }
+    else {
+
+        // Show GST sections
+        gstSection.style.display = "";
+        gstResults.style.display = "";
+
+        // Restore business wording
+        businessExpensesLabel.textContent =
+            "📉 Allowable Business Expenses";
+
+        businessExpensesInput.placeholder =
+            "Allowable Business Expenses";
+    }
+}
+updateTaxEstimatorUI();
+
