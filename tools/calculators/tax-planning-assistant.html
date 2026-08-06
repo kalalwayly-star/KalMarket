@@ -156,32 +156,45 @@
 
 <section class="calculator-container">
 
-<div class="calculator-card">
+    <div class="calculator-card income-type-card">
 
-<h3 data-i18n="choose_income_type">
-👤 Choose Income Type
-</h3>
+        <h3 data-i18n="choose_income_type">
+            👤 Choose Income Type
+        </h3>
 
-<select id="incomeType">
+        <p class="section-subtitle" data-i18n="choose_income_type_desc">
+            Select the option that best describes your source of income.
+        </p>
 
-    <option value="" data-i18n="select_type">
-        Select Type
-    </option>
+        <div class="select-wrapper">
 
-    <option value="employee" data-i18n="employee">
-        Employee
-    </option>
+            <span class="select-icon">💼</span>
 
-    <option value="self-employed" data-i18n="self_employed">
-        Self-Employed
-    </option>
+            <select id="incomeType">
 
-    <option value="business" data-i18n="business_owner">
-        Business Owner
-    </option>
+                <option value="" data-i18n="select_type">
+                    Select Type
+                </option>
 
-</select>
+                <option value="employee" data-i18n="employee">
+                    👤 Employee
+                </option>
 
+                <option value="self-employed" data-i18n="self_employed">
+                    🧰 Self-Employed
+                </option>
+
+                <option value="business" data-i18n="business_owner">
+                    🏢 Business Owner
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+</section>
 
 <!-- ================= EMPLOYEE ================= -->
 
