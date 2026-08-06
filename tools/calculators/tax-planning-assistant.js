@@ -236,7 +236,7 @@ if(type === "employee") {
 
 availableIncome =
 (revenue - estimatedTax) -
-(monthlyLivingExpenses * 12);
+(livingExpenses * 12);
 
 }
 // Results
