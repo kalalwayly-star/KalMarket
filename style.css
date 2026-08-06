@@ -1551,5 +1551,99 @@ featured-badge {
     transform:translateY(-4px);
 
     box-shadow:0 8px 20px rgba(93,45,225,.15);
+}
+/* Income Type Card */
+
+.income-type-card{
+
+    max-width:700px;
+    margin:auto;
+
+}
+
+.section-subtitle{
+
+    margin:-6px 0 20px;
+    text-align:center;
+    color:#666;
+    font-size:.95rem;
+    line-height:1.5;
+
+}
+
+.select-wrapper{
+
+    position:relative;
+    width:100%;
+
+}
+
+.select-icon{
+
+    position:absolute;
+    left:16px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:20px;
+    pointer-events:none;
+    z-index:2;
+
+}
+
+.select-wrapper select{
+
+    width:100%;
+    padding:15px 18px 15px 52px;
+    font-size:17px;
+    font-weight:600;
+
+    border:2px solid #d7d0ff;
+    border-radius:14px;
+
+    background:#fff;
+
+    color:#333;
+
+    transition:.25s;
+
+    appearance:none;
+    cursor:pointer;
+
+    box-shadow:0 4px 12px rgba(93,45,225,.08);
+
+}
+
+.select-wrapper select:hover{
+
+    border-color:#7b3ff2;
+
+}
+
+.select-wrapper select:focus{
+
+    outline:none;
+    border-color:#5d2de1;
+
+    box-shadow:
+        0 0 0 4px rgba(93,45,225,.15);
+
+}
+
+.select-wrapper::after{
+
+    content:"▼";
+
+    position:absolute;
+
+    right:18px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#5d2de1;
+
+    font-size:13px;
+
+    pointer-events:none;
 
 }
