@@ -148,103 +148,181 @@
 
 <main>
 
+<!-- ======================================================
+     HERO
+====================================================== -->
+
 <section class="hero business-hub-hero">
 
-<h2 data-i18n="tax_calculator_title">
-🧾 Smart Tax Estimator
-</h2>
+    <h2 data-i18n="tax_calculator_title">
+        🧾 Smart Tax Estimator
+    </h2>
 
-<p data-i18n="tax_calculator_intro">
-Estimate your taxes, understand your tax position, and plan ahead with confidence.
-</p>
+    <p data-i18n="tax_calculator_intro">
+        Estimate your taxes, understand your tax position, and plan ahead with confidence.
+    </p>
+
+</section>
+
+
+<!-- ======================================================
+     INCOME INFORMATION
+====================================================== -->
+
+<section class="calculator-container">
+
+    <div class="calculator-card">
+
+        <h3 data-i18n="income_information">
+            💰 Income Information
+        </h3>
+
+        <label data-i18n="annual_income">
+            Annual Gross Income
+        </label>
+
+        <small class="field-help"
+               data-i18n="annual_income_help">
+
+            Enter your total income before taxes and deductions.
+
+        </small>
+
+        <input
+            type="number"
+            id="annualIncome"
+            data-i18n-placeholder="annual_income"
+            placeholder="Annual Income">
+
+        <label data-i18n="employment_type">
+            👤 Employment Status
+        </label>
+
+        <select id="employmentType">
+
+            <option value="employee"
+                    data-i18n="employee">
+
+                Employee
+
+            </option>
+
+            <option value="self-employed"
+                    data-i18n="self_employed">
+
+                Self-Employed
+
+            </option>
+
+        </select>
+
+    </div>
+
 </section>
 
 
 
-<section class="calculator-container">
-
-<div class="calculator-card">
-
-<h3 data-i18n="income_information">
-💰 Income Information
-</h3>
-
-
-<label data-i18n="annual_income">
-Annual Gross Income
-</label>
-<small class="field-help" data-i18n="annual_income_help">
-Enter your total income before taxes and deductions.
-</small>
-<input
-type="number"
-id="annualIncome"
-placeholder="Annual Income">
-
-<label data-i18n="employment_type">
-👤 Employment Status
-</label>
-
-<select id="employmentType">
-
-<option value="employee">
-Employee
-</option>
-
-<option value="self-employed">
-Self-Employed
-</option>
-
-</select>
+<!-- ======================================================
+     TAX & DEDUCTIONS
+====================================================== -->
 
 <section
 id="deductionsSection"
 class="calculator-container">
-<div class="calculator-card">
 
-<h3 data-i18n="deductions">
-🧾 Tax & Deductions
-</h3>
-<label data-i18n="tax_paid">
-💳 Tax Already Paid (Withheld)
-</label>
-<small class="field-help" data-i18n="tax_paid_help">
-For employees, this is the tax deducted from your paycheques.
-</small>
-<input
-type="number"
-id="taxPaid"
-data-i18n-placeholder="tax_paid_placeholder"
-placeholder="Tax deducted from your paycheques">
+    <div class="calculator-card">
 
-<label data-i18n="business_expenses">
-Allowable Business Expenses
-</label>
+        <h3 data-i18n="deductions">
 
-<input
-type="number"
-id="businessExpenses"
-placeholder="Business Expenses"
-value="">
+            🧾 Tax & Deductions
 
-</div>
+        </h3>
+
+
+        <label data-i18n="tax_paid">
+
+            💳 Tax Already Paid (Withheld)
+
+        </label>
+
+        <small class="field-help"
+               data-i18n="tax_paid_help">
+
+            For employees, enter the total income tax already deducted from your paycheques.
+
+        </small>
+
+        <input
+            type="number"
+            id="taxPaid"
+            data-i18n-placeholder="tax_paid_placeholder"
+            placeholder="Tax deducted from your paycheques">
+
+
+        <label data-i18n="business_expenses">
+
+            Allowable Business Expenses
+
+        </label>
+
+        <small class="field-help"
+               data-i18n="business_expenses_help">
+
+            Examples:
+            Office,
+            advertising,
+            vehicle,
+            insurance,
+            rent,
+            utilities,
+            supplies,
+            professional fees.
+
+        </small>
+
+        <input
+            type="number"
+            id="businessExpenses"
+            data-i18n-placeholder="business_expenses"
+            placeholder="Business Expenses">
+
+    </div>
 
 </section>
+
+
+
+<!-- ======================================================
+     GST / HST
+====================================================== -->
 
 <section
 id="gstSection"
 class="calculator-container">
+
     <div class="calculator-card">
 
         <h3 data-i18n="gst_information">
+
             🧾 GST / HST Information
+
         </h3>
+
 
         <div class="input-group">
 
             <label data-i18n="gst_collected_input">
+
                 💰 GST/HST Collected
+
             </label>
+
+            <small class="field-help"
+                   data-i18n="gst_collected_help">
+
+                Enter the GST/HST collected from customers.
+
+            </small>
 
             <input
                 type="number"
@@ -254,11 +332,21 @@ class="calculator-container">
 
         </div>
 
+
         <div class="input-group">
 
             <label data-i18n="gst_paid_input">
+
                 📥 GST/HST Paid
+
             </label>
+
+            <small class="field-help"
+                   data-i18n="gst_paid_help">
+
+                Enter the GST/HST paid on business purchases.
+
+            </small>
 
             <input
                 type="number"
@@ -272,38 +360,61 @@ class="calculator-container">
 
 </section>
 
+
+
+<!-- ======================================================
+     LOCATION
+====================================================== -->
+
 <section class="calculator-container">
 
-<div class="calculator-card">
+    <div class="calculator-card">
 
-<h3 data-i18n="location">
-📍 Tax Location
-</h3>
+        <h3 data-i18n="location">
+
+            📍 Tax Location
+
+        </h3>
 
 
-<label data-i18n="country">
-Country
-</label>
+        <label data-i18n="country">
 
-<select id="country">
+            Country
 
-<option value="CA">
-🇨🇦 Canada
-</option>
+        </label>
 
-<option value="US">
-🇺🇸 United States
-</option>
+        <select id="country">
 
-</select>
+            <option value="CA">
+                🇨🇦 Canada
+            </option>
 
-<label data-i18n="region">
-Province / State
-</label>
+            <option value="US">
+                🇺🇸 United States
+            </option>
 
-<select id="region">
+        </select>
 
-</select>
+
+        <label data-i18n="region">
+
+            Province / State
+
+        </label>
+
+        <select id="region">
+
+        </select>
+
+    </div>
+
+</section>
+
+
+
+<!-- ======================================================
+     BUTTONS
+====================================================== -->
 
 <div class="button-group">
 
@@ -312,182 +423,195 @@ Province / State
         class="btn primary"
         data-i18n="calculate_tax">
 
-       🧾 Calculate Tax
+        🧾 Calculate Tax
 
     </button>
+
 
     <button
         id="resetTaxBtn"
         class="btn"
         data-i18n="reset">
 
-      ↺ Reset Form
+        ↺ Reset Form
 
     </button>
 
 </div>
+
+<!-- ======================================================
+     INCOME SUMMARY
+====================================================== -->
+
 <section class="results-grid">
 
-    <div class="result-card">
+<h3 class="results-heading"
+data-i18n="income_summary">
 
-        <h4 data-i18n="gross_income">
-            💰 Gross Income
-        </h4>
+💰 Income Summary
 
-        <p id="grossIncomeResult">
-            $0.00
-        </p>
-
-    </div>
+</h3>
 
 
-    <div class="result-card">
+<div class="result-card">
 
-        <h4 data-i18n="deductions_amount">
-            📉 Deductions
-        </h4>
+<h4 data-i18n="gross_income">
 
-        <p id="deductionsResult">
-            $0.00
-        </p>
+💰 Gross Income
 
-    </div>
-
-
-    <div class="result-card">
-
-        <h4 data-i18n="taxable_income">
-            📊 Taxable Income
-        </h4>
-
-        <p id="taxableIncomeResult">
-            $0.00
-        </p>
-
-    </div>
-
-
-    <div class="result-card">
-
-        <h4 data-i18n="federal_tax">
-            🇨🇦 Federal Tax Estimate
-        </h4>
-
-        <p id="federalTaxResult">
-            $0.00
-        </p>
-
-    </div>
-
-
-    <div class="result-card">
-
-        <h4 data-i18n="provincial_tax">
-            📍 Provincial Tax Estimate
-        </h4>
-
-        <p id="provincialTaxResult">
-            $0.00
-        </p>
-
-    </div>
-
-
-    <div class="result-card">
-
-        <h4 data-i18n="total_tax">
-            🧾 Total Estimated Tax
-        </h4>
-
-        <p id="totalTaxResult">
-            $0.00
-        </p>
-
-    </div>
-
-
-    <div class="result-card">
-
-        <h4 data-i18n="after_tax_income">
-            💵 After Tax Income
-        </h4>
-
-        <p id="afterTaxResult">
-            $0.00
-        </p>
-
-    </div>
-
-
-    <div class="result-card">
-
-        <h4 data-i18n="monthly_tax_savings">
-            📅 Recommended Monthly Tax Reserve
-        </h4>
-
-        <p id="monthlyTaxSavingsResult">
-            $0.00
-        </p>
-
-    </div>
-
-</section>
-
-<section
-id="gstResultsSection"
-class="results-grid">
-    <div class="result-card">
-
-        <h4 data-i18n="gst_collected">
-            💰 GST/HST Collected
-        </h4>
-
-        <p id="gstCollectedResult">
-            $0.00
-        </p>
-
-    </div>
-
-
-<section
-id="gstResultsSection"
-class="results-grid">
-        <h4 data-i18n="gst_paid">
-            🧾 GST/HST Paid
-        </h4>
-
-        <p id="gstPaidResult">
-            $0.00
-        </p>
-
-    </div>
-
-
-<section
-id="gstResultsSection"
-class="results-grid">
-<h4 data-i18n="tax_balance">
-📌 Estimated Tax Balance 
 </h4>
 
-<p id="taxBalanceResult">
+<p id="grossIncomeResult">
+
 $0.00
+
 </p>
-   </div>
 
-<section
-id="gstResultsSection"
-class="results-grid">
-        <h4 data-i18n="quarterly_tax">
-            📅 Recommended Quarterly Tax Reserve
-        </h4>
+</div>
 
-        <p id="quarterlyTaxResult">
-            $0.00
-        </p>
 
-    </div>
+<div class="result-card">
+
+<h4 data-i18n="deductions_amount">
+
+📉 Deductions
+
+</h4>
+
+<p id="deductionsResult">
+
+$0.00
+
+</p>
+
+</div>
+
+
+<div class="result-card">
+
+<h4 data-i18n="taxable_income">
+
+📊 Taxable Income
+
+</h4>
+
+<p id="taxableIncomeResult">
+
+$0.00
+
+</p>
+
+</div>
+
+
+<div class="result-card">
+
+<h4 data-i18n="after_tax_income">
+
+💵 Estimated After-Tax Income
+
+</h4>
+
+<p id="afterTaxResult">
+
+$0.00
+
+</p>
+
+</div>
+
 </section>
+
+
+
+<!-- ======================================================
+     TAX ESTIMATE
+====================================================== -->
+
+<section class="results-grid">
+
+<h3 class="results-heading"
+data-i18n="tax_estimate">
+
+🧾 Tax Estimate
+
+</h3>
+
+
+<div class="result-card">
+
+<h4 data-i18n="federal_tax">
+
+🇨🇦 Federal Tax
+
+</h4>
+
+<p id="federalTaxResult">
+
+$0.00
+
+</p>
+
+</div>
+
+
+<div class="result-card">
+
+<h4 data-i18n="provincial_tax">
+
+📍 Provincial / State Tax
+
+</h4>
+
+<p id="provincialTaxResult">
+
+$0.00
+
+</p>
+
+</div>
+
+
+<div class="result-card">
+
+<h4 data-i18n="total_tax">
+
+🧾 Total Estimated Tax
+
+</h4>
+
+<p id="totalTaxResult">
+
+$0.00
+
+</p>
+
+</div>
+
+
+<div class="result-card">
+
+<h4 data-i18n="monthly_tax_savings">
+
+📅 Recommended Monthly Tax Reserve
+
+</h4>
+
+<p id="monthlyTaxSavingsResult">
+
+$0.00
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- ======================================================
+     TAX BALANCE
+====================================================== -->
 
 <section class="results-grid">
 
@@ -498,6 +622,7 @@ data-i18n="tax_balance_summary">
 
 </h3>
 
+
 <div class="result-card">
 
 <h4 data-i18n="tax_paid">
@@ -505,26 +630,39 @@ data-i18n="tax_balance_summary">
 💳 Tax Already Paid
 
 </h4>
+
 <p id="taxPaidResult">
 
 $0.00
 
 </p>
+
 </div>
 
+
 <div class="result-card">
+
 <h4 data-i18n="tax_balance">
 
 📌 Estimated Tax Balance
 
 </h4>
+
 <p id="taxBalanceResult">
 
 $0.00
 
 </p>
+
 </div>
+
 </section>
+
+
+
+<!-- ======================================================
+     BUSINESS TAXES
+====================================================== -->
 
 <section
 id="gstResultsSection"
@@ -554,73 +692,110 @@ $0.00
 
 </div>
 
+
 <div class="result-card">
+
 <h4 data-i18n="gst_paid">
 
 📥 GST/HST Paid
 
 </h4>
+
 <p id="gstPaidResult">
 
 $0.00
 
 </p>
+
 </div>
 
+
 <div class="result-card">
+
 <h4 data-i18n="quarterly_tax">
 
 📅 Recommended Quarterly Tax Reserve
 
 </h4>
+
 <p id="quarterlyTaxResult">
 
 $0.00
 
 </p>
+
 </div>
+
 </section>
+
     
+<!-- ======================================================
+     TAX PLANNING ADVICE
+====================================================== -->
+
 <section class="recommendation-card">
 
-<h3 data-i18n="tax_recommendation">
-💡 Tax Planning Advice
-</h3>
+    <h3 data-i18n="tax_recommendation">
+        💡 Tax Planning Advice
+    </h3>
 
+    <div id="taxRecommendation">
 
-<div id="taxRecommendation">
+        <p data-i18n="tax_placeholder">
 
-<p data-i18n="tax_placeholder">
-Welcome!
+            Welcome!
 
-This calculator provides an estimate based on your income, deductions, tax payments and location.
+            This calculator provides an estimate based on your income,
+            deductions, taxes already paid and your tax location.
 
-For best results, complete all applicable fields before calculating.
-</p>
+            Complete the applicable fields above, then click
+            <strong>Calculate Tax</strong> to receive your personalized
+            tax estimate and planning recommendations.
 
-</div>
+        </p>
+
+    </div>
+
 </section>
+
+
+
+<!-- ======================================================
+     PROFESSIONAL DISCLAIMER
+====================================================== -->
+
 <section class="recommendation-card disclaimer-card">
 
     <h3 data-i18n="important_notice">
+
         ⚠ Professional Disclaimer
+
     </h3>
 
     <p data-i18n="tax_disclaimer">
 
         This calculator provides estimated tax information for educational
-        and planning purposes only. Tax rates, deductions, credits, and
-        government regulations may change over time.
+        and planning purposes only.
 
-        Please consult the Canada Revenue Agency (CRA) or a qualified tax
-        professional before making financial or tax decisions.
+        Tax rates, deductions, credits, GST/HST rules,
+        CPP contributions and government regulations may change.
+
+        Results should not be considered professional tax advice.
+
+        Please consult the Canada Revenue Agency (CRA),
+        the Internal Revenue Service (IRS),
+        or a qualified tax professional before making
+        financial or tax decisions.
 
     </p>
 
 </section>
+
 </main>
+
 <script src="../../languages.js"></script>
-    <script src="locations.js"></script>
-  <script src="tax-estimator.js"></script>  
+<script src="locations.js"></script>
+<script src="tax-estimator.js"></script>
+
 </body>
 </html>
