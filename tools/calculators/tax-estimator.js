@@ -250,6 +250,8 @@ function calculateTax() {
     document.getElementById("totalTaxResult").textContent =
         formatCurrency(totalTax);
 
+    document.getElementById("taxPaidResult").textContent =
+    formatCurrency(taxPaid);
 
 
     document.getElementById("afterTaxResult").textContent =
