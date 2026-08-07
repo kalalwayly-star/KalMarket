@@ -1,78 +1,125 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     document
-    .getElementById("calculateTaxBtn")
-    ?.addEventListener("click", calculateTax);
+        .getElementById("calculateTaxBtn")
+        ?.addEventListener("click", calculateTax);
 
 
     document
-    .getElementById("resetTaxBtn")
-    ?.addEventListener("click", resetTax);
+        .getElementById("resetTaxBtn")
+        ?.addEventListener("click", resetTax);
+
+
+    document
+        .getElementById("employmentType")
+        ?.addEventListener("change", updateTaxEstimatorUI);
+
+
+    updateTaxEstimatorUI();
 
 });
 
+
+
 function calculateTax() {
 
-   const businessRevenue =
-Number(document.getElementById("businessRevenue")?.value) || 0;
-
-const costOfGoodsSold =
-Number(document.getElementById("costOfGoodsSold")?.value) || 0;
-    
-    const taxPaid =
-    Number(document.getElementById("taxPaid").value) || 0;
-
-    const annualIncome =
-        Number(document.getElementById("annualIncome").value) || 0;
-
-    const businessExpenses =
-        Number(document.getElementById("businessExpenses").value) || 0;
 
     const employmentType =
-        document.getElementById("employmentType").value;
-
-   const country =
-document.getElementById("country").value;
-
-const region =
-document.getElementById("region").value;
-const gstCollected =
-    Number(document.getElementById("gstCollected").value) || 0;
-
-const gstPaid =
-    Number(document.getElementById("gstPaid").value) || 0;
-
-const gstOwing =
-    gstCollected - gstPaid;
-
-    // Taxable income
-
-    let taxableIncome = 0;
-
-let grossIncome = annualIncome;
+        document.getElementById("employmentType")?.value || "employee";
 
 
-if (employmentType === "self-employed") {
-
-    const grossProfit =
-        businessRevenue - costOfGoodsSold;
+    const taxPaid =
+        Number(document.getElementById("taxPaid")?.value) || 0;
 
 
-    taxableIncome =
-        grossProfit - businessExpenses;
+    const annualIncome =
+        Number(document.getElementById("annualIncome")?.value) || 0;
 
 
-    grossIncome = businessRevenue;
+    const businessRevenue =
+        Number(document.getElementById("businessRevenue")?.value) || 0;
 
-}
-else {
 
-    taxableIncome =
-        annualIncome;
+    const costOfGoodsSold =
+        Number(document.getElementById("costOfGoodsSold")?.value) || 0;
 
-}
 
-    // Simple estimated federal tax
+    const businessExpenses =
+        Number(document.getElementById("businessExpenses")?.value) || 0;
+
+
+
+    const country =
+        document.getElementById("country")?.value || "CA";
+
+
+    const region =
+        document.getElementById("region")?.value || "MB";
+
+
+
+    const gstCollected =
+        Number(document.getElementById("gstCollected")?.value) || 0;
+
+
+    const gstPaid =
+        Number(document.getElementById("gstPaid")?.value) || 0;
+
+
+    const gstOwing =
+        gstCollected - gstPaid;
+
+
+
+    let grossIncome = annualIncome;
+
+    let deductions = 0;
+
+    let taxableIncome = annualIncome;
+
+
+
+    // ============================
+    // SELF EMPLOYED CALCULATION
+    // ============================
+
+    if (employmentType === "self-employed") {
+
+
+        const grossBusinessIncome =
+            businessRevenue - costOfGoodsSold;
+
+
+        const netBusinessIncome =
+            grossBusinessIncome - businessExpenses;
+
+
+
+        // Simple CPP deduction estimate
+        const cppDeduction =
+            netBusinessIncome * 0.0515;
+
+
+
+        taxableIncome =
+            netBusinessIncome - cppDeduction;
+
+
+
+        grossIncome =
+            grossBusinessIncome;
+
+
+        deductions =
+            businessExpenses + cppDeduction;
+
+    }
+
+
+    // ============================
+    // TAX CALCULATION
+    // ============================
+
 
     let federalTax = 0;
 
@@ -83,6 +130,7 @@ else {
             taxableIncome * 0.15;
 
     }
+
     else if (taxableIncome <= 114750) {
 
         federalTax =
@@ -90,6 +138,7 @@ else {
             ((taxableIncome - 57375) * 0.205);
 
     }
+
     else {
 
         federalTax =
@@ -99,192 +148,140 @@ else {
 
     }
 
-    // Provincial estimate
-
-   let regionalRate = 0;
 
 
-if (country === "CA") {
+    // ============================
+    // PROVINCIAL ESTIMATE
+    // ============================
 
 
-    if (region === "MB") {
-
-        regionalRate = 0.108;
-
-    }
-
-    else if (region === "ON") {
-
-        regionalRate = 0.11;
-
-    }
-
-    else if (region === "AB") {
-
-        regionalRate = 0.10;
-
-    }
-
-    else if (region === "BC") {
-
-        regionalRate = 0.08;
-
-    }
-
-}
+    let provincialRate = 0;
 
 
-else if (country === "US") {
+    if (country === "CA") {
 
 
-    // Temporary USA estimate
-    // We will improve state rules later
+        if (region === "MB") {
 
-    if (region === "CA") {
+            provincialRate = 0.108;
 
-        regionalRate = 0.09;
+        }
 
-    }
+        else if (region === "ON") {
 
-    else if (region === "TX") {
+            provincialRate = 0.11;
 
-        regionalRate = 0;
+        }
 
-    }
+        else if (region === "AB") {
 
-    else if (region === "NY") {
+            provincialRate = 0.10;
 
-        regionalRate = 0.06;
+        }
+
+        else if (region === "BC") {
+
+            provincialRate = 0.08;
+
+        }
 
     }
 
 
-}
 
-   const regionalTax =
-    taxableIncome * regionalRate;
-
+    const provincialTax =
+        taxableIncome * provincialRate;
 
 
-    // Self employed adjustment
-
-    let extraAdjustment = 0;
-
-    if (employmentType === "self-employed") {
-
-        extraAdjustment =
-            taxableIncome * 0.02;
-
-    }
 
     const totalTax =
-        federalTax +
-        regionalTax +
-        extraAdjustment;
+        federalTax + provincialTax;
+
+
 
     const taxBalance =
-    totalTax - taxPaid;
-    
+        totalTax - taxPaid;
+
+
+
     const afterTax =
-        annualIncome - totalTax;
+        taxableIncome - totalTax;
+
+
 
     const monthlySavings =
         totalTax / 12;
 
-const quarterlySavings =
-    totalTax / 4;
 
-    // Display results
+
+    const quarterlySavings =
+        totalTax / 4;
+
+
+
+    // ============================
+    // DISPLAY RESULTS
+    // ============================
 
 
     document.getElementById("grossIncomeResult").textContent =
-        formatCurrency(grossIncome)
+        formatCurrency(grossIncome);
 
 
     document.getElementById("deductionsResult").textContent =
-        formatCurrency(businessExpenses);
+        formatCurrency(deductions);
 
 
     document.getElementById("taxableIncomeResult").textContent =
         formatCurrency(taxableIncome);
 
 
+
     document.getElementById("federalTaxResult").textContent =
         formatCurrency(federalTax);
 
 
+
     document.getElementById("provincialTaxResult").textContent =
-        formatCurrency(regionalTax);
+        formatCurrency(provincialTax);
+
 
 
     document.getElementById("totalTaxResult").textContent =
         formatCurrency(totalTax);
 
-const taxBalanceElement =
-document.getElementById("taxBalanceResult");
 
-
-if (taxBalanceElement) {
-
-    taxBalanceElement.classList.remove(
-        "tax-refund",
-        "tax-owing",
-        "tax-zero"
-    );
-
-
-    if (taxBalance > 0) {
-
-        taxBalanceElement.textContent =
-        "Owing to Government: " + formatCurrency(taxBalance);
-
-        taxBalanceElement.classList.add(
-            "tax-owing"
-        );
-
-    }
-
-    else if (taxBalance < 0) {
-
-        taxBalanceElement.textContent =
-        "Tax Refund: " + formatCurrency(Math.abs(taxBalance));
-
-        taxBalanceElement.classList.add(
-            "tax-refund"
-        );
-
-    }
-
-    else {
-
-        taxBalanceElement.textContent =
-        "No Balance Owing";
-
-        taxBalanceElement.classList.add(
-            "tax-zero"
-        );
-
-    }
-
-}
 
     document.getElementById("afterTaxResult").textContent =
         formatCurrency(afterTax);
 
 
+
     document.getElementById("monthlyTaxSavingsResult").textContent =
         formatCurrency(monthlySavings);
-document.getElementById("gstCollectedResult").textContent =
-    formatCurrency(gstCollected);
 
-document.getElementById("gstPaidResult").textContent =
-    formatCurrency(gstPaid);
 
-document.getElementById("gstOwingResult").textContent =
-    formatCurrency(gstOwing);
 
-document.getElementById("quarterlyTaxResult").textContent =
-    formatCurrency(quarterlySavings);
+    document.getElementById("quarterlyTaxResult").textContent =
+        formatCurrency(quarterlySavings);
+
+
+
+    document.getElementById("gstCollectedResult").textContent =
+        formatCurrency(gstCollected);
+
+
+    document.getElementById("gstPaidResult").textContent =
+        formatCurrency(gstPaid);
+
+
+    document.getElementById("gstOwingResult").textContent =
+        formatCurrency(gstOwing);
+
+
+
+    displayTaxBalance(taxBalance);
+
 
 
     generateTaxRecommendation(
@@ -293,8 +290,72 @@ document.getElementById("quarterlyTaxResult").textContent =
         employmentType
     );
 
+}
+
+
+
+
+
+function displayTaxBalance(balance) {
+
+
+    const element =
+        document.getElementById("taxBalanceResult");
+
+
+    if (!element) return;
+
+
+    element.classList.remove(
+        "tax-refund",
+        "tax-owing",
+        "tax-zero"
+    );
+
+
+
+    if (balance > 0) {
+
+
+        element.textContent =
+        "Amount Owing: " + formatCurrency(balance);
+
+
+        element.classList.add("tax-owing");
+
+
+    }
+
+
+    else if (balance < 0) {
+
+
+        element.textContent =
+        "Refund: " + formatCurrency(Math.abs(balance));
+
+
+        element.classList.add("tax-refund");
+
+
+    }
+
+
+    else {
+
+
+        element.textContent =
+        "No Balance Owing";
+
+
+        element.classList.add("tax-zero");
+
+    }
 
 }
+
+
+
+
 
 function generateTaxRecommendation(
     totalTax,
@@ -302,26 +363,34 @@ function generateTaxRecommendation(
     employmentType
 ) {
 
+
     let message = "";
+
 
     if (employmentType === "self-employed") {
 
+
         message = `
+
         <div class="strategy-box warning">
 
         <h4>🧾 Self-Employed Tax Planning</h4>
 
         <p>
-        Consider setting aside approximately
+        Consider saving approximately
         ${formatCurrency(monthlySavings)}
-        every month for taxes.
+        monthly for taxes.
         </p>
 
-        </div>`;
+        </div>
+
+        `;
 
     }
 
+
     else {
+
 
         message = `
 
@@ -332,61 +401,68 @@ function generateTaxRecommendation(
         <p>
         Estimated yearly tax:
         ${formatCurrency(totalTax)}
-
         </p>
 
         <p>
         Recommended monthly savings:
         ${formatCurrency(monthlySavings)}
         </p>
+
         </div>
+
         `;
+
     }
 
-    document.getElementById("taxRecommendation").innerHTML =
-        message;
+
+    const box =
+    document.getElementById("taxRecommendation");
+
+
+    if (box)
+        box.innerHTML = message;
+
 }
+
+
+
 
 
 function resetTax() {
 
 
-    document.querySelectorAll(
-        "input"
-    ).forEach(input => {
+    document
+    .querySelectorAll("input")
+    .forEach(input => {
 
         input.value = "";
 
     });
 
-    document.getElementById("businessExpenses").value = 0;
+
+    const box =
+    document.getElementById("taxRecommendation");
 
 
-    document.getElementById("taxRecommendation").innerHTML =
-    `
-    Calculate your tax estimate to see recommendations.
-    `;
+    if (box) {
+
+        box.innerHTML =
+        "Calculate your tax estimate to see recommendations.";
+
+    }
+
 }
 
-function formatCurrency(amount) {
 
-    return new Intl.NumberFormat(
-        "en-CA",
-        {
-            style: "currency",
-            currency: "CAD"
-        }
-    ).format(amount);
-}
-document
-    .getElementById("employmentType")
-    .addEventListener("change", updateTaxEstimatorUI);
+
 
 
 function updateTaxEstimatorUI() {
 
+
     const employment =
-        document.getElementById("employmentType").value;
+        document.getElementById("employmentType")?.value;
+
 
 
     const gstSection =
@@ -397,13 +473,15 @@ function updateTaxEstimatorUI() {
         document.getElementById("gstResultsSection");
 
 
-    const businessExpensesLabel =
+
+    const label =
         document.querySelector(
-            'label[data-i18n="business_expenses"]'
+        'label[data-i18n="business_expenses"]'
         );
 
 
-    const businessExpensesInput =
+
+    const expenseInput =
         document.getElementById("businessExpenses");
 
 
@@ -411,7 +489,6 @@ function updateTaxEstimatorUI() {
     if (employment === "employee") {
 
 
-        // Hide GST for employees
         if (gstSection)
             gstSection.style.display = "none";
 
@@ -420,30 +497,22 @@ function updateTaxEstimatorUI() {
             gstResults.style.display = "none";
 
 
-
-        // Change expense label
-        if (businessExpensesLabel) {
-
-            businessExpensesLabel.textContent =
+        if (label)
+            label.textContent =
             "📉 Employment Deductions";
 
-        }
 
-
-        if (businessExpensesInput) {
-
-            businessExpensesInput.placeholder =
+        if (expenseInput)
+            expenseInput.placeholder =
             "RRSP, Union Dues, Employment Expenses";
 
-        }
+
+    }
 
 
-    } 
-    
     else {
 
 
-        // Show GST for self-employed
         if (gstSection)
             gstSection.style.display = "block";
 
@@ -452,21 +521,14 @@ function updateTaxEstimatorUI() {
             gstResults.style.display = "grid";
 
 
-
-        if (businessExpensesLabel) {
-
-            businessExpensesLabel.textContent =
+        if (label)
+            label.textContent =
             "📉 Allowable Business Expenses";
 
-        }
 
-
-        if (businessExpensesInput) {
-
-            businessExpensesInput.placeholder =
+        if (expenseInput)
+            expenseInput.placeholder =
             "Allowable Business Expenses";
-
-        }
 
     }
 
@@ -474,14 +536,18 @@ function updateTaxEstimatorUI() {
 
 
 
-// Run when page loads
-updateTaxEstimatorUI();
 
 
-// Run when user changes status
-document
-.getElementById("employmentType")
-.addEventListener(
-"change",
-updateTaxEstimatorUI
-);
+function formatCurrency(amount) {
+
+
+    return new Intl.NumberFormat(
+        "en-CA",
+        {
+            style: "currency",
+            currency: "CAD"
+        }
+
+    ).format(amount);
+
+}
