@@ -360,48 +360,100 @@ function updateTaxEstimatorUI() {
     const employment =
         document.getElementById("employmentType").value;
 
+
     const gstSection =
         document.getElementById("gstSection");
+
 
     const gstResults =
         document.getElementById("gstResultsSection");
 
+
     const businessExpensesLabel =
-        document.querySelector('label[data-i18n="business_expenses"]');
+        document.querySelector(
+            'label[data-i18n="business_expenses"]'
+        );
+
 
     const businessExpensesInput =
         document.getElementById("businessExpenses");
 
+
+
     if (employment === "employee") {
 
-        // Hide GST sections
-        gstSection.style.display = "none";
-        gstResults.style.display = "none";
 
-        // Rename field
-        businessExpensesLabel.setAttribute(
-    "data-i18n",
-    "employment_deductions"
-);
+        // Hide GST for employees
+        if (gstSection)
+            gstSection.style.display = "none";
 
-applyTranslations();
 
-        businessExpensesInput.placeholder =
+        if (gstResults)
+            gstResults.style.display = "none";
+
+
+
+        // Change expense label
+        if (businessExpensesLabel) {
+
+            businessExpensesLabel.textContent =
+            "📉 Employment Deductions";
+
+        }
+
+
+        if (businessExpensesInput) {
+
+            businessExpensesInput.placeholder =
             "RRSP, Union Dues, Employment Expenses";
-    }
+
+        }
+
+
+    } 
+    
     else {
 
-        // Show GST sections
-        gstSection.style.display = "";
-        gstResults.style.display = "";
 
-        // Restore business wording
-        businessExpensesLabel.textContent =
+        // Show GST for self-employed
+        if (gstSection)
+            gstSection.style.display = "block";
+
+
+        if (gstResults)
+            gstResults.style.display = "grid";
+
+
+
+        if (businessExpensesLabel) {
+
+            businessExpensesLabel.textContent =
             "📉 Allowable Business Expenses";
 
-        businessExpensesInput.placeholder =
+        }
+
+
+        if (businessExpensesInput) {
+
+            businessExpensesInput.placeholder =
             "Allowable Business Expenses";
+
+        }
+
     }
+
 }
+
+
+
+// Run when page loads
 updateTaxEstimatorUI();
 
+
+// Run when user changes status
+document
+.getElementById("employmentType")
+.addEventListener(
+"change",
+updateTaxEstimatorUI
+);
