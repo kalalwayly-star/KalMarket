@@ -13,6 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function calculateTax() {
 
+   const businessRevenue =
+Number(document.getElementById("businessRevenue")?.value) || 0;
+
+const costOfGoodsSold =
+Number(document.getElementById("costOfGoodsSold")?.value) || 0;
+    
     const taxPaid =
     Number(document.getElementById("taxPaid").value) || 0;
 
@@ -41,8 +47,30 @@ const gstOwing =
 
     // Taxable income
 
-    const taxableIncome =
-    annualIncome - businessExpenses;
+    let taxableIncome = 0;
+
+let grossIncome = annualIncome;
+
+
+if (employmentType === "self-employed") {
+
+    const grossProfit =
+        businessRevenue - costOfGoodsSold;
+
+
+    taxableIncome =
+        grossProfit - businessExpenses;
+
+
+    grossIncome = businessRevenue;
+
+}
+else {
+
+    taxableIncome =
+        annualIncome;
+
+}
 
     // Simple estimated federal tax
 
@@ -170,7 +198,7 @@ const quarterlySavings =
 
 
     document.getElementById("grossIncomeResult").textContent =
-        formatCurrency(annualIncome);
+        formatCurrency(grossIncome)
 
 
     document.getElementById("deductionsResult").textContent =
