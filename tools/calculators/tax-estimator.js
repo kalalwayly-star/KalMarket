@@ -194,8 +194,23 @@ function calculateTax() {
 
 
 
-    const totalTax =
-        federalTax + provincialTax;
+   // Basic personal amount estimate
+const federalCredit = 16129 * 0.15;
+
+const provincialCredit = 15700 * 0.108;
+
+
+let totalTax =
+    federalTax +
+    provincialTax -
+    federalCredit -
+    provincialCredit;
+
+
+// Tax cannot be negative
+if (totalTax < 0) {
+    totalTax = 0;
+}
 
 
 
