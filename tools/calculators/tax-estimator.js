@@ -890,3 +890,20 @@ function formatCurrency(amount) {
     ).format(amount);
 
 }
+document.addEventListener("DOMContentLoaded", () => {
+
+    document
+        .querySelectorAll(
+            "#businessRevenue, #costOfGoodsSold, #businessExpenses, #employmentExpenses"
+        )
+        .forEach(el => {
+
+            el.style.display = "";
+
+            if (el.previousElementSibling) {
+                el.previousElementSibling.style.display = "";
+            }
+
+        });
+
+});
