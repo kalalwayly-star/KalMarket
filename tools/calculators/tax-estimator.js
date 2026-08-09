@@ -476,7 +476,6 @@ function calculateFederalTax(taxableIncome) {
     if (taxableIncome <= 0) {
 
         return 0;
-
     }
 
     if (taxableIncome <= bracket1) {
