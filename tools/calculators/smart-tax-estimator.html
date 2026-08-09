@@ -161,51 +161,49 @@
 ====================================================== -->
 <section class="calculator-container">
     <div class="calculator-card">
-        <h3 data-i18n="income_information">
-            💰 Income Information
-        </h3>
+        <h3 data-i18n="income_information">💰 Income Information</h3>
 
-        <label data-i18n="employment_type">
-            👤 Employment Status
-        </label>
+        <label data-i18n="employment_type">👤 Employment Status</label>
         <select id="employmentType">
-            <option value="employee" data-i18n="employee">Employee</option>
-            <option value="self-employed" data-i18n="self_employed">Self-Employed</option>
+            <option value="employee">Employee</option>
+            <option value="self-employed">Self-Employed</option>
         </select>
 
-        <!-- Employee Specific Fields Box -->
+        <!-- Employee Block -->
         <div id="employeeFieldsSection">
-            <label data-i18n="annual_income">
-                Annual Gross Income
-            </label>
-            <small class="field-help" data-i18n="annual_income_help">
-                Enter your total employment income before taxes and deductions.
-            </small>
-            <input type="number" id="annualIncome" value="0" placeholder="Annual Income">
+            <label>Annual Gross Income</label>
+            <input type="number" id="annualIncome" placeholder="e.g. 60000">
         </div>
 
-        <!-- Consolidated Self-Employed Fields Box -->
+        <!-- Self-Employed Block -->
         <div id="businessIncomeSection" style="display:none;">
-            <h3 data-i18n="business_income">🏢 Business Income</h3>
-            
-            <label data-i18n="gross_business_revenue">
-                Gross Business Revenue
-            </label>
-            <small class="field-help">
-                Total sales/income before expenses.
-            </small>
-            <input type="number" id="businessRevenue" value="0" placeholder="Business Revenue">
+            <h3>🏢 Business Operations</h3>
+            <label>Gross Business Revenue</label>
+            <input type="number" id="businessRevenue" placeholder="e.g. 120000">
 
-            <label data-i18n="cost_of_goods_sold">
-                Cost of Goods Sold (COGS)
-            </label>
-            <small class="field-help">
-                Materials, inventory, products purchased for resale.
-            </small>
-            <input type="number" id="costOfGoodsSold" value="0" placeholder="COGS">
+            <label>Cost of Goods Sold (COGS)</label>
+            <input type="number" id="costOfGoodsSold" placeholder="e.g. 15000">
         </div>
     </div>
 </section>
+
+<!-- Deductions Block Section -->
+<section id="deductionsSection" class="calculator-container">
+    <div class="calculator-card">
+        <h3>🧾 Tax Deductions & Write-offs</h3>
+
+        <div id="taxPaidFieldsSection">
+            <label>💳 Tax Already Paid (Withheld from Paycheque)</label>
+            <input type="number" id="taxPaid" placeholder="e.g. 5000">
+        </div>
+
+        <div id="businessExpensesFieldsSection" style="display:none;">
+            <label>Allowable Business Expenses</label>
+            <input type="number" id="businessExpenses" placeholder="e.g. 8500">
+        </div>
+    </div>
+</section>
+
 
 <!-- ======================================================
      TAX & DEDUCTIONS
