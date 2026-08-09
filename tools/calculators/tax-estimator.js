@@ -829,21 +829,27 @@ function updateTaxEstimatorUI() {
     const employment =
         document.getElementById("employmentType")?.value;
 
+    const businessIncomeSection =
+        document.getElementById("businessIncomeSection");
+
     const gstSection =
         document.getElementById("gstSection");
 
     const gstResults =
         document.getElementById("gstResultsSection");
 
-    const label =
-        document.querySelector(
-            'label[data-i18n="business_expenses"]'
-        );
+    const employmentExpenses =
+        document.getElementById("employmentExpenses");
 
-    const expenseInput =
-        document.getElementById("businessExpenses");
+
+    // ======================================================
+    // EMPLOYEE
+    // ======================================================
 
     if (employment === "employee") {
+
+        if (businessIncomeSection)
+            businessIncomeSection.style.display = "none";
 
         if (gstSection)
             gstSection.style.display = "none";
@@ -851,15 +857,20 @@ function updateTaxEstimatorUI() {
         if (gstResults)
             gstResults.style.display = "none";
 
-        if (label)
-            label.textContent =
-                "📉 Employment Deductions";
+        if (employmentExpenses)
+            employmentExpenses.style.display = "";
 
-        if (expenseInput)
-            expenseInput.placeholder =
-                "RRSP, Union Dues, Employment Expenses";
+    }
 
-    } else {
+
+    // ======================================================
+    // SELF-EMPLOYED
+    // ======================================================
+
+    else if (employment === "self-employed") {
+
+        if (businessIncomeSection)
+            businessIncomeSection.style.display = "";
 
         if (gstSection)
             gstSection.style.display = "block";
@@ -867,16 +878,11 @@ function updateTaxEstimatorUI() {
         if (gstResults)
             gstResults.style.display = "grid";
 
-        if (label)
-            label.textContent =
-                "📉 Allowable Business Expenses";
+        if (employmentExpenses)
+            employmentExpenses.style.display = "none";
 
-        if (expenseInput)
-            expenseInput.placeholder =
-                "Allowable Business Expenses";
     }
 }
-
 function formatCurrency(amount) {
 
     return new Intl.NumberFormat(
