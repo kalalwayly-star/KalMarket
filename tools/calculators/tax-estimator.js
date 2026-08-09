@@ -754,6 +754,19 @@ function calculateFederalCredits({
     return credits;
 }
 
+// ======================================================
+// RESULT DISPLAY HELPER
+// ======================================================
+
+function setResult(id, value) {
+
+    const element = document.getElementById(id);
+
+    if (!element) return;
+
+    element.textContent = formatCurrency(value);
+}
+
 function generateTaxRecommendation(
     totalTax,
     monthlySavings,
