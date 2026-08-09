@@ -146,8 +146,8 @@ function calculateTax() {
 
     }
 
-    const provincialTax =
-        taxableIncome * provincialRate;
+    let provincialTax =
+    taxableIncome * provincialRate;
 
 // ======================================================
 // BASIC PERSONAL CREDITS
