@@ -838,9 +838,6 @@ function updateTaxEstimatorUI() {
     const gstResults =
         document.getElementById("gstResultsSection");
 
-    const employmentExpenses =
-        document.getElementById("employmentExpenses");
-
 
     // ======================================================
     // EMPLOYEE
@@ -856,10 +853,6 @@ function updateTaxEstimatorUI() {
 
         if (gstResults)
             gstResults.style.display = "none";
-
-        if (employmentExpenses)
-            employmentExpenses.style.display = "";
-
     }
 
 
@@ -877,10 +870,6 @@ function updateTaxEstimatorUI() {
 
         if (gstResults)
             gstResults.style.display = "grid";
-
-        if (employmentExpenses)
-            employmentExpenses.style.display = "none";
-
     }
 }
 function formatCurrency(amount) {
