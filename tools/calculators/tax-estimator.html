@@ -429,6 +429,99 @@ placeholder="COGS"
     </div>
 
 </section>
+
+<!-- ======================================================
+     PERSONAL / TAX CREDIT INFORMATION
+====================================================== -->
+
+<section
+    id="personalTaxSection"
+    class="calculator-container">
+
+    <div class="calculator-card">
+
+        <h3>
+            👤 Personal & Tax Credit Information
+        </h3>
+
+
+        <!-- AGE -->
+
+        <label>
+            🎂 Age
+        </label>
+
+        <small class="field-help">
+            Enter your age at the end of the tax year.
+        </small>
+
+        <input
+            type="number"
+            id="taxpayerAge"
+            min="0"
+            max="120"
+            placeholder="Age">
+
+
+        <!-- SPOUSE -->
+
+        <label>
+            💑 Spouse / Common-Law Partner
+        </label>
+
+        <select id="hasSpouse">
+
+            <option value="no">
+                No
+            </option>
+
+            <option value="yes">
+                Yes
+            </option>
+
+        </select>
+
+
+        <!-- DEPENDANTS -->
+
+        <label>
+            👨‍👩‍👧‍👦 Eligible Dependants / Children
+        </label>
+
+        <small class="field-help">
+            Enter the number of dependants you may be able to claim.
+        </small>
+
+        <input
+            type="number"
+            id="dependants"
+            min="0"
+            max="20"
+            placeholder="Number of Dependants">
+
+
+        <!-- DISABILITY -->
+
+        <label>
+            ♿ Disability Tax Credit
+        </label>
+
+        <select id="hasDisability">
+
+            <option value="no">
+                No
+            </option>
+
+            <option value="yes">
+                Yes
+            </option>
+
+        </select>
+
+    </div>
+
+</section>
+    
 <!-- ======================================================
      GST / HST
 ====================================================== -->
