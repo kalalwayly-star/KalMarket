@@ -882,7 +882,6 @@ function updateTaxEstimatorUI() {
         toggleField("employmentExpenses", true);
     }
 
-
     // ======================================================
     // SELF-EMPLOYED
     // ======================================================
