@@ -18,23 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function calculateTax() {
 
+    // ======================================================
+    // BASIC INPUTS
+    // ======================================================
+
     const employmentType =
         document.getElementById("employmentType")?.value || "employee";
-
-    const taxPaid =
-        Number(document.getElementById("taxPaid")?.value) || 0;
-
-    const annualIncome =
-        Number(document.getElementById("annualIncome")?.value) || 0;
-
-    const businessRevenue =
-        Number(document.getElementById("businessRevenue")?.value) || 0;
-
-    const costOfGoodsSold =
-        Number(document.getElementById("costOfGoodsSold")?.value) || 0;
-
-    const businessExpenses =
-        Number(document.getElementById("businessExpenses")?.value) || 0;
 
     const country =
         document.getElementById("country")?.value || "CA";
@@ -42,242 +31,418 @@ function calculateTax() {
     const region =
         document.getElementById("region")?.value || "MB";
 
+    const annualIncome =
+        getNumber("annualIncome");
+
+    const taxPaid =
+        getNumber("taxPaid");
+
+
+    // ======================================================
+    // DEDUCTIONS
+    // ======================================================
+
+    const rrspContributions =
+        getNumber("rrspContributions");
+
+    const professionalDues =
+        getNumber("professionalDues");
+
+    const employmentExpenses =
+        getNumber("employmentExpenses");
+
+    const tuitionAmount =
+        getNumber("tuitionAmount");
+
+    const medicalExpenses =
+        getNumber("medicalExpenses");
+
+    const charitableDonations =
+        getNumber("charitableDonations");
+
+    const otherDeductions =
+        getNumber("otherDeductions");
+
+
+    // ======================================================
+    // PERSONAL INFORMATION
+    // ======================================================
+
+    const taxpayerAge =
+        getNumber("taxpayerAge");
+
+    const hasSpouse =
+        document.getElementById("hasSpouse")?.value === "yes";
+
+    const dependants =
+        getNumber("dependants");
+
+    const hasDisability =
+        document.getElementById("hasDisability")?.value === "yes";
+
+
+    // ======================================================
+    // BUSINESS INPUTS
+    // ======================================================
+
+    const businessRevenue =
+        getNumber("businessRevenue");
+
+    const costOfGoodsSold =
+        getNumber("costOfGoodsSold");
+
+    const businessExpenses =
+        getNumber("businessExpenses");
+
+
+    // ======================================================
+    // GST / HST
+    // ======================================================
+
     const gstCollected =
-        Number(document.getElementById("gstCollected")?.value) || 0;
+        getNumber("gstCollected");
 
     const gstPaid =
-        Number(document.getElementById("gstPaid")?.value) || 0;
+        getNumber("gstPaid");
 
     const gstOwing =
-        gstCollected - gstPaid;
+        Math.max(
+            0,
+            gstCollected - gstPaid
+        );
+
+
+    // ======================================================
+    // INCOME CALCULATION
+    // ======================================================
 
     let grossIncome = annualIncome;
 
-    let deductions = 0;
+    let netBusinessIncome = 0;
 
-    let taxableIncome = annualIncome;
+    let businessDeductions = 0;
 
-    // ============================
-    // SELF EMPLOYED CALCULATION
-    // ============================
 
     if (employmentType === "self-employed") {
 
-        const grossBusinessIncome =
-            businessRevenue - costOfGoodsSold;
-
-        const netBusinessIncome =
-            grossBusinessIncome - businessExpenses;
-
-        // Simple CPP deduction estimate
-        const cppDeduction =
-            netBusinessIncome * 0.0515;
-
-        taxableIncome =
-            netBusinessIncome - cppDeduction;
+        netBusinessIncome =
+            Math.max(
+                0,
+                businessRevenue -
+                costOfGoodsSold -
+                businessExpenses
+            );
 
         grossIncome =
-            grossBusinessIncome;
+            netBusinessIncome;
 
-        deductions =
-            businessExpenses + cppDeduction;
-
-    }
-
-    // ============================
-    // TAX CALCULATION
-    // ============================
-
-    let federalTax = 0;
-
-    if (taxableIncome <= 57375) {
-
-        federalTax =
-            taxableIncome * 0.15;
-    }
-
-    else if (taxableIncome <= 114750) {
-
-        federalTax =
-            (57375 * 0.15) +
-            ((taxableIncome - 57375) * 0.205);
+        businessDeductions =
+            costOfGoodsSold +
+            businessExpenses;
 
     }
 
-    else {
 
-        federalTax =
-            (57375 * 0.15) +
-            (57375 * 0.205) +
-            ((taxableIncome - 114750) * 0.26);
+    // ======================================================
+    // GENERAL DEDUCTIONS
+    // ======================================================
+
+    const generalDeductions =
+        rrspContributions +
+        professionalDues +
+        employmentExpenses +
+        otherDeductions;
+
+
+    // ======================================================
+    // TOTAL DEDUCTIONS
+    // ======================================================
+
+    const deductions =
+        businessDeductions +
+        generalDeductions;
+
+
+    // ======================================================
+    // TAXABLE INCOME
+    // ======================================================
+
+    let taxableIncome =
+        Math.max(
+            0,
+            grossIncome -
+            generalDeductions
+        );
+
+
+    if (employmentType === "self-employed") {
+
+        taxableIncome =
+            Math.max(
+                0,
+                netBusinessIncome -
+                generalDeductions
+            );
+
     }
 
-    // ============================
-    // PROVINCIAL ESTIMATE
-    // ============================
 
-    let provincialRate = 0;
+    // ======================================================
+    // FEDERAL TAX BEFORE CREDITS
+    // ======================================================
 
-    if (country === "CA") {
+    let federalTax =
+        calculateFederalTax(taxableIncome);
 
-        if (region === "MB") {
 
-            provincialRate = 0.108;
+    // ======================================================
+    // FEDERAL BASIC PERSONAL CREDIT
+    // ======================================================
 
-        }
+    const federalBasicCredit =
+        calculateFederalBasicCredit(
+            taxableIncome
+        );
 
-        else if (region === "ON") {
 
-            provincialRate = 0.11;
+    // ======================================================
+    // OTHER FEDERAL NON-REFUNDABLE CREDITS
+    // ======================================================
 
-        }
+    const federalCredits =
+        calculateFederalCredits({
+            taxpayerAge,
+            tuitionAmount,
+            medicalExpenses,
+            charitableDonations,
+            hasDisability
+        });
 
-        else if (region === "AB") {
 
-            provincialRate = 0.10;
+    // ======================================================
+    // NET FEDERAL TAX
+    // ======================================================
 
-        }
+    const netFederalTax =
+        Math.max(
+            0,
+            federalTax -
+            federalBasicCredit -
+            federalCredits
+        );
 
-        else if (region === "BC") {
 
-            provincialRate = 0.08;
-
-        }
-
-    }
+    // ======================================================
+    // PROVINCIAL TAX
+    // ======================================================
 
     let provincialTax =
-    taxableIncome * provincialRate;
+        calculateProvincialTax(
+            taxableIncome,
+            country,
+            region
+        );
 
-// ======================================================
-// BASIC PERSONAL CREDITS
-// ======================================================
 
-const federalBasicCredit =
-    16129 * 0.15;
+    // ======================================================
+    // PROVINCIAL BASIC CREDIT
+    // ======================================================
 
-let provincialBasicCredit = 0;
+    const provincialBasicCredit =
+        calculateProvincialBasicCredit(
+            taxableIncome,
+            country,
+            region
+        );
 
-if (country === "CA" && region === "MB") {
 
-    provincialBasicCredit =
-        15700 * 0.108;
+    // ======================================================
+    // NET PROVINCIAL TAX
+    // ======================================================
 
-}
+    const netProvincialTax =
+        Math.max(
+            0,
+            provincialTax -
+            provincialBasicCredit
+        );
 
-// ======================================================
-// TAX AFTER BASIC PERSONAL CREDITS
-// ======================================================
 
-federalTax =
-    Math.max(
-        0,
-        federalTax - federalBasicCredit
-    );
+    // ======================================================
+    // CPP
+    // ======================================================
 
-provincialTax =
-    Math.max(
-        0,
-        provincialTax - provincialBasicCredit
-    );
+    const cpp =
+        calculateCPP(
+            employmentType,
+            netBusinessIncome
+        );
 
-// ======================================================
-// TOTAL ESTIMATED TAX
-// ======================================================
 
-const totalTax =
-    federalTax + provincialTax;
+    // ======================================================
+    // EI
+    // ======================================================
 
-// ======================================================
-// REFUND OR AMOUNT OWING
-// ======================================================
+    const ei =
+        calculateEI(
+            employmentType,
+            annualIncome
+        );
 
-const taxBalance =
-    totalTax - taxPaid;
 
-// ======================================================
-// ESTIMATED AFTER-TAX INCOME
-// ======================================================
+    // ======================================================
+    // TOTAL TAX / CONTRIBUTIONS
+    // ======================================================
 
-let afterTax;
+    const totalTax =
+        netFederalTax +
+        netProvincialTax +
+        cpp +
+        ei;
 
-if (employmentType === "self-employed") {
 
-    afterTax =
-        grossIncome -
-        costOfGoodsSold -
-        businessExpenses -
-        totalTax;
+    // ======================================================
+    // REFUND / BALANCE OWING
+    // ======================================================
 
-} else {
+    const taxBalance =
+        totalTax -
+        taxPaid;
 
-    afterTax =
-        annualIncome -
-        totalTax;
 
-}
+    // ======================================================
+    // AFTER-TAX INCOME
+    // ======================================================
 
-// ======================================================
-// TAX SAVINGS
-// ======================================================
+    let afterTaxIncome;
 
-const monthlySavings =
-    totalTax / 12;
+    if (employmentType === "self-employed") {
 
-const quarterlySavings =
-    totalTax / 4;
+        afterTaxIncome =
+            netBusinessIncome -
+            netFederalTax -
+            netProvincialTax -
+            cpp;
 
-    // ============================
+    } else {
+
+        afterTaxIncome =
+            annualIncome -
+            netFederalTax -
+            netProvincialTax -
+            cpp -
+            ei;
+
+    }
+
+
+    afterTaxIncome =
+        Math.max(
+            0,
+            afterTaxIncome
+        );
+
+
+    // ======================================================
+    // TAX RESERVE
+    // ======================================================
+
+    const monthlySavings =
+        totalTax / 12;
+
+    const quarterlySavings =
+        totalTax / 4;
+
+
+    // ======================================================
     // DISPLAY RESULTS
-    // ============================
+    // ======================================================
 
-    document.getElementById("grossIncomeResult").textContent =
-        formatCurrency(grossIncome);
+    setResult(
+        "grossIncomeResult",
+        grossIncome
+    );
 
-    document.getElementById("deductionsResult").textContent =
-        formatCurrency(deductions);
+    setResult(
+        "deductionsResult",
+        deductions
+    );
 
-    document.getElementById("taxableIncomeResult").textContent =
-        formatCurrency(taxableIncome);
+    setResult(
+        "taxableIncomeResult",
+        taxableIncome
+    );
 
-    document.getElementById("federalTaxResult").textContent =
-        formatCurrency(federalTax);
+    setResult(
+        "federalTaxResult",
+        netFederalTax
+    );
 
-    document.getElementById("provincialTaxResult").textContent =
-        formatCurrency(provincialTax);
+    setResult(
+        "provincialTaxResult",
+        netProvincialTax
+    );
 
-    document.getElementById("totalTaxResult").textContent =
-        formatCurrency(totalTax);
+    setResult(
+        "totalTaxResult",
+        totalTax
+    );
 
-    document.getElementById("taxPaidResult").textContent =
-    formatCurrency(taxPaid);
+    setResult(
+        "taxPaidResult",
+        taxPaid
+    );
+
+    setResult(
+        "afterTaxResult",
+        afterTaxIncome
+    );
+
+    setResult(
+        "monthlyTaxSavingsResult",
+        monthlySavings
+    );
+
+    setResult(
+        "quarterlyTaxResult",
+        quarterlySavings
+    );
+
+    setResult(
+        "gstCollectedResult",
+        gstCollected
+    );
+
+    setResult(
+        "gstPaidResult",
+        gstPaid
+    );
+
+    setResult(
+        "gstOwingResult",
+        gstOwing
+    );
 
 
-    document.getElementById("afterTaxResult").textContent =
-        formatCurrency(afterTax);
+    // ======================================================
+    // REFUND / AMOUNT OWING
+    // ======================================================
 
-    document.getElementById("monthlyTaxSavingsResult").textContent =
-        formatCurrency(monthlySavings);
+    displayTaxBalance(
+        taxBalance
+    );
 
-    document.getElementById("quarterlyTaxResult").textContent =
-        formatCurrency(quarterlySavings);
 
-    document.getElementById("gstCollectedResult").textContent =
-        formatCurrency(gstCollected);
-
-    document.getElementById("gstPaidResult").textContent =
-        formatCurrency(gstPaid);
-
-    document.getElementById("gstOwingResult").textContent =
-        formatCurrency(gstOwing);
-
-    displayTaxBalance(taxBalance);
+    // ======================================================
+    // RECOMMENDATION
+    // ======================================================
 
     generateTaxRecommendation(
         totalTax,
         monthlySavings,
         employmentType
     );
+
 }
 
 function displayTaxBalance(balance) {
