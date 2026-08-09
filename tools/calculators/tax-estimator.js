@@ -826,7 +826,7 @@ function resetTax() {
 function updateTaxEstimatorUI() {
 
     const employment =
-        document.getElementById("employmentType")?.value;
+        document.getElementById("employmentType")?.value || "employee";
 
     const businessIncomeSection =
         document.getElementById("businessIncomeSection");
@@ -839,37 +839,36 @@ function updateTaxEstimatorUI() {
 
 
     // ======================================================
-    // EMPLOYEE
-    // ======================================================
-
-    if (employment === "employee") {
-
-        if (businessIncomeSection)
-            businessIncomeSection.style.display = "none";
-
-        if (gstSection)
-            gstSection.style.display = "none";
-
-        if (gstResults)
-            gstResults.style.display = "none";
-    }
-
-
-    // ======================================================
     // SELF-EMPLOYED
     // ======================================================
 
-    else if (employment === "self-employed") {
+    if (employment === "self-employed") {
 
         if (businessIncomeSection)
-            businessIncomeSection.style.display = "";
+            businessIncomeSection.style.display = "block";
 
         if (gstSection)
             gstSection.style.display = "block";
 
         if (gstResults)
             gstResults.style.display = "grid";
+
+        return;
     }
+
+
+    // ======================================================
+    // EMPLOYEE
+    // ======================================================
+
+    if (businessIncomeSection)
+        businessIncomeSection.style.display = "none";
+
+    if (gstSection)
+        gstSection.style.display = "none";
+
+    if (gstResults)
+        gstResults.style.display = "none";
 }
 function formatCurrency(amount) {
 
@@ -898,5 +897,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
         });
+
+    updateTaxEstimatorUI();
 
 });
