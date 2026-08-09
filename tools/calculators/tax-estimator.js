@@ -649,6 +649,56 @@ function calculateProvincialBasicCredit(
     return basicAmount * creditRate;
 }
 
+// ======================================================
+// 2025 CPP
+// ======================================================
+
+function calculateCPP(employmentType, netBusinessIncome) {
+
+    if (employmentType !== "self-employed") {
+        return 0;
+    }
+
+    const basicExemption = 3500;
+    const cppRate = 0.1190;
+    const maximumPensionableEarnings = 71300;
+
+    const pensionableIncome =
+        Math.max(
+            0,
+            Math.min(
+                netBusinessIncome,
+                maximumPensionableEarnings
+            ) - basicExemption
+        );
+
+    return pensionableIncome * cppRate;
+}
+
+
+// ======================================================
+// 2025 EI
+// ======================================================
+
+function calculateEI(employmentType, annualIncome) {
+
+    // Self-employed people are not automatically
+    // required to pay EI premiums.
+    if (employmentType === "self-employed") {
+        return 0;
+    }
+
+    const eiRate = 0.0164;
+    const maximumInsurableEarnings = 65700;
+
+    const insurableIncome =
+        Math.min(
+            Math.max(0, annualIncome),
+            maximumInsurableEarnings
+        );
+
+    return insurableIncome * eiRate;
+}
 
 function generateTaxRecommendation(
     totalTax,
