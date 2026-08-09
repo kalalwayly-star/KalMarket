@@ -430,7 +430,6 @@ function generateTaxRecommendation(
     let message = "";
 
 
-   ```javascript
 if (employmentType === "self-employed") {
 
     message = `
