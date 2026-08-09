@@ -93,7 +93,6 @@ function calculateTax() {
     const businessExpenses =
         getNumber("businessExpenses");
 
-
     // ======================================================
     // GST / HST
     // ======================================================
