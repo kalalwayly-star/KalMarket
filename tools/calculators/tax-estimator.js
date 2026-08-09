@@ -836,36 +836,13 @@ function updateTaxEstimatorUI() {
     const gstResults =
         document.getElementById("gstResultsSection");
 
+    const label =
+        document.querySelector(
+            'label[data-i18n="business_expenses"]'
+        );
 
-    function toggleField(id, show) {
-
-        const input =
-            document.getElementById(id);
-
-        if (!input) return;
-
-        input.style.display =
-            show ? "" : "none";
-
-        const label =
-            document.getElementById(id + "Label");
-
-        const help =
-            document.getElementById(id + "Help");
-
-        if (label)
-            label.style.display =
-                show ? "" : "none";
-
-        if (help)
-            help.style.display =
-                show ? "" : "none";
-    }
-
-
-    // ======================================================
-    // EMPLOYEE
-    // ======================================================
+    const expenseInput =
+        document.getElementById("businessExpenses");
 
     if (employment === "employee") {
 
@@ -875,18 +852,15 @@ function updateTaxEstimatorUI() {
         if (gstResults)
             gstResults.style.display = "none";
 
-        toggleField("businessRevenue", false);
-        toggleField("costOfGoodsSold", false);
-        toggleField("businessExpenses", false);
+        if (label)
+            label.textContent =
+                "📉 Employment Deductions";
 
-        toggleField("employmentExpenses", true);
-    }
+        if (expenseInput)
+            expenseInput.placeholder =
+                "RRSP, Union Dues, Employment Expenses";
 
-    // ======================================================
-    // SELF-EMPLOYED
-    // ======================================================
-
-    else if (employment === "self-employed") {
+    } else {
 
         if (gstSection)
             gstSection.style.display = "block";
@@ -894,11 +868,13 @@ function updateTaxEstimatorUI() {
         if (gstResults)
             gstResults.style.display = "grid";
 
-        toggleField("businessRevenue", true);
-        toggleField("costOfGoodsSold", true);
-        toggleField("businessExpenses", true);
+        if (label)
+            label.textContent =
+                "📉 Allowable Business Expenses";
 
-        toggleField("employmentExpenses", false);
+        if (expenseInput)
+            expenseInput.placeholder =
+                "Allowable Business Expenses";
     }
 }
 
