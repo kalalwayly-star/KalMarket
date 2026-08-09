@@ -836,13 +836,37 @@ function updateTaxEstimatorUI() {
     const gstResults =
         document.getElementById("gstResultsSection");
 
-    const label =
-        document.querySelector(
-        'label[data-i18n="business_expenses"]'
-        );
+    const businessRevenue =
+        document.getElementById("businessRevenue");
 
-    const expenseInput =
+    const costOfGoodsSold =
+        document.getElementById("costOfGoodsSold");
+
+    const businessExpenses =
         document.getElementById("businessExpenses");
+
+    const employmentExpenses =
+        document.getElementById("employmentExpenses");
+
+    // Helper to show/hide the field's container
+    function showField(input, show) {
+
+        if (!input) return;
+
+        const container =
+            input.closest(".form-group") ||
+            input.parentElement;
+
+        if (container) {
+            container.style.display =
+                show ? "" : "none";
+        }
+    }
+
+
+    // ======================================================
+    // EMPLOYEE
+    // ======================================================
 
     if (employment === "employee") {
 
@@ -852,15 +876,23 @@ function updateTaxEstimatorUI() {
         if (gstResults)
             gstResults.style.display = "none";
 
-        if (label)
-            label.textContent =
-            "📉 Employment Deductions";
+        // Hide business fields
+        showField(businessRevenue, false);
+        showField(costOfGoodsSold, false);
 
-        if (expenseInput)
-            expenseInput.placeholder =
-            "RRSP, Union Dues, Employment Expenses";
+        // Business expenses field becomes employment expenses
+        showField(businessExpenses, false);
+
+        // Show employment expenses
+        showField(employmentExpenses, true);
     }
-    else {
+
+
+    // ======================================================
+    // SELF-EMPLOYED
+    // ======================================================
+
+    else if (employment === "self-employed") {
 
         if (gstSection)
             gstSection.style.display = "block";
@@ -868,16 +900,15 @@ function updateTaxEstimatorUI() {
         if (gstResults)
             gstResults.style.display = "grid";
 
-        if (label)
-            label.textContent =
-            "📉 Allowable Business Expenses";
+        // Show business fields
+        showField(businessRevenue, true);
+        showField(costOfGoodsSold, true);
+        showField(businessExpenses, true);
 
-        if (expenseInput)
-            expenseInput.placeholder =
-            "Allowable Business Expenses";
+        // Hide employee-only expenses
+        showField(employmentExpenses, false);
     }
 }
-
 function formatCurrency(amount) {
 
     return new Intl.NumberFormat(
