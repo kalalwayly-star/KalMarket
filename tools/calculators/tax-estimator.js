@@ -430,26 +430,25 @@ function generateTaxRecommendation(
     let message = "";
 
 
-    if (employmentType === "self-employed") {
+   ```javascript
+if (employmentType === "self-employed") {
 
-
-        message = `
-
+    message = `
         <div class="strategy-box warning">
 
-        <h4>🧾 Self-Employed Tax Planning</h4>
+            <h4>🧾 Self-Employed Tax Planning</h4>
 
-        <p>
-        Consider saving approximately
-        ${formatCurrency(monthlySavings)}
-        monthly for taxes.
-        </p>
+            <p>
+                Consider saving approximately
+                ${formatCurrency(monthlySavings)}
+                monthly for taxes.
+            </p>
 
         </div>
+    `;
 
-        `;
-
-    }
+}
+```
 
 
     else {
