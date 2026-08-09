@@ -266,73 +266,169 @@ placeholder="COGS"
 <!-- ======================================================
      TAX & DEDUCTIONS
 ====================================================== -->
-
+    
 <section
-id="deductionsSection"
-class="calculator-container">
+    id="deductionsSection"
+    class="calculator-container">
 
     <div class="calculator-card">
 
         <h3 data-i18n="deductions">
-
             🧾 Tax & Deductions
-
         </h3>
 
+        <!-- TAX ALREADY PAID -->
 
         <label data-i18n="tax_paid">
-
             💳 Tax Already Paid (Withheld)
-
         </label>
 
         <small class="field-help"
                data-i18n="tax_paid_help">
 
-            For employees, enter the total income tax already deducted from your paycheques.
+            For employees, enter the total income tax already
+            deducted from your paycheques.
 
         </small>
 
         <input
             type="number"
             id="taxPaid"
+            min="0"
+            step="0.01"
             data-i18n-placeholder="tax_paid_placeholder"
             placeholder="Tax deducted from your paycheques">
 
 
-        <label data-i18n="business_expenses">
+        <!-- RRSP -->
 
-            Allowable Business Expenses
-
+        <label>
+            🏦 RRSP Contributions
         </label>
 
-        <small class="field-help"
-               data-i18n="business_expenses_help">
-
-            Examples:
-            Office,
-            advertising,
-            vehicle,
-            insurance,
-            rent,
-            utilities,
-            supplies,
-            professional fees.
-
+        <small class="field-help">
+            Enter eligible RRSP contributions you want included
+            in this estimate.
         </small>
 
         <input
             type="number"
-            id="businessExpenses"
-            data-i18n-placeholder="business_expenses"
-            placeholder="Business Expenses">
+            id="rrspContributions"
+            min="0"
+            step="0.01"
+            placeholder="RRSP Contributions">
+
+
+        <!-- UNION / PROFESSIONAL DUES -->
+
+        <label>
+            👔 Union / Professional Dues
+        </label>
+
+        <small class="field-help">
+            Enter eligible union dues or professional membership dues.
+        </small>
+
+        <input
+            type="number"
+            id="professionalDues"
+            min="0"
+            step="0.01"
+            placeholder="Union / Professional Dues">
+
+
+        <!-- EMPLOYMENT EXPENSES -->
+
+        <label>
+            💼 Employment Expenses
+        </label>
+
+        <small class="field-help">
+            Enter eligible employment expenses if applicable.
+        </small>
+
+        <input
+            type="number"
+            id="employmentExpenses"
+            min="0"
+            step="0.01"
+            placeholder="Employment Expenses">
+
+
+        <!-- TUITION -->
+
+        <label>
+            🎓 Tuition / Education Amount
+        </label>
+
+        <small class="field-help">
+            Enter eligible tuition amounts if applicable.
+        </small>
+
+        <input
+            type="number"
+            id="tuitionAmount"
+            min="0"
+            step="0.01"
+            placeholder="Eligible Tuition">
+
+
+        <!-- MEDICAL -->
+
+        <label>
+            🏥 Eligible Medical Expenses
+        </label>
+
+        <small class="field-help">
+            Enter eligible medical expenses if applicable.
+        </small>
+
+        <input
+            type="number"
+            id="medicalExpenses"
+            min="0"
+            step="0.01"
+            placeholder="Medical Expenses">
+
+
+        <!-- DONATIONS -->
+
+        <label>
+            ❤️ Charitable Donations
+        </label>
+
+        <small class="field-help">
+            Enter eligible charitable donations if applicable.
+        </small>
+
+        <input
+            type="number"
+            id="charitableDonations"
+            min="0"
+            step="0.01"
+            placeholder="Charitable Donations">
+
+
+        <!-- OTHER DEDUCTIONS -->
+
+        <label>
+            📋 Other Eligible Deductions
+        </label>
+
+        <small class="field-help">
+            Enter other eligible deductions that apply to you.
+        </small>
+
+        <input
+            type="number"
+            id="otherDeductions"
+            min="0"
+            step="0.01"
+            placeholder="Other Deductions">
 
     </div>
 
 </section>
-
-
-
 <!-- ======================================================
      GST / HST
 ====================================================== -->
