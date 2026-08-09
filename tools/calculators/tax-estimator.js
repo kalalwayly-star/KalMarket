@@ -836,46 +836,32 @@ function updateTaxEstimatorUI() {
     const gstResults =
         document.getElementById("gstResultsSection");
 
-    const businessRevenue =
-        document.getElementById("businessRevenue");
 
-    const costOfGoodsSold =
-        document.getElementById("costOfGoodsSold");
+    function toggleField(id, show) {
 
-    const businessExpenses =
-        document.getElementById("businessExpenses");
-
-    const employmentExpenses =
-        document.getElementById("employmentExpenses");
-
-
-    // ======================================================
-    // HELPER — SHOW/HIDE ONLY THE FIELD + ITS HELP TEXT
-    // ======================================================
-
-    function showField(input, show) {
+        const input =
+            document.getElementById(id);
 
         if (!input) return;
 
-        const label =
-            input.previousElementSibling?.previousElementSibling;
-
-        const help =
-            input.previousElementSibling;
-
-        if (label && label.tagName === "LABEL") {
-            label.style.display =
-                show ? "" : "none";
-        }
-
-        if (help && help.classList.contains("field-help")) {
-            help.style.display =
-                show ? "" : "none";
-        }
-
         input.style.display =
             show ? "" : "none";
+
+        const label =
+            document.getElementById(id + "Label");
+
+        const help =
+            document.getElementById(id + "Help");
+
+        if (label)
+            label.style.display =
+                show ? "" : "none";
+
+        if (help)
+            help.style.display =
+                show ? "" : "none";
     }
+
 
     // ======================================================
     // EMPLOYEE
@@ -889,11 +875,11 @@ function updateTaxEstimatorUI() {
         if (gstResults)
             gstResults.style.display = "none";
 
-        showField(businessRevenue, false);
-        showField(costOfGoodsSold, false);
-        showField(businessExpenses, false);
+        toggleField("businessRevenue", false);
+        toggleField("costOfGoodsSold", false);
+        toggleField("businessExpenses", false);
 
-        showField(employmentExpenses, true);
+        toggleField("employmentExpenses", true);
     }
 
 
@@ -909,11 +895,11 @@ function updateTaxEstimatorUI() {
         if (gstResults)
             gstResults.style.display = "grid";
 
-        showField(businessRevenue, true);
-        showField(costOfGoodsSold, true);
-        showField(businessExpenses, true);
+        toggleField("businessRevenue", true);
+        toggleField("costOfGoodsSold", true);
+        toggleField("businessExpenses", true);
 
-        showField(employmentExpenses, false);
+        toggleField("employmentExpenses", false);
     }
 }
 
