@@ -700,6 +700,60 @@ function calculateEI(employmentType, annualIncome) {
     return insurableIncome * eiRate;
 }
 
+// ======================================================
+// FEDERAL NON-REFUNDABLE CREDITS
+// ======================================================
+
+function calculateFederalCredits({
+    taxpayerAge,
+    tuitionAmount,
+    medicalExpenses,
+    charitableDonations,
+    hasDisability
+}) {
+
+    const creditRate = 0.145;
+
+    let credits = 0;
+
+    // Age amount
+    if (taxpayerAge >= 65) {
+
+        credits +=
+            8839 * creditRate;
+    }
+
+    // Disability amount
+    if (hasDisability) {
+
+        credits +=
+            10138 * creditRate;
+    }
+
+    // Tuition amount
+    if (tuitionAmount > 0) {
+
+        credits +=
+            tuitionAmount * creditRate;
+    }
+
+    // Medical expenses
+    if (medicalExpenses > 0) {
+
+        credits +=
+            medicalExpenses * creditRate;
+    }
+
+    // Charitable donations
+    if (charitableDonations > 0) {
+
+        credits +=
+            charitableDonations * creditRate;
+    }
+
+    return credits;
+}
+
 function generateTaxRecommendation(
     totalTax,
     monthlySavings,
