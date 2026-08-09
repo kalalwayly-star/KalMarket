@@ -585,6 +585,71 @@ function displayTaxBalance(balance) {
     }
 }
 
+// ======================================================
+// 2025 MANITOBA PROVINCIAL TAX
+// ======================================================
+
+function calculateProvincialTax(taxableIncome, country, region) {
+
+    if (country !== "CA" || region !== "MB") {
+        return 0;
+    }
+
+    const bracket1 = 47564;
+    const bracket2 = 101200;
+
+    let tax = 0;
+
+    if (taxableIncome <= 0) {
+        return 0;
+    }
+
+    if (taxableIncome <= bracket1) {
+
+        tax =
+            taxableIncome * 0.108;
+
+    } else if (taxableIncome <= bracket2) {
+
+        tax =
+            (bracket1 * 0.108) +
+            ((taxableIncome - bracket1) * 0.1275);
+
+    } else {
+
+        tax =
+            (bracket1 * 0.108) +
+            ((bracket2 - bracket1) * 0.1275) +
+            ((taxableIncome - bracket2) * 0.174);
+
+    }
+
+    return tax;
+}
+
+
+// ======================================================
+// 2025 MANITOBA BASIC PERSONAL CREDIT
+// ======================================================
+
+function calculateProvincialBasicCredit(
+    taxableIncome,
+    country,
+    region
+) {
+
+    if (country !== "CA" || region !== "MB") {
+        return 0;
+    }
+
+    const basicAmount = 15780;
+
+    const creditRate = 0.108;
+
+    return basicAmount * creditRate;
+}
+
+
 function generateTaxRecommendation(
     totalTax,
     monthlySavings,
