@@ -239,29 +239,46 @@ Gross Business Revenue
 Total sales/income before expenses.
 </small>
 
-<input
-type="number"
-id="businessRevenue"
-placeholder="Business Revenue"
->
+<!-- BUSINESS INCOME -->
 
-
-<label data-i18n="cost_of_goods_sold">
-Cost of Goods Sold (COGS)
+<label id="businessRevenueLabel">
+    🏢 Gross Business Revenue
 </label>
 
-<small class="field-help">
-Materials, inventory, products purchased for resale.
+<small
+    id="businessRevenueHelp"
+    class="field-help">
+
+    Total sales/income before expenses.
 </small>
 
 <input
-type="number"
-id="costOfGoodsSold"
-placeholder="COGS"
->
+    type="number"
+    id="businessRevenue"
+    min="0"
+    step="0.01"
+    placeholder="Business Revenue">
 
 
-</div>
+<!-- COST OF GOODS SOLD -->
+
+<label id="costOfGoodsSoldLabel">
+    📦 Cost of Goods Sold (COGS)
+</label>
+
+<small
+    id="costOfGoodsSoldHelp"
+    class="field-help">
+
+    Materials, inventory, products purchased for resale.
+</small>
+
+<input
+    type="number"
+    id="costOfGoodsSold"
+    min="0"
+    step="0.01"
+    placeholder="Cost of Goods Sold">
 
 <!-- ======================================================
      TAX & DEDUCTIONS
