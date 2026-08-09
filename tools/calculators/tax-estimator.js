@@ -416,77 +416,44 @@ function displayTaxBalance(balance) {
 
 }
 
-
-
-
-
 function generateTaxRecommendation(
     totalTax,
     monthlySavings,
     employmentType
 ) {
 
+    const recommendation =
+        document.getElementById("taxRecommendation");
 
-    let message = "";
-
-
-if (employmentType === "self-employed") {
-
-    message = `
-        <div class="strategy-box warning">
-
-            <h4>🧾 Self-Employed Tax Planning</h4>
-
-            <p>
-                Consider saving approximately
-                ${formatCurrency(monthlySavings)}
-                monthly for taxes.
-            </p>
-
-        </div>
-    `;
-
-}
-```
-
-
-    else {
-
-
-        message = `
-
-        <div class="strategy-box success">
-
-        <h4>✅ Tax Planning Estimate</h4>
-
-        <p>
-        Estimated yearly tax:
-        ${formatCurrency(totalTax)}
-        </p>
-
-        <p>
-        Recommended monthly savings:
-        ${formatCurrency(monthlySavings)}
-        </p>
-
-        </div>
-
-        `;
-
+    if (!recommendation) {
+        return;
     }
 
 
-    const box =
-    document.getElementById("taxRecommendation");
+    if (employmentType === "self-employed") {
 
+        recommendation.innerHTML =
+            "<div class=\"strategy-box warning\">" +
+            "<h4>🧾 Self-Employed Tax Planning</h4>" +
+            "<p>Consider saving approximately " +
+            formatCurrency(monthlySavings) +
+            " monthly for taxes.</p>" +
+            "</div>";
 
-    if (box)
-        box.innerHTML = message;
+    } else {
 
+        recommendation.innerHTML =
+            "<div class=\"strategy-box success\">" +
+            "<h4>✅ Tax Planning Estimate</h4>" +
+            "<p>Estimated yearly tax: " +
+            formatCurrency(totalTax) +
+            "</p>" +
+            "<p>Recommended monthly savings: " +
+            formatCurrency(monthlySavings) +
+            "</p>" +
+            "</div>";
+    }
 }
-
-
-
 
 
 function resetTax() {
