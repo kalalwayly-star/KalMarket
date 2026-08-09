@@ -194,44 +194,91 @@ function calculateTax() {
 
 
 
-   // Basic personal amount estimate
-const federalCredit = 16129 * 0.15;
+```javascript
+// ======================================================
+// BASIC PERSONAL CREDITS
+// ======================================================
 
-const provincialCredit = 15700 * 0.108;
+const federalBasicCredit =
+    16129 * 0.15;
 
+let provincialBasicCredit = 0;
 
-let totalTax =
-    federalTax +
-    provincialTax -
-    federalCredit -
-    provincialCredit;
+if (country === "CA" && region === "MB") {
 
+    provincialBasicCredit =
+        15700 * 0.108;
 
-// Tax cannot be negative
-if (totalTax < 0) {
-    totalTax = 0;
 }
 
 
+// ======================================================
+// TAX AFTER BASIC PERSONAL CREDITS
+// ======================================================
 
-    const taxBalance =
-        totalTax - taxPaid;
-
-
-
-    const afterTax =
-        taxableIncome - totalTax;
-
-
-
-    const monthlySavings =
-        totalTax / 12;
+federalTax =
+    Math.max(
+        0,
+        federalTax - federalBasicCredit
+    );
 
 
+provincialTax =
+    Math.max(
+        0,
+        provincialTax - provincialBasicCredit
+    );
 
-    const quarterlySavings =
-        totalTax / 4;
 
+// ======================================================
+// TOTAL ESTIMATED TAX
+// ======================================================
+
+const totalTax =
+    federalTax + provincialTax;
+
+
+// ======================================================
+// REFUND OR AMOUNT OWING
+// ======================================================
+
+const taxBalance =
+    totalTax - taxPaid;
+
+
+// ======================================================
+// ESTIMATED AFTER-TAX INCOME
+// ======================================================
+
+let afterTax;
+
+if (employmentType === "self-employed") {
+
+    afterTax =
+        grossIncome -
+        costOfGoodsSold -
+        businessExpenses -
+        totalTax;
+
+} else {
+
+    afterTax =
+        annualIncome -
+        totalTax;
+
+}
+
+
+// ======================================================
+// TAX SAVINGS
+// ======================================================
+
+const monthlySavings =
+    totalTax / 12;
+
+const quarterlySavings =
+    totalTax / 4;
+```
 
 
     // ============================
