@@ -444,6 +444,106 @@ function calculateTax() {
     );
 
 }
+// ======================================================
+// SAFE NUMBER INPUT
+// ======================================================
+
+function getNumber(id) {
+
+    const element = document.getElementById(id);
+
+    if (!element) return 0;
+
+    const value = Number(element.value);
+
+    return Number.isFinite(value) && value > 0
+        ? value
+        : 0;
+}
+
+
+// ======================================================
+// 2025 FEDERAL TAX
+// ======================================================
+
+function calculateFederalTax(taxableIncome) {
+
+    let tax = 0;
+
+    // 2025 Federal brackets
+    const bracket1 = 57375;
+    const bracket2 = 114750;
+    const bracket3 = 177882;
+    const bracket4 = 253414;
+
+    if (taxableIncome <= 0) {
+
+        return 0;
+
+    }
+
+    if (taxableIncome <= bracket1) {
+
+        tax =
+            taxableIncome * 0.145;
+
+    }
+
+    else if (taxableIncome <= bracket2) {
+
+        tax =
+            (bracket1 * 0.145) +
+            ((taxableIncome - bracket1) * 0.205);
+
+    }
+
+    else if (taxableIncome <= bracket3) {
+
+        tax =
+            (bracket1 * 0.145) +
+            ((bracket2 - bracket1) * 0.205) +
+            ((taxableIncome - bracket2) * 0.26);
+
+    }
+
+    else if (taxableIncome <= bracket4) {
+
+        tax =
+            (bracket1 * 0.145) +
+            ((bracket2 - bracket1) * 0.205) +
+            ((bracket3 - bracket2) * 0.26) +
+            ((taxableIncome - bracket3) * 0.29);
+
+    }
+
+    else {
+
+        tax =
+            (bracket1 * 0.145) +
+            ((bracket2 - bracket1) * 0.205) +
+            ((bracket3 - bracket2) * 0.26) +
+            ((bracket4 - bracket3) * 0.29) +
+            ((taxableIncome - bracket4) * 0.33);
+
+    }
+
+    return tax;
+}
+
+
+// ======================================================
+// 2025 FEDERAL BASIC PERSONAL CREDIT
+// ======================================================
+
+function calculateFederalBasicCredit(taxableIncome) {
+
+    const basicAmount = 16129;
+
+    const creditRate = 0.145;
+
+    return basicAmount * creditRate;
+}
+
 
 function displayTaxBalance(balance) {
 
