@@ -848,19 +848,33 @@ function updateTaxEstimatorUI() {
     const employmentExpenses =
         document.getElementById("employmentExpenses");
 
-    // Helper to show/hide the field's container
+
+    // ======================================================
+    // HELPER — SHOW/HIDE ONLY THE FIELD + ITS HELP TEXT
+    // ======================================================
+
     function showField(input, show) {
 
         if (!input) return;
 
-        const container =
-            input.closest(".form-group") ||
-            input.parentElement;
+        const label =
+            input.previousElementSibling?.previousElementSibling;
 
-        if (container) {
-            container.style.display =
+        const help =
+            input.previousElementSibling;
+
+        if (label && label.tagName === "LABEL") {
+            label.style.display =
                 show ? "" : "none";
         }
+
+        if (help && help.classList.contains("field-help")) {
+            help.style.display =
+                show ? "" : "none";
+        }
+
+        input.style.display =
+            show ? "" : "none";
     }
 
 
@@ -876,14 +890,10 @@ function updateTaxEstimatorUI() {
         if (gstResults)
             gstResults.style.display = "none";
 
-        // Hide business fields
         showField(businessRevenue, false);
         showField(costOfGoodsSold, false);
-
-        // Business expenses field becomes employment expenses
         showField(businessExpenses, false);
 
-        // Show employment expenses
         showField(employmentExpenses, true);
     }
 
@@ -900,15 +910,14 @@ function updateTaxEstimatorUI() {
         if (gstResults)
             gstResults.style.display = "grid";
 
-        // Show business fields
         showField(businessRevenue, true);
         showField(costOfGoodsSold, true);
         showField(businessExpenses, true);
 
-        // Hide employee-only expenses
         showField(employmentExpenses, false);
     }
 }
+
 function formatCurrency(amount) {
 
     return new Intl.NumberFormat(
