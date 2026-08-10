@@ -111,78 +111,90 @@ function calculateTax() {
 
 
     // ======================================================
-    // INCOME CALCULATION
-    // ======================================================
+// INCOME CALCULATION
+// ======================================================
 
-    let grossIncome = annualIncome;
+let grossIncome = annualIncome;
 
-    let netBusinessIncome = 0;
+let netBusinessIncome = 0;
 
-    let businessDeductions = 0;
-
-
-    if (employmentType === "self-employed") {
-
-        netBusinessIncome =
-            Math.max(
-                0,
-                businessRevenue -
-                costOfGoodsSold -
-                businessExpenses
-            );
-
-        grossIncome =
-            netBusinessIncome;
-
-        businessDeductions =
-            costOfGoodsSold +
-            businessExpenses;
-
-    }
+let businessDeductions = 0;
 
 
-    // ======================================================
-    // GENERAL DEDUCTIONS
-    // ======================================================
+// ======================================================
+// SELF-EMPLOYED INCOME
+// ======================================================
 
-    const generalDeductions =
-        rrspContributions +
-        professionalDues +
-        employmentExpenses +
-        otherDeductions;
+if (employmentType === "self-employed") {
+
+    // Annual income is the user's gross business income
+    grossIncome = annualIncome;
+
+    // Business expenses
+    businessDeductions =
+        costOfGoodsSold +
+        businessExpenses;
+
+    // Net business income after business expenses
+    netBusinessIncome =
+        Math.max(
+            0,
+            grossIncome -
+            businessDeductions
+        );
+}
 
 
-    // ======================================================
-    // TOTAL DEDUCTIONS
-    // ======================================================
+// ======================================================
+// GENERAL DEDUCTIONS
+// ======================================================
 
-    const deductions =
-        businessDeductions +
-        generalDeductions;
+const generalDeductions =
+    rrspContributions +
+    professionalDues +
+    employmentExpenses +
+    otherDeductions;
 
 
-    // ======================================================
-    // TAXABLE INCOME
-    // ======================================================
+// ======================================================
+// TOTAL DEDUCTIONS
+// ======================================================
 
-    let taxableIncome =
+const deductions =
+    businessDeductions +
+    generalDeductions;
+
+
+// ======================================================
+// TAXABLE INCOME
+// ======================================================
+
+let taxableIncome;
+
+if (employmentType === "self-employed") {
+
+    taxableIncome =
+        Math.max(
+            0,
+            netBusinessIncome -
+            generalDeductions
+        );
+
+} else {
+
+    taxableIncome =
         Math.max(
             0,
             grossIncome -
             generalDeductions
         );
+}
 
 
-    if (employmentType === "self-employed") {
+// ======================================================
+// TAX DEBUG
+// ======================================================
 
-        taxableIncome =
-            Math.max(
-                0,
-                netBusinessIncome -
-                generalDeductions
-            );
-
-    }
 console.log("TAX DEBUG:", {
     employmentType,
     annualIncome,
