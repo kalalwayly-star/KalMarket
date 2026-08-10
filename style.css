@@ -1647,3 +1647,65 @@ featured-badge {
     pointer-events:none;
 
 }
+.construction-section {
+    margin-top: 30px;
+    padding: 22px;
+    background: #f8f7ff;
+    border-radius: 14px;
+    border: 1px solid #e6e0ff;
+}
+
+.construction-section h3 {
+    margin-top: 0;
+    color: #5d2de1;
+}
+
+.construction-description {
+    color: #666;
+    line-height: 1.5;
+}
+
+.construction-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.construction-results {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.construction-result {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #e5e5e5;
+}
+
+.construction-result span {
+    display: block;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.construction-result strong {
+    color: #5d2de1;
+    font-size: 20px;
+}
+
+@media (max-width: 650px) {
+
+    .construction-inputs {
+        grid-template-columns: 1fr;
+    }
+
+    .construction-results {
+        grid-template-columns: 1fr;
+    }
+
+}
