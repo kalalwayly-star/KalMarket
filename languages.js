@@ -41,6 +41,12 @@ function loadLanguage(language) {
 
             updateText(translations, language);
 
+            window.dispatchEvent(
+    new CustomEvent("languageChanged", {
+        detail: { language }
+    })
+);
+
         })
         .catch(error => {
 
