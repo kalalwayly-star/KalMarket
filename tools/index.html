@@ -397,7 +397,24 @@
         📏
     </div>
 
+  ```html
+<!-- Measurement Converter -->
+<a
+    href="calculators/measurement-converter.html"
+    class="tool-card measurement-tool-card"
+>
+
+    <div class="measurement-tool-icon">
+        <span>📏</span>
+    </div>
+
     <div class="tool-card-content">
+
+        <div class="measurement-tool-label">
+            <span data-i18n="measurement_converter_category">
+                CONVERTER
+            </span>
+        </div>
 
         <h3 data-i18n="measurement_converter_title">
             Measurement Converter
@@ -407,16 +424,20 @@
             Convert length, weight, temperature, area, volume, time, speed, and more.
         </p>
 
-        <span
-            class="tool-card-link"
-            data-i18n="use_tool"
-        >
-            Use Tool →
-        </span>
+        <div class="measurement-tool-action">
+            <span data-i18n="use_tool">
+                Use Tool
+            </span>
+
+            <span class="measurement-tool-arrow">
+                →
+            </span>
+        </div>
 
     </div>
 
 </a>
+```
 
 </main>
     <script src="../languages.js"></script>
