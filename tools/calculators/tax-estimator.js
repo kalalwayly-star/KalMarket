@@ -183,7 +183,19 @@ function calculateTax() {
             );
 
     }
-
+console.log("TAX DEBUG:", {
+    employmentType,
+    annualIncome,
+    businessRevenue,
+    costOfGoodsSold,
+    businessExpenses,
+    netBusinessIncome,
+    businessDeductions,
+    generalDeductions,
+    deductions,
+    grossIncome,
+    taxableIncome
+});
     // ======================================================
     // FEDERAL TAX BEFORE CREDITS
     // ======================================================
