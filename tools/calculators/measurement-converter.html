@@ -204,6 +204,7 @@
             <option value="time">Time</option>
             <option value="speed">Speed</option>
             <option value="digital">Digital Storage</option>
+            <option value="construction">Construction / Dimensions</option>
         </select>
 
 
@@ -274,7 +275,72 @@
 
         </div>
 
+<!-- Construction Converter -->
+<div id="constructionSection" class="construction-section" style="display:none;">
 
+    <h3>Construction / Dimensions</h3>
+
+    <p class="construction-description">
+        Convert feet and inches into inches, centimeters, millimeters,
+        meters, or decimal feet.
+    </p>
+
+    <div class="construction-inputs">
+
+        <div class="field-group">
+            <label for="feetInput">Feet</label>
+            <input
+                type="number"
+                id="feetInput"
+                placeholder="0"
+                min="0"
+                step="any"
+            >
+        </div>
+
+        <div class="field-group">
+            <label for="inchesInput">Inches</label>
+            <input
+                type="number"
+                id="inchesInput"
+                placeholder="0"
+                min="0"
+                step="any"
+            >
+        </div>
+
+    </div>
+
+    <div class="construction-results">
+
+        <div class="construction-result">
+            <span>Total Inches</span>
+            <strong id="constructionInches">0</strong>
+        </div>
+
+        <div class="construction-result">
+            <span>Centimeters</span>
+            <strong id="constructionCm">0</strong>
+        </div>
+
+        <div class="construction-result">
+            <span>Millimeters</span>
+            <strong id="constructionMm">0</strong>
+        </div>
+
+        <div class="construction-result">
+            <span>Meters</span>
+            <strong id="constructionMeters">0</strong>
+        </div>
+
+        <div class="construction-result">
+            <span>Decimal Feet</span>
+            <strong id="constructionDecimalFeet">0</strong>
+        </div>
+
+    </div>
+
+</div>
         <!-- Quick examples -->
         <div class="quick-conversions">
 
