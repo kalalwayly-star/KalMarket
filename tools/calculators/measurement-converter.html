@@ -1,184 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6176105257644553"
+     crossorigin="anonymous"></script>
+   <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+</script>  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<p id="visitorCount" data-i18n="visitor_count">👥 Visitors: 0</p>
+<title data-i18n="app_name">KalMarket | Find Anything</title>
+<meta name="google-site-verification" content="3UWGpZKdIuY9EdOOJx5FAgHEqIgwqjkaERhD9AULlg4" />
+    <link rel="stylesheet" href="../../style.css?v=2">
+<style>
+.cat-card, .btn-search, .btn-link, .card { cursor: pointer; }
 
-    <title>Measurement Converter | KalMarket</title>
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+.cat-card {
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    transition: 0.2s;
+}
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f6fa;
-            color: #222;
-        }
+.cat-card:hover {
+    background: #f9f9f9;
+    transform: translateY(-3px);
+}
 
-        .converter-container {
-            max-width: 850px;
-            margin: 40px auto;
-            padding: 20px;
-        }
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
 
-        .converter-card {
-            background: #fff;
-            border-radius: 18px;
-            padding: 30px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
-        }
+/* SLIDER */
+.slider {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
 
-        .converter-title {
-            text-align: center;
-            margin-bottom: 8px;
-            color: #5d2de1;
-            font-size: 30px;
-        }
+.slide {
+    display: none;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
 
-        .converter-description {
-            text-align: center;
-            color: #666;
-            margin-bottom: 30px;
-        }
+.slide.active {
+    display: block;
+}
 
-        .category-select {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            font-size: 16px;
-            margin-bottom: 25px;
-            background: white;
-        }
+.slider button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
 
-        .conversion-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
+.slider .prev { left: 5px; }
+.slider .next { right: 5px; }
 
-        .field-group {
-            display: flex;
-            flex-direction: column;
-        }
+</style>
 
-        .field-group label {
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .field-group input,
-        .field-group select {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #d8d8d8;
-            border-radius: 10px;
-            font-size: 17px;
-            background: #fff;
-        }
-
-        .field-group input:focus,
-        .field-group select:focus,
-        .category-select:focus {
-            outline: none;
-            border-color: #5d2de1;
-            box-shadow: 0 0 0 3px rgba(93,45,225,0.1);
-        }
-
-        .swap-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .swap-button {
-            border: none;
-            background: #5d2de1;
-            color: white;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            font-size: 22px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .swap-button:hover {
-            transform: rotate(180deg);
-        }
-
-        .result-box {
-            margin-top: 30px;
-            padding: 22px;
-            background: #f3efff;
-            border-radius: 14px;
-            text-align: center;
-        }
-
-        .result-label {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 8px;
-        }
-
-        .result-value {
-            font-size: 32px;
-            font-weight: bold;
-            color: #5d2de1;
-            word-break: break-word;
-        }
-
-        .quick-conversions {
-            margin-top: 35px;
-        }
-
-        .quick-conversions h3 {
-            margin-bottom: 15px;
-        }
-
-        .quick-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-
-        .quick-item {
-            background: #f7f7f7;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        @media (max-width: 650px) {
-            .converter-container {
-                margin: 15px auto;
-                padding: 10px;
-            }
-
-            .converter-card {
-                padding: 20px;
-            }
-
-            .conversion-row {
-                grid-template-columns: 1fr;
-            }
-
-            .swap-container {
-                margin: 12px 0;
-            }
-
-            .quick-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .converter-title {
-                font-size: 25px;
-            }
-        }
-    </style>
 </head>
+
 
 
 <div class="converter-card">
