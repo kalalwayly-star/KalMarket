@@ -1961,6 +1961,9 @@ featured-badge {
     gap: 20px;
     padding: 24px;
 min-height: 190px;
+   width: 100%;
+aspect-ratio: 1 / 1;
+box-sizing: border-box;
    text-decoration: none;
     border-radius: 18px;
     background: linear-gradient(
