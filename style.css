@@ -1949,3 +1949,155 @@ featured-badge {
     }
 
 }
+/* =========================================================
+   MEASUREMENT CONVERTER CARD
+   ========================================================= */
+
+.measurement-tool-card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+    min-height: 190px;
+    text-decoration: none;
+    border-radius: 18px;
+    background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #f7f3ff 100%
+    );
+    border: 1px solid #e5dcff;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.measurement-tool-card::after {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    right: -60px;
+    top: -60px;
+    border-radius: 50%;
+    background: rgba(109, 61, 245, 0.07);
+    pointer-events: none;
+}
+
+.measurement-tool-card:hover {
+    transform: translateY(-5px);
+    border-color: #cbbcff;
+    box-shadow: 0 12px 30px rgba(70, 40, 130, 0.14);
+}
+
+
+/* ICON */
+
+.measurement-tool-icon {
+    flex: 0 0 72px;
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background: linear-gradient(
+        135deg,
+        #6d3df5,
+        #8b63f7
+    );
+    box-shadow: 0 8px 18px rgba(109, 61, 245, 0.25);
+}
+
+.measurement-tool-icon span {
+    font-size: 34px;
+    line-height: 1;
+}
+
+
+/* CONTENT */
+
+.measurement-tool-card .tool-card-content {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    min-width: 0;
+}
+
+.measurement-tool-label {
+    margin-bottom: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: #7652d8;
+}
+
+.measurement-tool-card h3 {
+    margin: 0 0 8px;
+    font-size: 21px;
+    line-height: 1.25;
+}
+
+.measurement-tool-card p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+
+/* ACTION */
+
+.measurement-tool-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #6d3df5;
+}
+
+.measurement-tool-arrow {
+    font-size: 19px;
+    transition: transform 0.2s ease;
+}
+
+.measurement-tool-card:hover .measurement-tool-arrow {
+    transform: translateX(5px);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .measurement-tool-card {
+        align-items: flex-start;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .measurement-tool-icon {
+        flex: 0 0 58px;
+        width: 58px;
+        height: 58px;
+        border-radius: 15px;
+    }
+
+    .measurement-tool-icon span {
+        font-size: 28px;
+    }
+
+    .measurement-tool-card h3 {
+        font-size: 18px;
+    }
+
+    .measurement-tool-card p {
+        font-size: 13px;
+    }
+
+}
