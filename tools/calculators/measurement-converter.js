@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // =========================================================
     // Measurement Converter
+    // Uses KalMarket's existing window.t() translation system
     // =========================================================
 
     const categorySelect =
@@ -51,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // =========================================================
-    // Standard Units
+    // Unit Definitions
     // =========================================================
 
     const units = {
@@ -59,47 +60,47 @@ document.addEventListener("DOMContentLoaded", () => {
         length: {
 
             millimeter: {
-                name: "Millimeters",
+                key: "measurement_millimeters",
                 factor: 0.001
             },
 
             centimeter: {
-                name: "Centimeters",
+                key: "measurement_centimeters",
                 factor: 0.01
             },
 
             meter: {
-                name: "Meters",
+                key: "measurement_meters",
                 factor: 1
             },
 
             kilometer: {
-                name: "Kilometers",
+                key: "measurement_kilometers",
                 factor: 1000
             },
 
             inch: {
-                name: "Inches",
+                key: "measurement_inches",
                 factor: 0.0254
             },
 
             foot: {
-                name: "Feet",
+                key: "measurement_feet",
                 factor: 0.3048
             },
 
             yard: {
-                name: "Yards",
+                key: "measurement_yards",
                 factor: 0.9144
             },
 
             mile: {
-                name: "Miles",
+                key: "measurement_miles",
                 factor: 1609.344
             },
 
             nautical_mile: {
-                name: "Nautical Miles",
+                key: "measurement_nautical_miles",
                 factor: 1852
             }
 
@@ -109,42 +110,42 @@ document.addEventListener("DOMContentLoaded", () => {
         weight: {
 
             milligram: {
-                name: "Milligrams",
+                key: "measurement_milligrams",
                 factor: 0.000001
             },
 
             gram: {
-                name: "Grams",
+                key: "measurement_grams",
                 factor: 0.001
             },
 
             kilogram: {
-                name: "Kilograms",
+                key: "measurement_kilograms",
                 factor: 1
             },
 
             metric_ton: {
-                name: "Metric Tons",
+                key: "measurement_metric_tons",
                 factor: 1000
             },
 
             ounce: {
-                name: "Ounces",
+                key: "measurement_ounces",
                 factor: 0.028349523125
             },
 
             pound: {
-                name: "Pounds",
+                key: "measurement_pounds",
                 factor: 0.45359237
             },
 
             stone: {
-                name: "Stones",
+                key: "measurement_stones",
                 factor: 6.35029318
             },
 
             us_ton: {
-                name: "US Tons",
+                key: "measurement_us_tons",
                 factor: 907.18474
             }
 
@@ -154,52 +155,52 @@ document.addEventListener("DOMContentLoaded", () => {
         area: {
 
             square_millimeter: {
-                name: "Square Millimeters",
+                key: "measurement_square_millimeters",
                 factor: 0.000001
             },
 
             square_centimeter: {
-                name: "Square Centimeters",
+                key: "measurement_square_centimeters",
                 factor: 0.0001
             },
 
             square_meter: {
-                name: "Square Meters",
+                key: "measurement_square_meters",
                 factor: 1
             },
 
             square_kilometer: {
-                name: "Square Kilometers",
+                key: "measurement_square_kilometers",
                 factor: 1000000
             },
 
             square_inch: {
-                name: "Square Inches",
+                key: "measurement_square_inches",
                 factor: 0.00064516
             },
 
             square_foot: {
-                name: "Square Feet",
+                key: "measurement_square_feet",
                 factor: 0.09290304
             },
 
             square_yard: {
-                name: "Square Yards",
+                key: "measurement_square_yards",
                 factor: 0.83612736
             },
 
             acre: {
-                name: "Acres",
+                key: "measurement_acres",
                 factor: 4046.8564224
             },
 
             hectare: {
-                name: "Hectares",
+                key: "measurement_hectares",
                 factor: 10000
             },
 
             square_mile: {
-                name: "Square Miles",
+                key: "measurement_square_miles",
                 factor: 2589988.110336
             }
 
@@ -209,62 +210,62 @@ document.addEventListener("DOMContentLoaded", () => {
         volume: {
 
             milliliter: {
-                name: "Milliliters",
+                key: "measurement_milliliters",
                 factor: 0.001
             },
 
             liter: {
-                name: "Liters",
+                key: "measurement_liters",
                 factor: 1
             },
 
             cubic_centimeter: {
-                name: "Cubic Centimeters",
+                key: "measurement_cubic_centimeters",
                 factor: 0.001
             },
 
             cubic_meter: {
-                name: "Cubic Meters",
+                key: "measurement_cubic_meters",
                 factor: 1000
             },
 
             us_fluid_ounce: {
-                name: "US Fluid Ounces",
+                key: "measurement_us_fluid_ounces",
                 factor: 0.0295735295625
             },
 
             us_cup: {
-                name: "US Cups",
+                key: "measurement_us_cups",
                 factor: 0.2365882365
             },
 
             us_pint: {
-                name: "US Pints",
+                key: "measurement_us_pints",
                 factor: 0.473176473
             },
 
             us_quart: {
-                name: "US Quarts",
+                key: "measurement_us_quarts",
                 factor: 0.946352946
             },
 
             us_gallon: {
-                name: "US Gallons",
+                key: "measurement_us_gallons",
                 factor: 3.785411784
             },
 
             imperial_fluid_ounce: {
-                name: "Imperial Fluid Ounces",
+                key: "measurement_imperial_fluid_ounces",
                 factor: 0.0284130625
             },
 
             imperial_pint: {
-                name: "Imperial Pints",
+                key: "measurement_imperial_pints",
                 factor: 0.56826125
             },
 
             imperial_gallon: {
-                name: "Imperial Gallons",
+                key: "measurement_imperial_gallons",
                 factor: 4.54609
             }
 
@@ -274,42 +275,42 @@ document.addEventListener("DOMContentLoaded", () => {
         time: {
 
             millisecond: {
-                name: "Milliseconds",
+                key: "measurement_milliseconds",
                 factor: 0.001
             },
 
             second: {
-                name: "Seconds",
+                key: "measurement_seconds",
                 factor: 1
             },
 
             minute: {
-                name: "Minutes",
+                key: "measurement_minutes",
                 factor: 60
             },
 
             hour: {
-                name: "Hours",
+                key: "measurement_hours",
                 factor: 3600
             },
 
             day: {
-                name: "Days",
+                key: "measurement_days",
                 factor: 86400
             },
 
             week: {
-                name: "Weeks",
+                key: "measurement_weeks",
                 factor: 604800
             },
 
             month: {
-                name: "Months (30 days)",
+                key: "measurement_months",
                 factor: 2592000
             },
 
             year: {
-                name: "Years (365 days)",
+                key: "measurement_years",
                 factor: 31536000
             }
 
@@ -319,27 +320,27 @@ document.addEventListener("DOMContentLoaded", () => {
         speed: {
 
             meter_second: {
-                name: "Meters / Second",
+                key: "measurement_meters_per_second",
                 factor: 1
             },
 
             kilometer_hour: {
-                name: "Kilometers / Hour",
+                key: "measurement_kilometers_per_hour",
                 factor: 0.2777777778
             },
 
             mile_hour: {
-                name: "Miles / Hour",
+                key: "measurement_miles_per_hour",
                 factor: 0.44704
             },
 
             foot_second: {
-                name: "Feet / Second",
+                key: "measurement_feet_per_second",
                 factor: 0.3048
             },
 
             knot: {
-                name: "Knots",
+                key: "measurement_knots",
                 factor: 0.5144444444
             }
 
@@ -349,37 +350,37 @@ document.addEventListener("DOMContentLoaded", () => {
         digital: {
 
             bit: {
-                name: "Bits",
+                key: "measurement_bits",
                 factor: 1
             },
 
             byte: {
-                name: "Bytes",
+                key: "measurement_bytes",
                 factor: 8
             },
 
             kilobyte: {
-                name: "Kilobytes",
+                key: "measurement_kilobytes",
                 factor: 8000
             },
 
             megabyte: {
-                name: "Megabytes",
+                key: "measurement_megabytes",
                 factor: 8000000
             },
 
             gigabyte: {
-                name: "Gigabytes",
+                key: "measurement_gigabytes",
                 factor: 8000000000
             },
 
             terabyte: {
-                name: "Terabytes",
+                key: "measurement_terabytes",
                 factor: 8000000000000
             },
 
             petabyte: {
-                name: "Petabytes",
+                key: "measurement_petabytes",
                 factor: 8000000000000000
             }
 
@@ -394,17 +395,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const temperatureUnits = {
 
-        celsius: "Celsius",
+        celsius: {
+            key: "measurement_celsius"
+        },
 
-        fahrenheit: "Fahrenheit",
+        fahrenheit: {
+            key: "measurement_fahrenheit"
+        },
 
-        kelvin: "Kelvin"
+        kelvin: {
+            key: "measurement_kelvin"
+        }
 
     };
 
 
     // =========================================================
-    // Construction Examples
+    // Common Conversion Examples
     // =========================================================
 
     const quickExamples = {
@@ -469,6 +476,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // =========================================================
+    // Translation Helper
+    // =========================================================
+
+    function translate(key, fallback = "") {
+
+        if (typeof window.t === "function") {
+
+            const translated =
+                window.t(key);
+
+            if (translated) {
+                return translated;
+            }
+
+        }
+
+        return fallback || key;
+
+    }
+
+
+    // =========================================================
     // Format Number
     // =========================================================
 
@@ -487,15 +516,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         return Number(
             number.toFixed(8)
-        ).toLocaleString("en-US", {
-            maximumFractionDigits: 8
-        });
+        ).toLocaleString(
+            "en-US",
+            {
+                maximumFractionDigits: 8
+            }
+        );
 
     }
 
 
     // =========================================================
-    // Populate Units
+    // Populate Unit Dropdowns
     // =========================================================
 
     function populateUnits() {
@@ -503,28 +535,35 @@ document.addEventListener("DOMContentLoaded", () => {
         const category =
             categorySelect.value;
 
+
         fromUnit.innerHTML = "";
         toUnit.innerHTML = "";
 
 
+        // -----------------------------------------------------
         // Construction mode
+        // -----------------------------------------------------
+
         if (category === "construction") {
 
-            if (constructionSection) {
-                constructionSection.style.display = "block";
-            }
+            constructionSection.style.display =
+                "block";
 
-            document.querySelector(".conversion-row").style.display =
-                "none";
+            document.querySelector(
+                ".conversion-row"
+            ).style.display = "none";
 
-            document.querySelector(".swap-container").style.display =
-                "none";
+            document.querySelector(
+                ".swap-container"
+            ).style.display = "none";
 
-            document.querySelector(".result-box").style.display =
-                "none";
+            document.querySelector(
+                ".result-box"
+            ).style.display = "none";
 
-            document.querySelector(".quick-conversions").style.display =
-                "none";
+            document.querySelector(
+                ".quick-conversions"
+            ).style.display = "none";
 
             convertConstruction();
 
@@ -532,80 +571,141 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
+        // -----------------------------------------------------
         // Normal mode
-        if (constructionSection) {
-            constructionSection.style.display = "none";
-        }
+        // -----------------------------------------------------
 
-        document.querySelector(".conversion-row").style.display =
-            "grid";
+        constructionSection.style.display =
+            "none";
 
-        document.querySelector(".swap-container").style.display =
-            "block";
+        document.querySelector(
+            ".conversion-row"
+        ).style.display = "grid";
 
-        document.querySelector(".result-box").style.display =
-            "block";
+        document.querySelector(
+            ".swap-container"
+        ).style.display = "block";
 
-        document.querySelector(".quick-conversions").style.display =
-            "block";
+        document.querySelector(
+            ".result-box"
+        ).style.display = "block";
+
+        document.querySelector(
+            ".quick-conversions"
+        ).style.display = "block";
 
 
+        // -----------------------------------------------------
         // Temperature
+        // -----------------------------------------------------
+
         if (category === "temperature") {
 
-            Object.entries(temperatureUnits).forEach(
-                ([value, name]) => {
-
-                    const optionFrom =
-                        document.createElement("option");
-
-                    optionFrom.value = value;
-                    optionFrom.textContent = name;
-
-                    const optionTo =
-                        document.createElement("option");
-
-                    optionTo.value = value;
-                    optionTo.textContent = name;
-
-                    fromUnit.appendChild(optionFrom);
-                    toUnit.appendChild(optionTo);
-
-                }
-            );
-
-            fromUnit.value = "celsius";
-            toUnit.value = "fahrenheit";
-
-        }
-
-        // All other categories
-        else {
-
-            Object.entries(units[category]).forEach(
+            Object.entries(
+                temperatureUnits
+            ).forEach(
                 ([value, data]) => {
 
                     const optionFrom =
                         document.createElement("option");
 
-                    optionFrom.value = value;
-                    optionFrom.textContent = data.name;
+                    optionFrom.value =
+                        value;
+
+                    optionFrom.textContent =
+                        translate(
+                            data.key,
+                            value
+                        );
+
 
                     const optionTo =
                         document.createElement("option");
 
-                    optionTo.value = value;
-                    optionTo.textContent = data.name;
+                    optionTo.value =
+                        value;
 
-                    fromUnit.appendChild(optionFrom);
-                    toUnit.appendChild(optionTo);
+                    optionTo.textContent =
+                        translate(
+                            data.key,
+                            value
+                        );
+
+
+                    fromUnit.appendChild(
+                        optionFrom
+                    );
+
+                    toUnit.appendChild(
+                        optionTo
+                    );
+
+                }
+            );
+
+
+            fromUnit.value =
+                "celsius";
+
+            toUnit.value =
+                "fahrenheit";
+
+        }
+
+
+        // -----------------------------------------------------
+        // Standard units
+        // -----------------------------------------------------
+
+        else {
+
+            Object.entries(
+                units[category]
+            ).forEach(
+                ([value, data]) => {
+
+                    const optionFrom =
+                        document.createElement("option");
+
+                    optionFrom.value =
+                        value;
+
+                    optionFrom.textContent =
+                        translate(
+                            data.key,
+                            value
+                        );
+
+
+                    const optionTo =
+                        document.createElement("option");
+
+                    optionTo.value =
+                        value;
+
+                    optionTo.textContent =
+                        translate(
+                            data.key,
+                            value
+                        );
+
+
+                    fromUnit.appendChild(
+                        optionFrom
+                    );
+
+                    toUnit.appendChild(
+                        optionTo
+                    );
 
                 }
             );
 
 
             const available =
-                Object.keys(units[category]);
+                Object.keys(
+                    units[category]
+                );
 
 
             if (available.length > 1) {
@@ -650,7 +750,9 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (from === "fahrenheit") {
 
             celsius =
-                (value - 32) * 5 / 9;
+                (value - 32) *
+                5 /
+                9;
 
         }
 
@@ -671,7 +773,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (to === "fahrenheit") {
 
             return (
-                celsius * 9 / 5
+                celsius *
+                9 /
+                5
             ) + 32;
 
         }
@@ -698,18 +802,23 @@ document.addEventListener("DOMContentLoaded", () => {
         if (category === "construction") {
 
             convertConstruction();
+
             return;
 
         }
 
 
         const value =
-            parseFloat(fromValue.value);
+            parseFloat(
+                fromValue.value
+            );
 
 
         if (Number.isNaN(value)) {
 
-            resultValue.textContent = "0";
+            resultValue.textContent =
+                "0";
+
             return;
 
         }
@@ -718,7 +827,6 @@ document.addEventListener("DOMContentLoaded", () => {
         let result;
 
 
-        // Temperature
         if (category === "temperature") {
 
             result =
@@ -730,30 +838,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-        // Standard units
         else {
 
             const from =
-                units[category][fromUnit.value];
+                units[category][
+                    fromUnit.value
+                ];
 
             const to =
-                units[category][toUnit.value];
+                units[category][
+                    toUnit.value
+                ];
 
 
             if (!from || !to) {
 
-                resultValue.textContent = "0";
+                resultValue.textContent =
+                    "0";
+
                 return;
 
             }
 
 
             const baseValue =
-                value * from.factor;
+                value *
+                from.factor;
 
 
             result =
-                baseValue / to.factor;
+                baseValue /
+                to.factor;
 
         }
 
@@ -765,7 +880,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // =========================================================
-    // Construction Converter
+    // Construction Conversion
     // =========================================================
 
     function convertConstruction() {
@@ -776,51 +891,68 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         const feet =
-            parseFloat(feetInput.value) || 0;
+            parseFloat(
+                feetInput.value
+            ) || 0;
 
         const inches =
-            parseFloat(inchesInput.value) || 0;
+            parseFloat(
+                inchesInput.value
+            ) || 0;
 
 
-        // Total inches
         const totalInches =
-            (feet * 12) + inches;
+            (feet * 12) +
+            inches;
 
 
-        // Conversions
         const centimeters =
-            totalInches * 2.54;
+            totalInches *
+            2.54;
 
         const millimeters =
-            totalInches * 25.4;
+            totalInches *
+            25.4;
 
         const meters =
-            centimeters / 100;
+            centimeters /
+            100;
 
         const decimalFeet =
-            totalInches / 12;
+            totalInches /
+            12;
 
 
         constructionInches.textContent =
-            formatNumber(totalInches);
+            formatNumber(
+                totalInches
+            );
 
         constructionCm.textContent =
-            formatNumber(centimeters);
+            formatNumber(
+                centimeters
+            );
 
         constructionMm.textContent =
-            formatNumber(millimeters);
+            formatNumber(
+                millimeters
+            );
 
         constructionMeters.textContent =
-            formatNumber(meters);
+            formatNumber(
+                meters
+            );
 
         constructionDecimalFeet.textContent =
-            formatNumber(decimalFeet);
+            formatNumber(
+                decimalFeet
+            );
 
     }
 
 
     // =========================================================
-    // Quick Conversions
+    // Quick Conversion Examples
     // =========================================================
 
     function updateQuickConversions() {
@@ -834,7 +966,8 @@ document.addEventListener("DOMContentLoaded", () => {
             categorySelect.value;
 
 
-        quickConversions.innerHTML = "";
+        quickConversions.innerHTML =
+            "";
 
 
         if (!quickExamples[category]) {
@@ -856,7 +989,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     " = " +
                     example[1];
 
-                quickConversions.appendChild(div);
+                quickConversions.appendChild(
+                    div
+                );
 
             }
         );
@@ -940,9 +1075,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // =========================================================
-    // Initialize
+    // Refresh Dynamic Translations
     // =========================================================
 
-    populateUnits();
+    window.addEventListener(
+        "languageChanged",
+        () => {
+
+            populateUnits();
+
+        }
+    );
+
+
+    // =========================================================
+    // Initial Setup
+    // =========================================================
+
+    // Give the main language script time to load
+    // its translation dictionary.
+    setTimeout(
+        () => {
+
+            populateUnits();
+
+        },
+        100
+    );
 
 });
