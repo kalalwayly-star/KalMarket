@@ -33,6 +33,11 @@ function calculateTax() {
 
     const annualIncome =
         getNumber("annualIncome");
+    console.log("ANNUAL INCOME CHECK:", {
+    element: document.getElementById("annualIncome"),
+    value: document.getElementById("annualIncome")?.value,
+    annualIncome: annualIncome
+});
 
     const taxPaid =
         getNumber("taxPaid");
