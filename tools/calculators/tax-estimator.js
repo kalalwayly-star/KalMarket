@@ -160,6 +160,18 @@ function calculateTax() {
         businessDeductions +
         generalDeductions;
 
+    console.log({
+    annualIncome,
+    businessRevenue,
+    costOfGoodsSold,
+    businessExpenses,
+    businessDeductions,
+    generalDeductions,
+    deductions,
+    netBusinessIncome,
+    taxableIncome
+});
+
 
     // ======================================================
     // TAXABLE INCOME
