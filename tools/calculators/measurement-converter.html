@@ -143,3 +143,338 @@
 
 </div>
 </header>
+<main>
+
+<div class="converter-card">
+
+    <h1
+        class="converter-title"
+        data-i18n="measurement_converter_title"
+    >
+        Measurement Converter
+    </h1>
+
+    <p
+        class="converter-description"
+        data-i18n="measurement_converter_description"
+    >
+        Convert measurements quickly and easily.
+    </p>
+
+
+    <!-- Category -->
+    <select
+        id="categorySelect"
+        class="category-select"
+        data-i18n-aria-label="measurement_category"
+    >
+        <option
+            value="length"
+            data-i18n="measurement_length"
+        >
+            Length
+        </option>
+
+        <option
+            value="weight"
+            data-i18n="measurement_weight"
+        >
+            Weight / Mass
+        </option>
+
+        <option
+            value="temperature"
+            data-i18n="measurement_temperature"
+        >
+            Temperature
+        </option>
+
+        <option
+            value="area"
+            data-i18n="measurement_area"
+        >
+            Area
+        </option>
+
+        <option
+            value="volume"
+            data-i18n="measurement_volume"
+        >
+            Volume
+        </option>
+
+        <option
+            value="time"
+            data-i18n="measurement_time"
+        >
+            Time
+        </option>
+
+        <option
+            value="speed"
+            data-i18n="measurement_speed"
+        >
+            Speed
+        </option>
+
+        <option
+            value="digital"
+            data-i18n="measurement_digital_storage"
+        >
+            Digital Storage
+        </option>
+
+        <option
+            value="construction"
+            data-i18n="measurement_construction"
+        >
+            Construction / Dimensions
+        </option>
+    </select>
+
+
+    <div class="conversion-row">
+
+        <!-- FROM -->
+        <div class="field-group">
+
+            <label
+                for="fromValue"
+                data-i18n="measurement_from"
+            >
+                From
+            </label>
+
+            <input
+                type="number"
+                id="fromValue"
+                data-i18n-placeholder="measurement_enter_value"
+                placeholder="Enter value"
+                step="any"
+                value="1"
+            >
+
+            <select
+                id="fromUnit"
+                data-i18n-aria-label="measurement_from_unit"
+            ></select>
+
+        </div>
+
+
+        <!-- TO -->
+        <div class="field-group">
+
+            <label
+                for="toUnit"
+                data-i18n="measurement_to"
+            >
+                To
+            </label>
+
+            <select
+                id="toUnit"
+                data-i18n-aria-label="measurement_to_unit"
+            ></select>
+
+        </div>
+
+    </div>
+
+
+    <!-- Swap -->
+    <div class="swap-container">
+
+        <button
+            type="button"
+            class="swap-button"
+            id="swapButton"
+            data-i18n-title="measurement_swap_units"
+            title="Swap units"
+        >
+            ⇄
+        </button>
+
+    </div>
+
+
+    <!-- Result -->
+    <div class="result-box">
+
+        <div
+            class="result-label"
+            data-i18n="measurement_result"
+        >
+            Result
+        </div>
+
+        <div
+            id="resultValue"
+            class="result-value"
+        >
+            0
+        </div>
+
+    </div>
+
+
+    <!-- Construction Converter -->
+    <div
+        id="constructionSection"
+        class="construction-section"
+        style="display:none;"
+    >
+
+        <h3
+            data-i18n="measurement_construction"
+        >
+            Construction / Dimensions
+        </h3>
+
+        <p
+            class="construction-description"
+            data-i18n="measurement_construction_description"
+        >
+            Convert feet and inches into inches, centimeters,
+            millimeters, meters, or decimal feet.
+        </p>
+
+
+        <div class="construction-inputs">
+
+            <div class="field-group">
+
+                <label
+                    for="feetInput"
+                    data-i18n="measurement_feet"
+                >
+                    Feet
+                </label>
+
+                <input
+                    type="number"
+                    id="feetInput"
+                    data-i18n-placeholder="measurement_zero"
+                    placeholder="0"
+                    min="0"
+                    step="any"
+                >
+
+            </div>
+
+
+            <div class="field-group">
+
+                <label
+                    for="inchesInput"
+                    data-i18n="measurement_inches"
+                >
+                    Inches
+                </label>
+
+                <input
+                    type="number"
+                    id="inchesInput"
+                    data-i18n-placeholder="measurement_zero"
+                    placeholder="0"
+                    min="0"
+                    step="any"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="construction-results">
+
+            <div class="construction-result">
+
+                <span data-i18n="measurement_total_inches">
+                    Total Inches
+                </span>
+
+                <strong id="constructionInches">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="construction-result">
+
+                <span data-i18n="measurement_centimeters">
+                    Centimeters
+                </span>
+
+                <strong id="constructionCm">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="construction-result">
+
+                <span data-i18n="measurement_millimeters">
+                    Millimeters
+                </span>
+
+                <strong id="constructionMm">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="construction-result">
+
+                <span data-i18n="measurement_meters">
+                    Meters
+                </span>
+
+                <strong id="constructionMeters">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="construction-result">
+
+                <span data-i18n="measurement_decimal_feet">
+                    Decimal Feet
+                </span>
+
+                <strong id="constructionDecimalFeet">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Quick Conversions -->
+    <div class="quick-conversions">
+
+        <h3 data-i18n="measurement_common_conversions">
+            Common Conversions
+        </h3>
+
+        <div
+            id="quickConversions"
+            class="quick-grid"
+        ></div>
+
+    </div>
+
+</div>
+</main>
+    <script src="../../languages.js"></script>
+ <script src="measurement-converter.js"></script>
+
+</body>
+</html>   
+
