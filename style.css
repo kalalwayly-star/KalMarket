@@ -1960,9 +1960,8 @@ featured-badge {
     align-items: center;
     gap: 20px;
     padding: 24px;
-width: 100%;
-aspect-ratio: 1 / 1;
-box-sizing: border-box;    text-decoration: none;
+min-height: 190px;
+   text-decoration: none;
     border-radius: 18px;
     background: linear-gradient(
         135deg,
