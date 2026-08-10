@@ -165,287 +165,295 @@
 </section>
 
 
+```html
 <!-- ======================================================
      INCOME INFORMATION
 ====================================================== -->
 
-<section class="calculator-container">
+<div class="calculator-card">
 
-    <div class="calculator-card">
+    <h3 data-i18n="income_information">
+        💰 Income Information
+    </h3>
 
-        <h3 data-i18n="income_information">
-            💰 Income Information
-        </h3>
+    <!-- ANNUAL INCOME -->
 
-        <label data-i18n="annual_income">
-            Annual Gross Income
-        </label>
+    <label data-i18n="annual_income">
+        Annual Gross Income
+    </label>
 
-        <small class="field-help"
-               data-i18n="annual_income_help">
+    <small class="field-help"
+           data-i18n="annual_income_help">
+        Enter your total income before taxes and deductions.
+    </small>
 
-            Enter your total income before taxes and deductions.
+    <input
+        type="number"
+        id="annualIncome"
+        min="0"
+        step="0.01"
+        data-i18n-placeholder="annual_income"
+        placeholder="Annual Income">
 
-        </small>
 
-        <input
-            type="number"
-            id="annualIncome"
-            data-i18n-placeholder="annual_income"
-            placeholder="Annual Income">
+    <!-- EMPLOYMENT STATUS -->
 
-        <label data-i18n="employment_type">
-            👤 Employment Status
-        </label>
+    <label data-i18n="employment_type">
+        👤 Employment Status
+    </label>
 
-       <select id="employmentType">
+    <select id="employmentType">
 
-    <option value="employee"
+        <option
+            value="employee"
             data-i18n="employee">
+            Employee
+        </option>
 
-        Employee
-
-    </option>
-
-
-    <option value="self-employed"
+        <option
+            value="self-employed"
             data-i18n="self_employed">
+            Self-Employed
+        </option>
 
-        Self-Employed
+    </select>
 
-    </option>
-
-</select>
-
-
-</section>
-
-<div 
-id="businessIncomeSection" 
-class="calculator-card"
-style="display:none;"
->
-
-<h3 data-i18n="business_income">
-🏢 Business Income
-</h3>
+</div>
 
 
-<label data-i18n="gross_business_revenue">
-Gross Business Revenue
-</label>
+<!-- ======================================================
+     BUSINESS INCOME
+     SELF-EMPLOYED ONLY
+====================================================== -->
 
-<small class="field-help">
-Total sales/income before expenses.
-</small>
+<div
+    class="calculator-card"
+    id="businessIncomeSection">
 
-<!-- BUSINESS INCOME -->
-
-<label id="businessRevenueLabel">
-    🏢 Gross Business Revenue
-</label>
-
-<small
-    id="businessRevenueHelp"
-    class="field-help">
-
-    Total sales/income before expenses.
-</small>
-
-<input
-    type="number"
-    id="businessRevenue"
-    min="0"
-    step="0.01"
-    placeholder="Business Revenue">
+    <h3>
+        🏢 Business Income
+    </h3>
 
 
-<!-- COST OF GOODS SOLD -->
+    <!-- GROSS BUSINESS REVENUE -->
 
-<label id="costOfGoodsSoldLabel">
-    📦 Cost of Goods Sold (COGS)
-</label>
+    <label>
+        Gross Business Revenue
+    </label>
 
-<small
-    id="costOfGoodsSoldHelp"
-    class="field-help">
+    <small class="field-help">
+        Total sales/income before expenses.
+    </small>
 
-    Materials, inventory, products purchased for resale.
-</small>
+    <input
+        type="number"
+        id="businessRevenue"
+        min="0"
+        step="0.01"
+        placeholder="Business Revenue">
 
-<input
-    type="number"
-    id="costOfGoodsSold"
-    min="0"
-    step="0.01"
-    placeholder="Cost of Goods Sold">
+
+    <!-- COST OF GOODS SOLD -->
+
+    <label>
+        📦 Cost of Goods Sold (COGS)
+    </label>
+
+    <small class="field-help">
+        Materials, inventory, products purchased for resale.
+    </small>
+
+    <input
+        type="number"
+        id="costOfGoodsSold"
+        min="0"
+        step="0.01"
+        placeholder="Cost of Goods Sold">
+
+
+    <!-- BUSINESS EXPENSES -->
+
+    <label
+        data-i18n="business_expenses">
+        📉 Business Expenses
+    </label>
+
+    <small class="field-help">
+        Eligible business expenses such as rent, utilities,
+        advertising, insurance, supplies, and other operating costs.
+    </small>
+
+    <input
+        type="number"
+        id="businessExpenses"
+        min="0"
+        step="0.01"
+        placeholder="Allowable Business Expenses">
+
+</div>
+
 
 <!-- ======================================================
      TAX & DEDUCTIONS
 ====================================================== -->
-    
-<section
-    id="deductionsSection"
-    class="calculator-container">
 
-    <div class="calculator-card">
+<div class="calculator-card">
 
-        <h3 data-i18n="deductions">
-            🧾 Tax & Deductions
-        </h3>
-
-        <!-- TAX ALREADY PAID -->
-
-        <label data-i18n="tax_paid">
-            💳 Tax Already Paid (Withheld)
-        </label>
-
-        <small class="field-help"
-               data-i18n="tax_paid_help">
-
-            For employees, enter the total income tax already
-            deducted from your paycheques.
-
-        </small>
-
-        <input
-            type="number"
-            id="taxPaid"
-            min="0"
-            step="0.01"
-            data-i18n-placeholder="tax_paid_placeholder"
-            placeholder="Tax deducted from your paycheques">
+    <h3 data-i18n="deductions">
+        🧾 Tax & Deductions
+    </h3>
 
 
-        <!-- RRSP -->
+    <!-- TAX ALREADY PAID -->
 
-        <label>
-            🏦 RRSP Contributions
-        </label>
+    <label data-i18n="tax_paid">
+        💳 Tax Already Paid (Withheld)
+    </label>
 
-        <small class="field-help">
-            Enter eligible RRSP contributions you want included
-            in this estimate.
-        </small>
+    <small
+        class="field-help"
+        data-i18n="tax_paid_help">
+        For employees, enter the total income tax already
+        deducted from your paycheques.
+    </small>
 
-        <input
-            type="number"
-            id="rrspContributions"
-            min="0"
-            step="0.01"
-            placeholder="RRSP Contributions">
-
-
-        <!-- UNION / PROFESSIONAL DUES -->
-
-        <label>
-            👔 Union / Professional Dues
-        </label>
-
-        <small class="field-help">
-            Enter eligible union dues or professional membership dues.
-        </small>
-
-        <input
-            type="number"
-            id="professionalDues"
-            min="0"
-            step="0.01"
-            placeholder="Union / Professional Dues">
+    <input
+        type="number"
+        id="taxPaid"
+        min="0"
+        step="0.01"
+        data-i18n-placeholder="tax_paid_placeholder"
+        placeholder="Tax deducted from your paycheques">
 
 
-        <!-- EMPLOYMENT EXPENSES -->
+    <!-- RRSP -->
 
-        <label>
-            💼 Employment Expenses
-        </label>
+    <label>
+        🏦 RRSP Contributions
+    </label>
 
-        <small class="field-help">
-            Enter eligible employment expenses if applicable.
-        </small>
+    <small class="field-help">
+        Enter eligible RRSP contributions you want included
+        in this estimate.
+    </small>
 
-        <input
-            type="number"
-            id="employmentExpenses"
-            min="0"
-            step="0.01"
-            placeholder="Employment Expenses">
-
-
-        <!-- TUITION -->
-
-        <label>
-            🎓 Tuition / Education Amount
-        </label>
-
-        <small class="field-help">
-            Enter eligible tuition amounts if applicable.
-        </small>
-
-        <input
-            type="number"
-            id="tuitionAmount"
-            min="0"
-            step="0.01"
-            placeholder="Eligible Tuition">
+    <input
+        type="number"
+        id="rrspContributions"
+        min="0"
+        step="0.01"
+        placeholder="RRSP Contributions">
 
 
-        <!-- MEDICAL -->
+    <!-- UNION / PROFESSIONAL DUES -->
 
-        <label>
-            🏥 Eligible Medical Expenses
-        </label>
+    <label>
+        👔 Union / Professional Dues
+    </label>
 
-        <small class="field-help">
-            Enter eligible medical expenses if applicable.
-        </small>
+    <small class="field-help">
+        Enter eligible union dues or professional membership dues.
+    </small>
 
-        <input
-            type="number"
-            id="medicalExpenses"
-            min="0"
-            step="0.01"
-            placeholder="Medical Expenses">
-
-
-        <!-- DONATIONS -->
-
-        <label>
-            ❤️ Charitable Donations
-        </label>
-
-        <small class="field-help">
-            Enter eligible charitable donations if applicable.
-        </small>
-
-        <input
-            type="number"
-            id="charitableDonations"
-            min="0"
-            step="0.01"
-            placeholder="Charitable Donations">
+    <input
+        type="number"
+        id="professionalDues"
+        min="0"
+        step="0.01"
+        placeholder="Union / Professional Dues">
 
 
-        <!-- OTHER DEDUCTIONS -->
+    <!-- EMPLOYMENT EXPENSES -->
 
-        <label>
-            📋 Other Eligible Deductions
-        </label>
+    <label>
+        💼 Employment Expenses
+    </label>
 
-        <small class="field-help">
-            Enter other eligible deductions that apply to you.
-        </small>
+    <small class="field-help">
+        Enter eligible employment expenses if applicable.
+    </small>
 
-        <input
-            type="number"
-            id="otherDeductions"
-            min="0"
-            step="0.01"
-            placeholder="Other Deductions">
+    <input
+        type="number"
+        id="employmentExpenses"
+        min="0"
+        step="0.01"
+        placeholder="Employment Expenses">
 
-    </div>
 
-</section>
+    <!-- TUITION -->
+
+    <label>
+        🎓 Tuition / Education Amount
+    </label>
+
+    <small class="field-help">
+        Enter eligible tuition amounts if applicable.
+    </small>
+
+    <input
+        type="number"
+        id="tuitionAmount"
+        min="0"
+        step="0.01"
+        placeholder="Eligible Tuition">
+
+
+    <!-- MEDICAL -->
+
+    <label>
+        🏥 Eligible Medical Expenses
+    </label>
+
+    <small class="field-help">
+        Enter eligible medical expenses if applicable.
+    </small>
+
+    <input
+        type="number"
+        id="medicalExpenses"
+        min="0"
+        step="0.01"
+        placeholder="Medical Expenses">
+
+
+    <!-- CHARITABLE DONATIONS -->
+
+    <label>
+        ❤️ Charitable Donations
+    </label>
+
+    <small class="field-help">
+        Enter eligible charitable donations if applicable.
+    </small>
+
+    <input
+        type="number"
+        id="charitableDonations"
+        min="0"
+        step="0.01"
+        placeholder="Charitable Donations">
+
+
+    <!-- OTHER DEDUCTIONS -->
+
+    <label>
+        📋 Other Eligible Deductions
+    </label>
+
+    <small class="field-help">
+        Enter other eligible deductions that apply to you.
+    </small>
+
+    <input
+        type="number"
+        id="otherDeductions"
+        min="0"
+        step="0.01"
+        placeholder="Other Deductions">
+
+</div>
+
 
 <!-- ======================================================
      PERSONAL / TAX CREDIT INFORMATION
