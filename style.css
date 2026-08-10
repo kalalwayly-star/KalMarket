@@ -1709,3 +1709,243 @@ featured-badge {
     }
 
 }
+/* =========================================================
+   MEASUREMENT CONVERTER
+   ========================================================= */
+
+.converter-card {
+    width: 100%;
+    max-width: 850px;
+    margin: 30px auto;
+    padding: 30px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+}
+
+.converter-title {
+    margin: 0 0 8px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.converter-description {
+    margin: 0 auto 25px;
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+}
+
+
+/* CATEGORY */
+
+.category-select {
+    width: 100%;
+    padding: 13px 15px;
+    margin-bottom: 25px;
+    border: 1px solid #d7d7d7;
+    border-radius: 10px;
+    background: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+
+/* CONVERSION ROW */
+
+.conversion-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.field-group label {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.field-group input,
+.field-group select {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #d7d7d7;
+    border-radius: 10px;
+    background: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.field-group input:focus,
+.field-group select:focus,
+.category-select:focus {
+    outline: none;
+    border-color: #6d3df5;
+    box-shadow: 0 0 0 3px rgba(109, 61, 245, 0.12);
+}
+
+
+/* SWAP */
+
+.swap-container {
+    display: flex;
+    justify-content: center;
+    margin: 18px 0;
+}
+
+.swap-button {
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #6d3df5;
+    color: #fff;
+    font-size: 25px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.swap-button:hover {
+    transform: rotate(180deg);
+}
+
+
+/* RESULT */
+
+.result-box {
+    margin-top: 10px;
+    padding: 22px;
+    text-align: center;
+    background: #f7f5ff;
+    border: 1px solid #e3dcff;
+    border-radius: 14px;
+}
+
+.result-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.result-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #6d3df5;
+    word-break: break-word;
+}
+
+
+/* CONSTRUCTION */
+
+.construction-section {
+    margin-top: 25px;
+}
+
+.construction-section h3 {
+    margin-bottom: 8px;
+}
+
+.construction-description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.construction-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.construction-results {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.construction-result {
+    padding: 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #fafafa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.construction-result span {
+    color: #555;
+}
+
+.construction-result strong {
+    font-size: 18px;
+}
+
+
+/* QUICK CONVERSIONS */
+
+.quick-conversions {
+    margin-top: 30px;
+}
+
+.quick-conversions h3 {
+    margin-bottom: 15px;
+}
+
+.quick-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.quick-item {
+    padding: 14px;
+    background: #f8f8f8;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+    .converter-card {
+        padding: 20px;
+        margin: 20px auto;
+        border-radius: 14px;
+    }
+
+    .converter-title {
+        font-size: 26px;
+    }
+
+    .conversion-row {
+        grid-template-columns: 1fr;
+    }
+
+    .construction-inputs {
+        grid-template-columns: 1fr;
+    }
+
+    .construction-results {
+        grid-template-columns: 1fr;
+    }
+
+    .quick-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
