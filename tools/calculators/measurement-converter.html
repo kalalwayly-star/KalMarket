@@ -180,871 +180,336 @@
     </style>
 </head>
 
-<body>
+```html
+<div class="converter-card">
 
-<div class="converter-container">
+    <h1
+        class="converter-title"
+        data-i18n="measurement_converter_title"
+    >
+        Measurement Converter
+    </h1>
 
-    <div class="converter-card">
+    <p
+        class="converter-description"
+        data-i18n="measurement_converter_description"
+    >
+        Convert measurements quickly and easily.
+    </p>
 
-        <h1 class="converter-title">
-            Measurement Converter
-        </h1>
 
-        <p class="converter-description">
-            Convert measurements quickly and easily.
+    <!-- Category -->
+    <select
+        id="categorySelect"
+        class="category-select"
+        data-i18n-aria-label="measurement_category"
+    >
+        <option
+            value="length"
+            data-i18n="measurement_length"
+        >
+            Length
+        </option>
+
+        <option
+            value="weight"
+            data-i18n="measurement_weight"
+        >
+            Weight / Mass
+        </option>
+
+        <option
+            value="temperature"
+            data-i18n="measurement_temperature"
+        >
+            Temperature
+        </option>
+
+        <option
+            value="area"
+            data-i18n="measurement_area"
+        >
+            Area
+        </option>
+
+        <option
+            value="volume"
+            data-i18n="measurement_volume"
+        >
+            Volume
+        </option>
+
+        <option
+            value="time"
+            data-i18n="measurement_time"
+        >
+            Time
+        </option>
+
+        <option
+            value="speed"
+            data-i18n="measurement_speed"
+        >
+            Speed
+        </option>
+
+        <option
+            value="digital"
+            data-i18n="measurement_digital_storage"
+        >
+            Digital Storage
+        </option>
+
+        <option
+            value="construction"
+            data-i18n="measurement_construction"
+        >
+            Construction / Dimensions
+        </option>
+    </select>
+
+
+    <div class="conversion-row">
+
+        <!-- FROM -->
+        <div class="field-group">
+
+            <label
+                for="fromValue"
+                data-i18n="measurement_from"
+            >
+                From
+            </label>
+
+            <input
+                type="number"
+                id="fromValue"
+                data-i18n-placeholder="measurement_enter_value"
+                placeholder="Enter value"
+                step="any"
+                value="1"
+            >
+
+            <select
+                id="fromUnit"
+                data-i18n-aria-label="measurement_from_unit"
+            ></select>
+
+        </div>
+
+
+        <!-- TO -->
+        <div class="field-group">
+
+            <label
+                for="toUnit"
+                data-i18n="measurement_to"
+            >
+                To
+            </label>
+
+            <select
+                id="toUnit"
+                data-i18n-aria-label="measurement_to_unit"
+            ></select>
+
+        </div>
+
+    </div>
+
+
+    <!-- Swap -->
+    <div class="swap-container">
+
+        <button
+            type="button"
+            class="swap-button"
+            id="swapButton"
+            data-i18n-title="measurement_swap_units"
+            title="Swap units"
+        >
+            ⇄
+        </button>
+
+    </div>
+
+
+    <!-- Result -->
+    <div class="result-box">
+
+        <div
+            class="result-label"
+            data-i18n="measurement_result"
+        >
+            Result
+        </div>
+
+        <div
+            id="resultValue"
+            class="result-value"
+        >
+            0
+        </div>
+
+    </div>
+
+
+    <!-- Construction Converter -->
+    <div
+        id="constructionSection"
+        class="construction-section"
+        style="display:none;"
+    >
+
+        <h3
+            data-i18n="measurement_construction"
+        >
+            Construction / Dimensions
+        </h3>
+
+        <p
+            class="construction-description"
+            data-i18n="measurement_construction_description"
+        >
+            Convert feet and inches into inches, centimeters,
+            millimeters, meters, or decimal feet.
         </p>
 
-        <!-- Category -->
-        <select id="categorySelect" class="category-select">
-            <option value="length">Length</option>
-            <option value="weight">Weight / Mass</option>
-            <option value="temperature">Temperature</option>
-            <option value="area">Area</option>
-            <option value="volume">Volume</option>
-            <option value="time">Time</option>
-            <option value="speed">Speed</option>
-            <option value="digital">Digital Storage</option>
-            <option value="construction">Construction / Dimensions</option>
-        </select>
 
+        <div class="construction-inputs">
 
-        <div class="conversion-row">
-
-            <!-- FROM -->
             <div class="field-group">
 
-                <label for="fromValue">
-                    From
+                <label
+                    for="feetInput"
+                    data-i18n="measurement_feet"
+                >
+                    Feet
                 </label>
 
                 <input
                     type="number"
-                    id="fromValue"
-                    placeholder="Enter value"
+                    id="feetInput"
+                    data-i18n-placeholder="measurement_zero"
+                    placeholder="0"
+                    min="0"
                     step="any"
-                    value="1"
                 >
 
-                <select id="fromUnit"></select>
-
             </div>
 
 
-            <!-- TO -->
             <div class="field-group">
 
-                <label for="toUnit">
-                    To
+                <label
+                    for="inchesInput"
+                    data-i18n="measurement_inches"
+                >
+                    Inches
                 </label>
 
-                <select id="toUnit"></select>
+                <input
+                    type="number"
+                    id="inchesInput"
+                    data-i18n-placeholder="measurement_zero"
+                    placeholder="0"
+                    min="0"
+                    step="any"
+                >
 
             </div>
 
         </div>
 
 
-        <!-- Swap -->
-        <div class="swap-container">
+        <div class="construction-results">
 
-            <button
-                type="button"
-                class="swap-button"
-                id="swapButton"
-                title="Swap units"
-            >
-                ⇄
-            </button>
+            <div class="construction-result">
 
-        </div>
+                <span data-i18n="measurement_total_inches">
+                    Total Inches
+                </span>
 
+                <strong id="constructionInches">
+                    0
+                </strong>
 
-        <!-- Result -->
-        <div class="result-box">
-
-            <div class="result-label">
-                Result
             </div>
 
-            <div
-                id="resultValue"
-                class="result-value"
-            >
-                0
+
+            <div class="construction-result">
+
+                <span data-i18n="measurement_centimeters">
+                    Centimeters
+                </span>
+
+                <strong id="constructionCm">
+                    0
+                </strong>
+
             </div>
 
-        </div>
 
-<!-- Construction Converter -->
-<div id="constructionSection" class="construction-section" style="display:none;">
+            <div class="construction-result">
 
-    <h3>Construction / Dimensions</h3>
+                <span data-i18n="measurement_millimeters">
+                    Millimeters
+                </span>
 
-    <p class="construction-description">
-        Convert feet and inches into inches, centimeters, millimeters,
-        meters, or decimal feet.
-    </p>
+                <strong id="constructionMm">
+                    0
+                </strong>
 
-    <div class="construction-inputs">
+            </div>
 
-        <div class="field-group">
-            <label for="feetInput">Feet</label>
-            <input
-                type="number"
-                id="feetInput"
-                placeholder="0"
-                min="0"
-                step="any"
-            >
-        </div>
 
-        <div class="field-group">
-            <label for="inchesInput">Inches</label>
-            <input
-                type="number"
-                id="inchesInput"
-                placeholder="0"
-                min="0"
-                step="any"
-            >
+            <div class="construction-result">
+
+                <span data-i18n="measurement_meters">
+                    Meters
+                </span>
+
+                <strong id="constructionMeters">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="construction-result">
+
+                <span data-i18n="measurement_decimal_feet">
+                    Decimal Feet
+                </span>
+
+                <strong id="constructionDecimalFeet">
+                    0
+                </strong>
+
+            </div>
+
         </div>
 
     </div>
 
-    <div class="construction-results">
 
-        <div class="construction-result">
-            <span>Total Inches</span>
-            <strong id="constructionInches">0</strong>
-        </div>
+    <!-- Quick Conversions -->
+    <div class="quick-conversions">
 
-        <div class="construction-result">
-            <span>Centimeters</span>
-            <strong id="constructionCm">0</strong>
-        </div>
+        <h3 data-i18n="measurement_common_conversions">
+            Common Conversions
+        </h3>
 
-        <div class="construction-result">
-            <span>Millimeters</span>
-            <strong id="constructionMm">0</strong>
-        </div>
-
-        <div class="construction-result">
-            <span>Meters</span>
-            <strong id="constructionMeters">0</strong>
-        </div>
-
-        <div class="construction-result">
-            <span>Decimal Feet</span>
-            <strong id="constructionDecimalFeet">0</strong>
-        </div>
-
-    </div>
-
-</div>
-        <!-- Quick examples -->
-        <div class="quick-conversions">
-
-            <h3>
-                Common Conversions
-            </h3>
-
-            <div
-                id="quickConversions"
-                class="quick-grid"
-            ></div>
-
-        </div>
+        <div
+            id="quickConversions"
+            class="quick-grid"
+        ></div>
 
     </div>
 
 </div>
 
-
-<script>
-
-const units = {
-
-    length: {
-
-        millimeter: {
-            name: "Millimeters",
-            factor: 0.001
-        },
-
-        centimeter: {
-            name: "Centimeters",
-            factor: 0.01
-        },
-
-        meter: {
-            name: "Meters",
-            factor: 1
-        },
-
-        kilometer: {
-            name: "Kilometers",
-            factor: 1000
-        },
-
-        inch: {
-            name: "Inches",
-            factor: 0.0254
-        },
-
-        foot: {
-            name: "Feet",
-            factor: 0.3048
-        },
-
-        yard: {
-            name: "Yards",
-            factor: 0.9144
-        },
-
-        mile: {
-            name: "Miles",
-            factor: 1609.344
-        },
-
-        nautical_mile: {
-            name: "Nautical Miles",
-            factor: 1852
-        }
-
-    },
-
-
-    weight: {
-
-        milligram: {
-            name: "Milligrams",
-            factor: 0.000001
-        },
-
-        gram: {
-            name: "Grams",
-            factor: 0.001
-        },
-
-        kilogram: {
-            name: "Kilograms",
-            factor: 1
-        },
-
-        metric_ton: {
-            name: "Metric Tons",
-            factor: 1000
-        },
-
-        ounce: {
-            name: "Ounces",
-            factor: 0.028349523125
-        },
-
-        pound: {
-            name: "Pounds",
-            factor: 0.45359237
-        },
-
-        stone: {
-            name: "Stones",
-            factor: 6.35029318
-        },
-
-        us_ton: {
-            name: "US Tons",
-            factor: 907.18474
-        }
-
-    },
-
-
-    area: {
-
-        square_millimeter: {
-            name: "Square Millimeters",
-            factor: 0.000001
-        },
-
-        square_centimeter: {
-            name: "Square Centimeters",
-            factor: 0.0001
-        },
-
-        square_meter: {
-            name: "Square Meters",
-            factor: 1
-        },
-
-        square_kilometer: {
-            name: "Square Kilometers",
-            factor: 1000000
-        },
-
-        square_inch: {
-            name: "Square Inches",
-            factor: 0.00064516
-        },
-
-        square_foot: {
-            name: "Square Feet",
-            factor: 0.09290304
-        },
-
-        square_yard: {
-            name: "Square Yards",
-            factor: 0.83612736
-        },
-
-        acre: {
-            name: "Acres",
-            factor: 4046.8564224
-        },
-
-        hectare: {
-            name: "Hectares",
-            factor: 10000
-        },
-
-        square_mile: {
-            name: "Square Miles",
-            factor: 2589988.110336
-        }
-
-    },
-
-
-    volume: {
-
-        milliliter: {
-            name: "Milliliters",
-            factor: 0.001
-        },
-
-        liter: {
-            name: "Liters",
-            factor: 1
-        },
-
-        cubic_centimeter: {
-            name: "Cubic Centimeters",
-            factor: 0.001
-        },
-
-        cubic_meter: {
-            name: "Cubic Meters",
-            factor: 1000
-        },
-
-        us_fluid_ounce: {
-            name: "US Fluid Ounces",
-            factor: 0.0295735295625
-        },
-
-        us_cup: {
-            name: "US Cups",
-            factor: 0.2365882365
-        },
-
-        us_pint: {
-            name: "US Pints",
-            factor: 0.473176473
-        },
-
-        us_quart: {
-            name: "US Quarts",
-            factor: 0.946352946
-        },
-
-        us_gallon: {
-            name: "US Gallons",
-            factor: 3.785411784
-        },
-
-        imperial_fluid_ounce: {
-            name: "Imperial Fluid Ounces",
-            factor: 0.0284130625
-        },
-
-        imperial_pint: {
-            name: "Imperial Pints",
-            factor: 0.56826125
-        },
-
-        imperial_gallon: {
-            name: "Imperial Gallons",
-            factor: 4.54609
-        }
-
-    },
-
-
-    time: {
-
-        millisecond: {
-            name: "Milliseconds",
-            factor: 0.001
-        },
-
-        second: {
-            name: "Seconds",
-            factor: 1
-        },
-
-        minute: {
-            name: "Minutes",
-            factor: 60
-        },
-
-        hour: {
-            name: "Hours",
-            factor: 3600
-        },
-
-        day: {
-            name: "Days",
-            factor: 86400
-        },
-
-        week: {
-            name: "Weeks",
-            factor: 604800
-        },
-
-        month: {
-            name: "Months (30 days)",
-            factor: 2592000
-        },
-
-        year: {
-            name: "Years (365 days)",
-            factor: 31536000
-        }
-
-    },
-
-
-    speed: {
-
-        meter_second: {
-            name: "Meters / Second",
-            factor: 1
-        },
-
-        kilometer_hour: {
-            name: "Kilometers / Hour",
-            factor: 0.2777777778
-        },
-
-        mile_hour: {
-            name: "Miles / Hour",
-            factor: 0.44704
-        },
-
-        foot_second: {
-            name: "Feet / Second",
-            factor: 0.3048
-        },
-
-        knot: {
-            name: "Knots",
-            factor: 0.5144444444
-        }
-
-    },
-
-
-    digital: {
-
-        bit: {
-            name: "Bits",
-            factor: 1
-        },
-
-        byte: {
-            name: "Bytes",
-            factor: 8
-        },
-
-        kilobyte: {
-            name: "Kilobytes",
-            factor: 8000
-        },
-
-        megabyte: {
-            name: "Megabytes",
-            factor: 8000000
-        },
-
-        gigabyte: {
-            name: "Gigabytes",
-            factor: 8000000000
-        },
-
-        terabyte: {
-            name: "Terabytes",
-            factor: 8000000000000
-        },
-
-        petabyte: {
-            name: "Petabytes",
-            factor: 8000000000000000
-        }
-
-    }
-
-};
-
-
-// Temperature is handled separately
-const temperatureUnits = {
-
-    celsius: "Celsius",
-
-    fahrenheit: "Fahrenheit",
-
-    kelvin: "Kelvin"
-
-};
-
-
-const categorySelect =
-    document.getElementById("categorySelect");
-
-const fromValue =
-    document.getElementById("fromValue");
-
-const fromUnit =
-    document.getElementById("fromUnit");
-
-const toUnit =
-    document.getElementById("toUnit");
-
-const resultValue =
-    document.getElementById("resultValue");
-
-const swapButton =
-    document.getElementById("swapButton");
-
-const quickConversions =
-    document.getElementById("quickConversions");
-
-
-// Populate units
-function populateUnits() {
-
-    const category = categorySelect.value;
-
-    fromUnit.innerHTML = "";
-    toUnit.innerHTML = "";
-
-    if (category === "temperature") {
-
-        Object.entries(temperatureUnits).forEach(
-            ([value, name]) => {
-
-                const option1 =
-                    document.createElement("option");
-
-                option1.value = value;
-                option1.textContent = name;
-
-                const option2 =
-                    document.createElement("option");
-
-                option2.value = value;
-                option2.textContent = name;
-
-                fromUnit.appendChild(option1);
-                toUnit.appendChild(option2);
-
-            }
-        );
-
-        fromUnit.value = "celsius";
-        toUnit.value = "fahrenheit";
-
-    } else {
-
-        Object.entries(units[category]).forEach(
-            ([value, data]) => {
-
-                const option1 =
-                    document.createElement("option");
-
-                option1.value = value;
-                option1.textContent = data.name;
-
-                const option2 =
-                    document.createElement("option");
-
-                option2.value = value;
-                option2.textContent = data.name;
-
-                fromUnit.appendChild(option1);
-                toUnit.appendChild(option2);
-
-            }
-        );
-
-        const available =
-            Object.keys(units[category]);
-
-        if (available.length > 1) {
-            fromUnit.value = available[0];
-            toUnit.value = available[1];
-        }
-
-    }
-
-    updateQuickConversions();
-    convert();
-
-}
-
-
-// Temperature conversion
-function convertTemperature(value, from, to) {
-
-    let celsius;
-
-    if (from === "celsius") {
-        celsius = value;
-    }
-
-    else if (from === "fahrenheit") {
-        celsius = (value - 32) * 5 / 9;
-    }
-
-    else if (from === "kelvin") {
-        celsius = value - 273.15;
-    }
-
-
-    if (to === "celsius") {
-        return celsius;
-    }
-
-    if (to === "fahrenheit") {
-        return (celsius * 9 / 5) + 32;
-    }
-
-    if (to === "kelvin") {
-        return celsius + 273.15;
-    }
-
-}
-
-
-// Main conversion
-function convert() {
-
-    const value =
-        parseFloat(fromValue.value);
-
-    if (isNaN(value)) {
-
-        resultValue.textContent = "0";
-        return;
-
-    }
-
-    const category =
-        categorySelect.value;
-
-    let result;
-
-
-    if (category === "temperature") {
-
-        result = convertTemperature(
-            value,
-            fromUnit.value,
-            toUnit.value
-        );
-
-    } else {
-
-        const from =
-            units[category][fromUnit.value];
-
-        const to =
-            units[category][toUnit.value];
-
-        const baseValue =
-            value * from.factor;
-
-        result =
-            baseValue / to.factor;
-
-    }
-
-
-    resultValue.textContent =
-        formatNumber(result);
-
-}
-
-
-// Format result
-function formatNumber(number) {
-
-    if (!isFinite(number)) {
-        return "0";
-    }
-
-    if (Math.abs(number) < 0.000001 && number !== 0) {
-        return number.toExponential(6);
-    }
-
-    return Number(
-        number.toFixed(8)
-    ).toLocaleString(
-        "en-US",
-        {
-            maximumFractionDigits: 8
-        }
-    );
-
-}
-
-
-// Swap units
-swapButton.addEventListener(
-    "click",
-    () => {
-
-        const oldFrom =
-            fromUnit.value;
-
-        fromUnit.value =
-            toUnit.value;
-
-        toUnit.value =
-            oldFrom;
-
-        convert();
-
-    }
-);
-
-
-// Events
-categorySelect.addEventListener(
-    "change",
-    populateUnits
-);
-
-fromValue.addEventListener(
-    "input",
-    convert
-);
-
-fromUnit.addEventListener(
-    "change",
-    convert
-);
-
-toUnit.addEventListener(
-    "change",
-    convert
-);
-
-
-// Quick conversion examples
-function updateQuickConversions() {
-
-    const category =
-        categorySelect.value;
-
-    quickConversions.innerHTML = "";
-
-
-    const examples = {
-
-        length: [
-            ["1 Foot", "12 Inches"],
-            ["1 Meter", "3.28084 Feet"],
-            ["1 Mile", "1.60934 Kilometers"],
-            ["1 Inch", "2.54 Centimeters"]
-        ],
-
-        weight: [
-            ["1 Kilogram", "2.20462 Pounds"],
-            ["1 Pound", "453.592 Grams"],
-            ["1 Ounce", "28.3495 Grams"],
-            ["1 Stone", "6.35029 Kilograms"]
-        ],
-
-        temperature: [
-            ["0°C", "32°F"],
-            ["20°C", "68°F"],
-            ["100°C", "212°F"],
-            ["0°C", "273.15 K"]
-        ],
-
-        area: [
-            ["1 Acre", "43,560 Square Feet"],
-            ["1 Hectare", "2.47105 Acres"],
-            ["1 Square Meter", "10.7639 Square Feet"],
-            ["1 Square Mile", "640 Acres"]
-        ],
-
-        volume: [
-            ["1 US Gallon", "3.78541 Liters"],
-            ["1 Liter", "33.814 US Fluid Ounces"],
-            ["1 US Quart", "0.946353 Liters"],
-            ["1 US Pint", "473.176 Milliliters"]
-        ],
-
-        time: [
-            ["1 Minute", "60 Seconds"],
-            ["1 Hour", "60 Minutes"],
-            ["1 Day", "24 Hours"],
-            ["1 Week", "7 Days"]
-        ],
-
-        speed: [
-            ["1 MPH", "1.60934 KM/H"],
-            ["1 KM/H", "0.621371 MPH"],
-            ["1 Knot", "1.852 KM/H"],
-            ["1 M/S", "3.6 KM/H"]
-        ],
-
-        digital: [
-            ["1 Byte", "8 Bits"],
-            ["1 KB", "8,000 Bits"],
-            ["1 MB", "8,000,000 Bits"],
-            ["1 GB", "8,000,000,000 Bits"]
-        ]
-
-    };
-
-
-    examples[category].forEach(
-        example => {
-
-            const div =
-                document.createElement("div");
-
-            div.className =
-                "quick-item";
-
-            div.textContent =
-                example[0] + " = " + example[1];
-
-            quickConversions.appendChild(div);
-
-        }
-    );
-
-}
-
-
-// Start
-populateUnits();
-
-</script>
+ <script src="measurement-converter.js"></script>
 
 </body>
-</html>
+</html>   
