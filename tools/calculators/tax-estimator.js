@@ -837,11 +837,47 @@ function updateTaxEstimatorUI() {
         document.getElementById("gstResultsSection");
 
 
-    // ======================================================
-    // SELF-EMPLOYED
-    // ======================================================
+    function toggleEmploymentExpenses(show) {
 
-    if (employment === "self-employed") {
+        const input =
+            document.getElementById("employmentExpenses");
+
+        if (!input) return;
+
+        const label =
+            input.previousElementSibling?.previousElementSibling;
+
+        const help =
+            input.previousElementSibling;
+
+        if (label)
+            label.style.display = show ? "" : "none";
+
+        if (help)
+            help.style.display = show ? "" : "none";
+
+        input.style.display = show ? "" : "none";
+    }
+
+
+    // EMPLOYEE
+    if (employment === "employee") {
+
+        if (businessIncomeSection)
+            businessIncomeSection.style.display = "none";
+
+        if (gstSection)
+            gstSection.style.display = "none";
+
+        if (gstResults)
+            gstResults.style.display = "none";
+
+        toggleEmploymentExpenses(true);
+    }
+
+
+    // SELF-EMPLOYED
+    else if (employment === "self-employed") {
 
         if (businessIncomeSection)
             businessIncomeSection.style.display = "block";
@@ -852,22 +888,8 @@ function updateTaxEstimatorUI() {
         if (gstResults)
             gstResults.style.display = "grid";
 
-        return;
+        toggleEmploymentExpenses(false);
     }
-
-
-    // ======================================================
-    // EMPLOYEE
-    // ======================================================
-
-    if (businessIncomeSection)
-        businessIncomeSection.style.display = "none";
-
-    if (gstSection)
-        gstSection.style.display = "none";
-
-    if (gstResults)
-        gstResults.style.display = "none";
 }
 function formatCurrency(amount) {
 
