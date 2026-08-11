@@ -1,1 +1,107 @@
+{
+    "restaurant_guide_contents": "📖 محتويات الدليل",
 
+    "restaurant_toc_planning": "خطط لمطعمك",
+    "restaurant_toc_costs": "تكاليف بدء المشروع",
+    "restaurant_toc_location": "اختيار الموقع",
+    "restaurant_toc_equipment": "المعدات والمستلزمات",
+    "restaurant_toc_staff": "توظيف الموظفين",
+    "restaurant_toc_marketing": "التسويق",
+    "restaurant_toc_mistakes": "الأخطاء الشائعة",
+    "restaurant_toc_checklist": "قائمة بدء المشروع",
+    "restaurant_toc_faq": "الأسئلة الشائعة",
+
+    "restaurant_starting_title": "🍔 بدء مشروع مطعم",
+    "restaurant_starting_description": "يمكن أن يكون بدء مشروع مطعم فرصة تجارية مثيرة، ولكنه يتطلب تخطيطًا دقيقًا وإعداد ميزانية وتجهيزًا مناسبًا. يوضح لك هذا الدليل الخطوات الرئيسية اللازمة لبدء وتشغيل مطعم.",
+
+    "restaurant_intro_title": "دليل مشروع المطعم",
+    "restaurant_intro_description": "هل تفكر في بدء مشروع مطعم؟ يغطي هذا الدليل أهم الأمور التي يجب أخذها بعين الاعتبار قبل الافتتاح، بدءًا من التخطيط وتكاليف التأسيس ووصولًا إلى الموظفين والتسويق والعمليات اليومية.",
+
+    "restaurant_planning_title": "📋 1. خطط لمطعمك",
+    "restaurant_planning_description": "قبل إنفاق الأموال على المعدات أو توقيع عقد الإيجار، حدد نوع المطعم الذي ترغب في تشغيله.",
+
+    "restaurant_planning_concept": "اختر فكرة ونوع المطعم.",
+    "restaurant_planning_menu": "حدد الأطعمة والمشروبات التي ستقدمها.",
+    "restaurant_planning_customers": "حدد العملاء المستهدفين.",
+    "restaurant_planning_competition": "ابحث عن المنافسين المحليين.",
+    "restaurant_planning_budget": "ضع ميزانية أولية للمشروع.",
+
+    "restaurant_costs_title": "💰 2. افهم تكاليف بدء المشروع",
+    "restaurant_costs_description": "يمكن أن تختلف تكاليف بدء المطعم بشكل كبير حسب الموقع والحجم ونوع المطعم والمعدات وأعمال التجديد، وكذلك حسب ما إذا كنت تفتح موقعًا جديدًا أو تستحوذ على مطعم قائم.",
+
+    "restaurant_common_expenses": "تشمل بعض تكاليف بدء المشروع الشائعة:",
+
+    "restaurant_cost_lease": "الإيجار ووديعة الضمان",
+    "restaurant_cost_renovations": "أعمال التجديد والتحسينات",
+    "restaurant_cost_kitchen": "معدات المطبخ",
+    "restaurant_cost_furniture": "الأثاث والتجهيزات",
+    "restaurant_cost_pos": "أنظمة نقاط البيع والدفع",
+    "restaurant_cost_inventory": "المخزون الأولي من الأطعمة والمشروبات",
+    "restaurant_cost_licences": "التراخيص والتصاريح",
+    "restaurant_cost_insurance": "التأمين",
+    "restaurant_cost_marketing": "التسويق والإعلانات",
+    "restaurant_cost_working_capital": "رأس المال التشغيلي الأولي",
+
+    "restaurant_monthly_costs_title": "📊 لا تنسَ تكاليف التشغيل الشهرية",
+    "restaurant_monthly_costs_description": "تكاليف بدء المشروع ليست سوى جزء من الصورة المالية. تحتاج أيضًا إلى التخطيط للمصروفات المنتظمة اللازمة لتشغيل المطعم بعد افتتاحه.",
+
+    "restaurant_monthly_rent": "الإيجار وتكاليف إشغال الموقع",
+    "restaurant_monthly_food": "تكاليف الأطعمة والمشروبات",
+    "restaurant_monthly_wages": "أجور الموظفين وتكاليف الرواتب",
+    "restaurant_monthly_utilities": "المرافق والخدمات",
+    "restaurant_monthly_insurance": "التأمين",
+    "restaurant_monthly_cleaning": "التنظيف والصيانة",
+    "restaurant_monthly_software": "البرامج ومعالجة المدفوعات",
+    "restaurant_monthly_marketing": "التسويق",
+    "restaurant_monthly_accounting": "المحاسبة والخدمات المهنية",
+    "restaurant_monthly_repairs": "إصلاح واستبدال المعدات",
+
+    "restaurant_unexpected_title": "💡 خطط للمصروفات غير المتوقعة",
+    "restaurant_unexpected_description": "قد يتضمن افتتاح مطعم مصروفات غير متوقعة مثل تأخر أعمال البناء، أو مشاكل في المعدات، أو ارتفاع تكاليف التجديد، أو انخفاض المبيعات عن المتوقع خلال الأشهر الأولى.",
+
+    "restaurant_working_capital_description": "يمكن أن يساعد توفر رأس مال تشغيلي في التعامل مع هذه الظروف دون وضع ضغط غير ضروري على التدفق النقدي للمشروع.",
+
+    "restaurant_location_title": "📍 3. اختر الموقع المناسب",
+    "restaurant_location_description": "يمكن أن يكون للموقع تأثير كبير على نجاح المطعم. ضع في اعتبارك حركة العملاء، ومواقف السيارات، ومدى وضوح الموقع، والأنشطة التجارية القريبة، والإيجار، والمنافسة، ونوع العملاء الذين يعيشون أو يعملون في المنطقة.",
+
+    "restaurant_equipment_title": "🍳 4. المعدات والمستلزمات",
+    "restaurant_equipment_description": "تعتمد احتياجاتك من المعدات على قائمة الطعام ونوع المطعم. قم بإعداد قائمة كاملة بالمعدات قبل شراء أي شيء حتى تتمكن من مقارنة التكاليف وتجنب المصروفات غير الضرورية.",
+
+    "restaurant_staff_title": "👥 5. توظيف الموظفين",
+    "restaurant_staff_description": "اعتمادًا على حجم المطعم ونوعه، قد تحتاج إلى طهاة، وموظفي خدمة، وأمناء صندوق، وعمال نظافة، ومديرين أو موظفين آخرين. يجب إدراج تكاليف العمالة ضمن ميزانية المشروع منذ البداية.",
+
+    "restaurant_marketing_title": "📣 6. تسويق مطعمك",
+    "restaurant_marketing_description": "يحتاج المطعم الجيد إلى العملاء للاستمرار. فكّر في إنشاء موقع إلكتروني، والحفاظ على بيانات تجارية دقيقة، واستخدام وسائل التواصل الاجتماعي، وتقديم العروض الترويجية، وتشجيع العملاء الراضين على العودة.",
+
+    "restaurant_mistakes_title": "⚠️ 7. أخطاء شائعة يجب تجنبها",
+
+    "restaurant_mistake_costs": "التقليل من تقدير تكاليف بدء المشروع",
+    "restaurant_mistake_location": "اختيار موقع دون إجراء بحث كافٍ",
+    "restaurant_mistake_menu": "إنشاء قائمة طعام كبيرة جدًا",
+    "restaurant_mistake_labour": "تجاهل تكاليف العمالة والتشغيل",
+    "restaurant_mistake_capital": "عدم الاحتفاظ برأس مال تشغيلي كافٍ",
+    "restaurant_mistake_renovations": "إنفاق مبالغ كبيرة على التجديد قبل اختبار فكرة المطعم",
+
+    "restaurant_checklist_title": "✅ قائمة بدء مشروع المطعم",
+
+    "restaurant_check_concept": "اختيار فكرة ونوع المطعم",
+    "restaurant_check_market": "البحث في السوق المحلي",
+    "restaurant_check_plan": "إعداد خطة عمل",
+    "restaurant_check_costs": "تقدير تكاليف بدء المشروع والتكاليف الشهرية",
+    "restaurant_check_location": "العثور على موقع مناسب",
+    "restaurant_check_licences": "البحث عن التراخيص والتصاريح المطلوبة",
+    "restaurant_check_financing": "ترتيب التمويل عند الحاجة",
+    "restaurant_check_equipment": "شراء المعدات والمستلزمات",
+    "restaurant_check_staff": "توظيف الموظفين وتدريبهم",
+    "restaurant_check_marketing": "إعداد خطة التسويق",
+    "restaurant_check_inspections": "إكمال عمليات التفتيش والاستعدادات النهائية",
+    "restaurant_check_open": "افتتاح المطعم",
+
+    "restaurant_faq_title": "❓ الأسئلة الشائعة",
+
+    "restaurant_faq_startup_question": "كم أحتاج من المال لبدء مطعم؟",
+    "restaurant_faq_startup_answer": "لا يوجد مبلغ واحد لبدء المشروع ينطبق على جميع المطاعم. تعتمد التكاليف بشكل كبير على نوع المطعم والموقع والحجم والمعدات وأعمال التجديد ومتطلبات الموظفين.",
+
+    "restaurant_faq_existing_question": "هل شراء مطعم قائم أسهل؟",
+    "restaurant_faq_existing_answer": "يمكن أن يؤدي شراء مطعم قائم إلى تقليل بعض أعمال الإعداد، ولكن يجب مراجعة عقد الإيجار والمعدات والسجلات المالية والمصروفات والتراخيص وحالة المطعم بعناية قبل اتخاذ القرار."
+}
