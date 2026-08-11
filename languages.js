@@ -8,14 +8,11 @@ function loadLanguage(language) {
 
     if (window.location.pathname.includes("/tools/")) {
 
-        const depth = window.location.pathname
-            .split("/")
-            .filter(Boolean)
-            .length;
-
-        if (window.location.pathname.includes("/calculators/") ||
+        if (
+            window.location.pathname.includes("/calculators/") ||
             window.location.pathname.includes("/guides/") ||
-            window.location.pathname.includes("/checklists/")) {
+            window.location.pathname.includes("/checklists/")
+        ) {
 
             languagePath = `../../${language}.json`;
 
@@ -31,7 +28,47 @@ function loadLanguage(language) {
             if (!response.ok) {
                 throw new Error(`Could not load ${language}.json`);
             }
+
             return response.json();
+        })
+        .then(mainTranslations => {
+
+            /*
+             * Restaurant Business Guide
+             * Load guide-specific translations in addition
+             * to the main language file.
+             */
+            if (
+                window.location.pathname.includes("/tools/guide/")
+            ) {
+
+                const guideLanguagePath =
+                    `tools/guide/${language}.json`;
+
+                return fetch(guideLanguagePath)
+                    .then(response => {
+
+                        if (!response.ok) {
+                            throw new Error(
+                                `Could not load ${guideLanguagePath}`
+                            );
+                        }
+
+                        return response.json();
+                    })
+                    .then(guideTranslations => {
+
+                        return {
+                            ...mainTranslations,
+                            ...guideTranslations
+                        };
+
+                    });
+
+            }
+
+            return mainTranslations;
+
         })
         .then(translations => {
 
@@ -42,15 +79,18 @@ function loadLanguage(language) {
             updateText(translations, language);
 
             window.dispatchEvent(
-    new CustomEvent("languageChanged", {
-        detail: { language }
-    })
-);
+                new CustomEvent("languageChanged", {
+                    detail: { language }
+                })
+            );
 
         })
         .catch(error => {
 
-            console.error("Error loading language file:", error);
+            console.error(
+                "Error loading language file:",
+                error
+            );
 
             if (language !== "en") {
                 loadLanguage("en");
