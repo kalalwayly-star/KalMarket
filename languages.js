@@ -25,6 +25,7 @@ function loadLanguage(language) {
 
     fetch(languagePath)
         .then(response => {
+
             if (!response.ok) {
                 throw new Error(`Could not load ${language}.json`);
             }
@@ -35,15 +36,16 @@ function loadLanguage(language) {
 
             /*
              * Restaurant Business Guide
-             * Load guide-specific translations in addition
-             * to the main language file.
+             * Load guide-specific translations
+             * only when Arabic is selected.
              */
             if (
-                window.location.pathname.includes("/tools/guide/")
+                language === "ar" &&
+                window.location.pathname.includes("/tools/guides/")
             ) {
 
                 const guideLanguagePath =
-    `../../tools/guides/${language}.json`;
+                    `../../tools/guides/ar.json`;
 
                 return fetch(guideLanguagePath)
                     .then(response => {
@@ -64,7 +66,6 @@ function loadLanguage(language) {
                         };
 
                     });
-
             }
 
             return mainTranslations;
