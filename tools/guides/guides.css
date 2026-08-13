@@ -157,3 +157,106 @@
         grid-template-columns: 1fr !important;
     }
 }
+/* =========================================
+   Auto Repair Business Guide
+========================================= */
+
+.auto-repair-guide {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+}
+
+.auto-repair-guide .guide-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.auto-repair-guide .guide-icon {
+    font-size: 56px;
+    margin-bottom: 10px;
+}
+
+.auto-repair-guide h1 {
+    margin: 0 0 15px;
+    font-size: 36px;
+}
+
+.auto-repair-guide .guide-subtitle {
+    max-width: 750px;
+    margin: 0 auto;
+    line-height: 1.7;
+    font-size: 17px;
+}
+
+.auto-repair-guide h2 {
+    margin-top: 45px;
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+
+.auto-repair-guide h3 {
+    margin-top: 28px;
+    margin-bottom: 12px;
+    font-size: 21px;
+}
+
+.auto-repair-guide p {
+    line-height: 1.75;
+}
+
+.auto-repair-guide ul,
+.auto-repair-guide ol {
+    line-height: 1.8;
+    padding-left: 25px;
+}
+
+.auto-repair-guide .guide-box {
+    margin: 25px 0;
+    padding: 22px;
+    border-radius: 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+}
+
+.auto-repair-guide .guide-box h3 {
+    margin-top: 0;
+}
+
+.auto-repair-guide .guide-intro {
+    margin: 25px 0 35px;
+    padding: 24px;
+    border-radius: 12px;
+    background: #f1f5f9;
+}
+
+.auto-repair-guide .guide-intro strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 20px;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .auto-repair-guide {
+        padding: 20px 15px 40px;
+    }
+
+    .auto-repair-guide h1 {
+        font-size: 30px;
+    }
+
+    .auto-repair-guide h2 {
+        font-size: 24px;
+    }
+
+    .auto-repair-guide h3 {
+        font-size: 19px;
+    }
+
+    .auto-repair-guide .guide-box {
+        padding: 18px;
+    }
+}
