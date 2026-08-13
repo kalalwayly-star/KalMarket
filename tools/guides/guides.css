@@ -139,55 +139,14 @@
 .back-to-top:hover {
     transform: translateY(-2px);
 }
-/* Business Guide Card */
-
-.business-guide-card {
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    gap: 18px;
-    text-decoration: none;
-    padding: 24px;
-    min-height: 190px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.hub-container .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
 }
 
-.business-guide-card:hover {
-    transform: translateY(-4px);
-}
-
-.business-guide-card .tool-card-icon {
-    width: 64px;
-    height: 64px;
-    min-width: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-    border-radius: 16px;
-    background: #f1f5f9;
-}
-
-.business-guide-label {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.6px;
-    margin-bottom: 6px;
-    opacity: 0.65;
-}
-
-.business-guide-card h3 {
-    margin: 0 0 10px;
-}
-
-.business-guide-card p {
-    margin: 0 0 18px;
-    line-height: 1.6;
-}
-
-.business-guide-link {
-    display: inline-block;
-    font-weight: 700;
-    font-size: 14px;
+@media (max-width: 700px) {
+    .hub-container .grid {
+        grid-template-columns: 1fr;
+    }
 }
