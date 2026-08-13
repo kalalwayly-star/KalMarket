@@ -43,7 +43,7 @@ function loadLanguage(language) {
             ) {
 
                 const guideLanguagePath =
-                    `tools/guide/${language}.json`;
+    `../../tools/guides/${language}.json`;
 
                 return fetch(guideLanguagePath)
                     .then(response => {
