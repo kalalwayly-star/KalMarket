@@ -254,7 +254,17 @@
     .auto-repair-guide h3 {
         font-size: 19px;
     }
+.checklist-tool-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
 
+.checklist-tool-links a {
+    display: block;
+    text-decoration: none;
+    font-weight: 600;
+}
     .auto-repair-guide .guide-box {
         padding: 18px;
     }
