@@ -254,18 +254,68 @@
     .auto-repair-guide h3 {
         font-size: 19px;
     }
+/* ================================
+   Auto Repair Checklist
+================================ */
+
+.guide-checklist {
+    margin-top: 40px;
+}
+
+.checklist-section {
+    margin: 25px 0;
+    padding: 20px;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+.checklist-section h3 {
+    margin-top: 0;
+    margin-bottom: 18px;
+}
+
+.checklist-section label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 12px 0;
+    line-height: 1.6;
+    cursor: pointer;
+}
+
+.checklist-section input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+
+/* ================================
+   Checklist Tools
+================================ */
+
+.checklist-tools {
+    margin-top: 30px;
+}
+
 .checklist-tool-links {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    margin-top: 20px;
 }
 
 .checklist-tool-links a {
     display: block;
+    padding: 14px 18px;
+    border-radius: 10px;
     text-decoration: none;
     font-weight: 600;
+    background: #f1f5f9;
 }
-    .auto-repair-guide .guide-box {
-        padding: 18px;
-    }
+
+.checklist-tool-links a:hover {
+    transform: translateY(-2px);
 }
