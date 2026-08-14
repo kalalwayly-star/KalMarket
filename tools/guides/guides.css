@@ -339,3 +339,22 @@
 body {
     outline: 5px solid red !important;
 }
+.checklist-tool-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.checklist-tool-links a {
+    display: block;
+    padding: 14px 18px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    background: #f1f5f9;
+}
+
+.checklist-tool-links a:hover {
+    transform: translateX(4px);
+}
