@@ -254,61 +254,78 @@
     .auto-repair-guide h3 {
         font-size: 19px;
     }
-/* ================================
-   Auto Repair Checklist
-================================ */
+/* =========================================
+   AUTO REPAIR CHECKLIST
+========================================= */
 
 .guide-checklist {
+    width: 100%;
     margin-top: 40px;
 }
 
 .checklist-section {
+    display: block;
+    width: 100%;
     margin: 25px 0;
     padding: 20px;
+    box-sizing: border-box;
     border-radius: 12px;
     background: #f8fafc;
 }
 
 .checklist-section h3 {
-    margin-top: 0;
-    margin-bottom: 18px;
+    display: block;
+    margin: 0 0 18px 0;
 }
 
 .checklist-section label {
-    display: flex;
+    display: flex !important;
     align-items: flex-start;
+    width: 100%;
     gap: 12px;
-    margin: 12px 0;
+    margin: 14px 0;
     line-height: 1.6;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
-.checklist-section input[type="checkbox"] {
+.checklist-section label input[type="checkbox"] {
+    display: block;
     width: 18px;
     height: 18px;
+    min-width: 18px;
+    margin: 4px 0 0 0;
     flex-shrink: 0;
-    margin-top: 4px;
-    cursor: pointer;
+}
+
+.checklist-section label span {
+    display: block;
+    flex: 1;
 }
 
 
-/* ================================
-   Checklist Tools
-================================ */
+/* =========================================
+   CHECKLIST CALCULATOR LINKS
+========================================= */
 
 .checklist-tools {
+    display: block;
+    width: 100%;
     margin-top: 30px;
 }
 
 .checklist-tool-links {
-    display: flex;
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100%;
     gap: 12px;
     margin-top: 20px;
 }
 
 .checklist-tool-links a {
-    display: block;
+    display: block !important;
+    width: 100%;
+    box-sizing: border-box;
     padding: 14px 18px;
     border-radius: 10px;
     text-decoration: none;
@@ -318,7 +335,4 @@
 
 .checklist-tool-links a:hover {
     transform: translateY(-2px);
-}
-.checklist-section label {
-    display: flex;
 }
