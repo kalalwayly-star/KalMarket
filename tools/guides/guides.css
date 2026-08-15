@@ -392,5 +392,51 @@
     .hub-container .grid {
         grid-template-columns: 1fr !important;
     }
+}
+/* ======================================================
+   TABLE OF CONTENTS
+   ====================================================== */
 
+html {
+    scroll-behavior: smooth;
+}
+
+.guide-toc {
+    max-width: 1000px;
+    margin: 30px auto 40px;
+    padding: 25px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+
+.guide-toc h2 {
+    margin: 0 0 20px;
+    text-align: center;
+}
+
+.toc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.toc-grid a {
+    display: block;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.toc-grid a:hover {
+    color: #4f24c6;
+    border-color: #6c3ce8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
