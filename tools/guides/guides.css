@@ -691,3 +691,8 @@ h2[id] {
         font-size: 15px;
     }
 }
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
