@@ -580,5 +580,11 @@ html {
     .toc-grid {
         grid-template-columns: 1fr;
     }
+}
+html {
+    scroll-behavior: smooth;
+}
 
+.guide-content h2 {
+    scroll-margin-top: 100px;
 }
