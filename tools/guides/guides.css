@@ -712,16 +712,29 @@ h2[id] {
         grid-template-columns: 1fr !important;
     }
 }
-/* TEST - REMOVE LATER */
+
 .hub-container .grid {
     display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     gap: 20px !important;
+    width: 100% !important;
 }
 
 .hub-container .cat-card {
-    width: 100% !important;
+    width: auto !important;
     max-width: none !important;
     margin: 0 !important;
     box-sizing: border-box !important;
+}
+
+@media (max-width: 900px) {
+    .hub-container .grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .hub-container .grid {
+        grid-template-columns: 1fr !important;
+    }
 }
