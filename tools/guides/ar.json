@@ -1751,7 +1751,148 @@
 "cleaning_business_toc_9": "9. توظيف الموظفين",
 "cleaning_business_toc_10": "10. تنمية مشروعك",
 "cleaning_business_toc_checklist": "✅ قائمة بدء مشروع التنظيف",
-"cleaning_business_toc_tools": "🛠️ أدوات وحاسبات المشروع"
+"cleaning_business_toc_tools": "🛠️ أدوات وحاسبات المشروع",
+  "carpet_business_title": "دليل مشروع تنظيف السجاد والمفروشات",
+"carpet_business_subtitle": "دليل عملي لبدء مشروع تنظيف السجاد والمفروشات وتسعيره وتسويقه وتنميته",
+
+"carpet_business_toc_title": "📋 جدول المحتويات",
+"carpet_business_toc_1": "1. اختر خدمات التنظيف",
+"carpet_business_toc_2": "2. فهم تكاليف بدء المشروع",
+"carpet_business_toc_3": "3. المعدات والمستلزمات",
+"carpet_business_toc_4": "4. تحديد الأسعار",
+"carpet_business_toc_5": "5. حساب الأرباح",
+"carpet_business_toc_6": "6. الحصول على أول العملاء",
+"carpet_business_toc_7": "7. تسويق مشروعك",
+"carpet_business_toc_8": "8. التأمين ومتطلبات المشروع",
+"carpet_business_toc_9": "9. توظيف الموظفين",
+"carpet_business_toc_10": "10. تنمية المشروع",
+"carpet_business_toc_checklist": "✅ قائمة بدء مشروع تنظيف السجاد",
+"carpet_business_toc_tools": "🛠️ أدوات وحاسبات المشروع",
+
+"carpet_business_intro_title": "🧼 ابدأ مشروع تنظيف السجاد والمفروشات",
+"carpet_business_intro_text": "يمكن أن يكون تنظيف السجاد والمفروشات مشروع خدمات مربحًا، لأن المنازل والشقق والمكاتب والمركبات والعقارات التجارية تحتاج بشكل منتظم إلى التنظيف الاحترافي.",
+"carpet_business_intro_text_2": "يمكنك البدء بكمية صغيرة من المعدات والعمل بشكل مستقل، ثم بناء قاعدة من العملاء المحليين والتوسع تدريجيًا إلى العقود السكنية والتجارية الأكبر.",
+
+"carpet_business_section1_title": "1. اختر خدمات التنظيف",
+"carpet_business_section1_text": "حدد خدمات التنظيف التي تريد تقديمها. البدء بعدد محدود من الخدمات الأساسية يمكن أن يساعدك على التحكم في تكاليف المعدات وبناء الخبرة.",
+
+"carpet_business_service_carpet": "🧼 تنظيف السجاد للمنازل",
+"carpet_business_service_upholstery": "🛋️ تنظيف المفروشات والأثاث",
+"carpet_business_service_area_rugs": "🧹 تنظيف السجاد والمفروشات الأرضية",
+"carpet_business_service_stairs": "🪜 تنظيف سجاد السلالم",
+"carpet_business_service_mattress": "🛏️ تنظيف المراتب",
+"carpet_business_service_vehicle": "🚗 تنظيف داخل المركبات",
+"carpet_business_service_commercial": "🏢 تنظيف السجاد التجاري",
+
+"carpet_business_section2_title": "2. فهم تكاليف بدء المشروع",
+"carpet_business_section2_text": "تعتمد تكاليف بدء المشروع على ما إذا كنت ستشتري معدات جديدة أو مستعملة، وعلى ما إذا كنت ستعمل من مركبة أو من المنزل أو من موقع تجاري.",
+
+"carpet_business_cost_machine": "آلة أو جهاز تنظيف السجاد",
+"carpet_business_cost_vacuum": "مكنسة كهربائية احترافية",
+"carpet_business_cost_supplies": "مواد ومستلزمات التنظيف",
+"carpet_business_cost_vehicle": "مركبة أو وسيلة نقل",
+"carpet_business_cost_insurance": "تأمين المشروع",
+"carpet_business_cost_registration": "تسجيل المشروع والتراخيص",
+"carpet_business_cost_marketing": "الإعلان والتسويق",
+
+"carpet_business_section3_title": "3. المعدات والمستلزمات",
+"carpet_business_section3_text": "يمكن للمعدات الاحترافية تحسين جودة التنظيف ومساعدتك على إنجاز الأعمال بكفاءة أكبر.",
+
+"carpet_business_equipment_extractor": "جهاز استخراج وتنظيف السجاد",
+"carpet_business_equipment_vacuum": "مكنسة كهربائية تجارية",
+"carpet_business_equipment_wand": "أداة تنظيف السجاد",
+"carpet_business_equipment_spot": "معدات تنظيف البقع",
+"carpet_business_equipment_brushes": "فرش التنظيف",
+"carpet_business_equipment_chemicals": "مواد تنظيف السجاد والمفروشات",
+"carpet_business_equipment_protection": "قفازات ومعدات الحماية",
+"carpet_business_equipment_drying": "مراوح أو معدات تجفيف",
+
+"carpet_business_equipment_tip_title": "💡 ابدأ بالمعدات الأساسية",
+"carpet_business_equipment_tip": "ابدأ بالمعدات التي تتناسب مع الخدمات التي لديك عملاء لها بالفعل، ثم قم بترقية معداتك مع نمو المشروع.",
+
+"carpet_business_section4_title": "4. حدد أسعارك",
+"carpet_business_section4_text": "يجب أن تغطي أسعارك تكلفة العمالة ومواد التنظيف والنقل والمعدات والتأمين والمصاريف العامة والأرباح.",
+
+"carpet_business_pricing_formula_title": "💡 معادلة بسيطة للتسعير",
+"carpet_business_pricing_formula": "سعر الخدمة = العمالة + المواد + التنقل + المصاريف العامة + الربح",
+
+"carpet_business_section4_text_2": "اعتمادًا على الخدمة، يمكنك تحديد السعر حسب الغرفة أو القدم المربع أو القطعة أو الساعة أو العمل بالكامل.",
+
+"carpet_business_section5_title": "5. احسب أرباحك",
+"carpet_business_section5_text": "الإيرادات ليست سوى جزء من المشروع. يجب خصم تكاليف التشغيل لمعرفة الأرباح الفعلية.",
+
+"carpet_business_profit_revenue": "إجمالي إيرادات العملاء",
+"carpet_business_profit_labor": "تكاليف الموظفين أو المتعاقدين",
+"carpet_business_profit_chemicals": "مواد ومستلزمات التنظيف",
+"carpet_business_profit_vehicle": "تكاليف المركبة والوقود",
+"carpet_business_profit_equipment": "صيانة المعدات",
+"carpet_business_profit_insurance": "التأمين",
+"carpet_business_profit_marketing": "التسويق",
+"carpet_business_profit_other": "المصاريف التشغيلية الأخرى",
+
+"carpet_business_section6_title": "6. احصل على أول عملائك",
+"carpet_business_section6_text": "يمكن أن يأتي عملاؤك الأوائل من المجتمع المحلي والإحالات ومديري العقارات ووكلاء العقارات والإعلانات والقوائم عبر الإنترنت.",
+
+"carpet_business_customer_marketplace": "انشر خدماتك في الأسواق والمنصات المحلية",
+"carpet_business_customer_social": "استخدم وسائل التواصل الاجتماعي",
+"carpet_business_customer_referrals": "اطلب من العملاء الراضين ترشيح خدماتك للآخرين",
+"carpet_business_customer_reviews": "ابنِ تقييمات ومراجعات إيجابية",
+"carpet_business_customer_realestate": "تواصل مع العاملين في مجال العقارات",
+"carpet_business_customer_property": "تواصل مع مديري العقارات",
+
+"carpet_business_section7_title": "7. تسويق مشروعك",
+"carpet_business_section7_text": "خدمات تنظيف السجاد والمفروشات تعتمد بشكل كبير على النتائج المرئية، لذلك تعد صور قبل وبعد التنظيف مفيدة جدًا في التسويق.",
+
+"carpet_business_marketing_photos": "التقط صورًا قبل وبعد التنظيف",
+"carpet_business_marketing_logo": "أنشئ اسمًا وشعارًا احترافيين للمشروع",
+"carpet_business_marketing_vehicle": "حافظ على نظافة مركبتك ومظهرها الاحترافي",
+"carpet_business_marketing_online": "أنشئ حضورًا عبر الإنترنت",
+"carpet_business_marketing_reviews": "شجع العملاء على كتابة التقييمات",
+
+"carpet_business_section8_title": "8. التأمين ومتطلبات المشروع",
+"carpet_business_section8_text": "اعتمادًا على موقعك والخدمات التي تقدمها، قد تحتاج إلى تسجيل المشروع أو التراخيص أو التصاريح أو التأمين أو متطلبات أخرى.",
+
+"carpet_business_warning_title": "⚠️ مهم",
+"carpet_business_warning_text": "تختلف المتطلبات حسب الموقع ونوع الخدمة. تحقق من المتطلبات الحكومية والتأمين المناسب قبل بدء مشروعك.",
+
+"carpet_business_section9_title": "9. توظيف الموظفين",
+"carpet_business_section9_text": "يمكنك البدء بالعمل بمفردك وتوظيف عمال تنظيف إضافيين مع نمو قاعدة عملائك.",
+"carpet_business_section9_text_2": "قبل التوظيف، تأكد من فهم متطلبات الرواتب والتوظيف والتأمين والتدريب والسلامة في مكان العمل.",
+
+"carpet_business_section10_title": "10. تنمية مشروعك",
+"carpet_business_section10_text": "بعد الحصول على عدد ثابت من العملاء، يمكنك تنمية مشروعك من خلال إضافة خدمات جديدة وتوسيع منطقة العمل وتوظيف الموظفين واستهداف العملاء التجاريين.",
+
+"carpet_business_growth_services": "إضافة خدمات تنظيف أخرى",
+"carpet_business_growth_area": "توسيع منطقة تقديم الخدمات",
+"carpet_business_growth_staff": "توظيف عمال تنظيف إضافيين",
+"carpet_business_growth_equipment": "الاستثمار في معدات احترافية",
+"carpet_business_growth_commercial": "استهداف العملاء التجاريين",
+"carpet_business_growth_recurring": "بناء عقود تنظيف متكررة",
+
+"carpet_business_checklist_title": "✅ قائمة بدء مشروع تنظيف السجاد",
+
+"carpet_business_check_1": "اختيار خدمات التنظيف",
+"carpet_business_check_2": "دراسة الطلب المحلي",
+"carpet_business_check_3": "حساب تكاليف بدء المشروع",
+"carpet_business_check_4": "شراء المعدات اللازمة",
+"carpet_business_check_5": "تحديد الأسعار",
+"carpet_business_check_6": "التحقق من التراخيص والمتطلبات",
+"carpet_business_check_7": "الحصول على التأمين المناسب",
+"carpet_business_check_8": "إنشاء العلامة التجارية للمشروع",
+"carpet_business_check_9": "بدء التسويق",
+"carpet_business_check_10": "الحصول على أول العملاء",
+"carpet_business_check_11": "تتبع الإيرادات والمصاريف",
+"carpet_business_check_12": "بناء قاعدة من العملاء المتكررين",
+"carpet_business_check_13": "إعادة استثمار الأرباح وتنمية المشروع",
+
+"carpet_business_tools_title": "🛠️ أدوات وحاسبات المشروع",
+"carpet_business_tools_description": "استخدم هذه الأدوات لتقدير تكاليف بدء المشروع والأسعار والمصاريف والأرباح والضرائب.",
+
+"carpet_business_tool_startup": "🚀 حاسبة تكاليف بدء المشروع",
+"carpet_business_tool_pricing": "💵 حاسبة استراتيجية التسعير",
+"carpet_business_tool_profit": "📊 حاسبة الأرباح",
+"carpet_business_tool_budget": "💰 مخطط الميزانية",
+"carpet_business_tool_tax": "🧾 حاسبة تقدير الضرائب"
 
 
 
