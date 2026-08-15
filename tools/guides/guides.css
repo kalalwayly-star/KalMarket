@@ -441,117 +441,269 @@ html {
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 /* ======================================================
-   HOME SERVICES ARTICLE
+   HOME SERVICES BUSINESS GUIDE
    ====================================================== */
 
 .home-services-guide {
-    max-width: 1000px;
+    width: 100%;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 30px 20px 70px;
+    padding: 40px 25px 80px;
+    box-sizing: border-box;
 }
 
-/* Article reading area */
+/* ======================================================
+   ARTICLE BODY
+   ====================================================== */
 
 .home-services-guide .article-body {
-    max-width: 850px;
+    width: 100%;
+    max-width: 950px;
     margin: 0 auto;
 }
 
-/* Main article sections */
+/* ======================================================
+   ARTICLE SECTIONS
+   ====================================================== */
 
 .home-services-guide .article-section {
-    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+
+    background: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 16px;
-    padding: 30px;
-    margin: 30px 0;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+
+    padding: 32px 38px;
+    margin: 35px 0;
+
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
-/* Section headings */
+/* ======================================================
+   SECTION HEADINGS
+   ====================================================== */
 
 .home-services-guide .article-section h2 {
-    margin-top: 0;
-    margin-bottom: 18px;
+    margin: 0 0 22px;
+
+    padding-bottom: 14px;
+
     color: #4f24c6;
-    font-size: 28px;
+    font-size: 29px;
     line-height: 1.3;
+
+    border-bottom: 2px solid #f0edf8;
+
+    scroll-margin-top: 100px;
 }
 
-/* Paragraphs */
+/* ======================================================
+   SUBHEADINGS
+   ====================================================== */
+
+.home-services-guide .article-section h3 {
+    margin: 28px 0 12px;
+
+    color: #333;
+    font-size: 21px;
+    line-height: 1.4;
+}
+
+/* ======================================================
+   PARAGRAPHS
+   ====================================================== */
 
 .home-services-guide .article-section p {
-    font-size: 16px;
-    line-height: 1.8;
+    margin: 0 0 18px;
+
     color: #444;
-    margin-bottom: 16px;
+
+    font-size: 17px;
+    line-height: 1.8;
 }
 
-/* Lists */
+/* ======================================================
+   LISTS
+   ====================================================== */
 
 .home-services-guide .article-section ul,
 .home-services-guide .article-section ol {
-    padding-left: 25px;
-    margin-bottom: 20px;
+    margin: 0 0 22px;
+    padding-left: 28px;
 }
 
 .home-services-guide .article-section li {
-    line-height: 1.8;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+
+    color: #444;
+
+    font-size: 16px;
+    line-height: 1.75;
 }
 
-/* Highlight boxes */
+/* ======================================================
+   TIP BOX
+   ====================================================== */
 
 .home-services-guide .tip-box {
-    margin: 25px 0;
-    padding: 18px 20px;
+    margin: 28px 0;
+    padding: 20px 24px;
+
     background: #f7f3ff;
+
     border-left: 5px solid #6c3ce8;
     border-radius: 10px;
 }
 
 .home-services-guide .tip-box strong {
     display: block;
-    margin-bottom: 6px;
+
+    margin-bottom: 8px;
+
     color: #4f24c6;
+    font-size: 17px;
 }
 
-/* Important information */
+/* ======================================================
+   INFORMATION BOX
+   ====================================================== */
 
 .home-services-guide .info-box {
-    margin: 25px 0;
-    padding: 20px;
+    margin: 28px 0;
+    padding: 22px 25px;
+
     background: #f8fafc;
+
     border: 1px solid #e2e8f0;
     border-radius: 12px;
 }
 
-/* Tables */
+/* ======================================================
+   TABLES
+   ====================================================== */
 
 .home-services-guide table {
     width: 100%;
+
+    margin: 30px 0;
+
     border-collapse: collapse;
-    margin: 25px 0;
+
+    font-size: 15px;
 }
 
 .home-services-guide th,
 .home-services-guide td {
-    padding: 12px 14px;
+    padding: 14px 16px;
+
     border: 1px solid #e5e7eb;
+
     text-align: left;
+
+    line-height: 1.5;
 }
 
 .home-services-guide th {
     background: #f8fafc;
-    font-weight: 600;
+
+    color: #333;
+
+    font-weight: 700;
 }
 
-/* Anchor position */
+/* ======================================================
+   TABLE ROW HOVER
+   ====================================================== */
+
+.home-services-guide tbody tr:hover {
+    background: #fafafa;
+}
+
+/* ======================================================
+   TABLE OF CONTENTS
+   ====================================================== */
+
+.home-services-guide .guide-toc {
+    width: 100%;
+    max-width: 950px;
+
+    margin: 0 auto 40px;
+
+    padding: 25px;
+
+    box-sizing: border-box;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+}
+
+.home-services-guide .guide-toc h2 {
+    margin: 0 0 20px;
+
+    color: #333;
+
+    text-align: center;
+
+    border: none;
+}
+
+/* TOC grid */
+
+.home-services-guide .toc-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+}
+
+/* TOC links */
+
+.home-services-guide .toc-grid a {
+    display: block;
+
+    padding: 13px 16px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 9px;
+
+    color: #4f24c6;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+.home-services-guide .toc-grid a:hover {
+    transform: translateY(-2px);
+
+    background: #f7f3ff;
+
+    border-color: #cfc1f5;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* ======================================================
+   ANCHOR POSITION
+   ====================================================== */
 
 .home-services-guide h2[id] {
-    scroll-margin-top: 30px;
+    scroll-margin-top: 100px;
 }
 
+/* Smooth scrolling */
+
+html {
+    scroll-behavior: smooth;
+}
 
 /* ======================================================
    MOBILE
@@ -560,29 +712,55 @@ html {
 @media (max-width: 700px) {
 
     .home-services-guide {
-        padding: 20px 15px 50px;
+        padding: 25px 15px 55px;
+    }
+
+    .home-services-guide .article-body {
+        width: 100%;
     }
 
     .home-services-guide .article-section {
-        padding: 22px 18px;
-        margin: 22px 0;
+        padding: 24px 20px;
+        margin: 25px 0;
+
+        border-radius: 12px;
     }
 
     .home-services-guide .article-section h2 {
-        font-size: 23px;
+        font-size: 24px;
+        margin-bottom: 18px;
+    }
+
+    .home-services-guide .article-section h3 {
+        font-size: 19px;
     }
 
     .home-services-guide .article-section p {
-        font-size: 15px;
-        line-height: 1.7;
+        font-size: 16px;
+        line-height: 1.75;
     }
 
-    .toc-grid {
+    .home-services-guide .article-section ul,
+    .home-services-guide .article-section ol {
+        padding-left: 23px;
+    }
+
+    .home-services-guide .toc-grid {
         grid-template-columns: 1fr;
     }
-}
-html {
-    scroll-behavior: smooth;
+
+    .home-services-guide .guide-toc {
+        padding: 20px 16px;
+    }
+
+    .home-services-guide table {
+        font-size: 14px;
+    }
+
+    .home-services-guide th,
+    .home-services-guide td {
+        padding: 10px;
+    }
 }
 
 .guide-content h2 {
