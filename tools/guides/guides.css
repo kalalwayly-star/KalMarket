@@ -690,3 +690,14 @@ h2[id] {
         font-size: 15px;
     }
 }
+.hub-container .grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px !important;
+    width: 100%;
+}
+
+.hub-container .cat-card {
+    width: auto !important;
+    margin: 0 !important;
+}
