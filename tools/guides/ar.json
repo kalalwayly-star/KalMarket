@@ -20,7 +20,12 @@
   "painting_business_title": "مشروع دهان المنازل",
 "painting_business_description": "تعلّم كيفية بدء مشروع دهان المنازل، وتحديد الأسعار، والتسويق، وتنمية مشروعك.",
 "painting_business_link": "اقرأ الدليل ←",
-  
+    "pricing_example_labor": "العمالة (3 ساعات عمل بسعر 20 دولارًا للساعة)",
+    "pricing_example_labor": "العمالة (3 ساعات عمل بسعر 50 دولارًا للساعة)",
+    "pricing_example_labor": "العمالة (3 ساعات عمل بسعر 40 دولارًا للساعة)",
+    "pricing_example_labor": "العمالة (3 ساعات عمل بسعر 60 دولارًا للساعة)",
+
+  "pricing_example_labor": "العمالة (3 ساعات عمل بسعر 30 دولارًا للساعة)",
 "moving_delivery_business_title": "مشروع النقل والتوصيل",
 "moving_delivery_business_description": "تعرف على كيفية بدء وتسعير وتسويق وتنمية مشروع للنقل أو التوصيل المحلي.",
 "moving_delivery_business_link": "اقرأ الدليل ←",    "restaurant_starting_title": "🍔 بدء مشروع مطعم",
