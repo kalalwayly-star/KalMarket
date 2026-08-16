@@ -1,4 +1,159 @@
 {
+  
+    "social_media_title": "دليل مشروع إدارة وسائل التواصل الاجتماعي",
+    "social_media_subtitle": "دليل عملي لبدء وتسعير وتسويق وتنمية مشروع لإدارة وسائل التواصل الاجتماعي.",
+
+    "social_media_toc_title": "📋 جدول المحتويات",
+    "social_media_toc_1": "1. اختر خدمات وسائل التواصل الاجتماعي",
+    "social_media_toc_2": "2. فهم تكاليف بدء المشروع",
+    "social_media_toc_3": "3. اختر الأدوات والبرامج",
+    "social_media_toc_4": "4. حدد أسعار خدماتك",
+    "social_media_toc_5": "5. احسب أرباحك",
+    "social_media_toc_6": "6. احصل على عملائك الأوائل",
+    "social_media_toc_7": "7. سوّق لمشروعك",
+    "social_media_toc_8": "8. العقود والمدفوعات والمتطلبات",
+    "social_media_toc_9": "9. إدارة العملاء",
+    "social_media_toc_10": "10. تنمية مشروعك",
+    "social_media_toc_checklist": "✅ قائمة بدء المشروع",
+    "social_media_toc_tools": "🛠️ أدوات وحاسبات الأعمال",
+
+    "social_media_intro_title": "📱 ابدأ مشروعًا لإدارة وسائل التواصل الاجتماعي",
+    "social_media_intro_text": "يمكن بدء مشروع إدارة وسائل التواصل الاجتماعي بتكاليف تأسيس منخفضة نسبيًا. يمكنك مساعدة الشركات المحلية والمهنيين والمطاعم والمتاجر الإلكترونية والمؤسسات الأخرى على بناء حضورها على الإنترنت.",
+    "social_media_intro_text_2": "يمكنك البدء بإدارة حسابات عدد قليل من العملاء، ثم التوسع تدريجيًا من خلال تقديم خدمات إنشاء المحتوى والنشر والإعلانات والتحليلات وغيرها من خدمات التسويق الرقمي.",
+
+    "social_media_section1_title": "1. اختر خدمات وسائل التواصل الاجتماعي",
+    "social_media_section1_text": "حدد خدمات وسائل التواصل الاجتماعي التي تريد تقديمها. يمكنك البدء بإدارة الحسابات الأساسية وإضافة المزيد من الخدمات مع تطور مهاراتك وزيادة قاعدة عملائك.",
+
+    "social_media_service_management": "📱 إدارة حسابات وسائل التواصل الاجتماعي",
+    "social_media_service_content": "✍️ إنشاء المحتوى",
+    "social_media_service_posts": "📝 منشورات وسائل التواصل الاجتماعي",
+    "social_media_service_graphics": "🎨 تصميم الرسومات لمنصات التواصل الاجتماعي",
+    "social_media_service_video": "🎥 محتوى الفيديو القصير",
+    "social_media_service_ads": "📢 الإعلانات على وسائل التواصل الاجتماعي",
+    "social_media_service_analytics": "📊 تحليلات وسائل التواصل الاجتماعي",
+
+    "social_media_section2_title": "2. فهم تكاليف بدء المشروع",
+    "social_media_section2_text": "يمكن أن تكون تكاليف بدء مشروع إدارة وسائل التواصل الاجتماعي منخفضة نسبيًا، خاصة إذا كان لديك بالفعل جهاز كمبيوتر وهاتف ذكي واتصال بالإنترنت.",
+
+    "social_media_cost_computer": "💻 جهاز كمبيوتر أو لابتوب",
+    "social_media_cost_phone": "📱 هاتف ذكي",
+    "social_media_cost_internet": "🌐 اتصال بالإنترنت",
+    "social_media_cost_software": "🧰 برامج التصميم وجدولة المنشورات",
+    "social_media_cost_business": "📋 تسجيل النشاط التجاري",
+    "social_media_cost_marketing": "📢 التسويق والإعلانات",
+    "social_media_cost_website": "🌐 موقع إلكتروني أو معرض أعمال للمشروع",
+
+    "social_media_section3_title": "3. اختر الأدوات والبرامج",
+    "social_media_section3_text": "اختر الأدوات التي تساعدك على إنشاء المحتوى وجدولة المنشورات والتواصل مع العملاء ومتابعة النتائج. لا تحتاج إلى برامج باهظة الثمن عند البدء.",
+
+    "social_media_tool_design": "🎨 أدوات تصميم الرسومات",
+    "social_media_tool_video": "🎥 أدوات تحرير الفيديو",
+    "social_media_tool_scheduling": "📅 أدوات جدولة منشورات وسائل التواصل الاجتماعي",
+    "social_media_tool_analytics": "📊 أدوات التحليلات",
+    "social_media_tool_communication": "💬 أدوات التواصل مع العملاء",
+    "social_media_tool_storage": "☁️ التخزين السحابي",
+
+    "social_media_tools_tip_title": "💡 ابدأ ببساطة",
+    "social_media_tools_tip": "ابدأ بالأدوات التي تحتاجها فعليًا، وقم بتطوير برامجك مع زيادة عدد عملائك.",
+
+    "social_media_section4_title": "4. حدد أسعار خدماتك",
+    "social_media_section4_text": "يجب أن يغطي سعرك تكلفة العمالة والبرامج وإنشاء المحتوى والتواصل وإدارة الإعلانات والمصاريف العامة والربح الذي تستهدفه.",
+
+    "pricing_example_title": "💡 مثال: كيفية حساب السعر",
+    "pricing_example_intro": "إليك مثالًا بسيطًا يوضح كيفية حساب سعر إحدى الخدمات.",
+
+    "pricing_example_labor": "العمالة (3 ساعات عمل بسعر 30 دولارًا للساعة)",
+    "pricing_example_materials": "المواد",
+    "pricing_example_travel": "التنقل",
+    "pricing_example_overhead": "المصاريف العامة",
+    "pricing_example_total_cost": "إجمالي التكلفة",
+    "pricing_example_profit": "الربح المطلوب",
+    "pricing_example_customer_price": "سعر العميل",
+    "pricing_example_formula": "سعر العميل = إجمالي التكلفة + الربح المطلوب",
+
+    "social_media_pricing_tool_title": "💵 احسب سعر خدمة إدارة وسائل التواصل الاجتماعي",
+    "social_media_pricing_tool_text": "استخدم حاسبة استراتيجية التسعير لحساب تكاليفك والربح المطلوب وسعر العميل المقترح.",
+    "social_media_pricing_tool_link": "افتح حاسبة التسعير ←",
+
+    "social_media_section5_title": "5. احسب أرباحك",
+    "social_media_section5_text": "الإيرادات ليست نفس الأرباح. اطرح مصاريف مشروعك من مدفوعات العملاء لمعرفة أرباحك الفعلية.",
+
+    "social_media_profit_revenue": "إجمالي إيرادات العملاء",
+    "social_media_profit_software": "تكاليف البرامج",
+    "social_media_profit_ads": "تكاليف الإعلانات",
+    "social_media_profit_equipment": "تكاليف المعدات",
+    "social_media_profit_marketing": "مصاريف التسويق",
+    "social_media_profit_other": "المصاريف التشغيلية الأخرى",
+
+    "social_media_section6_title": "6. احصل على عملائك الأوائل",
+    "social_media_section6_text": "يمكن أن يأتي عملاؤك الأوائل من الشركات المحلية والأشخاص الذين تعرفهم والإحالات والشركات التي تحتاج إلى المساعدة في إدارة وسائل التواصل الاجتماعي.",
+
+    "social_media_customer_local": "التواصل مع الشركات المحلية",
+    "social_media_customer_marketplace": "استخدام منصات العمل الحر",
+    "social_media_customer_social": "الترويج لخدماتك عبر وسائل التواصل الاجتماعي",
+    "social_media_customer_referrals": "طلب الإحالات من العملاء",
+    "social_media_customer_network": "بناء شبكة علاقات مع الشركات الأخرى",
+
+    "social_media_section7_title": "7. سوّق لمشروعك",
+    "social_media_section7_text": "يمكن أن يكون حضورك على وسائل التواصل الاجتماعي من أقوى أدوات التسويق لديك. أظهر للعملاء المحتملين ما يمكنك تقديمه لمشاريعهم.",
+
+    "social_media_marketing_portfolio": "إنشاء معرض أعمال احترافي",
+    "social_media_marketing_content": "إنشاء نماذج من محتوى وسائل التواصل الاجتماعي",
+    "social_media_marketing_website": "إنشاء موقع إلكتروني للمشروع",
+    "social_media_marketing_reviews": "جمع تقييمات العملاء",
+    "social_media_marketing_results": "عرض نتائج قابلة للقياس",
+
+    "social_media_section8_title": "8. العقود والمدفوعات والمتطلبات",
+    "social_media_section8_text": "قبل بدء العمل، وضّح الخدمات المشمولة والأسعار وجدول الدفع ومسؤوليات المحتوى وميزانية الإعلانات وشروط الإلغاء.",
+
+    "social_media_warning_title": "⚠️ مهم",
+    "social_media_warning_text": "تختلف متطلبات الأعمال والإعلانات والخصوصية والضرائب حسب الموقع ونوع الخدمة. تحقق من المتطلبات المعمول بها قبل تشغيل مشروعك.",
+
+    "social_media_section9_title": "9. إدارة العملاء",
+    "social_media_section9_text": "التواصل الجيد مهم عند إدارة حسابات وسائل التواصل الاجتماعي. حدد بوضوح المسؤوليات والمواعيد النهائية والموافقة على المحتوى والتقارير.",
+
+    "social_media_client_scope": "تحديد الخدمات المشمولة",
+    "social_media_client_content": "تحديد الجهة المسؤولة عن توفير المحتوى",
+    "social_media_client_approval": "تحديد إجراءات الموافقة على المحتوى",
+    "social_media_client_reporting": "تقديم تقارير أداء منتظمة",
+    "social_media_client_communication": "الحفاظ على تواصل احترافي",
+
+    "social_media_section10_title": "10. تنمية مشروعك",
+    "social_media_section10_text": "بعد الحصول على عملاء ثابتين، يمكنك زيادة الإيرادات من خلال إضافة خدمات جديدة وزيادة عدد العملاء وبناء دخل شهري متكرر.",
+
+    "social_media_growth_content": "تقديم خدمات إنشاء محتوى احترافي",
+    "social_media_growth_ads": "تقديم خدمات الإعلانات على وسائل التواصل الاجتماعي",
+    "social_media_growth_video": "إضافة خدمات الفيديو القصير",
+    "social_media_growth_platforms": "إدارة منصات اجتماعية إضافية",
+    "social_media_growth_team": "توظيف مديري وسائل تواصل اجتماعي إضافيين",
+    "social_media_growth_recurring": "بناء عقود شهرية متكررة",
+
+    "social_media_checklist_title": "✅ قائمة بدء مشروع إدارة وسائل التواصل الاجتماعي",
+
+    "social_media_check_1": "اختيار خدمات وسائل التواصل الاجتماعي",
+    "social_media_check_2": "البحث عن العملاء المستهدفين",
+    "social_media_check_3": "حساب تكاليف بدء المشروع",
+    "social_media_check_4": "اختيار الأدوات والبرامج",
+    "social_media_check_5": "إنشاء نماذج من المحتوى",
+    "social_media_check_6": "تحديد الأسعار",
+    "social_media_check_7": "التحقق من متطلبات المشروع",
+    "social_media_check_8": "إنشاء العقود وشروط الدفع",
+    "social_media_check_9": "بناء معرض أعمال",
+    "social_media_check_10": "بدء التسويق",
+    "social_media_check_11": "الحصول على العملاء الأوائل",
+    "social_media_check_12": "تتبع الإيرادات والمصاريف",
+    "social_media_check_13": "بناء قاعدة عملاء متكررين",
+    "social_media_check_14": "إعادة الاستثمار وتنمية المشروع",
+
+    "social_media_tools_title": "🛠️ أدوات وحاسبات الأعمال",
+    "social_media_tools_description": "استخدم هذه الأدوات لتقدير تكاليف بدء المشروع والتسعير والمصاريف والأرباح والضرائب.",
+
+    "social_media_tool_startup": "🚀 حاسبة تكاليف بدء المشروع",
+    "social_media_tool_pricing": "💵 حاسبة استراتيجية التسعير",
+    "social_media_tool_profit": "📊 حاسبة الأرباح",
+    "social_media_tool_budget": "💰 مخطط الميزانية",
+    "social_media_tool_tax": "🧾 حاسبة تقدير الضرائب",
+
   "restaurant_guide_contents": "📖 محتويات الدليل",
 "carpet_cleaning_business_title": "مشروع تنظيف السجاد",
 "carpet_cleaning_business_description": "تعلم كيفية بدء وتسعير وتسويق وتنمية مشروع تنظيف السجاد.",
