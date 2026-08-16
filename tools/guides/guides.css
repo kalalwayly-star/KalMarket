@@ -744,3 +744,128 @@ h2[id] {
         grid-template-columns: 1fr !important;
     }
 }
+/* ======================================================
+   PRICING EXAMPLE
+====================================================== */
+
+.pricing-example {
+    max-width: 750px;
+    margin: 40px auto;
+    padding: 28px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.pricing-example h3 {
+    margin: 0 0 12px;
+    color: #4f24c6;
+    font-size: 24px;
+}
+
+.pricing-example > p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.pricing-example-box {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 22px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
+.pricing-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 0;
+    color: #444;
+    font-size: 16px;
+}
+
+.pricing-row strong {
+    color: #222;
+}
+
+.pricing-line {
+    height: 1px;
+    background: #dcdcdc;
+    margin: 8px 0;
+}
+
+.total-row {
+    font-weight: 700;
+}
+
+.profit-row {
+    color: #287a3e;
+}
+
+.profit-row strong {
+    color: #287a3e;
+}
+
+.customer-price {
+    padding: 14px 0;
+    font-size: 19px;
+    font-weight: 700;
+    color: #4f24c6;
+}
+
+.customer-price strong {
+    color: #4f24c6;
+    font-size: 22px;
+}
+
+.pricing-formula {
+    max-width: 500px;
+    margin: 22px auto 0;
+    padding: 16px 20px;
+    background: #f7f3ff;
+    border-left: 5px solid #6c3ce8;
+    border-radius: 8px;
+    color: #444;
+    line-height: 1.7;
+}
+
+.pricing-formula p {
+    margin: 8px 0 0;
+}
+
+
+/* ======================================================
+   MOBILE
+====================================================== */
+
+@media (max-width: 600px) {
+
+    .pricing-example {
+        padding: 20px 15px;
+        margin: 30px 0;
+    }
+
+    .pricing-example h3 {
+        font-size: 21px;
+    }
+
+    .pricing-example-box {
+        padding: 18px 15px;
+    }
+
+    .pricing-row {
+        font-size: 15px;
+    }
+
+    .customer-price {
+        font-size: 17px;
+    }
+
+    .customer-price strong {
+        font-size: 20px;
+    }
+}
