@@ -696,6 +696,12 @@ h2[id] {
     gap: 20px !important;
     width: 100%;
 }
+.hub-container .grid {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 15px !important;
+    width: 100%;
+}
 
 .hub-container .cat-card {
     width: auto !important;
