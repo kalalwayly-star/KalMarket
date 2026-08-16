@@ -2026,7 +2026,18 @@
   "painting_business_tool_pricing": "💵 حاسبة استراتيجية التسعير",
   "painting_business_tool_profit": "📊 حاسبة الأرباح",
   "painting_business_tool_budget": "💰 مخطط الميزانية",
-  "painting_business_tool_tax": "🧾 حاسبة الضرائب"
+  "painting_business_tool_tax": "🧾 حاسبة الضرائب",
   
+  "pricing_example_title": "💡 مثال: كيفية حساب سعر الخدمة",
+"pricing_example_intro": "إليك مثال بسيط يوضح كيفية حساب سعر الخدمة في المشروع.",
+"pricing_example_labor": "تكلفة العمالة",
+"pricing_example_materials": "المواد والمستلزمات",
+"pricing_example_travel": "التنقل والمواصلات",
+"pricing_example_overhead": "المصاريف العامة",
+"pricing_example_total_cost": "إجمالي التكلفة",
+"pricing_example_profit": "الربح المطلوب",
+"pricing_example_customer_price": "سعر العميل",
+"pricing_example_formula": "سعر العميل = إجمالي التكلفة + الربح المطلوب"
+
 }
 
