@@ -2159,3 +2159,66 @@ box-sizing: border-box;
     transform: translateY(-2px);
     opacity: 0.9;
 }
+/* =========================
+   KALMARKET MAIN NAVIGATION
+========================= */
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 22px;
+    padding: 14px 18px;
+
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* Navigation buttons */
+
+.nav .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 46px;
+    padding: 0 20px;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+/* Hover */
+
+.nav .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18);
+}
+
+/* Post Ad */
+
+.nav .btn.primary {
+    font-weight: 800;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+/* Messages */
+
+.nav .message-link {
+    position: relative;
+}
