@@ -2102,5 +2102,28 @@ box-sizing: border-box;
     .measurement-tool-card p {
         font-size: 13px;
     }
+}
+.immigration-link {
+    margin-left: auto;
+    padding: 9px 16px;
+    border-radius: 8px;
+    background: #f1f5f9;
+    color: #1e3a8a;
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: 0.2s ease;
+}
 
+.immigration-link:hover {
+    background: #e2e8f0;
+    transform: translateY(-1px);
+}
+@media (max-width: 768px) {
+    .immigration-link {
+        margin-left: 0;
+        margin-top: 8px;
+        width: 100%;
+        text-align: center;
+    }
 }
