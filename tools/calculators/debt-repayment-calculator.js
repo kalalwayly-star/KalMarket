@@ -3,7 +3,8 @@
 // ============================================
 
 document.addEventListener("DOMContentLoaded", () => {
-
+const monthsArabicHint =
+    document.getElementById("monthsArabicHint");
     const calculateBtn =
         document.getElementById("calculateDebtBtn");
 
@@ -568,3 +569,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+function updateArabicHint() {
+
+    const language =
+        document.documentElement.lang;
+
+    if (monthsArabicHint) {
+
+        monthsArabicHint.style.display =
+            language === "ar" ? "block" : "none";
+
+    }
+
+}
