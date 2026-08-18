@@ -1,4 +1,6 @@
 {
+  "loan_payment_calculator_category": "القروض والتمويل",
+"loan_payment_calculator_description": "احسب الدفعات الشهرية وإجمالي الفائدة والمبلغ الإجمالي المدفوع على القرض.",
   "car_loan_calculator_title": "حاسبة قرض السيارة والدفعات",
 "car_loan_calculator_description": "احسب الدفعة الشهرية للسيارة وإجمالي الفائدة وتكلفة تمويل السيارة.",
   "free_calculators": "🧮 حاسبات مجانية",
