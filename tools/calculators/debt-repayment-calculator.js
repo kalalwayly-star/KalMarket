@@ -3,8 +3,35 @@
 // ============================================
 
 document.addEventListener("DOMContentLoaded", () => {
-const monthsArabicHint =
-    document.getElementById("monthsArabicHint");
+
+    // Arabic months hint
+    const monthsArabicHint =
+        document.getElementById("monthsArabicHint");
+
+    document.getElementById("lang-en")?.addEventListener("click", () => {
+
+        if (monthsArabicHint) {
+            monthsArabicHint.style.display = "none";
+        }
+
+    });
+
+    document.getElementById("lang-ar")?.addEventListener("click", () => {
+
+        if (monthsArabicHint) {
+            monthsArabicHint.style.display = "block";
+        }
+
+    });
+
+    if (
+        document.documentElement.lang === "ar" &&
+        monthsArabicHint
+    ) {
+        monthsArabicHint.style.display = "block";
+    }
+
+
     const calculateBtn =
         document.getElementById("calculateDebtBtn");
 
