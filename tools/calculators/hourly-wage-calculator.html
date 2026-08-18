@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Google AdSense -->
+    <script async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6176105257644553"
+        crossorigin="anonymous">
+    </script>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title data-i18n="hourly_wage_calculator_title">
+        Hourly Wage & Salary Calculator
+    </title>
+
+    <meta
+        name="description"
+        content="Calculate hourly, weekly, biweekly, monthly, and annual income based on your wage and working hours."
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../style.css?v=2"
+    >
+
+
+    <style>
+
+        .calculator-page {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+
+        .calculator-header .calculator-icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+
+        .calculator-header h1 {
+            margin-bottom: 10px;
+        }
+
+
+        .calculator-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+
+        .calculator-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .calculator-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+
+        .form-group input,
+        .form-group select {
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+
+        .form-group small {
+            margin-top: 5px;
+            color: #666;
+            font-size: 13px;
+        }
+
+
+        .calculator-actions {
+            grid-column: 1 / -1;
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+
+        .calculate-btn,
+        .reset-btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+
+        .calculate-btn {
+            background: #2563eb;
+            color: white;
+        }
+
+
+        .reset-btn {
+            background: #e5e7eb;
+            color: #222;
+        }
+
+
+        .calculator-results {
+            margin-top: 30px;
+            display: none;
+        }
+
+
+        .calculator-results.show {
+            display: block;
+        }
+
+
+        .results-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+
+        .main-result {
+            text-align: center;
+            padding: 25px;
+            border-radius: 14px;
+            background: #f3f7ff;
+            margin-bottom: 20px;
+        }
+
+
+        .main-result span {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+
+        .main-result strong {
+            font-size: 36px;
+        }
+
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+
+        .result-box {
+            padding: 18px;
+            border-radius: 10px;
+            background: #f7f7f7;
+        }
+
+
+        .result-box span {
+            display: block;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 6px;
+        }
+
+
+        .result-box strong {
+            font-size: 20px;
+        }
+
+
+        .overtime-box {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #f5faff;
+        }
+
+
+        .overtime-box h3 {
+            margin-top: 0;
+        }
+
+
+        .calculator-info {
+            margin-top: 35px;
+            line-height: 1.7;
+        }
+
+
+        .calculator-info h2 {
+            margin-top: 25px;
+        }
+
+
+        @media (max-width: 700px) {
+
+            .calculator-page {
+                margin: 20px auto;
+                padding: 12px;
+            }
+
+            .calculator-card {
+                padding: 20px;
+            }
+
+            .calculator-form,
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calculator-actions {
+                flex-direction: column;
+            }
+
+            .main-result strong {
+                font-size: 30px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="container">
+
+
+            <!-- Visitor Count -->
+
+            <p
+                id="visitorCount"
+                data-i18n="visitor_count"
+            >
+                👥 Visitors: 0
+            </p>
+
+
+            <!-- Language Buttons -->
+
+            <div class="lang-buttons">
+
+                <button id="lang-en">
+                    English
+                </button>
+
+                <button id="lang-ar">
+                    العربية
+                </button>
+
+            </div>
+
+
+            <!-- Site Name -->
+
+            <h1 data-i18n="app_name">
+                KalMarket
+            </h1>
+
+
+            <p
+                class="hero-tagline"
+                data-i18n="hero_tagline"
+            >
+                The Free Local Classified Marketplace
+            </p>
+
+
+            <p
+                class="hero-subtitle"
+                data-i18n="hero_subtitle"
+            >
+                Buy • Sell • Trade • Find Local Services
+            </p>
+
+
+            <div class="hero-actions">
+
+                <span
+                    class="free-badge"
+                    data-i18n="free_badge"
+                >
+                    🟢 100% FREE to Post Ads
+                </span>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+
+            <div class="nav">
+
+                <a
+                    href="../../index.html"
+                    class="btn"
+                    data-i18n="home"
+                >
+                    Home
+                </a>
+
+
+                <a
+                    href="../../messages.html"
+                    class="btn message-link"
+                    data-i18n="nav_messages"
+                >
+                    Messages
+
+                    <span
+                        id="unread-count"
+                        style="
+                            display:none;
+                            background:red;
+                            color:white;
+                            font-size:12px;
+                            padding:2px 7px;
+                            border-radius:50%;
+                            margin-left:5px;
+                        "
+                    >
+                        0
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="../../myads.html"
+                    class="btn"
+                    data-i18n="myAds"
+                >
+                    My Ads
+                </a>
+
+
+                <a
+                    href="../index.html"
+                    class="btn primary"
+                    data-i18n="tools"
+                >
+                    Tools
+                </a>
+
+
+                <a
+                    href="../../post.html"
+                    class="btn primary"
+                    data-i18n="postAd"
+                >
+                    Post Ad
+                </a>
+
+
+                <a
+                    id="userAuth"
+                    href="../../login.html"
+                    class="btn"
+                    data-i18n="nav_login"
+                >
+                    Login
+                </a>
+
+
+                <a
+                    href="../../register.html"
+                    class="btn primary"
+                    data-i18n="create_account"
+                >
+                    Create Account
+                </a>
+
+
+                <button
+                    id="logout-btn"
+                    style="display:none;"
+                    data-i18n="logout"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+
+            <!-- USER INFO -->
+
+            <div
+                id="user-info-header"
+                style="display:none;"
+            >
+
+                <span data-i18n="logged_in_as">
+                    Logged in as:
+                </span>
+
+                <span id="header-user-email"></span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==========================================
+         CALCULATOR
+         ========================================== -->
+
+    <main class="calculator-page">
+
+
+        <!-- Calculator Header -->
+
+        <section class="calculator-header">
+
+            <div class="calculator-icon">
+                💵
+            </div>
+
+
+            <h1 data-i18n="hourly_wage_calculator_title">
+                Hourly Wage & Salary Calculator
+            </h1>
+
+
+            <p data-i18n="hourly_wage_calculator_intro">
+                Calculate your weekly, biweekly, monthly, and annual income based on your hourly wage and working hours.
+            </p>
+
+        </section>
+
+
+        <!-- Calculator Card -->
+
+        <section class="calculator-card">
+
+
+            <div class="calculator-form">
+
+
+                <!-- Hourly Wage -->
+
+                <div class="form-group">
+
+                    <label
+                        for="hourlyWage"
+                        data-i18n="hourly_wage"
+                    >
+                        Hourly Wage
+                    </label>
+
+                    <input
+                        type="number"
+                        id="hourlyWage"
+                        min="0"
+                        step="0.01"
+                        placeholder="25"
+                    >
+
+                </div>
+
+
+                <!-- Hours Per Week -->
+
+                <div class="form-group">
+
+                    <label
+                        for="hoursPerWeek"
+                        data-i18n="hours_per_week"
+                    >
+                        Hours per Week
+                    </label>
+
+                    <input
+                        type="number"
+                        id="hoursPerWeek"
+                        min="0"
+                        step="0.1"
+                        value="40"
+                    >
+
+                </div>
+
+
+                <!-- Weeks Per Year -->
+
+                <div class="form-group">
+
+                    <label
+                        for="weeksPerYear"
+                        data-i18n="weeks_per_year"
+                    >
+                        Weeks per Year
+                    </label>
+
+                    <input
+                        type="number"
+                        id="weeksPerYear"
+                        min="1"
+                        max="52"
+                        step="1"
+                        value="52"
+                    >
+
+                </div>
+
+
+                <!-- Overtime Hours -->
+
+                <div class="form-group">
+
+                    <label
+                        for="overtimeHours"
+                        data-i18n="overtime_hours_per_week"
+                    >
+                        Overtime Hours per Week
+                    </label>
+
+                    <input
+                        type="number"
+                        id="overtimeHours"
+                        min="0"
+                        step="0.1"
+                        value="0"
+                    >
+
+                </div>
+
+
+                <!-- Overtime Multiplier -->
+
+                <div class="form-group">
+
+                    <label
+                        for="overtimeMultiplier"
+                        data-i18n="overtime_rate"
+                    >
+                        Overtime Rate Multiplier
+                    </label>
+
+                    <select id="overtimeMultiplier">
+
+                        <option
+                            value="1.5"
+                            data-i18n="overtime_time_half"
+                            selected
+                        >
+                            1.5×
+                        </option>
+
+                        <option
+                            value="2"
+                            data-i18n="overtime_double"
+                        >
+                            2×
+                        </option>
+
+                    </select>
+
+                    <small data-i18n="overtime_rate_note">
+                        Example: 1.5× means overtime is paid at one and a half times the regular wage.
+                    </small>
+
+                </div>
+
+
+                <!-- Calculate / Reset -->
+
+                <div class="calculator-actions">
+
+                    <button
+                        type="button"
+                        id="calculateWageBtn"
+                        class="calculate-btn"
+                        data-i18n="calculate"
+                    >
+                        Calculate
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="resetWageBtn"
+                        class="reset-btn"
+                        data-i18n="reset"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Results -->
+
+            <div
+                id="wageResults"
+                class="calculator-results"
+            >
+
+
+                <h2
+                    class="results-title"
+                    data-i18n="wage_results"
+                >
+                    Your Income Results
+                </h2>
+
+
+                <!-- Main Result -->
+
+                <div class="main-result">
+
+                    <span data-i18n="annual_income">
+                        Annual Income
+                    </span>
+
+                    <strong id="annualIncome">
+                        $0.00
+                    </strong>
+
+                </div>
+
+
+                <!-- Results Grid -->
+
+                <div class="results-grid">
+
+
+                    <div class="result-box">
+
+                        <span data-i18n="hourly_income">
+                            Hourly Income
+                        </span>
+
+                        <strong id="resultHourly">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-box">
+
+                        <span data-i18n="weekly_income">
+                            Weekly Income
+                        </span>
+
+                        <strong id="resultWeekly">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-box">
+
+                        <span data-i18n="biweekly_income">
+                            Biweekly Income
+                        </span>
+
+                        <strong id="resultBiweekly">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-box">
+
+                        <span data-i18n="monthly_income">
+                            Monthly Income
+                        </span>
+
+                        <strong id="resultMonthly">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Overtime -->
+
+                <div class="overtime-box">
+
+                    <h3 data-i18n="overtime_income">
+                        Overtime Income
+                    </h3>
+
+
+                    <p>
+
+                        <strong data-i18n="regular_annual_income">
+                            Regular Annual Income:
+                        </strong>
+
+                        <span id="regularAnnualIncome">
+                            $0.00
+                        </span>
+
+                    </p>
+
+
+                    <p>
+
+                        <strong data-i18n="annual_overtime_income">
+                            Annual Overtime Income:
+                        </strong>
+
+                        <span id="annualOvertimeIncome">
+                            $0.00
+                        </span>
+
+                    </p>
+
+
+                    <p>
+
+                        <strong data-i18n="total_annual_income">
+                            Total Annual Income:
+                        </strong>
+
+                        <span id="totalAnnualIncome">
+                            $0.00
+                        </span>
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- Information -->
+
+        <section class="calculator-info">
+
+
+            <h2 data-i18n="about_hourly_wage_calculator">
+                About the Hourly Wage & Salary Calculator
+            </h2>
+
+
+            <p data-i18n="hourly_wage_calculator_description">
+                This calculator helps estimate income from an hourly wage. You can calculate weekly, biweekly, monthly, and annual income and include overtime pay in your estimate.
+            </p>
+
+
+            <h2 data-i18n="hourly_wage_tip_title">
+                Hourly Wage Tip
+            </h2>
+
+
+            <p data-i18n="hourly_wage_tip">
+                When comparing job offers, look beyond the hourly wage and consider your total annual income, working hours, overtime, vacation time, and other benefits.
+            </p>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- Language System -->
+
+    <script
+        type="module"
+        src="../../languages.js"
+    ></script>
+
+
+    <!-- Calculator -->
+
+    <script
+        type="module"
+        src="hourly-wage-calculator.js"
+    ></script>
+
+
+</body>
+
+</html>
