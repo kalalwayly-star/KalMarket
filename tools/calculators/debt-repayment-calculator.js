@@ -96,17 +96,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // Format Months
     // ============================================
 
-    function formatMonths(months) {
+   function formatMonths(months) {
 
     if (months === 1) {
-        return getTranslation("one_month");
+        return "1 month";
     }
 
-    return getTranslation("months_count")
-        .replace("{count}", months);
+    return `${months} months`;
 
 }
-
     // ============================================
     // Calculate Payoff
     // ============================================
