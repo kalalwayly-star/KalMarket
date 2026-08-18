@@ -582,3 +582,4 @@ function updateArabicHint() {
     }
 
 }
+updateArabicHint();
