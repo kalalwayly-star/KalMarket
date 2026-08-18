@@ -16,13 +16,13 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title data-i18n="hourly_wage_calculator_title">
-        Hourly Wage & Salary Calculator
+    <title data-i18n="paycheck_calculator_title">
+        Canadian Paycheck & Salary Calculator
     </title>
 
     <meta
         name="description"
-        content="Calculate hourly, weekly, biweekly, monthly, and annual income based on your wage and working hours."
+        content="Estimate Canadian gross pay, CPP, EI, federal and provincial income tax, and take-home pay based on your wage, hours, and province."
     >
 
     <link
@@ -34,7 +34,7 @@
     <style>
 
         .calculator-page {
-            max-width: 900px;
+            max-width: 950px;
             margin: 40px auto;
             padding: 20px;
         }
@@ -46,7 +46,7 @@
         }
 
 
-        .calculator-header .calculator-icon {
+        .calculator-icon {
             font-size: 55px;
             margin-bottom: 10px;
         }
@@ -58,7 +58,7 @@
 
 
         .calculator-header p {
-            max-width: 700px;
+            max-width: 750px;
             margin: 0 auto;
             line-height: 1.6;
         }
@@ -68,7 +68,17 @@
             background: #fff;
             border-radius: 16px;
             padding: 30px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+
+
+        .calculator-section {
+            margin-bottom: 30px;
+        }
+
+
+        .calculator-section h2 {
+            margin-bottom: 20px;
         }
 
 
@@ -93,24 +103,28 @@
 
         .form-group input,
         .form-group select {
+            width: 100%;
+            box-sizing: border-box;
             padding: 13px;
             border: 1px solid #ccc;
             border-radius: 8px;
             font-size: 16px;
-            width: 100%;
-            box-sizing: border-box;
         }
 
 
         .form-group small {
             margin-top: 5px;
             color: #666;
-            font-size: 13px;
+            line-height: 1.4;
+        }
+
+
+        .full-width {
+            grid-column: 1 / -1;
         }
 
 
         .calculator-actions {
-            grid-column: 1 / -1;
             display: flex;
             gap: 12px;
             margin-top: 10px;
@@ -142,8 +156,8 @@
 
 
         .calculator-results {
-            margin-top: 30px;
             display: none;
+            margin-top: 30px;
         }
 
 
@@ -158,24 +172,31 @@
         }
 
 
-        .main-result {
+        .take-home-result {
             text-align: center;
-            padding: 25px;
-            border-radius: 14px;
+            padding: 30px;
+            border-radius: 15px;
             background: #f3f7ff;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
 
-        .main-result span {
+        .take-home-result span {
             display: block;
-            font-size: 14px;
+            font-size: 15px;
             margin-bottom: 8px;
         }
 
 
-        .main-result strong {
-            font-size: 36px;
+        .take-home-result strong {
+            display: block;
+            font-size: 38px;
+        }
+
+
+        .take-home-result small {
+            display: block;
+            margin-top: 8px;
         }
 
 
@@ -195,9 +216,8 @@
 
         .result-box span {
             display: block;
-            font-size: 14px;
+            margin-bottom: 7px;
             color: #666;
-            margin-bottom: 6px;
         }
 
 
@@ -206,16 +226,60 @@
         }
 
 
-        .overtime-box {
-            margin-top: 20px;
+        .deductions-box {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #fafafa;
+        }
+
+
+        .deductions-box h3 {
+            margin-top: 0;
+        }
+
+
+        .deduction-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+
+        .deduction-row:last-child {
+            border-bottom: none;
+        }
+
+
+        .deduction-total {
+            font-weight: 700;
+            font-size: 18px;
+            padding-top: 15px;
+        }
+
+
+        .pay-period-box {
+            margin-top: 25px;
             padding: 20px;
             border-radius: 12px;
             background: #f5faff;
         }
 
 
-        .overtime-box h3 {
+        .pay-period-box h3 {
             margin-top: 0;
+        }
+
+
+        .calculator-disclaimer {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #fff8e6;
+            font-size: 14px;
+            line-height: 1.6;
         }
 
 
@@ -250,8 +314,13 @@
                 flex-direction: column;
             }
 
-            .main-result strong {
+            .take-home-result strong {
                 font-size: 30px;
+            }
+
+            .deduction-row {
+                flex-direction: column;
+                gap: 5px;
             }
 
         }
@@ -264,14 +333,24 @@
 <body>
 
 
-    <!-- HEADER -->
+    <!-- ==========================================
+         GOOGLE ADSENSE AUTO ADS
+         ========================================== -->
+
+    <amp-auto-ads
+        type="adsense"
+        data-ad-client="ca-pub-6176105257644553">
+    </amp-auto-ads>
+
+
+    <!-- ==========================================
+         HEADER
+         ========================================== -->
 
     <header class="header">
 
         <div class="container">
 
-
-            <!-- Visitor Count -->
 
             <p
                 id="visitorCount"
@@ -280,8 +359,6 @@
                 👥 Visitors: 0
             </p>
 
-
-            <!-- Language Buttons -->
 
             <div class="lang-buttons">
 
@@ -295,8 +372,6 @@
 
             </div>
 
-
-            <!-- Site Name -->
 
             <h1 data-i18n="app_name">
                 KalMarket
@@ -426,8 +501,6 @@
             </div>
 
 
-            <!-- USER INFO -->
-
             <div
                 id="user-info-header"
                 style="display:none;"
@@ -453,7 +526,7 @@
     <main class="calculator-page">
 
 
-        <!-- Calculator Header -->
+        <!-- HEADER -->
 
         <section class="calculator-header">
 
@@ -462,181 +535,385 @@
             </div>
 
 
-            <h1 data-i18n="hourly_wage_calculator_title">
-                Hourly Wage & Salary Calculator
+            <h1 data-i18n="paycheck_calculator_title">
+                Canadian Paycheck & Salary Calculator
             </h1>
 
 
-            <p data-i18n="hourly_wage_calculator_intro">
-                Calculate your weekly, biweekly, monthly, and annual income based on your hourly wage and working hours.
+            <p data-i18n="paycheck_calculator_intro">
+                Estimate your gross pay, CPP, EI, income tax, and take-home pay based on your wage, working hours, and province.
             </p>
 
         </section>
 
 
-        <!-- Calculator Card -->
+        <!-- CALCULATOR -->
 
         <section class="calculator-card">
 
 
-            <div class="calculator-form">
+            <!-- BASIC INCOME -->
+
+            <div class="calculator-section">
+
+                <h2 data-i18n="income_information">
+                    Income Information
+                </h2>
 
 
-                <!-- Hourly Wage -->
-
-                <div class="form-group">
-
-                    <label
-                        for="hourlyWage"
-                        data-i18n="hourly_wage"
-                    >
-                        Hourly Wage
-                    </label>
-
-                    <input
-                        type="number"
-                        id="hourlyWage"
-                        min="0"
-                        step="0.01"
-                        placeholder="25"
-                    >
-
-                </div>
+                <div class="calculator-form">
 
 
-                <!-- Hours Per Week -->
+                    <!-- Hourly Wage -->
 
-                <div class="form-group">
+                    <div class="form-group">
 
-                    <label
-                        for="hoursPerWeek"
-                        data-i18n="hours_per_week"
-                    >
-                        Hours per Week
-                    </label>
-
-                    <input
-                        type="number"
-                        id="hoursPerWeek"
-                        min="0"
-                        step="0.1"
-                        value="40"
-                    >
-
-                </div>
-
-
-                <!-- Weeks Per Year -->
-
-                <div class="form-group">
-
-                    <label
-                        for="weeksPerYear"
-                        data-i18n="weeks_per_year"
-                    >
-                        Weeks per Year
-                    </label>
-
-                    <input
-                        type="number"
-                        id="weeksPerYear"
-                        min="1"
-                        max="52"
-                        step="1"
-                        value="52"
-                    >
-
-                </div>
-
-
-                <!-- Overtime Hours -->
-
-                <div class="form-group">
-
-                    <label
-                        for="overtimeHours"
-                        data-i18n="overtime_hours_per_week"
-                    >
-                        Overtime Hours per Week
-                    </label>
-
-                    <input
-                        type="number"
-                        id="overtimeHours"
-                        min="0"
-                        step="0.1"
-                        value="0"
-                    >
-
-                </div>
-
-
-                <!-- Overtime Multiplier -->
-
-                <div class="form-group">
-
-                    <label
-                        for="overtimeMultiplier"
-                        data-i18n="overtime_rate"
-                    >
-                        Overtime Rate Multiplier
-                    </label>
-
-                    <select id="overtimeMultiplier">
-
-                        <option
-                            value="1.5"
-                            data-i18n="overtime_time_half"
-                            selected
+                        <label
+                            for="hourlyWage"
+                            data-i18n="hourly_wage"
                         >
-                            1.5×
-                        </option>
+                            Hourly Wage
+                        </label>
 
-                        <option
-                            value="2"
-                            data-i18n="overtime_double"
+                        <input
+                            type="number"
+                            id="hourlyWage"
+                            min="0"
+                            step="0.01"
+                            placeholder="25"
                         >
-                            2×
-                        </option>
 
-                    </select>
-
-                    <small data-i18n="overtime_rate_note">
-                        Example: 1.5× means overtime is paid at one and a half times the regular wage.
-                    </small>
-
-                </div>
+                    </div>
 
 
-                <!-- Calculate / Reset -->
+                    <!-- Hours -->
 
-                <div class="calculator-actions">
+                    <div class="form-group">
 
-                    <button
-                        type="button"
-                        id="calculateWageBtn"
-                        class="calculate-btn"
-                        data-i18n="calculate"
-                    >
-                        Calculate
-                    </button>
+                        <label
+                            for="hoursPerWeek"
+                            data-i18n="hours_per_week"
+                        >
+                            Hours per Week
+                        </label>
+
+                        <input
+                            type="number"
+                            id="hoursPerWeek"
+                            min="0"
+                            max="168"
+                            step="0.1"
+                            value="40"
+                        >
+
+                    </div>
 
 
-                    <button
-                        type="button"
-                        id="resetWageBtn"
-                        class="reset-btn"
-                        data-i18n="reset"
-                    >
-                        Reset
-                    </button>
+                    <!-- Weeks -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="weeksPerYear"
+                            data-i18n="weeks_per_year"
+                        >
+                            Weeks per Year
+                        </label>
+
+                        <input
+                            type="number"
+                            id="weeksPerYear"
+                            min="1"
+                            max="52"
+                            value="52"
+                        >
+
+                    </div>
+
+
+                    <!-- Overtime -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="overtimeHours"
+                            data-i18n="overtime_hours_per_week"
+                        >
+                            Overtime Hours per Week
+                        </label>
+
+                        <input
+                            type="number"
+                            id="overtimeHours"
+                            min="0"
+                            step="0.1"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <!-- Overtime Rate -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="overtimeMultiplier"
+                            data-i18n="overtime_rate"
+                        >
+                            Overtime Rate
+                        </label>
+
+                        <select id="overtimeMultiplier">
+
+                            <option
+                                value="1.5"
+                                selected
+                                data-i18n="overtime_time_half"
+                            >
+                                1.5×
+                            </option>
+
+                            <option
+                                value="2"
+                                data-i18n="overtime_double"
+                            >
+                                2×
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Province -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="province"
+                            data-i18n="province"
+                        >
+                            Province / Territory
+                        </label>
+
+                        <select id="province">
+
+                            <option
+                                value="AB"
+                                selected
+                            >
+                                Alberta
+                            </option>
+
+                            <option value="BC">
+                                British Columbia
+                            </option>
+
+                            <option value="MB">
+                                Manitoba
+                            </option>
+
+                            <option value="NB">
+                                New Brunswick
+                            </option>
+
+                            <option value="NL">
+                                Newfoundland and Labrador
+                            </option>
+
+                            <option value="NS">
+                                Nova Scotia
+                            </option>
+
+                            <option value="NT">
+                                Northwest Territories
+                            </option>
+
+                            <option value="NU">
+                                Nunavut
+                            </option>
+
+                            <option value="ON">
+                                Ontario
+                            </option>
+
+                            <option value="PE">
+                                Prince Edward Island
+                            </option>
+
+                            <option value="QC">
+                                Quebec
+                            </option>
+
+                            <option value="SK">
+                                Saskatchewan
+                            </option>
+
+                            <option value="YT">
+                                Yukon
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Pay Frequency -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="payFrequency"
+                            data-i18n="pay_frequency"
+                        >
+                            Pay Frequency
+                        </label>
+
+                        <select id="payFrequency">
+
+                            <option
+                                value="weekly"
+                                data-i18n="weekly"
+                            >
+                                Weekly
+                            </option>
+
+                            <option
+                                value="biweekly"
+                                selected
+                                data-i18n="biweekly"
+                            >
+                                Biweekly
+                            </option>
+
+                            <option
+                                value="semimonthly"
+                                data-i18n="semi_monthly"
+                            >
+                                Semi-Monthly
+                            </option>
+
+                            <option
+                                value="monthly"
+                                data-i18n="monthly"
+                            >
+                                Monthly
+                            </option>
+
+                        </select>
+
+                    </div>
 
                 </div>
 
             </div>
 
 
-            <!-- Results -->
+            <!-- TAX OPTIONS -->
+
+            <div class="calculator-section">
+
+                <h2 data-i18n="tax_information">
+                    Tax Information
+                </h2>
+
+
+                <div class="calculator-form">
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="basicTaxCredit"
+                            data-i18n="basic_tax_credit"
+                        >
+                            Basic Tax Credit
+                        </label>
+
+                        <select id="basicTaxCredit">
+
+                            <option
+                                value="standard"
+                                selected
+                                data-i18n="standard_basic_credit"
+                            >
+                                Standard
+                            </option>
+
+                            <option
+                                value="custom"
+                                data-i18n="custom"
+                            >
+                                Custom
+                            </option>
+
+                        </select>
+
+                        <small data-i18n="basic_tax_credit_note">
+                            Uses the standard basic personal amount for an estimate.
+                        </small>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="otherDeductions"
+                            data-i18n="other_deductions"
+                        >
+                            Other Annual Deductions
+                        </label>
+
+                        <input
+                            type="number"
+                            id="otherDeductions"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                        >
+
+                        <small data-i18n="other_deductions_note">
+                            Optional deductions such as eligible pension or other payroll deductions.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="calculator-actions">
+
+                <button
+                    type="button"
+                    id="calculateWageBtn"
+                    class="calculate-btn"
+                    data-i18n="calculate"
+                >
+                    Calculate
+                </button>
+
+
+                <button
+                    type="button"
+                    id="resetWageBtn"
+                    class="reset-btn"
+                    data-i18n="reset"
+                >
+                    Reset
+                </button>
+
+            </div>
+
+
+            <!-- =====================================
+                 RESULTS
+                 ===================================== -->
 
             <div
                 id="wageResults"
@@ -646,39 +923,43 @@
 
                 <h2
                     class="results-title"
-                    data-i18n="wage_results"
+                    data-i18n="paycheck_results"
                 >
-                    Your Income Results
+                    Estimated Paycheck Results
                 </h2>
 
 
-                <!-- Main Result -->
+                <!-- TAKE HOME -->
 
-                <div class="main-result">
+                <div class="take-home-result">
 
-                    <span data-i18n="annual_income">
-                        Annual Income
+                    <span data-i18n="estimated_take_home">
+                        Estimated Take-Home Pay
                     </span>
 
-                    <strong id="annualIncome">
+                    <strong id="takeHomePay">
                         $0.00
                     </strong>
+
+                    <small id="payFrequencyLabel">
+                        Biweekly
+                    </small>
 
                 </div>
 
 
-                <!-- Results Grid -->
+                <!-- GROSS -->
 
                 <div class="results-grid">
 
 
                     <div class="result-box">
 
-                        <span data-i18n="hourly_income">
-                            Hourly Income
+                        <span data-i18n="gross_pay">
+                            Gross Pay
                         </span>
 
-                        <strong id="resultHourly">
+                        <strong id="grossPay">
                             $0.00
                         </strong>
 
@@ -687,11 +968,11 @@
 
                     <div class="result-box">
 
-                        <span data-i18n="weekly_income">
-                            Weekly Income
+                        <span data-i18n="annual_gross_income">
+                            Annual Gross Income
                         </span>
 
-                        <strong id="resultWeekly">
+                        <strong id="annualGrossIncome">
                             $0.00
                         </strong>
 
@@ -700,11 +981,11 @@
 
                     <div class="result-box">
 
-                        <span data-i18n="biweekly_income">
-                            Biweekly Income
+                        <span data-i18n="annual_take_home">
+                            Annual Take-Home Pay
                         </span>
 
-                        <strong id="resultBiweekly">
+                        <strong id="annualTakeHome">
                             $0.00
                         </strong>
 
@@ -713,11 +994,11 @@
 
                     <div class="result-box">
 
-                        <span data-i18n="monthly_income">
-                            Monthly Income
+                        <span data-i18n="monthly_take_home">
+                            Monthly Take-Home Pay
                         </span>
 
-                        <strong id="resultMonthly">
+                        <strong id="monthlyTakeHome">
                             $0.00
                         </strong>
 
@@ -726,22 +1007,124 @@
                 </div>
 
 
-                <!-- Overtime -->
+                <!-- DEDUCTIONS -->
 
-                <div class="overtime-box">
+                <div class="deductions-box">
 
-                    <h3 data-i18n="overtime_income">
-                        Overtime Income
+                    <h3 data-i18n="payroll_deductions">
+                        Payroll Deductions
+                    </h3>
+
+
+                    <div class="deduction-row">
+
+                        <span data-i18n="cpp">
+                            CPP
+                        </span>
+
+                        <strong id="cppDeduction">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="deduction-row">
+
+                        <span data-i18n="cpp2">
+                            CPP2
+                        </span>
+
+                        <strong id="cpp2Deduction">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="deduction-row">
+
+                        <span data-i18n="ei">
+                            EI
+                        </span>
+
+                        <strong id="eiDeduction">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="deduction-row">
+
+                        <span data-i18n="federal_tax">
+                            Federal Income Tax
+                        </span>
+
+                        <strong id="federalTax">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="deduction-row">
+
+                        <span data-i18n="provincial_tax">
+                            Provincial Income Tax
+                        </span>
+
+                        <strong id="provincialTax">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="deduction-row">
+
+                        <span data-i18n="other_deductions">
+                            Other Deductions
+                        </span>
+
+                        <strong id="otherDeductionResult">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="deduction-row deduction-total">
+
+                        <span data-i18n="total_deductions">
+                            Total Deductions
+                        </span>
+
+                        <strong id="totalDeductions">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ANNUAL SUMMARY -->
+
+                <div class="pay-period-box">
+
+                    <h3 data-i18n="annual_summary">
+                        Annual Summary
                     </h3>
 
 
                     <p>
 
-                        <strong data-i18n="regular_annual_income">
-                            Regular Annual Income:
+                        <strong data-i18n="annual_cpp">
+                            Annual CPP:
                         </strong>
 
-                        <span id="regularAnnualIncome">
+                        <span id="annualCpp">
                             $0.00
                         </span>
 
@@ -750,11 +1133,11 @@
 
                     <p>
 
-                        <strong data-i18n="annual_overtime_income">
-                            Annual Overtime Income:
+                        <strong data-i18n="annual_ei">
+                            Annual EI:
                         </strong>
 
-                        <span id="annualOvertimeIncome">
+                        <span id="annualEi">
                             $0.00
                         </span>
 
@@ -763,11 +1146,24 @@
 
                     <p>
 
-                        <strong data-i18n="total_annual_income">
-                            Total Annual Income:
+                        <strong data-i18n="annual_federal_tax">
+                            Annual Federal Tax:
                         </strong>
 
-                        <span id="totalAnnualIncome">
+                        <span id="annualFederalTax">
+                            $0.00
+                        </span>
+
+                    </p>
+
+
+                    <p>
+
+                        <strong data-i18n="annual_provincial_tax">
+                            Annual Provincial Tax:
+                        </strong>
+
+                        <span id="annualProvincialTax">
                             $0.00
                         </span>
 
@@ -775,36 +1171,49 @@
 
                 </div>
 
+
+                <!-- DISCLAIMER -->
+
+                <div class="calculator-disclaimer">
+
+                    ⚠️
+
+                    <span data-i18n="payroll_disclaimer">
+                        This calculator provides an estimate only. Actual payroll deductions may vary depending on your TD1 information, tax credits, benefits, pension contributions, province, pay period, and other circumstances.
+                    </span>
+
+                </div>
 
             </div>
 
         </section>
 
 
-        <!-- Information -->
+        <!-- ==========================================
+             INFORMATION
+             ========================================== -->
 
         <section class="calculator-info">
 
 
-            <h2 data-i18n="about_hourly_wage_calculator">
-                About the Hourly Wage & Salary Calculator
+            <h2 data-i18n="about_paycheck_calculator">
+                About the Canadian Paycheck & Salary Calculator
             </h2>
 
 
-            <p data-i18n="hourly_wage_calculator_description">
-                This calculator helps estimate income from an hourly wage. You can calculate weekly, biweekly, monthly, and annual income and include overtime pay in your estimate.
+            <p data-i18n="paycheck_calculator_description">
+                This calculator estimates gross income, CPP, CPP2, EI, federal income tax, provincial income tax, and take-home pay for employees in Canada.
             </p>
 
 
-            <h2 data-i18n="hourly_wage_tip_title">
-                Hourly Wage Tip
+            <h2 data-i18n="paycheck_calculator_tip_title">
+                Paycheck Calculator Tip
             </h2>
 
 
-            <p data-i18n="hourly_wage_tip">
-                When comparing job offers, look beyond the hourly wage and consider your total annual income, working hours, overtime, vacation time, and other benefits.
+            <p data-i18n="paycheck_calculator_tip">
+                Your take-home pay is different from your gross pay because payroll deductions such as CPP, EI, and income tax are deducted before you receive your net pay.
             </p>
-
 
         </section>
 
@@ -812,7 +1221,7 @@
     </main>
 
 
-    <!-- Language System -->
+    <!-- LANGUAGE SYSTEM -->
 
     <script
         type="module"
@@ -820,7 +1229,7 @@
     ></script>
 
 
-    <!-- Calculator -->
+    <!-- CALCULATOR -->
 
     <script
         type="module"
