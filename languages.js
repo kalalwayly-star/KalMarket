@@ -143,9 +143,10 @@ function updateText(translations, language) {
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Handle Button Clicks (English, Arabic)
     const langButtons = {
-        "lang-en": "en",
-        "lang-ar": "ar"
-    };
+    "lang-en": "en",
+    "lang-fr": "fr",
+    "lang-ar": "ar"
+};
 
     Object.entries(langButtons).forEach(([id, lang]) => {
         const btn = document.getElementById(id);
