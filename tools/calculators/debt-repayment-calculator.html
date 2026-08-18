@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Google AdSense -->
+    <script async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6176105257644553"
+        crossorigin="anonymous">
+    </script>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title data-i18n="debt_repayment_calculator_title">
+        Debt Repayment Calculator
+    </title>
+
+    <meta
+        name="description"
+        content="Calculate how long it may take to pay off debt, total interest, and how extra payments can help you become debt-free faster."
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../style.css?v=2"
+    >
+
+    <style>
+
+        /* Your calculator-specific CSS goes here */
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- AdSense Auto Ads -->
+    <amp-auto-ads
+        type="adsense"
+        data-ad-client="ca-pub-6176105257644553">
+    </amp-auto-ads>
+
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="container">
+
+
+            <!-- Visitor Count -->
+            <p
+                id="visitorCount"
+                data-i18n="visitor_count"
+            >
+                👥 Visitors: 0
+            </p>
+
+
+            <!-- Language Buttons -->
+            <div class="lang-buttons">
+
+                <button id="lang-en">
+                    English
+                </button>
+
+                <button id="lang-ar">
+                    العربية
+                </button>
+
+            </div>
+
+
+            <!-- Site Name -->
+            <h1 data-i18n="app_name">
+                KalMarket
+            </h1>
+
+
+            <p
+                class="hero-tagline"
+                data-i18n="hero_tagline"
+            >
+                The Free Local Classified Marketplace
+            </p>
+
+
+            <p
+                class="hero-subtitle"
+                data-i18n="hero_subtitle"
+            >
+                Buy • Sell • Trade • Find Local Services
+            </p>
+
+
+            <div class="hero-actions">
+
+                <span
+                    class="free-badge"
+                    data-i18n="free_badge"
+                >
+                    🟢 100% FREE to Post Ads
+                </span>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="nav">
+
+                <a
+                    href="../../index.html"
+                    class="btn"
+                    data-i18n="home"
+                >
+                    Home
+                </a>
+
+
+                <a
+                    href="../../messages.html"
+                    class="btn message-link"
+                    data-i18n="nav_messages"
+                >
+                    Messages
+
+                    <span
+                        id="unread-count"
+                        style="
+                            display:none;
+                            background:red;
+                            color:white;
+                            font-size:12px;
+                            padding:2px 7px;
+                            border-radius:50%;
+                            margin-left:5px;
+                        "
+                    >
+                        0
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="../../myads.html"
+                    class="btn"
+                    data-i18n="myAds"
+                >
+                    My Ads
+                </a>
+
+
+                <a
+                    href="../index.html"
+                    class="btn primary"
+                    data-i18n="tools"
+                >
+                    Tools
+                </a>
+
+
+                <a
+                    href="../../post.html"
+                    class="btn primary"
+                    data-i18n="postAd"
+                >
+                    Post Ad
+                </a>
+
+
+                <a
+                    id="userAuth"
+                    href="../../login.html"
+                    class="btn"
+                    data-i18n="nav_login"
+                >
+                    Login
+                </a>
+
+
+                <a
+                    href="../../register.html"
+                    class="btn primary"
+                    data-i18n="create_account"
+                >
+                    Create Account
+                </a>
+
+
+                <button
+                    id="logout-btn"
+                    style="display:none;"
+                    data-i18n="logout"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+
+            <!-- USER INFO -->
+            <div
+                id="user-info-header"
+                style="display:none;"
+            >
+
+                <span data-i18n="logged_in_as">
+                    Logged in as:
+                </span>
+
+                <span id="header-user-email"></span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title data-i18n="debt_repayment_calculator_title">
+        Debt Repayment Calculator
+    </title>
+
+    <meta
+        name="description"
+        content="Calculate how long it will take to pay off debt, total interest, and how extra payments can help you become debt-free faster."
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../style.css?v=2"
+    >
+
+    <style>
+
+        .calculator-page {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .calculator-header .calculator-icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .calculator-header h1 {
+            margin-bottom: 10px;
+        }
+
+        .calculator-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .calculator-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .calculator-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-group small {
+            margin-top: 5px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .calculator-actions {
+            grid-column: 1 / -1;
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .calculate-btn,
+        .reset-btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .calculate-btn {
+            background: #2563eb;
+            color: white;
+        }
+
+        .reset-btn {
+            background: #e5e7eb;
+            color: #222;
+        }
+
+        .calculator-results {
+            margin-top: 30px;
+            display: none;
+        }
+
+        .calculator-results.show {
+            display: block;
+        }
+
+        .results-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .main-result {
+            text-align: center;
+            padding: 25px;
+            border-radius: 14px;
+            background: #f3f7ff;
+            margin-bottom: 20px;
+        }
+
+        .main-result span {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .main-result strong {
+            font-size: 34px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .result-box {
+            padding: 18px;
+            border-radius: 10px;
+            background: #f7f7f7;
+        }
+
+        .result-box span {
+            display: block;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 6px;
+        }
+
+        .result-box strong {
+            font-size: 20px;
+        }
+
+        .extra-payment-box {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #f5faff;
+        }
+
+        .extra-payment-box h3 {
+            margin-top: 0;
+        }
+
+        .calculator-info {
+            margin-top: 35px;
+            line-height: 1.7;
+        }
+
+        .calculator-info h2 {
+            margin-top: 25px;
+        }
+
+        @media (max-width: 700px) {
+
+            .calculator-page {
+                margin: 20px auto;
+                padding: 12px;
+            }
+
+            .calculator-card {
+                padding: 20px;
+            }
+
+            .calculator-form,
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calculator-actions {
+                flex-direction: column;
+            }
+
+            .main-result strong {
+                font-size: 28px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+    <main class="calculator-page">
+
+
+        <!-- Header -->
+
+        <section class="calculator-header">
+
+            <div class="calculator-icon">
+                💳
+            </div>
+
+            <h1 data-i18n="debt_repayment_calculator_title">
+                Debt Repayment Calculator
+            </h1>
+
+            <p data-i18n="debt_repayment_calculator_intro">
+                Find out how long it may take to pay off your debt and how extra payments can help you become debt-free faster.
+            </p>
+
+        </section>
+
+
+        <!-- Calculator -->
+
+        <section class="calculator-card">
+
+            <div class="calculator-form">
+
+
+                <!-- Current Balance -->
+
+                <div class="form-group">
+
+                    <label
+                        for="debtBalance"
+                        data-i18n="current_debt_balance"
+                    >
+                        Current Debt Balance
+                    </label>
+
+                    <input
+                        type="number"
+                        id="debtBalance"
+                        min="0"
+                        step="0.01"
+                        placeholder="10000"
+                    >
+
+                </div>
+
+
+                <!-- Interest Rate -->
+
+                <div class="form-group">
+
+                    <label
+                        for="debtInterestRate"
+                        data-i18n="interest_rate"
+                    >
+                        Interest Rate (%)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="debtInterestRate"
+                        min="0"
+                        step="0.01"
+                        placeholder="19.99"
+                    >
+
+                </div>
+
+
+                <!-- Monthly Payment -->
+
+                <div class="form-group">
+
+                    <label
+                        for="monthlyDebtPayment"
+                        data-i18n="monthly_debt_payment"
+                    >
+                        Monthly Payment
+                    </label>
+
+                    <input
+                        type="number"
+                        id="monthlyDebtPayment"
+                        min="0"
+                        step="0.01"
+                        placeholder="300"
+                    >
+
+                </div>
+
+
+                <!-- Extra Payment -->
+
+                <div class="form-group">
+
+                    <label
+                        for="extraPayment"
+                        data-i18n="extra_monthly_payment"
+                    >
+                        Extra Monthly Payment
+                    </label>
+
+                    <input
+                        type="number"
+                        id="extraPayment"
+                        min="0"
+                        step="0.01"
+                        value="0"
+                        placeholder="50"
+                    >
+
+                    <small data-i18n="extra_payment_note">
+                        Optional: enter an additional amount you could pay each month.
+                    </small>
+
+                </div>
+
+
+                <!-- Buttons -->
+
+                <div class="calculator-actions">
+
+                    <button
+                        type="button"
+                        id="calculateDebtBtn"
+                        class="calculate-btn"
+                        data-i18n="calculate"
+                    >
+                        Calculate
+                    </button>
+
+                    <button
+                        type="button"
+                        id="resetDebtBtn"
+                        class="reset-btn"
+                        data-i18n="reset"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Results -->
+
+            <div
+                id="debtResults"
+                class="calculator-results"
+            >
+
+
+                <h2
+                    class="results-title"
+                    data-i18n="debt_repayment_results"
+                >
+                    Your Debt Repayment Results
+                </h2>
+
+
+                <!-- Main Result -->
+
+                <div class="main-result">
+
+                    <span data-i18n="debt_free_time">
+                        Estimated Debt-Free Time
+                    </span>
+
+                    <strong id="payoffTime">
+                        0 months
+                    </strong>
+
+                </div>
+
+
+                <!-- Results Grid -->
+
+                <div class="results-grid">
+
+
+                    <div class="result-box">
+
+                        <span data-i18n="total_interest">
+                            Total Interest
+                        </span>
+
+                        <strong id="debtTotalInterest">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-box">
+
+                        <span data-i18n="total_payments">
+                            Total Amount Paid
+                        </span>
+
+                        <strong id="debtTotalPaid">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-box">
+
+                        <span data-i18n="monthly_payment">
+                            Monthly Payment
+                        </span>
+
+                        <strong id="debtPayment">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-box">
+
+                        <span data-i18n="remaining_balance">
+                            Remaining Balance
+                        </span>
+
+                        <strong id="remainingBalance">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Extra Payment Comparison -->
+
+                <div
+                    id="extraPaymentResults"
+                    class="extra-payment-box"
+                >
+
+                    <h3 data-i18n="extra_payment_comparison">
+                        Extra Payment Comparison
+                    </h3>
+
+                    <p>
+
+                        <strong data-i18n="regular_payoff_time">
+                            Regular payoff time:
+                        </strong>
+
+                        <span id="regularPayoffTime">
+                            0 months
+                        </span>
+
+                    </p>
+
+                    <p>
+
+                        <strong data-i18n="extra_payoff_time">
+                            With extra payments:
+                        </strong>
+
+                        <span id="extraPayoffTime">
+                            0 months
+                        </span>
+
+                    </p>
+
+                    <p>
+
+                        <strong data-i18n="time_saved">
+                            Time saved:
+                        </strong>
+
+                        <span id="timeSaved">
+                            0 months
+                        </span>
+
+                    </p>
+
+                    <p>
+
+                        <strong data-i18n="interest_saved">
+                            Interest saved:
+                        </strong>
+
+                        <span id="interestSaved">
+                            $0.00
+                        </span>
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- Information -->
+
+        <section class="calculator-info">
+
+
+            <h2 data-i18n="about_debt_repayment_calculator">
+                About the Debt Repayment Calculator
+            </h2>
+
+            <p data-i18n="debt_repayment_calculator_description">
+                This calculator estimates how long it may take to repay debt based on your current balance, interest rate, and monthly payment. You can also see how making an extra payment each month could reduce your payoff time and total interest.
+            </p>
+
+
+            <h2 data-i18n="debt_repayment_tip_title">
+                Debt Repayment Tip
+            </h2>
+
+            <p data-i18n="debt_repayment_tip">
+                Even a small additional payment each month can help reduce the time it takes to pay off debt and may significantly reduce the interest you pay.
+            </p>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- Language System -->
+    <script
+        type="module"
+        src="../../languages.js"
+    ></script>
+
+
+    <!-- Debt Calculator -->
+    <script
+        type="module"
+        src="debt-repayment-calculator.js"
+    ></script>
+
+</body>
+
+</html>
