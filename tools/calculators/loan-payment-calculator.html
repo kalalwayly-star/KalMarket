@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title data-i18n="loan_payment_calculator_title">
+        Loan Payment Calculator
+    </title>
+
+    <meta
+        name="description"
+        content="Calculate monthly loan payments, total interest, and total repayment with this free loan payment calculator."
+    >
+
+    <link rel="stylesheet" href="../../style.css?v=2">
+
+    <style>
+        .calculator-page {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .calculator-header .calculator-icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .calculator-header h1 {
+            margin-bottom: 10px;
+        }
+
+        .calculator-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .calculator-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .calculator-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-group small {
+            margin-top: 5px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .calculator-actions {
+            grid-column: 1 / -1;
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .calculate-btn,
+        .reset-btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .calculate-btn {
+            background: #2563eb;
+            color: white;
+        }
+
+        .reset-btn {
+            background: #e5e7eb;
+            color: #222;
+        }
+
+        .calculator-results {
+            margin-top: 30px;
+            display: none;
+        }
+
+        .calculator-results.show {
+            display: block;
+        }
+
+        .results-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .main-result {
+            text-align: center;
+            padding: 25px;
+            border-radius: 14px;
+            background: #f3f7ff;
+            margin-bottom: 20px;
+        }
+
+        .main-result span {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .main-result strong {
+            font-size: 36px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .result-box {
+            padding: 18px;
+            border-radius: 10px;
+            background: #f7f7f7;
+        }
+
+        .result-box span {
+            display: block;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 6px;
+        }
+
+        .result-box strong {
+            font-size: 20px;
+        }
+
+        .calculator-info {
+            margin-top: 35px;
+            line-height: 1.7;
+        }
+
+        .calculator-info h2 {
+            margin-top: 25px;
+        }
+
+        @media (max-width: 700px) {
+
+            .calculator-page {
+                margin: 20px auto;
+                padding: 12px;
+            }
+
+            .calculator-card {
+                padding: 20px;
+            }
+
+            .calculator-form,
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calculator-actions {
+                flex-direction: column;
+            }
+
+            .main-result strong {
+                font-size: 30px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <!-- Keep your existing website header/navigation here -->
+    </header>
+
+
+    <main class="calculator-page">
+
+        <!-- Header -->
+        <section class="calculator-header">
+
+            <div class="calculator-icon">
+                📊
+            </div>
+
+            <h1 data-i18n="loan_payment_calculator_title">
+                Loan Payment Calculator
+            </h1>
+
+            <p data-i18n="loan_payment_calculator_intro">
+                Calculate your monthly loan payment, total interest, and total amount paid.
+            </p>
+
+        </section>
+
+
+        <!-- Calculator -->
+        <section class="calculator-card">
+
+            <div class="calculator-form">
+
+                <!-- Loan Amount -->
+                <div class="form-group">
+
+                    <label
+                        for="loanAmount"
+                        data-i18n="loan_amount"
+                    >
+                        Loan Amount
+                    </label>
+
+                    <input
+                        type="number"
+                        id="loanAmount"
+                        min="0"
+                        step="0.01"
+                        placeholder="25000"
+                    >
+
+                </div>
+
+
+                <!-- Interest Rate -->
+                <div class="form-group">
+
+                    <label
+                        for="interestRate"
+                        data-i18n="interest_rate"
+                    >
+                        Interest Rate (%)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="interestRate"
+                        min="0"
+                        step="0.01"
+                        placeholder="7"
+                    >
+
+                </div>
+
+
+                <!-- Loan Term -->
+                <div class="form-group">
+
+                    <label
+                        for="loanTerm"
+                        data-i18n="loan_term"
+                    >
+                        Loan Term
+                    </label>
+
+                    <select id="loanTerm">
+
+                        <option value="12">12 months</option>
+                        <option value="24">24 months</option>
+                        <option value="36">36 months</option>
+                        <option value="48">48 months</option>
+                        <option value="60" selected>60 months</option>
+                        <option value="72">72 months</option>
+                        <option value="84">84 months</option>
+                        <option value="96">96 months</option>
+                        <option value="120">120 months</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Payment Frequency -->
+                <div class="form-group">
+
+                    <label
+                        for="paymentFrequency"
+                        data-i18n="payment_frequency"
+                    >
+                        Payment Frequency
+                    </label>
+
+                    <select id="paymentFrequency">
+
+                        <option
+                            value="monthly"
+                            selected
+                        >
+                            Monthly
+                        </option>
+
+                        <option value="biweekly">
+                            Biweekly
+                        </option>
+
+                        <option value="weekly">
+                            Weekly
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Buttons -->
+                <div class="calculator-actions">
+
+                    <button
+                        type="button"
+                        id="calculateLoanBtn"
+                        class="calculate-btn"
+                        data-i18n="calculate"
+                    >
+                        Calculate
+                    </button>
+
+                    <button
+                        type="button"
+                        id="resetLoanBtn"
+                        class="reset-btn"
+                        data-i18n="reset"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Results -->
+            <div
+                id="loanResults"
+                class="calculator-results"
+            >
+
+                <h2
+                    class="results-title"
+                    data-i18n="loan_payment_results"
+                >
+                    Your Loan Results
+                </h2>
+
+
+                <!-- Main Result -->
+                <div class="main-result">
+
+                    <span id="paymentLabel">
+                        Monthly Payment
+                    </span>
+
+                    <strong id="paymentAmount">
+                        $0.00
+                    </strong>
+
+                </div>
+
+
+                <!-- Other Results -->
+                <div class="results-grid">
+
+                    <div class="result-box">
+
+                        <span data-i18n="loan_amount">
+                            Loan Amount
+                        </span>
+
+                        <strong id="resultLoanAmount">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-box">
+
+                        <span data-i18n="total_interest">
+                            Total Interest
+                        </span>
+
+                        <strong id="resultTotalInterest">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-box">
+
+                        <span data-i18n="total_payments">
+                            Total Amount Paid
+                        </span>
+
+                        <strong id="resultTotalPayments">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-box">
+
+                        <span data-i18n="number_of_payments">
+                            Number of Payments
+                        </span>
+
+                        <strong id="resultNumberPayments">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Information -->
+        <section class="calculator-info">
+
+            <h2 data-i18n="about_loan_payment_calculator">
+                About the Loan Payment Calculator
+            </h2>
+
+            <p data-i18n="loan_payment_calculator_description">
+                This calculator helps you estimate the payment required to repay a loan based on the loan amount, interest rate, loan term, and payment frequency.
+            </p>
+
+
+            <h2 data-i18n="loan_payment_tip_title">
+                Loan Payment Tip
+            </h2>
+
+            <p data-i18n="loan_payment_tip">
+                A lower interest rate can significantly reduce the total interest paid over the life of a loan. Compare loan terms carefully because a longer term may reduce your payment but increase your total interest cost.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script type="module" src="../../languages.js"></script>
+
+    <script type="module" src="loan-payment-calculator.js"></script>
+
+</body>
+
+</html>
