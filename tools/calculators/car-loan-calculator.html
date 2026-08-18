@@ -1,5 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title data-i18n="loan_payment_calculator_title">
+        Loan Payment Calculator
+    </title>
+
+    <meta
+        name="description"
+        content="Calculate monthly loan payments, total interest, and total repayment with this free loan payment calculator."
+    >
+
+    <link rel="stylesheet" href="../../style.css?v=2">
+
+    <style>
+        .calculator-page {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .calculator-header .calculator-icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .calculator-header h1 {
+            margin-bottom: 10px;
+        }
+
+        .calculator-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .calculator-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .calculator-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-group small {
+            margin-top: 5px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .calculator-actions {
+            grid-column: 1 / -1;
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .calculate-btn,
+        .reset-btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .calculate-btn {
+            background: #2563eb;
+            color: white;
+        }
+
+        .reset-btn {
+            background: #e5e7eb;
+            color: #222;
+        }
+
+        .calculator-results {
+            margin-top: 30px;
+            display: none;
+        }
+
+        .calculator-results.show {
+            display: block;
+        }
+
+        .results-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .main-result {
+            text-align: center;
+            padding: 25px;
+            border-radius: 14px;
+            background: #f3f7ff;
+            margin-bottom: 20px;
+        }
+
+        .main-result span {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .main-result strong {
+            font-size: 36px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .result-box {
+            padding: 18px;
+            border-radius: 10px;
+            background: #f7f7f7;
+        }
+
+        .result-box span {
+            display: block;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 6px;
+        }
+
+        .result-box strong {
+            font-size: 20px;
+        }
+
+        .calculator-info {
+            margin-top: 35px;
+            line-height: 1.7;
+        }
+
+        .calculator-info h2 {
+            margin-top: 25px;
+        }
+
+        @media (max-width: 700px) {
+
+            .calculator-page {
+                margin: 20px auto;
+                padding: 12px;
+            }
+
+            .calculator-card {
+                padding: 20px;
+            }
+
+            .calculator-form,
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calculator-actions {
+                flex-direction: column;
+            }
+
+            .main-result strong {
+                font-size: 30px;
+            }
+        }
+    </style>
+
+</head>
 <head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6176105257644553"
      crossorigin="anonymous"></script>
@@ -78,7 +280,7 @@
 
 </head>
 
-<body>
+
 <amp-auto-ads type="adsense"
         data-ad-client="ca-pub-6176105257644553">
 </amp-auto-ads>
