@@ -1,0 +1,89 @@
+{
+
+"paycheck_calculator_category": "PAIE",
+"paycheck_calculator_title": "Calculateur de paie et de salaire au Canada",
+"paycheck_calculator_card_description": "Estimez votre salaire brut, le RPC, l'AE, l'impôt sur le revenu et votre salaire net au Canada.",
+"use_calculator": "Utiliser la calculatrice",
+  
+    "paycheck_calculator_title": "Calculateur de paie et de salaire au Canada",
+    "paycheck_calculator_intro": "Estimez votre salaire brut, le RPC, l’AE, l’impôt fédéral, l’impôt provincial et votre salaire net selon votre taux horaire, vos heures de travail et votre province.",
+
+    "income_information": "Informations sur le revenu",
+
+    "hourly_wage": "Taux horaire",
+    "hours_per_week": "Heures par semaine",
+    "weeks_per_year": "Semaines par année",
+    "overtime_hours_per_week": "Heures supplémentaires par semaine",
+    "overtime_rate": "Taux des heures supplémentaires",
+
+    "overtime_time_half": "1,5×",
+    "overtime_double": "2×",
+
+    "province": "Province / Territoire",
+
+    "pay_frequency": "Fréquence de paie",
+    "weekly": "Hebdomadaire",
+    "biweekly": "Aux deux semaines",
+    "semi_monthly": "Deux fois par mois",
+    "monthly": "Mensuelle",
+
+    "tax_information": "Informations fiscales",
+
+    "basic_tax_credit": "Crédit d'impôt de base",
+    "standard_basic_credit": "Standard",
+    "custom": "Personnalisé",
+
+    "basic_tax_credit_note": "Utilise le montant personnel de base standard pour l'estimation.",
+
+    "other_deductions": "Autres déductions annuelles",
+
+    "other_deductions_note": "Déductions facultatives telles que certaines cotisations de retraite ou autres retenues sur la paie.",
+
+    "calculate": "Calculer",
+    "reset": "Réinitialiser",
+
+    "paycheck_results": "Estimation de votre paie",
+
+    "estimated_take_home": "Salaire net estimé",
+
+    "gross_pay": "Salaire brut",
+    "annual_gross_income": "Revenu brut annuel",
+    "annual_take_home": "Salaire net annuel",
+    "monthly_take_home": "Salaire net mensuel",
+
+    "payroll_deductions": "Retenues sur la paie",
+
+    "cpp": "RPC",
+    "cpp2": "RPC2",
+    "ei": "AE",
+
+    "federal_tax": "Impôt fédéral sur le revenu",
+    "provincial_tax": "Impôt provincial sur le revenu",
+
+    "total_deductions": "Total des déductions",
+
+    "annual_summary": "Résumé annuel",
+
+    "annual_cpp": "RPC annuel :",
+    "annual_ei": "AE annuelle :",
+    "annual_federal_tax": "Impôt fédéral annuel :",
+    "annual_provincial_tax": "Impôt provincial annuel :",
+
+    "payroll_disclaimer": "Cette calculatrice fournit uniquement une estimation. Les retenues réelles sur la paie peuvent varier selon vos renseignements du formulaire TD1, vos crédits d'impôt, vos avantages sociaux, vos cotisations de retraite, votre province, votre fréquence de paie et votre situation personnelle.",
+
+    "about_paycheck_calculator": "À propos du calculateur de paie et de salaire au Canada",
+
+    "paycheck_calculator_description": "Cette calculatrice estime le revenu brut, le RPC, le RPC2, l'AE, l'impôt fédéral, l'impôt provincial et le salaire net pour les employés au Canada.",
+
+    "paycheck_calculator_tip_title": "Conseil sur la paie",
+
+    "paycheck_calculator_tip": "Votre salaire net est différent de votre salaire brut, car des retenues comme le RPC, l'AE et l'impôt sur le revenu sont déduites avant que vous receviez votre salaire.",
+
+    "paycheck_calculator_category": "PAIE",
+
+    "paycheck_calculator_card_description": "Estimez votre salaire brut, le RPC, l'AE, l'impôt sur le revenu et votre salaire net au Canada.",
+
+    "use_calculator": "Utiliser la calculatrice"
+
+
+}
