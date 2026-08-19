@@ -83,7 +83,92 @@
 
     "paycheck_calculator_card_description": "Estimez votre salaire brut, le RPC, l'AE, l'impôt sur le revenu et votre salaire net au Canada.",
 
-    "use_calculator": "Utiliser la calculatrice"
+    "use_calculator": "Utiliser la calculatrice",
+  "cash_flow_calculator_category": "FINANCES D’ENTREPRISE",
+"cash_flow_calculator_title": "Calculateur de trésorerie et de projection sur 1 an",
+"cash_flow_calculator_intro": "Projetez la trésorerie de votre entreprise pour les 12 prochains mois en fonction de vos ventes, dépenses, financement et liquidités de départ.",
+"cash_flow_calculator_card_description": "Projetez vos ventes, dépenses, paiements de prêt, flux de trésorerie mensuels et solde de trésorerie final pour les 12 prochains mois.",
+
+"starting_position": "Situation de départ",
+"starting_cash": "Solde de trésorerie initial",
+"projection_start_month": "Mois de début de la projection",
+
+"sales_income": "Ventes et revenus",
+"monthly_sales": "Ventes mensuelles",
+"monthly_sales_growth": "Croissance mensuelle des ventes (%)",
+"sales_growth_note": "Exemple : 2 signifie que les ventes augmentent de 2 % chaque mois.",
+"monthly_other_income": "Autres revenus mensuels",
+
+"monthly_expenses": "Dépenses mensuelles",
+"rent_expense": "Loyer",
+"payroll_expense": "Salaires",
+"inventory_expense": "Stocks / Coût des marchandises",
+"utilities_expense": "Services publics",
+"insurance_expense": "Assurance",
+"marketing_expense": "Marketing",
+"transportation_expense": "Transport",
+"software_expense": "Logiciels / Abonnements",
+"tax_expense": "Impôts et taxes",
+"other_expense": "Autres dépenses",
+"monthly_expense_growth": "Croissance mensuelle des dépenses (%)",
+"expense_growth_note": "Exemple : 2 signifie que les dépenses augmentent de 2 % chaque mois.",
+
+"business_financing": "Financement de l’entreprise",
+"desired_loan": "Montant du prêt souhaité",
+"loan_interest_rate": "Taux d’intérêt annuel du prêt (%)",
+"loan_term_years": "Durée du prêt (années)",
+"loan_start_month": "Mois de début du prêt",
+
+"calculate": "Calculer la projection",
+"reset": "Réinitialiser",
+
+"projection_results": "Projection de trésorerie sur 12 mois",
+
+"year_end_cash": "Trésorerie en fin d’année",
+"annual_net_cash_flow": "Flux de trésorerie net annuel",
+"average_monthly_cash_flow": "Flux de trésorerie mensuel moyen",
+"lowest_cash_balance": "Solde de trésorerie le plus bas",
+"total_loan_payments": "Total des paiements du prêt",
+"total_interest_paid": "Total des intérêts payés",
+
+"cash_flow_positive": "🟢 Trésorerie positive : votre solde de trésorerie prévu reste positif tout au long de l’année.",
+"cash_flow_negative": "⚠️ Risque de manque de trésorerie : votre solde de trésorerie prévu devient négatif au cours de l’année.",
+
+"loan_summary": "Résumé du prêt",
+"loan_amount": "Montant du prêt",
+"monthly_loan_payment": "Paiement mensuel du prêt",
+"total_loan_cost": "Coût total du prêt",
+
+"month": "Mois",
+"sales": "Ventes",
+"other_income": "Autres revenus",
+"total_expenses": "Dépenses",
+"loan_payment": "Paiement du prêt",
+"net_cash_flow": "Flux de trésorerie net",
+"ending_cash": "Trésorerie en fin de mois",
+"annual_total": "Total annuel",
+
+"cash_flow_disclaimer": "Ce calculateur fournit une estimation à des fins de planification seulement. La trésorerie réelle de votre entreprise peut varier en fonction des ventes, des dépenses, des taxes, des coûts de financement, du calendrier des paiements et d’autres conditions commerciales.",
+
+"about_cash_flow_calculator": "À propos du calculateur de projection de trésorerie",
+"cash_flow_calculator_description": "Ce calculateur aide les propriétaires d’entreprise à estimer leur situation de trésorerie pour les 12 prochains mois en projetant les ventes, les revenus, les dépenses, les paiements de prêt, les flux de trésorerie mensuels et la trésorerie finale.",
+"cash_flow_tip_title": "Pourquoi la trésorerie est importante",
+"cash_flow_tip": "Une entreprise peut être rentable tout en connaissant un manque de trésorerie. Une projection mensuelle de trésorerie vous aide à identifier les éventuels problèmes de liquidités avant qu’ils ne surviennent.",
+
+"january": "Janvier",
+"february": "Février",
+"march": "Mars",
+"april": "Avril",
+"may": "Mai",
+"june": "Juin",
+"july": "Juillet",
+"august": "Août",
+"september": "Septembre",
+"october": "Octobre",
+"november": "Novembre",
+"december": "Décembre",
+
+"use_calculator": "Utiliser le calculateur"
 
 
 }
