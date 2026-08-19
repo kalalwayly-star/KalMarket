@@ -2226,3 +2226,48 @@ box-sizing: border-box;
     font-size: 24px;
     font-weight: 800;
 }
+/* =========================================
+   MOBILE HEADER STANDALONE LINKS
+========================================= */
+
+.header-standalone-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.header-standalone-links a {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .header-standalone-links {
+        display: flex !important;
+        width: 100%;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    .header-standalone-links a {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .immigration-link,
+    .calculators-link {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+}
