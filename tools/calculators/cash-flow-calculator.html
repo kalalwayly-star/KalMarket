@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Google AdSense -->
+    <script async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6176105257644553"
+        crossorigin="anonymous">
+    </script>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title data-i18n="cash_flow_calculator_title">
+        1-Year Cash Flow & Business Projection Calculator
+    </title>
+
+    <meta
+        name="description"
+        content="Project your business cash flow for an entire year including sales, expenses, loans, monthly cash flow and ending cash balance."
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../style.css?v=2"
+    >
+
+    <style>
+
+        .calculator-page {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .calculator-icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .calculator-header h1 {
+            margin-bottom: 10px;
+        }
+
+        .calculator-header p {
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+        .calculator-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+
+        .calculator-section {
+            margin-bottom: 35px;
+        }
+
+        .calculator-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .calculator-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .form-group small {
+            margin-top: 5px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .calculator-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .calculate-btn,
+        .reset-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .calculate-btn {
+            background: #2563eb;
+            color: white;
+        }
+
+        .reset-btn {
+            background: #e5e7eb;
+            color: #222;
+        }
+
+        .calculator-results {
+            display: none;
+            margin-top: 35px;
+        }
+
+        .calculator-results.show {
+            display: block;
+        }
+
+        .results-title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .summary-card {
+            padding: 20px;
+            border-radius: 12px;
+            background: #f7f7f7;
+            text-align: center;
+        }
+
+        .summary-card span {
+            display: block;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .summary-card strong {
+            font-size: 24px;
+        }
+
+        .cash-status {
+            text-align: center;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .cash-status.positive {
+            background: #eaf8ef;
+        }
+
+        .cash-status.negative {
+            background: #fff0f0;
+        }
+
+        .projection-wrapper {
+            overflow-x: auto;
+            margin-top: 25px;
+        }
+
+        .projection-table {
+            width: 100%;
+            min-width: 850px;
+            border-collapse: collapse;
+        }
+
+        .projection-table th,
+        .projection-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .projection-table th:first-child,
+        .projection-table td:first-child {
+            text-align: left;
+        }
+
+        .projection-table th {
+            background: #f5f5f5;
+            font-weight: 700;
+        }
+
+        .projection-table tfoot td {
+            font-weight: 700;
+            border-top: 2px solid #222;
+        }
+
+        .loan-summary {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #f5faff;
+        }
+
+        .loan-summary h3 {
+            margin-top: 0;
+        }
+
+        .loan-summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 9px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .loan-summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .calculator-disclaimer {
+            margin-top: 30px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #fff8e6;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .calculator-info {
+            margin-top: 35px;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 750px) {
+
+            .calculator-page {
+                margin: 20px auto;
+                padding: 12px;
+            }
+
+            .calculator-card {
+                padding: 20px;
+            }
+
+            .calculator-form {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calculator-actions {
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- AdSense -->
+
+    <amp-auto-ads
+        type="adsense"
+        data-ad-client="ca-pub-6176105257644553">
+    </amp-auto-ads>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="container">
+
+            <p
+                id="visitorCount"
+                data-i18n="visitor_count"
+            >
+                👥 Visitors: 0
+            </p>
+
+
+            <div class="lang-buttons">
+
+                <button id="lang-en">
+                    English
+                </button>
+
+                <button id="lang-fr">
+                    Français
+                </button>
+
+                <button id="lang-ar">
+                    العربية
+                </button>
+
+            </div>
+
+
+            <h1 data-i18n="app_name">
+                KalMarket
+            </h1>
+
+
+            <p
+                class="hero-tagline"
+                data-i18n="hero_tagline"
+            >
+                The Free Local Classified Marketplace
+            </p>
+
+
+            <p
+                class="hero-subtitle"
+                data-i18n="hero_subtitle"
+            >
+                Buy • Sell • Trade • Find Local Services
+            </p>
+
+
+            <div class="hero-actions">
+
+                <span
+                    class="free-badge"
+                    data-i18n="free_badge"
+                >
+                    🟢 100% FREE to Post Ads
+                </span>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+
+            <div class="nav">
+
+                <a
+                    href="../../index.html"
+                    class="btn"
+                    data-i18n="home"
+                >
+                    Home
+                </a>
+
+
+                <a
+                    href="../../messages.html"
+                    class="btn message-link"
+                    data-i18n="nav_messages"
+                >
+                    Messages
+
+                    <span
+                        id="unread-count"
+                        style="
+                            display:none;
+                            background:red;
+                            color:white;
+                            font-size:12px;
+                            padding:2px 7px;
+                            border-radius:50%;
+                            margin-left:5px;
+                        "
+                    >
+                        0
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="../../myads.html"
+                    class="btn"
+                    data-i18n="myAds"
+                >
+                    My Ads
+                </a>
+
+
+                <a
+                    href="../index.html"
+                    class="btn primary"
+                    data-i18n="tools"
+                >
+                    Tools
+                </a>
+
+
+                <a
+                    href="../../post.html"
+                    class="btn primary"
+                    data-i18n="postAd"
+                >
+                    Post Ad
+                </a>
+
+
+                <a
+                    id="userAuth"
+                    href="../../login.html"
+                    class="btn"
+                    data-i18n="nav_login"
+                >
+                    Login
+                </a>
+
+
+                <a
+                    href="../../register.html"
+                    class="btn primary"
+                    data-i18n="create_account"
+                >
+                    Create Account
+                </a>
+
+
+                <button
+                    id="logout-btn"
+                    style="display:none;"
+                    data-i18n="logout"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+
+            <div
+                id="user-info-header"
+                style="display:none;"
+            >
+
+                <span data-i18n="logged_in_as">
+                    Logged in as:
+                </span>
+
+                <span id="header-user-email"></span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN CALCULATOR -->
+
+    <main class="calculator-page">
+
+
+        <!-- INTRO -->
+
+        <section class="calculator-header">
+
+            <div class="calculator-icon">
+                💰
+            </div>
+
+
+            <h1 data-i18n="cash_flow_calculator_title">
+                1-Year Cash Flow & Business Projection Calculator
+            </h1>
+
+
+            <p data-i18n="cash_flow_calculator_intro">
+                Project your business cash flow for the next 12 months based on your expected sales, expenses, financing, and starting cash.
+            </p>
+
+        </section>
+
+
+        <!-- CALCULATOR -->
+
+        <section class="calculator-card">
+
+
+            <!-- STARTING POSITION -->
+
+            <div class="calculator-section">
+
+                <h2 data-i18n="starting_position">
+                    Starting Position
+                </h2>
+
+
+                <div class="calculator-form">
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="startingCash"
+                            data-i18n="starting_cash"
+                        >
+                            Starting Cash Balance
+                        </label>
+
+                        <input
+                            type="number"
+                            id="startingCash"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="projectionStartMonth"
+                            data-i18n="projection_start_month"
+                        >
+                            Projection Start Month
+                        </label>
+
+                        <select id="projectionStartMonth">
+
+                            <option value="0" data-i18n="january">
+                                January
+                            </option>
+
+                            <option value="1" data-i18n="february">
+                                February
+                            </option>
+
+                            <option value="2" data-i18n="march">
+                                March
+                            </option>
+
+                            <option value="3" data-i18n="april">
+                                April
+                            </option>
+
+                            <option value="4" data-i18n="may">
+                                May
+                            </option>
+
+                            <option value="5" data-i18n="june">
+                                June
+                            </option>
+
+                            <option value="6" data-i18n="july">
+                                July
+                            </option>
+
+                            <option value="7" data-i18n="august">
+                                August
+                            </option>
+
+                            <option value="8" data-i18n="september">
+                                September
+                            </option>
+
+                            <option value="9" data-i18n="october">
+                                October
+                            </option>
+
+                            <option value="10" data-i18n="november">
+                                November
+                            </option>
+
+                            <option value="11" data-i18n="december">
+                                December
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SALES -->
+
+            <div class="calculator-section">
+
+                <h2 data-i18n="sales_income">
+                    Sales & Income
+                </h2>
+
+
+                <div class="calculator-form">
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="monthlySales"
+                            data-i18n="monthly_sales"
+                        >
+                            Monthly Sales
+                        </label>
+
+                        <input
+                            type="number"
+                            id="monthlySales"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="salesGrowth"
+                            data-i18n="monthly_sales_growth"
+                        >
+                            Monthly Sales Growth
+                        </label>
+
+                        <input
+                            type="number"
+                            id="salesGrowth"
+                            min="-100"
+                            step="0.1"
+                            value="0"
+                        >
+
+                        <small data-i18n="sales_growth_note">
+                            Example: 2 means sales increase by 2% each month.
+                        </small>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="otherIncome"
+                            data-i18n="monthly_other_income"
+                        >
+                            Other Monthly Income
+                        </label>
+
+                        <input
+                            type="number"
+                            id="otherIncome"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXPENSES -->
+
+            <div class="calculator-section">
+
+                <h2 data-i18n="monthly_expenses">
+                    Monthly Expenses
+                </h2>
+
+
+                <div class="calculator-form">
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="rentExpense"
+                            data-i18n="rent_expense"
+                        >
+                            Rent
+                        </label>
+
+                        <input
+                            type="number"
+                            id="rentExpense"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="payrollExpense"
+                            data-i18n="payroll_expense"
+                        >
+                            Payroll
+                        </label>
+
+                        <input
+                            type="number"
+                            id="payrollExpense"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="inventoryExpense"
+                            data-i18n="inventory_expense"
+                        >
+                            Inventory / Cost of Goods
+                        </label>
+
+                        <input
+                            type="number"
+                            id="inventoryExpense"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="utilitiesExpense"
+                            data-i18n="utilities_expense"
+                        >
+                            Utilities
+                        </label>
+
+                        <input
+                            type="number"
+                            id="utilitiesExpense"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="insuranceExpense"
+                            data-i18n="insurance_expense"
+                        >
+                            Insurance
+                        </label>
+
+                        <input
+                            type="number"
+                            id="insuranceExpense"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="marketingExpense"
+                            data-i18n="marketing_expense"
+                        >
+                            Marketing
+                        </label>
+
+                        <input
+                            type="number"
+                            id="marketingExpense"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="transportationExpense"
+                            data-i18n="transportation_expense"
+                        >
+                            Transportation
+                        </label>
+
+                        <input
+                            type="number"
+                            id="transportationExpense"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="softwareExpense"
+                            data-i18n="software_expense"
+                        >
+                            Software / Subscriptions
+                        </label>
+
+                        <input
+                            type="number"
+                            id="softwareExpense"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="taxExpense"
+                            data-i18n="tax_expense"
+                        >
+                            Taxes
+                        </label>
+
+                        <input
+                            type="number"
+                            id="taxExpense"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="otherExpense"
+                            data-i18n="other_expense"
+                        >
+                            Other Expenses
+                        </label>
+
+                        <input
+                            type="number"
+                            id="otherExpense"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="expenseGrowth"
+                            data-i18n="monthly_expense_growth"
+                        >
+                            Monthly Expense Growth
+                        </label>
+
+                        <input
+                            type="number"
+                            id="expenseGrowth"
+                            min="-100"
+                            step="0.1"
+                            value="0"
+                        >
+
+                        <small data-i18n="expense_growth_note">
+                            Example: 2 means expenses increase by 2% each month.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOAN -->
+
+            <div class="calculator-section">
+
+                <h2 data-i18n="business_financing">
+                    Business Financing
+                </h2>
+
+
+                <div class="calculator-form">
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="loanAmount"
+                            data-i18n="desired_loan"
+                        >
+                            Desired Loan Amount
+                        </label>
+
+                        <input
+                            type="number"
+                            id="loanAmount"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="loanInterest"
+                            data-i18n="loan_interest_rate"
+                        >
+                            Annual Loan Interest Rate (%)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="loanInterest"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="loanTerm"
+                            data-i18n="loan_term_years"
+                        >
+                            Loan Term (Years)
+                        </label>
+
+                        <select id="loanTerm">
+
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5" selected>5</option>
+                            <option value="7">7</option>
+                            <option value="10">10</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="loanStartMonth"
+                            data-i18n="loan_start_month"
+                        >
+                            Loan Start Month
+                        </label>
+
+                        <select id="loanStartMonth">
+
+                            <option value="0" data-i18n="january">
+                                January
+                            </option>
+
+                            <option value="1" data-i18n="february">
+                                February
+                            </option>
+
+                            <option value="2" data-i18n="march">
+                                March
+                            </option>
+
+                            <option value="3" data-i18n="april">
+                                April
+                            </option>
+
+                            <option value="4" data-i18n="may">
+                                May
+                            </option>
+
+                            <option value="5" data-i18n="june">
+                                June
+                            </option>
+
+                            <option value="6" data-i18n="july">
+                                July
+                            </option>
+
+                            <option value="7" data-i18n="august">
+                                August
+                            </option>
+
+                            <option value="8" data-i18n="september">
+                                September
+                            </option>
+
+                            <option value="9" data-i18n="october">
+                                October
+                            </option>
+
+                            <option value="10" data-i18n="november">
+                                November
+                            </option>
+
+                            <option value="11" data-i18n="december">
+                                December
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="calculator-actions">
+
+                <button
+                    type="button"
+                    id="calculateCashFlowBtn"
+                    class="calculate-btn"
+                    data-i18n="calculate"
+                >
+                    Calculate Projection
+                </button>
+
+
+                <button
+                    type="button"
+                    id="resetCashFlowBtn"
+                    class="reset-btn"
+                    data-i18n="reset"
+                >
+                    Reset
+                </button>
+
+            </div>
+
+
+            <!-- RESULTS -->
+
+            <div
+                id="cashFlowResults"
+                class="calculator-results"
+            >
+
+
+                <h2
+                    class="results-title"
+                    data-i18n="projection_results"
+                >
+                    12-Month Cash Flow Projection
+                </h2>
+
+
+                <!-- SUMMARY -->
+
+                <div class="summary-grid">
+
+
+                    <div class="summary-card">
+
+                        <span data-i18n="year_end_cash">
+                            Year-End Cash
+                        </span>
+
+                        <strong id="yearEndCash">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <span data-i18n="annual_net_cash_flow">
+                            Annual Net Cash Flow
+                        </span>
+
+                        <strong id="annualNetCashFlow">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <span data-i18n="average_monthly_cash_flow">
+                            Average Monthly Cash Flow
+                        </span>
+
+                        <strong id="averageMonthlyCashFlow">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <span data-i18n="lowest_cash_balance">
+                            Lowest Cash Balance
+                        </span>
+
+                        <strong id="lowestCashBalance">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <span data-i18n="total_loan_payments">
+                            Total Loan Payments
+                        </span>
+
+                        <strong id="totalLoanPayments">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <span data-i18n="total_interest_paid">
+                            Total Interest Paid
+                        </span>
+
+                        <strong id="totalInterestPaid">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div
+                    id="cashFlowStatus"
+                    class="cash-status"
+                >
+
+                    <span id="cashFlowStatusText">
+                        Cash flow status
+                    </span>
+
+                </div>
+
+
+                <!-- LOAN SUMMARY -->
+
+                <div class="loan-summary">
+
+                    <h3 data-i18n="loan_summary">
+                        Loan Summary
+                    </h3>
+
+
+                    <div class="loan-summary-row">
+
+                        <span data-i18n="loan_amount">
+                            Loan Amount
+                        </span>
+
+                        <strong id="resultLoanAmount">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="loan-summary-row">
+
+                        <span data-i18n="monthly_loan_payment">
+                            Monthly Loan Payment
+                        </span>
+
+                        <strong id="monthlyLoanPayment">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="loan-summary-row">
+
+                        <span data-i18n="total_loan_cost">
+                            Total Loan Cost
+                        </span>
+
+                        <strong id="totalLoanCost">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 12 MONTH TABLE -->
+
+                <div class="projection-wrapper">
+
+                    <table class="projection-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th data-i18n="month">
+                                    Month
+                                </th>
+
+                                <th data-i18n="sales">
+                                    Sales
+                                </th>
+
+                                <th data-i18n="other_income">
+                                    Other Income
+                                </th>
+
+                                <th data-i18n="total_expenses">
+                                    Expenses
+                                </th>
+
+                                <th data-i18n="loan_payment">
+                                    Loan Payment
+                                </th>
+
+                                <th data-i18n="net_cash_flow">
+                                    Net Cash Flow
+                                </th>
+
+                                <th data-i18n="ending_cash">
+                                    Ending Cash
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="projectionTableBody">
+                        </tbody>
+
+
+                        <tfoot>
+
+                            <tr>
+
+                                <td data-i18n="annual_total">
+                                    Annual Total
+                                </td>
+
+                                <td id="totalSales">
+                                    $0.00
+                                </td>
+
+                                <td id="totalOtherIncome">
+                                    $0.00
+                                </td>
+
+                                <td id="totalExpenses">
+                                    $0.00
+                                </td>
+
+                                <td id="totalLoanPaymentsTable">
+                                    $0.00
+                                </td>
+
+                                <td id="totalNetCashFlow">
+                                    $0.00
+                                </td>
+
+                                <td id="endingCashTable">
+                                    $0.00
+                                </td>
+
+                            </tr>
+
+                        </tfoot>
+
+                    </table>
+
+                </div>
+
+
+                <!-- DISCLAIMER -->
+
+                <div class="calculator-disclaimer">
+
+                    ⚠️
+
+                    <span data-i18n="cash_flow_disclaimer">
+                        This calculator provides an estimate for planning purposes only. Actual business cash flow may vary because of changes in sales, expenses, taxes, financing costs, payment timing, and other business conditions.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- INFORMATION -->
+
+        <section class="calculator-info">
+
+            <h2 data-i18n="about_cash_flow_calculator">
+                About the Cash Flow Projection Calculator
+            </h2>
+
+
+            <p data-i18n="cash_flow_calculator_description">
+                This calculator helps business owners estimate their cash position over the next 12 months by projecting sales, income, expenses, loan payments, monthly cash flow, and ending cash.
+            </p>
+
+
+            <h2 data-i18n="cash_flow_tip_title">
+                Why Cash Flow Matters
+            </h2>
+
+
+            <p data-i18n="cash_flow_tip">
+                A business can be profitable and still experience a cash shortage. A monthly cash flow projection helps you identify potential cash shortages before they happen.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- LANGUAGE SYSTEM -->
+
+    <script
+        type="module"
+        src="../../languages.js"
+    ></script>
+
+
+    <!-- CALCULATOR JS -->
+
+    <script
+        type="module"
+        src="cash-flow-calculator.js"
+    ></script>
+
+
+</body>
+
+</html>
