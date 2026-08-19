@@ -101,7 +101,92 @@
 "tax_calculator_description":"Estimate income tax, GST/HST, monthly tax savings, and smart tax planning.",
   
   "tax_planning_assistant": "🧠 Tax Planning Assistant",
-"tax_planning_description": "Analyze income, expenses, profit, taxes, and financial planning with smart recommendations."
+"tax_planning_description": "Analyze income, expenses, profit, taxes, and financial planning with smart recommendations.",
+  "cash_flow_calculator_category": "BUSINESS FINANCE",
+"cash_flow_calculator_title": "1-Year Cash Flow & Business Projection Calculator",
+"cash_flow_calculator_intro": "Project your business cash flow for the next 12 months based on your expected sales, expenses, financing, and starting cash.",
+"cash_flow_calculator_card_description": "Project your sales, expenses, loan payments, monthly cash flow, and ending cash balance for the next 12 months.",
+
+"starting_position": "Starting Position",
+"starting_cash": "Starting Cash Balance",
+"projection_start_month": "Projection Start Month",
+
+"sales_income": "Sales & Income",
+"monthly_sales": "Monthly Sales",
+"monthly_sales_growth": "Monthly Sales Growth (%)",
+"sales_growth_note": "Example: 2 means sales increase by 2% each month.",
+"monthly_other_income": "Other Monthly Income",
+
+"monthly_expenses": "Monthly Expenses",
+"rent_expense": "Rent",
+"payroll_expense": "Payroll",
+"inventory_expense": "Inventory / Cost of Goods",
+"utilities_expense": "Utilities",
+"insurance_expense": "Insurance",
+"marketing_expense": "Marketing",
+"transportation_expense": "Transportation",
+"software_expense": "Software / Subscriptions",
+"tax_expense": "Taxes",
+"other_expense": "Other Expenses",
+"monthly_expense_growth": "Monthly Expense Growth (%)",
+"expense_growth_note": "Example: 2 means expenses increase by 2% each month.",
+
+"business_financing": "Business Financing",
+"desired_loan": "Desired Loan Amount",
+"loan_interest_rate": "Annual Loan Interest Rate (%)",
+"loan_term_years": "Loan Term (Years)",
+"loan_start_month": "Loan Start Month",
+
+"calculate": "Calculate Projection",
+"reset": "Reset",
+
+"projection_results": "12-Month Cash Flow Projection",
+
+"year_end_cash": "Year-End Cash",
+"annual_net_cash_flow": "Annual Net Cash Flow",
+"average_monthly_cash_flow": "Average Monthly Cash Flow",
+"lowest_cash_balance": "Lowest Cash Balance",
+"total_loan_payments": "Total Loan Payments",
+"total_interest_paid": "Total Interest Paid",
+
+"cash_flow_positive": "🟢 Positive Cash Flow: Your projected cash balance remains positive throughout the year.",
+"cash_flow_negative": "⚠️ Potential Cash Shortage: Your projected cash balance becomes negative during the year.",
+
+"loan_summary": "Loan Summary",
+"loan_amount": "Loan Amount",
+"monthly_loan_payment": "Monthly Loan Payment",
+"total_loan_cost": "Total Loan Cost",
+
+"month": "Month",
+"sales": "Sales",
+"other_income": "Other Income",
+"total_expenses": "Expenses",
+"loan_payment": "Loan Payment",
+"net_cash_flow": "Net Cash Flow",
+"ending_cash": "Ending Cash",
+"annual_total": "Annual Total",
+
+"cash_flow_disclaimer": "This calculator provides an estimate for planning purposes only. Actual business cash flow may vary because of changes in sales, expenses, taxes, financing costs, payment timing, and other business conditions.",
+
+"about_cash_flow_calculator": "About the Cash Flow Projection Calculator",
+"cash_flow_calculator_description": "This calculator helps business owners estimate their cash position over the next 12 months by projecting sales, income, expenses, loan payments, monthly cash flow, and ending cash.",
+"cash_flow_tip_title": "Why Cash Flow Matters",
+"cash_flow_tip": "A business can be profitable and still experience a cash shortage. A monthly cash flow projection helps you identify potential cash shortages before they happen.",
+
+"january": "January",
+"february": "February",
+"march": "March",
+"april": "April",
+"may": "May",
+"june": "June",
+"july": "July",
+"august": "August",
+"september": "September",
+"october": "October",
+"november": "November",
+"december": "December",
+
+"use_calculator": "Use Calculator"
 
 
 }
