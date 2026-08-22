@@ -1,15 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const scenarioBody = document.getElementById("scenarioBody");
+    const scenarioBody =
+        document.getElementById("scenarioBody");
 
-    const fixedExpensesInput =
-        document.getElementById("fixedExpenses");
-
-    const variableCostInput =
-        document.getElementById("variableCost");
-
-    const totalMonthlyExpenses =
-        document.getElementById("totalMonthlyExpenses");
+    const costPerUnit =
+        document.getElementById("costPerUnit");
 
     const salesUnit =
         document.getElementById("salesUnit");
@@ -20,9 +15,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const customUnit =
         document.getElementById("customUnit");
 
+    const costUnitLabel =
+        document.getElementById("costUnitLabel");
+
+    const salesUnitHeader =
+        document.getElementById("salesUnitHeader");
+
+    const profitUnitHeader =
+        document.getElementById("profitUnitHeader");
+
 
     // ==========================================
-    // CREATE 10 SCENARIO ROWS
+    // CREATE 10 OPTIONS
     // ==========================================
 
     for (let i = 1; i <= 10; i++) {
@@ -32,14 +36,13 @@ document.addEventListener("DOMContentLoaded", function () {
         row.innerHTML = `
 
             <td class="scenario-number">
-                ${i}
+                ${String.fromCharCode(64 + i)}
             </td>
 
             <td>
                 <input
                     type="number"
-                    class="scenario-price"
-                    data-scenario="${i}"
+                    class="selling-price"
                     min="0"
                     step="0.01"
                     placeholder="0.00"
@@ -49,31 +52,26 @@ document.addEventListener("DOMContentLoaded", function () {
             <td>
                 <input
                     type="number"
-                    class="scenario-quantity"
-                    data-scenario="${i}"
+                    class="expected-sales"
                     min="0"
                     step="0.01"
                     placeholder="0"
                 >
             </td>
 
-            <td class="scenario-revenue"
-                id="revenue-${i}">
+            <td id="revenue-${i}">
                 —
             </td>
 
-            <td class="scenario-expenses"
-                id="expenses-${i}">
+            <td id="profit-unit-${i}">
                 —
             </td>
 
-            <td class="scenario-profit"
-                id="profit-${i}">
+            <td id="total-profit-${i}">
                 —
             </td>
 
-            <td class="scenario-margin"
-                id="margin-${i}">
+            <td id="margin-${i}">
                 —
             </td>
 
@@ -84,7 +82,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // ==========================================
-    // CUSTOM SALES UNIT
+    // UNIT NAMES
+    // ==========================================
+
+    function getUnitName() {
+
+        if (salesUnit.value === "custom") {
+
+            return customUnit.value.trim() || "Unit";
+
+        }
+
+        const names = {
+
+            unit: "Unit",
+            hour: "Hour",
+            job: "Job",
+            appointment: "Appointment",
+            project: "Project",
+            client: "Client"
+
+        };
+
+        return names[salesUnit.value] || "Unit";
+
+    }
+
+
+    function updateUnitLabels() {
+
+        const unit = getUnitName();
+
+        costUnitLabel.textContent = unit;
+
+        salesUnitHeader.textContent =
+            unit + "s";
+
+        profitUnitHeader.textContent =
+            unit;
+
+    }
+
+
+    // ==========================================
+    // CUSTOM UNIT
     // ==========================================
 
     salesUnit.addEventListener("change", function () {
@@ -98,51 +139,12 @@ document.addEventListener("DOMContentLoaded", function () {
             customUnitContainer.classList.add("hidden");
 
             customUnit.value = "";
+
         }
 
         updateUnitLabels();
-        calculate();
+
     });
-
-
-    // ==========================================
-    // UPDATE UNIT LABEL
-    // ==========================================
-
-    function updateUnitLabels() {
-
-        let unitName = getUnitName();
-
-        document.querySelectorAll(".scenario-quantity")
-            .forEach(input => {
-
-                input.placeholder = `Desired ${unitName}`;
-
-            });
-    }
-
-
-    function getUnitName() {
-
-        if (salesUnit.value === "custom") {
-
-            return customUnit.value.trim() || "Units";
-
-        }
-
-        const names = {
-
-            unit: "Units",
-            hour: "Hours",
-            job: "Jobs",
-            appointment: "Appointments",
-            project: "Projects",
-            client: "Clients"
-
-        };
-
-        return names[salesUnit.value] || "Units";
-    }
 
 
     customUnit.addEventListener("input", function () {
@@ -153,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // ==========================================
-    // FORMAT MONEY
+    // MONEY FORMAT
     // ==========================================
 
     function money(value) {
@@ -172,295 +174,213 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // ==========================================
-    // CALCULATE TOTAL MONTHLY EXPENSES
-    // ==========================================
-
-    function getFixedExpenses() {
-
-        return parseFloat(fixedExpensesInput.value) || 0;
-
-    }
-
-
-    function getVariableCost() {
-
-        return parseFloat(variableCostInput.value) || 0;
-
-    }
-
-
-    function updateExpenseDisplay() {
-
-        const fixed = getFixedExpenses();
-        const variable = getVariableCost();
-
-        const total = fixed + variable;
-
-        totalMonthlyExpenses.textContent = money(total);
-
-    }
-
-
-    // ==========================================
-    // MAIN CALCULATION
+    // CALCULATE
     // ==========================================
 
     function calculate() {
 
-        updateExpenseDisplay();
+        const cost =
+            parseFloat(costPerUnit.value) || 0;
 
-        const fixedExpenses = getFixedExpenses();
-        const variableCost = getVariableCost();
-
-        const scenarioResults = [];
+        const results = [];
 
 
         for (let i = 1; i <= 10; i++) {
 
             const priceInput =
-                document.querySelector(
-                    `.scenario-price[data-scenario="${i}"]`
-                );
+                document.querySelectorAll(
+                    ".selling-price"
+                )[i - 1];
 
-            const quantityInput =
-                document.querySelector(
-                    `.scenario-quantity[data-scenario="${i}"]`
-                );
+            const salesInput =
+                document.querySelectorAll(
+                    ".expected-sales"
+                )[i - 1];
 
 
             const price =
                 parseFloat(priceInput.value) || 0;
 
-            const quantity =
-                parseFloat(quantityInput.value) || 0;
+            const sales =
+                parseFloat(salesInput.value) || 0;
 
 
-            const revenue = price * quantity;
+            const revenue =
+                price * sales;
 
 
-            /*
-             * Variable cost is treated as the monthly
-             * variable expense entered by the user.
-             *
-             * This keeps Version 1 simple.
-             */
-
-            const expenses =
-                fixedExpenses + variableCost;
+            const profitPerUnit =
+                price - cost;
 
 
-            const profit =
-                revenue - expenses;
+            const totalProfit =
+                profitPerUnit * sales;
 
 
             const margin =
-                revenue > 0
-                    ? (profit / revenue) * 100
+                price > 0
+                    ? (profitPerUnit / price) * 100
                     : 0;
 
 
-            // Display results
+            if (price > 0 && sales > 0) {
 
-            const revenueCell =
-                document.getElementById(`revenue-${i}`);
-
-            const expensesCell =
-                document.getElementById(`expenses-${i}`);
-
-            const profitCell =
-                document.getElementById(`profit-${i}`);
-
-            const marginCell =
-                document.getElementById(`margin-${i}`);
+                document.getElementById(
+                    `revenue-${i}`
+                ).textContent = money(revenue);
 
 
-            if (price > 0 && quantity > 0) {
+                document.getElementById(
+                    `profit-unit-${i}`
+                ).textContent =
+                    money(profitPerUnit);
 
-                revenueCell.textContent =
-                    money(revenue);
 
-                expensesCell.textContent =
-                    money(expenses);
+                document.getElementById(
+                    `total-profit-${i}`
+                ).textContent =
+                    money(totalProfit);
 
-                profitCell.textContent =
-                    money(profit);
 
-                marginCell.textContent =
+                document.getElementById(
+                    `margin-${i}`
+                ).textContent =
                     `${margin.toFixed(1)}%`;
 
 
-                scenarioResults.push({
+                results.push({
 
-                    scenario: i,
+                    option: String.fromCharCode(64 + i),
+
                     price,
-                    quantity,
+                    sales,
                     revenue,
-                    expenses,
-                    profit,
+                    profitPerUnit,
+                    totalProfit,
                     margin
 
                 });
 
             } else {
 
-                revenueCell.textContent = "—";
-                expensesCell.textContent = "—";
-                profitCell.textContent = "—";
-                marginCell.textContent = "—";
+                document.getElementById(
+                    `revenue-${i}`
+                ).textContent = "—";
+
+
+                document.getElementById(
+                    `profit-unit-${i}`
+                ).textContent = "—";
+
+
+                document.getElementById(
+                    `total-profit-${i}`
+                ).textContent = "—";
+
+
+                document.getElementById(
+                    `margin-${i}`
+                ).textContent = "—";
 
             }
 
         }
 
 
-        compareScenarios(scenarioResults);
-
-        calculateBreakEven();
+        compareResults(results);
 
     }
 
 
     // ==========================================
-    // COMPARE SCENARIOS
+    // COMPARE RESULTS
     // ==========================================
 
-    function compareScenarios(results) {
+    function compareResults(results) {
 
-        const highestRevenue =
+        const revenueElement =
             document.getElementById("highestRevenue");
 
-        const highestRevenueDetails =
-            document.getElementById("highestRevenueDetails");
+        const revenueDetails =
+            document.getElementById(
+                "highestRevenueDetails"
+            );
 
 
-        const highestProfit =
+        const profitElement =
             document.getElementById("highestProfit");
 
-        const highestProfitDetails =
-            document.getElementById("highestProfitDetails");
+        const profitDetails =
+            document.getElementById(
+                "highestProfitDetails"
+            );
 
 
-        const bestMargin =
+        const marginElement =
             document.getElementById("bestMargin");
 
-        const bestMarginDetails =
-            document.getElementById("bestMarginDetails");
+        const marginDetails =
+            document.getElementById(
+                "bestMarginDetails"
+            );
 
 
         if (results.length === 0) {
 
-            highestRevenue.textContent = "—";
-            highestRevenueDetails.textContent =
-                "Enter scenarios above";
+            revenueElement.textContent = "—";
+            revenueDetails.textContent =
+                "Enter pricing options";
 
-            highestProfit.textContent = "—";
-            highestProfitDetails.textContent =
-                "Enter scenarios above";
+            profitElement.textContent = "—";
+            profitDetails.textContent =
+                "Enter pricing options";
 
-            bestMargin.textContent = "—";
-            bestMarginDetails.textContent =
-                "Enter scenarios above";
+            marginElement.textContent = "—";
+            marginDetails.textContent =
+                "Enter pricing options";
 
             return;
+
         }
 
 
-        const revenueWinner =
+        const highestRevenue =
             [...results].sort(
                 (a, b) => b.revenue - a.revenue
             )[0];
 
 
-        const profitWinner =
+        const highestProfit =
             [...results].sort(
-                (a, b) => b.profit - a.profit
+                (a, b) => b.totalProfit - a.totalProfit
             )[0];
 
 
-        const marginWinner =
+        const bestMargin =
             [...results].sort(
                 (a, b) => b.margin - a.margin
             )[0];
 
 
-        highestRevenue.textContent =
-            money(revenueWinner.revenue);
+        revenueElement.textContent =
+            money(highestRevenue.revenue);
 
-        highestRevenueDetails.textContent =
-            `Scenario ${revenueWinner.scenario}`;
-
-
-        highestProfit.textContent =
-            money(profitWinner.profit);
-
-        highestProfitDetails.textContent =
-            `Scenario ${profitWinner.scenario}`;
+        revenueDetails.textContent =
+            `Option ${highestRevenue.option}`;
 
 
-        bestMargin.textContent =
-            `${marginWinner.margin.toFixed(1)}%`;
+        profitElement.textContent =
+            money(highestProfit.totalProfit);
 
-        bestMarginDetails.textContent =
-            `Scenario ${marginWinner.scenario}`;
-
-    }
+        profitDetails.textContent =
+            `Option ${highestProfit.option}`;
 
 
-    // ==========================================
-    // BREAK-EVEN
-    // ==========================================
+        marginElement.textContent =
+            `${bestMargin.margin.toFixed(1)}%`;
 
-    function calculateBreakEven() {
-
-        const breakEvenElement =
-            document.getElementById("breakEven");
-
-
-        const fixedExpenses =
-            getFixedExpenses();
-
-
-        const firstScenario =
-            document.querySelector(".scenario-price");
-
-
-        const price =
-            parseFloat(firstScenario.value) || 0;
-
-
-        if (fixedExpenses <= 0) {
-
-            breakEvenElement.textContent =
-                "No fixed expenses";
-
-            return;
-        }
-
-
-        if (price <= 0) {
-
-            breakEvenElement.textContent =
-                "Enter a price";
-
-            return;
-        }
-
-
-        /*
-         * Basic Version 1 break-even:
-         *
-         * Fixed Expenses ÷ Price
-         *
-         * This will be improved later when we
-         * add true per-unit variable costs.
-         */
-
-        const breakEvenUnits =
-            fixedExpenses / price;
-
-
-        breakEvenElement.textContent =
-            `${breakEvenUnits.toFixed(1)} ${getUnitName()}`;
+        marginDetails.textContent =
+            `Option ${bestMargin.option}`;
 
     }
 
@@ -474,16 +394,12 @@ document.addEventListener("DOMContentLoaded", function () {
         if (
 
             event.target.matches(
-                ".scenario-price, .scenario-quantity"
+                ".selling-price, .expected-sales"
             )
 
             ||
 
-            event.target === fixedExpensesInput
-
-            ||
-
-            event.target === variableCostInput
+            event.target === costPerUnit
 
         ) {
 
@@ -495,10 +411,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // ==========================================
-    // INITIALIZE
+    // START
     // ==========================================
 
     updateUnitLabels();
+
     calculate();
 
 });
