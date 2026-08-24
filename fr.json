@@ -168,7 +168,88 @@
 "november": "Novembre",
 "december": "Décembre",
 
-"use_calculator": "Utiliser le calculateur"
+"use_calculator": "Utiliser le calculateur",
+  
+    "price_profit_planner_title": "📊 Planificateur de prix, ventes et bénéfices",
+    "price_profit_planner_description": "Comparez différents prix et volumes de ventes pour trouver l'option qui offre le meilleur résultat pour votre entreprise.",
+
+    "what_are_you_selling": "1. Que vendez-vous ?",
+    "product": "Produit",
+    "service": "Service",
+
+    "choose_sales_unit": "2. Choisissez votre unité de vente",
+    "unit": "Unité",
+    "hour": "Heure",
+    "job": "Travail",
+    "appointment": "Rendez-vous",
+    "project": "Projet",
+    "client": "Client",
+    "custom": "Personnalisé",
+    "custom_sales_unit": "Unité de vente personnalisée",
+    "custom_sales_unit_placeholder": "Exemple : Livraison",
+
+    "business_costs": "3. Coûts de l'entreprise",
+
+    "cost_per": "Coût par",
+    "additional_variable_cost_per": "Coût variable supplémentaire par",
+    "monthly_fixed_expenses": "Dépenses fixes mensuelles",
+
+    "direct_cost_description": "Coût direct associé à chaque unité, heure, travail ou service.",
+    "variable_cost_description": "Coût supplémentaire qui augmente lorsque vos ventes augmentent.",
+    "fixed_cost_description": "Loyer, assurance, logiciels, salaires et autres coûts fixes.",
+
+    "add_pricing_options": "4. Ajoutez vos options de prix",
+
+    "pricing_options_description": "Entrez différents prix et le nombre prévu d'unités, d'heures ou de travaux que vous prévoyez de vendre à chaque prix.",
+
+    "selling_price": "Prix de vente",
+    "expected": "Prévu",
+    "sold": "Vendu",
+
+    "add_another_price": "+ Ajouter un autre prix",
+    "calculate": "🧮 Calculer",
+
+    "pricing_comparison": "5. Comparaison des prix",
+
+    "revenue": "Revenus",
+    "variable_expenses": "Dépenses variables",
+    "fixed_expenses": "Dépenses fixes",
+    "total_expenses": "Dépenses totales",
+    "net_profit": "Bénéfice net",
+    "profit_margin": "Marge bénéficiaire",
+
+    "highest_revenue": "Revenus les plus élevés",
+    "highest_profit": "Bénéfice le plus élevé",
+    "best_profit_margin": "Meilleure marge bénéficiaire",
+
+    "important": "💡 Important",
+
+    "higher_revenue_not_always_higher_profit": "Des revenus de ventes plus élevés ne signifient pas toujours un bénéfice plus élevé.",
+
+    "compare_prices_message": "Comparez différents prix et volumes de ventes prévus afin de trouver la stratégie qui convient le mieux à votre entreprise.",
+
+    "pricing_strategy_guide": "6. Guide des stratégies de prix",
+
+    "cost_plus": "💵 Coût majoré",
+    "cost_plus_description": "Ajoutez une marge à votre coût pour déterminer votre prix de vente.",
+
+    "target_profit": "🎯 Bénéfice cible",
+    "target_profit_description": "Déterminez le bénéfice souhaité et calculez le prix ou le volume de ventes nécessaire.",
+
+    "competitive": "🏪 Prix concurrentiel",
+    "competitive_description": "Comparez votre prix à celui de vos concurrents tout en tenant compte de vos coûts.",
+
+    "value_based": "💎 Prix basé sur la valeur",
+    "value_based_description": "Fixez votre prix en fonction de la valeur que votre produit ou service apporte au client.",
+
+    "volume": "📦 Volume",
+    "volume_description": "Utilisez le prix et le volume des ventes pour maximiser votre bénéfice global.",
+
+    "premium": "👑 Prix premium",
+    "premium_description": "Facturez un prix plus élevé en offrant une qualité, un service ou une spécialisation supérieure.",
+
+    "back_to_calculators": "← Retour aux calculateurs gratuits"
+
 
 
 }
