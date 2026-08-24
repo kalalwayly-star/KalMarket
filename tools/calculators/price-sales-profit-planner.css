@@ -1,62 +1,105 @@
 /* =========================================
-   PRICE SALES PROFIT PLANNER
+   PRICE, SALES & PROFIT PLANNER
+   Modern Calculator Design
    ========================================= */
 
 .calculator-container {
-    max-width: 1200px;
+    max-width: 1180px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 24px 18px 50px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
-/* HEADER */
+/* =========================================
+   HEADER
+   ========================================= */
 
 .planner-header {
     text-align: center;
-    margin-bottom: 30px;
+    padding: 35px 25px;
+    margin-bottom: 25px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #f7f9fc, #eef3f8);
+    border: 1px solid #e1e7ee;
 }
 
 .planner-header h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
+    margin: 0 0 12px;
+    font-size: 2.25rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
 }
 
 .planner-header p {
-    max-width: 750px;
-    margin: auto;
-    line-height: 1.6;
+    max-width: 760px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: #5f6b76;
 }
 
 
-/* SECTIONS */
+/* =========================================
+   MAIN SECTIONS
+   ========================================= */
 
 .planner-section {
-    background: #fff;
-    border-radius: 14px;
-    padding: 25px;
-    margin-bottom: 25px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    background: #ffffff;
+    border: 1px solid #e2e7ec;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 22px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
 }
 
 .planner-section h2 {
-    margin-top: 0;
+    margin: 0 0 20px;
+    font-size: 1.35rem;
+    font-weight: 750;
+    color: #20262d;
+}
+
+.section-description {
+    margin: -8px 0 20px;
+    color: #68737e;
+    line-height: 1.55;
 }
 
 
-/* PRODUCT / SERVICE */
+/* =========================================
+   PRODUCT / SERVICE
+   ========================================= */
 
 .choice-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 18px;
 }
 
 .choice-card {
-    border: 2px solid #ddd;
-    border-radius: 12px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 125px;
     padding: 20px;
-    text-align: center;
+    border: 2px solid #e1e5ea;
+    border-radius: 14px;
+    background: #fafbfc;
     cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.choice-card:hover {
+    transform: translateY(-2px);
+    border-color: #b8c2cc;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
 }
 
 .choice-card input {
@@ -64,27 +107,76 @@
 }
 
 .choice-card span {
-    display: block;
-    font-size: 2rem;
-    margin-bottom: 8px;
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+    transition: transform 0.2s ease;
+}
+
+.choice-card strong {
+    font-size: 1.05rem;
 }
 
 .choice-card:has(input:checked) {
-    border-color: #222;
-    background: #f5f5f5;
+    border-color: #2563eb;
+    background: #f1f6ff;
+    box-shadow: 0 5px 16px rgba(37, 99, 235, 0.12);
+}
+
+.choice-card:has(input:checked) span {
+    transform: scale(1.08);
 }
 
 
-/* SELECT / INPUT */
+/* =========================================
+   SELECTS
+   ========================================= */
 
-.planner-section select,
+.planner-section select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 15px;
+    border: 1px solid #cfd6dd;
+    border-radius: 10px;
+    background: #ffffff;
+    font-size: 1rem;
+    color: #20262d;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.planner-section select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* =========================================
+   INPUTS
+   ========================================= */
+
 .planner-section input {
     width: 100%;
     box-sizing: border-box;
-    padding: 11px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    padding: 13px 14px;
+    border: 1px solid #cfd6dd;
+    border-radius: 9px;
+    background: #ffffff;
     font-size: 1rem;
+    color: #20262d;
+    outline: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.planner-section input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.planner-section input::placeholder {
+    color: #a2aab2;
 }
 
 .hidden {
@@ -92,7 +184,24 @@
 }
 
 
-/* COSTS */
+/* =========================================
+   CUSTOM UNIT
+   ========================================= */
+
+#customUnitContainer {
+    margin-top: 16px;
+}
+
+#customUnitContainer label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 650;
+}
+
+
+/* =========================================
+   COST SECTION
+   ========================================= */
 
 .cost-grid {
     display: grid;
@@ -101,239 +210,460 @@
 }
 
 .input-card {
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 18px;
+    padding: 21px;
+    border: 1px solid #e1e6eb;
+    border-radius: 13px;
+    background: #fafbfc;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.input-card:hover {
+    border-color: #c8d0d8;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
 .input-card label {
     display: block;
-    font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 9px;
+    font-weight: 700;
+    color: #303840;
+    line-height: 1.4;
 }
 
 .input-card small {
     display: block;
-    margin-top: 8px;
-    color: #666;
-    line-height: 1.4;
+    margin-top: 10px;
+    color: #727d87;
+    line-height: 1.45;
+    font-size: 0.84rem;
 }
+
+
+/* =========================================
+   MONEY INPUT
+   ========================================= */
 
 .money-input {
     display: flex;
     align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid #cfd6dd;
+    border-radius: 9px;
     overflow: hidden;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-.money-input span {
-    padding-left: 12px;
-    font-weight: bold;
+.money-input:focus-within {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.money-input > span {
+    padding-left: 13px;
+    font-weight: 700;
+    color: #58636d;
 }
 
 .money-input input {
     border: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0;
 }
 
 
-/* PRICING OPTIONS */
+/* =========================================
+   PRICING OPTIONS
+   ========================================= */
 
 .pricing-option {
     display: grid;
-    grid-template-columns: 120px 1fr 1fr 45px;
-    gap: 15px;
+    grid-template-columns: 115px 1fr 1fr 44px;
+    gap: 16px;
     align-items: end;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
+    padding: 18px;
     margin-bottom: 12px;
+    border: 1px solid #e0e5ea;
+    border-radius: 12px;
+    background: #fbfcfd;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.pricing-option:hover {
+    border-color: #cbd3db;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
 .option-label {
-    padding-bottom: 12px;
+    align-self: center;
+}
+
+.option-label strong {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 72px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    background: #eef2f6;
+    color: #303840;
+    font-size: 0.95rem;
 }
 
 .option-input label {
     display: block;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 6px;
+    margin-bottom: 7px;
+    font-size: 0.88rem;
+    font-weight: 650;
+    color: #555f69;
 }
 
 .remove-option {
     width: 40px;
     height: 40px;
-    border: 0;
-    border-radius: 8px;
+    padding: 0;
+    border: 1px solid #e1e4e8;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #6b737b;
+    font-size: 1.45rem;
+    line-height: 1;
     cursor: pointer;
-    font-size: 1.4rem;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
 }
 
-.secondary-button,
-.calculate-button {
-    border: 0;
-    border-radius: 9px;
-    padding: 13px 20px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
+.remove-option:hover {
+    background: #fff1f1;
+    border-color: #f0b8b8;
+    color: #c62828;
 }
+
+
+/* =========================================
+   BUTTONS
+   ========================================= */
 
 .secondary-button {
-    margin-top: 8px;
+    margin-top: 6px;
+    padding: 12px 18px;
+    border: 1px solid #cbd3db;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #303840;
+    font-size: 0.96rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
 }
 
+.secondary-button:hover {
+    background: #f5f7f9;
+    border-color: #aeb8c2;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   CALCULATE BUTTON
+   ========================================= */
+
 .calculate-area {
-    text-align: center;
-    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid #e8ebee;
 }
 
 .calculate-button {
-    min-width: 200px;
-    font-size: 1.1rem;
+    min-width: 240px;
+    padding: 15px 28px;
+    border: 0;
+    border-radius: 11px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 1.08rem;
+    font-weight: 750;
+    cursor: pointer;
+    box-shadow: 0 5px 14px rgba(37, 99, 235, 0.22);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.calculate-button:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.28);
+}
+
+.calculate-button:active {
+    transform: translateY(0);
 }
 
 
-/* RESULTS */
+/* =========================================
+   RESULTS SECTION
+   ========================================= */
+
+.results-section {
+    border: 2px solid #d9e4f5;
+    background: #fcfdff;
+}
+
+.results-section h2 {
+    margin-bottom: 22px;
+}
+
+
+/* =========================================
+   RESULTS TABLE
+   ========================================= */
 
 .table-wrapper {
+    width: 100%;
     overflow-x: auto;
+    border: 1px solid #dfe4e9;
+    border-radius: 12px;
 }
 
 .results-table {
     width: 100%;
-    border-collapse: collapse;
-    min-width: 1000px;
-}
-
-.results-table th,
-.results-table td {
-    border: 1px solid #ddd;
-    padding: 11px;
-    text-align: center;
+    min-width: 1050px;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #ffffff;
 }
 
 .results-table th {
-    background: #f3f3f3;
+    padding: 13px 11px;
+    background: #f1f4f7;
+    color: #424b54;
+    border-bottom: 2px solid #d8dee4;
+    font-size: 0.86rem;
+    font-weight: 750;
+    white-space: nowrap;
 }
 
+.results-table td {
+    padding: 13px 11px;
+    border-bottom: 1px solid #e7eaed;
+    text-align: center;
+    color: #303840;
+    font-size: 0.92rem;
+    white-space: nowrap;
+}
+
+.results-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.results-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.results-table td:first-child {
+    font-weight: 800;
+}
+
+
+/* =========================================
+   PROFIT COLORS
+   ========================================= */
+
 .positive-profit {
-    font-weight: bold;
+    color: #16803c;
+    background: #f0faf3;
 }
 
 .negative-profit {
-    font-weight: bold;
+    color: #c62828;
+    background: #fff4f4;
 }
 
 
-/* BEST RESULTS */
+/* =========================================
+   BEST RESULTS
+   ========================================= */
 
 .best-results {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-top: 25px;
+    gap: 17px;
+    margin-top: 24px;
 }
 
 .best-card {
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 20px;
+    position: relative;
+    padding: 23px 18px;
+    border: 1px solid #e0e5ea;
+    border-radius: 13px;
+    background: #ffffff;
     text-align: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
 }
 
 .best-card span {
+    display: block;
+    margin-bottom: 7px;
     font-size: 2rem;
 }
 
 .best-card h3 {
-    margin: 10px 0;
+    margin: 0 0 9px;
+    font-size: 1rem;
+    color: #555f69;
 }
 
 .best-card strong {
     display: block;
-    font-size: 1.4rem;
+    font-size: 1.55rem;
+    color: #20262d;
 }
 
 .best-card small {
     display: block;
-    margin-top: 6px;
-    color: #666;
+    margin-top: 7px;
+    color: #747e88;
 }
 
 
-/* MESSAGE */
+/* =========================================
+   IMPORTANT MESSAGE
+   ========================================= */
 
 .planner-message {
+    margin-bottom: 24px;
+    padding: 28px;
+    border: 1px solid #e0e5ea;
+    border-radius: 16px;
+    background: #f7f9fb;
     text-align: center;
-    background: #f5f5f5;
-    border-radius: 14px;
-    padding: 25px;
-    margin-bottom: 25px;
+}
+
+.planner-message h2 {
+    margin: 0 0 12px;
+}
+
+.planner-message p {
+    margin: 7px 0;
+    line-height: 1.6;
+    color: #56616b;
+}
+
+.planner-message strong {
+    color: #20262d;
 }
 
 
-/* STRATEGIES */
+/* =========================================
+   STRATEGY GUIDE
+   ========================================= */
 
 .strategy-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    gap: 16px;
 }
 
 .strategy-card {
-    border: 1px solid #ddd;
+    padding: 20px;
+    border: 1px solid #e1e6eb;
     border-radius: 12px;
-    padding: 18px;
+    background: #fafbfc;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.strategy-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.05);
 }
 
 .strategy-card h3 {
-    margin-top: 0;
+    margin: 0 0 9px;
+    font-size: 1rem;
 }
 
 .strategy-card p {
+    margin: 0;
+    color: #68737e;
     line-height: 1.5;
+    font-size: 0.92rem;
 }
 
 
-/* FOOTER */
+/* =========================================
+   FOOTER
+   ========================================= */
 
 .planner-footer {
     text-align: center;
-    margin: 30px 0;
+    padding: 15px 0;
+}
+
+.back-link {
+    font-weight: 700;
+    text-decoration: none;
 }
 
 
-/* MOBILE */
+/* =========================================
+   MOBILE
+   ========================================= */
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
 
-    .cost-grid,
-    .strategy-grid,
+    .cost-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .strategy-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .best-results {
         grid-template-columns: 1fr;
     }
 
-    .pricing-option {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .option-label {
-        grid-column: 1 / -1;
-    }
-
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
     .calculator-container {
-        padding: 10px;
+        padding: 12px 10px 40px;
+    }
+
+    .planner-header {
+        padding: 28px 18px;
+    }
+
+    .planner-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .planner-header p {
+        font-size: 0.95rem;
     }
 
     .planner-section {
-        padding: 18px;
+        padding: 20px 16px;
+        border-radius: 13px;
     }
 
     .choice-grid {
@@ -341,11 +671,53 @@
     }
 
     .pricing-option {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .option-label {
+        grid-column: 1 / -1;
     }
 
     .remove-option {
         width: 100%;
+        grid-column: 1 / -1;
+    }
+
+    .strategy-grid {
+        grid-template-columns: 1fr;
     }
 
 }
+
+
+@media (max-width: 480px) {
+
+    .planner-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .planner-section h2 {
+        font-size: 1.18rem;
+    }
+
+    .pricing-option {
+        grid-template-columns: 1fr;
+    }
+
+    .option-label {
+        grid-column: auto;
+    }
+
+    .remove-option {
+        grid-column: auto;
+    }
+
+    .calculate-button {
+        width: 100%;
+        min-width: 0;
+    }
+
+}
+
+
