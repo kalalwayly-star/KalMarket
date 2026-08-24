@@ -147,16 +147,17 @@
 </div>
 </header>>
 
-
 <div class="calculator-container">
 
     <!-- HEADER -->
 
     <header class="planner-header">
 
-        <h1>📊 Price, Sales & Profit Planner</h1>
+        <h1 data-i18n="price_profit_planner_title">
+            📊 Price, Sales & Profit Planner
+        </h1>
 
-        <p>
+        <p data-i18n="price_profit_planner_description">
             Compare different prices and sales volumes to find
             the option that gives your business the best result.
         </p>
@@ -168,7 +169,9 @@
 
     <section class="planner-section">
 
-        <h2>1. What Are You Selling?</h2>
+        <h2 data-i18n="what_are_you_selling">
+            1. What Are You Selling?
+        </h2>
 
         <div class="choice-grid">
 
@@ -183,7 +186,9 @@
 
                 <span>📦</span>
 
-                <strong>Product</strong>
+                <strong data-i18n="product">
+                    Product
+                </strong>
 
             </label>
 
@@ -198,7 +203,9 @@
 
                 <span>🛠️</span>
 
-                <strong>Service</strong>
+                <strong data-i18n="service">
+                    Service
+                </strong>
 
             </label>
 
@@ -211,17 +218,60 @@
 
     <section class="planner-section">
 
-        <h2>2. Choose Your Sales Unit</h2>
+        <h2 data-i18n="choose_sales_unit">
+            2. Choose Your Sales Unit
+        </h2>
 
         <select id="salesUnit">
 
-            <option value="unit">Unit</option>
-            <option value="hour">Hour</option>
-            <option value="job">Job</option>
-            <option value="appointment">Appointment</option>
-            <option value="project">Project</option>
-            <option value="client">Client</option>
-            <option value="custom">Custom</option>
+            <option
+                value="unit"
+                data-i18n="unit"
+            >
+                Unit
+            </option>
+
+            <option
+                value="hour"
+                data-i18n="hour"
+            >
+                Hour
+            </option>
+
+            <option
+                value="job"
+                data-i18n="job"
+            >
+                Job
+            </option>
+
+            <option
+                value="appointment"
+                data-i18n="appointment"
+            >
+                Appointment
+            </option>
+
+            <option
+                value="project"
+                data-i18n="project"
+            >
+                Project
+            </option>
+
+            <option
+                value="client"
+                data-i18n="client"
+            >
+                Client
+            </option>
+
+            <option
+                value="custom"
+                data-i18n="custom"
+            >
+                Custom
+            </option>
 
         </select>
 
@@ -231,7 +281,10 @@
             class="hidden"
         >
 
-            <label for="customUnit">
+            <label
+                for="customUnit"
+                data-i18n="custom_sales_unit"
+            >
                 Custom sales unit
             </label>
 
@@ -239,6 +292,7 @@
                 type="text"
                 id="customUnit"
                 placeholder="Example: Delivery"
+                data-i18n-placeholder="custom_sales_unit_placeholder"
             >
 
         </div>
@@ -250,17 +304,26 @@
 
     <section class="planner-section">
 
-        <h2>3. Business Costs</h2>
+        <h2 data-i18n="business_costs">
+            3. Business Costs
+        </h2>
 
         <div class="cost-grid">
 
+
+            <!-- COST PER UNIT -->
 
             <div class="input-card">
 
                 <label for="costPerUnit">
 
-                    Cost per
-                    <span id="costUnitLabel">Unit</span>
+                    <span data-i18n="cost_per">
+                        Cost per
+                    </span>
+
+                    <span id="costUnitLabel">
+                        Unit
+                    </span>
 
                 </label>
 
@@ -278,7 +341,7 @@
 
                 </div>
 
-                <small>
+                <small data-i18n="direct_cost_description">
                     Direct cost associated with each
                     unit, hour, job or service.
                 </small>
@@ -286,12 +349,19 @@
             </div>
 
 
+            <!-- VARIABLE COST -->
+
             <div class="input-card">
 
                 <label for="variableCost">
 
-                    Additional Variable Cost per
-                    <span id="variableUnitLabel">Unit</span>
+                    <span data-i18n="additional_variable_cost_per">
+                        Additional Variable Cost per
+                    </span>
+
+                    <span id="variableUnitLabel">
+                        Unit
+                    </span>
 
                 </label>
 
@@ -309,7 +379,7 @@
 
                 </div>
 
-                <small>
+                <small data-i18n="variable_cost_description">
                     Additional cost that increases
                     when you sell more.
                 </small>
@@ -317,10 +387,15 @@
             </div>
 
 
+            <!-- FIXED EXPENSES -->
+
             <div class="input-card">
 
-                <label for="fixedExpenses">
+                <label for="fixedExpenses"
+                       data-i18n="monthly_fixed_expenses">
+
                     Monthly Fixed Expenses
+
                 </label>
 
                 <div class="money-input">
@@ -337,7 +412,7 @@
 
                 </div>
 
-                <small>
+                <small data-i18n="fixed_cost_description">
                     Rent, insurance, software,
                     salaries and other fixed costs.
                 </small>
@@ -353,31 +428,41 @@
 
     <section class="planner-section">
 
-        <h2>4. Add Your Pricing Options</h2>
+        <h2 data-i18n="add_pricing_options">
+            4. Add Your Pricing Options
+        </h2>
 
-        <p class="section-description">
-
-            Enter different prices and the expected number of
-            units, hours or jobs you expect to sell at each price.
-
+        <p
+            class="section-description"
+            data-i18n="pricing_options_description"
+        >
+            Enter different prices and the expected number
+            of units, hours or jobs you expect to sell at each price.
         </p>
 
 
+        <!-- DYNAMIC OPTIONS -->
+
         <div id="pricingOptions">
 
-            <!-- Options added by JavaScript -->
+            <!-- Options are created by JavaScript -->
 
         </div>
 
+
+        <!-- ADD OPTION -->
 
         <button
             type="button"
             id="addOptionButton"
             class="secondary-button"
+            data-i18n="add_another_price"
         >
             + Add Another Price
         </button>
 
+
+        <!-- CALCULATE -->
 
         <div class="calculate-area">
 
@@ -385,6 +470,7 @@
                 type="button"
                 id="calculateButton"
                 class="calculate-button"
+                data-i18n="calculate"
             >
                 🧮 Calculate
             </button>
@@ -401,7 +487,9 @@
         class="planner-section results-section hidden"
     >
 
-        <h2>5. Pricing Comparison</h2>
+        <h2 data-i18n="pricing_comparison">
+            5. Pricing Comparison
+        </h2>
 
 
         <div class="table-wrapper">
@@ -412,25 +500,41 @@
 
                     <tr>
 
-                        <th>Option</th>
+                        <th data-i18n="option">
+                            Option
+                        </th>
 
-                        <th>Price</th>
+                        <th data-i18n="selling_price">
+                            Price
+                        </th>
 
                         <th id="salesHeader">
                             Units Sold
                         </th>
 
-                        <th>Revenue</th>
+                        <th data-i18n="revenue">
+                            Revenue
+                        </th>
 
-                        <th>Variable Expenses</th>
+                        <th data-i18n="variable_expenses">
+                            Variable Expenses
+                        </th>
 
-                        <th>Fixed Expenses</th>
+                        <th data-i18n="fixed_expenses">
+                            Fixed Expenses
+                        </th>
 
-                        <th>Total Expenses</th>
+                        <th data-i18n="total_expenses">
+                            Total Expenses
+                        </th>
 
-                        <th>Net Profit</th>
+                        <th data-i18n="net_profit">
+                            Net Profit
+                        </th>
 
-                        <th>Profit Margin</th>
+                        <th data-i18n="profit_margin">
+                            Profit Margin
+                        </th>
 
                     </tr>
 
@@ -438,6 +542,8 @@
 
 
                 <tbody id="resultsBody">
+
+                    <!-- Results generated by JavaScript -->
 
                 </tbody>
 
@@ -451,11 +557,15 @@
         <div class="best-results">
 
 
+            <!-- HIGHEST REVENUE -->
+
             <div class="best-card revenue-best">
 
                 <span>💰</span>
 
-                <h3>Highest Revenue</h3>
+                <h3 data-i18n="highest_revenue">
+                    Highest Revenue
+                </h3>
 
                 <strong id="highestRevenue">
                     —
@@ -467,11 +577,15 @@
             </div>
 
 
+            <!-- HIGHEST PROFIT -->
+
             <div class="best-card profit-best">
 
                 <span>🏆</span>
 
-                <h3>Highest Profit</h3>
+                <h3 data-i18n="highest_profit">
+                    Highest Profit
+                </h3>
 
                 <strong id="highestProfit">
                     —
@@ -483,11 +597,15 @@
             </div>
 
 
+            <!-- BEST MARGIN -->
+
             <div class="best-card margin-best">
 
                 <span>📈</span>
 
-                <h3>Best Profit Margin</h3>
+                <h3 data-i18n="best_profit_margin">
+                    Best Profit Margin
+                </h3>
 
                 <strong id="bestMargin">
                     —
@@ -503,21 +621,25 @@
     </section>
 
 
-    <!-- EXPLANATION -->
+    <!-- IMPORTANT MESSAGE -->
 
     <section class="planner-message">
 
-        <h2>💡 Important</h2>
+        <h2 data-i18n="important">
+            💡 Important
+        </h2>
 
         <p>
 
-            <strong>
+            <strong
+                data-i18n="higher_revenue_not_always_higher_profit"
+            >
                 Higher sales revenue does not always mean higher profit.
             </strong>
 
         </p>
 
-        <p>
+        <p data-i18n="compare_prices_message">
 
             Compare different prices and expected sales volumes
             to find the strategy that works best for your business.
@@ -527,20 +649,26 @@
     </section>
 
 
-    <!-- PRICING GUIDE -->
+    <!-- PRICING STRATEGY GUIDE -->
 
     <section class="planner-section">
 
-        <h2>6. Pricing Strategy Guide</h2>
+        <h2 data-i18n="pricing_strategy_guide">
+            6. Pricing Strategy Guide
+        </h2>
 
         <div class="strategy-grid">
 
 
+            <!-- COST PLUS -->
+
             <div class="strategy-card">
 
-                <h3>💵 Cost-Plus</h3>
+                <h3 data-i18n="cost_plus">
+                    💵 Cost-Plus
+                </h3>
 
-                <p>
+                <p data-i18n="cost_plus_description">
                     Add a markup to your cost to determine
                     your selling price.
                 </p>
@@ -548,11 +676,15 @@
             </div>
 
 
+            <!-- TARGET PROFIT -->
+
             <div class="strategy-card">
 
-                <h3>🎯 Target Profit</h3>
+                <h3 data-i18n="target_profit">
+                    🎯 Target Profit
+                </h3>
 
-                <p>
+                <p data-i18n="target_profit_description">
                     Set your desired profit and determine
                     the price or sales volume needed.
                 </p>
@@ -560,11 +692,15 @@
             </div>
 
 
+            <!-- COMPETITIVE -->
+
             <div class="strategy-card">
 
-                <h3>🏪 Competitive</h3>
+                <h3 data-i18n="competitive">
+                    🏪 Competitive
+                </h3>
 
-                <p>
+                <p data-i18n="competitive_description">
                     Compare your price with competitors
                     while considering your costs.
                 </p>
@@ -572,11 +708,15 @@
             </div>
 
 
+            <!-- VALUE BASED -->
+
             <div class="strategy-card">
 
-                <h3>💎 Value-Based</h3>
+                <h3 data-i18n="value_based">
+                    💎 Value-Based
+                </h3>
 
-                <p>
+                <p data-i18n="value_based_description">
                     Price according to the value your
                     product or service provides.
                 </p>
@@ -584,11 +724,15 @@
             </div>
 
 
+            <!-- VOLUME -->
+
             <div class="strategy-card">
 
-                <h3>📦 Volume</h3>
+                <h3 data-i18n="volume">
+                    📦 Volume
+                </h3>
 
-                <p>
+                <p data-i18n="volume_description">
                     Use pricing and sales volume to
                     maximize overall profit.
                 </p>
@@ -596,11 +740,15 @@
             </div>
 
 
+            <!-- PREMIUM -->
+
             <div class="strategy-card">
 
-                <h3>👑 Premium</h3>
+                <h3 data-i18n="premium">
+                    👑 Premium
+                </h3>
 
-                <p>
+                <p data-i18n="premium_description">
                     Charge more by offering premium
                     quality, service or specialization.
                 </p>
@@ -619,6 +767,7 @@
         <a
             href="../index.html"
             class="back-link"
+            data-i18n="back_to_calculators"
         >
             ← Back to Free Calculators
         </a>
@@ -626,6 +775,7 @@
     </section>
 
 </div>
+
 
 <script
         type="module"
