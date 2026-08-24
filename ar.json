@@ -1064,7 +1064,88 @@
 "november": "نوفمبر",
 "december": "ديسمبر",
 
-"use_calculator": "استخدم الحاسبة"
+"use_calculator": "استخدم الحاسبة",
+    
+    "price_profit_planner_title": "📊 مخطط السعر والمبيعات والأرباح",
+    "price_profit_planner_description": "قارن بين الأسعار المختلفة وحجم المبيعات المتوقع لمعرفة الخيار الذي يحقق أفضل نتيجة لمشروعك.",
+
+    "what_are_you_selling": "1. ماذا تبيع؟",
+    "product": "منتج",
+    "service": "خدمة",
+
+    "choose_sales_unit": "2. اختر وحدة البيع",
+    "unit": "وحدة",
+    "hour": "ساعة",
+    "job": "عمل",
+    "appointment": "موعد",
+    "project": "مشروع",
+    "client": "عميل",
+    "custom": "مخصص",
+    "custom_sales_unit": "وحدة بيع مخصصة",
+    "custom_sales_unit_placeholder": "مثال: توصيل",
+
+    "business_costs": "3. تكاليف المشروع",
+
+    "cost_per": "التكلفة لكل",
+    "additional_variable_cost_per": "التكلفة المتغيرة الإضافية لكل",
+    "monthly_fixed_expenses": "المصاريف الثابتة الشهرية",
+
+    "direct_cost_description": "التكلفة المباشرة المرتبطة بكل وحدة أو ساعة أو عمل أو خدمة.",
+    "variable_cost_description": "تكلفة إضافية تزداد كلما زادت مبيعاتك.",
+    "fixed_cost_description": "الإيجار والتأمين والبرامج والرواتب وغيرها من التكاليف الثابتة.",
+
+    "add_pricing_options": "4. أضف خيارات الأسعار",
+
+    "pricing_options_description": "أدخل أسعارًا مختلفة وعدد الوحدات أو الساعات أو الأعمال التي تتوقع بيعها عند كل سعر.",
+
+    "selling_price": "سعر البيع",
+    "expected": "المتوقع",
+    "sold": "المباع",
+
+    "add_another_price": "+ إضافة سعر آخر",
+    "calculate": "🧮 احسب",
+
+    "pricing_comparison": "5. مقارنة الأسعار",
+
+    "revenue": "الإيرادات",
+    "variable_expenses": "المصاريف المتغيرة",
+    "fixed_expenses": "المصاريف الثابتة",
+    "total_expenses": "إجمالي المصاريف",
+    "net_profit": "صافي الربح",
+    "profit_margin": "هامش الربح",
+
+    "highest_revenue": "أعلى إيرادات",
+    "highest_profit": "أعلى ربح",
+    "best_profit_margin": "أفضل هامش ربح",
+
+    "important": "💡 مهم",
+
+    "higher_revenue_not_always_higher_profit": "ارتفاع إيرادات المبيعات لا يعني دائمًا ارتفاع الأرباح.",
+
+    "compare_prices_message": "قارن بين الأسعار المختلفة وحجم المبيعات المتوقع لمعرفة الاستراتيجية التي تناسب مشروعك بشكل أفضل.",
+
+    "pricing_strategy_guide": "6. دليل استراتيجيات التسعير",
+
+    "cost_plus": "💵 التكلفة مع هامش ربح",
+    "cost_plus_description": "أضف هامش ربح إلى التكلفة لتحديد سعر البيع.",
+
+    "target_profit": "🎯 الربح المستهدف",
+    "target_profit_description": "حدد الربح الذي تريده ثم احسب السعر أو حجم المبيعات المطلوب.",
+
+    "competitive": "🏪 التسعير التنافسي",
+    "competitive_description": "قارن سعرك مع أسعار المنافسين مع مراعاة تكاليفك.",
+
+    "value_based": "💎 التسعير حسب القيمة",
+    "value_based_description": "حدد السعر بناءً على القيمة التي يقدمها المنتج أو الخدمة للعميل.",
+
+    "volume": "📦 حجم المبيعات",
+    "volume_description": "استخدم السعر وحجم المبيعات لزيادة إجمالي الأرباح.",
+
+    "premium": "👑 التسعير المميز",
+    "premium_description": "حدد سعرًا أعلى من خلال تقديم جودة أو خدمة أو تخصص مميز.",
+
+    "back_to_calculators": "← العودة إلى الحاسبات المجانية"
+
     
 }
 
