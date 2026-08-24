@@ -186,7 +186,88 @@
 "november": "November",
 "december": "December",
 
-"use_calculator": "Use Calculator"
+"use_calculator": "Use Calculator",
+  
+    "price_profit_planner_title": "📊 Price, Sales & Profit Planner",
+    "price_profit_planner_description": "Compare different prices and sales volumes to find the option that gives your business the best result.",
+
+    "what_are_you_selling": "1. What Are You Selling?",
+    "product": "Product",
+    "service": "Service",
+
+    "choose_sales_unit": "2. Choose Your Sales Unit",
+    "unit": "Unit",
+    "hour": "Hour",
+    "job": "Job",
+    "appointment": "Appointment",
+    "project": "Project",
+    "client": "Client",
+    "custom": "Custom",
+    "custom_sales_unit": "Custom sales unit",
+    "custom_sales_unit_placeholder": "Example: Delivery",
+
+    "business_costs": "3. Business Costs",
+
+    "cost_per": "Cost per",
+    "additional_variable_cost_per": "Additional Variable Cost per",
+    "monthly_fixed_expenses": "Monthly Fixed Expenses",
+
+    "direct_cost_description": "Direct cost associated with each unit, hour, job or service.",
+    "variable_cost_description": "Additional cost that increases when you sell more.",
+    "fixed_cost_description": "Rent, insurance, software, salaries and other fixed costs.",
+
+    "add_pricing_options": "4. Add Your Pricing Options",
+
+    "pricing_options_description": "Enter different prices and the expected number of units, hours or jobs you expect to sell at each price.",
+
+    "selling_price": "Selling Price",
+    "expected": "Expected",
+    "sold": "Sold",
+
+    "add_another_price": "+ Add Another Price",
+    "calculate": "🧮 Calculate",
+
+    "pricing_comparison": "5. Pricing Comparison",
+
+    "revenue": "Revenue",
+    "variable_expenses": "Variable Expenses",
+    "fixed_expenses": "Fixed Expenses",
+    "total_expenses": "Total Expenses",
+    "net_profit": "Net Profit",
+    "profit_margin": "Profit Margin",
+
+    "highest_revenue": "Highest Revenue",
+    "highest_profit": "Highest Profit",
+    "best_profit_margin": "Best Profit Margin",
+
+    "important": "💡 Important",
+
+    "higher_revenue_not_always_higher_profit": "Higher sales revenue does not always mean higher profit.",
+
+    "compare_prices_message": "Compare different prices and expected sales volumes to find the strategy that works best for your business.",
+
+    "pricing_strategy_guide": "6. Pricing Strategy Guide",
+
+    "cost_plus": "💵 Cost-Plus",
+    "cost_plus_description": "Add a markup to your cost to determine your selling price.",
+
+    "target_profit": "🎯 Target Profit",
+    "target_profit_description": "Set your desired profit and determine the price or sales volume needed.",
+
+    "competitive": "🏪 Competitive",
+    "competitive_description": "Compare your price with competitors while considering your costs.",
+
+    "value_based": "💎 Value-Based",
+    "value_based_description": "Price according to the value your product or service provides.",
+
+    "volume": "📦 Volume",
+    "volume_description": "Use pricing and sales volume to maximize overall profit.",
+
+    "premium": "👑 Premium",
+    "premium_description": "Charge more by offering premium quality, service or specialization.",
+
+    "back_to_calculators": "← Back to Free Calculators"
+
 
 
 }
