@@ -248,7 +248,11 @@
     "premium": "👑 Prix premium",
     "premium_description": "Facturez un prix plus élevé en offrant une qualité, un service ou une spécialisation supérieure.",
 
-    "back_to_calculators": "← Retour aux calculateurs gratuits"
+    "back_to_calculators": "← Retour aux calculateurs gratuits",
+  "option": "Option",
+"selling_price": "Prix de vente",
+"expected": "Prévu",
+"sold": "Vendu"
 
 
 
