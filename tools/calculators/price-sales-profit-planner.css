@@ -1,5 +1,5 @@
 /* =========================================
-   PRICE, SALES & PROFIT PLANNER
+   PRICE SALES PROFIT PLANNER
    ========================================= */
 
 .calculator-container {
@@ -40,11 +40,10 @@
 
 .planner-section h2 {
     margin-top: 0;
-    margin-bottom: 20px;
 }
 
 
-/* CHOICES */
+/* PRODUCT / SERVICE */
 
 .choice-grid {
     display: grid;
@@ -58,11 +57,6 @@
     padding: 20px;
     text-align: center;
     cursor: pointer;
-    transition: 0.2s;
-}
-
-.choice-card:hover {
-    border-color: #777;
 }
 
 .choice-card input {
@@ -75,36 +69,22 @@
     margin-bottom: 8px;
 }
 
-.choice-card input:checked + span {
-    transform: scale(1.1);
-}
-
 .choice-card:has(input:checked) {
     border-color: #222;
     background: #f5f5f5;
 }
 
 
-/* INPUTS */
+/* SELECT / INPUT */
 
 .planner-section select,
 .planner-section input {
     width: 100%;
     box-sizing: border-box;
-    padding: 12px;
+    padding: 11px;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
-}
-
-.planner-section label {
-    display: block;
-    margin-bottom: 7px;
-    font-weight: 600;
-}
-
-#customUnitContainer {
-    margin-top: 15px;
 }
 
 .hidden {
@@ -112,87 +92,185 @@
 }
 
 
-/* EXPENSES */
+/* COSTS */
 
-.expense-grid {
+.cost-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
 }
 
-.expense-total {
+.input-card {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 18px;
+}
+
+.input-card label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.input-card small {
+    display: block;
+    margin-top: 8px;
+    color: #666;
+    line-height: 1.4;
+}
+
+.money-input {
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    padding: 15px;
-    background: #f5f5f5;
+    align-items: center;
+    border: 1px solid #ccc;
     border-radius: 8px;
+    overflow: hidden;
+}
+
+.money-input span {
+    padding-left: 12px;
+    font-weight: bold;
+}
+
+.money-input input {
+    border: 0 !important;
 }
 
 
-/* TABLE */
+/* PRICING OPTIONS */
+
+.pricing-option {
+    display: grid;
+    grid-template-columns: 120px 1fr 1fr 45px;
+    gap: 15px;
+    align-items: end;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 12px;
+}
+
+.option-label {
+    padding-bottom: 12px;
+}
+
+.option-input label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.remove-option {
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+.secondary-button,
+.calculate-button {
+    border: 0;
+    border-radius: 9px;
+    padding: 13px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.secondary-button {
+    margin-top: 8px;
+}
+
+.calculate-area {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.calculate-button {
+    min-width: 200px;
+    font-size: 1.1rem;
+}
+
+
+/* RESULTS */
 
 .table-wrapper {
     overflow-x: auto;
 }
 
-.scenario-table {
+.results-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 850px;
+    min-width: 1000px;
 }
 
-.scenario-table th,
-.scenario-table td {
+.results-table th,
+.results-table td {
     border: 1px solid #ddd;
-    padding: 10px;
+    padding: 11px;
     text-align: center;
 }
 
-.scenario-table th {
+.results-table th {
     background: #f3f3f3;
 }
 
-.scenario-table input {
-    min-width: 110px;
+.positive-profit {
+    font-weight: bold;
 }
 
-.scenario-number {
+.negative-profit {
     font-weight: bold;
 }
 
 
-/* COMPARISON */
+/* BEST RESULTS */
 
-.comparison-grid {
+.best-results {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
+    margin-top: 25px;
 }
 
-.comparison-card {
+.best-card {
     border: 1px solid #ddd;
     border-radius: 12px;
     padding: 20px;
     text-align: center;
 }
 
-.comparison-card span {
+.best-card span {
     font-size: 2rem;
 }
 
-.comparison-card h3 {
+.best-card h3 {
     margin: 10px 0;
 }
 
-.comparison-card strong {
+.best-card strong {
     display: block;
     font-size: 1.4rem;
-    margin-bottom: 8px;
 }
 
-.comparison-card small {
+.best-card small {
+    display: block;
+    margin-top: 6px;
     color: #666;
+}
+
+
+/* MESSAGE */
+
+.planner-message {
+    text-align: center;
+    background: #f5f5f5;
+    border-radius: 14px;
+    padding: 25px;
+    margin-bottom: 25px;
 }
 
 
@@ -219,21 +297,6 @@
 }
 
 
-/* MESSAGE */
-
-.planner-message {
-    margin: 25px 0;
-    padding: 25px;
-    border-radius: 14px;
-    background: #f5f5f5;
-    text-align: center;
-}
-
-.planner-message h2 {
-    margin-top: 0;
-}
-
-
 /* FOOTER */
 
 .planner-footer {
@@ -241,22 +304,23 @@
     margin: 30px 0;
 }
 
-.back-link {
-    text-decoration: none;
-    font-weight: 600;
-}
-
 
 /* MOBILE */
 
 @media (max-width: 800px) {
 
-    .comparison-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .cost-grid,
+    .strategy-grid,
+    .best-results {
+        grid-template-columns: 1fr;
     }
 
-    .strategy-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .pricing-option {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .option-label {
+        grid-column: 1 / -1;
     }
 
 }
@@ -272,15 +336,16 @@
         padding: 18px;
     }
 
-    .choice-grid,
-    .expense-grid,
-    .comparison-grid,
-    .strategy-grid {
+    .choice-grid {
         grid-template-columns: 1fr;
     }
 
-    .planner-header h1 {
-        font-size: 1.6rem;
+    .pricing-option {
+        grid-template-columns: 1fr;
+    }
+
+    .remove-option {
+        width: 100%;
     }
 
 }
