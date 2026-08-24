@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,6 +10,7 @@
 
     <link rel="stylesheet" href="../../style.css?v=2">
     <link rel="stylesheet" href="price-sales-profit-planner.css">
+
 </head>
 
 <body>
@@ -15,17 +18,21 @@
 <div class="calculator-container">
 
     <!-- HEADER -->
+
     <header class="planner-header">
+
         <h1>📊 Price, Sales & Profit Planner</h1>
 
         <p>
-            Compare different prices and expected sales to find
-            the option that produces the best profit.
+            Compare different prices and sales volumes to find
+            the option that gives your business the best result.
         </p>
+
     </header>
 
 
-    <!-- 1. WHAT YOU SELL -->
+    <!-- BUSINESS TYPE -->
+
     <section class="planner-section">
 
         <h2>1. What Are You Selling?</h2>
@@ -33,24 +40,33 @@
         <div class="choice-grid">
 
             <label class="choice-card">
+
                 <input
                     type="radio"
                     name="businessType"
                     value="product"
                     checked
                 >
+
                 <span>📦</span>
+
                 <strong>Product</strong>
+
             </label>
 
+
             <label class="choice-card">
+
                 <input
                     type="radio"
                     name="businessType"
                     value="service"
                 >
+
                 <span>🛠️</span>
+
                 <strong>Service</strong>
+
             </label>
 
         </div>
@@ -58,7 +74,8 @@
     </section>
 
 
-    <!-- 2. SALES UNIT -->
+    <!-- SALES UNIT -->
+
     <section class="planner-section">
 
         <h2>2. Choose Your Sales Unit</h2>
@@ -75,7 +92,11 @@
 
         </select>
 
-        <div id="customUnitContainer" class="hidden">
+
+        <div
+            id="customUnitContainer"
+            class="hidden"
+        >
 
             <label for="customUnit">
                 Custom sales unit
@@ -92,71 +113,198 @@
     </section>
 
 
-    <!-- 3. COST -->
+    <!-- COSTS -->
+
     <section class="planner-section">
 
-        <h2>3. Cost</h2>
+        <h2>3. Business Costs</h2>
 
-        <div class="cost-box">
+        <div class="cost-grid">
 
-            <label for="costPerUnit">
-                Cost per <span id="costUnitLabel">Unit</span>
-            </label>
 
-            <div class="input-money">
-                <span>$</span>
+            <div class="input-card">
 
-                <input
-                    type="number"
-                    id="costPerUnit"
-                    min="0"
-                    step="0.01"
-                    placeholder="10.00"
-                >
+                <label for="costPerUnit">
+
+                    Cost per
+                    <span id="costUnitLabel">Unit</span>
+
+                </label>
+
+                <div class="money-input">
+
+                    <span>$</span>
+
+                    <input
+                        type="number"
+                        id="costPerUnit"
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                    >
+
+                </div>
+
+                <small>
+                    Direct cost associated with each
+                    unit, hour, job or service.
+                </small>
+
             </div>
 
-            <p>
-                Enter the direct cost of producing or delivering
-                one unit, hour, job, appointment, project or client.
-            </p>
+
+            <div class="input-card">
+
+                <label for="variableCost">
+
+                    Additional Variable Cost per
+                    <span id="variableUnitLabel">Unit</span>
+
+                </label>
+
+                <div class="money-input">
+
+                    <span>$</span>
+
+                    <input
+                        type="number"
+                        id="variableCost"
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                    >
+
+                </div>
+
+                <small>
+                    Additional cost that increases
+                    when you sell more.
+                </small>
+
+            </div>
+
+
+            <div class="input-card">
+
+                <label for="fixedExpenses">
+                    Monthly Fixed Expenses
+                </label>
+
+                <div class="money-input">
+
+                    <span>$</span>
+
+                    <input
+                        type="number"
+                        id="fixedExpenses"
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                    >
+
+                </div>
+
+                <small>
+                    Rent, insurance, software,
+                    salaries and other fixed costs.
+                </small>
+
+            </div>
 
         </div>
 
     </section>
 
 
-    <!-- 4. PRICING OPTIONS -->
+    <!-- PRICING OPTIONS -->
+
     <section class="planner-section">
 
-        <h2>4. Compare Pricing Options</h2>
+        <h2>4. Add Your Pricing Options</h2>
 
         <p class="section-description">
-            Enter a selling price and expected sales volume for each option.
-            Leave unused options empty.
+
+            Enter different prices and the expected number of
+            units, hours or jobs you expect to sell at each price.
+
         </p>
+
+
+        <div id="pricingOptions">
+
+            <!-- Options added by JavaScript -->
+
+        </div>
+
+
+        <button
+            type="button"
+            id="addOptionButton"
+            class="secondary-button"
+        >
+            + Add Another Price
+        </button>
+
+
+        <div class="calculate-area">
+
+            <button
+                type="button"
+                id="calculateButton"
+                class="calculate-button"
+            >
+                🧮 Calculate
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESULTS -->
+
+    <section
+        id="resultsSection"
+        class="planner-section results-section hidden"
+    >
+
+        <h2>5. Pricing Comparison</h2>
 
 
         <div class="table-wrapper">
 
-            <table class="scenario-table">
+            <table class="results-table">
 
                 <thead>
 
                     <tr>
+
                         <th>Option</th>
-                        <th>Selling Price</th>
-                        <th>Expected <span id="salesUnitHeader">Units</span> Sold</th>
+
+                        <th>Price</th>
+
+                        <th id="salesHeader">
+                            Units Sold
+                        </th>
+
                         <th>Revenue</th>
-                        <th>Profit / <span id="profitUnitHeader">Unit</span></th>
-                        <th>Total Profit</th>
-                        <th>Margin</th>
+
+                        <th>Variable Expenses</th>
+
+                        <th>Fixed Expenses</th>
+
+                        <th>Total Expenses</th>
+
+                        <th>Net Profit</th>
+
+                        <th>Profit Margin</th>
+
                     </tr>
 
                 </thead>
 
-                <tbody id="scenarioBody">
 
-                    <!-- 10 rows generated by JavaScript -->
+                <tbody id="resultsBody">
 
                 </tbody>
 
@@ -164,17 +312,13 @@
 
         </div>
 
-    </section>
+
+        <!-- BEST RESULTS -->
+
+        <div class="best-results">
 
 
-    <!-- 5. RESULTS -->
-    <section class="planner-section comparison-section">
-
-        <h2>5. Best Option</h2>
-
-        <div class="comparison-grid">
-
-            <div class="comparison-card">
+            <div class="best-card revenue-best">
 
                 <span>💰</span>
 
@@ -185,13 +329,12 @@
                 </strong>
 
                 <small id="highestRevenueDetails">
-                    Enter pricing options
                 </small>
 
             </div>
 
 
-            <div class="comparison-card">
+            <div class="best-card profit-best">
 
                 <span>🏆</span>
 
@@ -202,13 +345,12 @@
                 </strong>
 
                 <small id="highestProfitDetails">
-                    Enter pricing options
                 </small>
 
             </div>
 
 
-            <div class="comparison-card">
+            <div class="best-card margin-best">
 
                 <span>📈</span>
 
@@ -219,7 +361,6 @@
                 </strong>
 
                 <small id="bestMarginDetails">
-                    Enter pricing options
                 </small>
 
             </div>
@@ -229,20 +370,46 @@
     </section>
 
 
-    <!-- 6. PRICING STRATEGIES -->
+    <!-- EXPLANATION -->
+
+    <section class="planner-message">
+
+        <h2>💡 Important</h2>
+
+        <p>
+
+            <strong>
+                Higher sales revenue does not always mean higher profit.
+            </strong>
+
+        </p>
+
+        <p>
+
+            Compare different prices and expected sales volumes
+            to find the strategy that works best for your business.
+
+        </p>
+
+    </section>
+
+
+    <!-- PRICING GUIDE -->
+
     <section class="planner-section">
 
         <h2>6. Pricing Strategy Guide</h2>
 
         <div class="strategy-grid">
 
+
             <div class="strategy-card">
 
                 <h3>💵 Cost-Plus</h3>
 
                 <p>
-                    Start with your cost and add a markup
-                    to determine your selling price.
+                    Add a markup to your cost to determine
+                    your selling price.
                 </p>
 
             </div>
@@ -253,7 +420,7 @@
                 <h3>🎯 Target Profit</h3>
 
                 <p>
-                    Choose the profit you want and determine
+                    Set your desired profit and determine
                     the price or sales volume needed.
                 </p>
 
@@ -265,8 +432,8 @@
                 <h3>🏪 Competitive</h3>
 
                 <p>
-                    Compare your price with competitors while
-                    considering your costs and value.
+                    Compare your price with competitors
+                    while considering your costs.
                 </p>
 
             </div>
@@ -277,8 +444,8 @@
                 <h3>💎 Value-Based</h3>
 
                 <p>
-                    Price according to the value your product
-                    or service provides to customers.
+                    Price according to the value your
+                    product or service provides.
                 </p>
 
             </div>
@@ -289,8 +456,8 @@
                 <h3>📦 Volume</h3>
 
                 <p>
-                    Use pricing and higher sales volume to
-                    increase overall profit.
+                    Use pricing and sales volume to
+                    maximize overall profit.
                 </p>
 
             </div>
@@ -301,7 +468,7 @@
                 <h3>👑 Premium</h3>
 
                 <p>
-                    Charge a higher price by offering premium
+                    Charge more by offering premium
                     quality, service or specialization.
                 </p>
 
@@ -312,26 +479,8 @@
     </section>
 
 
-    <!-- EXPLANATION -->
-    <section class="planner-message">
-
-        <h2>💡 Remember</h2>
-
-        <p>
-            <strong>
-                Higher sales revenue does not always mean higher profit.
-            </strong>
-        </p>
-
-        <p>
-            Compare different prices and expected sales volumes
-            to find the strategy that works best for your business.
-        </p>
-
-    </section>
-
-
     <!-- FOOTER -->
+
     <section class="planner-footer">
 
         <a
@@ -349,4 +498,5 @@
 <script src="price-sales-profit-planner.js"></script>
 
 </body>
+
 </html>
