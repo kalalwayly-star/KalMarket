@@ -123,35 +123,48 @@
 
             <!-- SUMMARY -->
 
-            <div class="form-section">
+           <div class="form-section">
 
-                <h3>Professional Summary</h3>
+    <h3>Professional Summary</h3>
 
-                <textarea
-                    id="summary"
-                    rows="5"
-                    placeholder="Experienced professional with strong customer service and communication skills..."></textarea>
+    <textarea
+        id="summary"
+        rows="5"
+        placeholder="Example: mechanic, customer service, warehouse worker..."></textarea>
 
-            </div>
+    <button
+        type="button"
+        class="ai-btn"
+        onclick="improveWithAI('summary')">
+        ✨ Improve with AI
+    </button>
+
+    <small>
+        You can enter a few words. AI will help turn them into a professional summary.
+    </small>
+
+</div>
 
 
             <!-- EXPERIENCE -->
 
-            <div class="form-section">
+           <div class="full-width">
 
-                <h3>💼 Work Experience</h3>
+    <label>Responsibilities & Achievements</label>
 
-                <div id="experienceContainer"></div>
+    <textarea
+        class="exp-description"
+        rows="4"
+        placeholder="Example: oil change, brakes, tires"></textarea>
 
-                <button
-                    type="button"
-                    class="add-btn"
-                    onclick="addExperience()">
-                    + Add Work Experience
-                </button>
+    <button
+        type="button"
+        class="ai-btn"
+        onclick="improveExperience(this)">
+        ✨ Improve with AI
+    </button>
 
-            </div>
-
+</div>
 
             <!-- EDUCATION -->
 
