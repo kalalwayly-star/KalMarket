@@ -1,1 +1,381 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Free Resume Maker | KalMarket</title>
+
+    <meta name="description"
+          content="Create a professional Canadian-style resume for free with KalMarket Resume Maker.">
+
+    <link rel="stylesheet" href="../../style.css?v=2">
+    <link rel="stylesheet" href="resume-maker.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <a href="../../index.html" class="site-logo">
+            KalMarket
+        </a>
+
+        <nav class="main-nav">
+
+            <a href="../../index.html">
+                🏠 Home
+            </a>
+
+            <a href="../index.html">
+                🧮 Free Calculators
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main class="resume-maker-container">
+
+    <section class="resume-hero">
+
+        <div class="resume-icon">📄</div>
+
+        <h1>Free Resume Maker</h1>
+
+        <p>
+            Create a professional resume in minutes.
+            Enter your information and see your resume update automatically.
+        </p>
+
+    </section>
+
+
+    <div class="resume-layout">
+
+
+        <!-- ================= FORM ================= -->
+
+        <section class="resume-form">
+
+            <h2>📝 Your Information</h2>
+
+
+            <!-- PERSONAL -->
+
+            <div class="form-section">
+
+                <h3>Personal Information</h3>
+
+                <div class="form-grid">
+
+                    <div>
+                        <label>Full Name</label>
+                        <input
+                            type="text"
+                            id="fullName"
+                            placeholder="John Smith">
+                    </div>
+
+                    <div>
+                        <label>Phone</label>
+                        <input
+                            type="text"
+                            id="phone"
+                            placeholder="204-555-1234">
+                    </div>
+
+                    <div>
+                        <label>Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="john@email.com">
+                    </div>
+
+                    <div>
+                        <label>City / Province</label>
+                        <input
+                            type="text"
+                            id="location"
+                            placeholder="Winnipeg, Manitoba">
+                    </div>
+
+                    <div class="full-width">
+                        <label>LinkedIn (Optional)</label>
+                        <input
+                            type="text"
+                            id="linkedin"
+                            placeholder="linkedin.com/in/johnsmith">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+
+            <div class="form-section">
+
+                <h3>Professional Summary</h3>
+
+                <textarea
+                    id="summary"
+                    rows="5"
+                    placeholder="Experienced professional with strong customer service and communication skills..."></textarea>
+
+            </div>
+
+
+            <!-- EXPERIENCE -->
+
+            <div class="form-section">
+
+                <h3>💼 Work Experience</h3>
+
+                <div id="experienceContainer"></div>
+
+                <button
+                    type="button"
+                    class="add-btn"
+                    onclick="addExperience()">
+                    + Add Work Experience
+                </button>
+
+            </div>
+
+
+            <!-- EDUCATION -->
+
+            <div class="form-section">
+
+                <h3>🎓 Education</h3>
+
+                <div id="educationContainer"></div>
+
+                <button
+                    type="button"
+                    class="add-btn"
+                    onclick="addEducation()">
+                    + Add Education
+                </button>
+
+            </div>
+
+
+            <!-- SKILLS -->
+
+            <div class="form-section">
+
+                <h3>🛠️ Skills</h3>
+
+                <textarea
+                    id="skills"
+                    rows="4"
+                    placeholder="Customer Service, Microsoft Office, Communication, Teamwork"></textarea>
+
+                <small>
+                    Separate skills with commas.
+                </small>
+
+            </div>
+
+
+            <!-- LANGUAGES -->
+
+            <div class="form-section">
+
+                <h3>🌎 Languages</h3>
+
+                <textarea
+                    id="languages"
+                    rows="3"
+                    placeholder="English - Fluent, Arabic - Fluent, French - Intermediate"></textarea>
+
+            </div>
+
+
+            <!-- CERTIFICATIONS -->
+
+            <div class="form-section">
+
+                <h3>📜 Certifications</h3>
+
+                <textarea
+                    id="certifications"
+                    rows="3"
+                    placeholder="First Aid Certificate, WHMIS, Class 5 Driver's Licence"></textarea>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="print-btn"
+                    onclick="printResume()">
+                    🖨️ Print / Save PDF
+                </button>
+
+                <button
+                    type="button"
+                    class="clear-btn"
+                    onclick="clearResume()">
+                    🔄 Start Over
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PREVIEW ================= -->
+
+        <section class="resume-preview-area">
+
+            <div class="preview-header">
+                <h2>👀 Resume Preview</h2>
+            </div>
+
+
+            <article id="resumePreview" class="resume-paper">
+
+                <div class="resume-header">
+
+                    <h1 id="previewName">
+                        Your Name
+                    </h1>
+
+                    <div class="contact-line">
+
+                        <span id="previewPhone">
+                            Phone
+                        </span>
+
+                        <span id="previewEmail">
+                            Email
+                        </span>
+
+                        <span id="previewLocation">
+                            City, Province
+                        </span>
+
+                    </div>
+
+                    <div
+                        id="previewLinkedin"
+                        class="linkedin">
+                    </div>
+
+                </div>
+
+
+                <section
+                    id="previewSummarySection"
+                    class="preview-section">
+
+                    <h2>Professional Summary</h2>
+
+                    <p id="previewSummary">
+                        Your professional summary will appear here.
+                    </p>
+
+                </section>
+
+
+                <section
+                    id="previewExperienceSection"
+                    class="preview-section">
+
+                    <h2>Work Experience</h2>
+
+                    <div id="previewExperience">
+
+                        <p class="empty-preview">
+                            Your work experience will appear here.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <section
+                    id="previewEducationSection"
+                    class="preview-section">
+
+                    <h2>Education</h2>
+
+                    <div id="previewEducation">
+
+                        <p class="empty-preview">
+                            Your education will appear here.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <section
+                    id="previewSkillsSection"
+                    class="preview-section">
+
+                    <h2>Skills</h2>
+
+                    <div id="previewSkills">
+                        Your skills will appear here.
+                    </div>
+
+                </section>
+
+
+                <section
+                    id="previewLanguagesSection"
+                    class="preview-section">
+
+                    <h2>Languages</h2>
+
+                    <div id="previewLanguages">
+                        Your languages will appear here.
+                    </div>
+
+                </section>
+
+
+                <section
+                    id="previewCertificationsSection"
+                    class="preview-section">
+
+                    <h2>Certifications</h2>
+
+                    <div id="previewCertifications">
+                        Your certifications will appear here.
+                    </div>
+
+                </section>
+
+            </article>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<script src="resume-maker.js"></script>
+
+</body>
+</html>
+```
 
