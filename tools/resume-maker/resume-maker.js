@@ -557,3 +557,219 @@ function clearResume() {
 
     document.getElementById("previewCertifications").innerHTML = "";
 }
+/* =========================================
+   AI RESUME IMPROVEMENT
+========================================= */
+
+const AI_ENDPOINT =
+    "https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev";
+
+
+async function improveWithAI(type) {
+
+    const textarea =
+        document.getElementById(type);
+
+    const text =
+        textarea.value.trim();
+
+
+    if (!text) {
+
+        alert(
+            "Please enter a few words first."
+        );
+
+        textarea.focus();
+
+        return;
+    }
+
+
+    const button =
+        event.currentTarget;
+
+    const originalText =
+        button.innerHTML;
+
+    button.disabled = true;
+
+    button.innerHTML =
+        "⏳ Improving...";
+
+
+    try {
+
+        const response =
+            await fetch(AI_ENDPOINT, {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    type: type,
+
+                    text: text
+
+                })
+
+            });
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                "AI request failed."
+            );
+
+        }
+
+
+        textarea.value =
+            data.result;
+
+
+        generateResume();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Sorry, the AI improvement could not be completed. Please try again."
+        );
+
+    } finally {
+
+        button.disabled = false;
+
+        button.innerHTML =
+            originalText;
+
+    }
+
+}
+
+
+/* =========================================
+   AI EXPERIENCE IMPROVEMENT
+========================================= */
+
+async function improveExperience(button) {
+
+    const entry =
+        button.closest(".experience-entry");
+
+
+    const title =
+        entry.querySelector(".exp-title")
+            .value.trim();
+
+
+    const company =
+        entry.querySelector(".exp-company")
+            .value.trim();
+
+
+    const description =
+        entry.querySelector(".exp-description");
+
+
+    const text =
+        description.value.trim();
+
+
+    if (!title && !text) {
+
+        alert(
+            "Please enter the job title and/or a few words about the work."
+        );
+
+        return;
+    }
+
+
+    const originalText =
+        button.innerHTML;
+
+    button.disabled = true;
+
+    button.innerHTML =
+        "⏳ Improving...";
+
+
+    try {
+
+        const response =
+            await fetch(AI_ENDPOINT, {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    type: "experience",
+
+                    jobTitle: title,
+
+                    company: company,
+
+                    text: text
+
+                })
+
+            });
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                "AI request failed."
+            );
+
+        }
+
+
+        description.value =
+            data.result;
+
+
+        generateResume();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Sorry, the AI improvement could not be completed. Please try again."
+        );
+
+    } finally {
+
+        button.disabled = false;
+
+        button.innerHTML =
+            originalText;
+
+    }
+
+}
