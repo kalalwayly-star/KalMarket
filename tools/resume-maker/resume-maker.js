@@ -1,12 +1,9 @@
-```javascript
+
 /* =========================================
    KALMARKET RESUME MAKER
 ========================================= */
 
-
-/* =========================================
-   ELEMENTS
-========================================= */
+const form = document.getElementById("resumeForm");
 
 const fullName = document.getElementById("fullName");
 const phone = document.getElementById("phone");
@@ -26,27 +23,6 @@ const educationContainer =
 
 
 /* =========================================
-   LIVE INPUTS
-========================================= */
-
-[
-    fullName,
-    phone,
-    email,
-    locationInput,
-    linkedin,
-    summary,
-    skills,
-    languages,
-    certifications
-].forEach(input => {
-
-    input.addEventListener("input", updateResume);
-
-});
-
-
-/* =========================================
    ADD EXPERIENCE
 ========================================= */
 
@@ -54,10 +30,9 @@ function addExperience() {
 
     const entry = document.createElement("div");
 
-    entry.className = "dynamic-entry";
+    entry.className = "dynamic-entry experience-entry";
 
     entry.innerHTML = `
-
         <div class="dynamic-entry-grid">
 
             <div>
@@ -93,16 +68,12 @@ function addExperience() {
             </div>
 
             <div class="full-width">
-
-                <label>
-                    Responsibilities & Achievements
-                </label>
+                <label>Responsibilities & Achievements</label>
 
                 <textarea
                     class="exp-description"
                     rows="4"
                     placeholder="Served customers, handled cash, increased sales..."></textarea>
-
             </div>
 
         </div>
@@ -110,20 +81,27 @@ function addExperience() {
         <button
             type="button"
             class="remove-btn"
-            onclick="removeEntry(this)">
+            onclick="removeExperience(this)">
             Remove
         </button>
-
     `;
 
     experienceContainer.appendChild(entry);
+}
 
-    entry.querySelectorAll("input, textarea")
-        .forEach(input => {
-            input.addEventListener("input", updateResume);
-        });
 
-    updateResume();
+/* =========================================
+   REMOVE EXPERIENCE
+========================================= */
+
+function removeExperience(button) {
+
+    const entry =
+        button.closest(".experience-entry");
+
+    if (entry) {
+        entry.remove();
+    }
 }
 
 
@@ -135,10 +113,9 @@ function addEducation() {
 
     const entry = document.createElement("div");
 
-    entry.className = "dynamic-entry";
+    entry.className = "dynamic-entry education-entry";
 
     entry.innerHTML = `
-
         <div class="dynamic-entry-grid">
 
             <div>
@@ -178,58 +155,49 @@ function addEducation() {
         <button
             type="button"
             class="remove-btn"
-            onclick="removeEntry(this)">
+            onclick="removeEducation(this)">
             Remove
         </button>
-
     `;
 
     educationContainer.appendChild(entry);
-
-    entry.querySelectorAll("input, textarea")
-        .forEach(input => {
-            input.addEventListener("input", updateResume);
-        });
-
-    updateResume();
 }
 
 
 /* =========================================
-   REMOVE ENTRY
+   REMOVE EDUCATION
 ========================================= */
 
-function removeEntry(button) {
+function removeEducation(button) {
 
-    button.closest(".dynamic-entry").remove();
+    const entry =
+        button.closest(".education-entry");
 
-    updateResume();
+    if (entry) {
+        entry.remove();
+    }
 }
 
 
 /* =========================================
-   UPDATE RESUME
+   GENERATE RESUME
 ========================================= */
 
-function updateResume() {
+function generateResume() {
 
     document.getElementById("previewName").textContent =
         fullName.value.trim() || "Your Name";
 
     document.getElementById("previewPhone").textContent =
-        phone.value.trim() || "Phone";
+        phone.value.trim() || "";
 
     document.getElementById("previewEmail").textContent =
-        email.value.trim() || "Email";
+        email.value.trim() || "";
 
     document.getElementById("previewLocation").textContent =
-        locationInput.value.trim() || "City, Province";
+        locationInput.value.trim() || "";
 
-
-    const linkedinPreview =
-        document.getElementById("previewLinkedin");
-
-    linkedinPreview.textContent =
+    document.getElementById("previewLinkedin").textContent =
         linkedin.value.trim();
 
 
@@ -239,41 +207,51 @@ function updateResume() {
         document.getElementById("previewSummary");
 
     summaryPreview.textContent =
-        summary.value.trim() ||
-        "Your professional summary will appear here.";
+        summary.value.trim() || "";
 
 
     /* EXPERIENCE */
 
-    updateExperience();
+    generateExperience();
 
 
     /* EDUCATION */
 
-    updateEducation();
+    generateEducation();
 
 
     /* SKILLS */
 
-    updateSkills();
+    generateSkills();
 
 
     /* LANGUAGES */
 
-    updateTextSection(
+    generateTextList(
         languages.value,
-        "previewLanguages",
-        "Your languages will appear here."
+        "previewLanguages"
     );
 
 
     /* CERTIFICATIONS */
 
-    updateTextSection(
+    generateTextList(
         certifications.value,
-        "previewCertifications",
-        "Your certifications will appear here."
+        "previewCertifications"
     );
+
+
+    /* SHOW PREVIEW */
+
+    const preview =
+        document.getElementById("resumePreview");
+
+    preview.classList.add("resume-generated");
+
+    preview.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
 }
 
 
@@ -281,43 +259,28 @@ function updateResume() {
    EXPERIENCE PREVIEW
 ========================================= */
 
-function updateExperience() {
+function generateExperience() {
 
     const preview =
         document.getElementById("previewExperience");
 
     const entries =
-        document.querySelectorAll(".dynamic-entry");
+        document.querySelectorAll(".experience-entry");
 
-    const experienceEntries = [];
+    preview.innerHTML = "";
 
-    entries.forEach(entry => {
-
-        const title =
-            entry.querySelector(".exp-title");
-
-        if (!title) return;
-
-        experienceEntries.push(entry);
-
-    });
-
-
-    if (experienceEntries.length === 0) {
+    if (entries.length === 0) {
 
         preview.innerHTML =
             `<p class="empty-preview">
-                Your work experience will appear here.
+                No work experience added.
             </p>`;
 
         return;
     }
 
 
-    preview.innerHTML = "";
-
-
-    experienceEntries.forEach(entry => {
+    entries.forEach(entry => {
 
         const title =
             entry.querySelector(".exp-title").value.trim();
@@ -335,7 +298,8 @@ function updateExperience() {
             entry.querySelector(".exp-description").value.trim();
 
 
-        const job = document.createElement("div");
+        const job =
+            document.createElement("div");
 
         job.className = "preview-job";
 
@@ -361,7 +325,6 @@ function updateExperience() {
 
 
         job.innerHTML = `
-
             <h3>
                 ${escapeHTML(title || "Job Title")}
             </h3>
@@ -371,21 +334,15 @@ function updateExperience() {
             </div>
 
             <div class="preview-dates">
-
                 ${escapeHTML(location)}
-
                 ${location && dates ? " | " : ""}
-
                 ${escapeHTML(dates)}
-
             </div>
 
             ${descriptionHTML}
-
         `;
 
         preview.appendChild(job);
-
     });
 }
 
@@ -394,43 +351,28 @@ function updateExperience() {
    EDUCATION PREVIEW
 ========================================= */
 
-function updateEducation() {
+function generateEducation() {
 
     const preview =
         document.getElementById("previewEducation");
 
     const entries =
-        document.querySelectorAll(".dynamic-entry");
+        document.querySelectorAll(".education-entry");
 
-    const educationEntries = [];
+    preview.innerHTML = "";
 
-    entries.forEach(entry => {
-
-        const degree =
-            entry.querySelector(".edu-degree");
-
-        if (!degree) return;
-
-        educationEntries.push(entry);
-
-    });
-
-
-    if (educationEntries.length === 0) {
+    if (entries.length === 0) {
 
         preview.innerHTML =
             `<p class="empty-preview">
-                Your education will appear here.
+                No education added.
             </p>`;
 
         return;
     }
 
 
-    preview.innerHTML = "";
-
-
-    educationEntries.forEach(entry => {
+    entries.forEach(entry => {
 
         const degree =
             entry.querySelector(".edu-degree").value.trim();
@@ -452,7 +394,6 @@ function updateEducation() {
 
 
         education.innerHTML = `
-
             <h3>
                 ${escapeHTML(degree || "Degree / Diploma")}
             </h3>
@@ -462,20 +403,13 @@ function updateEducation() {
             </div>
 
             <div class="preview-dates">
-
                 ${escapeHTML(location)}
-
                 ${location && dates ? " | " : ""}
-
                 ${escapeHTML(dates)}
-
             </div>
-
         `;
 
-
         preview.appendChild(education);
-
     });
 }
 
@@ -484,7 +418,7 @@ function updateEducation() {
    SKILLS
 ========================================= */
 
-function updateSkills() {
+function generateSkills() {
 
     const preview =
         document.getElementById("previewSkills");
@@ -498,40 +432,31 @@ function updateSkills() {
 
     if (values.length === 0) {
 
-        preview.innerHTML =
-            "Your skills will appear here.";
+        preview.innerHTML = "";
 
         return;
     }
 
 
     preview.innerHTML = `
-
         <div class="skills-list">
 
             ${values.map(skill => `
-
                 <span class="skill-item">
                     ${escapeHTML(skill)}
                 </span>
-
             `).join("")}
 
         </div>
-
     `;
 }
 
 
 /* =========================================
-   TEXT SECTIONS
+   LANGUAGES / CERTIFICATIONS
 ========================================= */
 
-function updateTextSection(
-    value,
-    elementId,
-    placeholder
-) {
+function generateTextList(value, elementId) {
 
     const element =
         document.getElementById(elementId);
@@ -545,22 +470,18 @@ function updateTextSection(
 
     if (values.length === 0) {
 
-        element.textContent = placeholder;
+        element.innerHTML = "";
 
         return;
     }
 
 
     element.innerHTML = `
-
         <ul>
-
             ${values.map(item =>
                 `<li>${escapeHTML(item)}</li>`
             ).join("")}
-
         </ul>
-
     `;
 }
 
@@ -581,7 +502,7 @@ function escapeHTML(value) {
 
 
 /* =========================================
-   PRINT / SAVE PDF
+   PRINT / PDF
 ========================================= */
 
 function printResume() {
@@ -592,45 +513,47 @@ function printResume() {
 
 
 /* =========================================
-   CLEAR
+   START OVER
 ========================================= */
 
 function clearResume() {
 
-    const confirmed =
-        confirm(
-            "Are you sure you want to start over?"
-        );
+    if (!confirm("Are you sure you want to start over?")) {
+        return;
+    }
 
-    if (!confirmed) return;
-
-
-    document.querySelectorAll(
-        "input, textarea"
-    ).forEach(input => {
-
-        input.value = "";
-
-    });
-
+    document
+        .querySelectorAll(
+            "#resumeForm input, #resumeForm textarea"
+        )
+        .forEach(input => {
+            input.value = "";
+        });
 
     experienceContainer.innerHTML = "";
 
     educationContainer.innerHTML = "";
 
-    updateResume();
+    document.getElementById("previewName").textContent =
+        "Your Name";
 
+    document.getElementById("previewPhone").textContent = "";
+
+    document.getElementById("previewEmail").textContent = "";
+
+    document.getElementById("previewLocation").textContent = "";
+
+    document.getElementById("previewLinkedin").textContent = "";
+
+    document.getElementById("previewSummary").textContent = "";
+
+    document.getElementById("previewExperience").innerHTML = "";
+
+    document.getElementById("previewEducation").innerHTML = "";
+
+    document.getElementById("previewSkills").innerHTML = "";
+
+    document.getElementById("previewLanguages").innerHTML = "";
+
+    document.getElementById("previewCertifications").innerHTML = "";
 }
-
-
-/* =========================================
-   START WITH ONE EXPERIENCE + EDUCATION
-========================================= */
-
-addExperience();
-
-addEducation();
-
-updateResume();
-```
-
