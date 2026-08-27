@@ -1,15 +1,20 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Free Resume Maker | KalMarket</title>
+    <title data-i18n="resume_maker_title">
+        Free Resume Maker | KalMarket
+    </title>
 
-    <meta name="description"
-          content="Create a professional Canadian-style resume for free with KalMarket Resume Maker.">
+    <meta
+        name="description"
+        data-i18n-content="resume_maker_description"
+        content="Create a professional Canadian-style resume for free with KalMarket Resume Maker."
+    >
 
     <link rel="stylesheet" href="../../style.css?v=2">
     <link rel="stylesheet" href="resume-maker.css">
@@ -21,17 +26,23 @@
 
     <div class="header-inner">
 
-        <a href="../../index.html" class="site-logo">
+        <a
+            href="../../index.html"
+            class="site-logo">
             KalMarket
         </a>
 
         <nav class="main-nav">
 
-            <a href="../../index.html">
+            <a
+                href="../../index.html"
+                data-i18n="home">
                 🏠 Home
             </a>
 
-            <a href="../index.html">
+            <a
+                href="../index.html"
+                data-i18n="free_calculators">
                 🧮 Free Calculators
             </a>
 
@@ -44,13 +55,22 @@
 
 <main class="resume-maker-container">
 
+
+    <!-- =====================================
+         HERO
+    ====================================== -->
+
     <section class="resume-hero">
 
-        <div class="resume-icon">📄</div>
+        <div class="resume-icon">
+            📄
+        </div>
 
-        <h1>Free Resume Maker</h1>
+        <h1 data-i18n="resume_maker_heading">
+            Free Resume Maker
+        </h1>
 
-        <p>
+        <p data-i18n="resume_maker_intro">
             Create a professional resume in minutes.
             Enter your information and see your resume update automatically.
         </p>
@@ -61,59 +81,112 @@
     <div class="resume-layout">
 
 
-        <!-- ================= FORM ================= -->
+        <!-- =====================================
+             FORM
+        ====================================== -->
 
         <section class="resume-form">
 
-            <h2>📝 Your Information</h2>
+            <h2 data-i18n="your_information">
+                📝 Your Information
+            </h2>
 
 
-            <!-- PERSONAL -->
+            <!-- =================================
+                 PERSONAL INFORMATION
+            ================================== -->
 
             <div class="form-section">
 
-                <h3>Personal Information</h3>
+                <h3 data-i18n="personal_information">
+                    Personal Information
+                </h3>
 
                 <div class="form-grid">
 
+
                     <div>
-                        <label>Full Name</label>
+
+                        <label
+                            for="fullName"
+                            data-i18n="full_name">
+                            Full Name
+                        </label>
+
                         <input
                             type="text"
                             id="fullName"
+                            data-i18n-placeholder="full_name_placeholder"
                             placeholder="John Smith">
+
                     </div>
 
+
                     <div>
-                        <label>Phone</label>
+
+                        <label
+                            for="phone"
+                            data-i18n="phone">
+                            Phone
+                        </label>
+
                         <input
                             type="text"
                             id="phone"
+                            data-i18n-placeholder="phone_placeholder"
                             placeholder="204-555-1234">
+
                     </div>
 
+
                     <div>
-                        <label>Email</label>
+
+                        <label
+                            for="email"
+                            data-i18n="email">
+                            Email
+                        </label>
+
                         <input
                             type="email"
                             id="email"
+                            data-i18n-placeholder="email_placeholder"
                             placeholder="john@email.com">
+
                     </div>
 
+
                     <div>
-                        <label>City / Province</label>
+
+                        <label
+                            for="location"
+                            data-i18n="city_province">
+                            City / Province
+                        </label>
+
                         <input
                             type="text"
                             id="location"
+                            data-i18n-placeholder="location_placeholder"
                             placeholder="Winnipeg, Manitoba">
+
                     </div>
 
+
                     <div class="full-width">
-                        <label>LinkedIn (Optional)</label>
+
+                        <label
+                            for="linkedin"
+                            data-i18n="linkedin_optional">
+                            LinkedIn (Optional)
+                        </label>
+
                         <input
                             type="text"
                             id="linkedin"
+                            data-i18n-placeholder="linkedin_placeholder"
                             placeholder="linkedin.com/in/johnsmith">
+
                     </div>
 
                 </div>
@@ -121,153 +194,221 @@
             </div>
 
 
-            <!-- SUMMARY -->
-
-           <div class="form-section">
-
-    <h3>Professional Summary</h3>
-
-    <textarea
-        id="summary"
-        rows="5"
-        placeholder="Example: mechanic, customer service, warehouse worker..."></textarea>
-
-    <button
-        type="button"
-        class="ai-btn"
-        onclick="improveWithAI('summary')">
-        ✨ Improve with AI
-    </button>
-
-    <small>
-        You can enter a few words. AI will help turn them into a professional summary.
-    </small>
-
-</div>
-
-
-            <!-- EXPERIENCE -->
-
-           <div class="full-width">
-
-    <label>Responsibilities & Achievements</label>
-
-    <textarea
-        class="exp-description"
-        rows="4"
-        placeholder="Example: oil change, brakes, tires"></textarea>
-
-    <button
-        type="button"
-        class="ai-btn"
-        onclick="improveExperience(this)">
-        ✨ Improve with AI
-    </button>
-
-</div>
-
-            <!-- EDUCATION -->
+            <!-- =================================
+                 PROFESSIONAL SUMMARY
+            ================================== -->
 
             <div class="form-section">
 
-                <h3>🎓 Education</h3>
+                <h3 data-i18n="professional_summary">
+                    Professional Summary
+                </h3>
 
-                <div id="educationContainer"></div>
+                <textarea
+                    id="summary"
+                    rows="5"
+                    data-i18n-placeholder="summary_placeholder"
+                    placeholder="Example: mechanic, customer service, warehouse worker..."></textarea>
+
+
+                <button
+                    type="button"
+                    class="smart-btn"
+                    onclick="smartSummary()"
+                    data-i18n="smart_wording">
+                    ✨ Smart Wording
+                </button>
+
+
+                <small data-i18n="smart_summary_help">
+                    Enter a few words and Smart Wording will help turn them into professional resume language.
+                </small>
+
+            </div>
+
+
+            <!-- =================================
+                 WORK EXPERIENCE
+            ================================== -->
+
+            <div class="form-section">
+
+                <h3 data-i18n="work_experience">
+                    💼 Work Experience
+                </h3>
+
+
+                <div id="experienceContainer"></div>
+
 
                 <button
                     type="button"
                     class="add-btn"
-                    onclick="addEducation()">
+                    onclick="addExperience()"
+                    data-i18n="add_work_experience">
+                    + Add Work Experience
+                </button>
+
+
+                <small data-i18n="experience_help">
+                    Add each job separately. Use Smart Wording to turn simple notes into professional resume language.
+                </small>
+
+            </div>
+
+
+            <!-- =================================
+                 EDUCATION
+            ================================== -->
+
+            <div class="form-section">
+
+                <h3 data-i18n="education">
+                    🎓 Education
+                </h3>
+
+
+                <div id="educationContainer"></div>
+
+
+                <button
+                    type="button"
+                    class="add-btn"
+                    onclick="addEducation()"
+                    data-i18n="add_education">
                     + Add Education
                 </button>
 
             </div>
 
 
-            <!-- SKILLS -->
+            <!-- =================================
+                 SKILLS
+            ================================== -->
 
             <div class="form-section">
 
-                <h3>🛠️ Skills</h3>
+                <h3 data-i18n="skills">
+                    🛠️ Skills
+                </h3>
+
 
                 <textarea
                     id="skills"
                     rows="4"
+                    data-i18n-placeholder="skills_placeholder"
                     placeholder="Customer Service, Microsoft Office, Communication, Teamwork"></textarea>
 
-                <small>
+
+                <small data-i18n="skills_help">
                     Separate skills with commas.
                 </small>
 
             </div>
 
 
-            <!-- LANGUAGES -->
+            <!-- =================================
+                 LANGUAGES
+            ================================== -->
 
             <div class="form-section">
 
-                <h3>🌎 Languages</h3>
+                <h3 data-i18n="languages">
+                    🌎 Languages
+                </h3>
+
 
                 <textarea
                     id="languages"
                     rows="3"
+                    data-i18n-placeholder="languages_placeholder"
                     placeholder="English - Fluent, Arabic - Fluent, French - Intermediate"></textarea>
 
             </div>
 
 
-            <!-- CERTIFICATIONS -->
+            <!-- =================================
+                 CERTIFICATIONS
+            ================================== -->
 
             <div class="form-section">
 
-                <h3>📜 Certifications</h3>
+                <h3 data-i18n="certifications">
+                    📜 Certifications
+                </h3>
+
 
                 <textarea
                     id="certifications"
                     rows="3"
+                    data-i18n-placeholder="certifications_placeholder"
                     placeholder="First Aid Certificate, WHMIS, Class 5 Driver's Licence"></textarea>
 
             </div>
 
 
-           <div class="form-actions">
+            <!-- =================================
+                 ACTION BUTTONS
+            ================================== -->
 
-    <button
-        type="button"
-        class="generate-btn"
-        onclick="generateResume()">
-        ✨ Generate Resume
-    </button>
+            <div class="form-actions">
 
-    <button
-        type="button"
-        class="print-btn"
-        onclick="printResume()">
-        🖨️ Print / Save PDF
-    </button>
 
-    <button
-        type="button"
-        class="clear-btn"
-        onclick="clearResume()">
-        🔄 Start Over
-    </button>
+                <button
+                    type="button"
+                    class="generate-btn"
+                    onclick="generateResume()"
+                    data-i18n="generate_resume">
+                    ✨ Generate Resume
+                </button>
 
-</div>
+
+                <button
+                    type="button"
+                    class="print-btn"
+                    onclick="printResume()"
+                    data-i18n="print_save_pdf">
+                    🖨️ Print / Save PDF
+                </button>
+
+
+                <button
+                    type="button"
+                    class="clear-btn"
+                    onclick="clearResume()"
+                    data-i18n="start_over">
+                    🔄 Start Over
+                </button>
+
+            </div>
 
         </section>
 
 
-        <!-- ================= PREVIEW ================= -->
+        <!-- =====================================
+             RESUME PREVIEW
+        ====================================== -->
 
         <section class="resume-preview-area">
 
+
             <div class="preview-header">
-                <h2>👀 Resume Preview</h2>
+
+                <h2 data-i18n="resume_preview">
+                    👀 Resume Preview
+                </h2>
+
             </div>
 
 
-            <article id="resumePreview" class="resume-paper">
+            <article
+                id="resumePreview"
+                class="resume-paper">
+
+
+                <!-- =============================
+                     RESUME HEADER
+                ============================== -->
 
                 <div class="resume-header">
 
@@ -275,21 +416,28 @@
                         Your Name
                     </h1>
 
+
                     <div class="contact-line">
 
-                        <span id="previewPhone">
+                        <span id="previewPhone"
+                              data-i18n="phone_preview">
                             Phone
                         </span>
 
-                        <span id="previewEmail">
+
+                        <span id="previewEmail"
+                              data-i18n="email_preview">
                             Email
                         </span>
 
-                        <span id="previewLocation">
+
+                        <span id="previewLocation"
+                              data-i18n="location_preview">
                             City, Province
                         </span>
 
                     </div>
+
 
                     <div
                         id="previewLinkedin"
@@ -299,28 +447,46 @@
                 </div>
 
 
+                <!-- =============================
+                     SUMMARY
+                ============================== -->
+
                 <section
                     id="previewSummarySection"
                     class="preview-section">
 
-                    <h2>Professional Summary</h2>
+                    <h2 data-i18n="professional_summary">
+                        Professional Summary
+                    </h2>
 
-                    <p id="previewSummary">
+
+                    <p
+                        id="previewSummary"
+                        data-i18n="summary_preview">
                         Your professional summary will appear here.
                     </p>
 
                 </section>
 
 
+                <!-- =============================
+                     EXPERIENCE
+                ============================== -->
+
                 <section
                     id="previewExperienceSection"
                     class="preview-section">
 
-                    <h2>Work Experience</h2>
+                    <h2 data-i18n="work_experience">
+                        Work Experience
+                    </h2>
+
 
                     <div id="previewExperience">
 
-                        <p class="empty-preview">
+                        <p
+                            class="empty-preview"
+                            data-i18n="experience_preview">
                             Your work experience will appear here.
                         </p>
 
@@ -329,15 +495,24 @@
                 </section>
 
 
+                <!-- =============================
+                     EDUCATION
+                ============================== -->
+
                 <section
                     id="previewEducationSection"
                     class="preview-section">
 
-                    <h2>Education</h2>
+                    <h2 data-i18n="education">
+                        Education
+                    </h2>
+
 
                     <div id="previewEducation">
 
-                        <p class="empty-preview">
+                        <p
+                            class="empty-preview"
+                            data-i18n="education_preview">
                             Your education will appear here.
                         </p>
 
@@ -346,40 +521,58 @@
                 </section>
 
 
+                <!-- =============================
+                     SKILLS
+                ============================== -->
+
                 <section
                     id="previewSkillsSection"
                     class="preview-section">
 
-                    <h2>Skills</h2>
+                    <h2 data-i18n="skills">
+                        Skills
+                    </h2>
+
 
                     <div id="previewSkills">
-                        Your skills will appear here.
                     </div>
 
                 </section>
 
+
+                <!-- =============================
+                     LANGUAGES
+                ============================== -->
 
                 <section
                     id="previewLanguagesSection"
                     class="preview-section">
 
-                    <h2>Languages</h2>
+                    <h2 data-i18n="languages">
+                        Languages
+                    </h2>
+
 
                     <div id="previewLanguages">
-                        Your languages will appear here.
                     </div>
 
                 </section>
 
 
+                <!-- =============================
+                     CERTIFICATIONS
+                ============================== -->
+
                 <section
                     id="previewCertificationsSection"
                     class="preview-section">
 
-                    <h2>Certifications</h2>
+                    <h2 data-i18n="certifications">
+                        Certifications
+                    </h2>
+
 
                     <div id="previewCertifications">
-                        Your certifications will appear here.
                     </div>
 
                 </section>
@@ -393,9 +586,19 @@
 </main>
 
 
+<!-- =====================================
+     LANGUAGE SYSTEM
+====================================== -->
+
+<script src="../../languages.js"></script>
+
+<!-- =====================================
+     RESUME MAKER
+====================================== -->
+
 <script src="resume-maker.js"></script>
+
 
 </body>
 </html>
-```
 
