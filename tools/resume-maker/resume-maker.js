@@ -1,12 +1,7 @@
 /* =========================================
    KALMARKET FREE RESUME MAKER
-   Browser-Based Version
-   No OpenAI API Required
-========================================= */
-
-
-/* =========================================
-   BASIC ELEMENTS
+   No API / No AI / No paid service
+   Smart wording works locally in browser
 ========================================= */
 
 const fullName = document.getElementById("fullName");
@@ -24,229 +19,94 @@ const educationContainer =
 
 
 /* =========================================
-   CREATE EXPERIENCE SECTION
-   Your current HTML does not contain one,
-   so we create it automatically.
-========================================= */
-
-let experienceContainer = null;
-
-function createExperienceSection() {
-
-    const educationSection =
-        educationContainer
-            ? educationContainer.closest(".form-section")
-            : null;
-
-    if (!educationSection) {
-        console.warn("Education section not found.");
-        return;
-    }
-
-    const experienceSection =
-        document.createElement("div");
-
-    experienceSection.className =
-        "form-section experience-form-section";
-
-    experienceSection.innerHTML = `
-        <h3>💼 Work Experience</h3>
-
-        <div id="experienceContainer"></div>
-
-        <button
-            type="button"
-            class="add-btn"
-            id="addExperienceButton">
-            + Add Work Experience
-        </button>
-
-        <small>
-            Add your jobs, work history, responsibilities and achievements.
-        </small>
-    `;
-
-    educationSection.parentNode.insertBefore(
-        experienceSection,
-        educationSection
-    );
-
-    experienceContainer =
-        document.getElementById("experienceContainer");
-
-    document
-        .getElementById("addExperienceButton")
-        .addEventListener("click", addExperience);
-}
-
-
-/* =========================================
-   INITIALIZE
-========================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    createExperienceSection();
-
-    /*
-       Start with one work experience box.
-       This makes the form easier for visitors.
-    */
-
-    addExperience();
-
-    /*
-       Start with one education box.
-       User can remove it if not needed.
-    */
-
-    addEducation();
-
-    /*
-       Update preview while typing.
-    */
-
-    setupLivePreview();
-
-});
-
-
-/* =========================================
    ADD EXPERIENCE
+   Experience is now created properly
+   inside the page.
 ========================================= */
 
 function addExperience() {
 
-    if (!experienceContainer) {
+    const container = document.getElementById("experienceContainer");
+
+    if (!container) {
+        console.error("experienceContainer not found.");
         return;
     }
 
-    const entry =
-        document.createElement("div");
+    const entry = document.createElement("div");
 
-    entry.className =
-        "dynamic-entry experience-entry";
+    entry.className = "dynamic-entry experience-entry";
 
     entry.innerHTML = `
-
         <div class="dynamic-entry-grid">
 
             <div>
                 <label>Job Title</label>
-
                 <input
                     type="text"
                     class="exp-title"
-                    placeholder="Automotive Technician">
+                    placeholder="Sales Associate">
             </div>
-
 
             <div>
                 <label>Company</label>
-
                 <input
                     type="text"
                     class="exp-company"
-                    placeholder="ABC Auto Service">
+                    placeholder="ABC Company">
             </div>
-
 
             <div>
                 <label>Location</label>
-
                 <input
                     type="text"
                     class="exp-location"
                     placeholder="Winnipeg, Manitoba">
             </div>
 
-
             <div>
                 <label>Dates</label>
-
                 <input
                     type="text"
                     class="exp-dates"
                     placeholder="2022 - Present">
             </div>
 
-
             <div class="full-width">
-
-                <label>
-                    Responsibilities & Achievements
-                </label>
+                <label>Responsibilities & Achievements</label>
 
                 <textarea
                     class="exp-description"
-                    rows="5"
-                    placeholder="Example: oil changes, brakes, tires, diagnostics, customer service"></textarea>
+                    rows="4"
+                    placeholder="Example:
+Served customers
+Handled cash
+Maintained inventory
+Helped increase sales"></textarea>
 
                 <button
                     type="button"
-                    class="ai-btn local-improve-experience">
-                    ✨ Improve Wording
+                    class="smart-btn"
+                    onclick="smartExperience(this)">
+                    ✨ Smart Wording
                 </button>
 
+                <small>
+                    Turns simple notes into professional resume wording.
+                </small>
             </div>
 
         </div>
 
-
         <button
             type="button"
-            class="remove-btn remove-experience-btn">
+            class="remove-btn"
+            onclick="removeExperience(this)">
             Remove
         </button>
     `;
 
-    experienceContainer.appendChild(entry);
-
-
-    /*
-       Improve wording button
-    */
-
-    const improveButton =
-        entry.querySelector(
-            ".local-improve-experience"
-        );
-
-    improveButton.addEventListener(
-        "click",
-        () => improveExperience(improveButton)
-    );
-
-
-    /*
-       Remove button
-    */
-
-    const removeButton =
-        entry.querySelector(
-            ".remove-experience-btn"
-        );
-
-    removeButton.addEventListener(
-        "click",
-        () => removeExperience(removeButton)
-    );
-
-
-    /*
-       Live preview
-    */
-
-    entry
-        .querySelectorAll("input, textarea")
-        .forEach(input => {
-
-            input.addEventListener(
-                "input",
-                generateResume
-            );
-
-        });
+    container.appendChild(entry);
 }
 
 
@@ -259,13 +119,11 @@ function removeExperience(button) {
     const entry =
         button.closest(".experience-entry");
 
-    if (!entry) {
-        return;
+    if (entry) {
+        entry.remove();
     }
 
-    entry.remove();
-
-    generateResume();
+    generateExperience();
 }
 
 
@@ -275,7 +133,10 @@ function removeExperience(button) {
 
 function addEducation() {
 
-    if (!educationContainer) {
+    const container =
+        document.getElementById("educationContainer");
+
+    if (!container) {
         return;
     }
 
@@ -286,98 +147,51 @@ function addEducation() {
         "dynamic-entry education-entry";
 
     entry.innerHTML = `
-
         <div class="dynamic-entry-grid">
 
             <div>
-
-                <label>
-                    Degree / Diploma
-                </label>
-
+                <label>Degree / Diploma</label>
                 <input
                     type="text"
                     class="edu-degree"
                     placeholder="Business Administration">
-
             </div>
 
-
             <div>
-
-                <label>
-                    School
-                </label>
-
+                <label>School</label>
                 <input
                     type="text"
                     class="edu-school"
                     placeholder="University of Manitoba">
-
             </div>
 
-
             <div>
-
-                <label>
-                    Location
-                </label>
-
+                <label>Location</label>
                 <input
                     type="text"
                     class="edu-location"
                     placeholder="Winnipeg, Manitoba">
-
             </div>
 
-
             <div>
-
-                <label>
-                    Dates
-                </label>
-
+                <label>Dates</label>
                 <input
                     type="text"
                     class="edu-dates"
                     placeholder="2018 - 2022">
-
             </div>
 
         </div>
 
-
         <button
             type="button"
-            class="remove-btn remove-education-btn">
+            class="remove-btn"
+            onclick="removeEducation(this)">
             Remove
         </button>
     `;
 
-    educationContainer.appendChild(entry);
-
-
-    const removeButton =
-        entry.querySelector(
-            ".remove-education-btn"
-        );
-
-    removeButton.addEventListener(
-        "click",
-        () => removeEducation(removeButton)
-    );
-
-
-    entry
-        .querySelectorAll("input")
-        .forEach(input => {
-
-            input.addEventListener(
-                "input",
-                generateResume
-            );
-
-        });
+    container.appendChild(entry);
 }
 
 
@@ -390,13 +204,11 @@ function removeEducation(button) {
     const entry =
         button.closest(".education-entry");
 
-    if (!entry) {
-        return;
+    if (entry) {
+        entry.remove();
     }
 
-    entry.remove();
-
-    generateResume();
+    generateEducation();
 }
 
 
@@ -406,78 +218,44 @@ function removeEducation(button) {
 
 function generateResume() {
 
-    /*
-       PERSONAL INFORMATION
-    */
+    document.getElementById("previewName").textContent =
+        fullName.value.trim() || "Your Name";
 
-    document.getElementById(
-        "previewName"
-    ).textContent =
-        fullName.value.trim() ||
-        "Your Name";
-
-
-    document.getElementById(
-        "previewPhone"
-    ).textContent =
+    document.getElementById("previewPhone").textContent =
         phone.value.trim();
 
-
-    document.getElementById(
-        "previewEmail"
-    ).textContent =
+    document.getElementById("previewEmail").textContent =
         email.value.trim();
 
-
-    document.getElementById(
-        "previewLocation"
-    ).textContent =
+    document.getElementById("previewLocation").textContent =
         locationInput.value.trim();
 
-
-    document.getElementById(
-        "previewLinkedin"
-    ).textContent =
+    document.getElementById("previewLinkedin").textContent =
         linkedin.value.trim();
 
 
-    /*
-       SUMMARY
-    */
+    /* SUMMARY */
 
-    const summaryPreview =
-        document.getElementById(
-            "previewSummary"
-        );
-
-    summaryPreview.textContent =
+    document.getElementById("previewSummary").textContent =
         summary.value.trim();
 
 
-    /*
-       EXPERIENCE
-    */
+    /* EXPERIENCE */
 
     generateExperience();
 
 
-    /*
-       EDUCATION
-    */
+    /* EDUCATION */
 
     generateEducation();
 
 
-    /*
-       SKILLS
-    */
+    /* SKILLS */
 
     generateSkills();
 
 
-    /*
-       LANGUAGES
-    */
+    /* LANGUAGES */
 
     generateTextList(
         languages.value,
@@ -485,9 +263,7 @@ function generateResume() {
     );
 
 
-    /*
-       CERTIFICATIONS
-    */
+    /* CERTIFICATIONS */
 
     generateTextList(
         certifications.value,
@@ -495,22 +271,9 @@ function generateResume() {
     );
 
 
-    /*
-       SHOW GENERATED STYLE
-    */
-
-    const preview =
-        document.getElementById(
-            "resumePreview"
-        );
-
-    if (preview) {
-
-        preview.classList.add(
-            "resume-generated"
-        );
-
-    }
+    document
+        .getElementById("resumePreview")
+        .classList.add("resume-generated");
 }
 
 
@@ -521,58 +284,22 @@ function generateResume() {
 function generateExperience() {
 
     const preview =
-        document.getElementById(
-            "previewExperience"
-        );
+        document.getElementById("previewExperience");
 
     if (!preview) {
         return;
     }
 
     const entries =
-        document.querySelectorAll(
-            ".experience-entry"
-        );
+        document.querySelectorAll(".experience-entry");
 
     preview.innerHTML = "";
 
-
-    /*
-       No experience
-    */
-
-    const validEntries =
-        Array.from(entries).filter(entry => {
-
-            const title =
-                entry.querySelector(
-                    ".exp-title"
-                )?.value.trim();
-
-            const company =
-                entry.querySelector(
-                    ".exp-company"
-                )?.value.trim();
-
-            const description =
-                entry.querySelector(
-                    ".exp-description"
-                )?.value.trim();
-
-            return (
-                title ||
-                company ||
-                description
-            );
-
-        });
-
-
-    if (validEntries.length === 0) {
+    if (entries.length === 0) {
 
         preview.innerHTML = `
             <p class="empty-preview">
-                Your work experience will appear here.
+                No work experience added.
             </p>
         `;
 
@@ -580,32 +307,22 @@ function generateExperience() {
     }
 
 
-    validEntries.forEach(entry => {
+    entries.forEach(entry => {
 
         const title =
-            entry.querySelector(
-                ".exp-title"
-            ).value.trim();
+            entry.querySelector(".exp-title")?.value.trim() || "";
 
         const company =
-            entry.querySelector(
-                ".exp-company"
-            ).value.trim();
+            entry.querySelector(".exp-company")?.value.trim() || "";
 
         const location =
-            entry.querySelector(
-                ".exp-location"
-            ).value.trim();
+            entry.querySelector(".exp-location")?.value.trim() || "";
 
         const dates =
-            entry.querySelector(
-                ".exp-dates"
-            ).value.trim();
+            entry.querySelector(".exp-dates")?.value.trim() || "";
 
         const description =
-            entry.querySelector(
-                ".exp-description"
-            ).value.trim();
+            entry.querySelector(".exp-description")?.value.trim() || "";
 
 
         const job =
@@ -615,87 +332,45 @@ function generateExperience() {
             "preview-job";
 
 
-        /*
-           Convert responsibilities into
-           professional bullet points.
-        */
-
         let descriptionHTML = "";
-
 
         if (description) {
 
             const lines =
                 description
-                    .split(/\n|•/)
-                    .map(line =>
-                        line
-                            .replace(/^[-*]\s*/, "")
-                            .trim()
-                    )
+                    .split("\n")
+                    .map(line => line.trim())
                     .filter(Boolean);
-
 
             descriptionHTML = `
                 <ul>
-                    ${lines.map(line => `
-                        <li>
-                            ${escapeHTML(line)}
-                        </li>
-                    `).join("")}
+                    ${lines.map(line =>
+                        `<li>${escapeHTML(line)}</li>`
+                    ).join("")}
                 </ul>
             `;
         }
 
 
         job.innerHTML = `
-
             <h3>
-                ${escapeHTML(
-                    title || "Job Title"
-                )}
+                ${escapeHTML(title || "Job Title")}
             </h3>
 
+            <div class="preview-company">
+                ${escapeHTML(company)}
+            </div>
 
-            ${
-                company
-                ? `
-                    <div class="preview-company">
-                        ${escapeHTML(company)}
-                    </div>
-                  `
-                : ""
-            }
-
-
-            ${
-                location || dates
-                ? `
-                    <div class="preview-dates">
-
-                        ${escapeHTML(location)}
-
-                        ${
-                            location && dates
-                            ? " | "
-                            : ""
-                        }
-
-                        ${escapeHTML(dates)}
-
-                    </div>
-                  `
-                : ""
-            }
-
+            <div class="preview-dates">
+                ${escapeHTML(location)}
+                ${location && dates ? " | " : ""}
+                ${escapeHTML(dates)}
+            </div>
 
             ${descriptionHTML}
-
         `;
 
-
         preview.appendChild(job);
-
     });
 }
 
@@ -707,45 +382,22 @@ function generateExperience() {
 function generateEducation() {
 
     const preview =
-        document.getElementById(
-            "previewEducation"
-        );
+        document.getElementById("previewEducation");
 
     if (!preview) {
         return;
     }
 
     const entries =
-        document.querySelectorAll(
-            ".education-entry"
-        );
+        document.querySelectorAll(".education-entry");
 
     preview.innerHTML = "";
 
-
-    const validEntries =
-        Array.from(entries).filter(entry => {
-
-            const degree =
-                entry.querySelector(
-                    ".edu-degree"
-                )?.value.trim();
-
-            const school =
-                entry.querySelector(
-                    ".edu-school"
-                )?.value.trim();
-
-            return degree || school;
-
-        });
-
-
-    if (validEntries.length === 0) {
+    if (entries.length === 0) {
 
         preview.innerHTML = `
             <p class="empty-preview">
-                Your education will appear here.
+                No education added.
             </p>
         `;
 
@@ -753,27 +405,19 @@ function generateEducation() {
     }
 
 
-    validEntries.forEach(entry => {
+    entries.forEach(entry => {
 
         const degree =
-            entry.querySelector(
-                ".edu-degree"
-            ).value.trim();
+            entry.querySelector(".edu-degree")?.value.trim() || "";
 
         const school =
-            entry.querySelector(
-                ".edu-school"
-            ).value.trim();
+            entry.querySelector(".edu-school")?.value.trim() || "";
 
         const location =
-            entry.querySelector(
-                ".edu-location"
-            ).value.trim();
+            entry.querySelector(".edu-location")?.value.trim() || "";
 
         const dates =
-            entry.querySelector(
-                ".edu-dates"
-            ).value.trim();
+            entry.querySelector(".edu-dates")?.value.trim() || "";
 
 
         const education =
@@ -784,52 +428,22 @@ function generateEducation() {
 
 
         education.innerHTML = `
-
             <h3>
-                ${escapeHTML(
-                    degree || "Degree / Diploma"
-                )}
+                ${escapeHTML(degree || "Degree / Diploma")}
             </h3>
 
+            <div class="preview-school-name">
+                ${escapeHTML(school)}
+            </div>
 
-            ${
-                school
-                ? `
-                    <div class="preview-school-name">
-                        ${escapeHTML(school)}
-                    </div>
-                  `
-                : ""
-            }
-
-
-            ${
-                location || dates
-                ? `
-                    <div class="preview-dates">
-
-                        ${escapeHTML(location)}
-
-                        ${
-                            location && dates
-                            ? " | "
-                            : ""
-                        }
-
-                        ${escapeHTML(dates)}
-
-                    </div>
-                  `
-                : ""
-            }
-
+            <div class="preview-dates">
+                ${escapeHTML(location)}
+                ${location && dates ? " | " : ""}
+                ${escapeHTML(dates)}
+            </div>
         `;
 
-
-        preview.appendChild(
-            education
-        );
-
+        preview.appendChild(education);
     });
 }
 
@@ -841,20 +455,12 @@ function generateEducation() {
 function generateSkills() {
 
     const preview =
-        document.getElementById(
-            "previewSkills"
-        );
-
-    if (!preview) {
-        return;
-    }
+        document.getElementById("previewSkills");
 
     const values =
         skills.value
             .split(",")
-            .map(skill =>
-                skill.trim()
-            )
+            .map(skill => skill.trim())
             .filter(Boolean);
 
 
@@ -867,19 +473,15 @@ function generateSkills() {
 
 
     preview.innerHTML = `
-
         <div class="skills-list">
 
             ${values.map(skill => `
-
                 <span class="skill-item">
                     ${escapeHTML(skill)}
                 </span>
-
             `).join("")}
 
         </div>
-
     `;
 }
 
@@ -888,31 +490,19 @@ function generateSkills() {
    LANGUAGES / CERTIFICATIONS
 ========================================= */
 
-function generateTextList(
-    value,
-    elementId
-) {
+function generateTextList(value, elementId) {
 
     const element =
-        document.getElementById(
-            elementId
-        );
+        document.getElementById(elementId);
 
     if (!element) {
         return;
     }
 
-
-    /*
-       Support both commas and new lines.
-    */
-
     const values =
         value
-            .split(/,|\n/)
-            .map(item =>
-                item.trim()
-            )
+            .split(",")
+            .map(item => item.trim())
             .filter(Boolean);
 
 
@@ -925,391 +515,149 @@ function generateTextList(
 
 
     element.innerHTML = `
-
         <ul>
-
-            ${values.map(item => `
-
-                <li>
-                    ${escapeHTML(item)}
-                </li>
-
-            `).join("")}
-
+            ${values.map(item =>
+                `<li>${escapeHTML(item)}</li>`
+            ).join("")}
         </ul>
-
     `;
 }
 
 
 /* =========================================
-   FREE SMART SUMMARY IMPROVEMENT
+   FREE SMART SUMMARY
+   No API required
 ========================================= */
 
-/*
-   This replaces the paid AI call.
-
-   It does NOT send information anywhere.
-
-   It uses local JavaScript rules to create
-   professional resume wording.
-*/
-
-function improveWithAI(type) {
-
-    const textarea =
-        document.getElementById(type);
-
-    if (!textarea) {
-        return;
-    }
-
+function smartSummary() {
 
     const text =
-        textarea.value.trim();
-
+        summary.value.trim();
 
     if (!text) {
 
         alert(
-            "Please enter a few words first."
+            "Please enter a few words about yourself first."
         );
 
-        textarea.focus();
+        summary.focus();
 
         return;
     }
 
 
-    if (type === "summary") {
+    const result =
+        improveSummaryText(text);
 
-        textarea.value =
-            createProfessionalSummary(text);
-
-    }
-
+    summary.value =
+        result;
 
     generateResume();
-
 }
 
 
 /* =========================================
-   PROFESSIONAL SUMMARY GENERATOR
+   SUMMARY WORDING ENGINE
 ========================================= */
 
-function createProfessionalSummary(text) {
+function improveSummaryText(text) {
 
-    const original =
-        text.trim();
-
-
-    /*
-       If the user already entered a
-       reasonably long sentence, improve
-       punctuation and wording lightly.
-    */
-
-    if (original.length > 120) {
-
-        return capitalizeSentence(
-            original
-        );
-
-    }
+    let clean =
+        text
+            .replace(/\s+/g, " ")
+            .trim();
 
 
     const lower =
-        original.toLowerCase();
+        clean.toLowerCase();
 
 
-    let profession =
-        "professional";
+    const openings = [];
 
 
     if (
         lower.includes("mechanic") ||
         lower.includes("automotive") ||
-        lower.includes("auto repair")
+        lower.includes("auto")
     ) {
-
-        profession =
-            "automotive professional";
-
+        openings.push(
+            "Experienced automotive professional with hands-on experience in vehicle maintenance, repair, and customer service."
+        );
     }
+
     else if (
         lower.includes("warehouse") ||
         lower.includes("shipping") ||
         lower.includes("receiving")
     ) {
-
-        profession =
-            "warehouse and logistics professional";
-
+        openings.push(
+            "Reliable warehouse professional with experience supporting daily operations, inventory handling, and team-based work."
+        );
     }
+
     else if (
         lower.includes("customer service") ||
-        lower.includes("customer")
-    ) {
-
-        profession =
-            "customer service professional";
-
-    }
-    else if (
         lower.includes("sales") ||
-        lower.includes("selling")
+        lower.includes("retail")
     ) {
-
-        profession =
-            "sales professional";
-
+        openings.push(
+            "Customer-focused professional with experience in customer service, sales, and day-to-day business operations."
+        );
     }
+
     else if (
         lower.includes("security") ||
-        lower.includes("security guard")
+        lower.includes("guard")
     ) {
-
-        profession =
-            "security professional";
-
-    }
-    else if (
-        lower.includes("construction") ||
-        lower.includes("construction worker")
-    ) {
-
-        profession =
-            "construction professional";
-
-    }
-    else if (
-        lower.includes("cleaning") ||
-        lower.includes("cleaner")
-    ) {
-
-        profession =
-            "cleaning and maintenance professional";
-
-    }
-    else if (
-        lower.includes("restaurant") ||
-        lower.includes("food") ||
-        lower.includes("cook")
-    ) {
-
-        profession =
-            "food service professional";
-
-    }
-
-
-    /*
-       Extract useful skills/activities.
-    */
-
-    const activities =
-        buildActivityPhrase(
-            original
+        openings.push(
+            "Responsible security professional with experience maintaining safe environments, monitoring activity, and assisting customers and staff."
         );
+    }
+
+    else if (
+        lower.includes("driver") ||
+        lower.includes("driving")
+    ) {
+        openings.push(
+            "Dependable professional with driving experience and a strong commitment to safety, reliability, and customer service."
+        );
+    }
+
+    else {
+        openings.push(
+            "Motivated and dependable professional with practical experience and a strong commitment to quality work and customer service."
+        );
+    }
 
 
-    return `Motivated and dependable ${profession} with practical experience in ${activities}. Known for a strong work ethic, attention to detail, reliability, and a commitment to providing quality work. Adaptable team member with a professional approach and a willingness to learn and contribute.`;
+    let result =
+        openings[0];
 
+
+    const cleanedOriginal =
+        clean.charAt(0).toUpperCase() +
+        clean.slice(1);
+
+
+    if (
+        !result.toLowerCase().includes(clean.toLowerCase())
+    ) {
+        result += " " + cleanedOriginal + ".";
+    }
+
+
+    return result;
 }
 
 
 /* =========================================
-   ACTIVITY PHRASE
+   FREE SMART EXPERIENCE WORDING
 ========================================= */
 
-function buildActivityPhrase(text) {
-
-    const lower =
-        text.toLowerCase();
-
-
-    const phrases = [];
-
-
-    const keywordMap = [
-
-        {
-            keys: [
-                "oil change",
-                "oil changes"
-            ],
-            phrase:
-                "vehicle maintenance"
-        },
-
-        {
-            keys: [
-                "brake",
-                "brakes"
-            ],
-            phrase:
-                "brake service"
-        },
-
-        {
-            keys: [
-                "tire",
-                "tires"
-            ],
-            phrase:
-                "tire service"
-        },
-
-        {
-            keys: [
-                "diagnostic",
-                "diagnostics"
-            ],
-            phrase:
-                "vehicle diagnostics"
-        },
-
-        {
-            keys: [
-                "customer service",
-                "customers"
-            ],
-            phrase:
-                "customer service"
-        },
-
-        {
-            keys: [
-                "cash",
-                "cashier"
-            ],
-            phrase:
-                "cash handling"
-        },
-
-        {
-            keys: [
-                "warehouse",
-                "inventory"
-            ],
-            phrase:
-                "warehouse operations and inventory"
-        },
-
-        {
-            keys: [
-                "shipping",
-                "receiving"
-            ],
-            phrase:
-                "shipping and receiving"
-        },
-
-        {
-            keys: [
-                "sales",
-                "selling"
-            ],
-            phrase:
-                "sales and customer support"
-        },
-
-        {
-            keys: [
-                "cleaning",
-                "clean"
-            ],
-            phrase:
-                "cleaning and maintenance"
-        },
-
-        {
-            keys: [
-                "security",
-                "security guard"
-            ],
-            phrase:
-                "security and safety procedures"
-        },
-
-        {
-            keys: [
-                "computer",
-                "computers",
-                "microsoft office"
-            ],
-            phrase:
-                "computer and office tasks"
-        }
-
-    ];
-
-
-    keywordMap.forEach(item => {
-
-        const found =
-            item.keys.some(
-                key =>
-                    lower.includes(key)
-            );
-
-        if (
-            found &&
-            !phrases.includes(
-                item.phrase
-            )
-        ) {
-
-            phrases.push(
-                item.phrase
-            );
-
-        }
-
-    });
-
-
-    if (phrases.length === 0) {
-
-        return cleanUserText(text);
-
-    }
-
-
-    if (phrases.length === 1) {
-
-        return phrases[0];
-
-    }
-
-
-    if (phrases.length === 2) {
-
-        return `${phrases[0]} and ${phrases[1]}`;
-
-    }
-
-
-    const last =
-        phrases.pop();
-
-
-    return `${phrases.join(", ")}, and ${last}`;
-
-}
-
-
-/* =========================================
-   FREE EXPERIENCE WORDING
-========================================= */
-
-function improveExperience(button) {
+function smartExperience(button) {
 
     const entry =
-        button.closest(
-            ".experience-entry"
-        );
+        button.closest(".experience-entry");
 
     if (!entry) {
         return;
@@ -1317,621 +665,221 @@ function improveExperience(button) {
 
 
     const title =
-        entry.querySelector(
-            ".exp-title"
-        ).value.trim();
-
+        entry.querySelector(".exp-title")
+            ?.value.trim() || "";
 
     const description =
-        entry.querySelector(
-            ".exp-description"
-        );
+        entry.querySelector(".exp-description");
+
+    if (!description) {
+        return;
+    }
 
 
     const text =
         description.value.trim();
 
 
-    if (!title && !text) {
+    if (!text) {
 
         alert(
-            "Please enter a job title and/or a few words about the work."
+            "Please enter a few simple notes first."
         );
+
+        description.focus();
 
         return;
     }
 
 
+    const lines =
+        text
+            .split("\n")
+            .map(line => line.trim())
+            .filter(Boolean);
+
+
     const improved =
-        createProfessionalBullets(
-            title,
-            text
+        lines.map(line =>
+            improveExperienceLine(line, title)
         );
 
 
     description.value =
-        improved;
+        [...new Set(improved)].join("\n");
 
 
     generateResume();
-
 }
 
 
 /* =========================================
-   EXPERIENCE BULLET GENERATOR
+   EXPERIENCE WORDING ENGINE
 ========================================= */
 
-function createProfessionalBullets(
-    title,
-    text
-) {
+function improveExperienceLine(line, title) {
+
+    let text =
+        line
+            .replace(/^[•\-*]\s*/, "")
+            .trim();
+
 
     const lower =
         text.toLowerCase();
 
 
-    const bullets = [];
+    const replacements = [
 
+        [
+            /^oil change$/i,
+            "Performed routine oil changes and basic vehicle maintenance."
+        ],
 
-    /*
-       Automotive
-    */
+        [
+            /^brakes$/i,
+            "Inspected and serviced brake systems to support safe vehicle operation."
+        ],
 
-    if (
-        lower.includes("oil change") ||
-        lower.includes("oil changes")
-    ) {
+        [
+            /^tires$/i,
+            "Installed, balanced, and serviced vehicle tires."
+        ],
 
-        bullets.push(
-            "Performed routine oil changes and vehicle maintenance services."
-        );
+        [
+            /^customer service$/i,
+            "Provided professional and friendly customer service."
+        ],
 
-    }
+        [
+            /^handled cash$/i,
+            "Processed customer payments and handled cash transactions accurately."
+        ],
 
+        [
+            /^cashier$/i,
+            "Processed customer transactions and maintained accurate cash handling."
+        ],
 
-    if (
-        lower.includes("brake") ||
-        lower.includes("brakes")
-    ) {
+        [
+            /^cleaning$/i,
+            "Maintained a clean, organized, and safe work environment."
+        ],
 
-        bullets.push(
-            "Inspected, serviced and replaced brake components as required."
-        );
+        [
+            /^inventory$/i,
+            "Assisted with inventory management, organization, and stock control."
+        ],
 
-    }
+        [
+            /^stock shelves$/i,
+            "Stocked and organized merchandise while maintaining an orderly sales area."
+        ],
 
-
-    if (
-        lower.includes("tire") ||
-        lower.includes("tires")
-    ) {
-
-        bullets.push(
-            "Performed tire installation, rotation and related tire services."
-        );
-
-    }
-
-
-    if (
-        lower.includes("diagnostic") ||
-        lower.includes("diagnostics")
-    ) {
-
-        bullets.push(
-            "Performed vehicle inspections and diagnostic procedures to identify mechanical issues."
-        );
-
-    }
-
-
-    /*
-       Customer service
-    */
-
-    if (
-        lower.includes("customer") ||
-        lower.includes("customers")
-    ) {
-
-        bullets.push(
-            "Provided professional customer service and communicated clearly with customers."
-        );
-
-    }
-
-
-    /*
-       Sales
-    */
-
-    if (
-        lower.includes("sales") ||
-        lower.includes("selling")
-    ) {
-
-        bullets.push(
+        [
+            /^sales$/i,
             "Assisted customers with product selection and supported sales activities."
-        );
-
-    }
-
-
-    /*
-       Cash
-    */
-
-    if (
-        lower.includes("cash") ||
-        lower.includes("cashier")
-    ) {
-
-        bullets.push(
-            "Handled cash transactions accurately and maintained organized payment records."
-        );
-
-    }
-
-
-    /*
-       Warehouse
-    */
-
-    if (
-        lower.includes("warehouse") ||
-        lower.includes("inventory")
-    ) {
-
-        bullets.push(
-            "Supported warehouse operations, inventory organization and material handling."
-        );
-
-    }
-
-
-    if (
-        lower.includes("shipping") ||
-        lower.includes("receiving")
-    ) {
-
-        bullets.push(
-            "Assisted with shipping and receiving activities while maintaining accurate records."
-        );
-
-    }
-
-
-    /*
-       Security
-    */
-
-    if (
-        lower.includes("security") ||
-        lower.includes("security guard")
-    ) {
-
-        bullets.push(
-            "Monitored facilities, followed safety procedures and responded professionally to incidents."
-        );
-
-    }
-
-
-    /*
-       Cleaning
-    */
-
-    if (
-        lower.includes("clean") ||
-        lower.includes("cleaning")
-    ) {
-
-        bullets.push(
-            "Maintained clean, organized and safe work areas."
-        );
-
-    }
-
-
-    /*
-       Construction
-    */
-
-    if (
-        lower.includes("construction")
-    ) {
-
-        bullets.push(
-            "Supported construction activities while following workplace safety procedures."
-        );
-
-    }
-
-
-    /*
-       Generic fallback
-    */
-
-    if (bullets.length === 0) {
-
-        const cleaned =
-            cleanUserText(text);
-
-
-        if (cleaned) {
-
-            bullets.push(
-                `Performed ${cleaned.toLowerCase()} while maintaining quality, safety and professional standards.`
-            );
-
-        }
-
-    }
-
-
-    /*
-       If user provided several separate
-       lines, preserve useful information
-       that the smart rules didn't recognize.
-    */
-
-    const originalLines =
-        text
-            .split(/\n|•/)
-            .map(line =>
-                line
-                    .replace(/^[-*]\s*/, "")
-                    .trim()
-            )
-            .filter(Boolean);
-
-
-    originalLines.forEach(line => {
-
-        const alreadyCovered =
-            bullets.some(
-                bullet =>
-                    bullet
-                        .toLowerCase()
-                        .includes(
-                            line.toLowerCase()
-                        )
-            );
-
-
-        if (
-            !alreadyCovered &&
-            line.length > 3
-        ) {
-
-            bullets.push(
-                professionalizeSimpleLine(
-                    line
-                )
-            );
-
-        }
-
-    });
-
-
-    /*
-       Maximum 6 bullets.
-    */
-
-    return bullets
-        .slice(0, 6)
-        .map(
-            bullet =>
-                "• " + bullet
-        )
-        .join("\n");
-
-}
-
-
-/* =========================================
-   SIMPLE PROFESSIONAL WORDING
-========================================= */
-
-function professionalizeSimpleLine(
-    text
-) {
-
-    let cleaned =
-        cleanUserText(text);
-
-
-    const lower =
-        cleaned.toLowerCase();
-
-
-    if (
-        lower.startsWith("worked ")
-    ) {
-
-        return capitalizeSentence(
-            cleaned
-        );
-
-    }
-
-
-    if (
-        lower.startsWith("helped ")
-    ) {
-
-        return capitalizeSentence(
-            cleaned.replace(
-                /^helped /i,
-                "Assisted "
-            )
-        );
-
-    }
-
-
-    if (
-        lower.startsWith("did ")
-    ) {
-
-        return capitalizeSentence(
-            cleaned.replace(
-                /^did /i,
-                "Performed "
-            )
-        );
-
-    }
-
-
-    if (
-        lower.startsWith("made ")
-    ) {
-
-        return capitalizeSentence(
-            cleaned.replace(
-                /^made /i,
-                "Prepared "
-            )
-        );
-
-    }
-
-
-    return capitalizeSentence(
-        cleaned
-    );
-
-}
-
-
-/* =========================================
-   CLEAN USER TEXT
-========================================= */
-
-function cleanUserText(text) {
-
-    return text
-        .replace(/\s+/g, " ")
-        .replace(/^[•\-*]\s*/, "")
-        .trim();
-
-}
-
-
-/* =========================================
-   CAPITALIZE SENTENCE
-========================================= */
-
-function capitalizeSentence(text) {
-
-    const cleaned =
-        cleanUserText(text);
-
-
-    if (!cleaned) {
-        return "";
-    }
-
-
-    return (
-        cleaned.charAt(0).toUpperCase() +
-        cleaned.slice(1)
-    );
-}
-
-
-/* =========================================
-   LIVE PREVIEW
-========================================= */
-
-function setupLivePreview() {
-
-    const fields = [
-
-        fullName,
-        phone,
-        email,
-        locationInput,
-        linkedin,
-        summary,
-        skills,
-        languages,
-        certifications
-
+        ],
+
+        [
+            /^answer phones$/i,
+            "Answered phone calls and assisted customers with questions and requests."
+        ],
+
+        [
+            /^warehouse work$/i,
+            "Supported daily warehouse operations, including material handling and organization."
+        ],
+
+        [
+            /^loading and unloading$/i,
+            "Loaded and unloaded materials safely and efficiently."
+        ],
+
+        [
+            /^security$/i,
+            "Monitored the premises and helped maintain a safe and secure environment."
+        ]
     ];
 
 
-    fields.forEach(field => {
+    for (const [pattern, replacement] of replacements) {
 
-        if (!field) {
-            return;
+        if (pattern.test(text)) {
+            return replacement;
         }
-
-        field.addEventListener(
-            "input",
-            generateResume
-        );
-
-    });
+    }
 
 
-    generateResume();
+    /* Already professional-looking sentence */
+
+    if (
+        text.length > 20 &&
+        /[.!?]$/.test(text)
+    ) {
+        return capitalizeFirst(text);
+    }
+
+
+    /* Common action-word conversions */
+
+    const actionMap = [
+
+        ["helped", "Supported"],
+        ["help", "Supported"],
+        ["worked with", "Collaborated with"],
+        ["work with", "Collaborate with"],
+        ["did", "Performed"],
+        ["made", "Prepared"],
+        ["make", "Prepare"],
+        ["used", "Used"],
+        ["use", "Use"],
+        ["fixed", "Repaired"],
+        ["fix", "Repair"],
+        ["sold", "Sold"],
+        ["sell", "Sell"],
+        ["cleaned", "Maintained"],
+        ["clean", "Maintain"],
+        ["organized", "Organized"],
+        ["organize", "Organize"],
+        ["checked", "Inspected"],
+        ["check", "Inspect"],
+        ["managed", "Managed"],
+        ["manage", "Manage"]
+    ];
+
+
+    for (const [from, to] of actionMap) {
+
+        if (
+            lower.startsWith(from + " ")
+        ) {
+
+            text =
+                to +
+                text.substring(from.length);
+
+            break;
+        }
+    }
+
+
+    return capitalizeFirst(text) + ".";
 }
 
 
 /* =========================================
-   PRINT / SAVE PDF
+   CAPITALIZE
 ========================================= */
 
-function printResume() {
+function capitalizeFirst(text) {
 
-    generateResume();
-
-    window.print();
-
-}
-
-
-/* =========================================
-   START OVER
-========================================= */
-
-function clearResume() {
-
-    const confirmed =
-        confirm(
-            "Are you sure you want to start over?"
-        );
-
-
-    if (!confirmed) {
-        return;
+    if (!text) {
+        return "";
     }
 
-
-    /*
-       Clear normal fields
-    */
-
-    [
-
-        fullName,
-        phone,
-        email,
-        locationInput,
-        linkedin,
-        summary,
-        skills,
-        languages,
-        certifications
-
-    ].forEach(field => {
-
-        if (field) {
-            field.value = "";
-        }
-
-    });
-
-
-    /*
-       Clear experience
-    */
-
-    if (experienceContainer) {
-
-        experienceContainer.innerHTML = "";
-
-        addExperience();
-
-    }
-
-
-    /*
-       Clear education
-    */
-
-    if (educationContainer) {
-
-        educationContainer.innerHTML = "";
-
-        addEducation();
-
-    }
-
-
-    /*
-       Reset preview
-    */
-
-    document.getElementById(
-        "previewName"
-    ).textContent =
-        "Your Name";
-
-
-    document.getElementById(
-        "previewPhone"
-    ).textContent = "";
-
-
-    document.getElementById(
-        "previewEmail"
-    ).textContent = "";
-
-
-    document.getElementById(
-        "previewLocation"
-    ).textContent = "";
-
-
-    document.getElementById(
-        "previewLinkedin"
-    ).textContent = "";
-
-
-    document.getElementById(
-        "previewSummary"
-    ).textContent = "";
-
-
-    document.getElementById(
-        "previewExperience"
-    ).innerHTML = "";
-
-
-    document.getElementById(
-        "previewEducation"
-    ).innerHTML = "";
-
-
-    document.getElementById(
-        "previewSkills"
-    ).innerHTML = "";
-
-
-    document.getElementById(
-        "previewLanguages"
-    ).innerHTML = "";
-
-
-    document.getElementById(
-        "previewCertifications"
-    ).innerHTML = "";
-
-
-    /*
-       Scroll back to form
-    */
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
+    return text.charAt(0).toUpperCase() +
+        text.slice(1);
 }
 
 
@@ -1942,27 +890,93 @@ function clearResume() {
 function escapeHTML(value) {
 
     return String(value)
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 
+
+/* =========================================
+   PRINT / PDF
+========================================= */
+
+function printResume() {
+
+    generateResume();
+
+    window.print();
+}
+
+
+/* =========================================
+   START OVER
+========================================= */
+
+function clearResume() {
+
+    if (!confirm(
+        "Are you sure you want to start over?"
+    )) {
+        return;
+    }
+
+
+    document
+        .querySelectorAll(
+            "input, textarea"
+        )
+        .forEach(input => {
+            input.value = "";
+        });
+
+
+    const experienceContainer =
+        document.getElementById("experienceContainer");
+
+    if (experienceContainer) {
+        experienceContainer.innerHTML = "";
+    }
+
+
+    if (educationContainer) {
+        educationContainer.innerHTML = "";
+    }
+
+
+    document.getElementById("previewName").textContent =
+        "Your Name";
+
+    document.getElementById("previewPhone").textContent =
+        "";
+
+    document.getElementById("previewEmail").textContent =
+        "";
+
+    document.getElementById("previewLocation").textContent =
+        "";
+
+    document.getElementById("previewLinkedin").textContent =
+        "";
+
+    document.getElementById("previewSummary").textContent =
+        "";
+
+    document.getElementById("previewExperience").innerHTML =
+        "";
+
+    document.getElementById("previewEducation").innerHTML =
+        "";
+
+    document.getElementById("previewSkills").innerHTML =
+        "";
+
+    document.getElementById("previewLanguages").innerHTML =
+        "";
+
+    document.getElementById("previewCertifications").innerHTML =
+        "";
 }
 
 
@@ -1970,23 +984,23 @@ function escapeHTML(value) {
    MAKE FUNCTIONS AVAILABLE TO HTML
 ========================================= */
 
-window.generateResume =
-    generateResume;
+window.addExperience = addExperience;
+window.removeExperience = removeExperience;
+window.addEducation = addEducation;
+window.removeEducation = removeEducation;
+window.generateResume = generateResume;
+window.printResume = printResume;
+window.clearResume = clearResume;
+window.smartSummary = smartSummary;
+window.smartExperience = smartExperience;
 
-window.printResume =
-    printResume;
 
-window.clearResume =
-    clearResume;
+/* =========================================
+   INITIALIZE
+========================================= */
 
-window.addEducation =
-    addEducation;
+document.addEventListener("DOMContentLoaded", () => {
 
-window.addExperience =
-    addExperience;
+    generateResume();
 
-window.improveWithAI =
-    improveWithAI;
-
-window.improveExperience =
-    improveExperience;
+});
