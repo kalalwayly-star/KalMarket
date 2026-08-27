@@ -867,7 +867,295 @@ function improveExperienceLine(line, title) {
     return capitalizeFirst(text) + ".";
 }
 
+/* =========================================
+   SMART SKILLS
+   FREE — NO AI/API REQUIRED
+========================================= */
 
+function smartSkills() {
+
+    const textarea =
+        document.getElementById("skills");
+
+    const text =
+        textarea.value.trim();
+
+    if (!text) {
+
+        alert(
+            "Please enter some skills first."
+        );
+
+        textarea.focus();
+
+        return;
+    }
+
+
+    const skills =
+        text
+            .split(",")
+            .map(skill => skill.trim())
+            .filter(Boolean);
+
+
+    const improvedSkills =
+        skills.map(skill =>
+            improveSkill(skill)
+        );
+
+
+    textarea.value =
+        improvedSkills.join(", ");
+
+
+    generateResume();
+}
+
+
+/* =========================================
+   IMPROVE INDIVIDUAL SKILL
+========================================= */
+
+function improveSkill(skill) {
+
+    const original =
+        skill.trim();
+
+    const lower =
+        original.toLowerCase();
+
+
+    const skillMap = {
+
+        /* CUSTOMER SERVICE */
+
+        "customer service":
+            "Customer Service & Client Relations",
+
+        "customers":
+            "Customer Service",
+
+        "customer":
+            "Customer Service",
+
+        "cashier":
+            "Cash Handling & Customer Service",
+
+        "cash":
+            "Cash Handling & Transaction Processing",
+
+
+        /* COMMUNICATION */
+
+        "communication":
+            "Professional Communication",
+
+        "talking":
+            "Verbal Communication",
+
+        "speaking":
+            "Verbal Communication",
+
+
+        /* TEAMWORK */
+
+        "teamwork":
+            "Teamwork & Collaboration",
+
+        "team":
+            "Teamwork & Collaboration",
+
+        "working with others":
+            "Teamwork & Collaboration",
+
+
+        /* MICROSOFT */
+
+        "microsoft office":
+            "Microsoft Office & Computer Skills",
+
+        "word":
+            "Microsoft Word",
+
+        "excel":
+            "Microsoft Excel",
+
+        "computer":
+            "Computer & Digital Skills",
+
+
+        /* SALES */
+
+        "sales":
+            "Sales & Customer Relationship Management",
+
+        "selling":
+            "Sales & Customer Service",
+
+        "retail":
+            "Retail Sales & Customer Service",
+
+
+        /* MANAGEMENT */
+
+        "management":
+            "Team Leadership & Management",
+
+        "manager":
+            "Team Leadership & Management",
+
+        "leadership":
+            "Leadership & Team Management",
+
+
+        /* ORGANIZATION */
+
+        "organization":
+            "Organization & Time Management",
+
+        "organized":
+            "Organization & Time Management",
+
+        "time management":
+            "Time Management & Organization",
+
+
+        /* MECHANIC */
+
+        "mechanic":
+            "Automotive Repair & Maintenance",
+
+        "mechanics":
+            "Automotive Repair & Maintenance",
+
+        "brakes":
+            "Brake Inspection, Service & Repair",
+
+        "brake":
+            "Brake Inspection, Service & Repair",
+
+        "oil change":
+            "Oil Changes & Preventive Maintenance",
+
+        "oil changes":
+            "Oil Changes & Preventive Maintenance",
+
+        "tires":
+            "Tire Installation, Rotation & Maintenance",
+
+        "tire":
+            "Tire Installation, Rotation & Maintenance",
+
+        "alignment":
+            "Wheel Alignment & Tire Service",
+
+        "suspension":
+            "Suspension Inspection & Repair",
+
+        "diagnostics":
+            "Automotive Diagnostics & Troubleshooting",
+
+        "diagnostic":
+            "Automotive Diagnostics & Troubleshooting",
+
+
+        /* WAREHOUSE */
+
+        "warehouse":
+            "Warehouse Operations & Material Handling",
+
+        "forklift":
+            "Forklift Operation & Warehouse Safety",
+
+        "inventory":
+            "Inventory Management & Stock Control",
+
+        "shipping":
+            "Shipping & Receiving",
+
+        "receiving":
+            "Shipping & Receiving",
+
+        "packing":
+            "Packing, Packaging & Order Preparation",
+
+
+        /* CONSTRUCTION / LABOUR */
+
+        "construction":
+            "Construction & General Labour",
+
+        "labor":
+            "General Labour & Physical Work",
+
+        "labour":
+            "General Labour & Physical Work",
+
+        "hand tools":
+            "Hand Tools & Equipment Operation",
+
+
+        /* FOOD */
+
+        "cooking":
+            "Food Preparation & Kitchen Operations",
+
+        "food preparation":
+            "Food Preparation & Kitchen Operations",
+
+        "restaurant":
+            "Restaurant Operations & Customer Service",
+
+
+        /* DRIVING */
+
+        "driving":
+            "Safe Driving & Vehicle Operation",
+
+        "delivery":
+            "Delivery Services & Route Management",
+
+
+        /* GENERAL */
+
+        "problem solving":
+            "Problem Solving & Critical Thinking",
+
+        "problem-solving":
+            "Problem Solving & Critical Thinking",
+
+        "attention to detail":
+            "Attention to Detail & Accuracy",
+
+        "reliable":
+            "Reliability & Professionalism",
+
+        "reliability":
+            "Reliability & Professionalism",
+
+        "punctual":
+            "Punctuality & Dependability"
+
+    };
+
+
+    if (skillMap[lower]) {
+
+        return skillMap[lower];
+
+    }
+
+
+    /*
+       If we don't have a specific
+       improvement, keep the user's
+       original skill instead of
+       inventing anything.
+    */
+
+    return original;
+}
 /* =========================================
    CAPITALIZE
 ========================================= */
