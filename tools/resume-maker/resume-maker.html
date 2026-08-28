@@ -1,571 +1,568 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title data-i18n="resume_maker_title">
-        Free Resume Maker | KalMarket
-    </title>
+```
+<title data-i18n="resume_maker_title">
+    Free Resume Maker | KalMarket
+</title>
 
-    <meta
-        name="description"
-        data-i18n-content="resume_maker_description"
-        content="Create a professional Canadian-style resume for free with KalMarket Resume Maker."
-    >
+<meta
+    name="description"
+    content="Create a professional Canadian-style resume for free with KalMarket Resume Maker."
+>
 
-    <link rel="stylesheet" href="../../style.css?v=2">
-    <link rel="stylesheet" href="resume-maker.css">
+<link rel="stylesheet" href="../../style.css?v=2">
+<link rel="stylesheet" href="resume-maker.css">
+```
+
 </head>
 
 <body>
 
 <header class="site-header">
 
-    <div class="header-inner">
+```
+<div class="header-inner">
 
-        <a
-            href="../../index.html"
-            class="site-logo">
-            KalMarket
+    <a href="../../index.html"
+       class="site-logo">
+        KalMarket
+    </a>
+
+    <nav class="main-nav">
+
+        <a href="../../index.html"
+           data-i18n="home">
+            🏠 Home
         </a>
 
-        <nav class="main-nav">
+        <a href="../index.html"
+           data-i18n="free_calculators">
+            🧮 Free Calculators
+        </a>
 
-            <a
-                href="../../index.html"
-                data-i18n="home">
-                🏠 Home
-            </a>
+    </nav>
 
-            <a
-                href="../index.html"
-                data-i18n="free_calculators">
-                🧮 Free Calculators
-            </a>
-
-        </nav>
-
-    </div>
+</div>
+```
 
 </header>
 
-
 <main class="resume-maker-container">
 
-    <!-- =========================================
-         HERO
-    ========================================== -->
+```
+<!-- =========================================
+     HERO
+========================================== -->
 
-    <section class="resume-hero">
+<section class="resume-hero">
 
-        <div class="resume-icon">
-            📄
-        </div>
+    <div class="resume-icon">
+        📄
+    </div>
 
-        <h1 data-i18n="resume_maker_heading">
-            Free Resume Maker
-        </h1>
+    <h1 data-i18n="resume_maker_heading">
+        Free Resume Maker
+    </h1>
 
-        <p data-i18n="resume_maker_intro">
-            Create a professional resume in minutes.
-            Enter your information and generate your resume below.
-        </p>
+    <p data-i18n="resume_maker_description">
+        Create a professional resume in minutes.
+        Enter your information and generate your resume below.
+    </p>
 
-    </section>
-
-
-    <!-- =========================================
-         FORM
-    ========================================== -->
-
-    <section class="resume-form">
-
-        <h2 data-i18n="your_information">
-            📝 Your Information
-        </h2>
+</section>
 
 
-        <!-- =====================================
-             PERSONAL INFORMATION
-        ====================================== -->
 
-        <div class="form-section">
+<!-- =========================================
+     FORM
+========================================== -->
 
-            <h3 data-i18n="personal_information">
-                Personal Information
-            </h3>
+<section class="resume-form">
 
-            <div class="form-grid">
-
-                <div>
-
-                    <label
-                        for="fullName"
-                        data-i18n="full_name">
-                        Full Name
-                    </label>
-
-                    <input
-                        type="text"
-                        id="fullName"
-                        data-i18n-placeholder="full_name_placeholder"
-                        placeholder="John Smith">
-
-                </div>
+    <h2 data-i18n="your_information">
+        📝 Your Information
+    </h2>
 
 
-                <div>
+    <!-- PERSONAL INFORMATION -->
 
-                    <label
-                        for="phone"
-                        data-i18n="phone">
-                        Phone
-                    </label>
+    <div class="form-section">
 
-                    <input
-                        type="text"
-                        id="phone"
-                        data-i18n-placeholder="phone_placeholder"
-                        placeholder="204-555-1234">
+        <h3 data-i18n="personal_information">
+            Personal Information
+        </h3>
 
-                </div>
+        <div class="form-grid">
 
+            <div>
 
-                <div>
+                <label
+                    for="fullName"
+                    data-i18n="full_name">
+                    Full Name
+                </label>
 
-                    <label
-                        for="email"
-                        data-i18n="email">
-                        Email
-                    </label>
+                <input
+                    type="text"
+                    id="fullName"
+                    placeholder="John Smith"
+                    data-i18n-placeholder="full_name_placeholder">
 
-                    <input
-                        type="email"
-                        id="email"
-                        data-i18n-placeholder="email_placeholder"
-                        placeholder="john@email.com">
-
-                </div>
+            </div>
 
 
-                <div>
+            <div>
 
-                    <label
-                        for="location"
-                        data-i18n="city_province">
-                        City / Province
-                    </label>
+                <label
+                    for="phone"
+                    data-i18n="phone">
+                    Phone
+                </label>
 
-                    <input
-                        type="text"
-                        id="location"
-                        data-i18n-placeholder="location_placeholder"
-                        placeholder="Winnipeg, Manitoba">
+                <input
+                    type="text"
+                    id="phone"
+                    placeholder="204-555-1234"
+                    data-i18n-placeholder="phone_placeholder">
 
-                </div>
+            </div>
 
 
-                <div class="full-width">
+            <div>
 
-                    <label
-                        for="linkedin"
-                        data-i18n="linkedin_optional">
-                        LinkedIn (Optional)
-                    </label>
+                <label
+                    for="email"
+                    data-i18n="email">
+                    Email
+                </label>
 
-                    <input
-                        type="text"
-                        id="linkedin"
-                        data-i18n-placeholder="linkedin_placeholder"
-                        placeholder="linkedin.com/in/johnsmith">
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="john@email.com"
+                    data-i18n-placeholder="email_placeholder">
 
-                </div>
+            </div>
+
+
+            <div>
+
+                <label
+                    for="location"
+                    data-i18n="city_province">
+                    City / Province
+                </label>
+
+                <input
+                    type="text"
+                    id="location"
+                    placeholder="Winnipeg, Manitoba"
+                    data-i18n-placeholder="location_placeholder">
+
+            </div>
+
+
+            <div class="full-width">
+
+                <label
+                    for="linkedin"
+                    data-i18n="linkedin_optional">
+                    LinkedIn (Optional)
+                </label>
+
+                <input
+                    type="text"
+                    id="linkedin"
+                    placeholder="linkedin.com/in/johnsmith"
+                    data-i18n-placeholder="linkedin_placeholder">
 
             </div>
 
         </div>
 
+    </div>
 
-        <!-- =====================================
-             PROFESSIONAL SUMMARY
-        ====================================== -->
-
-        <div class="form-section">
-
-            <h3 data-i18n="professional_summary">
-                Professional Summary
-            </h3>
-
-            <textarea
-                id="summary"
-                rows="5"
-                data-i18n-placeholder="summary_placeholder"
-                placeholder="Example: mechanic, customer service, warehouse worker..."></textarea>
-
-
-            <button
-                type="button"
-                class="smart-btn"
-                onclick="smartSummary()"
-                data-i18n="smart_wording">
-                ✨ Smart Wording
-            </button>
-
-
-            <small data-i18n="smart_summary_help">
-                Enter a few words and Smart Wording will help turn them into professional resume language.
-            </small>
-
-        </div>
-
-
-        <!-- =====================================
-             WORK EXPERIENCE
-        ====================================== -->
-
-        <div class="form-section">
-
-            <h3 data-i18n="work_experience">
-                💼 Work Experience
-            </h3>
-
-
-            <div id="experienceContainer"></div>
-
-
-            <button
-                type="button"
-                class="add-btn"
-                onclick="addExperience()"
-                data-i18n="add_work_experience">
-                + Add Work Experience
-            </button>
-
-
-            <small data-i18n="experience_help">
-                Add each job separately. You can use Smart Wording to improve simple notes.
-            </small>
-
-        </div>
-
-
-        <!-- =====================================
-             EDUCATION
-        ====================================== -->
-
-        <div class="form-section">
-
-            <h3 data-i18n="education">
-                🎓 Education
-            </h3>
-
-
-            <div id="educationContainer"></div>
-
-
-            <button
-                type="button"
-                class="add-btn"
-                onclick="addEducation()"
-                data-i18n="add_education">
-                + Add Education
-            </button>
-
-        </div>
-
-
-        <!-- =====================================
-             SKILLS
-        ====================================== -->
-
-        <div class="form-section">
-
-            <h3 data-i18n="skills">
-                🛠️ Skills
-            </h3>
-
-
-            <textarea
-                id="skills"
-                rows="4"
-                data-i18n-placeholder="skills_placeholder"
-                placeholder="Customer Service, Microsoft Office, Communication, Teamwork"></textarea>
-
-
-            <button
-                type="button"
-                class="smart-btn"
-                onclick="smartSkills()"
-                data-i18n="smart_wording">
-                ✨ Smart Wording
-            </button>
-
-
-            <small data-i18n="smart_skills_help">
-                Enter simple skills separated by commas. Smart Wording will improve them for your resume.
-            </small>
-
-        </div>
-
-
-        <!-- =====================================
-             LANGUAGES
-        ====================================== -->
-
-        <div class="form-section">
-
-            <h3 data-i18n="languages">
-                🌎 Languages
-            </h3>
-
-
-            <textarea
-                id="languages"
-                rows="3"
-                data-i18n-placeholder="languages_placeholder"
-                placeholder="English - Fluent, Arabic - Fluent, French - Intermediate"></textarea>
-
-        </div>
-
-
-        <!-- =====================================
-             CERTIFICATIONS
-        ====================================== -->
-
-        <div class="form-section">
-
-            <h3 data-i18n="certifications">
-                📜 Certifications
-            </h3>
-
-
-            <textarea
-                id="certifications"
-                rows="3"
-                data-i18n-placeholder="certifications_placeholder"
-                placeholder="First Aid Certificate, WHMIS, Class 5 Driver's Licence"></textarea>
-
-        </div>
-
-
-        <!-- =====================================
-             MAIN ACTIONS
-        ====================================== -->
-
-        <div class="form-actions">
-
-            <button
-                type="button"
-                class="generate-btn"
-                onclick="generateResume()"
-                data-i18n="generate_resume">
-                ✨ Generate Resume
-            </button>
-
-
-            <button
-                type="button"
-                class="clear-btn"
-                onclick="clearResume()"
-                data-i18n="start_over">
-                🔄 Start Over
-            </button>
-
-        </div>
-
-    </section>
 
 
     <!-- =========================================
-         GENERATED RESUME
-         Hidden until Generate Resume is clicked
+         SUMMARY
     ========================================== -->
 
-    <section
-        id="generatedResumeSection"
-        class="generated-resume-section">
+    <div class="form-section">
+
+        <h3 data-i18n="professional_summary">
+            Professional Summary
+        </h3>
+
+        <textarea
+            id="summary"
+            rows="5"
+            placeholder="Example: mechanic, customer service, warehouse worker..."
+            data-i18n-placeholder="summary_placeholder"></textarea>
+
+        <button
+            type="button"
+            class="smart-btn"
+            onclick="smartSummary()">
+
+            ✨
+            <span data-i18n="smart_wording">
+                Smart Wording
+            </span>
+
+        </button>
+
+        <small data-i18n="summary_hint">
+            Enter a few words and Smart Wording will help turn them into a professional summary.
+        </small>
+
+    </div>
 
 
-        <div class="generated-title">
 
-            <h2 data-i18n="resume_preview">
-                👀 Resume Preview
+    <!-- =========================================
+         EXPERIENCE
+    ========================================== -->
+
+    <div class="form-section">
+
+        <h3 data-i18n="work_experience">
+            💼 Work Experience
+        </h3>
+
+        <div id="experienceContainer"></div>
+
+        <button
+            type="button"
+            class="add-btn"
+            onclick="addExperience()">
+
+            + 
+            <span data-i18n="add_experience">
+                Add Experience
+            </span>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =========================================
+         EDUCATION
+    ========================================== -->
+
+    <div class="form-section">
+
+        <h3 data-i18n="education">
+            🎓 Education
+        </h3>
+
+        <div id="educationContainer"></div>
+
+        <button
+            type="button"
+            class="add-btn"
+            onclick="addEducation()">
+
+            +
+            <span data-i18n="add_education">
+                Add Education
+            </span>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =========================================
+         SKILLS
+    ========================================== -->
+
+    <div class="form-section">
+
+        <h3 data-i18n="skills">
+            🛠️ Skills
+        </h3>
+
+        <textarea
+            id="skills"
+            rows="4"
+            placeholder="Customer Service, Microsoft Office, Communication, Teamwork"
+            data-i18n-placeholder="skills_placeholder"></textarea>
+
+        <button
+            type="button"
+            class="smart-btn"
+            onclick="smartSkills()">
+
+            ✨
+            <span data-i18n="smart_wording">
+                Smart Wording
+            </span>
+
+        </button>
+
+        <small data-i18n="skills_hint">
+            Separate skills with commas. Smart Wording can improve common skill names.
+        </small>
+
+    </div>
+
+
+
+    <!-- =========================================
+         LANGUAGES
+    ========================================== -->
+
+    <div class="form-section">
+
+        <h3 data-i18n="languages">
+            🌎 Languages
+        </h3>
+
+        <textarea
+            id="languages"
+            rows="3"
+            placeholder="English - Fluent, Arabic - Fluent, French - Intermediate"
+            data-i18n-placeholder="languages_placeholder"></textarea>
+
+    </div>
+
+
+
+    <!-- =========================================
+         CERTIFICATIONS
+    ========================================== -->
+
+    <div class="form-section">
+
+        <h3 data-i18n="certifications">
+            📜 Certifications
+        </h3>
+
+        <textarea
+            id="certifications"
+            rows="3"
+            placeholder="First Aid Certificate, WHMIS, Class 5 Driver's Licence"
+            data-i18n-placeholder="certifications_placeholder"></textarea>
+
+    </div>
+
+
+
+    <!-- =========================================
+         ACTIONS
+    ========================================== -->
+
+    <div class="form-actions">
+
+        <button
+            type="button"
+            class="generate-btn"
+            onclick="generateResume()">
+
+            ✨
+            <span data-i18n="generate_resume">
+                Generate Resume
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="print-btn"
+            onclick="printResume()">
+
+            🖨️
+            <span data-i18n="print_save_pdf">
+                Print / Save PDF
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="clear-btn"
+            onclick="clearResume()">
+
+            🔄
+            <span data-i18n="start_over">
+                Start Over
+            </span>
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     RESUME PREVIEW
+     UNDER THE FORM
+========================================== -->
+
+<section
+    id="resumePreviewArea"
+    class="resume-preview-area">
+
+    <div class="preview-header">
+
+        <h2 data-i18n="resume_preview">
+            👀 Resume Preview
+        </h2>
+
+    </div>
+
+
+    <article
+        id="resumePreview"
+        class="resume-paper">
+
+
+        <!-- HEADER -->
+
+        <div class="resume-header">
+
+            <h1 id="previewName">
+                Your Name
+            </h1>
+
+
+            <div class="contact-line">
+
+                <span id="previewPhone"></span>
+
+                <span id="previewEmail"></span>
+
+                <span id="previewLocation"></span>
+
+            </div>
+
+
+            <div
+                id="previewLinkedin"
+                class="linkedin">
+            </div>
+
+        </div>
+
+
+
+        <!-- SUMMARY -->
+
+        <section
+            id="previewSummarySection"
+            class="preview-section">
+
+            <h2 data-i18n="professional_summary">
+                Professional Summary
             </h2>
 
-            <p data-i18n="resume_ready">
-                Your resume is ready.
-            </p>
+            <p id="previewSummary"></p>
 
-        </div>
+        </section>
 
 
-        <!-- =====================================
-             RESUME PAPER
-        ====================================== -->
 
-        <article
-            id="resumePreview"
-            class="resume-paper">
+        <!-- EXPERIENCE -->
 
+        <section
+            id="previewExperienceSection"
+            class="preview-section">
 
-            <!-- HEADER -->
+            <h2 data-i18n="work_experience">
+                Work Experience
+            </h2>
 
-            <header class="resume-header">
+            <div id="previewExperience"></div>
 
-                <h1 id="previewName">
-                    Your Name
-                </h1>
+        </section>
 
 
-                <div
-                    id="previewContact"
-                    class="contact-line">
 
-                    <span id="previewPhone"></span>
+        <!-- EDUCATION -->
 
-                    <span id="previewEmail"></span>
+        <section
+            id="previewEducationSection"
+            class="preview-section">
 
-                    <span id="previewLocation"></span>
+            <h2 data-i18n="education">
+                Education
+            </h2>
 
-                </div>
+            <div id="previewEducation"></div>
 
+        </section>
 
-                <div
-                    id="previewLinkedin"
-                    class="linkedin">
-                </div>
 
-            </header>
 
+        <!-- SKILLS -->
 
-            <!-- SUMMARY -->
+        <section
+            id="previewSkillsSection"
+            class="preview-section">
 
-            <section
-                id="previewSummarySection"
-                class="preview-section">
+            <h2 data-i18n="skills">
+                Skills
+            </h2>
 
-                <h2 data-i18n="professional_summary">
-                    Professional Summary
-                </h2>
+            <div id="previewSkills"></div>
 
+        </section>
 
-                <p id="previewSummary"></p>
 
-            </section>
 
+        <!-- LANGUAGES -->
 
-            <!-- EXPERIENCE -->
+        <section
+            id="previewLanguagesSection"
+            class="preview-section">
 
-            <section
-                id="previewExperienceSection"
-                class="preview-section">
+            <h2 data-i18n="languages">
+                Languages
+            </h2>
 
-                <h2 data-i18n="work_experience">
-                    Work Experience
-                </h2>
+            <div id="previewLanguages"></div>
 
+        </section>
 
-                <div id="previewExperience"></div>
 
-            </section>
 
+        <!-- CERTIFICATIONS -->
 
-            <!-- EDUCATION -->
+        <section
+            id="previewCertificationsSection"
+            class="preview-section">
 
-            <section
-                id="previewEducationSection"
-                class="preview-section">
+            <h2 data-i18n="certifications">
+                Certifications
+            </h2>
 
-                <h2 data-i18n="education">
-                    Education
-                </h2>
+            <div id="previewCertifications"></div>
 
+        </section>
 
-                <div id="previewEducation"></div>
+    </article>
 
-            </section>
-
-
-            <!-- SKILLS -->
-
-            <section
-                id="previewSkillsSection"
-                class="preview-section">
-
-                <h2 data-i18n="skills">
-                    Skills
-                </h2>
-
-
-                <div id="previewSkills"></div>
-
-            </section>
-
-
-            <!-- LANGUAGES -->
-
-            <section
-                id="previewLanguagesSection"
-                class="preview-section">
-
-                <h2 data-i18n="languages">
-                    Languages
-                </h2>
-
-
-                <div id="previewLanguages"></div>
-
-            </section>
-
-
-            <!-- CERTIFICATIONS -->
-
-            <section
-                id="previewCertificationsSection"
-                class="preview-section">
-
-                <h2 data-i18n="certifications">
-                    Certifications
-                </h2>
-
-
-                <div id="previewCertifications"></div>
-
-            </section>
-
-        </article>
-
-
-        <!-- =====================================
-             PRINT BUTTON
-        ====================================== -->
-
-        <div class="resume-print-actions">
-
-            <button
-                type="button"
-                class="print-btn"
-                onclick="printResume()"
-                data-i18n="print_save_pdf">
-                🖨️ Print / Save PDF
-            </button>
-
-        </div>
-
-    </section>
+</section>
+```
 
 </main>
-
-
-<!-- LANGUAGE SYSTEM -->
-
-<script src="../../languages.js"></script>
-
-<!-- RESUME MAKER -->
 
 <script src="resume-maker.js"></script>
 
 </body>
 </html>
+
