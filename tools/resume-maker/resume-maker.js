@@ -1725,21 +1725,15 @@ if (
 INITIALIZATION
 ========================================= */
 
-document.addEventListener(
-"DOMContentLoaded",
-function () {
+document.addEventListener("DOMContentLoaded", function () {
 
-```
     /*
        Resume starts hidden.
     */
 
-    resumePreviewArea.classList.remove(
-        "show-preview"
-    );
+    if (resumePreviewArea) {
+        resumePreviewArea.classList.remove("show-preview");
+    }
 
-}
-```
-
-);
+});
 
