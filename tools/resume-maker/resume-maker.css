@@ -403,7 +403,6 @@ PRINT
 
 @media print {
 
-```
 body {
     background: #ffffff !important;
 }
@@ -443,7 +442,6 @@ body {
 .preview-school {
     break-inside: avoid;
 }
-```
 
 }
 
@@ -453,7 +451,7 @@ MOBILE
 
 @media (max-width: 700px) {
 
-```
+
 .resume-maker-container {
     padding: 20px 12px 40px;
 }
@@ -499,7 +497,6 @@ MOBILE
     flex-direction: column;
     gap: 3px;
 }
-```
 
 }
 
