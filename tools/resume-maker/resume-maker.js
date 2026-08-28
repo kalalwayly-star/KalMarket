@@ -1,118 +1,196 @@
-/* =========================================
+/* =========================================================
    KALMARKET FREE RESUME MAKER
-   No API / No AI / No paid service
-   Smart wording works locally in browser
-========================================= */
+   ---------------------------------------------------------
+   No OpenAI
+   No API
+   No Cloudflare Worker
+   No paid services
 
-const fullName = document.getElementById("fullName");
-const phone = document.getElementById("phone");
-const email = document.getElementById("email");
-const locationInput = document.getElementById("location");
-const linkedin = document.getElementById("linkedin");
-const summary = document.getElementById("summary");
-const skills = document.getElementById("skills");
-const languages = document.getElementById("languages");
-const certifications = document.getElementById("certifications");
+   Free Smart Wording Engine
+========================================================= */
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const fullName =
+    document.getElementById("fullName");
+
+const phone =
+    document.getElementById("phone");
+
+const email =
+    document.getElementById("email");
+
+const locationInput =
+    document.getElementById("location");
+
+const linkedin =
+    document.getElementById("linkedin");
+
+const summary =
+    document.getElementById("summary");
+
+const skills =
+    document.getElementById("skills");
+
+const languages =
+    document.getElementById("languages");
+
+const certifications =
+    document.getElementById("certifications");
+
+const experienceContainer =
+    document.getElementById("experienceContainer");
 
 const educationContainer =
     document.getElementById("educationContainer");
 
+const generatedResumeSection =
+    document.getElementById("generatedResumeSection");
 
-/* =========================================
+
+/* =========================================================
    ADD EXPERIENCE
-   Experience is now created properly
-   inside the page.
-========================================= */
+========================================================= */
 
 function addExperience() {
 
-    const container = document.getElementById("experienceContainer");
+    const entry =
+        document.createElement("div");
 
-    if (!container) {
-        console.error("experienceContainer not found.");
-        return;
-    }
+    entry.className =
+        "dynamic-entry experience-entry";
 
-    const entry = document.createElement("div");
-
-    entry.className = "dynamic-entry experience-entry";
 
     entry.innerHTML = `
+
+        <div class="dynamic-entry-header">
+
+            <h4 data-i18n="work_experience_entry">
+                Work Experience
+            </h4>
+
+        </div>
+
+
         <div class="dynamic-entry-grid">
 
+
             <div>
-                <label>Job Title</label>
+
+                <label
+                    data-i18n="job_title">
+                    Job Title
+                </label>
+
                 <input
                     type="text"
                     class="exp-title"
+                    data-i18n-placeholder="job_title_placeholder"
                     placeholder="Sales Associate">
+
             </div>
 
+
             <div>
-                <label>Company</label>
+
+                <label
+                    data-i18n="company">
+                    Company
+                </label>
+
                 <input
                     type="text"
                     class="exp-company"
+                    data-i18n-placeholder="company_placeholder"
                     placeholder="ABC Company">
+
             </div>
 
+
             <div>
-                <label>Location</label>
+
+                <label
+                    data-i18n="location">
+                    Location
+                </label>
+
                 <input
                     type="text"
                     class="exp-location"
+                    data-i18n-placeholder="experience_location_placeholder"
                     placeholder="Winnipeg, Manitoba">
+
             </div>
 
+
             <div>
-                <label>Dates</label>
+
+                <label
+                    data-i18n="dates">
+                    Dates
+                </label>
+
                 <input
                     type="text"
                     class="exp-dates"
+                    data-i18n-placeholder="dates_placeholder"
                     placeholder="2022 - Present">
+
             </div>
 
+
             <div class="full-width">
-                <label>Responsibilities & Achievements</label>
+
+                <label
+                    data-i18n="responsibilities_achievements">
+                    Responsibilities & Achievements
+                </label>
+
 
                 <textarea
                     class="exp-description"
-                    rows="4"
-                    placeholder="Example:
-Served customers
-Handled cash
-Maintained inventory
-Helped increase sales"></textarea>
+                    rows="5"
+                    data-i18n-placeholder="experience_placeholder"
+                    placeholder="Example: oil change, brakes, tires"></textarea>
+
 
                 <button
                     type="button"
                     class="smart-btn"
-                    onclick="smartExperience(this)">
+                    onclick="smartExperience(this)"
+                    data-i18n="smart_wording">
                     ✨ Smart Wording
                 </button>
 
-                <small>
-                    Turns simple notes into professional resume wording.
-                </small>
             </div>
 
         </div>
 
+
         <button
             type="button"
             class="remove-btn"
-            onclick="removeExperience(this)">
+            onclick="removeExperience(this)"
+            data-i18n="remove">
             Remove
         </button>
+
     `;
 
-    container.appendChild(entry);
+
+    experienceContainer.appendChild(entry);
+
+
+    applyTranslationsIfAvailable();
 }
 
 
-/* =========================================
+/* =========================================================
    REMOVE EXPERIENCE
-========================================= */
+========================================================= */
 
 function removeExperience(button) {
 
@@ -123,22 +201,14 @@ function removeExperience(button) {
         entry.remove();
     }
 
-    generateExperience();
 }
 
 
-/* =========================================
+/* =========================================================
    ADD EDUCATION
-========================================= */
+========================================================= */
 
 function addEducation() {
-
-    const container =
-        document.getElementById("educationContainer");
-
-    if (!container) {
-        return;
-    }
 
     const entry =
         document.createElement("div");
@@ -146,58 +216,108 @@ function addEducation() {
     entry.className =
         "dynamic-entry education-entry";
 
+
     entry.innerHTML = `
+
+        <div class="dynamic-entry-header">
+
+            <h4 data-i18n="education_entry">
+                Education
+            </h4>
+
+        </div>
+
+
         <div class="dynamic-entry-grid">
 
+
             <div>
-                <label>Degree / Diploma</label>
+
+                <label
+                    data-i18n="degree_diploma">
+                    Degree / Diploma
+                </label>
+
                 <input
                     type="text"
                     class="edu-degree"
+                    data-i18n-placeholder="degree_placeholder"
                     placeholder="Business Administration">
+
             </div>
 
+
             <div>
-                <label>School</label>
+
+                <label
+                    data-i18n="school">
+                    School
+                </label>
+
                 <input
                     type="text"
                     class="edu-school"
+                    data-i18n-placeholder="school_placeholder"
                     placeholder="University of Manitoba">
+
             </div>
 
+
             <div>
-                <label>Location</label>
+
+                <label
+                    data-i18n="location">
+                    Location
+                </label>
+
                 <input
                     type="text"
                     class="edu-location"
+                    data-i18n-placeholder="education_location_placeholder"
                     placeholder="Winnipeg, Manitoba">
+
             </div>
 
+
             <div>
-                <label>Dates</label>
+
+                <label
+                    data-i18n="dates">
+                    Dates
+                </label>
+
                 <input
                     type="text"
                     class="edu-dates"
+                    data-i18n-placeholder="dates_placeholder"
                     placeholder="2018 - 2022">
+
             </div>
 
         </div>
 
+
         <button
             type="button"
             class="remove-btn"
-            onclick="removeEducation(this)">
+            onclick="removeEducation(this)"
+            data-i18n="remove">
             Remove
         </button>
+
     `;
 
-    container.appendChild(entry);
+
+    educationContainer.appendChild(entry);
+
+
+    applyTranslationsIfAvailable();
 }
 
 
-/* =========================================
+/* =========================================================
    REMOVE EDUCATION
-========================================= */
+========================================================= */
 
 function removeEducation(button) {
 
@@ -208,62 +328,29 @@ function removeEducation(button) {
         entry.remove();
     }
 
-    generateEducation();
 }
 
 
-/* =========================================
+/* =========================================================
    GENERATE RESUME
-========================================= */
+========================================================= */
 
 function generateResume() {
 
-    document.getElementById("previewName").textContent =
-        fullName.value.trim() || "Your Name";
+    updatePersonalInformation();
 
-    document.getElementById("previewPhone").textContent =
-        phone.value.trim();
-
-    document.getElementById("previewEmail").textContent =
-        email.value.trim();
-
-    document.getElementById("previewLocation").textContent =
-        locationInput.value.trim();
-
-    document.getElementById("previewLinkedin").textContent =
-        linkedin.value.trim();
-
-
-    /* SUMMARY */
-
-    document.getElementById("previewSummary").textContent =
-        summary.value.trim();
-
-
-    /* EXPERIENCE */
+    generateSummary();
 
     generateExperience();
 
-
-    /* EDUCATION */
-
     generateEducation();
 
-
-    /* SKILLS */
-
     generateSkills();
-
-
-    /* LANGUAGES */
 
     generateTextList(
         languages.value,
         "previewLanguages"
     );
-
-
-    /* CERTIFICATIONS */
 
     generateTextList(
         certifications.value,
@@ -271,273 +358,614 @@ function generateResume() {
     );
 
 
-    document
-        .getElementById("resumePreview")
-        .classList.add("resume-generated");
+    /* SHOW GENERATED RESUME */
+
+    generatedResumeSection.classList.add(
+        "show-resume"
+    );
+
+
+    /* SCROLL TO RESUME */
+
+    setTimeout(() => {
+
+        generatedResumeSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }, 100);
+
 }
 
 
-/* =========================================
+/* =========================================================
+   PERSONAL INFORMATION
+========================================================= */
+
+function updatePersonalInformation() {
+
+    document.getElementById(
+        "previewName"
+    ).textContent =
+        fullName.value.trim() ||
+        getText(
+            "your_name"
+        );
+
+
+    document.getElementById(
+        "previewPhone"
+    ).textContent =
+        phone.value.trim();
+
+
+    document.getElementById(
+        "previewEmail"
+    ).textContent =
+        email.value.trim();
+
+
+    document.getElementById(
+        "previewLocation"
+    ).textContent =
+        locationInput.value.trim();
+
+
+    const contact =
+        document.getElementById(
+            "previewContact"
+        );
+
+
+    const values = [
+        phone.value.trim(),
+        email.value.trim(),
+        locationInput.value.trim()
+    ].filter(Boolean);
+
+
+    contact.innerHTML =
+        values
+            .map(value =>
+                `<span>${escapeHTML(value)}</span>`
+            )
+            .join("");
+
+
+    const linkedinPreview =
+        document.getElementById(
+            "previewLinkedin"
+        );
+
+
+    const linkedinValue =
+        linkedin.value.trim();
+
+
+    if (linkedinValue) {
+
+        linkedinPreview.innerHTML =
+            `<span>${escapeHTML(linkedinValue)}</span>`;
+
+    } else {
+
+        linkedinPreview.innerHTML = "";
+
+    }
+
+}
+
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+function generateSummary() {
+
+    const section =
+        document.getElementById(
+            "previewSummarySection"
+        );
+
+    const preview =
+        document.getElementById(
+            "previewSummary"
+        );
+
+
+    const text =
+        summary.value.trim();
+
+
+    if (!text) {
+
+        section.style.display =
+            "none";
+
+        preview.textContent =
+            "";
+
+        return;
+    }
+
+
+    section.style.display =
+        "";
+
+
+    preview.textContent =
+        text;
+
+}
+
+
+/* =========================================================
    EXPERIENCE PREVIEW
-========================================= */
+========================================================= */
 
 function generateExperience() {
 
     const preview =
-        document.getElementById("previewExperience");
+        document.getElementById(
+            "previewExperience"
+        );
 
-    if (!preview) {
-        return;
-    }
+    const section =
+        document.getElementById(
+            "previewExperienceSection"
+        );
+
 
     const entries =
-        document.querySelectorAll(".experience-entry");
+        document.querySelectorAll(
+            ".experience-entry"
+        );
+
 
     preview.innerHTML = "";
 
+
     if (entries.length === 0) {
 
-        preview.innerHTML = `
-            <p class="empty-preview">
-                No work experience added.
-            </p>
-        `;
+        section.style.display =
+            "none";
 
         return;
+
     }
+
+
+    let hasContent =
+        false;
 
 
     entries.forEach(entry => {
 
         const title =
-            entry.querySelector(".exp-title")?.value.trim() || "";
+            entry.querySelector(
+                ".exp-title"
+            )?.value.trim() || "";
+
 
         const company =
-            entry.querySelector(".exp-company")?.value.trim() || "";
+            entry.querySelector(
+                ".exp-company"
+            )?.value.trim() || "";
+
 
         const location =
-            entry.querySelector(".exp-location")?.value.trim() || "";
+            entry.querySelector(
+                ".exp-location"
+            )?.value.trim() || "";
+
 
         const dates =
-            entry.querySelector(".exp-dates")?.value.trim() || "";
+            entry.querySelector(
+                ".exp-dates"
+            )?.value.trim() || "";
+
 
         const description =
-            entry.querySelector(".exp-description")?.value.trim() || "";
+            entry.querySelector(
+                ".exp-description"
+            )?.value.trim() || "";
+
+
+        if (
+            !title &&
+            !company &&
+            !location &&
+            !dates &&
+            !description
+        ) {
+            return;
+        }
+
+
+        hasContent =
+            true;
 
 
         const job =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
+
 
         job.className =
             "preview-job";
 
 
-        let descriptionHTML = "";
+        let descriptionHTML =
+            "";
+
 
         if (description) {
 
             const lines =
                 description
                     .split("\n")
-                    .map(line => line.trim())
+                    .map(line =>
+                        line
+                            .replace(
+                                /^[•\-*]\s*/,
+                                ""
+                            )
+                            .trim()
+                    )
                     .filter(Boolean);
 
-            descriptionHTML = `
-                <ul>
-                    ${lines.map(line =>
-                        `<li>${escapeHTML(line)}</li>`
-                    ).join("")}
-                </ul>
-            `;
+
+            if (lines.length) {
+
+                descriptionHTML = `
+                    <ul>
+                        ${lines.map(line =>
+                            `<li>${escapeHTML(line)}</li>`
+                        ).join("")}
+                    </ul>
+                `;
+
+            }
+
         }
 
 
+        const titleHTML =
+            title
+                ? `<h3>${escapeHTML(title)}</h3>`
+                : "";
+
+
+        const companyHTML =
+            company
+                ? `<div class="preview-company">
+                        ${escapeHTML(company)}
+                   </div>`
+                : "";
+
+
+        const details =
+            [
+                location,
+                dates
+            ]
+            .filter(Boolean)
+            .join(" | ");
+
+
+        const detailsHTML =
+            details
+                ? `<div class="preview-dates">
+                        ${escapeHTML(details)}
+                   </div>`
+                : "";
+
+
         job.innerHTML = `
-            <h3>
-                ${escapeHTML(title || "Job Title")}
-            </h3>
-
-            <div class="preview-company">
-                ${escapeHTML(company)}
-            </div>
-
-            <div class="preview-dates">
-                ${escapeHTML(location)}
-                ${location && dates ? " | " : ""}
-                ${escapeHTML(dates)}
-            </div>
-
+            ${titleHTML}
+            ${companyHTML}
+            ${detailsHTML}
             ${descriptionHTML}
         `;
 
+
         preview.appendChild(job);
+
     });
+
+
+    section.style.display =
+        hasContent
+            ? ""
+            : "none";
+
 }
 
 
-/* =========================================
+/* =========================================================
    EDUCATION PREVIEW
-========================================= */
+========================================================= */
 
 function generateEducation() {
 
     const preview =
-        document.getElementById("previewEducation");
+        document.getElementById(
+            "previewEducation"
+        );
 
-    if (!preview) {
-        return;
-    }
+    const section =
+        document.getElementById(
+            "previewEducationSection"
+        );
+
 
     const entries =
-        document.querySelectorAll(".education-entry");
+        document.querySelectorAll(
+            ".education-entry"
+        );
+
 
     preview.innerHTML = "";
 
+
     if (entries.length === 0) {
 
-        preview.innerHTML = `
-            <p class="empty-preview">
-                No education added.
-            </p>
-        `;
+        section.style.display =
+            "none";
 
         return;
+
     }
+
+
+    let hasContent =
+        false;
 
 
     entries.forEach(entry => {
 
         const degree =
-            entry.querySelector(".edu-degree")?.value.trim() || "";
+            entry.querySelector(
+                ".edu-degree"
+            )?.value.trim() || "";
+
 
         const school =
-            entry.querySelector(".edu-school")?.value.trim() || "";
+            entry.querySelector(
+                ".edu-school"
+            )?.value.trim() || "";
+
 
         const location =
-            entry.querySelector(".edu-location")?.value.trim() || "";
+            entry.querySelector(
+                ".edu-location"
+            )?.value.trim() || "";
+
 
         const dates =
-            entry.querySelector(".edu-dates")?.value.trim() || "";
+            entry.querySelector(
+                ".edu-dates"
+            )?.value.trim() || "";
+
+
+        if (
+            !degree &&
+            !school &&
+            !location &&
+            !dates
+        ) {
+            return;
+        }
+
+
+        hasContent =
+            true;
 
 
         const education =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
+
 
         education.className =
             "preview-school";
 
 
+        const details =
+            [
+                location,
+                dates
+            ]
+            .filter(Boolean)
+            .join(" | ");
+
+
         education.innerHTML = `
-            <h3>
-                ${escapeHTML(degree || "Degree / Diploma")}
-            </h3>
 
-            <div class="preview-school-name">
-                ${escapeHTML(school)}
-            </div>
+            ${
+                degree
+                    ? `<h3>${escapeHTML(degree)}</h3>`
+                    : ""
+            }
 
-            <div class="preview-dates">
-                ${escapeHTML(location)}
-                ${location && dates ? " | " : ""}
-                ${escapeHTML(dates)}
-            </div>
+            ${
+                school
+                    ? `<div class="preview-school-name">
+                            ${escapeHTML(school)}
+                       </div>`
+                    : ""
+            }
+
+            ${
+                details
+                    ? `<div class="preview-dates">
+                            ${escapeHTML(details)}
+                       </div>`
+                    : ""
+            }
+
         `;
 
-        preview.appendChild(education);
+
+        preview.appendChild(
+            education
+        );
+
     });
+
+
+    section.style.display =
+        hasContent
+            ? ""
+            : "none";
+
 }
 
 
-/* =========================================
-   SKILLS
-========================================= */
+/* =========================================================
+   SKILLS PREVIEW
+========================================================= */
 
 function generateSkills() {
 
     const preview =
-        document.getElementById("previewSkills");
+        document.getElementById(
+            "previewSkills"
+        );
+
+    const section =
+        document.getElementById(
+            "previewSkillsSection"
+        );
+
 
     const values =
         skills.value
             .split(",")
-            .map(skill => skill.trim())
+            .map(skill =>
+                skill.trim()
+            )
             .filter(Boolean);
 
 
     if (values.length === 0) {
 
-        preview.innerHTML = "";
+        preview.innerHTML =
+            "";
+
+        section.style.display =
+            "none";
 
         return;
     }
+
+
+    section.style.display =
+        "";
 
 
     preview.innerHTML = `
+
         <div class="skills-list">
 
             ${values.map(skill => `
+
                 <span class="skill-item">
                     ${escapeHTML(skill)}
                 </span>
+
             `).join("")}
 
         </div>
+
     `;
+
 }
 
 
-/* =========================================
+/* =========================================================
    LANGUAGES / CERTIFICATIONS
-========================================= */
+========================================================= */
 
-function generateTextList(value, elementId) {
+function generateTextList(
+    value,
+    elementId
+) {
 
     const element =
-        document.getElementById(elementId);
+        document.getElementById(
+            elementId
+        );
 
-    if (!element) {
-        return;
-    }
+
+    const section =
+        element.closest(
+            ".preview-section"
+        );
+
 
     const values =
         value
             .split(",")
-            .map(item => item.trim())
+            .map(item =>
+                item.trim()
+            )
             .filter(Boolean);
 
 
     if (values.length === 0) {
 
-        element.innerHTML = "";
+        element.innerHTML =
+            "";
+
+        section.style.display =
+            "none";
 
         return;
+
     }
 
 
+    section.style.display =
+        "";
+
+
     element.innerHTML = `
-        <ul>
+
+        <ul class="resume-list">
+
             ${values.map(item =>
                 `<li>${escapeHTML(item)}</li>`
             ).join("")}
+
         </ul>
+
     `;
+
 }
 
 
-/* =========================================
-   FREE SMART SUMMARY
-   No API required
-========================================= */
+/* =========================================================
+   SMART SUMMARY
+   FREE WORDING ENGINE
+========================================================= */
 
 function smartSummary() {
 
     const text =
         summary.value.trim();
 
+
     if (!text) {
 
         alert(
-            "Please enter a few words about yourself first."
+            getText(
+                "enter_summary_first",
+                "Please enter a few words first."
+            )
         );
 
         summary.focus();
@@ -546,23 +974,24 @@ function smartSummary() {
     }
 
 
-    const result =
-        improveSummaryText(text);
-
     summary.value =
-        result;
+        improveSummaryText(
+            text
+        );
+
 
     generateResume();
+
 }
 
 
-/* =========================================
+/* =========================================================
    SUMMARY WORDING ENGINE
-========================================= */
+========================================================= */
 
 function improveSummaryText(text) {
 
-    let clean =
+    const clean =
         text
             .replace(/\s+/g, " ")
             .trim();
@@ -572,7 +1001,8 @@ function improveSummaryText(text) {
         clean.toLowerCase();
 
 
-    const openings = [];
+    let opening =
+        "";
 
 
     if (
@@ -580,9 +1010,10 @@ function improveSummaryText(text) {
         lower.includes("automotive") ||
         lower.includes("auto")
     ) {
-        openings.push(
-            "Experienced automotive professional with hands-on experience in vehicle maintenance, repair, and customer service."
-        );
+
+        opening =
+            "Experienced automotive professional with hands-on experience in vehicle maintenance, repair, and customer service.";
+
     }
 
     else if (
@@ -590,9 +1021,10 @@ function improveSummaryText(text) {
         lower.includes("shipping") ||
         lower.includes("receiving")
     ) {
-        openings.push(
-            "Reliable warehouse professional with experience supporting daily operations, inventory handling, and team-based work."
-        );
+
+        opening =
+            "Reliable warehouse professional with experience supporting daily operations, inventory handling, and team-based work.";
+
     }
 
     else if (
@@ -600,64 +1032,88 @@ function improveSummaryText(text) {
         lower.includes("sales") ||
         lower.includes("retail")
     ) {
-        openings.push(
-            "Customer-focused professional with experience in customer service, sales, and day-to-day business operations."
-        );
+
+        opening =
+            "Customer-focused professional with experience in customer service, sales, and day-to-day business operations.";
+
     }
 
     else if (
         lower.includes("security") ||
         lower.includes("guard")
     ) {
-        openings.push(
-            "Responsible security professional with experience maintaining safe environments, monitoring activity, and assisting customers and staff."
-        );
+
+        opening =
+            "Responsible security professional with experience maintaining safe environments, monitoring activity, and assisting customers and staff.";
+
     }
 
     else if (
         lower.includes("driver") ||
-        lower.includes("driving")
+        lower.includes("driving") ||
+        lower.includes("delivery")
     ) {
-        openings.push(
-            "Dependable professional with driving experience and a strong commitment to safety, reliability, and customer service."
-        );
+
+        opening =
+            "Dependable professional with driving experience and a strong commitment to safety, reliability, and customer service.";
+
+    }
+
+    else if (
+        lower.includes("cook") ||
+        lower.includes("cooking") ||
+        lower.includes("restaurant")
+    ) {
+
+        opening =
+            "Dedicated food service professional with experience supporting food preparation, customer service, and daily operations.";
+
     }
 
     else {
-        openings.push(
-            "Motivated and dependable professional with practical experience and a strong commitment to quality work and customer service."
-        );
+
+        opening =
+            "Motivated and dependable professional with practical experience and a strong commitment to quality work and customer service.";
+
     }
 
 
-    let result =
-        openings[0];
-
-
-    const cleanedOriginal =
+    const original =
         clean.charAt(0).toUpperCase() +
         clean.slice(1);
 
 
     if (
-        !result.toLowerCase().includes(clean.toLowerCase())
+        lower.length > 0 &&
+        !opening
+            .toLowerCase()
+            .includes(lower)
     ) {
-        result += " " + cleanedOriginal + ".";
+
+        return opening +
+            " " +
+            original +
+            ".";
+
     }
 
 
-    return result;
+    return opening;
+
 }
 
 
-/* =========================================
-   FREE SMART EXPERIENCE WORDING
-========================================= */
+/* =========================================================
+   SMART EXPERIENCE
+========================================================= */
 
 function smartExperience(button) {
 
     const entry =
-        button.closest(".experience-entry");
+        button.closest(
+            ".experience-entry"
+        );
+
 
     if (!entry) {
         return;
@@ -665,11 +1121,16 @@ function smartExperience(button) {
 
 
     const title =
-        entry.querySelector(".exp-title")
-            ?.value.trim() || "";
+        entry.querySelector(
+            ".exp-title"
+        )?.value.trim() || "";
+
 
     const description =
-        entry.querySelector(".exp-description");
+        entry.querySelector(
+            ".exp-description"
+        );
+
 
     if (!description) {
         return;
@@ -683,50 +1144,68 @@ function smartExperience(button) {
     if (!text) {
 
         alert(
-            "Please enter a few simple notes first."
+            getText(
+                "enter_experience_first",
+                "Please enter a few simple notes first."
+            )
         );
 
         description.focus();
 
         return;
+
     }
 
 
     const lines =
         text
             .split("\n")
-            .map(line => line.trim())
+            .map(line =>
+                line
+                    .replace(
+                        /^[•\-*]\s*/,
+                        ""
+                    )
+                    .trim()
+            )
             .filter(Boolean);
 
 
     const improved =
         lines.map(line =>
-            improveExperienceLine(line, title)
+            improveExperienceLine(
+                line,
+                title
+            )
         );
 
 
     description.value =
-        [...new Set(improved)].join("\n");
+        [...new Set(improved)]
+            .join("\n");
 
 
     generateResume();
+
 }
 
 
-/* =========================================
+/* =========================================================
    EXPERIENCE WORDING ENGINE
-========================================= */
+========================================================= */
 
-function improveExperienceLine(line, title) {
+function improveExperienceLine(
+    line,
+    title
+) {
 
     let text =
         line
-            .replace(/^[•\-*]\s*/, "")
+            .replace(
+                /^[•\-*]\s*/,
+                ""
+            )
             .trim();
-
-
-    const lower =
-        text.toLowerCase();
 
 
     const replacements = [
@@ -737,6 +1216,11 @@ function improveExperienceLine(line, title) {
         ],
 
         [
+            /^oil changes$/i,
+            "Performed routine oil changes and preventive vehicle maintenance."
+        ],
+
+        [
             /^brakes$/i,
             "Inspected and serviced brake systems to support safe vehicle operation."
         ],
@@ -744,6 +1228,11 @@ function improveExperienceLine(line, title) {
         [
             /^tires$/i,
             "Installed, balanced, and serviced vehicle tires."
+        ],
+
+        [
+            /^tire$/i,
+            "Installed and serviced vehicle tires."
         ],
 
         [
@@ -799,45 +1288,74 @@ function improveExperienceLine(line, title) {
         [
             /^security$/i,
             "Monitored the premises and helped maintain a safe and secure environment."
+        ],
+
+        [
+            /^delivery$/i,
+            "Completed deliveries safely and efficiently while providing reliable customer service."
+        ],
+
+        [
+            /^packing$/i,
+            "Packed products accurately and prepared orders for shipment."
+        ],
+
+        [
+            /^cooking$/i,
+            "Prepared food while maintaining cleanliness, organization, and food safety standards."
+        ],
+
+        [
+            /^food preparation$/i,
+            "Prepared food and supported daily kitchen operations."
         ]
+
     ];
 
 
-    for (const [pattern, replacement] of replacements) {
+    for (
+        const [pattern, replacement]
+        of replacements
+    ) {
 
         if (pattern.test(text)) {
             return replacement;
         }
+
     }
 
 
-    /* Already professional-looking sentence */
+    /* Already professional sentence */
 
     if (
         text.length > 20 &&
         /[.!?]$/.test(text)
     ) {
-        return capitalizeFirst(text);
+
+        return capitalizeFirst(
+            text
+        );
+
     }
 
 
-    /* Common action-word conversions */
+    /* Common action words */
 
     const actionMap = [
 
         ["helped", "Supported"],
         ["help", "Supported"],
         ["worked with", "Collaborated with"],
-        ["work with", "Collaborate with"],
+        ["work with", "Collaborated with"],
         ["did", "Performed"],
         ["made", "Prepared"],
-        ["make", "Prepare"],
+        ["make", "Prepared"],
         ["used", "Used"],
-        ["use", "Use"],
+        ["use", "Used"],
         ["fixed", "Repaired"],
         ["fix", "Repair"],
         ["sold", "Sold"],
-        ["sell", "Sell"],
+        ["sell", "Sold"],
         ["cleaned", "Maintained"],
         ["clean", "Maintain"],
         ["organized", "Organized"],
@@ -845,82 +1363,109 @@ function improveExperienceLine(line, title) {
         ["checked", "Inspected"],
         ["check", "Inspect"],
         ["managed", "Managed"],
-        ["manage", "Manage"]
+        ["manage", "Manage"],
+        ["served", "Provided"],
+        ["serve", "Provide"],
+        ["assisted", "Assisted"],
+        ["assist", "Assist"]
+
     ];
 
 
-    for (const [from, to] of actionMap) {
+    const lower =
+        text.toLowerCase();
+
+
+    for (
+        const [from, to]
+        of actionMap
+    ) {
 
         if (
-            lower.startsWith(from + " ")
+            lower.startsWith(
+                from + " "
+            )
         ) {
 
             text =
                 to +
-                text.substring(from.length);
+                text.substring(
+                    from.length
+                );
 
             break;
+
         }
+
     }
 
 
-    return capitalizeFirst(text) + ".";
+    return capitalizeFirst(
+        text
+    ) + ".";
+
 }
 
-/* =========================================
+
+/* =========================================================
    SMART SKILLS
-   FREE — NO AI/API REQUIRED
-========================================= */
+========================================================= */
 
 function smartSkills() {
 
-    const textarea =
-        document.getElementById("skills");
-
     const text =
-        textarea.value.trim();
+        skills.value.trim();
+
 
     if (!text) {
 
         alert(
-            "Please enter some skills first."
+            getText(
+                "enter_skills_first",
+                "Please enter some skills first."
+            )
         );
 
-        textarea.focus();
+        skills.focus();
 
         return;
     }
 
 
-    const skills =
+    const values =
         text
             .split(",")
-            .map(skill => skill.trim())
+            .map(skill =>
+                skill.trim()
+            )
             .filter(Boolean);
 
 
-    const improvedSkills =
-        skills.map(skill =>
+    const improved =
+        values.map(skill =>
             improveSkill(skill)
         );
 
 
-    textarea.value =
-        improvedSkills.join(", ");
+    skills.value =
+        [...new Set(improved)]
+            .join(", ");
 
 
     generateResume();
+
 }
 
 
-/* =========================================
-   IMPROVE INDIVIDUAL SKILL
-========================================= */
+/* =========================================================
+   SKILL WORDING ENGINE
+========================================================= */
 
 function improveSkill(skill) {
 
     const original =
         skill.trim();
+
 
     const lower =
         original.toLowerCase();
@@ -970,7 +1515,7 @@ function improveSkill(skill) {
             "Teamwork & Collaboration",
 
 
-        /* MICROSOFT */
+        /* COMPUTER */
 
         "microsoft office":
             "Microsoft Office & Computer Skills",
@@ -1021,7 +1566,7 @@ function improveSkill(skill) {
             "Time Management & Organization",
 
 
-        /* MECHANIC */
+        /* AUTOMOTIVE */
 
         "mechanic":
             "Automotive Repair & Maintenance",
@@ -1081,7 +1626,7 @@ function improveSkill(skill) {
             "Packing, Packaging & Order Preparation",
 
 
-        /* CONSTRUCTION / LABOUR */
+        /* LABOUR */
 
         "construction":
             "Construction & General Labour",
@@ -1140,25 +1685,78 @@ function improveSkill(skill) {
     };
 
 
-    if (skillMap[lower]) {
+    return skillMap[lower] ||
+        original;
 
-        return skillMap[lower];
+}
 
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+function printResume() {
+
+    window.print();
+
+}
+
+
+/* =========================================================
+   START OVER
+========================================================= */
+
+function clearResume() {
+
+    const message =
+        getText(
+            "confirm_start_over",
+            "Are you sure you want to start over?"
+        );
+
+
+    if (!confirm(message)) {
+        return;
     }
 
 
-    /*
-       If we don't have a specific
-       improvement, keep the user's
-       original skill instead of
-       inventing anything.
-    */
+    document
+        .querySelectorAll(
+            "#fullName, #phone, #email, #location, #linkedin, #summary, #skills, #languages, #certifications"
+        )
+        .forEach(input => {
 
-    return original;
+            input.value =
+                "";
+
+        });
+
+
+    experienceContainer.innerHTML =
+        "";
+
+    educationContainer.innerHTML =
+        "";
+
+
+    generatedResumeSection.classList.remove(
+        "show-resume"
+    );
+
+
+    document.getElementById(
+        "resumePreview"
+    ).scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
 }
-/* =========================================
-   CAPITALIZE
-========================================= */
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
 
 function capitalizeFirst(text) {
 
@@ -1166,129 +1764,141 @@ function capitalizeFirst(text) {
         return "";
     }
 
-    return text.charAt(0).toUpperCase() +
-        text.slice(1);
+
+    return (
+        text.charAt(0).toUpperCase() +
+        text.slice(1)
+    );
+
 }
 
 
-/* =========================================
-   ESCAPE HTML
-========================================= */
+/* =========================================================
+   HTML ESCAPE
+========================================================= */
 
 function escapeHTML(value) {
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
-
-/* =========================================
-   PRINT / PDF
-========================================= */
-
-function printResume() {
-
-    generateResume();
-
-    window.print();
-}
-
-
-/* =========================================
-   START OVER
-========================================= */
-
-function clearResume() {
-
-    if (!confirm(
-        "Are you sure you want to start over?"
-    )) {
-        return;
-    }
-
-
-    document
-        .querySelectorAll(
-            "input, textarea"
+        .replace(
+            /&/g,
+            "&amp;"
         )
-        .forEach(input => {
-            input.value = "";
-        });
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
-
-    const experienceContainer =
-        document.getElementById("experienceContainer");
-
-    if (experienceContainer) {
-        experienceContainer.innerHTML = "";
-    }
-
-
-    if (educationContainer) {
-        educationContainer.innerHTML = "";
-    }
-
-
-    document.getElementById("previewName").textContent =
-        "Your Name";
-
-    document.getElementById("previewPhone").textContent =
-        "";
-
-    document.getElementById("previewEmail").textContent =
-        "";
-
-    document.getElementById("previewLocation").textContent =
-        "";
-
-    document.getElementById("previewLinkedin").textContent =
-        "";
-
-    document.getElementById("previewSummary").textContent =
-        "";
-
-    document.getElementById("previewExperience").innerHTML =
-        "";
-
-    document.getElementById("previewEducation").innerHTML =
-        "";
-
-    document.getElementById("previewSkills").innerHTML =
-        "";
-
-    document.getElementById("previewLanguages").innerHTML =
-        "";
-
-    document.getElementById("previewCertifications").innerHTML =
-        "";
 }
 
 
-/* =========================================
-   MAKE FUNCTIONS AVAILABLE TO HTML
-========================================= */
+/* =========================================================
+   TRANSLATION HELPER
+========================================================= */
 
-window.addExperience = addExperience;
-window.removeExperience = removeExperience;
-window.addEducation = addEducation;
-window.removeEducation = removeEducation;
-window.generateResume = generateResume;
-window.printResume = printResume;
-window.clearResume = clearResume;
-window.smartSummary = smartSummary;
-window.smartExperience = smartExperience;
+function getText(
+    key,
+    fallback = ""
+) {
+
+    /*
+       This helper tries to work with
+       different versions of the
+       KalMarket translation system.
+    */
+
+    try {
+
+        if (
+            typeof getTranslation ===
+            "function"
+        ) {
+
+            const result =
+                getTranslation(key);
+
+            if (
+                result &&
+                result !== key
+            ) {
+
+                return result;
+
+            }
+
+        }
+
+    } catch (error) {
+
+        console.warn(
+            "Translation lookup failed:",
+            key
+        );
+
+    }
 
 
-/* =========================================
+    return fallback;
+
+}
+
+
+/* =========================================================
+   APPLY TRANSLATIONS TO DYNAMIC HTML
+========================================================= */
+
+function applyTranslationsIfAvailable() {
+
+    try {
+
+        if (
+            typeof applyTranslations ===
+            "function"
+        ) {
+
+            applyTranslations();
+
+        }
+
+    } catch (error) {
+
+        console.warn(
+            "Could not apply translations."
+        );
+
+    }
+
+}
+
+
+/* =========================================================
    INITIALIZE
-========================================= */
+========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-    generateResume();
+        /*
+           Resume starts with the
+           generated section hidden.
+        */
 
-});
+        generatedResumeSection.classList.remove(
+            "show-resume"
+        );
+
+    }
+);
