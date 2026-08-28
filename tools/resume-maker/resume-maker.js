@@ -292,118 +292,122 @@ if (entry) {
 
 /* =========================================
 GENERATE RESUME
+Only Generate Resume button scrolls
 ========================================= */
 
-function generateResume() {
+function generateResume(shouldScroll = true) {
 
-/* PERSONAL INFORMATION */
+    /* PERSONAL INFORMATION */
 
-setText(
-    "previewName",
-    fullName.value.trim() || "Your Name"
-);
-
-setText(
-    "previewPhone",
-    phone.value.trim()
-);
-
-setText(
-    "previewEmail",
-    email.value.trim()
-);
-
-setText(
-    "previewLocation",
-    locationInput.value.trim()
-);
-
-setText(
-    "previewLinkedin",
-    linkedin.value.trim()
-);
-
-
-/* SUMMARY */
-
-const summaryText =
-    summary.value.trim();
-
-const summarySection =
-    document.getElementById(
-        "previewSummarySection"
+    setText(
+        "previewName",
+        fullName.value.trim() || "Your Name"
     );
 
-const summaryPreview =
-    document.getElementById(
-        "previewSummary"
+    setText(
+        "previewPhone",
+        phone.value.trim()
     );
 
-if (summaryText) {
+    setText(
+        "previewEmail",
+        email.value.trim()
+    );
 
-    summaryPreview.textContent =
-        summaryText;
+    setText(
+        "previewLocation",
+        locationInput.value.trim()
+    );
 
-    summarySection.style.display =
-        "block";
-
-} else {
-
-    summaryPreview.textContent = "";
-
-    summarySection.style.display =
-        "none";
-}
-
-
-/* EXPERIENCE */
-
-generateExperience();
+    setText(
+        "previewLinkedin",
+        linkedin.value.trim()
+    );
 
 
-/* EDUCATION */
+    /* SUMMARY */
 
-generateEducation();
+    const summaryText =
+        summary.value.trim();
 
+    const summarySection =
+        document.getElementById("previewSummarySection");
 
-/* SKILLS */
+    const summaryPreview =
+        document.getElementById("previewSummary");
 
-generateSkills();
+    if (summaryText) {
 
+        summaryPreview.textContent =
+            summaryText;
 
-/* LANGUAGES */
+        summarySection.style.display =
+            "block";
 
-generateTextList(
-    languages.value,
-    "previewLanguages",
-    "previewLanguagesSection"
-);
+    } else {
 
+        summaryPreview.textContent = "";
 
-/* CERTIFICATIONS */
-
-generateTextList(
-    certifications.value,
-    "previewCertifications",
-    "previewCertificationsSection"
-);
-
-
-/* SHOW RESUME */
-
-resumePreviewArea.classList.add(
-    "show-preview"
-);
+        summarySection.style.display =
+            "none";
+    }
 
 
-setTimeout(() => {
+    /* EXPERIENCE */
 
-    resumePreviewArea.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
+    generateExperience();
 
-}, 100);
+
+    /* EDUCATION */
+
+    generateEducation();
+
+
+    /* SKILLS */
+
+    generateSkills();
+
+
+    /* LANGUAGES */
+
+    generateTextList(
+        languages.value,
+        "previewLanguages",
+        "previewLanguagesSection"
+    );
+
+
+    /* CERTIFICATIONS */
+
+    generateTextList(
+        certifications.value,
+        "previewCertifications",
+        "previewCertificationsSection"
+    );
+
+
+    /* SHOW RESUME */
+
+    resumePreviewArea.classList.add(
+        "show-preview"
+    );
+
+
+    /* ONLY SCROLL WHEN USER CLICKS
+       GENERATE RESUME */
+
+    if (shouldScroll) {
+
+        setTimeout(() => {
+
+            resumePreviewArea.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }, 100);
+
+    }
 
 }
 
