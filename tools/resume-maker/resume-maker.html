@@ -293,18 +293,35 @@
                 </h3>
 
 
-                <textarea
-                    id="skills"
-                    rows="4"
-                    data-i18n-placeholder="skills_placeholder"
-                    placeholder="Customer Service, Microsoft Office, Communication, Teamwork"></textarea>
+               <!-- =================================
+     SKILLS
+================================== -->
 
+<div class="form-section">
 
-                <small data-i18n="skills_help">
-                    Separate skills with commas.
-                </small>
+    <h3 data-i18n="skills">
+        🛠️ Skills
+    </h3>
 
-            </div>
+    <textarea
+        id="skills"
+        rows="4"
+        data-i18n-placeholder="skills_placeholder"
+        placeholder="Customer Service, Microsoft Office, Communication, Teamwork"></textarea>
+
+    <button
+        type="button"
+        class="smart-btn"
+        onclick="smartSkills()"
+        data-i18n="smart_wording">
+        ✨ Smart Wording
+    </button>
+
+    <small data-i18n="smart_skills_help">
+        Enter simple skills separated by commas. Smart Wording will improve them for your resume.
+    </small>
+
+</div>
 
 
             <!-- =================================
