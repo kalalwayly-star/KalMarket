@@ -9,7 +9,7 @@ function loadLanguage(language) {
     if (window.location.pathname.includes("/tools/")) {
 
       if (
-    window.location.pathname.includes("/calculators/resume-maker/")
+    window.location.pathname.includes("/tools/resume-maker/")
 ) {
 
     languagePath = `../../${language}.json`;
