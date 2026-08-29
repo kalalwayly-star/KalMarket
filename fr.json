@@ -356,6 +356,7 @@
   "footer_safety": "Sécurité",
   "footer_privacy": "Confidentialité",
   "about_us": "À propos de nous",
-  "contact_us": "Nous contacter"
+  "contact_us": "Nous contacter",
+  "skills_hint": "Séparez les compétences par des virgules. La fonction de rédaction intelligente peut améliorer les noms de compétences courants."
 
 }
