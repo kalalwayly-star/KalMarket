@@ -496,6 +496,20 @@
   "featured_5_days": "4,99 $ pour 5 jours",
   "featured_10_days": "8,99 $ pour 10 jours",
 
-  "post_btn": "Publier l'annonce maintenant"
-
-}
+  "post_btn": "Publier l'annonce maintenant",
+  
+"register_page_title": "Créer un compte - Site de petites annonces",
+  "create_account_title": "Créer un compte",
+  "register_subtitle": "Rejoignez notre marché en ligne dès aujourd'hui.",
+  "label_email": "Adresse e-mail",
+  "enter_email": "Entrez votre adresse e-mail",
+  "label_password": "Mot de passe",
+  "enter_password": "Entrez votre mot de passe",
+  "agree_terms_prefix": "J'accepte les",
+  "terms_of_use": "Conditions d'utilisation",
+  "and_text": "et la",
+  "privacy_policy": "Politique de confidentialité",
+  "create_account_btn": "Créer un compte",
+  "or_divider": "OU",
+  "already_have_account": "Vous avez déjà un compte ?",
+  "login_here": "Connectez-vous ici"}
