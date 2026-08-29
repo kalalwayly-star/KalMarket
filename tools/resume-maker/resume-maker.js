@@ -295,9 +295,16 @@ GENERATE RESUME
 Only Generate Resume button scrolls
 ========================================= */
 
-function generateResume(shouldScroll = true) {
+/* =========================================
+   GENERATE RESUME
+   ONLY SHOWS RESUME WHEN BUTTON IS CLICKED
+========================================= */
 
-    /* PERSONAL INFORMATION */
+function generateResume() {
+
+    /* =========================================
+       PERSONAL INFORMATION
+    ========================================= */
 
     setText(
         "previewName",
@@ -325,16 +332,22 @@ function generateResume(shouldScroll = true) {
     );
 
 
-    /* SUMMARY */
+    /* =========================================
+       SUMMARY
+    ========================================= */
 
     const summaryText =
         summary.value.trim();
 
     const summarySection =
-        document.getElementById("previewSummarySection");
+        document.getElementById(
+            "previewSummarySection"
+        );
 
     const summaryPreview =
-        document.getElementById("previewSummary");
+        document.getElementById(
+            "previewSummary"
+        );
 
     if (summaryText) {
 
@@ -346,29 +359,38 @@ function generateResume(shouldScroll = true) {
 
     } else {
 
-        summaryPreview.textContent = "";
+        summaryPreview.textContent =
+            "";
 
         summarySection.style.display =
             "none";
     }
 
 
-    /* EXPERIENCE */
+    /* =========================================
+       EXPERIENCE
+    ========================================= */
 
     generateExperience();
 
 
-    /* EDUCATION */
+    /* =========================================
+       EDUCATION
+    ========================================= */
 
     generateEducation();
 
 
-    /* SKILLS */
+    /* =========================================
+       SKILLS
+    ========================================= */
 
     generateSkills();
 
 
-    /* LANGUAGES */
+    /* =========================================
+       LANGUAGES
+    ========================================= */
 
     generateTextList(
         languages.value,
@@ -377,7 +399,9 @@ function generateResume(shouldScroll = true) {
     );
 
 
-    /* CERTIFICATIONS */
+    /* =========================================
+       CERTIFICATIONS
+    ========================================= */
 
     generateTextList(
         certifications.value,
@@ -386,31 +410,37 @@ function generateResume(shouldScroll = true) {
     );
 
 
-    /* SHOW RESUME */
+    /* =========================================
+       SHOW RESUME
+    ========================================= */
 
-    resumePreviewArea.classList.add(
-        "show-preview"
-    );
+    if (resumePreviewArea) {
+
+        resumePreviewArea.classList.add(
+            "show-preview"
+        );
+
+    }
 
 
-    /* ONLY SCROLL WHEN USER CLICKS
-       GENERATE RESUME */
+    /* =========================================
+       SCROLL TO RESUME
+    ========================================= */
 
-    if (shouldScroll) {
+    setTimeout(function () {
 
-        setTimeout(() => {
+        if (resumePreviewArea) {
 
             resumePreviewArea.scrollIntoView({
                 behavior: "smooth",
                 block: "start"
             });
 
-        }, 100);
+        }
 
-    }
+    }, 100);
 
 }
-
 /* =========================================
 EXPERIENCE PREVIEW
 ========================================= */
