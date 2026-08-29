@@ -512,4 +512,26 @@
   "create_account_btn": "Créer un compte",
   "or_divider": "OU",
   "already_have_account": "Vous avez déjà un compte ?",
-  "login_here": "Connectez-vous ici"}
+  "login_here": "Connectez-vous ici",
+"privacy_title": "Politique de confidentialité | KalMarket",
+  "myTitle": "Kal Market",
+  "home": "Accueil",
+  "privacy_header": "Politique de confidentialité",
+
+  "privacy_info_title": "Informations que nous recueillons",
+  "privacy_info_text": "Nous recueillons les informations que vous nous fournissez directement lorsque vous créez un compte, publiez une annonce ou communiquez avec nous.",
+
+  "privacy_usage_title": "Comment nous utilisons les informations",
+  "privacy_usage_text": "Nous utilisons ces informations pour gérer votre compte, afficher vos annonces et améliorer les services de notre marché en ligne.",
+
+  "privacy_disclaimer_title": "Limitation de responsabilité",
+  "privacy_disclaimer_text": "Notre plateforme est un marché en ligne destiné aux petites annonces. Nous ne sommes pas responsables des erreurs, des inexactitudes ou des dommages résultant du contenu publié par les utilisateurs ou de leurs interactions.",
+
+  "privacy_fraud_title": "Sensibilisation à la fraude et responsabilité des utilisateurs",
+  "privacy_fraud_text": "Les utilisateurs doivent faire preuve de prudence et être attentifs aux risques de fraude. Vous êtes entièrement responsable de la vérification de l'identité des acheteurs ou des vendeurs ainsi que de la qualité des articles avant toute transaction.",
+
+  "privacy_sharing_title": "Partage des informations",
+  "privacy_sharing_text": "Vos coordonnées ne sont partagées avec d'autres utilisateurs que lorsque vous choisissez de les afficher dans vos annonces publiques.",
+
+  "back_home": "← Retour à l'accueil"
+}
