@@ -385,6 +385,13 @@
   "footer_privacy": "Politique de confidentialité",
   "footer_safety": "Conseils de sécurité",
   "login": "Connexion",
-  "register": "S'inscrire"
+  "register": "S'inscrire",
+  "reset_password": "Réinitialiser le mot de passe",
+  "reset_subtitle": "Entrez votre adresse e-mail pour trouver votre compte.",
+  "email_address": "Adresse e-mail",
+  "verify_email": "Vérifier l'adresse e-mail",
+  "new_password": "Nouveau mot de passe",
+  "confirm_new_password": "Confirmer le nouveau mot de passe",
+  "update_password": "Mettre à jour le mot de pass
 
 }
