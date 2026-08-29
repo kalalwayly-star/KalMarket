@@ -1,148 +1,187 @@
 /* =========================================
-KALMARKET RESUME MAKER
+   KALMARKET RESUME MAKER
+   MODERN PROFESSIONAL DESIGN
 ========================================= */
 
 .resume-maker-container {
-max-width: 1100px;
-margin: 0 auto;
-padding: 30px 20px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
 }
 
+
 /* =========================================
-HERO
+   HERO
 ========================================= */
 
 .resume-hero {
-text-align: center;
-margin-bottom: 30px;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .resume-icon {
-font-size: 48px;
-margin-bottom: 8px;
+    font-size: 50px;
+    margin-bottom: 8px;
 }
 
 .resume-hero h1 {
-margin: 0 0 10px;
-font-size: 34px;
+    margin: 0 0 10px;
+    font-size: 36px;
+    font-weight: 800;
 }
 
 .resume-hero p {
-max-width: 700px;
-margin: 0 auto;
-line-height: 1.6;
-font-size: 17px;
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-size: 17px;
+    color: #64748b;
 }
 
+
 /* =========================================
-FORM
+   FORM
 ========================================= */
 
 .resume-form {
-background: #ffffff;
-border-radius: 16px;
-padding: 28px;
-box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    border: 1px solid #e2e8f0;
 }
 
 .resume-form > h2 {
-margin-top: 0;
-margin-bottom: 25px;
+    margin-top: 0;
+    margin-bottom: 28px;
+    font-size: 23px;
 }
 
+
 /* =========================================
-FORM SECTIONS
+   FORM SECTIONS
 ========================================= */
 
 .form-section {
-margin-bottom: 28px;
-padding-bottom: 24px;
-border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 30px;
+    padding-bottom: 26px;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .form-section:last-of-type {
-border-bottom: none;
+    border-bottom: none;
 }
 
 .form-section h3 {
-margin-top: 0;
-margin-bottom: 16px;
-font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 17px;
+    font-size: 20px;
+    color: #1e293b;
 }
 
+
 /* =========================================
-FORM GRID
+   FORM GRID
 ========================================= */
 
 .form-grid {
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 17px;
 }
 
 .dynamic-entry-grid {
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 17px;
 }
 
 .full-width {
-grid-column: 1 / -1;
+    grid-column: 1 / -1;
 }
 
+
 /* =========================================
-LABELS
+   LABELS
 ========================================= */
 
 .resume-form label {
-display: block;
-margin-bottom: 7px;
-font-weight: 600;
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 650;
+    color: #334155;
 }
 
+
 /* =========================================
-INPUTS
+   INPUTS
 ========================================= */
 
 .resume-form input,
 .resume-form textarea {
-width: 100%;
-box-sizing: border-box;
-border: 1px solid #cbd5e1;
-border-radius: 9px;
-padding: 12px 14px;
-font-size: 15px;
-font-family: inherit;
-background: #ffffff;
-transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 15px;
+    font-family: inherit;
+    background: #ffffff;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        transform 0.15s;
 }
 
 .resume-form textarea {
-resize: vertical;
-min-height: 90px;
+    resize: vertical;
+    min-height: 90px;
+}
+
+.resume-form input:hover,
+.resume-form textarea:hover {
+    border-color: #94a3b8;
 }
 
 .resume-form input:focus,
 .resume-form textarea:focus {
-outline: none;
-border-color: #2563eb;
-box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10);
 }
 
+
 /* =========================================
-DYNAMIC ENTRIES
+   DYNAMIC EXPERIENCE / EDUCATION
 ========================================= */
 
 .dynamic-entry {
-background: #f8fafc;
-border: 1px solid #e2e8f0;
-border-radius: 12px;
-padding: 18px;
-margin-bottom: 16px;
+    background: linear-gradient(
+        135deg,
+        #f8fafc,
+        #f1f5f9
+    );
+
+    border: 1px solid #dbe3ec;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 18px;
+    position: relative;
 }
 
+.dynamic-entry::before {
+    content: "";
+    display: block;
+    height: 4px;
+    width: 55px;
+    background: #2563eb;
+    border-radius: 10px;
+    margin-bottom: 18px;
+}
+
+
 /* =========================================
-BUTTONS
+   BUTTONS
 ========================================= */
 
 .add-btn,
@@ -151,13 +190,16 @@ BUTTONS
 .generate-btn,
 .print-btn,
 .clear-btn {
-border: none;
-border-radius: 9px;
-padding: 11px 17px;
-font-size: 15px;
-font-weight: 600;
-cursor: pointer;
-transition: transform 0.15s, opacity 0.15s;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 18px;
+    font-size: 15px;
+    font-weight: 650;
+    cursor: pointer;
+    transition:
+        transform 0.15s,
+        box-shadow 0.15s,
+        opacity 0.15s;
 }
 
 .add-btn:hover,
@@ -166,336 +208,533 @@ transition: transform 0.15s, opacity 0.15s;
 .generate-btn:hover,
 .print-btn:hover,
 .clear-btn:hover {
-transform: translateY(-1px);
+    transform: translateY(-2px);
 }
 
 .add-btn {
-background: #e2e8f0;
-color: #1e293b;
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+.add-btn:hover {
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.10);
 }
 
 .remove-btn {
-margin-top: 15px;
-background: #fee2e2;
-color: #991b1b;
+    margin-top: 15px;
+    background: #fee2e2;
+    color: #991b1b;
 }
 
+.remove-btn:hover {
+    background: #fecaca;
+}
+
+
+/* =========================================
+   SMART WORDING
+========================================= */
+
 .smart-btn {
-margin-top: 10px;
-background: #ede9fe;
-color: #5b21b6;
+    margin-top: 11px;
+    background: #ede9fe;
+    color: #5b21b6;
+    border: 1px solid #ddd6fe;
+}
+
+.smart-btn:hover {
+    background: #ddd6fe;
+    box-shadow: 0 4px 12px rgba(91, 33, 182, 0.12);
 }
 
 .smart-btn:disabled {
-opacity: 0.6;
-cursor: not-allowed;
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
+
 /* =========================================
-FORM ACTIONS
+   FORM ACTIONS
 ========================================= */
 
 .form-actions {
-display: flex;
-flex-wrap: wrap;
-gap: 12px;
-margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 15px;
 }
 
 .generate-btn {
-background: #2563eb;
-color: #ffffff;
-padding: 14px 22px;
+    background: #2563eb;
+    color: #ffffff;
+    padding: 14px 23px;
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.22);
+}
+
+.generate-btn:hover {
+    background: #1d4ed8;
+    box-shadow: 0 7px 18px rgba(37, 99, 235, 0.28);
 }
 
 .print-btn {
-background: #0f766e;
-color: #ffffff;
-padding: 14px 22px;
+    background: #0f766e;
+    color: #ffffff;
+    padding: 14px 23px;
+}
+
+.print-btn:hover {
+    background: #0d665f;
 }
 
 .clear-btn {
-background: #64748b;
-color: #ffffff;
-padding: 14px 22px;
+    background: #64748b;
+    color: #ffffff;
+    padding: 14px 23px;
 }
 
+.clear-btn:hover {
+    background: #475569;
+}
+
+
 /* =========================================
-SMALL HELP TEXT
+   SMALL HELP TEXT
 ========================================= */
 
 .resume-form small {
-display: block;
-margin-top: 8px;
-color: #64748b;
-line-height: 1.5;
+    display: block;
+    margin-top: 8px;
+    color: #64748b;
+    line-height: 1.5;
 }
 
+
 /* =========================================
-RESUME PREVIEW
-HIDDEN UNTIL GENERATE
+   RESUME PREVIEW
+   HIDDEN UNTIL GENERATE
 ========================================= */
 
 .resume-preview-area {
     display: none !important;
-    margin-top: 35px;
+    margin-top: 40px;
 }
 
 .resume-preview-area.show-preview {
     display: block !important;
 }
+
+
+/* =========================================
+   PREVIEW TITLE
+========================================= */
+
 .preview-header {
-text-align: center;
-margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 22px;
 }
 
 .preview-header h2 {
-margin: 0;
+    margin: 0;
+    font-size: 24px;
+    color: #1e293b;
 }
 
+
 /* =========================================
-RESUME PAPER
+   RESUME PAPER
 ========================================= */
 
 .resume-paper {
-background: #ffffff;
-max-width: 850px;
-margin: 0 auto;
-padding: 55px 60px;
-box-sizing: border-box;
-box-shadow: 0 8px 35px rgba(0, 0, 0, 0.12);
-border-radius: 4px;
-color: #111827;
-line-height: 1.55;
+    background: #ffffff;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 55px 60px;
+    box-sizing: border-box;
+
+    box-shadow:
+        0 12px 45px rgba(15, 23, 42, 0.14);
+
+    border-radius: 8px;
+
+    color: #111827;
+    line-height: 1.55;
+
+    position: relative;
+    overflow: hidden;
 }
 
+
 /* =========================================
-RESUME HEADER
+   TOP COLOR BAR
+========================================= */
+
+.resume-paper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+
+    background: linear-gradient(
+        90deg,
+        #2563eb,
+        #4f46e5,
+        #0f766e
+    );
+}
+
+
+/* =========================================
+   RESUME HEADER
 ========================================= */
 
 .resume-header {
-text-align: center;
-padding-bottom: 20px;
-border-bottom: 2px solid #1f2937;
-margin-bottom: 25px;
+    text-align: center;
+    padding-top: 8px;
+    padding-bottom: 24px;
+
+    border-bottom: 3px solid #2563eb;
+
+    margin-bottom: 28px;
+
+    position: relative;
 }
+
+
+/* Decorative line */
+
+.resume-header::after {
+    content: "";
+    display: block;
+
+    width: 75px;
+    height: 4px;
+
+    background: #0f766e;
+
+    border-radius: 10px;
+
+    margin: 14px auto 0;
+}
+
 
 .resume-header h1 {
-margin: 0 0 12px;
-font-size: 32px;
-letter-spacing: 0.3px;
+    margin: 0 0 12px;
+
+    font-size: 34px;
+    font-weight: 800;
+
+    letter-spacing: 0.3px;
+
+    color: #0f172a;
 }
+
+
+/* =========================================
+   CONTACT INFORMATION
+========================================= */
 
 .contact-line {
-display: flex;
-justify-content: center;
-flex-wrap: wrap;
-gap: 7px 18px;
-font-size: 14px;
-color: #475569;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 7px 18px;
+
+    font-size: 14px;
+
+    color: #475569;
 }
 
-.contact-line span:not(:empty)::after {
-content: "";
+.contact-line span:not(:empty) {
+    position: relative;
+}
+
+.contact-line span:not(:empty):not(:last-child)::after {
+    content: "•";
+    margin-left: 18px;
+    color: #2563eb;
 }
 
 .linkedin {
-margin-top: 7px;
-font-size: 14px;
+    margin-top: 9px;
+    font-size: 14px;
+    color: #2563eb;
 }
 
+
 /* =========================================
-RESUME SECTIONS
+   RESUME SECTIONS
 ========================================= */
 
 .preview-section {
-margin-bottom: 25px;
+    margin-bottom: 28px;
 }
 
 .preview-section h2 {
-font-size: 18px;
-text-transform: uppercase;
-letter-spacing: 0.8px;
-border-bottom: 1px solid #cbd5e1;
-padding-bottom: 6px;
-margin: 0 0 12px;
+    font-size: 18px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.9px;
+
+    color: #1e3a8a;
+
+    border-bottom: 1px solid #cbd5e1;
+
+    padding-bottom: 7px;
+
+    margin: 0 0 14px;
+
+    position: relative;
 }
+
+
+/* Small accent under section heading */
+
+.preview-section h2::after {
+    content: "";
+
+    display: block;
+
+    width: 42px;
+    height: 3px;
+
+    background: #2563eb;
+
+    border-radius: 5px;
+
+    margin-top: 6px;
+}
+
 
 .preview-section p {
-margin: 0;
+    margin: 0;
 }
 
+
 /* =========================================
-EXPERIENCE
+   EXPERIENCE
 ========================================= */
 
 .preview-job {
-margin-bottom: 20px;
+    margin-bottom: 22px;
+
+    padding-left: 16px;
+
+    border-left: 3px solid #dbeafe;
 }
 
 .preview-job:last-child {
-margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .preview-job h3,
 .preview-school h3 {
-margin: 0 0 3px;
-font-size: 17px;
+    margin: 0 0 4px;
+
+    font-size: 18px;
+
+    color: #0f172a;
 }
 
 .preview-company,
 .preview-school-name {
-font-weight: 600;
-margin-bottom: 2px;
+    font-weight: 700;
+    margin-bottom: 3px;
+    color: #334155;
 }
 
 .preview-dates {
-color: #64748b;
-font-size: 14px;
-margin-bottom: 7px;
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 8px;
 }
 
 .preview-job ul,
 .preview-section ul {
-margin: 7px 0 0;
-padding-left: 22px;
+    margin: 8px 0 0;
+    padding-left: 22px;
 }
 
 .preview-job li,
 .preview-section li {
-margin-bottom: 4px;
+    margin-bottom: 5px;
 }
 
+
 /* =========================================
-EDUCATION
+   EDUCATION
 ========================================= */
 
 .preview-school {
-margin-bottom: 15px;
+    margin-bottom: 17px;
+
+    padding-left: 16px;
+
+    border-left: 3px solid #dbeafe;
 }
 
 .preview-school:last-child {
-margin-bottom: 0;
+    margin-bottom: 0;
 }
 
+
 /* =========================================
-SKILLS
+   SKILLS
 ========================================= */
 
 .skills-list {
-display: flex;
-flex-wrap: wrap;
-gap: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
 }
 
 .skill-item {
-display: inline-block;
-padding: 6px 11px;
-border: 1px solid #cbd5e1;
-border-radius: 20px;
-font-size: 14px;
+    display: inline-block;
+
+    padding: 7px 12px;
+
+    border: 1px solid #bfdbfe;
+
+    border-radius: 20px;
+
+    font-size: 14px;
+
+    color: #1e3a8a;
+
+    background: #eff6ff;
+
+    font-weight: 600;
 }
 
+
 /* =========================================
-PRINT
+   EMPTY PREVIEW
+========================================= */
+
+.empty-preview {
+    color: #94a3b8;
+    font-style: italic;
+}
+
+
+/* =========================================
+   PRINT / SAVE PDF
 ========================================= */
 
 @media print {
 
-body {
-    background: #ffffff !important;
+    body {
+        background: #ffffff !important;
+    }
+
+    .site-header,
+    .resume-hero,
+    .resume-form,
+    .preview-header {
+        display: none !important;
+    }
+
+    .resume-maker-container {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .resume-preview-area {
+        display: block !important;
+        margin: 0;
+    }
+
+    .resume-paper {
+        max-width: none;
+        width: 100%;
+        margin: 0;
+
+        padding: 30px 40px;
+
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .resume-paper::before {
+        display: block;
+    }
+
+    .preview-section {
+        break-inside: avoid;
+    }
+
+    .preview-job,
+    .preview-school {
+        break-inside: avoid;
+    }
+
 }
 
-.site-header,
-.resume-hero,
-.resume-form,
-.preview-header {
-    display: none !important;
-}
-
-.resume-maker-container {
-    max-width: none;
-    margin: 0;
-    padding: 0;
-}
-
-.resume-preview-area {
-    display: block !important;
-    margin: 0;
-}
-
-.resume-paper {
-    max-width: none;
-    width: 100%;
-    margin: 0;
-    padding: 30px 40px;
-    box-shadow: none;
-    border-radius: 0;
-}
-
-.preview-section {
-    break-inside: avoid;
-}
-
-.preview-job,
-.preview-school {
-    break-inside: avoid;
-}
-
-}
 
 /* =========================================
-MOBILE
+   MOBILE
 ========================================= */
 
 @media (max-width: 700px) {
 
+    .resume-maker-container {
+        padding: 20px 12px 40px;
+    }
 
-.resume-maker-container {
-    padding: 20px 12px 40px;
-}
+    .resume-hero h1 {
+        font-size: 29px;
+    }
 
-.resume-hero h1 {
-    font-size: 28px;
-}
+    .resume-hero p {
+        font-size: 15px;
+    }
 
-.resume-hero p {
-    font-size: 15px;
-}
+    .resume-form {
+        padding: 20px 16px;
+    }
 
-.resume-form {
-    padding: 20px 16px;
-}
+    .form-grid,
+    .dynamic-entry-grid {
+        grid-template-columns: 1fr;
+    }
 
-.form-grid,
-.dynamic-entry-grid {
-    grid-template-columns: 1fr;
-}
+    .full-width {
+        grid-column: auto;
+    }
 
-.full-width {
-    grid-column: auto;
-}
+    .form-actions {
+        flex-direction: column;
+    }
 
-.form-actions {
-    flex-direction: column;
-}
+    .form-actions button {
+        width: 100%;
+    }
 
-.form-actions button {
-    width: 100%;
-}
+    .resume-paper {
+        padding: 35px 22px;
+        border-radius: 5px;
+    }
 
-.resume-paper {
-    padding: 30px 22px;
-}
+    .resume-header h1 {
+        font-size: 28px;
+    }
 
-.resume-header h1 {
-    font-size: 27px;
-}
+    .contact-line {
+        flex-direction: column;
+        gap: 5px;
+    }
 
-.contact-line {
-    flex-direction: column;
-    gap: 3px;
-}
+    .contact-line span:not(:empty):not(:last-child)::after {
+        display: none;
+    }
+
+    .preview-section h2 {
+        font-size: 16px;
+    }
 
 }
 
