@@ -622,54 +622,78 @@
 
 /* =========================================
    PRINT / SAVE PDF
+   SHOW RESUME ONLY
 ========================================= */
 
 @media print {
 
-    body {
+    /* Hide everything on the page */
+    body * {
+        visibility: hidden !important;
+    }
+
+    /* Show only the resume */
+    #resumePreview,
+    #resumePreview * {
+        visibility: visible !important;
+    }
+
+    /* Position resume at the top of the printed page */
+    #resumePreview {
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        width: 100% !important;
+        max-width: none !important;
+
+        margin: 0 !important;
+
+        padding: 30px 40px !important;
+
+        box-shadow: none !important;
+
+        border-radius: 0 !important;
+
         background: #ffffff !important;
     }
 
-    .site-header,
-    .resume-hero,
-    .resume-form,
+    /* Hide the preview title */
     .preview-header {
         display: none !important;
     }
 
-    .resume-maker-container {
-        max-width: none;
-        margin: 0;
-        padding: 0;
+    /* Hide KalMarket header/navigation */
+    .site-header,
+    .main-nav,
+    .site-logo {
+        display: none !important;
     }
 
+    /* Remove page/container spacing */
+    .resume-maker-container,
     .resume-preview-area {
-        display: block !important;
-        margin: 0;
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: none !important;
+        width: 100% !important;
     }
 
-    .resume-paper {
-        max-width: none;
-        width: 100%;
-        margin: 0;
-
-        padding: 30px 40px;
-
-        box-shadow: none;
-        border-radius: 0;
-    }
-
+    /* Keep the resume top color bar */
     .resume-paper::before {
-        display: block;
+        display: block !important;
     }
 
+    /* Prevent sections from splitting awkwardly */
     .preview-section {
         break-inside: avoid;
+        page-break-inside: avoid;
     }
 
     .preview-job,
     .preview-school {
         break-inside: avoid;
+        page-break-inside: avoid;
     }
 
 }
