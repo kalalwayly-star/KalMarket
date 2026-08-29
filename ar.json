@@ -1194,7 +1194,9 @@
   "your_education": "سيظهر تعليمك هنا.",
   "your_skills": "ستظهر مهاراتك هنا.",
   "your_languages": "ستظهر لغاتك هنا.",
-  "your_certifications": "ستظهر شهاداتك هنا."
+  "your_certifications": "ستظهر شهاداتك هنا.",
+    "resume_maker_heading": "منشئ السيرة الذاتية المجاني",
+    "resume_maker_description": "أنشئ سيرة ذاتية احترافية خلال دقائق. أدخل معلوماتك وأنشئ سيرتك الذاتية أدناه."
 
     
 }
