@@ -409,6 +409,17 @@
 
   "or_divider": "OU",
 
-  "create_account_btn": "Créer un compte"
+  "create_account_btn": "Créer un compte",
+  "messages_title": "Mes messages | KalMarket",
+  "home": "Accueil",
+  "search_messages": "Rechercher dans les messages",
+  "received_messages": "Boîte de réception / Messages reçus",
+  "sent_messages": "Messages envoyés",
+  "no_messages_found": "Aucun message trouvé.",
+  "report_ad": "Signaler cette annonce",
+  "delete": "Supprimer",
+  "reply": "Répondre",
+  "send": "Envoyer",
+  "cancel": "Annuler"
 
 }
