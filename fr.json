@@ -533,5 +533,9 @@
   "privacy_sharing_title": "Partage des informations",
   "privacy_sharing_text": "Vos coordonnées ne sont partagées avec d'autres utilisateurs que lorsque vous choisissez de les afficher dans vos annonces publiques.",
 
-  "back_home": "← Retour à l'accueil"
+  "back_home": "← Retour à l'accueil",
+"myTitle": "Kal Market",
+"home": "Accueil",
+"back_home": "← Retour à l'accueil"
+  
 }
