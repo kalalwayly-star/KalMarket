@@ -420,6 +420,19 @@
   "delete": "Supprimer",
   "reply": "Répondre",
   "send": "Envoyer",
-  "cancel": "Annuler"
+  "cancel": "Annuler",
+  "myads_title": "Mes annonces | KalMarket",
+  "app_name": "Kal Market",
+  "home": "Accueil",
+  "postAd": "Publier une annonce",
+  "logout": "Déconnexion",
+  "your_active_listings": "Vos annonces",
+  "all_ads": "Toutes",
+  "active_btn": "Actives",
+  "pending_btn": "En attente",
+  "sold_btn": "Vendues",
+  "loading_ads": "Chargement de vos annonces...",
+  "back_home": "← Retour à l'accueil",
+  "logged_in_as": "Connecté en tant que :"
 
 }
