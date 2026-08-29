@@ -893,9 +893,6 @@ if (!text) {
 summary.value =
     improveSummaryText(text);
 
-
-generateResume(false);
-
 }
 
 /* =========================================
@@ -1083,9 +1080,6 @@ const improved =
 description.value =
     [...new Set(improved)]
         .join("\n");
-
-
-generateResume(false);
 
 }
 
@@ -1328,9 +1322,6 @@ const improved =
 skills.value =
     [...new Set(improved)]
         .join(", ");
-
-
-generateResume(false);
 
 }
 
