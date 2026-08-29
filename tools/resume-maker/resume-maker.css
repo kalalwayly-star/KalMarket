@@ -237,14 +237,13 @@ HIDDEN UNTIL GENERATE
 ========================================= */
 
 .resume-preview-area {
-display: none;
-margin-top: 35px;
+    display: none !important;
+    margin-top: 35px;
 }
 
 .resume-preview-area.show-preview {
-display: block;
+    display: block !important;
 }
-
 .preview-header {
 text-align: center;
 margin-bottom: 20px;
