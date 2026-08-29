@@ -297,8 +297,9 @@
   "your_education": "Votre formation apparaîtra ici.",
   "your_skills": "Vos compétences apparaîtront ici.",
   "your_languages": "Vos langues apparaîtront ici.",
-  "your_certifications": "Vos certifications apparaîtront ici."
-
-
+  "your_certifications": "Vos certifications apparaîtront ici.",
+  
+"resume_maker_heading": "Créateur de CV gratuit",
+    "resume_maker_description": "Créez un CV professionnel en quelques minutes. Entrez vos informations et générez votre CV ci-dessous."
 
 }
