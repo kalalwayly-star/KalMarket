@@ -433,6 +433,69 @@
   "sold_btn": "Vendues",
   "loading_ads": "Chargement de vos annonces...",
   "back_home": "← Retour à l'accueil",
-  "logged_in_as": "Connecté en tant que :"
+  "logged_in_as": "Connecté en tant que :",
+  "post_page_title": "Publier une annonce | KalMarket",
+  "myTitle": "Kal Market",
+  "home": "Accueil",
+  "post_ad_header": "Publier une nouvelle annonce",
+
+  "category_label": "Catégorie",
+  "select_category": "Choisir une catégorie",
+
+  "cat_realestate": "Immobilier",
+  "cat_cars_trucks": "Voitures et camions",
+  "cat_electronics": "Électronique",
+  "cat_auto_accessories": "Accessoires automobiles",
+  "cat_furniture": "Meubles",
+  "cat_jobs": "Emplois",
+  "cat_fashion": "Mode",
+  "cat_pets": "Animaux",
+  "cat_sports": "Sports",
+  "cat_books": "Livres",
+  "cat_appliances": "Électroménagers",
+  "cat_toys": "Jouets",
+  "cat_services": "Services",
+  "cat_garden": "Jardin",
+  "cat_health": "Santé",
+  "cat_baby": "Articles pour bébé",
+  "cat_buy&sale": "Achat et vente",
+
+  "photo_header": "Photos",
+  "click_to_add": "Ajouter des photos",
+
+  "vehicle_information": "Informations sur le véhicule",
+  "label_make": "Marque",
+  "label_model": "Modèle",
+  "label_year": "Année",
+  "label_mileage": "Kilométrage",
+  "label_transmission": "Transmission",
+  "select_option": "Sélectionner",
+  "transmission_automatic": "Automatique",
+  "transmission_manual": "Manuelle",
+
+  "label_fuel_type": "Type de carburant",
+  "fuel_gasoline": "Essence",
+  "fuel_diesel": "Diesel",
+  "fuel_electric": "Électrique",
+  "fuel_hybrid": "Hybride",
+
+  "label_title": "Titre",
+  "label_location": "Emplacement",
+  "label_price": "Prix",
+  "currency_label": "Devise",
+  "label_description": "Description",
+
+  "condition_label": "État",
+  "opt_new": "Neuf",
+  "opt_used": "Usagé",
+  "opt_refurbished": "Remis à neuf",
+
+  "standard_listing": "Annonce standard (gratuite)",
+  "free_listing": "Annonce gratuite",
+  "label_featured": "✨ Mettre cette annonce en vedette pendant",
+  "featured_5_days": "4,99 $ pour 5 jours",
+  "featured_10_days": "8,99 $ pour 10 jours",
+
+  "post_btn": "Publier l'annonce maintenant"
 
 }
