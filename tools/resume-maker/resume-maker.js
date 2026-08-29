@@ -1055,8 +1055,7 @@ description.value =
         .join("\n");
 
 
-generateResume();
-
+generateResume(false);
 
 }
 
@@ -1301,8 +1300,7 @@ skills.value =
         .join(", ");
 
 
-generateResume();
-
+generateResume(false);
 
 }
 
