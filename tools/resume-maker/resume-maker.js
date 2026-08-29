@@ -864,8 +864,7 @@ summary.value =
     improveSummaryText(text);
 
 
-generateResume();
-
+generateResume(false);
 
 }
 
