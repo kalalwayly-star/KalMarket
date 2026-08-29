@@ -300,6 +300,62 @@
   "your_certifications": "Vos certifications apparaîtront ici.",
   
 "resume_maker_heading": "Créateur de CV gratuit",
-    "resume_maker_description": "Créez un CV professionnel en quelques minutes. Entrez vos informations et générez votre CV ci-dessous."
+    "resume_maker_description": "Créez un CV professionnel en quelques minutes. Entrez vos informations et générez votre CV ci-dessous.",
+  "app_name": "KalMarket | Trouvez tout ce dont vous avez besoin",
+  "visitor_count": "👥 Visiteurs : 0",
+  "hero_tagline": "La plateforme gratuite de petites annonces locales",
+  "hero_subtitle": "Acheter • Vendre • Échanger • Trouver des services locaux",
+  "free_badge": "🟢 100 % GRATUIT pour publier des annonces",
+
+  "home": "Accueil",
+  "nav_messages": "Messages",
+  "myAds": "Mes annonces",
+  "postAd": "Publier une annonce",
+  "nav_login": "Connexion",
+  "create_account": "Créer un compte",
+  "logout": "Déconnexion",
+  "logged_in_as": "Connecté en tant que :",
+
+  "canada_immigration_nav": "🇨🇦 Comment venir au Canada",
+  "free_calculators": "🧮 Calculateurs gratuits",
+  "free_resume_maker": "📄 Créateur de CV gratuit",
+
+  "hero_title": "Trouvez ce dont vous avez besoin près de chez vous",
+  "hero_description": "Nous mettons en relation les acheteurs et les vendeurs partout dans le monde.",
+
+  "search_placeholder": "Que recherchez-vous ?",
+  "location_placeholder": "Ville ou quartier",
+  "btn_search": "Rechercher",
+
+  "cat_header": "Parcourir les catégories",
+  "cat_realestate": "Immobilier",
+  "cat_cars_trucks": "Voitures et camions",
+  "cat_furniture": "Meubles",
+  "cat_AutoAccessories": "Accessoires automobiles",
+  "cat_jobs": "Emplois",
+  "cat_fashion": "Mode",
+  "cat_pets": "Animaux",
+  "cat_sports": "Sports",
+  "cat_books": "Livres",
+  "cat_appliances": "Électroménager",
+  "cat_toys": "Jouets",
+  "cat_electronics": "Électronique",
+  "cat_services": "Services",
+  "cat_garden": "Jardin",
+  "cat_health": "Santé",
+  "cat_baby": "Articles pour bébé",
+  "cat_buy_sale": "Achat et vente",
+
+  "vehicle_report_banner": "🚗 Obtenez GRATUITEMENT votre rapport d'historique du véhicule – Cliquez ici",
+
+  "viewTitle": "Dernières annonces",
+  "btn_view_all": "Voir toutes les annonces",
+  "no_items": "Aucun article trouvé.",
+
+  "footer_terms": "Conditions",
+  "footer_safety": "Sécurité",
+  "footer_privacy": "Confidentialité",
+  "about_us": "À propos de nous",
+  "contact_us": "Nous contacter"
 
 }
