@@ -12,7 +12,7 @@ function loadLanguage(language) {
     window.location.pathname.includes("/calculators/resume-maker/")
 ) {
 
-    languagePath = `../../../${language}.json`;
+    languagePath =../../${language}.json`;
 
 }
         if (
