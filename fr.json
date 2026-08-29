@@ -357,6 +357,34 @@
   "footer_privacy": "Confidentialité",
   "about_us": "À propos de nous",
   "contact_us": "Nous contacter",
-  "skills_hint": "Séparez les compétences par des virgules. La fonction de rédaction intelligente peut améliorer les noms de compétences courants."
+  "skills_hint": "Séparez les compétences par des virgules. La fonction de rédaction intelligente peut améliorer les noms de compétences courants.",
+  "back_home": "Retour aux annonces",
+  "canada_immigration_nav": "🇨🇦 Comment venir au Canada",
+
+  "label_description": "Description",
+  "contact_seller": "Contacter le vendeur",
+  "message_placeholder": "Bonjour, est-ce toujours disponible ?",
+  "send_message": "Envoyer le message",
+
+  "report_ad": "Signaler cette annonce",
+  "select_reason": "Sélectionnez une raison",
+  "report_scam": "Arnaque ou fraude",
+  "report_illegal": "Article ou service illégal",
+  "report_spam": "Spam ou annonce en double",
+  "report_fake": "Annonce fausse ou trompeuse",
+  "report_inappropriate": "Contenu inapproprié",
+  "report_counterfeit": "Produit contrefait",
+  "report_harassment": "Harcèlement ou abus",
+  "report_other": "Autre violation des règles",
+
+  "submit_report": "Envoyer",
+  "cancel": "Annuler",
+
+  "footer_copy": "© 2026 Site de petites annonces",
+  "footer_terms": "Conditions d'utilisation",
+  "footer_privacy": "Politique de confidentialité",
+  "footer_safety": "Conseils de sécurité",
+  "login": "Connexion",
+  "register": "S'inscrire"
 
 }
