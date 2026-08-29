@@ -536,6 +536,46 @@
   "back_home": "← Retour à l'accueil",
 "myTitle": "Kal Market",
 "home": "Accueil",
-"back_home": "← Retour à l'accueil"
+"back_home": "← Retour à l'accueil",
+  "terms_title": "Conditions d'utilisation | Kal Market",
+  "site_name": "Kal Market",
+  "home": "Accueil",
+  "login": "Connexion",
+  "register": "Inscription",
+
+  "terms_heading": "Conditions d'utilisation",
+
+  "terms_intro": "En accédant à Kal Market ou en utilisant la plateforme, vous acceptez de respecter les présentes Conditions d'utilisation. Si vous n'êtes pas d'accord, veuillez ne pas utiliser cette plateforme.",
+
+  "terms_user_responsibility_heading": "1. Responsabilité de l'utilisateur",
+  "terms_user_responsibility_text": "Les utilisateurs sont seuls responsables de tout le contenu qu'ils publient, y compris les annonces, messages, descriptions, prix et images téléchargées. Vous acceptez de ne pas publier de contenu faux, trompeur, illégal ou interdit.",
+
+  "terms_liability_heading": "2. Absence de responsabilité",
+  "terms_liability_text": "Kal Market agit uniquement en tant que plateforme mettant en relation les acheteurs et les vendeurs. Nous ne possédons pas, n'inspectons pas, ne vérifions pas et ne garantissons pas les articles ou services publiés. Nous ne sommes pas responsables des escroqueries, fraudes, litiges de paiement, dommages, pertes, activités illégales ou comportements répréhensibles des utilisateurs.",
+
+  "terms_payments_heading": "3. Paiements et annonces mises en avant",
+  "terms_payments_text": "Les paiements pour les annonces mises en avant ne sont pas remboursables, sauf indication contraire. Les utilisateurs sont responsables de l'exactitude de leurs paiements et du respect des conditions de PayPal ou d'autres fournisseurs de services de paiement.",
+
+  "terms_account_heading": "4. Sécurité du compte",
+  "terms_account_text": "Les utilisateurs sont responsables de la confidentialité de leurs identifiants de connexion et des activités effectuées avec leur compte.",
+
+  "terms_content_removal_heading": "5. Suppression du contenu",
+  "terms_content_removal_text": "Nous nous réservons le droit de supprimer, modifier, suspendre ou résilier les annonces ou les comptes qui enfreignent nos politiques, sans préavis.",
+
+  "terms_privacy_heading": "6. Confidentialité",
+  "terms_privacy_text": "Les données des utilisateurs sont traitées conformément à notre Politique de confidentialité. Toutefois, nous ne pouvons pas garantir une sécurité complète des systèmes en ligne.",
+
+  "terms_law_heading": "7. Droit applicable",
+  "terms_law_text": "Les présentes conditions sont régies par les lois applicables dans votre juridiction d'utilisation.",
+
+  "terms_changes_heading": "8. Modifications des conditions",
+  "terms_changes_text": "Nous pouvons mettre à jour les présentes Conditions à tout moment et sans préavis. La poursuite de l'utilisation de la plateforme signifie que vous acceptez les conditions mises à jour.",
+
+  "terms_final_heading": "9. Accord final",
+  "terms_final_text": "En vous inscrivant ou en utilisant Kal Market, vous reconnaissez être entièrement responsable de vos actions et dégagez la plateforme, ses propriétaires, ses développeurs et ses sociétés affiliées de toute réclamation juridique, responsabilité ou dommage découlant de votre utilisation de la plateforme.",
+
+  "agree_continue": "J'accepte – Continuer l'inscription",
+
+  "footer_copy": "© 2026 Kal Market. Tous droits réservés."
   
 }
