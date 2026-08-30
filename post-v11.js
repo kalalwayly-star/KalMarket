@@ -444,10 +444,37 @@ window.handlePhotoUpload = async function (event) {
 
         // --- START UPLOAD ---
         try {
-            const compressedFile = await compressImage(file);
-            // Fix: Date.now() must be capitalized
-const fileRef = storageRef(storage, `ads/${Date.now()}_${compressedFile.name}`);          
-const snapshot = await uploadBytes(fileRef, compressedFile);      
+
+    // Verify Firebase authentication before uploading
+    const currentUser = auth.currentUser;
+
+    if (!currentUser) {
+        throw new Error("You must be logged in before uploading photos.");
+    }
+
+    console.log("Firebase upload user:", currentUser.uid);
+    console.log("Firebase upload email:", currentUser.email);
+
+    const compressedFile = await compressImage(file);
+
+    const fileName = `image_${Date.now()}.jpg`;
+
+    const fileRef = storageRef(
+        storage,
+        `ads/${currentUser.uid}/${fileName}`
+    );
+
+    console.log("Uploading to:", fileRef.fullPath);
+
+    const snapshot = await uploadBytes(
+        fileRef,
+        compressedFile,
+        {
+            contentType: "image/jpeg"
+        }
+    );
+
+    const url = await getDownloadURL(snapshot.ref);
             const url = await getDownloadURL(snapshot.ref);
 
             // Add to your global array
