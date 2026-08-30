@@ -838,44 +838,54 @@ if (useAICheckbox) {
     useAICheckbox.addEventListener("change", () => {
 
         if (useAICheckbox.checked) {
-            console.log("AI listing assistance enabled.");
+            console.log("KalMarket AI listing assistance enabled.");
         } else {
-            console.log("AI listing assistance disabled.");
+            console.log("KalMarket AI listing assistance disabled.");
         }
 
     });
 
 }
 
-   document.getElementById("postForm")
+document.getElementById("postForm")
     ?.addEventListener("submit", saveNewAd);
-    
-    const featureOptions = document.querySelectorAll('input[name="feature_selection"]');
-    const paypalContainer = document.getElementById("paypal-button-container");
 
-    featureOptions.forEach(option => {
-        option.addEventListener("change", () => {
+const featureOptions = document.querySelectorAll(
+    'input[name="feature_selection"]'
+);
 
-            if (!paypalContainer) return;
+const paypalContainer =
+    document.getElementById("paypal-button-container");
 
-            if (option.value === "5days") {
-                paypalContainer.style.display = "block";
-                initPayPal("4.99", 5);
+featureOptions.forEach(option => {
 
-            } else if (option.value === "10days") {
-                paypalContainer.style.display = "block";
-                initPayPal("8.99", 10);
+    option.addEventListener("change", () => {
 
-            } else {
-                paypalContainer.style.display = "none";
-                paypalContainer.innerHTML = "";
+        if (!paypalContainer) return;
 
-                localStorage.removeItem("featuredAdPaid");
-                localStorage.removeItem("featuredDays");
-            }
-        });
+        if (option.value === "5days") {
+
+            paypalContainer.style.display = "block";
+            initPayPal("4.99", 5);
+
+        } else if (option.value === "10days") {
+
+            paypalContainer.style.display = "block";
+            initPayPal("8.99", 10);
+
+        } else {
+
+            paypalContainer.style.display = "none";
+            paypalContainer.innerHTML = "";
+
+            localStorage.removeItem("featuredAdPaid");
+            localStorage.removeItem("featuredDays");
+
+        }
+
     });
 
+});
 /* =========================
    PAYPAL INIT
 ========================= */
