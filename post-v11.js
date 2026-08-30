@@ -1,4 +1,9 @@
 import { app, storage, auth, db } from "./firebase-config.js";
+import {
+    getAI,
+    getGenerativeModel,
+    GoogleAIBackend
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-ai.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 import { collection, addDoc, serverTimestamp,  Timestamp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
