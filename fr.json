@@ -576,6 +576,8 @@
 
   "agree_continue": "J'accepte – Continuer l'inscription",
 
-  "footer_copy": "© 2026 Kal Market. Tous droits réservés."
+  "footer_copy": "© 2026 Kal Market. Tous droits réservés.",
+  "use_ai_listing": "Utiliser l’IA pour remplir les détails de l’annonce",
+"use_ai_listing_description": "Laissez l’IA analyser votre photo et remplir automatiquement les informations disponibles."
   
 }
