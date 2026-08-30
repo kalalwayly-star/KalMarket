@@ -233,6 +233,166 @@ IMPORTANT RULES:
 
     return JSON.parse(text);
 }
+
+function applyAIAdData(data) {
+
+    console.log("Applying AI data:", data);
+
+    /* =========================
+       CATEGORY
+    ========================= */
+
+    if (data.category) {
+
+        const categorySelect =
+            document.getElementById("postCategory");
+
+        if (categorySelect) {
+
+            const matchingOption =
+                Array.from(categorySelect.options)
+                    .find(option =>
+                        option.value === data.category
+                    );
+
+            if (matchingOption) {
+
+                categorySelect.value = data.category;
+
+                if (typeof window.handleCategoryChange === "function") {
+                    window.handleCategoryChange();
+                }
+            }
+        }
+    }
+
+
+    /* =========================
+       TITLE
+    ========================= */
+
+    if (data.title) {
+
+        const title =
+            document.getElementById("adTitle");
+
+        if (title && !title.value.trim()) {
+            title.value = data.title;
+        }
+    }
+
+
+    /* =========================
+       DESCRIPTION
+    ========================= */
+
+    if (data.description) {
+
+        const description =
+            document.getElementById("adDesc");
+
+        if (description && !description.value.trim()) {
+            description.value = data.description;
+        }
+    }
+
+
+    /* =========================
+       CONDITION
+    ========================= */
+
+    if (data.condition) {
+
+        const condition =
+            document.querySelector(
+                `input[name="condition"][value="${data.condition}"]`
+            );
+
+        if (condition) {
+            condition.checked = true;
+        }
+    }
+
+
+    /* =========================
+       VEHICLE INFORMATION
+    ========================= */
+
+    if (data.make) {
+
+        const make =
+            document.getElementById("carMake");
+
+        if (make && !make.value.trim()) {
+            make.value = data.make;
+        }
+    }
+
+
+    if (data.model) {
+
+        const model =
+            document.getElementById("carModel");
+
+        if (model && !model.value.trim()) {
+            model.value = data.model;
+        }
+    }
+
+
+    if (data.year) {
+
+        const year =
+            document.getElementById("carYear");
+
+        if (year && !year.value) {
+            year.value = data.year;
+        }
+    }
+
+
+    if (data.transmission) {
+
+        const transmission =
+            document.getElementById("carTransmission");
+
+        if (transmission) {
+
+            const option =
+                Array.from(transmission.options)
+                    .find(option =>
+                        option.textContent.trim().toLowerCase() ===
+                        data.transmission.trim().toLowerCase()
+                    );
+
+            if (option) {
+                transmission.value = option.value;
+            }
+        }
+    }
+
+
+    if (data.fuelType) {
+
+        const fuel =
+            document.getElementById("carFuel");
+
+        if (fuel) {
+
+            const option =
+                Array.from(fuel.options)
+                    .find(option =>
+                        option.textContent.trim().toLowerCase() ===
+                        data.fuelType.trim().toLowerCase()
+                    );
+
+            if (option) {
+                fuel.value = option.value;
+            }
+        }
+    }
+}
+
 /* =========================
    FIXED PHOTO UPLOAD HANDLER
 ========================= */
