@@ -266,8 +266,10 @@
     "premium": "👑 Premium",
     "premium_description": "Charge more by offering premium quality, service or specialization.",
 
-    "back_to_calculators": "← Back to Free Calculators"
-
+    "back_to_calculators": "← Back to Free Calculators",
+  
+"use_ai_listing": "Use AI to fill ad details",
+"use_ai_listing_description": "Let AI analyze your photo and automatically fill the available ad information."
 
 
 }
