@@ -397,33 +397,44 @@ function applyAIAdData(data) {
    FIXED PHOTO UPLOAD HANDLER
 ========================= */
 window.handlePhotoUpload = async function (event) {
+
     const files = Array.from(event.target.files || []);
     const preview = document.getElementById("galleryPreview");
 
     if (!preview || !files.length) return;
 
-    for (let file of files) {
-        pendingUploads++;
-        const imageId = `${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
+    for (const file of files) {
 
-        // --- CREATE PREVIEW UI ---
+        pendingUploads++;
+
+        const imageId =
+            `${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
+
+        // =========================
+        // CREATE PREVIEW
+        // =========================
+
         const wrapper = document.createElement("div");
+
         wrapper.style.position = "relative";
         wrapper.style.display = "inline-block";
         wrapper.style.margin = "8px";
 
         const img = document.createElement("img");
+
         img.src = URL.createObjectURL(file);
         img.style.width = "100px";
         img.style.height = "100px";
         img.style.objectFit = "cover";
         img.style.borderRadius = "8px";
         img.style.border = "1px solid #ccc";
-        img.style.opacity = "0.5"; // Dimmed while uploading
+        img.style.opacity = "0.5";
 
         const deleteBtn = document.createElement("button");
+
         deleteBtn.type = "button";
         deleteBtn.innerHTML = "✕";
+
         deleteBtn.style.position = "absolute";
         deleteBtn.style.top = "4px";
         deleteBtn.style.right = "4px";
@@ -433,68 +444,66 @@ window.handlePhotoUpload = async function (event) {
         deleteBtn.style.cursor = "pointer";
 
         deleteBtn.addEventListener("click", function (e) {
+
             e.preventDefault();
+
             wrapper.remove();
-            uploadedImages = uploadedImages.filter(img => img.id !== imageId);
+
+            uploadedImages =
+                uploadedImages.filter(img => img.id !== imageId);
+
         });
 
         wrapper.appendChild(img);
         wrapper.appendChild(deleteBtn);
         preview.appendChild(wrapper);
 
-        // --- START UPLOAD ---
+        // =========================
+        // UPLOAD
+        // =========================
+
         try {
 
-    // Verify Firebase authentication before uploading
-    const currentUser = auth.currentUser;
+            const compressedFile = await compressImage(file);
 
-    if (!currentUser) {
-        throw new Error("You must be logged in before uploading photos.");
-    }
+            const fileRef = storageRef(
+                storage,
+                `ads/${Date.now()}_${compressedFile.name}`
+            );
 
-    console.log("Firebase upload user:", currentUser.uid);
-    console.log("Firebase upload email:", currentUser.email);
+            const snapshot =
+                await uploadBytes(fileRef, compressedFile);
 
-    const compressedFile = await compressImage(file);
+            const url =
+                await getDownloadURL(snapshot.ref);
 
-    const fileName = `image_${Date.now()}.jpg`;
+            uploadedImages.push({
+                id: imageId,
+                url: url
+            });
 
-    const fileRef = storageRef(
-        storage,
-        `ads/${currentUser.uid}/${fileName}`
-    );
+            pendingUploads--;
 
-    console.log("Uploading to:", fileRef.fullPath);
+            img.style.opacity = "1";
 
-    const snapshot = await uploadBytes(
-        fileRef,
-        compressedFile,
-        {
-            contentType: "image/jpeg"
-        }
-    );
-
-    const url = await getDownloadURL(snapshot.ref);
-            const url = await getDownloadURL(snapshot.ref);
-
-            // Add to your global array
-uploadedImages.push({
-    id: imageId,
-    url: url
-});
-pendingUploads--;            
-            // Mark as finished visually
-            img.style.opacity = "1"; 
-            console.log("Image ready:", url);
+            console.log("Image uploaded successfully:", url);
 
         } catch (error) {
-            console.error("Upload failed:", error);
+
+            console.error("Image upload failed:", error);
+
             wrapper.remove();
-            alert("Image failed: " + error.message);
+
             pendingUploads--;
+
+            alert(
+                "Image failed:\n\n" +
+                error.message
+            );
         }
     }
-    // Clear input so user can re-select same file if they want
+
+    // Allow selecting the same image again
     event.target.value = "";
 };
 
