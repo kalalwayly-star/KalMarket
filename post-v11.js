@@ -112,7 +112,127 @@ async function compressImage(file, maxWidth = 800, quality = 0.7) {
         reader.readAsDataURL(file);
     });
 }
-  
+
+/* =========================
+   AI PHOTO ANALYSIS
+========================= */
+
+async function analyzeAdPhotoWithAI(file) {
+
+    const jsonSchema = Schema.object({
+        properties: {
+            category: Schema.string(),
+            title: Schema.string(),
+            description: Schema.string(),
+            condition: Schema.string(),
+            make: Schema.string(),
+            model: Schema.string(),
+            year: Schema.string(),
+            transmission: Schema.string(),
+            fuelType: Schema.string()
+        },
+        optionalProperties: [
+            "make",
+            "model",
+            "year",
+            "transmission",
+            "fuelType"
+        ]
+    });
+
+    const model = getGenerativeModel(ai, {
+        model: "gemini-3.7-flash",
+        generationConfig: {
+            responseMimeType: "application/json",
+            responseSchema: jsonSchema
+        }
+    });
+
+    const reader = new FileReader();
+
+    const base64Data = await new Promise((resolve, reject) => {
+
+        reader.onload = () => {
+
+            const result = reader.result;
+
+            if (!result || typeof result !== "string") {
+                reject(new Error("Unable to read image."));
+                return;
+            }
+
+            resolve(result.split(",")[1]);
+        };
+
+        reader.onerror = () => {
+            reject(new Error("Unable to read image."));
+        };
+
+        reader.readAsDataURL(file);
+    });
+
+    const prompt = `
+You are helping create a classified advertisement for KalMarket.
+
+Carefully analyze the uploaded photo.
+
+Identify the item being sold and provide accurate information that can reasonably
+be determined from the image.
+
+Available categories:
+
+Real Estate
+Cars & Trucks
+Electronics
+Auto Accessories
+Furniture
+Jobs
+Fashion
+Pets
+Sports
+Books
+Appliances
+Toys
+Services
+Garden
+Health
+Baby
+Buy&Sale
+
+IMPORTANT RULES:
+
+- Never invent information.
+- Do not guess the price.
+- Do not guess mileage.
+- Do not guess location.
+- Do not invent an exact year unless it is visible or strongly identifiable.
+- Do not invent transmission or fuel type.
+- If information cannot reasonably be determined, return an empty string.
+- Use "New", "Used", or "Refurbished" for condition only when reasonably supported.
+- Keep the title short and suitable for a classified advertisement.
+- Write a useful, honest description based only on what can be observed.
+- If this is a vehicle, identify make, model, and year when reasonably possible.
+- Return only JSON matching the requested schema.
+`;
+
+    const imagePart = {
+        inlineData: {
+            data: base64Data,
+            mimeType: file.type
+        }
+    };
+
+    const result = await model.generateContent([
+        prompt,
+        imagePart
+    ]);
+
+    const text = result.response.text();
+
+    console.log("KalMarket AI response:", text);
+
+    return JSON.parse(text);
+}
 /* =========================
    FIXED PHOTO UPLOAD HANDLER
 ========================= */
