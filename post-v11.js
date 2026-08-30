@@ -540,6 +540,26 @@ alert("Ad saved successfully!\n\nID: " + docRef.id);
    document.getElementById("photoInput")
     ?.addEventListener("change", window.handlePhotoUpload);
 
+/* =========================
+   AI LISTING OPTION
+========================= */
+
+const useAICheckbox = document.getElementById("useAI");
+
+if (useAICheckbox) {
+
+    useAICheckbox.addEventListener("change", () => {
+
+        if (useAICheckbox.checked) {
+            console.log("AI listing assistance enabled.");
+        } else {
+            console.log("AI listing assistance disabled.");
+        }
+
+    });
+
+}
+
    document.getElementById("postForm")
     ?.addEventListener("submit", saveNewAd);
     
