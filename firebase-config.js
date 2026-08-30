@@ -30,4 +30,4 @@ const db = initializeFirestore(app, {
     useFetchStreams: false
 });
 
-export { auth, db, rtdb, storage };
+export { app, auth, db, rtdb, storage };
