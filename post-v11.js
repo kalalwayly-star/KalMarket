@@ -12,6 +12,9 @@ import {
     uploadBytes,
     getDownloadURL
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
+const ai = getAI(app, {
+    backend: new GoogleAIBackend()
+});
 
 let uploadedImages = [];
 let pendingUploads = 0;
