@@ -2,7 +2,8 @@ import { app, storage, auth, db } from "./firebase-config.js";
 import {
     getAI,
     getGenerativeModel,
-    GoogleAIBackend
+    GoogleAIBackend,
+    Schema
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-ai.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 import { collection, addDoc, serverTimestamp,  Timestamp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
@@ -867,6 +868,10 @@ alert("Ad saved successfully!\n\nID: " + docRef.id);
    AI LISTING OPTION
 ========================= */
 
+/* =========================
+   AI LISTING OPTION
+========================= */
+
 const useAICheckbox = document.getElementById("useAI");
 
 if (useAICheckbox) {
@@ -874,9 +879,13 @@ if (useAICheckbox) {
     useAICheckbox.addEventListener("change", () => {
 
         if (useAICheckbox.checked) {
+
             console.log("KalMarket AI listing assistance enabled.");
+
         } else {
+
             console.log("KalMarket AI listing assistance disabled.");
+
         }
 
     });
