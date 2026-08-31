@@ -2503,15 +2503,21 @@ const useAICheckbox = document.getElementById("useAI");
 
 if (useAICheckbox) {
 
-    // AI temporarily disabled until billing is enabled
-    useAICheckbox.checked = false;
-    useAICheckbox.disabled = true;
+    useAICheckbox.addEventListener("change", () => {
 
-    console.log(
-        "KalMarket AI listing assistance is temporarily disabled."
-    );
+        if (useAICheckbox.checked) {
+
+            console.log("KalMarket AI listing assistance enabled.");
+
+        } else {
+
+            console.log("KalMarket AI listing assistance disabled.");
+
+        }
+
+    });
+
 }
-
                         /*
                            IMPORTANT FIX:
 
