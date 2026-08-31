@@ -469,7 +469,11 @@ const compressedFile = await compressImage(file);
 
 const useAI = document.getElementById("useAI");
 
-if (useAI && useAI.checked) {
+if (
+    useAI &&
+    useAI.checked &&
+    uploadedImages.length === 0
+) {
 
     try {
 
