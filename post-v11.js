@@ -465,12 +465,42 @@ window.handlePhotoUpload = async function (event) {
 
         try {
 
-            const compressedFile = await compressImage(file);
+const compressedFile = await compressImage(file);
 
-            const fileRef = storageRef(
-                storage,
-                `ads/${Date.now()}_${compressedFile.name}`
-            );
+const useAI = document.getElementById("useAI");
+
+if (useAI && useAI.checked) {
+
+    try {
+
+        console.log("AI analyzing uploaded photo...");
+
+        const aiData =
+            await analyzeAdPhotoWithAI(compressedFile);
+
+        console.log("AI detected:", aiData);
+
+        applyAIAdData(aiData);
+
+    } catch (aiError) {
+
+        console.error("AI analysis failed:", aiError);
+
+        alert(
+            "AI could not analyze this photo.\n\n" +
+            aiError.message
+        );
+    }
+}
+
+/* =========================
+   UPLOAD PHOTO
+========================= */
+
+const fileRef = storageRef(
+    storage,
+    `ads/${Date.now()}_${compressedFile.name}`
+);
 
             const snapshot =
                 await uploadBytes(fileRef, compressedFile);
