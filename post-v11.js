@@ -2494,7 +2494,7 @@ document.addEventListener(
            AI CHECKBOX
         ================================================= */
 
-        /* =========================
+      /* =========================
    AI LISTING OPTION
    TEMPORARILY DISABLED
 ========================= */
@@ -2503,20 +2503,13 @@ const useAICheckbox = document.getElementById("useAI");
 
 if (useAICheckbox) {
 
-    useAICheckbox.addEventListener("change", () => {
+    // AI temporarily disabled until billing is enabled
+    useAICheckbox.checked = false;
+    useAICheckbox.disabled = true;
 
-        if (useAICheckbox.checked) {
-
-            console.log("KalMarket AI listing assistance enabled.");
-
-        } else {
-
-            console.log("KalMarket AI listing assistance disabled.");
-
-        }
-
-    });
-
+    console.log(
+        "KalMarket AI listing assistance is temporarily disabled."
+    );
 }
                         /*
                            IMPORTANT FIX:
