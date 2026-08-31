@@ -1423,18 +1423,14 @@ window.handlePhotoUpload =
                    first selected photo.
                 ============================================= */
 
-                const useAI =
-                    document.getElementById(
-                        "useAI"
-                    );
+                const useAI = document.getElementById("useAI");
 
-
-                if (
-                    useAI &&
-                    useAI.checked &&
-                    !aiAnalyzedPhotoKey &&
-                    file === lastSelectedPhoto
-                ) {
+if (
+    false &&
+    useAI &&
+    useAI.checked &&
+    uploadedImages.length === 0
+) {
 
                     await runAIAnalysis(
                         file
