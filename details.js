@@ -10,10 +10,14 @@ import {
     increment
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
-// ============================================================
-// CURRENCY SYMBOLS
-// ============================================================
+
+/* =========================================================
+   CURRENCY SYMBOLS
+========================================================= */
 
 const symbolMap = {
     USD: "$",
@@ -69,94 +73,350 @@ const symbolMap = {
 };
 
 
-// ============================================================
-// GET AD ID FROM URL
-// ============================================================
+/* =========================================================
+   GET AD ID FROM URL
+========================================================= */
 
 const params = new URLSearchParams(window.location.search);
 const adId = params.get("id");
 
 
-// ============================================================
-// GLOBAL SELLER INFORMATION
-// ============================================================
+/* =========================================================
+   SEO HELPERS
+========================================================= */
 
-window.currentSellerId = null;
-window.currentSellerEmail = null;
+function cleanText(value) {
+
+    if (value === null || value === undefined) {
+        return "";
+    }
+
+    return String(value)
+        .replace(/\s+/g, " ")
+        .trim();
+}
 
 
-// ============================================================
-// LOAD AD DETAILS
-// ============================================================
+function createSeoDescription(ad) {
+
+    const title = cleanText(ad.title);
+    const description = cleanText(ad.description);
+    const category = cleanText(ad.category);
+    const location = cleanText(ad.location);
+
+    let text = "";
+
+    if (description) {
+        text = description;
+    } else if (title) {
+        text = `${title} listed for sale on KalMarket.`;
+    } else {
+        text = "Buy and sell items on KalMarket, a free local classifieds marketplace.";
+    }
+
+    if (category && !text.toLowerCase().includes(category.toLowerCase())) {
+        text += ` ${category}.`;
+    }
+
+    if (location && !text.toLowerCase().includes(location.toLowerCase())) {
+        text += ` Located in ${location}.`;
+    }
+
+    /*
+       Google generally displays only part of a description.
+       Keep the generated description reasonably short.
+    */
+    if (text.length > 300) {
+        text = text.substring(0, 297).trim() + "...";
+    }
+
+    return text;
+}
+
+
+function getListingUrl() {
+
+    return `${window.location.origin}/details.html?id=${encodeURIComponent(adId)}`;
+
+}
+
+
+function updateMetaTag(id, attribute, value) {
+
+    const element = document.getElementById(id);
+
+    if (element && value) {
+        element.setAttribute(attribute, value);
+    }
+
+}
+
+
+function updateListingSeo(ad, imageUrl) {
+
+    const title = cleanText(ad.title) || "Ad Details";
+
+    const category = cleanText(ad.category);
+
+    const location = cleanText(ad.location);
+
+    const description = createSeoDescription(ad);
+
+    const listingUrl = getListingUrl();
+
+    /*
+       Main browser title
+    */
+
+    document.title = `${title} | KalMarket`;
+
+
+    /*
+       Standard description
+    */
+
+    updateMetaTag(
+        "metaDescription",
+        "content",
+        description
+    );
+
+
+    /*
+       Canonical URL
+    */
+
+    const canonical = document.getElementById("canonicalLink");
+
+    if (canonical) {
+        canonical.setAttribute("href", listingUrl);
+    }
+
+
+    /*
+       Open Graph
+    */
+
+    updateMetaTag(
+        "ogTitle",
+        "content",
+        `${title} | KalMarket`
+    );
+
+    updateMetaTag(
+        "ogDescription",
+        "content",
+        description
+    );
+
+    updateMetaTag(
+        "ogUrl",
+        "content",
+        listingUrl
+    );
+
+    if (imageUrl) {
+
+        updateMetaTag(
+            "ogImage",
+            "content",
+            imageUrl
+        );
+
+    }
+
+
+    /*
+       Twitter / X
+    */
+
+    updateMetaTag(
+        "twitterTitle",
+        "content",
+        `${title} | KalMarket`
+    );
+
+    updateMetaTag(
+        "twitterDescription",
+        "content",
+        description
+    );
+
+    if (imageUrl) {
+
+        updateMetaTag(
+            "twitterImage",
+            "content",
+            imageUrl
+        );
+
+    }
+
+
+    /*
+       Structured Data
+    */
+
+    const structuredData =
+        document.getElementById("listingStructuredData");
+
+    if (structuredData) {
+
+        const price =
+            ad.price !== undefined &&
+            ad.price !== null &&
+            ad.price !== ""
+                ? String(ad.price)
+                : "0";
+
+        const currency =
+            cleanText(ad.currency) || "CAD";
+
+
+        const jsonLd = {
+
+            "@context": "https://schema.org",
+
+            "@type": "Product",
+
+            "name": title,
+
+            "description": description,
+
+            "url": listingUrl
+
+        };
+
+
+        /*
+           Add image when available
+        */
+
+        if (imageUrl) {
+
+            jsonLd.image = [imageUrl];
+
+        }
+
+
+        /*
+           Add category when available
+        */
+
+        if (category) {
+
+            jsonLd.category = category;
+
+        }
+
+
+        /*
+           Add offer information
+        */
+
+        if (
+            ad.price !== undefined &&
+            ad.price !== null &&
+            ad.price !== ""
+        ) {
+
+            jsonLd.offers = {
+
+                "@type": "Offer",
+
+                "url": listingUrl,
+
+                "priceCurrency": currency,
+
+                "price": price,
+
+                "availability":
+                    ad.status === "sold"
+                        ? "https://schema.org/SoldOut"
+                        : "https://schema.org/InStock"
+
+            };
+
+        }
+
+
+        structuredData.textContent =
+            JSON.stringify(jsonLd, null, 2);
+
+    }
+
+
+    /*
+       Improve the visible main image ALT text.
+    */
+
+    const mainImage =
+        document.getElementById("mainAdImage");
+
+    if (mainImage) {
+
+        let altText = title;
+
+        if (category) {
+            altText += ` - ${category}`;
+        }
+
+        if (location) {
+            altText += ` in ${location}`;
+        }
+
+        mainImage.setAttribute(
+            "alt",
+            altText
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD AD DETAILS
+========================================================= */
 
 async function loadAdDetails() {
 
-    console.log("====================================");
-    console.log("KALMARKET DETAIL PAGE");
-    console.log("Ad ID:", adId);
-    console.log("====================================");
-
-    // --------------------------------------------------------
-    // Check for missing ID
-    // --------------------------------------------------------
-
     if (!adId) {
-
-        console.error("No ad ID found in URL.");
 
         alert("Ad not found.");
 
         return;
+
     }
 
 
     try {
 
-        // ----------------------------------------------------
-        // Get Firestore document
-        // ----------------------------------------------------
+        const adRef =
+            doc(db, "marketplace_ads", adId);
 
-        const adRef = doc(
-            db,
-            "marketplace_ads",
-            adId
-        );
+        const adSnap =
+            await getDoc(adRef);
 
-        console.log("Loading Firestore document:", adId);
-
-        const adSnap = await getDoc(adRef);
-
-
-        // ----------------------------------------------------
-        // Check document exists
-        // ----------------------------------------------------
 
         if (!adSnap.exists()) {
-
-            console.error(
-                "Firestore document does not exist:",
-                adId
-            );
 
             alert("Ad not found.");
 
             return;
+
         }
 
 
-        // ----------------------------------------------------
-        // Get ad data
-        // ----------------------------------------------------
-
         let ad = adSnap.data();
 
-        console.log("AD DATA FROM FIRESTORE:");
-        console.log(ad);
+        const isSold =
+            ad.status === "sold";
 
 
-        // ====================================================
-        // VIEW COUNTER
-        // ====================================================
+        /* =====================================================
+           SAFE VIEW COUNTER UPDATE
+        ===================================================== */
 
         try {
 
@@ -166,11 +426,14 @@ async function loadAdDetails() {
 
             });
 
-            console.log("View count updated.");
 
-            // Reload document so we have the latest view count
+            /*
+               Reload updated data after increment
+            */
 
-            const updatedSnap = await getDoc(adRef);
+            const updatedSnap =
+                await getDoc(adRef);
+
 
             if (updatedSnap.exists()) {
 
@@ -185,567 +448,408 @@ async function loadAdDetails() {
                 viewError
             );
 
-            // Continue loading the page even if views fail
-        }
-
-
-        // ====================================================
-        // TITLE
-        // ====================================================
-
-        const titleElement =
-            document.getElementById("adTitle");
-
-        if (titleElement) {
-
-            titleElement.innerText =
-                ad.title || "No Title";
+            /*
+               Page continues even if view update fails.
+            */
 
         }
 
 
-        // ====================================================
-        // SEO PAGE TITLE
-        // ====================================================
+        /* =====================================================
+           TITLE
+        ===================================================== */
 
-        document.title =
-            `${ad.title || "Ad Details"} | KalMarket`;
-
-
-        // ====================================================
-        // META DESCRIPTION
-        // ====================================================
-
-        const metaDescription =
-            document.getElementById("metaDescription");
-
-        if (metaDescription) {
-
-            const description =
-                ad.description ||
-                ad.title ||
-                "Browse items for sale on KalMarket.";
-
-            metaDescription.setAttribute(
-                "content",
-                description.substring(0, 160)
-            );
-
-        }
+        const adTitle =
+            cleanText(ad.title) || "No Title";
 
 
-        // ====================================================
-        // CATEGORY
-        // ====================================================
-
-        const categoryElement =
-            document.getElementById("adCategory");
-
-        if (categoryElement) {
-
-            categoryElement.innerText =
-                ad.category || "";
-
-        }
+        document.getElementById(
+            "adTitle"
+        ).innerText = adTitle;
 
 
-        // ====================================================
-        // PRICE
-        // ====================================================
+        /* =====================================================
+           CATEGORY
+        ===================================================== */
 
-        const priceElement =
-            document.getElementById("adPrice");
-
-        if (priceElement) {
-
-            const currency =
-                ad.currency || "CAD";
-
-            const symbol =
-                symbolMap[currency] || currency;
-
-            const price =
-                ad.price !== undefined &&
-                ad.price !== null &&
-                ad.price !== ""
-                    ? ad.price
-                    : "0";
-
-            priceElement.innerText =
-                `${symbol} ${price} ${currency}`;
-
-        }
+        document.getElementById(
+            "adCategory"
+        ).innerText =
+            ad.category || "";
 
 
-        // ====================================================
-        // LOCATION
-        // ====================================================
+        /* =====================================================
+           PRICE
+        ===================================================== */
 
-        const locationElement =
-            document.getElementById("adLocation");
-
-        if (locationElement) {
-
-            locationElement.innerText =
-                ad.location || "Unknown";
-
-        }
+        const symbol =
+            symbolMap[ad.currency] ||
+            ad.currency ||
+            "$";
 
 
-        // ====================================================
-        // VIEW COUNT
-        // ====================================================
+        document.getElementById(
+            "adPrice"
+        ).innerText =
+            `${symbol} ${ad.price || "0"} ${ad.currency || ""}`;
 
-        const viewElement =
+
+        /* =====================================================
+           LOCATION
+        ===================================================== */
+
+        document.getElementById(
+            "adLocation"
+        ).innerText =
+            ad.location || "Unknown";
+
+
+        /* =====================================================
+           VIEW COUNT
+        ===================================================== */
+
+        const viewCount =
             document.getElementById("viewCount");
 
-        if (viewElement) {
 
-            viewElement.innerText =
+        if (viewCount) {
+
+            viewCount.innerText =
                 ad.views || 0;
 
         }
 
 
-        // ====================================================
-        // DESCRIPTION
-        // ====================================================
+        /* =====================================================
+           DESCRIPTION
+        ===================================================== */
 
-        const descriptionElement =
-            document.getElementById("adDesc");
-
-        if (descriptionElement) {
-
-            descriptionElement.innerText =
-                ad.description ||
-                "No description provided.";
-
-        }
+        document.getElementById(
+            "adDesc"
+        ).innerText =
+            ad.description ||
+            "No description provided.";
 
 
-        // ====================================================
-        // SELLER INFORMATION
-        // ====================================================
+        /* =====================================================
+           IMAGE GALLERY
+        ===================================================== */
 
-        window.currentSellerId =
-            ad.userId || null;
+        const mainImage =
+            document.getElementById("mainAdImage");
 
-        window.currentSellerEmail =
-            ad.userEmail || null;
-
-
-        console.log(
-            "Seller ID:",
-            window.currentSellerId
-        );
-
-        console.log(
-            "Seller Email:",
-            window.currentSellerEmail
-        );
+        const thumbnailGallery =
+            document.getElementById("thumbnailGallery");
 
 
-        // ====================================================
-        // IMAGE GALLERY
-        // ====================================================
-
-        loadAdImages(ad);
+        const fallback =
+            "https://dummyimage.com/600x400/cccccc/000000&text=No+Image";
 
 
-        // ====================================================
-        // SOLD ITEM
-        // ====================================================
+        let images = [];
 
-        if (ad.status === "sold") {
 
-            disableSoldItem();
+        /*
+           CASE 1:
+           image is an array
+        */
+
+        if (Array.isArray(ad.image)) {
+
+            images = ad.image;
 
         }
 
 
-        console.log(
-            "KalMarket ad loaded successfully."
-        );
+        /*
+           CASE 2:
+           image is an object
+        */
 
-    } catch (error) {
-
-        console.error(
-            "ERROR LOADING AD:",
-            error
-        );
-
-        alert(
-            "Failed to load ad details. Please try again."
-        );
-
-    }
-}
-
-
-// ============================================================
-// LOAD AD IMAGES
-// ============================================================
-
-function loadAdImages(ad) {
-
-    const mainImage =
-        document.getElementById("mainAdImage");
-
-    const thumbnailGallery =
-        document.getElementById("thumbnailGallery");
-
-
-    if (!mainImage) {
-
-        console.error(
-            "mainAdImage element not found."
-        );
-
-        return;
-    }
-
-
-    if (!thumbnailGallery) {
-
-        console.error(
-            "thumbnailGallery element not found."
-        );
-
-        return;
-    }
-
-
-    // --------------------------------------------------------
-    // Default image
-    // --------------------------------------------------------
-
-    const fallback =
-        "https://dummyimage.com/600x400/cccccc/000000&text=No+Image";
-
-
-    let images = [];
-
-
-    // ========================================================
-    // IMAGE FIELD = ARRAY
-    // ========================================================
-
-    if (Array.isArray(ad.image)) {
-
-        images = ad.image;
-
-    }
-
-
-    // ========================================================
-    // IMAGE FIELD = OBJECT
-    // ========================================================
-
-    else if (
-        ad.image &&
-        typeof ad.image === "object"
-    ) {
-
-        // Main image
-
-        if (
-            typeof ad.image.main === "string"
+        else if (
+            ad.image &&
+            typeof ad.image === "object"
         ) {
 
-            images.push(
-                ad.image.main
-            );
-
-        }
-
-
-        // Gallery array
-
-        if (
-            Array.isArray(ad.image.gallery)
-        ) {
-
-            images.push(
-                ...ad.image.gallery
-            );
-
-        }
-
-
-        // Gallery string
-
-        if (
-            typeof ad.image.gallery === "string"
-        ) {
-
-            images.push(
-                ...ad.image.gallery
-                    .split(",")
-                    .map(img => img.trim())
-            );
-
-        }
-
-    }
-
-
-    // ========================================================
-    // SINGLE IMAGE FIELD
-    // ========================================================
-
-    else if (
-        typeof ad.image === "string"
-    ) {
-
-        images.push(ad.image);
-
-    }
-
-
-    // ========================================================
-    // SUPPORT imageUrl
-    // ========================================================
-
-    if (
-        typeof ad.imageUrl === "string"
-    ) {
-
-        images.push(ad.imageUrl);
-
-    }
-
-
-    // ========================================================
-    // SUPPORT imageURL
-    // ========================================================
-
-    if (
-        typeof ad.imageURL === "string"
-    ) {
-
-        images.push(ad.imageURL);
-
-    }
-
-
-    // ========================================================
-    // SUPPORT images ARRAY
-    // ========================================================
-
-    if (Array.isArray(ad.images)) {
-
-        images.push(
-            ...ad.images
-        );
-
-    }
-
-
-    // ========================================================
-    // CLEAN IMAGE URLS
-    // ========================================================
-
-    images = images
-        .filter(
-            img =>
-                typeof img === "string" &&
-                img.trim() !== ""
-        )
-        .map(
-            img => img.trim()
-        )
-        .filter(
-            (img, index, array) =>
-                array.indexOf(img) === index
-        );
-
-
-    console.log(
-        "Images found:",
-        images
-    );
-
-
-    // ========================================================
-    // NO IMAGE
-    // ========================================================
-
-    if (images.length === 0) {
-
-        console.warn(
-            "No valid images found for this ad."
-        );
-
-        mainImage.src = fallback;
-
-        thumbnailGallery.innerHTML = "";
-
-        return;
-    }
-
-
-    // ========================================================
-    // MAIN IMAGE
-    // ========================================================
-
-    mainImage.src = images[0];
-
-    mainImage.alt =
-        document.getElementById("adTitle")?.innerText ||
-        "KalMarket Ad";
-
-
-    // --------------------------------------------------------
-    // Image loading error
-    // --------------------------------------------------------
-
-    mainImage.onerror = function () {
-
-        console.error(
-            "Main image failed to load:",
-            this.src
-        );
-
-        this.src = fallback;
-
-    };
-
-
-    // ========================================================
-    // THUMBNAILS
-    // ========================================================
-
-    thumbnailGallery.innerHTML = "";
-
-
-    images.forEach(
-        (imgUrl, index) => {
-
-            const thumb =
-                document.createElement("img");
-
-
-            thumb.src = imgUrl;
-
-            thumb.alt =
-                `Ad image ${index + 1}`;
-
-
-            // First thumbnail active
-
-            if (index === 0) {
-
-                thumb.classList.add(
-                    "active"
+            if (
+                typeof ad.image.main === "string"
+            ) {
+
+                images.push(
+                    ad.image.main
                 );
 
             }
 
 
-            // Thumbnail error
+            if (
+                Array.isArray(
+                    ad.image.gallery
+                )
+            ) {
 
-            thumb.onerror = function () {
-
-                console.warn(
-                    "Thumbnail failed:",
-                    imgUrl
+                images.push(
+                    ...ad.image.gallery
                 );
 
-                this.style.display =
-                    "none";
-
-            };
+            }
 
 
-            // Click thumbnail
+            if (
+                typeof ad.image.gallery === "string"
+            ) {
 
-            thumb.addEventListener(
-                "click",
-                () => {
+                images.push(
+                    ...ad.image.gallery.split(",")
+                );
 
-                    mainImage.src =
+            }
+
+        }
+
+
+        /*
+           Clean bad images
+        */
+
+        images = images
+
+            .map(img =>
+                typeof img === "string"
+                    ? img.trim()
+                    : ""
+            )
+
+            .filter(img =>
+                img.startsWith("http")
+            );
+
+
+        /*
+           Remove duplicate image URLs
+        */
+
+        images = [
+            ...new Set(images)
+        ];
+
+
+        /*
+           Fallback
+        */
+
+        if (images.length === 0) {
+
+            images = [fallback];
+
+        }
+
+
+        /*
+           Set main image
+        */
+
+        if (mainImage) {
+
+            mainImage.src =
+                images[0];
+
+            mainImage.alt =
+                cleanText(ad.title) ||
+                "KalMarket listing image";
+
+        }
+
+
+        /*
+           Build thumbnails
+        */
+
+        if (thumbnailGallery) {
+
+            thumbnailGallery.innerHTML = "";
+
+
+            images.forEach(
+                (imgUrl, index) => {
+
+                    const thumb =
+                        document.createElement("img");
+
+
+                    thumb.src =
                         imgUrl;
 
 
-                    document
-                        .querySelectorAll(
-                            "#thumbnailGallery img"
-                        )
-                        .forEach(
-                            img =>
-                                img.classList.remove(
-                                    "active"
-                                )
+                    thumb.alt =
+                        `${cleanText(ad.title) || "KalMarket listing"} image ${index + 1}`;
+
+
+                    if (index === 0) {
+
+                        thumb.classList.add(
+                            "active"
                         );
 
+                    }
 
-                    thumb.classList.add(
-                        "active"
+
+                    thumb.addEventListener(
+                        "click",
+                        () => {
+
+                            if (mainImage) {
+
+                                mainImage.src =
+                                    imgUrl;
+
+                                mainImage.alt =
+                                    `${cleanText(ad.title) || "KalMarket listing"} image ${index + 1}`;
+
+                            }
+
+
+                            document
+                                .querySelectorAll(
+                                    "#thumbnailGallery img"
+                                )
+                                .forEach(img =>
+                                    img.classList.remove(
+                                        "active"
+                                    )
+                                );
+
+
+                            thumb.classList.add(
+                                "active"
+                            );
+
+                        }
+                    );
+
+
+                    thumbnailGallery.appendChild(
+                        thumb
                     );
 
                 }
             );
 
+        }
 
-            thumbnailGallery.appendChild(
-                thumb
-            );
+
+        /* =====================================================
+           SEO
+        ===================================================== */
+
+        /*
+           Use the first real listing image.
+           Do not use the dummy fallback for social SEO.
+        */
+
+        const seoImage =
+            images.length > 0 &&
+            images[0] !== fallback
+                ? images[0]
+                : "";
+
+
+        updateListingSeo(
+            ad,
+            seoImage
+        );
+
+
+        /* =====================================================
+           SELLER INFORMATION
+        ===================================================== */
+
+        window.currentSellerId =
+            ad.userId;
+
+        window.currentSellerEmail =
+            ad.userEmail;
+
+
+        /* =====================================================
+           SOLD ITEM UI
+        ===================================================== */
+
+        if (isSold) {
+
+            const messageBox =
+                document.getElementById(
+                    "messageText"
+                );
+
+
+            if (messageBox) {
+
+                messageBox.disabled = true;
+
+                messageBox.placeholder =
+                    "This item has been sold.";
+
+            }
+
+
+            const sendBtn =
+                document.querySelector(
+                    'button[onclick="sendMessage()"]'
+                );
+
+
+            if (sendBtn) {
+
+                sendBtn.disabled = true;
+
+                sendBtn.innerText =
+                    "Sold";
+
+                sendBtn.style.background =
+                    "gray";
+
+                sendBtn.style.cursor =
+                    "not-allowed";
+
+            }
 
         }
-    );
-
-}
 
 
-// ============================================================
-// SOLD ITEM UI
-// ============================================================
+        /* =====================================================
+           IMAGE PROBE
+        ===================================================== */
 
-function disableSoldItem() {
+        const data =
+            await probeimageurls();
 
-    const messageBox =
-        document.getElementById(
-            "messageText"
+
+        console.log(
+            "Probed Image Data:",
+            data
         );
 
 
-    if (messageBox) {
+    } catch (error) {
 
-        messageBox.disabled = true;
-
-        messageBox.placeholder =
-            "This item has been sold.";
-
-    }
-
-
-    const sendButton =
-        document.querySelector(
-            'button[onclick="sendMessage()"]'
+        console.error(
+            "Error loading ad:",
+            error
         );
 
-
-    if (sendButton) {
-
-        sendButton.disabled = true;
-
-        sendButton.innerText =
-            "Sold";
-
-        sendButton.style.background =
-            "gray";
-
-        sendButton.style.cursor =
-            "not-allowed";
+        alert(
+            "Failed to load ad details."
+        );
 
     }
 
 }
 
 
-// ============================================================
-// SEND MESSAGE
-// ============================================================
+/* =========================================================
+   SEND MESSAGE
+========================================================= */
 
 window.sendMessage = async function () {
 
@@ -753,80 +857,35 @@ window.sendMessage = async function () {
         auth.currentUser;
 
 
-    // --------------------------------------------------------
-    // Require login
-    // --------------------------------------------------------
-
     if (!user) {
 
-        alert(
-            "Please login first."
-        );
+        alert("Please login first.");
 
         window.location.href =
             "login.html";
 
         return;
-    }
 
-
-    // --------------------------------------------------------
-    // Get message
-    // --------------------------------------------------------
-
-    const messageElement =
-        document.getElementById(
-            "messageText"
-        );
-
-
-    if (!messageElement) {
-
-        alert(
-            "Message box not found."
-        );
-
-        return;
     }
 
 
     const messageText =
-        messageElement.value.trim();
+        document
+            .getElementById("messageText")
+            .value
+            .trim();
 
 
     if (!messageText) {
 
-        alert(
-            "Message cannot be empty."
-        );
+        alert("Message cannot be empty.");
 
         return;
-    }
 
-
-    // --------------------------------------------------------
-    // Check seller
-    // --------------------------------------------------------
-
-    if (!window.currentSellerId) {
-
-        alert(
-            "Seller information is unavailable."
-        );
-
-        console.error(
-            "Seller ID missing."
-        );
-
-        return;
     }
 
 
     try {
-
-        // ====================================================
-        // SAVE MESSAGE TO FIRESTORE
-        // ====================================================
 
         await addDoc(
             collection(
@@ -840,19 +899,19 @@ window.sendMessage = async function () {
                 adTitle:
                     document.getElementById(
                         "adTitle"
-                    )?.innerText || "",
+                    ).innerText || "",
 
                 senderId:
                     user.uid,
 
                 senderEmail:
-                    user.email || "",
+                    user.email,
 
                 receiverId:
                     window.currentSellerId,
 
                 receiverEmail:
-                    window.currentSellerEmail || "",
+                    window.currentSellerEmail,
 
                 message:
                     messageText,
@@ -867,84 +926,70 @@ window.sendMessage = async function () {
         );
 
 
-        // ====================================================
-        // SEND EMAIL NOTIFICATION
-        // ====================================================
+        /*
+           Email notification
+        */
 
-        if (
-            typeof emailjs !== "undefined" &&
-            window.currentSellerEmail
-        ) {
+        try {
 
-            try {
+            await emailjs.send(
+                "service_quc10ww",
+                "template_yl7gl6l",
+                {
 
-                const language =
-                    localStorage.getItem(
-                        "language"
-                    ) || "en";
+                    to_email:
+                        window.currentSellerEmail,
 
+                    to_name:
+                        window.currentSellerEmail,
 
-                await emailjs.send(
-                    "service_quc10ww",
-                    "template_yl7gl6l",
-                    {
+                    from_email:
+                        user.email,
 
-                        to_email:
-                            window.currentSellerEmail,
+                    message:
+                        messageText,
 
-                        to_name:
-                            window.currentSellerEmail,
+                    ad_id:
+                        adId,
 
-                        from_email:
-                            user.email || "",
+                    lang:
+                        localStorage.getItem(
+                            "language"
+                        ) || "en"
 
-                        message:
-                            messageText,
-
-                        ad_id:
-                            adId,
-
-                        lang:
-                            language
-
-                    }
-                );
+                }
+            );
 
 
-                console.log(
-                    "EMAIL SENT SUCCESSFULLY"
-                );
+            console.log(
+                "EMAIL SENT SUCCESS"
+            );
 
-            } catch (emailError) {
 
-                console.error(
-                    "EMAILJS ERROR:",
-                    emailError
-                );
+        } catch (err) {
 
-                // Message was already saved.
-                // Do not tell user that the message failed.
-            }
+            console.error(
+                "EMAILJS ERROR:",
+                err
+            );
 
         }
 
-
-        // ====================================================
-        // SUCCESS
-        // ====================================================
 
         alert(
             "Message sent successfully!"
         );
 
 
-        messageElement.value = "";
+        document.getElementById(
+            "messageText"
+        ).value = "";
 
 
     } catch (error) {
 
         console.error(
-            "MESSAGE ERROR:",
+            "Message error:",
             error
         );
 
@@ -957,139 +1002,183 @@ window.sendMessage = async function () {
 };
 
 
-// ============================================================
-// REPORT SYSTEM
-// ============================================================
+/* =========================================================
+   REPORT SYSTEM
+========================================================= */
 
-window.showReportModal = function () {
+window.showReportModal =
+    function () {
 
-    const modal =
         document.getElementById(
             "reportModal"
-        );
-
-
-    if (modal) {
-
-        modal.style.display =
+        ).style.display =
             "block";
 
-    }
-
-};
+    };
 
 
-window.closeModal = function () {
+window.closeModal =
+    function () {
 
-    const modal =
         document.getElementById(
             "reportModal"
-        );
-
-
-    if (modal) {
-
-        modal.style.display =
+        ).style.display =
             "none";
 
-    }
-
-};
+    };
 
 
-window.submitReport = async function () {
+window.submitReport =
+    async function () {
 
-    const reasonElement =
-        document.getElementById(
-            "reportReason"
-        );
-
-
-    if (!reasonElement) {
-
-        alert(
-            "Report form not found."
-        );
-
-        return;
-    }
+        const reason =
+            document.getElementById(
+                "reportReason"
+            ).value;
 
 
-    const reason =
-        reasonElement.value;
+        if (!reason) {
+
+            alert(
+                "Please select a reason."
+            );
+
+            return;
+
+        }
 
 
-    if (!reason) {
+        try {
 
-        alert(
-            "Please select a reason."
-        );
+            await addDoc(
+                collection(
+                    db,
+                    "flaggedAds"
+                ),
+                {
 
-        return;
-    }
-
-
-    try {
-
-        await addDoc(
-            collection(
-                db,
-                "flaggedAds"
-            ),
-            {
-
-                adId:
                     adId,
 
-                reason:
                     reason,
 
-                timestamp:
-                    new Date().toISOString()
+                    timestamp:
+                        new Date().toISOString()
 
-            }
+                }
+            );
+
+
+            alert(
+                "Report submitted."
+            );
+
+
+            closeModal();
+
+
+        } catch (error) {
+
+            console.error(
+                "Report failed:",
+                error
+            );
+
+            alert(
+                "Failed to submit report."
+            );
+
+        }
+
+    };
+
+
+/* =========================================================
+   IMAGE PROBER
+========================================================= */
+
+async function probeimageurls() {
+
+    const images =
+        Array.from(
+            document.querySelectorAll(
+                "img"
+            )
         );
 
 
-        alert(
-            "Report submitted."
-        );
+    const results = [];
 
 
-        closeModal();
+    for (const img of images) {
 
+        results.push({
 
-    } catch (error) {
+            src:
+                img.src,
 
-        console.error(
-            "REPORT ERROR:",
-            error
-        );
+            currentsrc:
+                img.currentSrc,
 
-        alert(
-            "Failed to submit report."
-        );
+            naturalwidth:
+                img.naturalWidth,
+
+            complete:
+                img.complete,
+
+            error:
+                img.naturalWidth === 0 &&
+                img.complete
+
+        });
 
     }
 
-};
+
+    const perfentries =
+        performance
+            .getEntriesByType(
+                "resource"
+            )
+            .filter(
+                e =>
+                    e.initiatorType === "img"
+            )
+            .map(
+                e => ({
+
+                    name:
+                        e.name,
+
+                    duration:
+                        e.duration
+
+                })
+            );
 
 
-// ============================================================
-// INITIALIZE PAGE
-// ============================================================
+    return {
+
+        imagestates:
+            results,
+
+        resourceentries:
+            perfentries
+
+    };
+
+}
+
+
+/* =========================================================
+   INIT
+========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        console.log(
-            "Details page initialized."
-        );
-
         loadAdDetails();
 
     }
 );
-
 
