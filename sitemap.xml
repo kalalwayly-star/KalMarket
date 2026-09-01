@@ -1,23 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- Main Website -->
   <url>
     <loc>https://kalmarket.net/</loc>
   </url>
-
-  <url>
-    <loc>https://kalmarket.net/login.html</loc>
-  </url>
-
-  <url>
-    <loc>https://kalmarket.net/register.html</loc>
-  </url>
-
   <url>
     <loc>https://kalmarket.net/details.html</loc>
   </url>
+
+  <!-- Tools -->
   <url>
-  <loc>https://kalmarket.net/details.html?id=2u6UzVze5yVhKqBPMvE0</loc>
-</url>
+    <loc>https://kalmarket.net/tools/index.html</loc>
+  </url>
+
+  <!-- Calculators -->
+  <url>
+    <loc>https://kalmarket.net/tools/calculators/index.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/calculators/budget-planner.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/calculators/car-loan-calculator.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/calculators/cash-flow-calculator.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/calculators/debt-repayment-calculator.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/calculators/hourly-wage-calculator.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/calculators/inventory-planner.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/calculators/loan-payment-calculator.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/calculators/measurement-converter.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/calculators/mortgage-calculator.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/calculators/price-sales-profit-planner.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/calculators/pricing-strategy.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/calculators/profit-calculator.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/calculators/startup-cost.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/calculators/tax-estimator.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/calculators/tax-planning-assistant.html</loc>
+  </url>
+
+  <!-- Guides -->
+  <url>
+    <loc>https://kalmarket.net/tools/guides/index.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/guides/auto-repair.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/guides/canada-immigration.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/guides/canada-permanent-residence.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/guides/canada-study-permit.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/guides/canada-visit.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/guides/canada-work-permit.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/guides/carpet-cleaning.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/guides/cleaning-business.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/guides/index.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/guides/house-painting.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/guides/moving-delivery.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/guides/restaurant-business.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/guides/social-media-marketing.html</loc>
+  </url>
+
+  <url>
+    <loc>https://kalmarket.net/tools/guides/website-design.html</loc>
+  </url>
+
+  <!-- Resume Maker -->
+  <url>
+    <loc>https://kalmarket.net/tools/resume-maker/resume-maker.html</loc>
+  </url>
 
 </urlset>
