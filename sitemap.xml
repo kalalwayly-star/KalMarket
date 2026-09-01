@@ -1,20 +1,30 @@
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
+
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Main Website -->
+  <!-- =========================================
+       KALMARKET MAIN WEBSITE
+       ========================================= -->
+
   <url>
     <loc>https://kalmarket.net/</loc>
   </url>
-  <url>
-    <loc>https://kalmarket.net/details.html</loc>
-  </url>
 
-  <!-- Tools -->
+
+  <!-- =========================================
+       KALMARKET TOOLS
+       ========================================= -->
+
   <url>
     <loc>https://kalmarket.net/tools/index.html</loc>
   </url>
 
-  <!-- Calculators -->
+
+  <!-- =========================================
+       CALCULATORS
+       ========================================= -->
+
   <url>
     <loc>https://kalmarket.net/tools/calculators/index.html</loc>
   </url>
@@ -79,7 +89,11 @@
     <loc>https://kalmarket.net/tools/calculators/tax-planning-assistant.html</loc>
   </url>
 
-  <!-- Guides -->
+
+  <!-- =========================================
+       BUSINESS & CANADA GUIDES
+       ========================================= -->
+
   <url>
     <loc>https://kalmarket.net/tools/guides/index.html</loc>
   </url>
@@ -117,10 +131,6 @@
   </url>
 
   <url>
-    <loc>https://kalmarket.net/tools/guides/index.html</loc>
-  </url>
-
-  <url>
     <loc>https://kalmarket.net/tools/guides/house-painting.html</loc>
   </url>
 
@@ -140,9 +150,14 @@
     <loc>https://kalmarket.net/tools/guides/website-design.html</loc>
   </url>
 
-  <!-- Resume Maker -->
+
+  <!-- =========================================
+       FREE RESUME MAKER
+       ========================================= -->
+
   <url>
     <loc>https://kalmarket.net/tools/resume-maker/resume-maker.html</loc>
   </url>
 
 </urlset>
+```
