@@ -1,0 +1,1001 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Free Auto Repair Estimator - Estimate vehicle repair costs, labour, parts and taxes in Canada and internationally."
+    >
+
+    <meta
+        name="keywords"
+        content="auto repair estimator, car repair calculator, mechanic cost estimator, repair cost calculator, labour cost, parts cost, Canada auto repair"
+    >
+
+    <title>Auto Repair Estimator | KalMarket Free Calculators</title>
+
+    <!-- Main KalMarket stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Calculator stylesheet -->
+    <link
+        rel="stylesheet"
+        href="auto-repair-estimator.css"
+    >
+</head>
+
+<body>
+
+<!-- =========================================================
+     PAGE HEADER
+========================================================= -->
+
+<header class="calculator-header">
+
+    <div class="calculator-header-inner">
+
+        <a
+            href="index.html"
+            class="calculator-logo"
+        >
+            KalMarket
+        </a>
+
+        <nav class="calculator-nav">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="calculators.html">
+                Free Calculators
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN CALCULATOR
+========================================================= -->
+
+<main class="calculator-page">
+
+    <section class="calculator-container">
+
+        <!-- Title -->
+
+        <div class="calculator-title">
+
+            <h1>
+                Auto Repair Estimator
+            </h1>
+
+            <p>
+                Estimate your vehicle repair costs, labour,
+                parts and applicable taxes.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             LOCATION & TAXES
+        ================================================== -->
+
+        <section class="calculator-section">
+
+            <h2>
+                Location &amp; Taxes
+            </h2>
+
+            <p class="section-description">
+                Select your location to apply the appropriate
+                tax rate to your repair estimate.
+            </p>
+
+
+            <div class="form-grid">
+
+                <!-- Country -->
+
+                <div class="form-group">
+
+                    <label for="repairCountry">
+                        Country
+                    </label>
+
+                    <select
+                        id="repairCountry"
+                        name="repairCountry"
+                    >
+
+                        <option value="canada">
+                            Canada
+                        </option>
+
+                        <option value="united-states">
+                            United States
+                        </option>
+
+                        <option value="united-kingdom">
+                            United Kingdom
+                        </option>
+
+                        <option value="australia">
+                            Australia
+                        </option>
+
+                        <option value="new-zealand">
+                            New Zealand
+                        </option>
+
+                        <option value="other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Province / State -->
+
+                <div class="form-group">
+
+                    <label for="repairRegion">
+                        Province / State / Region
+                    </label>
+
+                    <select
+                        id="repairRegion"
+                        name="repairRegion"
+                    >
+
+                        <option value="">
+                            Select location
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- City -->
+
+                <div class="form-group">
+
+                    <label for="repairCity">
+                        City
+                    </label>
+
+                    <select
+                        id="repairCity"
+                        name="repairCity"
+                    >
+
+                        <option value="">
+                            Select city
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Currency -->
+
+                <div class="form-group">
+
+                    <label for="repairCurrency">
+                        Currency
+                    </label>
+
+                    <select
+                        id="repairCurrency"
+                        name="repairCurrency"
+                    >
+
+                        <option value="CAD">
+                            CAD - Canadian Dollar
+                        </option>
+
+                        <option value="USD">
+                            USD - US Dollar
+                        </option>
+
+                        <option value="GBP">
+                            GBP - British Pound
+                        </option>
+
+                        <option value="AUD">
+                            AUD - Australian Dollar
+                        </option>
+
+                        <option value="NZD">
+                            NZD - New Zealand Dollar
+                        </option>
+
+                        <option value="EUR">
+                            EUR - Euro
+                        </option>
+
+                        <option value="other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- Tax Selection -->
+
+            <div class="tax-selection">
+
+                <div class="form-group">
+
+                    <label for="repairTax">
+                        Tax Rate
+                    </label>
+
+                    <select
+                        id="repairTax"
+                        name="repairTax"
+                    >
+
+                        <option value="0">
+                            No Tax
+                        </option>
+
+                        <option value="5">
+                            5%
+                        </option>
+
+                        <option value="7">
+                            7%
+                        </option>
+
+                        <option value="8">
+                            8%
+                        </option>
+
+                        <option value="9">
+                            9%
+                        </option>
+
+                        <option value="10">
+                            10%
+                        </option>
+
+                        <option value="11">
+                            11%
+                        </option>
+
+                        <option value="12">
+                            12%
+                        </option>
+
+                        <option value="13">
+                            13%
+                        </option>
+
+                        <option value="14">
+                            14%
+                        </option>
+
+                        <option value="15">
+                            15%
+                        </option>
+
+                        <option value="custom">
+                            Custom Tax Rate
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div
+                    class="form-group custom-tax-group"
+                    id="customTaxGroup"
+                    hidden
+                >
+
+                    <label for="customTaxRate">
+                        Custom Tax Rate (%)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="customTaxRate"
+                        name="customTaxRate"
+                        min="0"
+                        max="100"
+                        step="0.01"
+                        value="0"
+                        placeholder="Enter tax rate"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             VEHICLE INFORMATION
+        ================================================== -->
+
+        <section class="calculator-section">
+
+            <h2>
+                Vehicle Information
+            </h2>
+
+            <div class="form-grid">
+
+                <!-- Year -->
+
+                <div class="form-group">
+
+                    <label for="vehicleYear">
+                        Vehicle Year
+                    </label>
+
+                    <input
+                        type="number"
+                        id="vehicleYear"
+                        name="vehicleYear"
+                        min="1900"
+                        max="2100"
+                        placeholder="e.g. 2018"
+                    >
+
+                </div>
+
+
+                <!-- Make -->
+
+                <div class="form-group">
+
+                    <label for="vehicleMake">
+                        Make
+                    </label>
+
+                    <input
+                        type="text"
+                        id="vehicleMake"
+                        name="vehicleMake"
+                        placeholder="e.g. Honda"
+                    >
+
+                </div>
+
+
+                <!-- Model -->
+
+                <div class="form-group">
+
+                    <label for="vehicleModel">
+                        Model
+                    </label>
+
+                    <input
+                        type="text"
+                        id="vehicleModel"
+                        name="vehicleModel"
+                        placeholder="e.g. Civic"
+                    >
+
+                </div>
+
+
+                <!-- Mileage -->
+
+                <div class="form-group">
+
+                    <label for="vehicleMileage">
+                        Mileage
+                    </label>
+
+                    <input
+                        type="number"
+                        id="vehicleMileage"
+                        name="vehicleMileage"
+                        min="0"
+                        placeholder="e.g. 150000"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             REPAIR INFORMATION
+        ================================================== -->
+
+        <section class="calculator-section">
+
+            <h2>
+                Repair Information
+            </h2>
+
+
+            <!-- Repair Category -->
+
+            <div class="form-group">
+
+                <label for="repairCategory">
+                    Repair Category
+                </label>
+
+                <select
+                    id="repairCategory"
+                    name="repairCategory"
+                >
+
+                    <option value="">
+                        Select repair category
+                    </option>
+
+                    <option value="brakes">
+                        Brakes
+                    </option>
+
+                    <option value="oil">
+                        Oil Change &amp; Maintenance
+                    </option>
+
+                    <option value="tires">
+                        Tires
+                    </option>
+
+                    <option value="suspension">
+                        Suspension
+                    </option>
+
+                    <option value="steering">
+                        Steering
+                    </option>
+
+                    <option value="engine">
+                        Engine
+                    </option>
+
+                    <option value="transmission">
+                        Transmission
+                    </option>
+
+                    <option value="exhaust">
+                        Exhaust
+                    </option>
+
+                    <option value="cooling">
+                        Cooling System
+                    </option>
+
+                    <option value="electrical">
+                        Electrical
+                    </option>
+
+                    <option value="air-conditioning">
+                        Air Conditioning
+                    </option>
+
+                    <option value="diagnostics">
+                        Diagnostics
+                    </option>
+
+                    <option value="bodywork">
+                        Bodywork
+                    </option>
+
+                    <option value="other">
+                        Other Repair
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Repair Description -->
+
+            <div class="form-group">
+
+                <label for="repairDescription">
+                    Repair Description
+                </label>
+
+                <textarea
+                    id="repairDescription"
+                    name="repairDescription"
+                    rows="4"
+                    placeholder="Describe the repair or service needed..."
+                ></textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             LABOUR
+        ================================================== -->
+
+        <section class="calculator-section">
+
+            <h2>
+                Labour
+            </h2>
+
+            <div class="form-grid">
+
+                <!-- Labour Hours -->
+
+                <div class="form-group">
+
+                    <label for="labourHours">
+                        Labour Hours
+                    </label>
+
+                    <input
+                        type="number"
+                        id="labourHours"
+                        name="labourHours"
+                        min="0"
+                        step="0.1"
+                        value="1"
+                        placeholder="e.g. 2.5"
+                    >
+
+                </div>
+
+
+                <!-- Labour Rate -->
+
+                <div class="form-group">
+
+                    <label for="labourRate">
+                        Labour Rate / Hour
+                    </label>
+
+                    <input
+                        type="number"
+                        id="labourRate"
+                        name="labourRate"
+                        min="0"
+                        step="0.01"
+                        value="100"
+                        placeholder="e.g. 100"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PARTS
+        ================================================== -->
+
+        <section class="calculator-section">
+
+            <h2>
+                Parts
+            </h2>
+
+            <div class="form-grid">
+
+                <!-- Parts Cost -->
+
+                <div class="form-group">
+
+                    <label for="partsCost">
+                        Parts Cost
+                    </label>
+
+                    <input
+                        type="number"
+                        id="partsCost"
+                        name="partsCost"
+                        min="0"
+                        step="0.01"
+                        value="0"
+                        placeholder="e.g. 350"
+                    >
+
+                </div>
+
+
+                <!-- Parts Markup -->
+
+                <div class="form-group">
+
+                    <label for="partsMarkup">
+                        Parts Markup (%)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="partsMarkup"
+                        name="partsMarkup"
+                        min="0"
+                        max="500"
+                        step="0.1"
+                        value="0"
+                        placeholder="e.g. 20"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ADDITIONAL COSTS
+        ================================================== -->
+
+        <section class="calculator-section">
+
+            <h2>
+                Additional Costs
+            </h2>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="shopSupplies">
+                        Shop Supplies
+                    </label>
+
+                    <input
+                        type="number"
+                        id="shopSupplies"
+                        name="shopSupplies"
+                        min="0"
+                        step="0.01"
+                        value="0"
+                        placeholder="0.00"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="diagnosticFee">
+                        Diagnostic Fee
+                    </label>
+
+                    <input
+                        type="number"
+                        id="diagnosticFee"
+                        name="diagnosticFee"
+                        min="0"
+                        step="0.01"
+                        value="0"
+                        placeholder="0.00"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="otherFees">
+                        Other Fees
+                    </label>
+
+                    <input
+                        type="number"
+                        id="otherFees"
+                        name="otherFees"
+                        min="0"
+                        step="0.01"
+                        value="0"
+                        placeholder="0.00"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CALCULATE BUTTON
+        ================================================== -->
+
+        <section class="calculator-actions">
+
+            <button
+                type="button"
+                id="calculateRepair"
+                class="calculate-button"
+            >
+                Calculate Repair Estimate
+            </button>
+
+            <button
+                type="button"
+                id="resetRepair"
+                class="reset-button"
+            >
+                Reset
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             ESTIMATE RESULTS
+        ================================================== -->
+
+        <section
+            class="repair-results"
+            id="repairResults"
+            hidden
+        >
+
+            <div class="results-header">
+
+                <h2>
+                    Repair Estimate
+                </h2>
+
+                <p id="estimateLocation">
+                    Estimate
+                </p>
+
+            </div>
+
+
+            <div class="estimate-summary">
+
+                <!-- Labour -->
+
+                <div class="estimate-row">
+
+                    <span>
+                        Labour
+                    </span>
+
+                    <strong id="resultLabour">
+                        $0.00
+                    </strong>
+
+                </div>
+
+
+                <!-- Parts -->
+
+                <div class="estimate-row">
+
+                    <span>
+                        Parts
+                    </span>
+
+                    <strong id="resultParts">
+                        $0.00
+                    </strong>
+
+                </div>
+
+
+                <!-- Shop Supplies -->
+
+                <div class="estimate-row">
+
+                    <span>
+                        Shop Supplies
+                    </span>
+
+                    <strong id="resultShopSupplies">
+                        $0.00
+                    </strong>
+
+                </div>
+
+
+                <!-- Diagnostic -->
+
+                <div class="estimate-row">
+
+                    <span>
+                        Diagnostic Fee
+                    </span>
+
+                    <strong id="resultDiagnostic">
+                        $0.00
+                    </strong>
+
+                </div>
+
+
+                <!-- Other -->
+
+                <div class="estimate-row">
+
+                    <span>
+                        Other Fees
+                    </span>
+
+                    <strong id="resultOtherFees">
+                        $0.00
+                    </strong>
+
+                </div>
+
+
+                <!-- Subtotal -->
+
+                <div class="estimate-row subtotal-row">
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <strong id="resultSubtotal">
+                        $0.00
+                    </strong>
+
+                </div>
+
+
+                <!-- Tax -->
+
+                <div class="estimate-row">
+
+                    <span>
+                        Tax
+                    </span>
+
+                    <strong id="resultTax">
+                        $0.00
+                    </strong>
+
+                </div>
+
+
+                <!-- Total -->
+
+                <div class="estimate-total">
+
+                    <span>
+                        Estimated Total
+                    </span>
+
+                    <strong id="resultTotal">
+                        $0.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Estimate Details -->
+
+            <div class="estimate-details">
+
+                <h3>
+                    Estimate Details
+                </h3>
+
+                <p id="resultVehicle">
+                    Vehicle information
+                </p>
+
+                <p id="resultRepair">
+                    Repair information
+                </p>
+
+            </div>
+
+
+            <!-- Disclaimer -->
+
+            <div class="estimate-disclaimer">
+
+                <strong>
+                    Important:
+                </strong>
+
+                This calculator provides an estimate only.
+                Actual repair costs may vary depending on
+                vehicle condition, parts availability,
+                labour rates, shop policies and additional
+                repairs discovered during service.
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             INFORMATION
+        ================================================== -->
+
+        <section class="calculator-information">
+
+            <h2>
+                How the Auto Repair Estimator Works
+            </h2>
+
+            <p>
+                Enter your vehicle information, select your
+                repair type, and enter the expected labour,
+                parts and additional costs. The calculator
+                estimates the subtotal, applicable taxes and
+                final repair cost.
+            </p>
+
+            <p>
+                Tax rates can be adjusted for your city,
+                province, state or country. This makes the
+                calculator useful for users in Canada and
+                internationally.
+            </p>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="calculator-footer">
+
+    <p>
+        © <span id="currentYear"></span>
+        KalMarket. All rights reserved.
+    </p>
+
+    <p>
+        Free Calculators
+    </p>
+
+</footer>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script
+    src="auto-repair-estimator.js"
+    defer
+></script>
+
+</body>
+</html>
+
