@@ -194,82 +194,116 @@
         </div>
 
 
-        <!-- =========================
+<!-- =================================================
      LOCATION & TAXES
-========================= -->
-<section class="repair-section">
+================================================== -->
+<section class="calculator-section">
 
-    <h2>Location & Taxes</h2>
+    <h2>
+        Location &amp; Taxes
+    </h2>
 
-    <div class="repair-form-grid">
+    <p class="section-description">
+        Select your location to apply the appropriate tax rate to your repair estimate.
+    </p>
+
+    <div class="form-grid">
 
         <!-- Country -->
-        <div class="repair-form-group">
+        <div class="form-group">
+
             <label for="repairCountry">
                 Country
             </label>
 
-            <select id="repairCountry">
-                <option value="Canada">Canada</option>
-                <option value="United States">United States</option>
-                <option value="United Kingdom">United Kingdom</option>
-                <option value="Australia">Australia</option>
-                <option value="New Zealand">New Zealand</option>
-                <option value="Other">Other</option>
+            <select id="repairCountry" name="repairCountry">
+
+                <option value="canada">
+                    Canada
+                </option>
+
+                <option value="united-states">
+                    United States
+                </option>
+
+                <option value="united-kingdom">
+                    United Kingdom
+                </option>
+
+                <option value="australia">
+                    Australia
+                </option>
+
+                <option value="new-zealand">
+                    New Zealand
+                </option>
+
+                <option value="other">
+                    Other
+                </option>
+
             </select>
+
         </div>
 
 
         <!-- Province / State / Region -->
-        <div class="repair-form-group" id="repairRegionGroup">
+        <div class="form-group">
 
-            <label for="repairRegion" id="repairRegionLabel">
-                Province / Territory
+            <label for="repairRegion">
+                Province / State / Region
             </label>
 
-            <select id="repairRegion">
-                <option value="">Select Province / Territory</option>
+            <!-- Used for Canada and existing selectable regions -->
+            <select
+                id="repairRegion"
+                name="repairRegion"
+            >
+                <option value="">
+                    Select location
+                </option>
             </select>
 
-        </div>
-
-
-        <!-- Custom Region -->
-        <div
-            class="repair-form-group"
-            id="customRegionGroup"
-            style="display:none;"
-        >
-
-            <label for="customRegion">
-                State / Province / Region
-            </label>
-
+            <!-- Used for Other -->
             <input
                 type="text"
-                id="customRegion"
+                id="repairRegionInput"
+                name="repairRegionInput"
                 placeholder="Enter state, province or region"
+                style="display:none;"
             >
 
         </div>
 
 
         <!-- City -->
-        <div class="repair-form-group">
+        <div class="form-group">
 
             <label for="repairCity">
                 City
             </label>
 
-            <!-- Select used for Canadian cities -->
-            <select id="repairCity">
-                <option value="">Select City</option>
+            <!--
+                Canada keeps the original city dropdown.
+                JavaScript will populate this exactly as before.
+            -->
+            <select
+                id="repairCity"
+                name="repairCity"
+            >
+                <option value="">
+                    Select city
+                </option>
             </select>
 
-            <!-- Text input used for international cities -->
+            <!--
+                All countries except Canada use a
+                writable city field.
+            -->
             <input
                 type="text"
                 id="repairCityInput"
+                name="repairCityInput"
                 placeholder="Enter city"
                 style="display:none;"
             >
@@ -278,21 +312,44 @@
 
 
         <!-- Currency -->
-        <div class="repair-form-group">
+        <div class="form-group">
 
             <label for="repairCurrency">
                 Currency
             </label>
 
-            <select id="repairCurrency">
+            <select
+                id="repairCurrency"
+                name="repairCurrency"
+            >
 
-                <option value="CAD">CAD - Canadian Dollar</option>
-                <option value="USD">USD - US Dollar</option>
-                <option value="GBP">GBP - British Pound</option>
-                <option value="AUD">AUD - Australian Dollar</option>
-                <option value="NZD">NZD - New Zealand Dollar</option>
-                <option value="EUR">EUR - Euro</option>
-                <option value="Other">Other</option>
+                <option value="CAD">
+                    CAD - Canadian Dollar
+                </option>
+
+                <option value="USD">
+                    USD - US Dollar
+                </option>
+
+                <option value="GBP">
+                    GBP - British Pound
+                </option>
+
+                <option value="AUD">
+                    AUD - Australian Dollar
+                </option>
+
+                <option value="NZD">
+                    NZD - New Zealand Dollar
+                </option>
+
+                <option value="EUR">
+                    EUR - Euro
+                </option>
+
+                <option value="other">
+                    Other
+                </option>
 
             </select>
 
@@ -301,7 +358,7 @@
 
         <!-- Custom Currency -->
         <div
-            class="repair-form-group"
+            class="form-group"
             id="customCurrencyGroup"
             style="display:none;"
         >
@@ -313,27 +370,9 @@
             <input
                 type="text"
                 id="customCurrency"
-                placeholder="Example: EUR, JPY, AED"
+                name="customCurrency"
                 maxlength="5"
-            >
-
-        </div>
-
-
-        <!-- Tax -->
-        <div class="repair-form-group">
-
-            <label for="repairTax">
-                Tax Rate (%)
-            </label>
-
-            <input
-                type="number"
-                id="repairTax"
-                min="0"
-                max="100"
-                step="0.01"
-                value="14"
+                placeholder="Example: JPY, AED, MXN"
             >
 
         </div>
@@ -341,14 +380,100 @@
     </div>
 
 
-    <!-- Custom Location Notice -->
-    <div
-        id="customLocationNotice"
-        class="repair-location-notice"
-        style="display:none;"
-    >
-        Enter your country, region/state, city, currency and applicable
-        tax rate to calculate your repair estimate.
+    <!-- =================================================
+         TAX SELECTION
+    ================================================== -->
+
+    <div class="tax-selection">
+
+        <div class="form-group">
+
+            <label for="repairTax">
+                Tax Rate
+            </label>
+
+            <select
+                id="repairTax"
+                name="repairTax"
+            >
+
+                <option value="0">
+                    No Tax
+                </option>
+
+                <option value="5">
+                    5%
+                </option>
+
+                <option value="7">
+                    7%
+                </option>
+
+                <option value="8">
+                    8%
+                </option>
+
+                <option value="9">
+                    9%
+                </option>
+
+                <option value="10">
+                    10%
+                </option>
+
+                <option value="11">
+                    11%
+                </option>
+
+                <option value="12">
+                    12%
+                </option>
+
+                <option value="13">
+                    13%
+                </option>
+
+                <option value="14">
+                    14%
+                </option>
+
+                <option value="15">
+                    15%
+                </option>
+
+                <option value="custom">
+                    Custom Tax Rate
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Custom Tax -->
+        <div
+            class="form-group custom-tax-group"
+            id="customTaxGroup"
+            hidden
+        >
+
+            <label for="customTaxRate">
+                Custom Tax Rate (%)
+            </label>
+
+            <input
+                type="number"
+                id="customTaxRate"
+                name="customTaxRate"
+                min="0"
+                max="100"
+                step="0.01"
+                value="0"
+                placeholder="Enter tax rate"
+            >
+
+        </div>
+
     </div>
 
 </section>
