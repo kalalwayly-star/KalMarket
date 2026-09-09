@@ -1421,10 +1421,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             },
  "Minor Dent Repair": {
-    positions: {},
+    positions: {
+        na: {
+            label: "Not Applicable",
+            hours: 2.0
+        }
+    },
     dentRepair: true
 }
-
         /* =================================================
            OTHER REPAIR
         ================================================= */
