@@ -1350,120 +1350,118 @@ document.addEventListener("DOMContentLoaded", () => {
         },
 
 
-        /* =================================================
-           BODYWORK
-        ================================================= */
+/* =================================================
+   BODYWORK
+================================================= */
 
-        bodywork: {
+bodywork: {
 
-            "Bumper Replacement": {
-                positions: {
-                    front: {
-                        label: "Front",
-                        hours: 2.0
-                    },
-                    rear: {
-                        label: "Rear",
-                        hours: 2.0
-                    }
-                }
+    "Bumper Replacement": {
+        positions: {
+            front: {
+                label: "Front",
+                hours: 2.0
             },
-
-            "Fender Replacement": {
-                positions: {
-                    left_front: {
-                        label: "Left Front",
-                        hours: 3.0
-                    },
-                    right_front: {
-                        label: "Right Front",
-                        hours: 3.0
-                    }
-                }
-            },
-
-            "Door Replacement": {
-                positions: {
-                    left_front: {
-                        label: "Left Front",
-                        hours: 3.0
-                    },
-                    right_front: {
-                        label: "Right Front",
-                        hours: 3.0
-                    },
-                    left_rear: {
-                        label: "Left Rear",
-                        hours: 3.0
-                    },
-                    right_rear: {
-                        label: "Right Rear",
-                        hours: 3.0
-                    }
-                }
-            },
-
-            "Hood Replacement": {
-                positions: {
-                    na: {
-                        label: "Not Applicable",
-                        hours: 2.0
-                    }
-                }
-            },
-
-            "Trunk / Liftgate Replacement": {
-                positions: {
-                    na: {
-                        label: "Not Applicable",
-                        hours: 2.5
-                    }
-                }
-            },
- "Minor Dent Repair": {
-    positions: {
-        na: {
-            label: "Not Applicable",
-            hours: 2.0
-        }
-    },
-    dentRepair: true
-}
-        /* =================================================
-           OTHER REPAIR
-        ================================================= */
-
-        other: {
-
-            "General Repair": {
-                positions: {
-                    na: {
-                        label: "Not Applicable",
-                        hours: 1.0
-                    }
-                }
-            },
-
-            "Inspection": {
-                positions: {
-                    na: {
-                        label: "Not Applicable",
-                        hours: 1.0
-                    }
-                }
-            },
-
-            "Custom Repair": {
-                positions: {
-                    na: {
-                        label: "Not Applicable",
-                        hours: 1.0
-                    }
-                }
+            rear: {
+                label: "Rear",
+                hours: 2.0
             }
         }
-    };
+    },
 
+    "Fender Replacement": {
+        positions: {
+            left_front: {
+                label: "Left Front",
+                hours: 3.0
+            },
+            right_front: {
+                label: "Right Front",
+                hours: 3.0
+            }
+        }
+    },
+
+    "Door Replacement": {
+        positions: {
+            left_front: {
+                label: "Left Front",
+                hours: 3.0
+            },
+            right_front: {
+                label: "Right Front",
+                hours: 3.0
+            },
+            left_rear: {
+                label: "Left Rear",
+                hours: 3.0
+            },
+            right_rear: {
+                label: "Right Rear",
+                hours: 3.0
+            }
+        }
+    },
+
+    "Hood Replacement": {
+        positions: {
+            na: {
+                label: "Not Applicable",
+                hours: 2.0
+            }
+        }
+    },
+
+    "Trunk / Liftgate Replacement": {
+        positions: {
+            na: {
+                label: "Not Applicable",
+                hours: 2.5
+            }
+        }
+    },
+
+    "Minor Dent Repair": {
+        positions: {},
+        dentRepair: true
+    }
+},
+
+
+/* =================================================
+   OTHER REPAIR
+================================================= */
+
+other: {
+
+    "General Repair": {
+        positions: {
+            na: {
+                label: "Not Applicable",
+                hours: 1.0
+            }
+        }
+    },
+
+    "Inspection": {
+        positions: {
+            na: {
+                label: "Not Applicable",
+                hours: 1.0
+            }
+        }
+    },
+
+    "Custom Repair": {
+        positions: {
+            na: {
+                label: "Not Applicable",
+                hours: 1.0
+            }
+        }
+    }
+}
+};
 
     /* =====================================================
        4. DOM ELEMENTS
