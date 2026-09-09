@@ -570,171 +570,254 @@
         </section>
 
 
-        <!-- =================================================
-             REPAIR INFORMATION
-        ================================================== -->
+       <!-- =================================================
+     REPAIR INFORMATION
+================================================== -->
 
-        <section class="calculator-section">
+<section class="calculator-section">
 
-            <h2>
-                Repair Information
-            </h2>
-
-
-            <!-- Repair Category -->
-
-            <div class="form-group">
-
-                <label for="repairCategory">
-                    Repair Category
-                </label>
-
-                <select
-                    id="repairCategory"
-                    name="repairCategory"
-                >
-
-                    <option value="">
-                        Select repair category
-                    </option>
-
-                    <option value="brakes">
-                        Brakes
-                    </option>
-
-                    <option value="oil">
-                        Oil Change &amp; Maintenance
-                    </option>
-
-                    <option value="tires">
-                        Tires
-                    </option>
-
-                    <option value="suspension">
-                        Suspension
-                    </option>
-
-                    <option value="steering">
-                        Steering
-                    </option>
-
-                    <option value="engine">
-                        Engine
-                    </option>
-
-                    <option value="transmission">
-                        Transmission
-                    </option>
-
-                    <option value="exhaust">
-                        Exhaust
-                    </option>
-
-                    <option value="cooling">
-                        Cooling System
-                    </option>
-
-                    <option value="electrical">
-                        Electrical
-                    </option>
-
-                    <option value="air-conditioning">
-                        Air Conditioning
-                    </option>
-
-                    <option value="diagnostics">
-                        Diagnostics
-                    </option>
-
-                    <option value="bodywork">
-                        Bodywork
-                    </option>
-
-                    <option value="other">
-                        Other Repair
-                    </option>
-
-                </select>
-
-            </div>
+    <h2>
+        Repair Information
+    </h2>
 
 
-            <!-- Repair Description -->
+    <!-- Repair Category -->
 
-            <div class="form-group">
+    <div class="form-group">
 
-                <label for="repairDescription">
-                    Repair Description
-                </label>
+        <label for="repairCategory">
+            Repair Category
+        </label>
 
-                <textarea
-                    id="repairDescription"
-                    name="repairDescription"
-                    rows="4"
-                    placeholder="Describe the repair or service needed..."
-                ></textarea>
+        <select
+            id="repairCategory"
+            name="repairCategory"
+        >
 
-            </div>
+            <option value="">
+                Select repair category
+            </option>
 
-        </section>
+            <option value="brakes">
+                Brakes
+            </option>
+
+            <option value="oil">
+                Oil Change &amp; Maintenance
+            </option>
+
+            <option value="tires">
+                Tires
+            </option>
+
+            <option value="suspension">
+                Suspension
+            </option>
+
+            <option value="steering">
+                Steering
+            </option>
+
+            <option value="engine">
+                Engine
+            </option>
+
+            <option value="transmission">
+                Transmission
+            </option>
+
+            <option value="exhaust">
+                Exhaust
+            </option>
+
+            <option value="cooling">
+                Cooling System
+            </option>
+
+            <option value="electrical">
+                Electrical
+            </option>
+
+            <option value="air-conditioning">
+                Air Conditioning
+            </option>
+
+            <option value="diagnostics">
+                Diagnostics
+            </option>
+
+            <option value="bodywork">
+                Bodywork
+            </option>
+
+            <option value="other">
+                Other Repair
+            </option>
+
+        </select>
+
+    </div>
 
 
-        <!-- =================================================
-             LABOUR
-        ================================================== -->
+    <!-- Repair Service -->
 
-        <section class="calculator-section">
+    <div
+        class="form-group"
+        id="repairServiceGroup"
+    >
 
-            <h2>
-                Labour
-            </h2>
+        <label for="repairService">
+            Service
+        </label>
 
-            <div class="form-grid">
+        <select
+            id="repairService"
+            name="repairService"
+        >
 
-                <!-- Labour Hours -->
+            <option value="">
+                Select service
+            </option>
 
-                <div class="form-group">
+        </select>
 
-                    <label for="labourHours">
-                        Labour Hours
-                    </label>
-
-                    <input
-                        type="number"
-                        id="labourHours"
-                        name="labourHours"
-                        min="0"
-                        step="0.1"
-                        value="1"
-                        placeholder="e.g. 2.5"
-                    >
-
-                </div>
+    </div>
 
 
-                <!-- Labour Rate -->
+    <!-- Repair Position -->
 
-                <div class="form-group">
+    <div
+        class="form-group"
+        id="repairPositionGroup"
+    >
 
-                    <label for="labourRate">
-                        Labour Rate / Hour
-                    </label>
+        <label for="repairPosition">
+            Position / Side
+        </label>
 
-                    <input
-                        type="number"
-                        id="labourRate"
-                        name="labourRate"
-                        min="0"
-                        step="0.01"
-                        value="100"
-                        placeholder="e.g. 100"
-                    >
+        <select
+            id="repairPosition"
+            name="repairPosition"
+        >
 
-                </div>
+            <option value="">
+                Select position
+            </option>
 
-            </div>
+        </select>
 
-        </section>
+    </div>
+
+
+    <!-- Suggested Labour -->
+
+    <div
+        class="form-group"
+        id="suggestedHoursGroup"
+    >
+
+        <label for="suggestedLabourHours">
+            Suggested Labour Hours
+        </label>
+
+        <input
+            type="number"
+            id="suggestedLabourHours"
+            name="suggestedLabourHours"
+            min="0"
+            step="0.1"
+            readonly
+            placeholder="Automatically calculated"
+        >
+
+        <small class="field-help">
+            Suggested time based on the selected service and position.
+        </small>
+
+    </div>
+
+
+    <!-- Repair Description -->
+
+    <div class="form-group">
+
+        <label for="repairDescription">
+            Repair Description
+        </label>
+
+        <textarea
+            id="repairDescription"
+            name="repairDescription"
+            rows="4"
+            placeholder="Describe the repair or service needed..."
+        ></textarea>
+
+    </div>
+
+</section>
+
+
+<!-- =================================================
+     LABOUR
+================================================== -->
+
+<section class="calculator-section">
+
+    <h2>
+        Labour
+    </h2>
+
+    <div class="form-grid">
+
+        <!-- Labour Hours -->
+
+        <div class="form-group">
+
+            <label for="labourHours">
+                Labour Hours
+            </label>
+
+            <input
+                type="number"
+                id="labourHours"
+                name="labourHours"
+                min="0"
+                step="0.1"
+                value="1"
+                placeholder="e.g. 2.5"
+            >
+
+            <small class="field-help">
+                Automatically suggested based on the selected service.
+                You can change the hours if needed.
+            </small>
+
+        </div>
+
+
+        <!-- Labour Rate -->
+
+        <div class="form-group">
+
+            <label for="labourRate">
+                Labour Rate / Hour
+            </label>
+
+            <input
+                type="number"
+                id="labourRate"
+                name="labourRate"
+                min="0"
+                step="0.01"
+                value="100"
+                placeholder="e.g. 100"
+            >
+
+        </div>
+
+    </div>
+
+</section>
 
 
         <!-- =================================================
