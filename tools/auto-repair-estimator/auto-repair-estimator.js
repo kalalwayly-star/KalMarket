@@ -2539,20 +2539,30 @@ function calculateDentSuggestedHours() {
 
     if (categorySelect) {
 
-        categorySelect.addEventListener(
-            "change",
-            populateRepairServices
-        );
-    }
+    categorySelect.addEventListener(
+        "change",
+        () => {
+
+            populateRepairServices();
+
+            updateDentRepairFields();
+        }
+    );
+}
 
 
     if (serviceSelect) {
 
-        serviceSelect.addEventListener(
-            "change",
-            populateRepairPositions
-        );
-    }
+    serviceSelect.addEventListener(
+        "change",
+        () => {
+
+            populateRepairPositions();
+
+            updateDentRepairFields();
+        }
+    );
+}
 
 
     if (positionSelect) {
