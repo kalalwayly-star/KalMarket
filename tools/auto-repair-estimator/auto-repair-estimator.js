@@ -1,19 +1,18 @@
 
 /* =========================================================
-   KALMARKET AUTO REPAIR ESTIMATOR
-   Location + Tax System
+   KALMARKET - AUTO REPAIR ESTIMATOR
+   Service Database + Labour Times + Location/Tax
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =====================================================
-       CANADIAN LOCATIONS & TAX RATES
-       DO NOT CHANGE - ORIGINAL CANADA SYSTEM
+       1. CANADIAN LOCATIONS & TAXES
     ===================================================== */
 
     const canadianLocations = {
-
-        "Alberta": {
+        alberta: {
+            name: "Alberta",
             tax: 5,
             cities: [
                 "Calgary",
@@ -22,30 +21,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Lethbridge",
                 "Medicine Hat",
                 "Grande Prairie",
-                "Fort McMurray",
                 "Airdrie",
-                "St. Albert",
-                "Spruce Grove"
+                "Fort McMurray",
+                "Spruce Grove",
+                "St. Albert"
             ]
         },
 
-        "British Columbia": {
+        british_columbia: {
+            name: "British Columbia",
             tax: 12,
             cities: [
                 "Vancouver",
-                "Victoria",
                 "Surrey",
                 "Burnaby",
                 "Richmond",
-                "Kelowna",
                 "Abbotsford",
                 "Coquitlam",
+                "Kelowna",
+                "Victoria",
                 "Langley",
-                "Kamloops"
+                "Nanaimo"
             ]
         },
 
-        "Manitoba": {
+        manitoba: {
+            name: "Manitoba",
             tax: 14,
             cities: [
                 "Winnipeg",
@@ -57,43 +58,47 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Selkirk",
                 "Dauphin",
                 "Morden",
-                "The Pas"
+                "Flin Flon"
             ]
         },
 
-        "New Brunswick": {
+        new_brunswick: {
+            name: "New Brunswick",
             tax: 15,
             cities: [
                 "Moncton",
                 "Saint John",
                 "Fredericton",
+                "Dieppe",
                 "Miramichi",
                 "Bathurst",
                 "Edmundston",
-                "Campbellton",
-                "Dieppe"
+                "Riverview"
             ]
         },
 
-        "Newfoundland and Labrador": {
+        newfoundland_labrador: {
+            name: "Newfoundland & Labrador",
             tax: 15,
             cities: [
                 "St. John's",
-                "Corner Brook",
                 "Mount Pearl",
+                "Corner Brook",
                 "Conception Bay South",
+                "Paradise",
                 "Grand Falls-Windsor",
                 "Gander",
                 "Happy Valley-Goose Bay"
             ]
         },
 
-        "Nova Scotia": {
+        nova_scotia: {
+            name: "Nova Scotia",
             tax: 15,
             cities: [
                 "Halifax",
-                "Sydney",
                 "Dartmouth",
+                "Sydney",
                 "Truro",
                 "New Glasgow",
                 "Glace Bay",
@@ -102,7 +107,8 @@ document.addEventListener("DOMContentLoaded", () => {
             ]
         },
 
-        "Ontario": {
+        ontario: {
+            name: "Ontario",
             tax: 13,
             cities: [
                 "Toronto",
@@ -115,15 +121,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Vaughan",
                 "Kitchener",
                 "Windsor",
+                "Oshawa",
                 "Barrie",
                 "Kingston",
                 "Guelph",
                 "Sudbury",
-                "Thunder Bay"
+                "Thunder Bay",
+                "Waterloo",
+                "St. Catharines",
+                "Niagara Falls"
             ]
         },
 
-        "Prince Edward Island": {
+        pei: {
+            name: "Prince Edward Island",
             tax: 15,
             cities: [
                 "Charlottetown",
@@ -134,7 +145,8 @@ document.addEventListener("DOMContentLoaded", () => {
             ]
         },
 
-        "Quebec": {
+        quebec: {
+            name: "Quebec",
             tax: 14.975,
             cities: [
                 "Montreal",
@@ -144,63 +156,64 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Longueuil",
                 "Sherbrooke",
                 "Saguenay",
+                "Levis",
                 "Trois-Rivieres",
-                "Terrebonne",
-                "Levis"
+                "Terrebonne"
             ]
         },
 
-        "Saskatchewan": {
+        saskatchewan: {
+            name: "Saskatchewan",
             tax: 11,
             cities: [
                 "Saskatoon",
                 "Regina",
                 "Prince Albert",
                 "Moose Jaw",
-                "Swift Current",
                 "Yorkton",
+                "Swift Current",
                 "North Battleford",
                 "Weyburn"
             ]
         },
 
-        "Northwest Territories": {
+        northwest_territories: {
+            name: "Northwest Territories",
             tax: 5,
             cities: [
                 "Yellowknife",
                 "Hay River",
                 "Inuvik",
-                "Fort Smith",
-                "Norman Wells"
+                "Fort Smith"
             ]
         },
 
-        "Nunavut": {
+        nunavut: {
+            name: "Nunavut",
             tax: 5,
             cities: [
                 "Iqaluit",
                 "Rankin Inlet",
                 "Arviat",
-                "Cambridge Bay",
-                "Baker Lake"
+                "Cambridge Bay"
             ]
         },
 
-        "Yukon": {
+        yukon: {
+            name: "Yukon",
             tax: 5,
             cities: [
                 "Whitehorse",
                 "Dawson City",
                 "Watson Lake",
-                "Haines Junction",
-                "Carmacks"
+                "Haines Junction"
             ]
         }
     };
 
 
     /* =====================================================
-       INTERNATIONAL DEFAULTS
+       2. INTERNATIONAL LOCATIONS
     ===================================================== */
 
     const internationalLocations = {
@@ -273,7 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ]
         },
 
-        "australia": {
+        australia: {
             currency: "AUD",
             tax: 10,
             regions: [
@@ -283,8 +296,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Western Australia",
                 "South Australia",
                 "Tasmania",
-                "Northern Territory",
-                "Australian Capital Territory"
+                "Australian Capital Territory",
+                "Northern Territory"
             ]
         },
 
@@ -293,12 +306,12 @@ document.addEventListener("DOMContentLoaded", () => {
             tax: 15,
             regions: [
                 "Auckland",
-                "Wellington",
                 "Canterbury",
+                "Wellington",
                 "Waikato",
                 "Bay of Plenty",
                 "Otago",
-                "Manawatu-Wanganui",
+                "Manawatū-Whanganui",
                 "Hawke's Bay",
                 "Taranaki",
                 "Northland",
@@ -313,7 +326,1150 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       GET ELEMENTS
+       3. REPAIR SERVICE DATABASE
+       
+       Labour hours are suggested typical shop times.
+       They are NOT locked and can be changed by the user.
+    ===================================================== */
+
+    const repairServices = {
+
+        /* =================================================
+           BRAKES
+        ================================================= */
+
+        brakes: {
+
+            "Brake Pads & Rotors": {
+                positions: {
+                    front: {
+                        label: "Front",
+                        hours: 2.0
+                    },
+                    rear: {
+                        label: "Rear",
+                        hours: 2.0
+                    },
+                    front_rear: {
+                        label: "Front & Rear",
+                        hours: 3.5
+                    }
+                }
+            },
+
+            "Brake Pads": {
+                positions: {
+                    front: {
+                        label: "Front",
+                        hours: 1.2
+                    },
+                    rear: {
+                        label: "Rear",
+                        hours: 1.2
+                    },
+                    front_rear: {
+                        label: "Front & Rear",
+                        hours: 2.0
+                    }
+                }
+            },
+
+            "Brake Rotors": {
+                positions: {
+                    front: {
+                        label: "Front",
+                        hours: 1.5
+                    },
+                    rear: {
+                        label: "Rear",
+                        hours: 1.5
+                    },
+                    front_rear: {
+                        label: "Front & Rear",
+                        hours: 2.5
+                    }
+                }
+            },
+
+            "Brake Caliper Replacement": {
+                positions: {
+                    left_front: {
+                        label: "Left Front",
+                        hours: 1.5
+                    },
+                    right_front: {
+                        label: "Right Front",
+                        hours: 1.5
+                    },
+                    both_front: {
+                        label: "Both Front",
+                        hours: 2.5
+                    },
+                    left_rear: {
+                        label: "Left Rear",
+                        hours: 1.5
+                    },
+                    right_rear: {
+                        label: "Right Rear",
+                        hours: 1.5
+                    },
+                    both_rear: {
+                        label: "Both Rear",
+                        hours: 2.5
+                    }
+                }
+            },
+
+            "Brake Fluid Flush": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            },
+
+            "Brake Inspection": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 0.5
+                    }
+                }
+            },
+
+            "Brake Line Repair": {
+                positions: {
+                    left_front: {
+                        label: "Left Front",
+                        hours: 1.5
+                    },
+                    right_front: {
+                        label: "Right Front",
+                        hours: 1.5
+                    },
+                    left_rear: {
+                        label: "Left Rear",
+                        hours: 1.5
+                    },
+                    right_rear: {
+                        label: "Right Rear",
+                        hours: 1.5
+                    }
+                }
+            }
+        },
+
+
+        /* =================================================
+           OIL & MAINTENANCE
+        ================================================= */
+
+        oil: {
+
+            "Engine Oil Change": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 0.5
+                    }
+                }
+            },
+
+            "Oil & Filter Change": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 0.5
+                    }
+                }
+            },
+
+            "Transmission Fluid Service": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            },
+
+            "Coolant Service": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            },
+
+            "General Maintenance Service": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            },
+
+            "Vehicle Inspection": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 0.5
+                    }
+                }
+            }
+        },
+
+
+        /* =================================================
+           TIRES
+        ================================================= */
+
+        tires: {
+
+            "Tire Mount & Balance": {
+                positions: {
+                    one: {
+                        label: "One Tire",
+                        hours: 0.5
+                    },
+                    two: {
+                        label: "Two Tires",
+                        hours: 0.8
+                    },
+                    four: {
+                        label: "Four Tires",
+                        hours: 1.2
+                    }
+                }
+            },
+
+            "Tire Rotation": {
+                positions: {
+                    four: {
+                        label: "Four Tires",
+                        hours: 0.5
+                    }
+                }
+            },
+
+            "Flat Tire Repair": {
+                positions: {
+                    left_front: {
+                        label: "Left Front",
+                        hours: 0.4
+                    },
+                    right_front: {
+                        label: "Right Front",
+                        hours: 0.4
+                    },
+                    left_rear: {
+                        label: "Left Rear",
+                        hours: 0.4
+                    },
+                    right_rear: {
+                        label: "Right Rear",
+                        hours: 0.4
+                    }
+                }
+            },
+
+            "Tire Replacement": {
+                positions: {
+                    front: {
+                        label: "Front",
+                        hours: 0.8
+                    },
+                    rear: {
+                        label: "Rear",
+                        hours: 0.8
+                    },
+                    all_four: {
+                        label: "All Four",
+                        hours: 1.2
+                    }
+                }
+            },
+
+            "Wheel Alignment": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            }
+        },
+
+
+        /* =================================================
+           SUSPENSION
+        ================================================= */
+
+        suspension: {
+
+            "Control Arm Replacement": {
+                positions: {
+                    left_front: {
+                        label: "Left Front",
+                        hours: 2.0
+                    },
+                    right_front: {
+                        label: "Right Front",
+                        hours: 2.0
+                    },
+                    both_front: {
+                        label: "Both Front",
+                        hours: 3.5
+                    },
+                    left_rear: {
+                        label: "Left Rear",
+                        hours: 2.0
+                    },
+                    right_rear: {
+                        label: "Right Rear",
+                        hours: 2.0
+                    },
+                    both_rear: {
+                        label: "Both Rear",
+                        hours: 3.5
+                    }
+                }
+            },
+
+            "Ball Joint Replacement": {
+                positions: {
+                    left_front: {
+                        label: "Left Front",
+                        hours: 2.0
+                    },
+                    right_front: {
+                        label: "Right Front",
+                        hours: 2.0
+                    },
+                    both_front: {
+                        label: "Both Front",
+                        hours: 3.5
+                    }
+                }
+            },
+
+            "Strut Replacement": {
+                positions: {
+                    left_front: {
+                        label: "Left Front",
+                        hours: 2.5
+                    },
+                    right_front: {
+                        label: "Right Front",
+                        hours: 2.5
+                    },
+                    both_front: {
+                        label: "Both Front",
+                        hours: 4.0
+                    }
+                }
+            },
+
+            "Shock Absorber Replacement": {
+                positions: {
+                    left_rear: {
+                        label: "Left Rear",
+                        hours: 1.5
+                    },
+                    right_rear: {
+                        label: "Right Rear",
+                        hours: 1.5
+                    },
+                    both_rear: {
+                        label: "Both Rear",
+                        hours: 2.5
+                    }
+                }
+            },
+
+            "Sway Bar Link Replacement": {
+                positions: {
+                    left_front: {
+                        label: "Left Front",
+                        hours: 1.0
+                    },
+                    right_front: {
+                        label: "Right Front",
+                        hours: 1.0
+                    },
+                    both_front: {
+                        label: "Both Front",
+                        hours: 1.5
+                    },
+                    left_rear: {
+                        label: "Left Rear",
+                        hours: 1.0
+                    },
+                    right_rear: {
+                        label: "Right Rear",
+                        hours: 1.0
+                    },
+                    both_rear: {
+                        label: "Both Rear",
+                        hours: 1.5
+                    }
+                }
+            },
+
+            "Wheel Bearing Replacement": {
+                positions: {
+                    left_front: {
+                        label: "Left Front",
+                        hours: 2.0
+                    },
+                    right_front: {
+                        label: "Right Front",
+                        hours: 2.0
+                    },
+                    both_front: {
+                        label: "Both Front",
+                        hours: 3.5
+                    },
+                    left_rear: {
+                        label: "Left Rear",
+                        hours: 1.8
+                    },
+                    right_rear: {
+                        label: "Right Rear",
+                        hours: 1.8
+                    },
+                    both_rear: {
+                        label: "Both Rear",
+                        hours: 3.0
+                    }
+                }
+            },
+
+            "Suspension Inspection": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 0.7
+                    }
+                }
+            }
+        },
+
+
+        /* =================================================
+           STEERING
+        ================================================= */
+
+        steering: {
+
+            "Tie Rod Replacement": {
+                positions: {
+                    left: {
+                        label: "Left",
+                        hours: 1.2
+                    },
+                    right: {
+                        label: "Right",
+                        hours: 1.2
+                    },
+                    both: {
+                        label: "Both",
+                        hours: 2.0
+                    }
+                }
+            },
+
+            "Outer Tie Rod Replacement": {
+                positions: {
+                    left: {
+                        label: "Left",
+                        hours: 1.0
+                    },
+                    right: {
+                        label: "Right",
+                        hours: 1.0
+                    },
+                    both: {
+                        label: "Both",
+                        hours: 1.7
+                    }
+                }
+            },
+
+            "Inner Tie Rod Replacement": {
+                positions: {
+                    left: {
+                        label: "Left",
+                        hours: 1.5
+                    },
+                    right: {
+                        label: "Right",
+                        hours: 1.5
+                    },
+                    both: {
+                        label: "Both",
+                        hours: 2.5
+                    }
+                }
+            },
+
+            "Steering Rack Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 4.0
+                    }
+                }
+            },
+
+            "Power Steering Pump Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 2.5
+                    }
+                }
+            },
+
+            "Steering Inspection": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 0.7
+                    }
+                }
+            }
+        },
+
+
+        /* =================================================
+           ENGINE
+        ================================================= */
+
+        engine: {
+
+            "Alternator Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.5
+                    }
+                }
+            },
+
+            "Starter Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.5
+                    }
+                }
+            },
+
+            "Serpentine Belt Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 0.8
+                    }
+                }
+            },
+
+            "Timing Belt Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 5.0
+                    }
+                }
+            },
+
+            "Timing Chain Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 7.0
+                    }
+                }
+            },
+
+            "Water Pump Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 3.0
+                    }
+                }
+            },
+
+            "Valve Cover Gasket": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 2.0
+                    }
+                }
+            },
+
+            "Head Gasket Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 10.0
+                    }
+                }
+            },
+
+            "Engine Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 12.0
+                    }
+                }
+            },
+
+            "Spark Plug Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            },
+
+            "Engine Diagnostic / Inspection": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            }
+        },
+
+
+        /* =================================================
+           TRANSMISSION
+        ================================================= */
+
+        transmission: {
+
+            "Transmission Fluid Service": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            },
+
+            "Transmission Pan Gasket": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 2.0
+                    }
+                }
+            },
+
+            "Transmission Mount Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 2.0
+                    }
+                }
+            },
+
+            "CV Axle Replacement": {
+                positions: {
+                    left_front: {
+                        label: "Left Front",
+                        hours: 1.5
+                    },
+                    right_front: {
+                        label: "Right Front",
+                        hours: 1.5
+                    },
+                    both_front: {
+                        label: "Both Front",
+                        hours: 2.5
+                    }
+                }
+            },
+
+            "Transmission Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 8.0
+                    }
+                }
+            },
+
+            "Clutch Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 8.0
+                    }
+                }
+            }
+        },
+
+
+        /* =================================================
+           EXHAUST
+        ================================================= */
+
+        exhaust: {
+
+            "Muffler Replacement": {
+                positions: {
+                    rear: {
+                        label: "Rear",
+                        hours: 1.5
+                    }
+                }
+            },
+
+            "Catalytic Converter Replacement": {
+                positions: {
+                    front: {
+                        label: "Front",
+                        hours: 2.0
+                    },
+                    rear: {
+                        label: "Rear",
+                        hours: 2.0
+                    }
+                }
+            },
+
+            "Exhaust Pipe Replacement": {
+                positions: {
+                    front: {
+                        label: "Front",
+                        hours: 2.0
+                    },
+                    center: {
+                        label: "Center",
+                        hours: 1.5
+                    },
+                    rear: {
+                        label: "Rear",
+                        hours: 1.5
+                    },
+                    full_system: {
+                        label: "Full System",
+                        hours: 3.5
+                    }
+                }
+            },
+
+            "Exhaust Manifold Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 3.0
+                    }
+                }
+            },
+
+            "Exhaust Leak Repair": {
+                positions: {
+                    front: {
+                        label: "Front",
+                        hours: 1.5
+                    },
+                    center: {
+                        label: "Center",
+                        hours: 1.0
+                    },
+                    rear: {
+                        label: "Rear",
+                        hours: 1.0
+                    }
+                }
+            }
+        },
+
+
+        /* =================================================
+           COOLING SYSTEM
+        ================================================= */
+
+        cooling: {
+
+            "Radiator Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 2.0
+                    }
+                }
+            },
+
+            "Thermostat Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.5
+                    }
+                }
+            },
+
+            "Water Pump Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 3.0
+                    }
+                }
+            },
+
+            "Cooling Fan Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.5
+                    }
+                }
+            },
+
+            "Coolant Flush": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            },
+
+            "Hose Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            }
+        },
+
+
+        /* =================================================
+           ELECTRICAL
+        ================================================= */
+
+        electrical: {
+
+            "Battery Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 0.3
+                    }
+                }
+            },
+
+            "Alternator Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.5
+                    }
+                }
+            },
+
+            "Starter Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.5
+                    }
+                }
+            },
+
+            "Battery / Charging System Test": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 0.5
+                    }
+                }
+            },
+
+            "Electrical Diagnostic": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            },
+
+            "Window Motor Replacement": {
+                positions: {
+                    left_front: {
+                        label: "Left Front",
+                        hours: 1.5
+                    },
+                    right_front: {
+                        label: "Right Front",
+                        hours: 1.5
+                    },
+                    left_rear: {
+                        label: "Left Rear",
+                        hours: 1.5
+                    },
+                    right_rear: {
+                        label: "Right Rear",
+                        hours: 1.5
+                    }
+                }
+            }
+        },
+
+
+        /* =================================================
+           AIR CONDITIONING
+        ================================================= */
+
+        "air-conditioning": {
+
+            "A/C Diagnostic": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            },
+
+            "A/C Recharge": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            },
+
+            "A/C Compressor Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 3.0
+                    }
+                }
+            },
+
+            "A/C Condenser Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 2.5
+                    }
+                }
+            },
+
+            "A/C Evaporator Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 6.0
+                    }
+                }
+            },
+
+            "Blower Motor Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 2.0
+                    }
+                }
+            }
+        },
+
+
+        /* =================================================
+           DIAGNOSTICS
+        ================================================= */
+
+        diagnostics: {
+
+            "Check Engine Diagnostic": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            },
+
+            "Electrical Diagnostic": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            },
+
+            "Noise / Vibration Diagnostic": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            },
+
+            "Brake Diagnostic": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 0.8
+                    }
+                }
+            },
+
+            "General Vehicle Diagnostic": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            }
+        },
+
+
+        /* =================================================
+           BODYWORK
+        ================================================= */
+
+        bodywork: {
+
+            "Bumper Replacement": {
+                positions: {
+                    front: {
+                        label: "Front",
+                        hours: 2.0
+                    },
+                    rear: {
+                        label: "Rear",
+                        hours: 2.0
+                    }
+                }
+            },
+
+            "Fender Replacement": {
+                positions: {
+                    left_front: {
+                        label: "Left Front",
+                        hours: 3.0
+                    },
+                    right_front: {
+                        label: "Right Front",
+                        hours: 3.0
+                    }
+                }
+            },
+
+            "Door Replacement": {
+                positions: {
+                    left_front: {
+                        label: "Left Front",
+                        hours: 3.0
+                    },
+                    right_front: {
+                        label: "Right Front",
+                        hours: 3.0
+                    },
+                    left_rear: {
+                        label: "Left Rear",
+                        hours: 3.0
+                    },
+                    right_rear: {
+                        label: "Right Rear",
+                        hours: 3.0
+                    }
+                }
+            },
+
+            "Hood Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 2.0
+                    }
+                }
+            },
+
+            "Trunk / Liftgate Replacement": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 2.5
+                    }
+                }
+            },
+
+            "Minor Dent Repair": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 2.0
+                    }
+                }
+            }
+        },
+
+
+        /* =================================================
+           OTHER REPAIR
+        ================================================= */
+
+        other: {
+
+            "General Repair": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            },
+
+            "Inspection": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            },
+
+            "Custom Repair": {
+                positions: {
+                    na: {
+                        label: "Not Applicable",
+                        hours: 1.0
+                    }
+                }
+            }
+        }
+    };
+
+
+    /* =====================================================
+       4. DOM ELEMENTS
     ===================================================== */
 
     const countrySelect = document.getElementById("repairCountry");
@@ -326,20 +1482,39 @@ document.addEventListener("DOMContentLoaded", () => {
     const currencySelect = document.getElementById("repairCurrency");
     const customCurrencyGroup =
         document.getElementById("customCurrencyGroup");
-
     const customCurrencyInput =
         document.getElementById("customCurrency");
 
     const taxSelect = document.getElementById("repairTax");
     const customTaxGroup =
         document.getElementById("customTaxGroup");
-
     const customTaxRate =
         document.getElementById("customTaxRate");
 
+    const categorySelect =
+        document.getElementById("repairCategory");
+
+    const serviceSelect =
+        document.getElementById("repairService");
+
+    const positionSelect =
+        document.getElementById("repairPosition");
+
+    const suggestedHoursInput =
+        document.getElementById("suggestedLabourHours");
+
+    const labourHoursInput =
+        document.getElementById("labourHours");
+
+    const labourRateInput =
+        document.getElementById("labourRate");
+
+    const repairDescription =
+        document.getElementById("repairDescription");
+
 
     /* =====================================================
-       POPULATE CANADIAN PROVINCES
+       5. LOCATION FUNCTIONS
     ===================================================== */
 
     function populateCanadianRegions() {
@@ -347,38 +1522,38 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!regionSelect) return;
 
         regionSelect.innerHTML =
-            '<option value="">Select location</option>';
+            '<option value="">Select province</option>';
 
-        Object.keys(canadianLocations).forEach(region => {
+        Object.keys(canadianLocations).forEach(key => {
 
-            const option = document.createElement("option");
+            const option =
+                document.createElement("option");
 
-            option.value = region;
-            option.textContent = region;
+            option.value = key;
+            option.textContent =
+                canadianLocations[key].name;
 
             regionSelect.appendChild(option);
         });
     }
 
-
-    /* =====================================================
-       POPULATE INTERNATIONAL REGIONS
-    ===================================================== */
 
     function populateInternationalRegions(country) {
 
         if (!regionSelect) return;
 
         regionSelect.innerHTML =
-            '<option value="">Select location</option>';
+            '<option value="">Select region</option>';
 
-        const location = internationalLocations[country];
+        const data =
+            internationalLocations[country];
 
-        if (!location || !location.regions) return;
+        if (!data) return;
 
-        location.regions.forEach(region => {
+        data.regions.forEach(region => {
 
-            const option = document.createElement("option");
+            const option =
+                document.createElement("option");
 
             option.value = region;
             option.textContent = region;
@@ -388,28 +1563,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =====================================================
-       POPULATE CANADIAN CITIES
-       ORIGINAL CANADA BEHAVIOR
-    ===================================================== */
-
-    function populateCanadianCities(region) {
+    function populateCanadianCities(province) {
 
         if (!citySelect) return;
 
         citySelect.innerHTML =
             '<option value="">Select city</option>';
 
-        if (
-            !region ||
-            !canadianLocations[region]
-        ) {
-            return;
-        }
+        const data =
+            canadianLocations[province];
 
-        canadianLocations[region].cities.forEach(city => {
+        if (!data) return;
 
-            const option = document.createElement("option");
+        data.cities.forEach(city => {
+
+            const option =
+                document.createElement("option");
 
             option.value = city;
             option.textContent = city;
@@ -419,13 +1588,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =====================================================
-       SHOW / HIDE CITY FIELD
-       
-       Canada = dropdown
-       Everything else = writable city
-    ===================================================== */
-
     function updateCityField(country) {
 
         if (!citySelect || !cityInput) return;
@@ -433,472 +1595,399 @@ document.addEventListener("DOMContentLoaded", () => {
         if (country === "canada") {
 
             citySelect.style.display = "";
-            citySelect.disabled = false;
-
             cityInput.style.display = "none";
-            cityInput.disabled = true;
-
-            cityInput.value = "";
 
         } else {
 
             citySelect.style.display = "none";
-            citySelect.disabled = true;
-
             cityInput.style.display = "";
-            cityInput.disabled = false;
-
-            citySelect.value = "";
-
         }
     }
 
-
-    /* =====================================================
-       SHOW / HIDE REGION FIELD
-       
-       Canada = dropdown
-       US / UK / Australia / NZ = dropdown
-       Other = writable
-    ===================================================== */
 
     function updateRegionField(country) {
 
         if (!regionSelect || !regionInput) return;
 
-        if (country === "other") {
+        if (country === "canada") {
 
-            regionSelect.style.display = "none";
-            regionSelect.disabled = true;
+            regionSelect.style.display = "";
+            regionInput.style.display = "none";
 
-            regionInput.style.display = "";
-            regionInput.disabled = false;
+            populateCanadianRegions();
 
-            regionInput.value = "";
+        } else if (internationalLocations[country]) {
+
+            regionSelect.style.display = "";
+            regionInput.style.display = "none";
+
+            populateInternationalRegions(country);
 
         } else {
 
-            regionSelect.style.display = "";
-            regionSelect.disabled = false;
-
-            regionInput.style.display = "none";
-            regionInput.disabled = true;
-
-            regionInput.value = "";
-
+            regionSelect.style.display = "none";
+            regionInput.style.display = "";
         }
     }
 
 
     /* =====================================================
-       UPDATE CURRENCY
+       6. CURRENCY
     ===================================================== */
 
     function updateCurrency(country) {
 
         if (!currencySelect) return;
 
+        const data =
+            internationalLocations[country];
+
         if (country === "canada") {
 
             currencySelect.value = "CAD";
-            currencySelect.disabled = true;
 
-        } else if (
-            internationalLocations[country]
-        ) {
+        } else if (data) {
 
-            currencySelect.value =
-                internationalLocations[country].currency;
-
-            currencySelect.disabled = true;
-
-        } else if (country === "other") {
-
-            currencySelect.disabled = false;
-
-            /*
-             * User can select Other and enter
-             * a currency code.
-             */
-        }
-    }
-
-
-    /* =====================================================
-       SHOW / HIDE CUSTOM CURRENCY
-    ===================================================== */
-
-    function updateCustomCurrency() {
-
-        if (
-            !currencySelect ||
-            !customCurrencyGroup ||
-            !customCurrencyInput
-        ) {
-            return;
+            currencySelect.value = data.currency;
         }
 
         if (currencySelect.value === "other") {
 
-            customCurrencyGroup.style.display = "";
-            customCurrencyInput.disabled = false;
+            if (customCurrencyGroup)
+                customCurrencyGroup.style.display = "";
 
         } else {
 
-            customCurrencyGroup.style.display = "none";
-            customCurrencyInput.disabled = true;
-            customCurrencyInput.value = "";
+            if (customCurrencyGroup)
+                customCurrencyGroup.style.display = "none";
         }
     }
 
 
+    function updateCustomCurrency() {
+
+        if (!currencySelect || !customCurrencyGroup)
+            return;
+
+        customCurrencyGroup.style.display =
+            currencySelect.value === "other"
+                ? ""
+                : "none";
+    }
+
+
     /* =====================================================
-       UPDATE TAX FOR COUNTRY / REGION
+       7. TAX
     ===================================================== */
 
-    function updateTaxForLocation() {
+    function setTaxValue(value) {
 
         if (!taxSelect) return;
 
-        const country = countrySelect.value;
+        const numericValue =
+            Number(value);
 
-        /* -------------------------------
-           CANADA
-        -------------------------------- */
-
-        if (country === "canada") {
-
-            const region = regionSelect.value;
-
-            if (
-                region &&
-                canadianLocations[region]
-            ) {
-
-                const tax =
-                    canadianLocations[region].tax;
-
-                setTaxValue(tax);
-            }
-
-            return;
-        }
-
-
-        /* -------------------------------
-           INTERNATIONAL
-        -------------------------------- */
-
-        if (
-            internationalLocations[country]
-        ) {
-
-            const tax =
-                internationalLocations[country].tax;
-
-            setTaxValue(tax);
-
-            return;
-        }
-
-
-        /* -------------------------------
-           OTHER
-        -------------------------------- */
-
-        if (country === "other") {
-
-            /*
-             * Do not force a tax rate.
-             * User chooses the tax.
-             */
-
-            taxSelect.value = "custom";
-
-            showCustomTax();
-
-            return;
-        }
-    }
-
-
-    /* =====================================================
-       SET TAX VALUE
-    ===================================================== */
-
-    function setTaxValue(tax) {
-
-        const taxString = String(tax);
-
-        const matchingOption =
+        const availableOption =
             Array.from(taxSelect.options)
                 .find(option =>
-                    option.value === taxString
+                    option.value === String(numericValue)
                 );
 
-        if (matchingOption) {
+        if (availableOption) {
 
-            taxSelect.value = taxString;
+            taxSelect.value =
+                String(numericValue);
+
+            if (customTaxGroup)
+                customTaxGroup.hidden = true;
 
         } else {
 
             taxSelect.value = "custom";
 
-            if (customTaxRate) {
-                customTaxRate.value = tax;
+            if (customTaxGroup)
+                customTaxGroup.hidden = false;
+
+            if (customTaxRate)
+                customTaxRate.value =
+                    numericValue;
+        }
+    }
+
+
+    function updateTaxForLocation() {
+
+        const country =
+            countrySelect?.value;
+
+        if (country === "canada") {
+
+            const province =
+                regionSelect?.value;
+
+            const data =
+                canadianLocations[province];
+
+            if (data) {
+                setTaxValue(data.tax);
             }
 
-            showCustomTax();
+            return;
+        }
+
+        const data =
+            internationalLocations[country];
+
+        if (data) {
+            setTaxValue(data.tax);
         }
     }
 
 
     /* =====================================================
-       CUSTOM TAX DISPLAY
+       8. REPAIR SERVICE FUNCTIONS
     ===================================================== */
 
-    function showCustomTax() {
+    function populateRepairServices() {
 
-        if (!customTaxGroup) return;
+        if (!serviceSelect) return;
 
-        customTaxGroup.hidden = false;
-    }
+        const category =
+            categorySelect?.value;
 
+        serviceSelect.innerHTML =
+            '<option value="">Select service</option>';
 
-    function hideCustomTax() {
+        clearPositions();
+        clearSuggestedHours();
 
-        if (!customTaxGroup) return;
+        if (!category || !repairServices[category])
+            return;
 
-        customTaxGroup.hidden = true;
-    }
+        const services =
+            repairServices[category];
 
+        Object.keys(services).forEach(serviceName => {
 
-    /* =====================================================
-       TAX SELECTION CHANGE
-    ===================================================== */
+            const option =
+                document.createElement("option");
 
-    if (taxSelect) {
+            option.value = serviceName;
+            option.textContent = serviceName;
 
-        taxSelect.addEventListener("change", () => {
-
-            if (taxSelect.value === "custom") {
-
-                showCustomTax();
-
-            } else {
-
-                hideCustomTax();
-            }
+            serviceSelect.appendChild(option);
         });
     }
 
 
-    /* =====================================================
-       COUNTRY CHANGE
-    ===================================================== */
+    function clearPositions() {
 
-    if (countrySelect) {
+        if (!positionSelect) return;
 
-        countrySelect.addEventListener("change", () => {
-
-            const country =
-                countrySelect.value;
+        positionSelect.innerHTML =
+            '<option value="">Select position</option>';
+    }
 
 
-            /* -------------------------------
-               CANADA
-            -------------------------------- */
+    function clearSuggestedHours() {
 
-            if (country === "canada") {
-
-                populateCanadianRegions();
-
-                updateRegionField("canada");
-
-                updateCityField("canada");
-
-                updateCurrency("canada");
-
-                hideCustomTax();
-
-                return;
-            }
+        if (suggestedHoursInput)
+            suggestedHoursInput.value = "";
+    }
 
 
-            /* -------------------------------
-               UNITED STATES / UK / AUSTRALIA /
-               NEW ZEALAND
-            -------------------------------- */
+    function populateRepairPositions() {
 
-            if (
-                internationalLocations[country]
-            ) {
+        if (!positionSelect) return;
 
-                populateInternationalRegions(country);
+        clearPositions();
+        clearSuggestedHours();
 
-                updateRegionField(country);
+        const category =
+            categorySelect?.value;
 
-                updateCityField(country);
+        const service =
+            serviceSelect?.value;
 
-                updateCurrency(country);
+        if (
+            !category ||
+            !service ||
+            !repairServices[category] ||
+            !repairServices[category][service]
+        ) {
+            return;
+        }
 
-                updateCustomCurrency();
+        const positions =
+            repairServices[category][service].positions;
 
-                updateTaxForLocation();
+        Object.keys(positions).forEach(positionKey => {
 
-                return;
-            }
+            const position =
+                positions[positionKey];
 
+            const option =
+                document.createElement("option");
 
-            /* -------------------------------
-               OTHER
-            -------------------------------- */
+            option.value = positionKey;
+            option.textContent = position.label;
 
-            if (country === "other") {
-
-                updateRegionField("other");
-
-                updateCityField("other");
-
-                currencySelect.disabled = false;
-
-                /*
-                 * Allow user to choose any
-                 * available currency or Other.
-                 */
-
-                updateCustomCurrency();
-
-                updateTaxForLocation();
-
-                return;
-            }
-
+            positionSelect.appendChild(option);
         });
+
+        /*
+           If there is only one possible position,
+           automatically select it.
+        */
+
+        const positionKeys =
+            Object.keys(positions);
+
+        if (positionKeys.length === 1) {
+
+            positionSelect.value =
+                positionKeys[0];
+
+            updateSuggestedHours();
+        }
+    }
+
+
+    function updateSuggestedHours() {
+
+        if (!suggestedHoursInput)
+            return;
+
+        const category =
+            categorySelect?.value;
+
+        const service =
+            serviceSelect?.value;
+
+        const position =
+            positionSelect?.value;
+
+        if (
+            !category ||
+            !service ||
+            !position ||
+            !repairServices[category] ||
+            !repairServices[category][service]
+        ) {
+
+            clearSuggestedHours();
+            return;
+        }
+
+        const positionData =
+            repairServices[category][service]
+                .positions[position];
+
+        if (!positionData) {
+
+            clearSuggestedHours();
+            return;
+        }
+
+        const hours =
+            Number(positionData.hours);
+
+        suggestedHoursInput.value =
+            hours.toFixed(1);
+
+        /*
+           The suggested hours are copied into the
+           editable Labour Hours field.
+        */
+
+        if (labourHoursInput) {
+
+            labourHoursInput.value =
+                hours.toFixed(1);
+        }
     }
 
 
     /* =====================================================
-       REGION CHANGE
+       9. GET SELECTED LOCATION
     ===================================================== */
 
-    if (regionSelect) {
+    function getSelectedRegion() {
 
-        regionSelect.addEventListener("change", () => {
+        const country =
+            countrySelect?.value;
 
-            const country =
-                countrySelect.value;
+        if (country === "canada") {
 
-            if (country === "canada") {
+            const key =
+                regionSelect?.value;
 
-                populateCanadianCities(
-                    regionSelect.value
-                );
+            return canadianLocations[key]?.name || "";
+        }
 
-                updateTaxForLocation();
-            }
-        });
+        if (internationalLocations[country]) {
+
+            return regionSelect?.value || "";
+        }
+
+        return regionInput?.value?.trim() || "";
     }
 
 
-    /* =====================================================
-       CURRENCY CHANGE
-    ===================================================== */
+    function getSelectedCity() {
 
-    if (currencySelect) {
+        const country =
+            countrySelect?.value;
 
-        currencySelect.addEventListener(
-            "change",
-            updateCustomCurrency
+        if (country === "canada") {
+
+            return citySelect?.value || "";
+        }
+
+        return cityInput?.value?.trim() || "";
+    }
+
+
+    function getSelectedCurrency() {
+
+        if (
+            currencySelect?.value === "other"
+        ) {
+
+            return (
+                customCurrencyInput?.value
+                    ?.trim()
+                    .toUpperCase() || "CUR"
+            );
+        }
+
+        return currencySelect?.value || "CAD";
+    }
+
+
+    function getTaxRate() {
+
+        if (taxSelect?.value === "custom") {
+
+            return Number(
+                customTaxRate?.value || 0
+            );
+        }
+
+        return Number(
+            taxSelect?.value || 0
         );
     }
 
 
     /* =====================================================
-       INITIALIZE
+       10. CALCULATION HELPERS
     ===================================================== */
 
-    populateCanadianRegions();
+    function getNumber(id) {
 
-    if (countrySelect) {
-
-        countrySelect.value = "canada";
-    }
-
-    updateRegionField("canada");
-
-    updateCityField("canada");
-
-    updateCurrency("canada");
-
-    updateCustomCurrency();
-
-    hideCustomTax();
-
-
-    /* =====================================================
-       OTHER CALCULATOR CODE
-       
-       The following section keeps the actual
-       repair estimate calculation.
-    ===================================================== */
-
-    const calculateButton =
-        document.getElementById("calculateRepair");
-
-    const resetButton =
-        document.getElementById("resetRepair");
-
-    const results =
-        document.getElementById("repairResults");
-
-
-    const labourHours =
-        document.getElementById("labourHours");
-
-    const labourRate =
-        document.getElementById("labourRate");
-
-    const partsCost =
-        document.getElementById("partsCost");
-
-    const partsMarkup =
-        document.getElementById("partsMarkup");
-
-    const shopSupplies =
-        document.getElementById("shopSupplies");
-
-    const diagnosticFee =
-        document.getElementById("diagnosticFee");
-
-    const otherFees =
-        document.getElementById("otherFees");
-
-
-    const vehicleYear =
-        document.getElementById("vehicleYear");
-
-    const vehicleMake =
-        document.getElementById("vehicleMake");
-
-    const vehicleModel =
-        document.getElementById("vehicleModel");
-
-    const vehicleMileage =
-        document.getElementById("vehicleMileage");
-
-    const repairCategory =
-        document.getElementById("repairCategory");
-
-    const repairDescription =
-        document.getElementById("repairDescription");
-
-
-    /* =====================================================
-       NUMBER HELPER
-    ===================================================== */
-
-    function getNumber(element) {
+        const element =
+            document.getElementById(id);
 
         if (!element) return 0;
 
@@ -911,168 +2000,57 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =====================================================
-       CURRENCY FORMAT
-    ===================================================== */
+    function money(value) {
 
-    function formatMoney(amount, currency) {
+        const currency =
+            getSelectedCurrency();
 
-        const validCurrency =
-            currency || "CAD";
-
-        try {
-
-            return new Intl.NumberFormat(
-                undefined,
-                {
-                    style: "currency",
-                    currency: validCurrency
-                }
-            ).format(amount);
-
-        } catch (error) {
-
-            return `${validCurrency} ${amount.toFixed(2)}`;
-        }
+        return `${currency} ${Number(value || 0)
+            .toFixed(2)}`;
     }
 
 
     /* =====================================================
-       GET SELECTED CITY
-    ===================================================== */
-
-    function getSelectedCity() {
-
-        const country =
-            countrySelect.value;
-
-        if (country === "canada") {
-
-            return citySelect.value || "Not specified";
-
-        }
-
-        return cityInput.value.trim() ||
-            "Not specified";
-    }
-
-
-    /* =====================================================
-       GET SELECTED REGION
-    ===================================================== */
-
-    function getSelectedRegion() {
-
-        const country =
-            countrySelect.value;
-
-        if (country === "other") {
-
-            return regionInput.value.trim() ||
-                "Not specified";
-        }
-
-        return regionSelect.value ||
-            "Not specified";
-    }
-
-
-    /* =====================================================
-       GET COUNTRY DISPLAY NAME
-    ===================================================== */
-
-    function getCountryName() {
-
-        const option =
-            countrySelect.options[
-                countrySelect.selectedIndex
-            ];
-
-        return option
-            ? option.textContent.trim()
-            : "";
-    }
-
-
-    /* =====================================================
-       GET CURRENCY
-    ===================================================== */
-
-    function getSelectedCurrency() {
-
-        if (
-            countrySelect.value === "other" &&
-            currencySelect.value === "other"
-        ) {
-
-            return (
-                customCurrencyInput.value
-                    .trim()
-                    .toUpperCase()
-                || "USD"
-            );
-        }
-
-        return currencySelect.value || "CAD";
-    }
-
-
-    /* =====================================================
-       GET TAX RATE
-    ===================================================== */
-
-    function getTaxRate() {
-
-        if (taxSelect.value === "custom") {
-
-            return getNumber(customTaxRate);
-        }
-
-        return getNumber(taxSelect);
-    }
-
-
-    /* =====================================================
-       CALCULATE REPAIR ESTIMATE
+       11. CALCULATE ESTIMATE
     ===================================================== */
 
     function calculateRepairEstimate() {
 
-        const hours =
-            getNumber(labourHours);
+        const labourHours =
+            getNumber("labourHours");
 
-        const rate =
-            getNumber(labourRate);
+        const labourRate =
+            getNumber("labourRate");
 
-        const parts =
-            getNumber(partsCost);
+        const partsCost =
+            getNumber("partsCost");
 
-        const markup =
-            getNumber(partsMarkup);
+        const partsMarkup =
+            getNumber("partsMarkup");
 
-        const supplies =
-            getNumber(shopSupplies);
+        const shopSupplies =
+            getNumber("shopSupplies");
 
-        const diagnostic =
-            getNumber(diagnosticFee);
+        const diagnosticFee =
+            getNumber("diagnosticFee");
 
-        const other =
-            getNumber(otherFees);
+        const otherFees =
+            getNumber("otherFees");
 
 
         /* Labour */
 
         const labourTotal =
-            hours * rate;
+            labourHours * labourRate;
 
 
-        /* Parts + markup */
+        /* Parts markup */
 
-        const markupAmount =
-            parts * (markup / 100);
+        const partsMarkupAmount =
+            partsCost * (partsMarkup / 100);
 
         const partsTotal =
-            parts + markupAmount;
+            partsCost + partsMarkupAmount;
 
 
         /* Subtotal */
@@ -1080,9 +2058,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const subtotal =
             labourTotal +
             partsTotal +
-            supplies +
-            diagnostic +
-            other;
+            shopSupplies +
+            diagnosticFee +
+            otherFees;
 
 
         /* Tax */
@@ -1100,16 +2078,12 @@ document.addEventListener("DOMContentLoaded", () => {
             subtotal + taxAmount;
 
 
-        const currency =
-            getSelectedCurrency();
-
-
         /* =================================================
-           DISPLAY RESULTS
+           RESULT ELEMENTS
         ================================================= */
 
-        const estimateLocation =
-            document.getElementById("estimateLocation");
+        const repairResults =
+            document.getElementById("repairResults");
 
         const resultLabour =
             document.getElementById("resultLabour");
@@ -1135,6 +2109,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const resultTotal =
             document.getElementById("resultTotal");
 
+        const estimateLocation =
+            document.getElementById("estimateLocation");
+
         const resultVehicle =
             document.getElementById("resultVehicle");
 
@@ -1142,8 +2119,42 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("resultRepair");
 
 
-        const country =
-            getCountryName();
+        if (resultLabour)
+            resultLabour.textContent =
+                money(labourTotal);
+
+        if (resultParts)
+            resultParts.textContent =
+                money(partsTotal);
+
+        if (resultShopSupplies)
+            resultShopSupplies.textContent =
+                money(shopSupplies);
+
+        if (resultDiagnostic)
+            resultDiagnostic.textContent =
+                money(diagnosticFee);
+
+        if (resultOtherFees)
+            resultOtherFees.textContent =
+                money(otherFees);
+
+        if (resultSubtotal)
+            resultSubtotal.textContent =
+                money(subtotal);
+
+        if (resultTax)
+            resultTax.textContent =
+                `${money(taxAmount)} (${taxRate.toFixed(2)}%)`;
+
+        if (resultTotal)
+            resultTotal.textContent =
+                money(total);
+
+
+        /* =================================================
+           LOCATION DISPLAY
+        ================================================= */
 
         const region =
             getSelectedRegion();
@@ -1151,123 +2162,141 @@ document.addEventListener("DOMContentLoaded", () => {
         const city =
             getSelectedCity();
 
-
         if (estimateLocation) {
 
+            const locationParts = [];
+
+            if (city)
+                locationParts.push(city);
+
+            if (region)
+                locationParts.push(region);
+
+            const countryName =
+                countrySelect?.options[
+                    countrySelect.selectedIndex
+                ]?.textContent || "";
+
+            if (countryName)
+                locationParts.push(countryName);
+
             estimateLocation.textContent =
-                `${country} • ${region} • ${city}`;
+                locationParts.length
+                    ? locationParts.join(", ")
+                    : "Location not selected";
         }
 
 
-        if (resultLabour) {
+        /* =================================================
+           VEHICLE
+        ================================================= */
 
-            resultLabour.textContent =
-                formatMoney(
-                    labourTotal,
-                    currency
-                );
-        }
+        const year =
+            document.getElementById("vehicleYear")
+                ?.value?.trim() || "";
 
+        const make =
+            document.getElementById("vehicleMake")
+                ?.value?.trim() || "";
 
-        if (resultParts) {
+        const model =
+            document.getElementById("vehicleModel")
+                ?.value?.trim() || "";
 
-            resultParts.textContent =
-                formatMoney(
-                    partsTotal,
-                    currency
-                );
-        }
-
-
-        if (resultShopSupplies) {
-
-            resultShopSupplies.textContent =
-                formatMoney(
-                    supplies,
-                    currency
-                );
-        }
-
-
-        if (resultDiagnostic) {
-
-            resultDiagnostic.textContent =
-                formatMoney(
-                    diagnostic,
-                    currency
-                );
-        }
-
-
-        if (resultOtherFees) {
-
-            resultOtherFees.textContent =
-                formatMoney(
-                    other,
-                    currency
-                );
-        }
-
-
-        if (resultSubtotal) {
-
-            resultSubtotal.textContent =
-                formatMoney(
-                    subtotal,
-                    currency
-                );
-        }
-
-
-        if (resultTax) {
-
-            resultTax.textContent =
-                `${formatMoney(
-                    taxAmount,
-                    currency
-                )} (${taxRate}%)`;
-        }
-
-
-        if (resultTotal) {
-
-            resultTotal.textContent =
-                formatMoney(
-                    total,
-                    currency
-                );
-        }
+        const mileage =
+            document.getElementById("vehicleMileage")
+                ?.value?.trim() || "";
 
 
         if (resultVehicle) {
 
-            const vehicleParts = [
-                vehicleYear?.value,
-                vehicleMake?.value,
-                vehicleModel?.value
-            ].filter(Boolean);
+            const vehicleParts = [];
+
+            if (year)
+                vehicleParts.push(year);
+
+            if (make)
+                vehicleParts.push(make);
+
+            if (model)
+                vehicleParts.push(model);
+
+            if (mileage)
+                vehicleParts.push(
+                    `${mileage} km`
+                );
 
             resultVehicle.textContent =
                 vehicleParts.length
                     ? vehicleParts.join(" ")
-                    : "Not specified";
+                    : "Vehicle not specified";
         }
+
+
+        /* =================================================
+           REPAIR DESCRIPTION
+        ================================================= */
+
+        const categoryText =
+            categorySelect?.options[
+                categorySelect.selectedIndex
+            ]?.textContent || "";
+
+        const serviceText =
+            serviceSelect?.value || "";
+
+        const positionText =
+            positionSelect?.options[
+                positionSelect.selectedIndex
+            ]?.textContent || "";
+
+        const description =
+            repairDescription?.value?.trim() || "";
+
+
+        const repairParts = [];
+
+        if (categoryText &&
+            categorySelect?.value) {
+
+            repairParts.push(categoryText);
+        }
+
+        if (serviceText)
+            repairParts.push(serviceText);
+
+        if (
+            positionText &&
+            positionSelect?.value
+        ) {
+            repairParts.push(
+                `(${positionText})`
+            );
+        }
+
+        if (description)
+            repairParts.push(
+                `- ${description}`
+            );
 
 
         if (resultRepair) {
 
             resultRepair.textContent =
-                repairDescription?.value ||
-                repairCategory?.value ||
-                "Not specified";
+                repairParts.length
+                    ? repairParts.join(" ")
+                    : "Repair not specified";
         }
 
 
-        if (results) {
+        /* Show results */
 
-            results.hidden = false;
+        if (repairResults) {
 
-            results.scrollIntoView({
+            repairResults.style.display =
+                "block";
+
+            repairResults.scrollIntoView({
                 behavior: "smooth",
                 block: "start"
             });
@@ -1276,8 +2305,192 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       CALCULATE BUTTON
+       12. RESET
     ===================================================== */
+
+    function resetRepairEstimator() {
+
+        const form =
+            document.querySelector(
+                ".auto-repair-estimator-form"
+            );
+
+        if (form) {
+            form.reset();
+        }
+
+        if (serviceSelect) {
+
+            serviceSelect.innerHTML =
+                '<option value="">Select service</option>';
+        }
+
+        if (positionSelect) {
+
+            positionSelect.innerHTML =
+                '<option value="">Select position</option>';
+        }
+
+        if (suggestedHoursInput)
+            suggestedHoursInput.value = "";
+
+        if (labourHoursInput)
+            labourHoursInput.value = "1";
+
+        if (repairResults)
+            repairResults.style.display = "none";
+
+        updateRegionField(
+            countrySelect?.value || "canada"
+        );
+
+        updateCityField(
+            countrySelect?.value || "canada"
+        );
+
+        updateCurrency(
+            countrySelect?.value || "canada"
+        );
+
+        updateTaxForLocation();
+    }
+
+
+    /* =====================================================
+       13. EVENT LISTENERS - LOCATION
+    ===================================================== */
+
+    if (countrySelect) {
+
+        countrySelect.addEventListener(
+            "change",
+            () => {
+
+                const country =
+                    countrySelect.value;
+
+                updateRegionField(country);
+                updateCityField(country);
+                updateCurrency(country);
+
+                if (country === "canada") {
+
+                    if (regionSelect)
+                        regionSelect.value = "";
+
+                    if (citySelect) {
+
+                        citySelect.innerHTML =
+                            '<option value="">Select city</option>';
+                    }
+
+                } else {
+
+                    if (regionInput)
+                        regionInput.value = "";
+
+                    if (cityInput)
+                        cityInput.value = "";
+                }
+
+                updateTaxForLocation();
+            }
+        );
+    }
+
+
+    if (regionSelect) {
+
+        regionSelect.addEventListener(
+            "change",
+            () => {
+
+                if (
+                    countrySelect?.value === "canada"
+                ) {
+
+                    populateCanadianCities(
+                        regionSelect.value
+                    );
+                }
+
+                updateTaxForLocation();
+            }
+        );
+    }
+
+
+    if (currencySelect) {
+
+        currencySelect.addEventListener(
+            "change",
+            updateCustomCurrency
+        );
+    }
+
+
+    if (taxSelect) {
+
+        taxSelect.addEventListener(
+            "change",
+            () => {
+
+                if (
+                    taxSelect.value === "custom"
+                ) {
+
+                    if (customTaxGroup)
+                        customTaxGroup.hidden = false;
+
+                } else {
+
+                    if (customTaxGroup)
+                        customTaxGroup.hidden = true;
+                }
+            }
+        );
+    }
+
+
+    /* =====================================================
+       14. EVENT LISTENERS - REPAIR SERVICE
+    ===================================================== */
+
+    if (categorySelect) {
+
+        categorySelect.addEventListener(
+            "change",
+            populateRepairServices
+        );
+    }
+
+
+    if (serviceSelect) {
+
+        serviceSelect.addEventListener(
+            "change",
+            populateRepairPositions
+        );
+    }
+
+
+    if (positionSelect) {
+
+        positionSelect.addEventListener(
+            "change",
+            updateSuggestedHours
+        );
+    }
+
+
+    /* =====================================================
+       15. CALCULATE BUTTON
+    ===================================================== */
+
+    const calculateButton =
+        document.getElementById(
+            "calculateRepair"
+        );
 
     if (calculateButton) {
 
@@ -1289,46 +2502,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       RESET
+       16. RESET BUTTON
     ===================================================== */
+
+    const resetButton =
+        document.getElementById(
+            "resetRepair"
+        );
 
     if (resetButton) {
 
         resetButton.addEventListener(
             "click",
-            () => {
-
-                if (results) {
-                    results.hidden = true;
-                }
-
-                if (countrySelect) {
-                    countrySelect.value = "canada";
-                }
-
-                populateCanadianRegions();
-
-                updateRegionField("canada");
-
-                updateCityField("canada");
-
-                updateCurrency("canada");
-
-                updateCustomCurrency();
-
-                hideCustomTax();
-
-                if (taxSelect) {
-                    taxSelect.value = "14";
-                }
-
-            }
+            resetRepairEstimator
         );
     }
 
 
     /* =====================================================
-       ENTER KEY
+       17. ENTER KEY
     ===================================================== */
 
     document.addEventListener(
@@ -1340,16 +2532,60 @@ document.addEventListener("DOMContentLoaded", () => {
                 event.target.tagName !== "TEXTAREA"
             ) {
 
-                event.preventDefault();
+                const activeElement =
+                    document.activeElement;
 
-                calculateRepairEstimate();
+                if (
+                    activeElement &&
+                    (
+                        activeElement.tagName ===
+                        "INPUT" ||
+                        activeElement.tagName ===
+                        "SELECT"
+                    )
+                ) {
+
+                    event.preventDefault();
+
+                    calculateRepairEstimate();
+                }
             }
         }
     );
 
 
     /* =====================================================
-       CURRENT YEAR
+       18. INITIALIZATION
+    ===================================================== */
+
+    if (countrySelect) {
+
+        const initialCountry =
+            countrySelect.value || "canada";
+
+        updateRegionField(initialCountry);
+        updateCityField(initialCountry);
+        updateCurrency(initialCountry);
+    }
+
+
+    if (taxSelect) {
+
+        if (taxSelect.value === "custom") {
+
+            if (customTaxGroup)
+                customTaxGroup.hidden = false;
+
+        } else {
+
+            if (customTaxGroup)
+                customTaxGroup.hidden = true;
+        }
+    }
+
+
+    /* =====================================================
+       19. CURRENT YEAR
     ===================================================== */
 
     const currentYear =
@@ -1363,7 +2599,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       PUBLIC API
+       20. PUBLIC API
     ===================================================== */
 
     window.KalMarketAutoRepairEstimator = {
@@ -1371,17 +2607,17 @@ document.addEventListener("DOMContentLoaded", () => {
         calculate:
             calculateRepairEstimate,
 
-        getTaxRate:
-            getTaxRate,
+        reset:
+            resetRepairEstimator,
 
-        getCurrency:
-            getSelectedCurrency,
+        services:
+            repairServices,
 
-        getCity:
-            getSelectedCity,
+        canadianLocations:
+            canadianLocations,
 
-        getRegion:
-            getSelectedRegion
+        internationalLocations:
+            internationalLocations
     };
 
 });
