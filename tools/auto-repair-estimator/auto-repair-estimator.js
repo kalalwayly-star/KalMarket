@@ -1463,50 +1463,50 @@ other: {
 }
 };
 
-    /* =====================================================
-       4. DOM ELEMENTS
-    ===================================================== */
+   /* =====================================================
+   4. DOM ELEMENTS
+===================================================== */
 
-    const countrySelect = document.getElementById("repairCountry");
-    const regionSelect = document.getElementById("repairRegion");
-    const regionInput = document.getElementById("repairRegionInput");
+const countrySelect = document.getElementById("repairCountry");
+const regionSelect = document.getElementById("repairRegion");
+const regionInput = document.getElementById("repairRegionInput");
 
-    const citySelect = document.getElementById("repairCity");
-    const cityInput = document.getElementById("repairCityInput");
+const citySelect = document.getElementById("repairCity");
+const cityInput = document.getElementById("repairCityInput");
 
-    const currencySelect = document.getElementById("repairCurrency");
-    const customCurrencyGroup =
-        document.getElementById("customCurrencyGroup");
-    const customCurrencyInput =
-        document.getElementById("customCurrency");
+const currencySelect = document.getElementById("repairCurrency");
+const customCurrencyGroup =
+    document.getElementById("customCurrencyGroup");
+const customCurrencyInput =
+    document.getElementById("customCurrency");
 
-    const taxSelect = document.getElementById("repairTax");
-    const customTaxGroup =
-        document.getElementById("customTaxGroup");
-    const customTaxRate =
-        document.getElementById("customTaxRate");
+const taxSelect = document.getElementById("repairTax");
+const customTaxGroup =
+    document.getElementById("customTaxGroup");
+const customTaxRate =
+    document.getElementById("customTaxRate");
 
-    const categorySelect =
-        document.getElementById("repairCategory");
+const categorySelect =
+    document.getElementById("repairCategory");
 
-    const serviceSelect =
-        document.getElementById("repairService");
+const serviceSelect =
+    document.getElementById("repairService");
 
-    const positionSelect =
-        document.getElementById("repairPosition");
+const positionSelect =
+    document.getElementById("repairPosition");
 
-    const suggestedHoursInput =
-        document.getElementById("suggestedLabourHours");
+const suggestedHoursInput =
+    document.getElementById("suggestedLabourHours");
 
-    const labourHoursInput =
-        document.getElementById("labourHours");
+const labourHoursInput =
+    document.getElementById("labourHours");
 
-    const labourRateInput =
-        document.getElementById("labourRate");
+const labourRateInput =
+    document.getElementById("labourRate");
 
-    const repairDescription =
-        document.getElementById("repairDescription");
-   
+const repairDescription =
+    document.getElementById("repairDescription");
+
 const dentRepairDetails =
     document.getElementById("dentRepairDetails");
 
@@ -1518,6 +1518,10 @@ const dentMethodSelect =
 
 const dentPositionSelect =
     document.getElementById("dentPosition");
+
+const positionGroup =
+    document.getElementById("repairPositionGroup");
+
     /* =====================================================
        5. LOCATION FUNCTIONS
     ===================================================== */
