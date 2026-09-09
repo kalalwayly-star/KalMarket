@@ -1506,8 +1506,18 @@ other: {
 
     const repairDescription =
         document.getElementById("repairDescription");
+   
+const dentRepairDetails =
+    document.getElementById("dentRepairDetails");
 
+const dentSizeSelect =
+    document.getElementById("dentSize");
 
+const dentMethodSelect =
+    document.getElementById("dentMethod");
+
+const dentPositionSelect =
+    document.getElementById("dentPosition");
     /* =====================================================
        5. LOCATION FUNCTIONS
     ===================================================== */
@@ -1789,7 +1799,79 @@ other: {
         if (suggestedHoursInput)
             suggestedHoursInput.value = "";
     }
+function calculateDentSuggestedHours() {
 
+    const category = categorySelect?.value;
+    const service = serviceSelect?.value;
+
+    const serviceData =
+        repairServices[category]?.[service];
+
+    if (!serviceData?.dentRepair) {
+        return;
+    }
+
+    const size = dentSizeSelect?.value;
+    const method = dentMethodSelect?.value;
+    const location = dentPositionSelect?.value;
+
+    if (!size || !method || !location) {
+        clearSuggestedHours();
+        return;
+    }
+
+    const dentHours = {
+
+        small: {
+            pdr: 1.0,
+            body_paint: 2.5,
+            not_sure: 1.5
+        },
+
+        medium: {
+            pdr: 2.0,
+            body_paint: 4.0,
+            not_sure: 3.0
+        },
+
+        large: {
+            pdr: 3.0,
+            body_paint: 5.5,
+            not_sure: 4.5
+        }
+
+    };
+
+    let hours =
+        dentHours[size]?.[method];
+
+    if (hours === undefined) {
+        clearSuggestedHours();
+        return;
+    }
+
+    /*
+       Quarter panels and difficult/less accessible
+       areas may require a little additional time.
+    */
+
+    if (
+        location === "quarter_panel" ||
+        location === "other"
+    ) {
+        hours += 0.5;
+    }
+
+    if (suggestedHoursInput) {
+        suggestedHoursInput.value =
+            hours.toFixed(1);
+    }
+
+    if (labourHoursInput) {
+        labourHoursInput.value =
+            hours.toFixed(1);
+    }
+}
 
     function populateRepairPositions() {
 
@@ -2577,7 +2659,41 @@ other: {
                 customTaxGroup.hidden = true;
         }
     }
+function updateDentRepairFields() {
 
+    const category = categorySelect?.value;
+    const service = serviceSelect?.value;
+
+    const serviceData =
+        repairServices[category]?.[service];
+
+    const isDentRepair =
+        serviceData?.dentRepair === true;
+
+    if (dentRepairDetails) {
+        dentRepairDetails.style.display =
+            isDentRepair ? "block" : "none";
+    }
+
+    if (positionGroup) {
+        positionGroup.style.display =
+            isDentRepair ? "none" : "";
+    }
+
+    if (!isDentRepair) {
+
+        if (dentSizeSelect)
+            dentSizeSelect.value = "";
+
+        if (dentMethodSelect)
+            dentMethodSelect.value = "";
+
+        if (dentPositionSelect)
+            dentPositionSelect.value = "";
+    }
+
+    calculateDentSuggestedHours();
+}
 
     /* =====================================================
        19. CURRENT YEAR
