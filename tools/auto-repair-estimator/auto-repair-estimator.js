@@ -1421,7 +1421,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             },
 
-           "Minor Dent Repair": {
+          "Minor Dent Repair": {
     positions: {
         na: {
             label: "Not Applicable",
@@ -1430,8 +1430,8 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     dentRepair: true
 }
-            }
-        },
+        }
+    };
 
 
         /* =================================================
