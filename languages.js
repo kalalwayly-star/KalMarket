@@ -19,11 +19,17 @@ function loadLanguage(language) {
 
             languagePath = `../../${language}.json`;
 
-        } else {
+       } else if (
+    window.location.pathname.includes("/auto-repair-estimator/")
+) {
 
-            languagePath = `../${language}.json`;
+    languagePath = `../../${language}.json`;
 
-        }
+} else {
+
+    languagePath = `../${language}.json`;
+
+}
     }
 
     fetch(languagePath)
