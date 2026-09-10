@@ -1890,14 +1890,15 @@ function calculateDentSuggestedHours() {
         const service =
             serviceSelect?.value;
 
-        if (
-            !category ||
-            !service ||
-            !repairServices[category] ||
-            !repairServices[category][service]
-        ) {
-            return;
-        }
+       if (
+    !category ||
+    !service ||
+    !repairServices[category] ||
+    !repairServices[category][service]
+) {
+    updateDentRepairFields();
+    return;
+}
 
         const positions =
             repairServices[category][service].positions;
@@ -1931,6 +1932,7 @@ function calculateDentSuggestedHours() {
 
             updateSuggestedHours();
         }
+updateDentRepairFields();
     }
 
 
