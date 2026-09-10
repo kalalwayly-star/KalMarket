@@ -2577,7 +2577,26 @@ updateDentRepairFields();
         );
     }
 
+if (dentSizeSelect) {
+    dentSizeSelect.addEventListener(
+        "change",
+        calculateDentSuggestedHours
+    );
+}
 
+if (dentMethodSelect) {
+    dentMethodSelect.addEventListener(
+        "change",
+        calculateDentSuggestedHours
+    );
+}
+
+if (dentPositionSelect) {
+    dentPositionSelect.addEventListener(
+        "change",
+        calculateDentSuggestedHours
+    );
+}
     /* =====================================================
        15. CALCULATE BUTTON
     ===================================================== */
