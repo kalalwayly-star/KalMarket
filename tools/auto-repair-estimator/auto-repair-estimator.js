@@ -1884,6 +1884,8 @@ function calculateDentSuggestedHours() {
         clearPositions();
         clearSuggestedHours();
 
+       updateDentRepairFields();
+
         const category =
             categorySelect?.value;
 
