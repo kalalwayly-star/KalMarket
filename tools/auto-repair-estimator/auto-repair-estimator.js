@@ -1913,8 +1913,7 @@ function calculateDentSuggestedHours() {
                 document.createElement("option");
 
             option.value = positionKey;
-            option.textContent = position.label;
-
+option.textContent = window.t(position.label) || position.label;
             positionSelect.appendChild(option);
         });
 
