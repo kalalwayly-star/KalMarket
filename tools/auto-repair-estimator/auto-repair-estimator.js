@@ -1782,8 +1782,7 @@ const positionGroup =
                 document.createElement("option");
 
             option.value = serviceName;
-            option.textContent = serviceName;
-
+option.textContent = window.t(serviceName) || serviceName;
             serviceSelect.appendChild(option);
         });
     }
