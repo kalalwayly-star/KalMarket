@@ -2767,3 +2767,22 @@ function updateDentRepairFields() {
     };
 
 });
+
+window.addEventListener("languageChanged", () => {
+
+    const currentService = serviceSelect?.value;
+    const currentPosition = positionSelect?.value;
+
+    populateRepairServices();
+
+    if (currentService && repairServices[categorySelect?.value]?.[currentService]) {
+        serviceSelect.value = currentService;
+
+        populateRepairPositions();
+
+        if (currentPosition) {
+            positionSelect.value = currentPosition;
+        }
+    }
+
+});
