@@ -692,6 +692,24 @@
 "auto_repair_estimator_info_1": "Entrez les informations de votre véhicule, sélectionnez le type de réparation et indiquez les coûts prévus de main-d'œuvre, de pièces et les coûts supplémentaires. La calculatrice estime le sous-total, les taxes applicables et le coût final de la réparation.",
 "auto_repair_estimator_info_2": "Les taux de taxe peuvent être ajustés selon votre ville, province, État ou pays. Cela rend la calculatrice utile aux utilisateurs au Canada et à l'international.",
 "all_rights_reserved": "Tous droits réservés.",
-"free_calculators": "Calculateurs gratuits"
+"free_calculators": "Calculateurs gratuits",
+  "Brake Pads & Rotors": "Plaquettes et disques de frein",
+"Brake Pads": "Plaquettes de frein",
+"Brake Rotors": "Disques de frein",
+"Brake Caliper Replacement": "Remplacement de l'étrier de frein",
+"Brake Fluid Flush": "Purge du liquide de frein",
+"Brake Inspection": "Inspection des freins",
+"Brake Line Repair": "Réparation de la conduite de frein",
+
+"Front": "Avant",
+"Rear": "Arrière",
+"Front & Rear": "Avant et arrière",
+"Left Front": "Avant gauche",
+"Right Front": "Avant droit",
+"Both Front": "Les deux côtés avant",
+"Left Rear": "Arrière gauche",
+"Right Rear": "Arrière droit",
+"Both Rear": "Les deux côtés arrière",
+"Not Applicable": "Non applicable"
   
 }
