@@ -566,7 +566,7 @@ window.changeSlide = function(adId, direction) {
 };
 document.addEventListener("DOMContentLoaded", async () => {
     await detectUserLocation();
-
+console.log("TEST USER LOCATION:", userLocation);
     initMain();
     await trackVisitor();
     await displayVisitorCount();
