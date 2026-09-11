@@ -76,6 +76,41 @@ const symbolMap = {
     CLP: "$",
     COP: "$"
 };let globalAds = [];
+// =========================
+// USER LOCATION FOR AD RANKING
+// =========================
+let userLocation = {
+    city: "",
+    country: "",
+    lat: null,
+    lng: null
+};
+
+async function detectUserLocation() {
+    try {
+        const response = await fetch("https://ipapi.co/json/");
+        const data = await response.json();
+
+        userLocation = {
+            city: (data.city || "").trim(),
+            country: (data.country_name || "").trim(),
+            lat: Number(data.latitude) || null,
+            lng: Number(data.longitude) || null
+        };
+
+        console.log("User location detected:", userLocation);
+
+    } catch (error) {
+        console.warn("Could not detect user location:", error);
+
+        userLocation = {
+            city: "",
+            country: "",
+            lat: null,
+            lng: null
+        };
+    }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("searchBtn")
@@ -450,11 +485,12 @@ window.changeSlide = function(adId, direction) {
     slides[currentIndex].classList.add("active");
 };
 document.addEventListener("DOMContentLoaded", async () => {
+    await detectUserLocation();
+
     initMain();
     await trackVisitor();
     await displayVisitorCount();
 });
-
 
 
 
