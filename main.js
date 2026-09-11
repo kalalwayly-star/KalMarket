@@ -193,37 +193,117 @@ function initMain() {
             });
         });
 
-        // FIXED SAFETY SORTING (Handles local pending serverTimestamps)
-               // 2. Safe Timestamp Resolution for Mobile Devices
-        globalAds.sort((a, b) => {
-            if (a.featured !== b.featured) {
-                return b.featured - a.featured;
+      // =========================
+// LOCATION-BASED AD RANKING
+// =========================
+function getAdTime(ad) {
+    try {
+        if (ad && ad.createdAt) {
+            if (typeof ad.createdAt.toDate === "function") {
+                return ad.createdAt.toDate().getTime();
             }
 
-            let timeA = 0;
-            let timeB = 0;
+            if (ad.createdAt.seconds) {
+                return ad.createdAt.seconds * 1000;
+            }
 
-            try {
-                if (a && a.createdAt) {
-                    if (typeof a.createdAt.toDate === 'function') timeA = a.createdAt.toDate().getTime();
-                    else if (a.createdAt.seconds) timeA = a.createdAt.seconds * 1000;
-                    else if (typeof a.createdAt.toMillis === 'function') timeA = a.createdAt.toMillis();
-                    else timeA = Date.now(); 
-                }
-            } catch(e) { timeA = Date.now(); }
+            if (typeof ad.createdAt.toMillis === "function") {
+                return ad.createdAt.toMillis();
+            }
+        }
+    } catch (e) {}
 
-            try {
-                if (b && b.createdAt) {
-                    if (typeof b.createdAt.toDate === 'function') timeB = b.createdAt.toDate().getTime();
-                    else if (b.createdAt.seconds) timeB = b.createdAt.seconds * 1000;
-                    else if (typeof b.createdAt.toMillis === 'function') timeB = b.createdAt.toMillis();
-                    else timeB = Date.now();
-                }
-            } catch(e) { timeB = Date.now(); }
+    return 0;
+}
 
-            return timeB - timeA;
-        });
+function getDistance(lat1, lng1, lat2, lng2) {
+    if (
+        lat1 == null || lng1 == null ||
+        lat2 == null || lng2 == null
+    ) {
+        return Infinity;
+    }
 
+    const R = 6371;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLng = (lng2 - lng1) * Math.PI / 180;
+
+    const a =
+        Math.sin(dLat / 2) ** 2 +
+        Math.cos(lat1 * Math.PI / 180) *
+        Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLng / 2) ** 2;
+
+    return R * 2 * Math.atan2(
+        Math.sqrt(a),
+        Math.sqrt(1 - a)
+    );
+}
+
+function getLocationScore(ad) {
+
+    const userCity =
+        (userLocation.city || "").toLowerCase().trim();
+
+    const userCountry =
+        (userLocation.country || "").toLowerCase().trim();
+
+    const adCity =
+        (ad.location || "").toLowerCase().trim();
+
+    const adCountry =
+        (ad.country || "").toLowerCase().trim();
+
+    // Same city
+    if (
+        userCity &&
+        adCity &&
+        adCity === userCity
+    ) {
+        return 0;
+    }
+
+    // Same country
+    if (
+        userCountry &&
+        adCountry &&
+        adCountry === userCountry
+    ) {
+        const distance = getDistance(
+            userLocation.lat,
+            userLocation.lng,
+            Number(ad.lat),
+            Number(ad.lng)
+        );
+
+        // Nearby ads in the same country
+        if (distance <= 75) return 1;
+
+        return 2;
+    }
+
+    // International
+    return 3;
+}
+
+globalAds.sort((a, b) => {
+
+    const locationA = getLocationScore(a);
+    const locationB = getLocationScore(b);
+
+    // Location comes first
+    if (locationA !== locationB) {
+        return locationA - locationB;
+    }
+
+    // Featured comes next
+    if (a.featured !== b.featured) {
+        return b.featured - a.featured;
+    }
+
+    // Newest comes next
+    return getAdTime(b) - getAdTime(a);
+});
         // FIXED SAFETY LOGGING LOOP (Will not crash WebView rendering)
         try {
             console.log("========== FINAL ADS ORDER ==========");
