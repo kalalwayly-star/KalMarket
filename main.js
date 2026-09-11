@@ -85,7 +85,7 @@ let userLocation = {
     lat: null,
     lng: null
 };
-
+window.userLocation = userLocation;
 async function detectUserLocation() {
     try {
         const response = await fetch("https://ipapi.co/json/");
@@ -97,7 +97,7 @@ async function detectUserLocation() {
             lat: Number(data.latitude) || null,
             lng: Number(data.longitude) || null
         };
-
+window.userLocation = userLocation;
         console.log("User location detected:", userLocation);
 
     } catch (error) {
