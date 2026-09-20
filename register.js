@@ -8,11 +8,17 @@ import {
    REGISTER FUNCTION
 ========================= */
 window.register = async function () {
+        console.log("REGISTER BUTTON CLICKED");
+
     const email = document.getElementById("registerEmail")?.value.trim();
     const password = document.getElementById("registerPassword")?.value;
     const errorBox = document.getElementById("error-message");
 
-    if (!errorBox) return;
+   if (!errorBox) {
+    console.error("Registration error: #error-message element not found.");
+    alert("Something went wrong. Please refresh the page and try again.");
+    return;
+}
 
     // Reset previous errors
     errorBox.innerText = "";
@@ -30,6 +36,13 @@ window.register = async function () {
         return;
     }
 const termsAccepted = document.getElementById("termsAgreement");
+
+    if (!termsAccepted) {
+    console.error("Registration error: #termsAgreement element not found.");
+    alert("Something went wrong with the registration form. Please refresh the page and try again.");
+    return;
+}
+
 
 if (!termsAccepted.checked) {
     alert(translations[currentLanguage]?.must_accept_terms || "You must agree to the Terms of Use and Privacy Policy before registering.");
