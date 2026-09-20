@@ -735,7 +735,7 @@ async function finalizeAd() {
     try {
 
         // Save ad
-const docRef = await addDoc(
+await addDoc(
     collection(db, "marketplace_ads"),
     newAd
 );
