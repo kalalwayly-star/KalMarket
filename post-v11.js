@@ -740,7 +740,6 @@ await addDoc(
     newAd
 );
 
-alert("Ad saved successfully!\n\nID: " + docRef.id);
 
         // Create notification
         const isArabic = localStorage.getItem("language") === "ar";
