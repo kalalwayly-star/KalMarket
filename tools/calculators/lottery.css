@@ -1,0 +1,241 @@
+/* =====================================================
+   KALMARKET LOTTERY CALCULATOR
+   ===================================================== */
+
+.calculator-container {
+    max-width: 1000px;
+    margin: 35px auto;
+    padding: 0 20px 50px;
+}
+
+.calculator-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.calculator-header h1 {
+    margin-bottom: 10px;
+}
+
+.calculator-header p {
+    max-width: 760px;
+    margin: 0 auto;
+    line-height: 1.6;
+    color: #555;
+}
+
+.calculator-section {
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    border-radius: 18px;
+    padding: 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.06);
+}
+
+.calculator-section h2 {
+    margin-top: 0;
+    margin-bottom: 22px;
+}
+
+.calculator-ad {
+    margin: 20px 0 25px;
+    min-height: 90px;
+}
+
+.lottery-choice-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.lottery-choice {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 17px;
+    border: 2px solid #e6e6e6;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.lottery-choice:hover {
+    border-color: #6d3df5;
+    transform: translateY(-2px);
+}
+
+.lottery-choice input {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+}
+
+.lottery-choice span {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.lottery-choice strong {
+    font-size: 16px;
+}
+
+.lottery-choice small {
+    color: #666;
+}
+
+.lottery-controls {
+    margin-bottom: 22px;
+}
+
+.lottery-generate-btn {
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    padding: 15px 20px;
+    background: #6d3df5;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.lottery-generate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(109,61,245,.25);
+}
+
+.lottery-note {
+    margin: 15px 0 0;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.lottery-results {
+    background: linear-gradient(135deg,#fff,#f8f5ff);
+}
+
+.result-group {
+    margin-bottom: 25px;
+}
+
+.result-group:last-child {
+    margin-bottom: 0;
+}
+
+.result-group h3 {
+    margin: 0 0 13px;
+}
+
+.number-ticket {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    padding: 17px;
+    margin-bottom: 10px;
+    background: #fff;
+    border: 1px solid #e4dcff;
+    border-radius: 13px;
+}
+
+.number-ball {
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #6d3df5;
+    color: #fff;
+    font-weight: 800;
+    font-size: 15px;
+}
+
+.ticket-label {
+    width: 100%;
+    font-size: 12px;
+    font-weight: 700;
+    color: #7652d8;
+    margin-bottom: 2px;
+}
+
+.odds-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.odds-card {
+    padding: 22px;
+    border: 1px solid #e6e6e6;
+    border-radius: 15px;
+    background: #fafafa;
+}
+
+.odds-icon {
+    font-size: 30px;
+    margin-bottom: 7px;
+}
+
+.odds-card h3 {
+    margin: 0 0 5px;
+}
+
+.odds-card p {
+    color: #666;
+    margin-top: 0;
+}
+
+.odds-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 11px 0;
+    border-top: 1px solid #e5e5e5;
+    font-size: 14px;
+}
+
+.odds-row strong {
+    text-align: right;
+}
+
+.lottery-info ul {
+    line-height: 1.8;
+    padding-left: 22px;
+}
+
+.lottery-disclaimer {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background: #f6f6f6;
+    color: #555;
+    line-height: 1.55;
+    font-size: 13px;
+}
+
+@media (max-width: 700px) {
+    .calculator-container {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .calculator-section {
+        padding: 20px;
+    }
+
+    .lottery-choice-grid,
+    .odds-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .number-ball {
+        width: 39px;
+        height: 39px;
+    }
+}
