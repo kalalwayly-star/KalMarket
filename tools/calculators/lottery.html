@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lottery Number Generator & Odds Calculator - KalMarket</title>
+    <meta name="description" content="Free KalMarket lottery calculator for Lotto Max and Lotto 6/49. Generate balanced number combinations and calculate lottery odds and ticket costs.">
+
+    <link rel="stylesheet" href="../../../style.css?v=2">
+    <link rel="stylesheet" href="lottery.css?v=1">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6176105257644553"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container">
+
+        <div class="lang-buttons">
+            <button id="lang-en">English</button>
+            <button id="lang-fr">French</button>
+            <button id="lang-ar">العربية</button>
+        </div>
+
+        <h1>KalMarket – Free Local Classified Marketplace</h1>
+        <p class="hero-tagline">The Free Local Classified Marketplace</p>
+        <p class="hero-subtitle">Buy • Sell • Trade • Find Local Services</p>
+
+        <div class="hero-actions">
+            <span class="free-badge">🟢 100% FREE to Post Ads</span>
+        </div>
+
+        <div class="nav">
+            <a href="../../../index.html" class="btn">Home</a>
+            <a href="../../../messages.html" class="btn">Messages</a>
+            <a href="../../../myads.html" class="btn">My Ads</a>
+            <a href="../../../post.html" class="btn primary">Post Ad</a>
+        </div>
+
+        <div class="header-standalone-links">
+            <a href="../../guides/canada-immigration/index.html" class="immigration-link">
+                How to Come to Canada
+            </a>
+            <a href="../index.html" class="calculators-link">
+                Free Calculators
+            </a>
+            <a href="../../resume-maker/index.html" class="calculators-link">
+                Free Resume Maker
+            </a>
+        </div>
+
+    </div>
+</header>
+
+<main class="calculator-container">
+
+    <section class="calculator-header">
+        <h1>🎰 Lottery Number Generator & Odds Calculator</h1>
+        <p>
+            Generate mathematically balanced number combinations for
+            <strong>LOTTO MAX</strong> and <strong>LOTTO 6/49</strong>,
+            and calculate your play costs and odds.
+        </p>
+    </section>
+
+    <div class="calculator-ad">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-6176105257644553"
+             data-ad-slot="2954014087"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <section class="calculator-section lottery-card">
+        <h2>Choose Your Lottery</h2>
+
+        <div class="lottery-choice-grid">
+            <label class="lottery-choice">
+                <input type="radio" name="lottery" value="both" checked>
+                <span>
+                    <strong>Both</strong>
+                    <small>LOTTO MAX + LOTTO 6/49</small>
+                </span>
+            </label>
+
+            <label class="lottery-choice">
+                <input type="radio" name="lottery" value="max">
+                <span>
+                    <strong>LOTTO MAX</strong>
+                    <small>7 numbers from 1–52</small>
+                </span>
+            </label>
+
+            <label class="lottery-choice">
+                <input type="radio" name="lottery" value="649">
+                <span>
+                    <strong>LOTTO 6/49</strong>
+                    <small>6 numbers from 1–49</small>
+                </span>
+            </label>
+        </div>
+
+        <div class="form-grid lottery-controls">
+            <div class="form-group">
+                <label for="playCount">Number of plays</label>
+                <select id="playCount">
+                    <option value="1">1</option>
+                    <option value="3">3</option>
+                    <option value="5" selected>5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="selectionStyle">Number selection style</label>
+                <select id="selectionStyle">
+                    <option value="balanced" selected>Balanced</option>
+                    <option value="random">Random</option>
+                </select>
+            </div>
+        </div>
+
+        <button id="generateBtn" class="lottery-generate-btn" type="button">
+            🎯 Generate My Numbers
+        </button>
+
+        <p class="lottery-note">
+            Balanced selections are designed for variety in the numbers only.
+            They do <strong>not</strong> make one combination more likely to win.
+        </p>
+    </section>
+
+    <section id="resultsSection" class="calculator-section lottery-results" hidden>
+        <h2>Your Generated Numbers</h2>
+        <div id="results"></div>
+    </section>
+
+    <section class="calculator-section">
+        <h2>Lottery Odds & Costs</h2>
+
+        <div class="odds-grid">
+
+            <article class="odds-card">
+                <div class="odds-icon">🎯</div>
+                <h3>LOTTO MAX</h3>
+                <p>7 numbers from 1 to 52</p>
+                <div class="odds-row">
+                    <span>Combinations</span>
+                    <strong>133,784,560</strong>
+                </div>
+                <div class="odds-row">
+                    <span>Jackpot odds per $6 play</span>
+                    <strong>1 in 33,446,140</strong>
+                </div>
+                <div class="odds-row">
+                    <span>Cost per play</span>
+                    <strong>$6</strong>
+                </div>
+            </article>
+
+            <article class="odds-card">
+                <div class="odds-icon">🍀</div>
+                <h3>LOTTO 6/49</h3>
+                <p>6 numbers from 1 to 49</p>
+                <div class="odds-row">
+                    <span>Combinations</span>
+                    <strong>13,983,816</strong>
+                </div>
+                <div class="odds-row">
+                    <span>Classic jackpot odds</span>
+                    <strong>1 in 13,983,816</strong>
+                </div>
+                <div class="odds-row">
+                    <span>Cost per play</span>
+                    <strong>$3</strong>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <section class="calculator-section lottery-info">
+        <h2>How the Generator Works</h2>
+        <ul>
+            <li><strong>Random:</strong> selects valid numbers randomly.</li>
+            <li><strong>Balanced:</strong> spreads numbers across the available range and avoids excessive clustering.</li>
+            <li>Each valid combination has the same mathematical chance of being drawn.</li>
+            <li>Generating more different combinations increases coverage, but does not guarantee a win.</li>
+        </ul>
+
+        <div class="lottery-disclaimer">
+            <strong>Important:</strong> This tool is for mathematical calculations and entertainment.
+            It does not predict winning lottery numbers or improve the underlying odds of a random draw.
+            Lottery games involve chance. Please play responsibly.
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <p>© 2026 KalMarket. Free calculators and local classifieds.</p>
+</footer>
+
+<script src="lottery.js?v=1"></script>
+</body>
+</html>
