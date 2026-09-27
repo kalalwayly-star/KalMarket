@@ -420,3 +420,25 @@
     }
 
 }
+
+/* =====================================================
+   HISTORICAL TWO-MONTH STATISTICS
+===================================================== */
+
+.historical-statistics-box {
+    margin: 25px 0;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(100, 100, 255, 0.25);
+    background: rgba(100, 100, 255, 0.05);
+}
+
+.historical-statistics-box h2 {
+    margin-top: 0;
+    margin-bottom: 18px;
+}
+
+.historical-statistics-box .set-analysis-row {
+    margin-bottom: 10px;
+}
+

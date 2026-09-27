@@ -69,6 +69,56 @@ const LOTTERY_GAMES = {
 
 
 /* =====================================================
+   PRODUCTION STATISTICS API
+===================================================== */
+
+const LOTTERY_STATS_API =
+    "https://us-central1-kal-marketplace.cloudfunctions.net/lotteryHistoryTest";
+
+
+/* =====================================================
+   LOAD HISTORICAL LOTTERY STATISTICS
+===================================================== */
+
+async function loadLotteryStatistics(gameId) {
+
+    try {
+
+        const response =
+            await fetch(
+                `${LOTTERY_STATS_API}?game=${encodeURIComponent(gameId)}`
+            );
+
+        if (!response.ok) {
+            throw new Error(
+                `Statistics request failed: ${response.status}`
+            );
+        }
+
+        const data =
+            await response.json();
+
+        if (!data.success) {
+            throw new Error(
+                data.error || "Statistics unavailable."
+            );
+        }
+
+        return data.statistics;
+
+    } catch (error) {
+
+        console.error(
+            "Lottery statistics error:",
+            error
+        );
+
+        return null;
+    }
+}
+
+
+/* =====================================================
    DOM
 ===================================================== */
 
@@ -186,7 +236,7 @@ function generateBonusNumber(max) {
    GENERATE LOTTERY NUMBERS
 ===================================================== */
 
-function generateLotteryNumbers() {
+async function generateLotteryNumbers() {
 
     const gameSelect = document.getElementById("lotteryGame");
     const setsSelect = document.getElementById("numberOfSets");
@@ -205,6 +255,16 @@ function generateLotteryNumbers() {
 
     const numberOfSets =
         Number(setsSelect.value) || 1;
+
+
+    /* ================================================
+       LOAD HISTORICAL STATISTICS
+    ================================================= */
+
+    const historicalStatistics =
+        await loadLotteryStatistics(
+            gameSelect.value
+        );
 
 
     const generatedSets = [];
@@ -333,7 +393,8 @@ function generateLotteryNumbers() {
     displayStatistics(
         generatedSets,
         game,
-        statistics
+        statistics,
+        historicalStatistics
     );
 
 }
@@ -342,7 +403,8 @@ function generateLotteryNumbers() {
 function displayStatistics(
     generatedSets,
     game,
-    statistics
+    statistics,
+    historicalStatistics
 ) {
 
     if (!statistics) {
@@ -364,6 +426,95 @@ function displayStatistics(
         return;
     }
 
+
+    /* =========================
+       HISTORICAL TWO-MONTH DATA
+    ========================= */
+
+    let historicalHTML = "";
+
+    if (historicalStatistics) {
+
+        const topNumbers =
+            historicalStatistics.sortedByFrequency
+                .filter(item => item.count > 0)
+                .slice(0, 10)
+                .map(
+                    item => `${item.number} (${item.count})`
+                )
+                .join(", ");
+
+        const missingNumbers =
+            historicalStatistics.missingNumbers
+                .filter(
+                    item =>
+                        item.drawsSinceSeen > 0
+                )
+                .slice(0, 10)
+                .map(
+                    item =>
+                        `${item.number} (${item.drawsSinceSeen} draws)`
+                )
+                .join(", ");
+
+        const startDate =
+            historicalStatistics.startDate
+                ? new Date(
+                    historicalStatistics.startDate._seconds
+                        ? historicalStatistics.startDate._seconds * 1000
+                        : historicalStatistics.startDate
+                ).toLocaleDateString()
+                : "N/A";
+
+        const endDate =
+            historicalStatistics.endDate
+                ? new Date(
+                    historicalStatistics.endDate._seconds
+                        ? historicalStatistics.endDate._seconds * 1000
+                        : historicalStatistics.endDate
+                ).toLocaleDateString()
+                : "N/A";
+
+        historicalHTML = `
+
+            <div class="historical-statistics-box">
+
+                <h2>
+                    Historical Statistics — Last 2 Months
+                </h2>
+
+                <div class="set-analysis-row">
+                    <span>Draws analyzed</span>
+                    <strong>
+                        ${historicalStatistics.drawCount}
+                    </strong>
+                </div>
+
+                <div class="set-analysis-row">
+                    <span>Date range</span>
+                    <strong>
+                        ${startDate} – ${endDate}
+                    </strong>
+                </div>
+
+                <div class="set-analysis-row">
+                    <span>Most frequent numbers</span>
+                    <strong>
+                        ${topNumbers || "N/A"}
+                    </strong>
+                </div>
+
+                <div class="set-analysis-row">
+                    <span>Longest missing numbers</span>
+                    <strong>
+                        ${missingNumbers || "N/A"}
+                    </strong>
+                </div>
+
+            </div>
+
+        `;
+    }
 
     /* =========================
        BASIC MATHEMATICAL DATA
@@ -570,6 +721,8 @@ function displayStatistics(
     ========================= */
 
     statistics.innerHTML = `
+        ${historicalHTML}
+
 
         <div class="mathematical-analysis">
 
