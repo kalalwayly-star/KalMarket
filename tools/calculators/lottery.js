@@ -906,7 +906,7 @@ function displayStatistics(
     `;
 
 statistics.innerHTML = `
-    ${historicalHTML}
+    ${method !== "mathematical" ? historicalHTML : ""}
     ${method !== "historical" ? mathematicalHTML : ""}
 `;
 
