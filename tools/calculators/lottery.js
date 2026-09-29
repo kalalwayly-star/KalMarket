@@ -720,12 +720,8 @@ function displayStatistics(
        DISPLAY MATHEMATICAL ANALYSIS
     ========================= */
 
-    statistics.innerHTML = `
-        ${historicalHTML}
-
-
+    const mathematicalHTML = `
         <div class="mathematical-analysis">
-
             <h2>📊 Mathematical Number Analysis</h2>
 
             <p class="analysis-intro">
@@ -906,8 +902,12 @@ function displayStatistics(
 
             </div>
 
-        </div>
-
+               </div>
     `;
+
+statistics.innerHTML = `
+    ${historicalHTML}
+    ${method !== "historical" ? mathematicalHTML : ""}
+`;
 
 }
