@@ -1,0 +1,174 @@
+const { initializeApp, getApps } = require("firebase-admin/app");
+const { getFirestore } = require("firebase-admin/firestore");
+
+if (!getApps().length) {
+    initializeApp();
+}
+
+const db = getFirestore();
+
+/* =====================================================
+   ROLLING TWO-CALENDAR-MONTH WINDOW
+===================================================== */
+
+function getTwoMonthWindow() {
+
+    const today = new Date();
+
+    const endDate = new Date(today);
+    endDate.setHours(23, 59, 59, 999);
+
+    const startDate = new Date(today);
+
+    startDate.setMonth(startDate.getMonth() - 2);
+    startDate.setHours(0, 0, 0, 0);
+
+    return {
+        startDate,
+        endDate
+    };
+}
+
+
+/* =====================================================
+   GET STORED LOTTERY DRAWS
+===================================================== */
+
+async function getLotteryDraws(gameId) {
+
+    const { startDate, endDate } =
+        getTwoMonthWindow();
+
+    const snapshot = await db
+        .collection("lottery_results")
+        .doc(gameId)
+        .collection("draws")
+        .where(
+            "drawDate",
+            ">=",
+            startDate
+        )
+        .where(
+            "drawDate",
+            "<=",
+            endDate
+        )
+        .orderBy(
+            "drawDate",
+            "asc"
+        )
+        .get();
+
+    return snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+    }));
+
+}
+
+
+/* =====================================================
+   CALCULATE TWO-MONTH STATISTICS
+===================================================== */
+
+function calculateLotteryStatistics(
+    draws,
+    game
+) {
+
+    const frequency = {};
+
+    for (
+        let number = 1;
+        number <= game.mainMax;
+        number++
+    ) {
+
+        frequency[number] = 0;
+
+    }
+
+
+    let totalNumbers = 0;
+    let totalSum = 0;
+
+
+    draws.forEach(draw => {
+
+        const numbers =
+            Array.isArray(draw.mainNumbers)
+                ? draw.mainNumbers
+                : [];
+
+
+        numbers.forEach(number => {
+
+            if (
+                number >= 1 &&
+                number <= game.mainMax
+            ) {
+
+                frequency[number]++;
+                totalNumbers++;
+                totalSum += number;
+
+            }
+
+        });
+
+    });
+
+
+    const sortedByFrequency =
+        Object.entries(frequency)
+            .sort(
+                (a, b) =>
+                    b[1] - a[1]
+            )
+            .map(
+                ([number, count]) => ({
+                    number: Number(number),
+                    count
+                })
+            );
+
+
+    const averageSum =
+        draws.length
+            ? totalSum / draws.length
+            : 0;
+
+
+    return {
+
+        drawCount: draws.length,
+
+        startDate:
+            draws.length
+                ? draws[0].drawDate
+                : null,
+
+        endDate:
+            draws.length
+                ? draws[draws.length - 1].drawDate
+                : null,
+
+        frequency,
+
+        sortedByFrequency,
+
+        totalNumbers,
+
+        averageSum:
+            Number(averageSum.toFixed(2))
+
+    };
+
+}
+
+
+module.exports = {
+    getTwoMonthWindow,
+    getLotteryDraws,
+    calculateLotteryStatistics
+};
