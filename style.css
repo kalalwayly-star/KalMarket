@@ -3007,3 +3007,118 @@ box-sizing: border-box;
         justify-content: center;
     }
 }
+
+/* =========================
+   CSS GLOBE — HERO LOGO
+========================= */
+
+.css-globe {
+    position: relative;
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 32% 28%, #ffffff 0%, #dff7ff 8%, transparent 22%),
+        radial-gradient(circle at 38% 35%, #27b9f2 0%, #0787d1 48%, #04539d 100%);
+    box-shadow:
+        inset -22px -18px 35px rgba(0, 35, 90, .35),
+        inset 12px 10px 25px rgba(255, 255, 255, .45),
+        0 12px 28px rgba(0, 60, 120, .35);
+}
+
+.css-globe::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 2px solid rgba(255,255,255,.35);
+    border-radius: 50%;
+    transform: scaleY(.35);
+}
+
+.css-globe::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: rgba(255,255,255,.25);
+    transform: translateX(-50%);
+}
+
+.globe-land {
+    position: absolute;
+    background: #20a85a;
+    filter: drop-shadow(1px 2px 1px rgba(0,60,80,.2));
+}
+
+.land-1 {
+    width: 70px;
+    height: 52px;
+    left: 28px;
+    top: 43px;
+    border-radius: 55% 35% 45% 30%;
+    transform: rotate(-12deg);
+}
+
+.land-1::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 42px;
+    right: -14px;
+    bottom: -22px;
+    border-radius: 50%;
+    background: #20a85a;
+    transform: rotate(25deg);
+}
+
+.land-2 {
+    width: 58px;
+    height: 70px;
+    right: 34px;
+    top: 48px;
+    border-radius: 35% 55% 30% 50%;
+    transform: rotate(18deg);
+}
+
+.land-2::after {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 38px;
+    left: -10px;
+    bottom: -25px;
+    border-radius: 45%;
+    background: #20a85a;
+}
+
+.land-3 {
+    width: 35px;
+    height: 45px;
+    left: 72px;
+    bottom: 24px;
+    border-radius: 45% 35% 55% 40%;
+    transform: rotate(-18deg);
+}
+
+.globe-highlight {
+    position: absolute;
+    width: 85px;
+    height: 55px;
+    left: 20px;
+    top: 18px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.22);
+    transform: rotate(-25deg);
+    filter: blur(4px);
+    pointer-events: none;
+}
+
+@media (max-width: 650px) {
+    .css-globe {
+        width: 125px;
+        height: 125px;
+    }
+}
