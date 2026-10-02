@@ -235,54 +235,77 @@ data-i18n="auto_repair_estimator_title">
 </header>
     
 <!-- HERO -->
-    <section class="container">
-    <a href="tools/calculators/lottery.html"
-       class="free-report-banner"
-       data-i18n="lottery_calculator_banner">
-        🎰 Try Our FREE Lottery Calculator – Lotto Max & 6/49
-    </a>
-</section>
-<!-- HERO -->
-<section class="hero kalmarket-main-hero">
+<section class="kalmarket-reference-hero">
 
-    <div class="hero-content">
+    <div class="hero-world-background">
+        <div class="hero-sun"></div>
+        <div class="hero-world-map"></div>
+        <div class="hero-network network-1"></div>
+        <div class="hero-network network-2"></div>
+        <div class="hero-network network-3"></div>
+        <div class="hero-skyline"></div>
+    </div>
 
-        <h2 data-i18n="hero_title">
-            Find What You Need Near You
-        </h2>
+    <div class="hero-brand-area">
 
-        <p class="search-description" data-i18n="hero_description">
-            Connecting Buyers and Sellers Worldwide.
-        </p>
+        <div class="hero-brand-globe" aria-hidden="true">
+            <span class="css-globe">🌐</span>
+        </div>
 
-        <!-- SEARCH -->
-        <div class="search-container">
+        <div class="hero-brand-text">
+            <h1>
+                <span class="brand-blue">Kal</span><span class="brand-green">Market</span>
+            </h1>
 
+            <p class="hero-global-tagline">
+                Connecting Buyers and Sellers Worldwide
+            </p>
+
+            <p class="hero-services">
+                Buy <span>•</span> Sell <span>•</span> Trade <span>•</span> Find Local Services
+            </p>
+        </div>
+
+    </div>
+
+    <div class="hero-slogan">
+        <strong>Local! Deals.</strong>
+        <strong>Global Reach.</strong>
+        <div class="hero-swoosh"></div>
+    </div>
+
+    <!-- REAL SEARCH -->
+    <div class="reference-search-container">
+
+        <div class="reference-search-input">
+            <span class="search-icon">⌕</span>
             <input
                 type="text"
                 id="searchInput"
                 data-i18n-placeholder="search_placeholder"
-                placeholder="What are you looking for?">
+                placeholder="Search for ads... (e.g. cars, real estate, electronics, jobs...)">
+        </div>
 
+        <div class="reference-location-input">
+            <span class="location-icon">📍</span>
             <input
                 type="text"
                 id="locationInput"
                 data-i18n-placeholder="location_placeholder"
-                placeholder="City or Neighborhood">
-
-            <button
-                id="searchBtn"
-                class="btn-search"
-                data-i18n="btn_search">
-                Search
-            </button>
-
+                placeholder="Location">
+            <span class="location-arrow">⌄</span>
         </div>
+
+        <button id="searchBtn" class="reference-search-button">
+            <span>⌕</span>
+            <span data-i18n="btn_search">Search</span>
+        </button>
 
     </div>
 
 </section>
 
+<!-- CATEGORIES -->
 <!-- CATEGORIES -->
 <section class="categories-section container">
 

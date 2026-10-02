@@ -2467,7 +2467,429 @@ box-sizing: border-box;
     box-sizing: border-box;
     overflow: hidden;
 }
-
 .kalmarket-logo {
     position: relative;
     z-index: 2;
+}
+
+/* =========================================================
+   KALMARKET REFERENCE-STYLE HERO
+   Built with HTML/CSS - no background image required
+========================================================= */
+
+/* =========================================================
+   KALMARKET REFERENCE-STYLE HERO
+   Built with HTML/CSS - no background image required
+========================================================= */
+
+.kalmarket-reference-hero {
+    position: relative;
+    min-height: 420px;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            180deg,
+            #39a9ed 0%,
+            #82d0f5 38%,
+            #d9f2ff 72%,
+            #f9e4b4 100%
+        );
+    box-sizing: border-box;
+    padding: 45px 6% 85px;
+    color: #064b9b;
+}
+
+/* Sky glow */
+.hero-world-background {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.hero-sun {
+    position: absolute;
+    left: 15%;
+    bottom: 20px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255,255,210,.95) 0%,
+        rgba(255,226,130,.55) 35%,
+        rgba(255,255,255,0) 72%
+    );
+}
+
+/* Global network */
+.hero-world-map {
+    position: absolute;
+    top: 10px;
+    left: 38%;
+    width: 45%;
+    height: 250px;
+    opacity: .22;
+    background:
+        radial-gradient(circle at 25% 40%, #fff 0 2px, transparent 3px),
+        radial-gradient(circle at 42% 25%, #fff 0 2px, transparent 3px),
+        radial-gradient(circle at 62% 48%, #fff 0 2px, transparent 3px),
+        radial-gradient(circle at 80% 30%, #fff 0 2px, transparent 3px);
+}
+
+.hero-network {
+    position: absolute;
+    border-top: 2px solid rgba(255,255,255,.48);
+    border-radius: 50%;
+    transform: rotate(-8deg);
+}
+
+.network-1 {
+    width: 560px;
+    height: 190px;
+    top: 20px;
+    left: 40%;
+}
+
+.network-2 {
+    width: 470px;
+    height: 150px;
+    top: 75px;
+    left: 47%;
+    transform: rotate(8deg);
+}
+
+.network-3 {
+    width: 650px;
+    height: 240px;
+    top: -20px;
+    left: 33%;
+    transform: rotate(-18deg);
+}
+
+/* CSS skyline */
+.hero-skyline {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 48%;
+    height: 135px;
+    opacity: .75;
+    background:
+        linear-gradient(to top, #39799b 0 100%);
+    clip-path: polygon(
+        0 100%, 0 65%, 4% 65%, 4% 50%, 8% 50%, 8% 72%,
+        12% 72%, 12% 42%, 16% 42%, 16% 58%, 20% 58%,
+        20% 32%, 25% 32%, 25% 55%, 29% 55%, 29% 25%,
+        34% 25%, 34% 48%, 38% 48%, 38% 15%, 43% 15%,
+        43% 42%, 48% 42%, 48% 8%, 53% 8%, 53% 45%,
+        58% 45%, 58% 20%, 63% 20%, 63% 50%, 68% 50%,
+        68% 30%, 73% 30%, 73% 52%, 78% 52%, 78% 12%,
+        83% 12%, 83% 45%, 88% 45%, 88% 5%, 92% 5%,
+        92% 50%, 96% 50%, 96% 25%, 100% 25%, 100% 100%
+    );
+}
+
+/* Main branding */
+.hero-brand-area {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    max-width: 950px;
+}
+
+.hero-brand-globe {
+    width: 205px;
+    height: 205px;
+    flex: 0 0 205px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 170px;
+    line-height: 1;
+    filter: drop-shadow(0 8px 10px rgba(0,60,120,.28));
+}
+
+.hero-brand-text h1 {
+    margin: 0;
+    font-size: clamp(58px, 6vw, 108px);
+    line-height: .95;
+    font-weight: 900;
+    letter-spacing: -5px;
+}
+
+.brand-blue {
+    color: #0754a6;
+}
+
+.brand-green {
+    color: #009447;
+}
+
+.hero-global-tagline {
+    margin: 12px 0 8px;
+    color: #0754a6;
+    font-size: clamp(20px, 2vw, 31px);
+    font-weight: 700;
+}
+
+.hero-services {
+    margin: 0;
+    color: #0754a6;
+    font-size: clamp(17px, 1.5vw, 24px);
+    font-weight: 700;
+}
+
+.hero-services span {
+    color: #009447;
+    padding: 0 9px;
+}
+
+/* Right slogan */
+.hero-slogan {
+    position: absolute;
+    z-index: 5;
+    top: 70px;
+    right: 7%;
+    width: 330px;
+    color: white;
+    text-align: center;
+    transform: rotate(-3deg);
+    text-shadow: 0 2px 5px rgba(0,60,120,.3);
+}
+
+.hero-slogan strong {
+    display: block;
+    font-family: "Brush Script MT", "Segoe Script", cursive;
+    font-size: clamp(38px, 4vw, 62px);
+    line-height: .95;
+}
+
+.hero-swoosh {
+    height: 9px;
+    margin: 12px 5px 0;
+    border-radius: 100%;
+    background: #00d879;
+    transform: rotate(-7deg) skewX(-25deg);
+    box-shadow: 0 2px 4px rgba(0,80,40,.3);
+}
+
+/* Search bar */
+.reference-search-container {
+    position: absolute;
+    z-index: 10;
+    left: 18%;
+    right: 18%;
+    bottom: 18px;
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,.97);
+    border: 1px solid #b8d5ef;
+    border-radius: 40px;
+    box-shadow: 0 8px 25px rgba(0,60,120,.20);
+    overflow: hidden;
+}
+
+.reference-search-input {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    padding: 0 22px;
+}
+
+.reference-search-input input,
+.reference-location-input input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #31598a;
+    font-size: 17px;
+}
+
+.search-icon {
+    margin-right: 15px;
+    color: #0754a6;
+    font-size: 38px;
+    line-height: 1;
+}
+
+.reference-location-input {
+    width: 190px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 18px;
+    border-left: 1px solid #c8dced;
+}
+
+.location-icon {
+    font-size: 22px;
+}
+
+.location-arrow {
+    color: #0754a6;
+    font-size: 20px;
+}
+
+.reference-search-button {
+    height: 60px;
+    min-width: 205px;
+    margin-right: 8px;
+    border: 0;
+    border-radius: 32px;
+    background: linear-gradient(135deg, #00a878, #00945f);
+    color: white;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0,130,90,.25);
+}
+
+.reference-search-button span:first-child {
+    font-size: 30px;
+    vertical-align: -2px;
+    margin-right: 8px;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+    .kalmarket-reference-hero {
+        min-height: 500px;
+        padding: 35px 20px 95px;
+    }
+
+    .hero-brand-area {
+        gap: 12px;
+    }
+
+    .hero-brand-globe {
+        width: 120px;
+        height: 120px;
+        flex-basis: 120px;
+        font-size: 100px;
+    }
+
+    .hero-slogan {
+        right: 4%;
+        top: 210px;
+        width: 260px;
+    }
+
+    .hero-slogan strong {
+        font-size: 38px;
+    }
+
+    .reference-search-container {
+        left: 5%;
+        right: 5%;
+    }
+}
+
+@media (max-width: 650px) {
+    .kalmarket-reference-hero {
+        min-height: 560px;
+        padding: 30px 15px 155px;
+    }
+
+    .hero-brand-area {
+        align-items: flex-start;
+    }
+
+    .hero-brand-globe {
+        width: 75px;
+        height: 75px;
+        flex-basis: 75px;
+        font-size: 62px;
+    }
+
+    .hero-brand-text h1 {
+        font-size: 45px;
+        letter-spacing: -2px;
+    }
+
+    .hero-global-tagline {
+        font-size: 17px;
+    }
+
+    .hero-services {
+        font-size: 14px;
+    }
+
+    .hero-services span {
+        padding: 0 3px;
+    }
+
+    .hero-slogan {
+        top: 230px;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+
+    .reference-search-container {
+        left: 10px;
+        right: 10px;
+        bottom: 12px;
+        min-height: 135px;
+        flex-wrap: wrap;
+        border-radius: 22px;
+        padding: 8px;
+    }
+
+    .reference-search-input {
+        width: 100%;
+        flex-basis: 100%;
+        height: 48px;
+    }
+
+    .reference-location-input {
+        flex: 1;
+        width: auto;
+        border-left: 0;
+        border-top: 1px solid #d5e2ee;
+        height: 52px;
+    }
+
+    .reference-search-button {
+        min-width: 125px;
+        height: 48px;
+        margin-right: 0;
+        font-size: 16px;
+    }
+
+    .reference-search-button span:first-child {
+        font-size: 24px;
+    }
+}
+
+/* HERO COLOR REFINEMENT */
+.kalmarket-reference-hero {
+    background: linear-gradient(
+        180deg,
+        #159ee8 0%,
+        #58c4ef 45%,
+        #dff7ff 100%
+    );
+}
+
+.hero-world-map {
+    opacity: .10;
+}
+
+.hero-network {
+    border-top-color: rgba(255,255,255,.30);
+}
+
+.hero-skyline {
+    opacity: .45;
+}
+
+.hero-slogan {
+    text-shadow: 0 2px 4px rgba(0,60,120,.22);
+}
