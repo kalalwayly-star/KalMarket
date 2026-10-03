@@ -2491,89 +2491,113 @@ box-sizing: border-box;
     inset: 0;
     overflow: hidden;
     pointer-events: none;
+    background:
+        linear-gradient(
+            180deg,
+            #087fc9 0%,
+            #159bd7 42%,
+            #58c4e8 72%,
+            #b9e8f2 100%
+        );
 }
 
+/* Warm sunrise / global glow */
 .hero-sun {
     position: absolute;
-    left: 12%;
-    bottom: 55px;
-    width: 190px;
-    height: 190px;
+    left: 4%;
+    bottom: 18px;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
-    background: radial-gradient(
-        circle,
-        rgba(255,255,220,.95) 0%,
-        rgba(255,224,120,.55) 35%,
-        rgba(255,255,255,0) 72%
-    );
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,225,.98) 0%,
+            rgba(255,239,155,.82) 24%,
+            rgba(255,208,80,.42) 48%,
+            rgba(255,255,255,0) 74%
+        );
+    filter: blur(2px);
 }
 
-/* Abstract global map */
+/* Subtle global data points */
 .hero-world-map {
     position: absolute;
     inset: 0;
-    opacity: .18;
+    opacity: .28;
     background:
-        radial-gradient(circle at 58% 27%, white 0 3px, transparent 4px),
-        radial-gradient(circle at 64% 35%, white 0 3px, transparent 4px),
-        radial-gradient(circle at 72% 24%, white 0 3px, transparent 4px),
-        radial-gradient(circle at 78% 43%, white 0 3px, transparent 4px),
-        radial-gradient(circle at 86% 30%, white 0 3px, transparent 4px),
-        radial-gradient(circle at 68% 55%, white 0 3px, transparent 4px);
+        radial-gradient(circle at 16% 38%, rgba(255,255,255,.9) 0 2px, transparent 3px),
+        radial-gradient(circle at 23% 30%, rgba(255,255,255,.8) 0 2px, transparent 3px),
+        radial-gradient(circle at 31% 42%, rgba(255,255,255,.9) 0 2px, transparent 3px),
+        radial-gradient(circle at 42% 25%, rgba(255,255,255,.75) 0 2px, transparent 3px),
+        radial-gradient(circle at 52% 38%, rgba(255,255,255,.9) 0 2px, transparent 3px),
+        radial-gradient(circle at 61% 25%, rgba(255,255,255,.8) 0 2px, transparent 3px),
+        radial-gradient(circle at 70% 40%, rgba(255,255,255,.9) 0 2px, transparent 3px),
+        radial-gradient(circle at 79% 29%, rgba(255,255,255,.75) 0 2px, transparent 3px),
+        radial-gradient(circle at 88% 44%, rgba(255,255,255,.85) 0 2px, transparent 3px),
+        radial-gradient(circle at 94% 31%, rgba(255,255,255,.7) 0 2px, transparent 3px);
 }
 
 /* Global connection arcs */
 .hero-network {
     position: absolute;
-    border: 2px solid rgba(255,255,255,.38);
+    border: 2px solid rgba(255,255,255,.30);
     border-left-color: transparent;
     border-bottom-color: transparent;
     border-radius: 50%;
 }
 
 .network-1 {
-    width: 650px;
-    height: 240px;
-    top: 5px;
-    left: 38%;
+    width: 720px;
+    height: 270px;
+    top: 8px;
+    left: 30%;
     transform: rotate(-12deg);
 }
 
 .network-2 {
-    width: 520px;
-    height: 190px;
-    top: 75px;
-    left: 48%;
-    transform: rotate(9deg);
+    width: 600px;
+    height: 220px;
+    top: 55px;
+    left: 43%;
+    transform: rotate(10deg);
 }
 
 .network-3 {
-    width: 760px;
-    height: 300px;
-    top: -40px;
-    left: 28%;
-    transform: rotate(-22deg);
+    width: 850px;
+    height: 330px;
+    top: -70px;
+    left: 18%;
+    transform: rotate(-20deg);
 }
 
-/* City skyline */
+/* Soft city skyline */
 .hero-skyline {
     position: absolute;
     right: 0;
     bottom: 0;
-    width: 55%;
-    height: 145px;
-    opacity: .55;
-    background: linear-gradient(to top, #397c9e, #6fb7d5);
+    width: 58%;
+    height: 125px;
+    opacity: .38;
+    background:
+        linear-gradient(
+            to top,
+            #287b9d,
+            #75c4dd
+        );
     clip-path: polygon(
-        0 100%, 0 68%, 4% 68%, 4% 48%, 8% 48%,
-        8% 75%, 12% 75%, 12% 40%, 17% 40%, 17% 60%,
-        22% 60%, 22% 30%, 27% 30%, 27% 52%, 32% 52%,
-        32% 18%, 37% 18%, 37% 45%, 42% 45%, 42% 8%,
-        47% 8%, 47% 48%, 52% 48%, 52% 24%, 57% 24%,
-        57% 58%, 62% 58%, 62% 12%, 67% 12%, 67% 45%,
-        72% 45%, 72% 20%, 77% 20%, 77% 55%, 82% 55%,
-        82% 10%, 87% 10%, 87% 48%, 92% 48%, 92% 28%,
-        96% 28%, 96% 58%, 100% 58%, 100% 100%
+        0 100%,
+        0 72%, 4% 72%, 4% 52%, 8% 52%,
+        8% 78%, 12% 78%, 12% 44%, 17% 44%,
+        17% 64%, 22% 64%, 22% 34%, 27% 34%,
+        27% 55%, 32% 55%, 32% 22%, 37% 22%,
+        37% 48%, 42% 48%, 42% 12%, 47% 12%,
+        47% 50%, 52% 50%, 52% 28%, 57% 28%,
+        57% 62%, 62% 62%, 62% 18%, 67% 18%,
+        67% 48%, 72% 48%, 72% 26%, 77% 26%,
+        77% 58%, 82% 58%, 82% 15%, 87% 15%,
+        87% 50%, 92% 50%, 92% 32%, 96% 32%,
+        96% 62%, 100% 62%, 100% 100%
     );
 }
 
@@ -3018,107 +3042,148 @@ box-sizing: border-box;
     height: 190px;
     border-radius: 50%;
     overflow: hidden;
+
     background:
-        radial-gradient(circle at 32% 28%, #ffffff 0%, #dff7ff 8%, transparent 22%),
-        radial-gradient(circle at 38% 35%, #27b9f2 0%, #0787d1 48%, #04539d 100%);
+        radial-gradient(
+            circle at 30% 25%,
+            #63d9ff 0%,
+            #18a9e8 28%,
+            #087fc9 62%,
+            #034f96 100%
+        );
+
     box-shadow:
-        inset -22px -18px 35px rgba(0, 35, 90, .35),
-        inset 12px 10px 25px rgba(255, 255, 255, .45),
-        0 12px 28px rgba(0, 60, 120, .35);
+        inset -24px -18px 35px rgba(0, 35, 90, .42),
+        inset 14px 12px 28px rgba(255,255,255,.38),
+        0 12px 30px rgba(0, 50, 110, .38);
 }
 
 .css-globe::before {
     content: "";
     position: absolute;
     inset: 8px;
-    border: 2px solid rgba(255,255,255,.35);
+    border: 2px solid rgba(255,255,255,.30);
     border-radius: 50%;
-    transform: scaleY(.35);
+    transform: scaleX(.58);
 }
 
 .css-globe::after {
     content: "";
     position: absolute;
-    left: 50%;
-    top: 0;
-    width: 2px;
-    height: 100%;
-    background: rgba(255,255,255,.25);
-    transform: translateX(-50%);
+    left: 10px;
+    right: 10px;
+    top: 50%;
+    height: 70px;
+    border-top: 2px solid rgba(255,255,255,.25);
+    border-bottom: 2px solid rgba(255,255,255,.20);
+    border-radius: 50%;
+    transform: translateY(-50%);
 }
 
 .globe-land {
     position: absolute;
-    background: #20a85a;
-    filter: drop-shadow(1px 2px 1px rgba(0,60,80,.2));
+    z-index: 2;
+    background: #25a957;
+    filter: drop-shadow(1px 1px 1px rgba(0,45,60,.22));
 }
 
+/* North America */
 .land-1 {
-    width: 70px;
-    height: 52px;
-    left: 28px;
-    top: 43px;
-    border-radius: 55% 35% 45% 30%;
-    transform: rotate(-12deg);
+    width: 62px;
+    height: 40px;
+    left: 22px;
+    top: 42px;
+    clip-path: polygon(
+        4% 25%, 18% 8%, 38% 12%, 48% 3%,
+        66% 18%, 82% 25%, 94% 43%,
+        78% 55%, 70% 72%, 58% 67%,
+        50% 88%, 40% 76%, 28% 82%,
+        22% 62%, 8% 55%
+    );
+    transform: rotate(-8deg);
 }
 
-.land-1::after {
-    content: "";
-    position: absolute;
-    width: 30px;
-    height: 42px;
-    right: -14px;
-    bottom: -22px;
-    border-radius: 50%;
-    background: #20a85a;
-    transform: rotate(25deg);
-}
-
+/* Europe / Asia */
 .land-2 {
-    width: 58px;
-    height: 70px;
-    right: 34px;
-    top: 48px;
-    border-radius: 35% 55% 30% 50%;
-    transform: rotate(18deg);
+    width: 76px;
+    height: 42px;
+    right: 18px;
+    top: 43px;
+    clip-path: polygon(
+        2% 38%, 14% 18%, 29% 22%, 38% 8%,
+        54% 16%, 67% 9%, 78% 25%, 94% 28%,
+        100% 46%, 86% 55%, 80% 70%,
+        62% 62%, 52% 78%, 38% 66%,
+        25% 76%, 18% 58%, 5% 55%
+    );
+    transform: rotate(5deg);
 }
 
-.land-2::after {
-    content: "";
-    position: absolute;
-    width: 24px;
-    height: 38px;
-    left: -10px;
-    bottom: -25px;
-    border-radius: 45%;
-    background: #20a85a;
-}
-
+/* South America */
 .land-3 {
-    width: 35px;
-    height: 45px;
-    left: 72px;
-    bottom: 24px;
-    border-radius: 45% 35% 55% 40%;
-    transform: rotate(-18deg);
+    width: 31px;
+    height: 58px;
+    left: 69px;
+    bottom: 18px;
+    clip-path: polygon(
+        48% 0%, 70% 12%, 82% 28%,
+        72% 40%, 86% 52%, 70% 62%,
+        66% 78%, 50% 100%, 35% 84%,
+        28% 66%, 14% 55%, 22% 38%, 12% 24%,
+        30% 15%
+    );
+    transform: rotate(8deg);
 }
 
 .globe-highlight {
     position: absolute;
-    width: 85px;
-    height: 55px;
-    left: 20px;
-    top: 18px;
+    z-index: 4;
+    width: 105px;
+    height: 65px;
+    left: 18px;
+    top: 12px;
     border-radius: 50%;
-    background: rgba(255,255,255,.22);
+    background: rgba(255,255,255,.20);
     transform: rotate(-25deg);
-    filter: blur(4px);
+    filter: blur(5px);
     pointer-events: none;
+}
+
+.globe-highlight::after {
+    content: "";
+    position: absolute;
+    width: 65px;
+    height: 20px;
+    left: 10px;
+    top: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.18);
 }
 
 @media (max-width: 650px) {
     .css-globe {
         width: 125px;
         height: 125px;
+    }
+
+    .land-1 {
+        width: 48px;
+        height: 35px;
+        left: 17px;
+        top: 25px;
+    }
+
+    .land-2 {
+        width: 50px;
+        height: 38px;
+        right: 15px;
+        top: 28px;
+    }
+
+    .land-3 {
+        width: 25px;
+        height: 45px;
+        left: 47px;
+        bottom: 12px;
     }
 }
