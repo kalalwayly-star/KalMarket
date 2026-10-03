@@ -2504,20 +2504,21 @@ box-sizing: border-box;
 /* Warm sunrise / global glow */
 .hero-sun {
     position: absolute;
-    left: 4%;
-    bottom: 18px;
-    width: 300px;
+    left: -5%;
+    bottom: -135px;
+    width: 110%;
     height: 300px;
     border-radius: 50%;
     background:
         radial-gradient(
-            circle,
-            rgba(255,255,225,.98) 0%,
-            rgba(255,239,155,.82) 24%,
-            rgba(255,208,80,.42) 48%,
-            rgba(255,255,255,0) 74%
+            ellipse at 50% 72%,
+            rgba(255,248,215,.95) 0%,
+            rgba(255,255,245,.88) 28%,
+            rgba(255,255,255,.58) 52%,
+            rgba(255,226,120,.28) 72%,
+            rgba(255,255,255,0) 100%
         );
-    filter: blur(2px);
+    filter: blur(3px);
 }
 
 /* Subtle global data points */
@@ -3084,55 +3085,56 @@ box-sizing: border-box;
     position: absolute;
     z-index: 2;
     background: #25a957;
-    filter: drop-shadow(1px 1px 1px rgba(0,45,60,.22));
+    filter: drop-shadow(1px 1px 1px rgba(0,45,60,.20));
 }
 
 /* North America */
 .land-1 {
-    width: 62px;
-    height: 40px;
-    left: 22px;
-    top: 42px;
-    clip-path: polygon(
-        4% 25%, 18% 8%, 38% 12%, 48% 3%,
-        66% 18%, 82% 25%, 94% 43%,
-        78% 55%, 70% 72%, 58% 67%,
-        50% 88%, 40% 76%, 28% 82%,
-        22% 62%, 8% 55%
-    );
-    transform: rotate(-8deg);
-}
-
-/* Europe / Asia */
-.land-2 {
-    width: 76px;
+    width: 58px;
     height: 42px;
-    right: 18px;
-    top: 43px;
+    left: 21px;
+    top: 39px;
     clip-path: polygon(
-        2% 38%, 14% 18%, 29% 22%, 38% 8%,
-        54% 16%, 67% 9%, 78% 25%, 94% 28%,
-        100% 46%, 86% 55%, 80% 70%,
-        62% 62%, 52% 78%, 38% 66%,
-        25% 76%, 18% 58%, 5% 55%
+        3% 25%, 16% 12%, 30% 15%, 39% 5%,
+        54% 12%, 65% 25%, 80% 27%, 91% 42%,
+        82% 53%, 68% 52%, 62% 66%,
+        51% 61%, 43% 73%, 33% 62%,
+        27% 50%, 14% 55%, 8% 43%
     );
-    transform: rotate(5deg);
+    transform: rotate(-7deg);
 }
 
 /* South America */
-.land-3 {
-    width: 31px;
-    height: 58px;
-    left: 69px;
-    bottom: 18px;
+.land-2 {
+    width: 30px;
+    height: 55px;
+    left: 67px;
+    top: 79px;
     clip-path: polygon(
-        48% 0%, 70% 12%, 82% 28%,
-        72% 40%, 86% 52%, 70% 62%,
-        66% 78%, 50% 100%, 35% 84%,
-        28% 66%, 14% 55%, 22% 38%, 12% 24%,
-        30% 15%
+        43% 0%, 66% 10%, 76% 25%,
+        66% 38%, 79% 50%, 67% 61%,
+        64% 77%, 50% 100%, 35% 82%,
+        28% 65%, 14% 55%, 23% 39%,
+        12% 25%, 28% 14%
     );
-    transform: rotate(8deg);
+    transform: rotate(7deg);
+}
+
+/* Europe, Asia and Africa */
+.land-3 {
+    width: 78px;
+    height: 58px;
+    right: 15px;
+    top: 40px;
+    clip-path: polygon(
+        2% 27%, 12% 15%, 25% 20%, 34% 10%,
+        47% 17%, 57% 10%, 70% 20%, 84% 22%,
+        98% 34%, 91% 47%, 79% 45%, 73% 56%,
+        62% 50%, 56% 63%, 45% 58%,
+        40% 73%, 31% 65%, 26% 50%,
+        17% 55%, 11% 43%, 3% 42%
+    );
+    transform: rotate(3deg);
 }
 
 .globe-highlight {
