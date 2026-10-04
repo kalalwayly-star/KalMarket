@@ -2525,20 +2525,24 @@ box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 24px;
+    gap: 12px;
     flex: 1;
 }
 
 .main-nav .nav-link {
-    color: #333;
+    color: #4b2aad;
     text-decoration: none;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 14px;
     white-space: nowrap;
+    padding: 7px 9px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
 }
 
 .main-nav .nav-link:hover {
-    color: #4b2aad;
+    color: #ffffff;
+    background: #4b2aad;
 }
 
 .header-actions {
