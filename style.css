@@ -2915,3 +2915,77 @@ box-sizing: border-box;
     margin-left: auto;
 }
 
+
+/* =========================
+   CLEAN MARKETPLACE HEADER
+========================= */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-left: auto;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.lang-buttons {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.lang-buttons button {
+    background: none;
+    border: none;
+    padding: 4px 0;
+    color: #2457a6;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.lang-buttons button:hover {
+    color: #168b72;
+}
+
+.header-actions .btn {
+    border: none;
+    background: transparent;
+    color: #2457a6;
+    padding: 6px 2px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 0;
+}
+
+.header-actions .btn:hover {
+    color: #168b72;
+    background: transparent;
+    opacity: 1;
+}
+
+.header-actions .btn.primary {
+    background: transparent;
+    color: #168b72;
+    border: none;
+}
+
+.header-actions .btn.primary:hover {
+    color: #0f6f5b;
+}
+
+/* POST AD - ONLY PROMINENT BUTTON */
+.header-actions a[href="post.html"] {
+    background: #168b72;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 7px;
+    font-weight: 800;
+}
+
+.header-actions a[href="post.html"]:hover {
+    background: #126f5c;
+    color: #fff;
+}
+
