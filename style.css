@@ -2988,4 +2988,15 @@ box-sizing: border-box;
     background: #126f5c;
     color: #fff;
 }
+/* CENTER LINKS + LANGUAGES FAR RIGHT */
+.header-actions {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin-left: 40px;
+    gap: 28px;
+}
 
+.header-actions .lang-buttons {
+    margin-left: auto;
+}
