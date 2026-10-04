@@ -2894,3 +2894,24 @@ box-sizing: border-box;
         width: 100%;
     }
 }
+
+/* FINAL HEADER POSITIONING */
+.header > .container {
+    max-width: none;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.brand {
+    margin-right: auto;
+}
+
+.brand-link {
+    text-align: left;
+}
+
+.header-actions {
+    margin-left: auto;
+}
+
