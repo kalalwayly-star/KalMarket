@@ -2999,3 +2999,24 @@ box-sizing: border-box;
 .header-actions .lang-buttons {
     margin-left: auto;
 }
+
+/* =========================================================
+   KALMARKET MOBILE HEADER - STEP 1
+   Keep desktop layout unchanged
+========================================================= */
+
+@media (max-width: 768px) {
+
+    /* Keep the header compact */
+    .header {
+        padding: 10px 12px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Main header container */
+    .header > .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
