@@ -607,7 +607,7 @@ async function saveNewAd(event) {
     const user = auth.currentUser;
 
     if (!user) {
-        alert("Login required");
+        alert("Please log in or create an account before posting an ad.");
         return;
     }
     // Add this inside saveNewAd
@@ -634,7 +634,7 @@ async function finalizeAd() {
     const user = auth.currentUser;
 
     if (!user) {
-        alert("Login required");
+        alert("Please log in or create an account before posting an ad.");
         return;
     }
 
