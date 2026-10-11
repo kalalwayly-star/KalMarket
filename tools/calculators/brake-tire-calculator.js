@@ -179,3 +179,76 @@ function checkTirePressure() {
 }
 
 
+function checkFrontBrakes() {
+    const sides = [
+        {
+            name: "Front Left",
+            prefix: "frontLeft",
+            resultId: "frontLeftBrakeResult"
+        },
+        {
+            name: "Front Right",
+            prefix: "frontRight",
+            resultId: "frontRightBrakeResult"
+        }
+    ];
+
+    let allValid = true;
+
+    sides.forEach(side => {
+        const pad = document.getElementById(side.prefix + "Pad");
+        const padMin = document.getElementById(side.prefix + "PadMin");
+        const rotor = document.getElementById(side.prefix + "Rotor");
+        const rotorMin = document.getElementById(side.prefix + "RotorMin");
+        const result = document.getElementById(side.resultId);
+
+        const values = [pad, padMin, rotor, rotorMin].map(input =>
+            input.value.trim()
+        );
+
+        if (values.some(value =>
+            value === "" || !Number.isFinite(Number(value)) ||
+            Number(value) <= 0
+        )) {
+            result.textContent =
+                "Enter all four measurements and verified limits.";
+            result.style.color = "#b45309";
+            allValid = false;
+            return;
+        }
+
+        const [padValue, padLimit, rotorValue, rotorLimit] =
+            values.map(Number);
+
+        if (padValue > 40 || padLimit > 40 ||
+            rotorValue > 60 || rotorLimit > 60) {
+            result.textContent = "Check the entered values and units.";
+            result.style.color = "#b45309";
+            allValid = false;
+            return;
+        }
+
+        const problems = [];
+
+        if (padValue <= padLimit) {
+            problems.push("Pad lining at or below minimum — replace");
+        }
+
+        if (rotorValue <= rotorLimit) {
+            problems.push("Rotor at or below discard thickness — replace");
+        }
+
+        if (problems.length) {
+            result.textContent = problems.join(". ");
+            result.style.color = "#b91c1c";
+        } else {
+            result.textContent =
+                "Above the entered minimum limits. Complete all other required brake inspections.";
+            result.style.color = "#15803d";
+        }
+    });
+
+    if (!allValid) {
+        alert("Please correct the missing or invalid brake entries.");
+    }
+}
