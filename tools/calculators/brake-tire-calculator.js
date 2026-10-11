@@ -98,76 +98,107 @@ function checkTires() {
 }
 
 
-// Tire pressure evaluation
+
 function checkTirePressure() {
     const unit = document.getElementById("pressureUnit").value;
-    const recommended = Number(
-        document.getElementById("recommendedPressure").value
-    );
 
-    const result = document.getElementById("pressureResults");
+    const frontRecommendedInput =
+        document.getElementById("frontRecommendedPressure");
 
-    if (!Number.isFinite(recommended) ||
-        recommended <= 0 || recommended > 100) {
-        result.textContent = "Enter a valid recommended pressure.";
+    const rearRecommendedInput =
+        document.getElementById("rearRecommendedPressure");
+
+    const results = document.getElementById("pressureResults");
+
+    const frontRecommended = Number(frontRecommendedInput.value);
+    const rearRecommended = Number(rearRecommendedInput.value);
+
+    if (
+        frontRecommendedInput.value.trim() === "" ||
+        rearRecommendedInput.value.trim() === "" ||
+        !Number.isFinite(frontRecommended) ||
+        !Number.isFinite(rearRecommended) ||
+        frontRecommended <= 0 ||
+        rearRecommended <= 0
+    ) {
+        results.textContent =
+            "Enter the verified recommended cold pressure for both axles.";
+        results.className = "result-warning";
         return;
     }
 
-    const positions = [
-        ["Front Left", "frontLeftPressure"],
-        ["Front Right", "frontRightPressure"],
-        ["Rear Left", "rearLeftPressure"],
-        ["Rear Right", "rearRightPressure"]
+    const tires = [
+        {
+            name: "Front Left",
+            id: "frontLeftPressure",
+            recommended: frontRecommended
+        },
+        {
+            name: "Front Right",
+            id: "frontRightPressure",
+            recommended: frontRecommended
+        },
+        {
+            name: "Rear Left",
+            id: "rearLeftPressure",
+            recommended: rearRecommended
+        },
+        {
+            name: "Rear Right",
+            id: "rearRightPressure",
+            recommended: rearRecommended
+        }
     ];
 
-    const readings = positions.map(([name, id]) => ({
-        name,
-        value: document.getElementById(id).value.trim()
-    }));
+    const tolerance = {
+        psi: 1,
+        kpa: 7,
+        bar: 0.07
+    }[unit];
 
-    if (readings.some(item =>
-        item.value === "" ||
-        !Number.isFinite(Number(item.value)) ||
-        Number(item.value) < 0 ||
-        Number(item.value) > 100
-    )) {
-        result.textContent =
-            "Enter valid pressure readings for all four tires.";
-        return;
-    }
+    const messages = [];
+    let allValid = true;
 
-    const tolerance = unit === "PSI" ? 1 : 7;
-    const list = document.createElement("ul");
+    tires.forEach(tire => {
+        const input = document.getElementById(tire.id);
+        const measured = Number(input.value);
 
-    readings.forEach(item => {
-        const measured = Number(item.value);
-        const difference = measured - recommended;
+        if (
+            input.value.trim() === "" ||
+            !Number.isFinite(measured) ||
+            measured <= 0
+        ) {
+            messages.push(
+                `${tire.name}: Enter a valid measured pressure.`
+            );
+            allValid = false;
+            return;
+        }
+
+        const difference = measured - tire.recommended;
 
         let status;
 
-        if (measured === 0) {
-            status = "DANGER — no measured pressure";
-        } else if (difference < -tolerance) {
-            status = "LOW — check and adjust cold pressure";
-        } else if (difference > tolerance) {
-            status = "HIGH — check and adjust cold pressure";
+        if (Math.abs(difference) <= tolerance) {
+            status = "Within comparison tolerance";
+        } else if (difference < 0) {
+            status = "Below recommended pressure";
         } else {
-            status = "WITHIN TARGET RANGE";
+            status = "Above recommended pressure";
         }
 
-        const row = document.createElement("li");
-        row.textContent =
-            `${item.name}: ${measured.toFixed(1)} ${unit} — ${status}`;
-        list.appendChild(row);
+        messages.push(
+            `${tire.name}: ${status}. ` +
+            `Measured: ${measured} ${unit.toUpperCase()}; ` +
+            `recommended: ${tire.recommended} ${unit.toUpperCase()}.`
+        );
     });
 
-    result.replaceChildren(list);
+    results.textContent = messages.join(" ");
 
-    const note = document.createElement("p");
-    note.className = "note";
-    note.textContent =
-        "Preliminary tolerance: ±1 PSI or ±7 kPa. Follow vehicle specifications.";
-    result.appendChild(note);
+    results.className = allValid
+        ? "result-warning"
+        : "result-warning";
 }
 
 
