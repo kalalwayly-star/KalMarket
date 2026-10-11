@@ -225,7 +225,7 @@ function checkFrontBrakes() {
     checkFrontBrakeSide("frontLeft", "Front Left");
     checkFrontBrakeSide("frontRight", "Front Right");
 }
-```
+
 function checkFrontBrakeSide(prefix, sideName) {
     const pad = Number(document.getElementById(prefix + "Pad").value);
     const rotor = Number(document.getElementById(prefix + "Rotor").value);
