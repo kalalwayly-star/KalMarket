@@ -142,11 +142,68 @@
         </p>
     </section>
 
-    <section class="section">
-        <h2>2. Front Brakes</h2>
-        <p>We will add pad thickness, rotor measurements and the
-           manufacturer's discard limits here.</p>
-    </section>
+    
+<section class="section">
+    <h2>2. Front Brakes</h2>
+
+    <p class="note">
+        Enter the measured lining and rotor thickness and the
+        verified manufacturer limits. All measurements are in mm.
+    </p>
+
+    <h3>Front Left</h3>
+    <div class="form-grid">
+        <div>
+            <label for="frontLeftPad">Pad lining thickness (mm)</label>
+            <input type="number" id="frontLeftPad" min="0" max="40" step="0.1">
+        </div>
+        <div>
+            <label for="frontLeftPadMin">Minimum pad thickness (mm)</label>
+            <input type="number" id="frontLeftPadMin" min="0" max="40" step="0.1">
+        </div>
+        <div>
+            <label for="frontLeftRotor">Rotor thickness (mm)</label>
+            <input type="number" id="frontLeftRotor" min="0" max="60" step="0.1">
+        </div>
+        <div>
+            <label for="frontLeftRotorMin">Minimum rotor thickness (mm)</label>
+            <input type="number" id="frontLeftRotorMin" min="0" max="60" step="0.1">
+        </div>
+    </div>
+    <p id="frontLeftBrakeResult" aria-live="polite"></p>
+
+    <h3>Front Right</h3>
+    <div class="form-grid">
+        <div>
+            <label for="frontRightPad">Pad lining thickness (mm)</label>
+            <input type="number" id="frontRightPad" min="0" max="40" step="0.1">
+        </div>
+        <div>
+            <label for="frontRightPadMin">Minimum pad thickness (mm)</label>
+            <input type="number" id="frontRightPadMin" min="0" max="40" step="0.1">
+        </div>
+        <div>
+            <label for="frontRightRotor">Rotor thickness (mm)</label>
+            <input type="number" id="frontRightRotor" min="0" max="60" step="0.1">
+        </div>
+        <div>
+            <label for="frontRightRotorMin">Minimum rotor thickness (mm)</label>
+            <input type="number" id="frontRightRotorMin" min="0" max="60" step="0.1">
+        </div>
+    </div>
+    <p id="frontRightBrakeResult" aria-live="polite"></p>
+
+    <button type="button" onclick="checkFrontBrakes()">
+        Check Front Brakes
+    </button>
+
+    <p class="note">
+        Use verified vehicle-specific limits. Pad lining measurements
+        exclude the metal backing plate. Follow the manufacturer's
+        inspection and measurement procedures.
+    </p>
+</section>
+
 
     <section class="section">
         <h2>3. Rear Brakes</h2>
