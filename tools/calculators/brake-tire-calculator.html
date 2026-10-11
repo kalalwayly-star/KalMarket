@@ -205,11 +205,125 @@
 </section>
 
 
-    <section class="section">
-        <h2>3. Rear Brakes</h2>
-        <p>We will add the appropriate rear pad or shoe measurements,
-           rotor thickness or drum diameter, and discard limits here.</p>
-    </section>
+    
+<section class="section">
+    <h2>3. Rear Brakes</h2>
+
+    <p class="note">
+        Select the installed rear brake type. Enter only the
+        measurements applicable to that system.
+    </p>
+
+    <label for="rearBrakeType">Rear brake type</label>
+    <select id="rearBrakeType" onchange="showRearBrakeFields()">
+        <option value="">Select brake type</option>
+        <option value="disc">Disc brakes (pads and rotors)</option>
+        <option value="drum">Drum brakes (shoes and drums)</option>
+    </select>
+
+    <div id="rearDiscFields" hidden>
+        <h3>Rear Left Disc Brake</h3>
+        <div class="form-grid">
+            <div>
+                <label for="rearLeftPad">Pad lining (mm)</label>
+                <input type="number" id="rearLeftPad" min="0" max="40" step="0.1">
+            </div>
+            <div>
+                <label for="rearLeftPadMin">Minimum pad lining (mm)</label>
+                <input type="number" id="rearLeftPadMin" min="0" max="40" step="0.1">
+            </div>
+            <div>
+                <label for="rearLeftRotor">Rotor thickness (mm)</label>
+                <input type="number" id="rearLeftRotor" min="0" max="60" step="0.1">
+            </div>
+            <div>
+                <label for="rearLeftRotorMin">Minimum rotor thickness (mm)</label>
+                <input type="number" id="rearLeftRotorMin" min="0" max="60" step="0.1">
+            </div>
+        </div>
+        <p id="rearLeftBrakeResult" aria-live="polite"></p>
+
+        <h3>Rear Right Disc Brake</h3>
+        <div class="form-grid">
+            <div>
+                <label for="rearRightPad">Pad lining (mm)</label>
+                <input type="number" id="rearRightPad" min="0" max="40" step="0.1">
+            </div>
+            <div>
+                <label for="rearRightPadMin">Minimum pad lining (mm)</label>
+                <input type="number" id="rearRightPadMin" min="0" max="40" step="0.1">
+            </div>
+            <div>
+                <label for="rearRightRotor">Rotor thickness (mm)</label>
+                <input type="number" id="rearRightRotor" min="0" max="60" step="0.1">
+            </div>
+            <div>
+                <label for="rearRightRotorMin">Minimum rotor thickness (mm)</label>
+                <input type="number" id="rearRightRotorMin" min="0" max="60" step="0.1">
+            </div>
+        </div>
+        <p id="rearRightBrakeResult" aria-live="polite"></p>
+
+        <button type="button" onclick="checkRearDiscBrakes()">
+            Check Rear Disc Brakes
+        </button>
+    </div>
+
+    <div id="rearDrumFields" hidden>
+        <h3>Rear Left Drum Brake</h3>
+        <div class="form-grid">
+            <div>
+                <label for="rearLeftShoe">Shoe lining thickness (mm)</label>
+                <input type="number" id="rearLeftShoe" min="0" max="30" step="0.1">
+            </div>
+            <div>
+                <label for="rearLeftShoeMin">Minimum shoe lining (mm)</label>
+                <input type="number" id="rearLeftShoeMin" min="0" max="30" step="0.1">
+            </div>
+            <div>
+                <label for="rearLeftDrum">Drum inside diameter (mm)</label>
+                <input type="number" id="rearLeftDrum" min="0" max="500" step="0.1">
+            </div>
+            <div>
+                <label for="rearLeftDrumMax">Maximum drum diameter (mm)</label>
+                <input type="number" id="rearLeftDrumMax" min="0" max="500" step="0.1">
+            </div>
+        </div>
+        <p id="rearLeftDrumResult" aria-live="polite"></p>
+
+        <h3>Rear Right Drum Brake</h3>
+        <div class="form-grid">
+            <div>
+                <label for="rearRightShoe">Shoe lining thickness (mm)</label>
+                <input type="number" id="rearRightShoe" min="0" max="30" step="0.1">
+            </div>
+            <div>
+                <label for="rearRightShoeMin">Minimum shoe lining (mm)</label>
+                <input type="number" id="rearRightShoeMin" min="0" max="30" step="0.1">
+            </div>
+            <div>
+                <label for="rearRightDrum">Drum inside diameter (mm)</label>
+                <input type="number" id="rearRightDrum" min="0" max="500" step="0.1">
+            </div>
+            <div>
+                <label for="rearRightDrumMax">Maximum drum diameter (mm)</label>
+                <input type="number" id="rearRightDrumMax" min="0" max="500" step="0.1">
+            </div>
+        </div>
+        <p id="rearRightDrumResult" aria-live="polite"></p>
+
+        <button type="button" onclick="checkRearDrumBrakes()">
+            Check Rear Drum Brakes
+        </button>
+    </div>
+
+    <p class="note">
+        Enter verified manufacturer limits. For drums, compare the
+        largest measured inside diameter with the maximum permitted
+        diameter. Follow the specified measurement procedure.
+    </p>
+</section>
+
 
     
 <section class="section">
