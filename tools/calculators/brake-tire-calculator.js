@@ -220,6 +220,7 @@ function checkFrontBrakeSide(prefix, sideName) {
 }
 
 
+
 function showRearBrakeFields() {
     const type = document.getElementById("rearBrakeType").value;
 
@@ -228,74 +229,85 @@ function showRearBrakeFields() {
 }
 
 function checkRearDiscBrakes() {
-    checkBrakePair([
-        {
-            prefix: "rearLeft",
-            resultId: "rearLeftBrakeResult"
-        },
-        {
-            prefix: "rearRight",
-            resultId: "rearRightBrakeResult"
-        }
-    ], "pad", "Pad", "rotor", "Rotor", 40, 60);
+    const year = document.getElementById("vehicleYear").value;
+    const make = document.getElementById("vehicleMake").value.trim();
+    const model = document.getElementById("vehicleModel").value.trim();
+
+    if (!year || !make || !model) {
+        alert("Please enter the vehicle year, make, and model.");
+        return;
+    }
+
+    checkRearDiscSide("rearLeft", "Rear Left");
+    checkRearDiscSide("rearRight", "Rear Right");
+}
+
+function checkRearDiscSide(prefix, sideName) {
+    const padInput = document.getElementById(prefix + "Pad");
+    const rotorInput = document.getElementById(prefix + "Rotor");
+    const result = document.getElementById(prefix + "BrakeResult");
+
+    const pad = Number(padInput.value);
+    const rotor = Number(rotorInput.value);
+
+    if (
+        padInput.value.trim() === "" ||
+        rotorInput.value.trim() === "" ||
+        !Number.isFinite(pad) ||
+        !Number.isFinite(rotor) ||
+        pad <= 0 ||
+        rotor <= 0
+    ) {
+        result.textContent =
+            sideName + ": Enter valid pad and rotor measurements.";
+        result.className = "result-warning";
+        return;
+    }
+
+    result.textContent =
+        sideName + ": Measurements recorded. Verified vehicle specifications are required to assess service limits.";
+    result.className = "result-warning";
 }
 
 function checkRearDrumBrakes() {
-    const sides = [
-        { prefix: "rearLeft", resultId: "rearLeftDrumResult" },
-        { prefix: "rearRight", resultId: "rearRightDrumResult" }
-    ];
+    const year = document.getElementById("vehicleYear").value;
+    const make = document.getElementById("vehicleMake").value.trim();
+    const model = document.getElementById("vehicleModel").value.trim();
 
-    sides.forEach(side => {
-        const shoe = document.getElementById(side.prefix + "Shoe");
-        const shoeMin = document.getElementById(side.prefix + "ShoeMin");
-        const drum = document.getElementById(side.prefix + "Drum");
-        const drumMax = document.getElementById(side.prefix + "DrumMax");
-        const result = document.getElementById(side.resultId);
+    if (!year || !make || !model) {
+        alert("Please enter the vehicle year, make, and model.");
+        return;
+    }
 
-        const raw = [shoe, shoeMin, drum, drumMax].map(input =>
-            input.value.trim()
-        );
+    checkRearDrumSide("rearLeft", "Rear Left");
+    checkRearDrumSide("rearRight", "Rear Right");
+}
 
-        if (raw.some(value =>
-            value === "" || !Number.isFinite(Number(value)) ||
-            Number(value) <= 0
-        )) {
-            result.textContent =
-                "Enter all measurements and verified limits.";
-            result.style.color = "#b45309";
-            return;
-        }
+function checkRearDrumSide(prefix, sideName) {
+    const shoeInput = document.getElementById(prefix + "Shoe");
+    const drumInput = document.getElementById(prefix + "Drum");
+    const result = document.getElementById(prefix + "DrumResult");
 
-        const [shoeValue, shoeLimit, drumValue, drumLimit] =
-            raw.map(Number);
+    const shoe = Number(shoeInput.value);
+    const drum = Number(drumInput.value);
 
-        if (shoeValue > 30 || shoeLimit > 30 ||
-            drumValue > 500 || drumLimit > 500) {
-            result.textContent = "Check the values and units.";
-            result.style.color = "#b45309";
-            return;
-        }
+    if (
+        shoeInput.value.trim() === "" ||
+        drumInput.value.trim() === "" ||
+        !Number.isFinite(shoe) ||
+        !Number.isFinite(drum) ||
+        shoe <= 0 ||
+        drum <= 0
+    ) {
+        result.textContent =
+            sideName + ": Enter valid shoe thickness and drum inside diameter.";
+        result.className = "result-warning";
+        return;
+    }
 
-        const problems = [];
-
-        if (shoeValue <= shoeLimit) {
-            problems.push("Shoe lining at or below minimum — replace");
-        }
-
-        if (drumValue >= drumLimit) {
-            problems.push("Drum at or above maximum diameter — replace");
-        }
-
-        if (problems.length) {
-            result.textContent = problems.join(". ");
-            result.style.color = "#b91c1c";
-        } else {
-            result.textContent =
-                "Above lining minimum and below drum maximum. Complete the remaining brake inspection.";
-            result.style.color = "#15803d";
-        }
-    });
+    result.textContent =
+        sideName + ": Measurements recorded. Verified vehicle specifications are required to assess service limits.";
+    result.className = "result-warning";
 }
 
 function checkBrakePair(
