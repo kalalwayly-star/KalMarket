@@ -48,7 +48,7 @@ tirePositions.forEach((position, index) => {
     tireContainer.appendChild(tire);
 });
 
-// Evaluate tire tread depth
+
 function checkTires() {
     let allValid = true;
 
@@ -61,14 +61,17 @@ function checkTires() {
 
         const result = document.getElementById(`tire${index}Result`);
 
-        if (readings.some(value =>
-            value === "" ||
-            !Number.isFinite(Number(value)) ||
-            Number(value) < 0 ||
-            Number(value) > 30
-        )) {
-            result.textContent = "Enter all three valid measurements.";
-            result.style.color = "#b45309";
+        if (
+            readings.some(value =>
+                value === "" ||
+                !Number.isFinite(Number(value)) ||
+                Number(value) < 0 ||
+                Number(value) > 30
+            )
+        ) {
+            result.textContent =
+                "Enter all three valid tread-depth measurements in mm.";
+            result.className = "result-warning";
             allValid = false;
             return;
         }
@@ -76,35 +79,24 @@ function checkTires() {
         const values = readings.map(Number);
         const lowest = Math.min(...values);
         const highest = Math.max(...values);
+        const difference = highest - lowest;
 
-        if (lowest < 3.5) {
-            result.textContent =
-                `BELOW YOUR 3.5 mm THRESHOLD — lowest: ${lowest.toFixed(1)} mm. Inspect promptly.`;
-            result.style.color = "#b91c1c";
-        } else if (lowest <= 4.0) {
-            result.textContent =
-                `WORN — plan inspection and replacement. Lowest: ${lowest.toFixed(1)} mm.`;
-            result.style.color = "#b45309";
-        } else if (lowest <= 9.0) {
-            result.textContent =
-                `GOOD by your tread-depth rule — lowest: ${lowest.toFixed(1)} mm.`;
-            result.style.color = "#15803d";
-        } else {
-            result.textContent =
-                `CHECK READING — highest: ${highest.toFixed(1)} mm exceeds the 9 mm reference.`;
-            result.style.color = "#b45309";
-        }
+        result.textContent =
+            `Measurements recorded — Inner: ${values[0].toFixed(1)} mm, ` +
+            `Centre: ${values[1].toFixed(1)} mm, ` +
+            `Outer: ${values[2].toFixed(1)} mm. ` +
+            `Lowest reading: ${lowest.toFixed(1)} mm. ` +
+            `Difference between readings: ${difference.toFixed(1)} mm. ` +
+            "Tire safety status requires applicable verified criteria.";
 
-        if (highest - lowest >= 2.0) {
-            result.textContent +=
-                " Uneven tread wear: inspect alignment, inflation and suspension.";
-        }
+        result.className = "result-warning";
     });
 
     document.getElementById("tireResults").textContent = allValid
-        ? "Tire measurements evaluated. Review each tire result above."
+        ? "Measurements recorded. No universal pass/fail limit has been applied."
         : "Correct the missing or invalid measurements above.";
 }
+
 
 // Tire pressure evaluation
 function checkTirePressure() {
