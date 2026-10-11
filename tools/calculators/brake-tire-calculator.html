@@ -103,44 +103,88 @@
         </p>
     </header>
 
-    <section class="section">
-        <h2>1. Vehicle Information</h2>
+   ```html
+<section class="section">
+    <h2>1. Vehicle Information</h2>
 
-        <div class="form-grid">
-            <div>
-                <label for="vehicleYear">Year</label>
-                <select id="vehicleYear">
-                    <option value="">Select year</option>
-                </select>
-            </div>
-
-            <div>
-                <label for="vehicleMake">Make</label>
-                <input id="vehicleMake"
-                       type="text"
-                       placeholder="e.g. Toyota">
-            </div>
-
-            <div>
-                <label for="vehicleModel">Model</label>
-                <input id="vehicleModel"
-                       type="text"
-                       placeholder="e.g. Camry">
-            </div>
-
-            <div>
-                <label for="vehicleTrim">Engine / Trim</label>
-                <input id="vehicleTrim"
-                       type="text"
-                       placeholder="Optional">
-            </div>
+    <div class="form-grid">
+        <div class="form-group">
+            <label for="vehicleCountry">Vehicle Market / Country</label>
+            <select id="vehicleCountry">
+                <option value="">Select market</option>
+                <option value="Canada">Canada</option>
+                <option value="United States">United States</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Australia">Australia</option>
+                <option value="Germany">Germany</option>
+                <option value="Japan">Japan</option>
+                <option value="South Korea">South Korea</option>
+                <option value="China">China</option>
+                <option value="Other">Other / Not Listed</option>
+            </select>
         </div>
 
-        <p class="note">
-            Automatic vehicle specifications will be connected after
-            we establish a verified data source.
-        </p>
-    </section>
+        <div class="form-group">
+            <label for="vehicleYear">Year</label>
+            <select id="vehicleYear">
+                <option value="">Select year</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="vehicleMake">Make</label>
+            <input
+                id="vehicleMake"
+                type="text"
+                placeholder="e.g. Toyota"
+                autocomplete="off">
+        </div>
+
+        <div class="form-group">
+            <label for="vehicleModel">Model</label>
+            <input
+                id="vehicleModel"
+                type="text"
+                placeholder="e.g. Camry"
+                autocomplete="off">
+        </div>
+
+        <div class="form-group">
+            <label for="vehicleTrim">Trim / Version</label>
+            <input
+                id="vehicleTrim"
+                type="text"
+                placeholder="e.g. LE, XLE, Sport">
+        </div>
+
+        <div class="form-group">
+            <label for="vehicleEngine">Engine</label>
+            <input
+                id="vehicleEngine"
+                type="text"
+                placeholder="e.g. 2.5L petrol">
+        </div>
+
+        <div class="form-group">
+            <label for="vehicleDrive">Drivetrain</label>
+            <select id="vehicleDrive">
+                <option value="">Select drivetrain</option>
+                <option value="FWD">Front-wheel drive (FWD)</option>
+                <option value="RWD">Rear-wheel drive (RWD)</option>
+                <option value="AWD">All-wheel drive (AWD)</option>
+                <option value="4WD">Four-wheel drive (4WD)</option>
+                <option value="Other">Other / Unknown</option>
+            </select>
+        </div>
+    </div>
+
+    <p class="note">
+        Vehicle-specific service limits will be assessed only
+        when verified specifications for the selected vehicle
+        and configuration are available.
+    </p>
+</section>
+```
 
     
 
