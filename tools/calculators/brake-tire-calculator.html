@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Brake & Tire Measurement Calculator | KalMarket</title>
+
+    <meta name="description"
+          content="Measure brake pads, rotors, drums, tire tread depth and tire pressure with the KalMarket automotive inspection calculator.">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        header {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #123b65;
+            margin-top: 0;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        input, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 11px;
+            border: 1px solid #ccd3dc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            background: #1769aa;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .note {
+            color: #5b6470;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <header>
+        <h1>Brake & Tire Measurement Calculator</h1>
+        <p>KalMarket — Automotive Inspection Tools</p>
+        <p class="note">
+            Enter vehicle details and measurements to evaluate brake
+            condition, tire tread depth and tire pressure.
+        </p>
+    </header>
+
+    <section class="section">
+        <h2>1. Vehicle Information</h2>
+
+        <div class="form-grid">
+            <div>
+                <label for="vehicleYear">Year</label>
+                <select id="vehicleYear">
+                    <option value="">Select year</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="vehicleMake">Make</label>
+                <input id="vehicleMake"
+                       type="text"
+                       placeholder="e.g. Toyota">
+            </div>
+
+            <div>
+                <label for="vehicleModel">Model</label>
+                <input id="vehicleModel"
+                       type="text"
+                       placeholder="e.g. Camry">
+            </div>
+
+            <div>
+                <label for="vehicleTrim">Engine / Trim</label>
+                <input id="vehicleTrim"
+                       type="text"
+                       placeholder="Optional">
+            </div>
+        </div>
+
+        <p class="note">
+            Automatic vehicle specifications will be connected after
+            we establish a verified data source.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>2. Front Brakes</h2>
+        <p>We will add pad thickness, rotor measurements and the
+           manufacturer's discard limits here.</p>
+    </section>
+
+    <section class="section">
+        <h2>3. Rear Brakes</h2>
+        <p>We will add the appropriate rear pad or shoe measurements,
+           rotor thickness or drum diameter, and discard limits here.</p>
+    </section>
+
+    <section class="section">
+        <h2>4. Tire Measurements</h2>
+        <p>
+            Recommended service threshold: 3.5 mm.
+            Upper reference value: 9.0 mm.
+        </p>
+        <p>We will add individual measurements for all four tires.</p>
+    </section>
+
+    <section class="section">
+        <h2>5. Tire Pressure</h2>
+        <p>We will compare measured tire pressure with the vehicle
+           manufacturer's recommended pressure.</p>
+    </section>
+
+</div>
+
+<script>
+    const yearSelect = document.getElementById("vehicleYear");
+    const currentYear = new Date().getFullYear();
+
+    for (let year = currentYear; year >= 1980; year--) {
+        const option = document.createElement("option");
+        option.value = year;
+        option.textContent = year;
+        yearSelect.appendChild(option);
+    }
+</script>
+
+</body>
+</html>
