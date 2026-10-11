@@ -342,54 +342,19 @@ function checkRearDrumSide(prefix, sideName) {
     result.className = "result-warning";
 }
 
-function checkBrakePair(
-    sides, liningKey, liningLabel, rotorKey, rotorLabel,
-    liningMax, rotorMax
-) {
-    sides.forEach(side => {
-        const lining = document.getElementById(side.prefix + liningKey);
-        const liningMin = document.getElementById(side.prefix + liningKey + "Min");
-        const rotor = document.getElementById(side.prefix + rotorKey);
-        const rotorMin = document.getElementById(side.prefix + rotorKey + "Min");
-        const result = document.getElementById(side.resultId);
+const problems = [];
 
-        const raw = [lining, liningMin, rotor, rotorMin].map(input =>
-            input.value.trim()
-        );
+if (liningValue <= liningLimit) {
+    problems.push(
+        `${liningLabel} lining at or below minimum — replace`
+    );
+}
 
-        if (raw.some(value =>
-            value === "" || !Number.isFinite(Number(value)) ||
-            Number(value) <= 0
-        )) {
-            result.textContent =
-                "Enter all measurements and verified limits.";
-            result.style.color = "#b45309";
-            return;
-        }
-
-        const [liningValue, liningLimit, rotorValue, rotorLimit] =
-            raw.map(Number);
-
-        if (liningValue > liningMax || liningLimit > liningMax ||
-            rotorValue > rotorMax || rotorLimit > rotorMax) {
-            result.textContent = "Check the values and units.";
-            result.style.color = "#b45309";
-            return;
-        }
-
-        const problems = [];
-
-        if (liningValue <= liningLimit) {
-            problems.push(
-                `${liningLabel} lining at or below minimum — replace`
-            );
-        }
-
-        if (rotorValue <= rotorLimit) {
-            problems.push(
-                `${rotorLabel} at or below discard thickness — replace`
-            );
-        }
+if (rotorValue <= rotorLimit) {
+    problems.push(
+        `${rotorLabel} at or below discard thickness — replace`
+    );
+}
 
         if (problems.length) {
             result.textContent = problems.join(". ");
