@@ -201,9 +201,6 @@ function checkTirePressure() {
         : "result-warning";
 }
 
-
-
-```javascript
 function checkFrontBrakes() {
     const vehicleCountry =
         document.getElementById("vehicleCountry").value;
