@@ -252,3 +252,141 @@ function checkFrontBrakes() {
         alert("Please correct the missing or invalid brake entries.");
     }
 }
+
+function showRearBrakeFields() {
+    const type = document.getElementById("rearBrakeType").value;
+
+    document.getElementById("rearDiscFields").hidden = type !== "disc";
+    document.getElementById("rearDrumFields").hidden = type !== "drum";
+}
+
+function checkRearDiscBrakes() {
+    checkBrakePair([
+        {
+            prefix: "rearLeft",
+            resultId: "rearLeftBrakeResult"
+        },
+        {
+            prefix: "rearRight",
+            resultId: "rearRightBrakeResult"
+        }
+    ], "pad", "Pad", "rotor", "Rotor", 40, 60);
+}
+
+function checkRearDrumBrakes() {
+    const sides = [
+        { prefix: "rearLeft", resultId: "rearLeftDrumResult" },
+        { prefix: "rearRight", resultId: "rearRightDrumResult" }
+    ];
+
+    sides.forEach(side => {
+        const shoe = document.getElementById(side.prefix + "Shoe");
+        const shoeMin = document.getElementById(side.prefix + "ShoeMin");
+        const drum = document.getElementById(side.prefix + "Drum");
+        const drumMax = document.getElementById(side.prefix + "DrumMax");
+        const result = document.getElementById(side.resultId);
+
+        const raw = [shoe, shoeMin, drum, drumMax].map(input =>
+            input.value.trim()
+        );
+
+        if (raw.some(value =>
+            value === "" || !Number.isFinite(Number(value)) ||
+            Number(value) <= 0
+        )) {
+            result.textContent =
+                "Enter all measurements and verified limits.";
+            result.style.color = "#b45309";
+            return;
+        }
+
+        const [shoeValue, shoeLimit, drumValue, drumLimit] =
+            raw.map(Number);
+
+        if (shoeValue > 30 || shoeLimit > 30 ||
+            drumValue > 500 || drumLimit > 500) {
+            result.textContent = "Check the values and units.";
+            result.style.color = "#b45309";
+            return;
+        }
+
+        const problems = [];
+
+        if (shoeValue <= shoeLimit) {
+            problems.push("Shoe lining at or below minimum — replace");
+        }
+
+        if (drumValue >= drumLimit) {
+            problems.push("Drum at or above maximum diameter — replace");
+        }
+
+        if (problems.length) {
+            result.textContent = problems.join(". ");
+            result.style.color = "#b91c1c";
+        } else {
+            result.textContent =
+                "Above lining minimum and below drum maximum. Complete the remaining brake inspection.";
+            result.style.color = "#15803d";
+        }
+    });
+}
+
+function checkBrakePair(
+    sides, liningKey, liningLabel, rotorKey, rotorLabel,
+    liningMax, rotorMax
+) {
+    sides.forEach(side => {
+        const lining = document.getElementById(side.prefix + liningKey);
+        const liningMin = document.getElementById(side.prefix + liningKey + "Min");
+        const rotor = document.getElementById(side.prefix + rotorKey);
+        const rotorMin = document.getElementById(side.prefix + rotorKey + "Min");
+        const result = document.getElementById(side.resultId);
+
+        const raw = [lining, liningMin, rotor, rotorMin].map(input =>
+            input.value.trim()
+        );
+
+        if (raw.some(value =>
+            value === "" || !Number.isFinite(Number(value)) ||
+            Number(value) <= 0
+        )) {
+            result.textContent =
+                "Enter all measurements and verified limits.";
+            result.style.color = "#b45309";
+            return;
+        }
+
+        const [liningValue, liningLimit, rotorValue, rotorLimit] =
+            raw.map(Number);
+
+        if (liningValue > liningMax || liningLimit > liningMax ||
+            rotorValue > rotorMax || rotorLimit > rotorMax) {
+            result.textContent = "Check the values and units.";
+            result.style.color = "#b45309";
+            return;
+        }
+
+        const problems = [];
+
+        if (liningValue <= liningLimit) {
+            problems.push(
+                `${liningLabel} lining at or below minimum — replace`
+            );
+        }
+
+        if (rotorValue <= rotorLimit) {
+            problems.push(
+                `${rotorLabel} at or below discard thickness — replace`
+            );
+        }
+
+        if (problems.length) {
+            result.textContent = problems.join(". ");
+            result.style.color = "#b91c1c";
+        } else {
+            result.textContent =
+                "Above entered minimum limits. Complete all other required inspections.";
+            result.style.color = "#15803d";
+        }
+    });
+}
