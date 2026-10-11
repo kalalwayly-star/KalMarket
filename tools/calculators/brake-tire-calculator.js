@@ -203,20 +203,32 @@ function checkTirePressure() {
 
 
 
+```javascript
 function checkFrontBrakes() {
-    const vehicleYear = document.getElementById("vehicleYear").value;
-    const vehicleMake = document.getElementById("vehicleMake").value.trim();
-    const vehicleModel = document.getElementById("vehicleModel").value.trim();
+    const vehicleCountry =
+        document.getElementById("vehicleCountry").value;
 
-    if (!vehicleYear || !vehicleMake || !vehicleModel) {
-        alert("Please select the vehicle year and enter the make and model.");
+    const vehicleYear =
+        document.getElementById("vehicleYear").value;
+
+    const vehicleMake =
+        document.getElementById("vehicleMake").value.trim();
+
+    const vehicleModel =
+        document.getElementById("vehicleModel").value.trim();
+
+    if (!vehicleCountry || !vehicleYear || !vehicleMake || !vehicleModel) {
+        alert(
+            "Please select the vehicle market and year, " +
+            "and enter the vehicle make and model."
+        );
         return;
     }
 
     checkFrontBrakeSide("frontLeft", "Front Left");
     checkFrontBrakeSide("frontRight", "Front Right");
 }
-
+```
 function checkFrontBrakeSide(prefix, sideName) {
     const pad = Number(document.getElementById(prefix + "Pad").value);
     const rotor = Number(document.getElementById(prefix + "Rotor").value);
