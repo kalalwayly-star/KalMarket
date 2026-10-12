@@ -394,4 +394,3 @@ async function lookupVehicleInfo() {
             "Vehicle lookup is unavailable right now. Please try again later.";
     }
 }
-```
