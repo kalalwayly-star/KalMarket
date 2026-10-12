@@ -250,22 +250,14 @@ function checkFrontBrakes() {
     checkFrontBrakeSide("frontRight", "Front Right");
 }
 
+```javascript
 function checkFrontBrakeSide(prefix, sideName) {
     const padInput = document.getElementById(prefix + "Pad");
     const rotorInput = document.getElementById(prefix + "Rotor");
+    const result = document.getElementById(prefix + "BrakeResult");
 
     const pad = Number(padInput.value);
     const rotor = Number(rotorInput.value);
-    const result = document.getElementById(prefix + "BrakeResult");
-
-    const year = document.getElementById("vehicleYear").value;
-    const make = document.getElementById("vehicleMake").value.trim().toUpperCase();
-    const model = document.getElementById("vehicleModel").value.trim().toUpperCase();
-    const engine = document.getElementById("vehicleEngine").value.trim().toUpperCase();
-    const drive = document.getElementById("vehicleDrive").value;
-    const market = document.getElementById("vehicleCountry").value;
-    const trim = document.getElementById("vehicleTrim").value.trim().toUpperCase();
-    const diameter = document.getElementById("frontRotorDiameter").value;
 
     if (
         padInput.value === "" ||
@@ -281,55 +273,42 @@ function checkFrontBrakeSide(prefix, sideName) {
         return;
     }
 
-    const supportedVehicle =
-        year === "2010" &&
-        make === "TOYOTA" &&
-        model === "RAV4" &&
-        (engine.includes("2.5") || engine.includes("2AR-FE")) &&
-        (drive === "AWD" || drive === "4WD") &&
-        market === "Canada" &&
-        (trim === "BASE" || trim === "STANDARD");
+    let padGuidance = "";
 
-    if (!supportedVehicle || diameter !== "275") {
-        result.textContent =
-            sideName +
-            ": Specifications unavailable for this exact vehicle " +
-            "and rotor configuration. No pass/fail assessment made.";
-        result.className = "result-warning";
-        return;
-    }
-
-    const issues = [];
-
-    if (pad < 1.0) {
-        issues.push("Pad thickness is below the 1.0 mm minimum");
-    }
-
-    if (rotor < 22.0) {
-        issues.push("Rotor thickness is below the 22.0 mm minimum");
-    }
-
-    if (issues.length > 0) {
-        result.textContent =
-            sideName + ": BELOW SERVICE LIMIT — " +
-            issues.join("; ") +
-            ". Further inspection and service are required.";
-        result.className = "result-warning";
-        return;
+    if (pad > 12) {
+        padGuidance =
+            "Above the typical new-pad range. Verify the measurement.";
+    } else if (pad >= 10) {
+        padGuidance =
+            "New or near-new range (typical).";
+    } else if (pad >= 6) {
+        padGuidance =
+            "Good / monitor during routine maintenance.";
+    } else if (pad >= 4) {
+        padGuidance =
+            "Fair / plan a brake inspection and replacement as needed.";
+    } else if (pad >= 3) {
+        padGuidance =
+            "Critical thickness range / prompt inspection required.";
+    } else if (pad >= 2) {
+        padGuidance =
+            "Very low pad thickness / urgent inspection required.";
+    } else {
+        padGuidance =
+            "Extremely low pad thickness / urgent inspection and " +
+            "replacement assessment required.";
     }
 
     result.textContent =
-        sideName +
-        ": Both measurements meet the listed minimum thickness limits " +
-        "(pad: 1.0 mm minimum; rotor: 22.0 mm minimum). " +
-        "This does not certify overall brake safety. Inspect for other " +
-        "damage and verify the applicable service manual.";
+        sideName + ": Pad thickness " + pad.toFixed(1) + " mm. " +
+        padGuidance +
+        " Rotor thickness recorded: " + rotor.toFixed(2) +
+        " mm. Compare the rotor against the verified manufacturer " +
+        "minimum before determining whether it meets specifications.";
 
     result.className = "result-warning";
 }
-
-
-
+```
 function showRearBrakeFields() {
     const type = document.getElementById("rearBrakeType").value;
 
