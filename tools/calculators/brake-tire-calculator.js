@@ -342,3 +342,56 @@ function checkRearDrumSide(prefix, sideName) {
     result.className = "result-warning";
 }
 
+async function lookupVehicleInfo() {
+    const year = document.getElementById("vehicleYear").value;
+    const make = document.getElementById("vehicleMake").value.trim();
+    const model = document.getElementById("vehicleModel").value.trim();
+    const results = document.getElementById("vehicleLookupResults");
+
+    if (!year || !make || !model) {
+        results.textContent =
+            "Please select the vehicle year and enter the make and model.";
+        return;
+    }
+
+    results.textContent = "Looking up vehicle information...";
+
+    try {
+        const url =
+            "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/" +
+            encodeURIComponent(make) +
+            "/modelyear/" + encodeURIComponent(year) +
+            "?format=json";
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Vehicle database request failed.");
+        }
+
+        const data = await response.json();
+
+        const matchingModels = (data.Results || []).filter(vehicle =>
+            vehicle.Model_Name &&
+            vehicle.Model_Name.toLowerCase().includes(model.toLowerCase())
+        );
+
+        if (matchingModels.length === 0) {
+            results.textContent =
+                "No matching model was found in this database for that make and year. " +
+                "This does not mean the vehicle is unsupported worldwide.";
+            return;
+        }
+
+        results.textContent =
+            "Vehicle matches found: " +
+            matchingModels.map(vehicle => vehicle.Model_Name).join(", ") +
+            ". These are identification results, not verified brake service limits.";
+    } catch (error) {
+        console.error("Vehicle lookup failed:", error);
+
+        results.textContent =
+            "Vehicle lookup is unavailable right now. Please try again later.";
+    }
+}
+```
