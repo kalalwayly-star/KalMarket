@@ -251,32 +251,81 @@ function checkFrontBrakes() {
 }
 
 function checkFrontBrakeSide(prefix, sideName) {
-    const pad = Number(document.getElementById(prefix + "Pad").value);
-    const rotor = Number(document.getElementById(prefix + "Rotor").value);
+    const padInput = document.getElementById(prefix + "Pad");
+    const rotorInput = document.getElementById(prefix + "Rotor");
 
+    const pad = Number(padInput.value);
+    const rotor = Number(rotorInput.value);
     const result = document.getElementById(prefix + "BrakeResult");
 
+    const year = document.getElementById("vehicleYear").value;
+    const make = document.getElementById("vehicleMake").value.trim().toUpperCase();
+    const model = document.getElementById("vehicleModel").value.trim().toUpperCase();
+    const engine = document.getElementById("vehicleEngine").value.trim().toUpperCase();
+    const drive = document.getElementById("vehicleDrive").value;
+    const market = document.getElementById("vehicleCountry").value;
+    const trim = document.getElementById("vehicleTrim").value.trim().toUpperCase();
+    const diameter = document.getElementById("frontRotorDiameter").value;
+
     if (
-        document.getElementById(prefix + "Pad").value === "" ||
-        document.getElementById(prefix + "Rotor").value === "" ||
+        padInput.value === "" ||
+        rotorInput.value === "" ||
         !Number.isFinite(pad) ||
         !Number.isFinite(rotor) ||
         pad <= 0 ||
         rotor <= 0
     ) {
-        result.textContent = sideName + ": Enter valid pad and rotor measurements.";
+        result.textContent =
+            sideName + ": Enter valid pad and rotor measurements.";
         result.className = "result-warning";
         return;
     }
 
-    const rotorDiameter =
-    document.getElementById("frontRotorDiameter").value;
+    const supportedVehicle =
+        year === "2010" &&
+        make === "TOYOTA" &&
+        model === "RAV4" &&
+        (engine.includes("2.5") || engine.includes("2AR-FE")) &&
+        (drive === "AWD" || drive === "4WD") &&
+        market === "Canada" &&
+        (trim === "BASE" || trim === "STANDARD");
 
-result.textContent =
-    sideName + ": Measurements recorded. Selected front rotor diameter: " +
-    rotorDiameter + " mm. Waiting for verified vehicle-specific service limits.";
+    if (!supportedVehicle || diameter !== "275") {
+        result.textContent =
+            sideName +
+            ": Specifications unavailable for this exact vehicle " +
+            "and rotor configuration. No pass/fail assessment made.";
+        result.className = "result-warning";
+        return;
+    }
 
-result.className = "result-warning";
+    const issues = [];
+
+    if (pad < 1.0) {
+        issues.push("Pad thickness is below the 1.0 mm minimum");
+    }
+
+    if (rotor < 22.0) {
+        issues.push("Rotor thickness is below the 22.0 mm minimum");
+    }
+
+    if (issues.length > 0) {
+        result.textContent =
+            sideName + ": BELOW SERVICE LIMIT — " +
+            issues.join("; ") +
+            ". Further inspection and service are required.";
+        result.className = "result-warning";
+        return;
+    }
+
+    result.textContent =
+        sideName +
+        ": Both measurements meet the listed minimum thickness limits " +
+        "(pad: 1.0 mm minimum; rotor: 22.0 mm minimum). " +
+        "This does not certify overall brake safety. Inspect for other " +
+        "damage and verify the applicable service manual.";
+
+    result.className = "result-warning";
 }
 
 
