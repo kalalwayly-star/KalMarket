@@ -188,7 +188,9 @@
 <button type="button" onclick="decodeVehicleVIN()">
     Decode VIN
 </button>
-
+<div id="vinDecodeResults"
+     aria-live="polite"
+     class="result-warning"></div>
 </div> 
 </div>
 
@@ -218,12 +220,6 @@
          class="result-warning"></div>
 </div>
 
-<div class="vehicle-lookup-result">
-    <strong>VIN Decoder Result:</strong>
-    <div id="vinDecodeResults"
-         aria-live="polite"
-         class="result-warning"></div>
-</div>
 </section>
     
 
