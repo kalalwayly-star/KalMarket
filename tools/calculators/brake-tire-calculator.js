@@ -346,11 +346,13 @@ async function lookupVehicleInfo() {
     const year = document.getElementById("vehicleYear").value;
     const make = document.getElementById("vehicleMake").value.trim();
     const model = document.getElementById("vehicleModel").value.trim();
+    const trimInput = document.getElementById("vehicleTrim");
+    const trim = trimInput ? trimInput.value.trim() : "";
     const results = document.getElementById("vehicleLookupResults");
 
     if (!year || !make || !model) {
         results.textContent =
-            "Please select the vehicle year and enter the make and model.";
+            "Please enter the vehicle year, make, and model.";
         return;
     }
 
@@ -371,25 +373,31 @@ async function lookupVehicleInfo() {
 
         const data = await response.json();
 
-        const matchingModels = (data.Results || []).filter(vehicle =>
-            vehicle.Model_Name &&
-            vehicle.Model_Name.toLowerCase().includes(model.toLowerCase())
+        const models = (data.Results || [])
+            .map(vehicle => vehicle.Model_Name)
+            .filter(Boolean);
+
+        const matchingModels = models.filter(name =>
+            name.toLowerCase() === model.toLowerCase()
         );
 
         if (matchingModels.length === 0) {
             results.textContent =
-                "No matching model was found in this database for that make and year. " +
-                "This does not mean the vehicle is unsupported worldwide.";
+                "No exact model-name match was found for " +
+                year + " " + make + " " + model +
+                ". This database may not cover every vehicle or market.";
             return;
         }
 
         results.textContent =
-            "Vehicle matches found: " +
-            matchingModels.map(vehicle => vehicle.Model_Name).join(", ") +
-            ". These are identification results, not verified brake service limits.";
+            "Vehicle model match: " + year + " " + make + " " +
+            matchingModels.join(", ") +
+            (trim ? ". Entered trim: " + trim + "." : ".") +
+            " The trim has not been independently verified. " +
+            "Brake service limits are still unavailable until verified.";
+
     } catch (error) {
         console.error("Vehicle lookup failed:", error);
-
         results.textContent =
             "Vehicle lookup is unavailable right now. Please try again later.";
     }
