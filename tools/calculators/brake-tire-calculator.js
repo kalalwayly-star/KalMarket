@@ -478,13 +478,13 @@ if (engine && !engine.value.trim()) {
         }
 
         results.textContent =
-            "VIN decoded. Make: " + vehicle.Make +
-            "; Model: " + vehicle.Model +
-            "; Year: " + (vehicle.ModelYear || "Not available") +
-            "; Trim: " + (vehicle.Trim || "Not available") +
-            ". Confirm the details against the vehicle. " +
-            "Brake service limits have not been retrieved.";
-
+    "VIN identification completed. Make: " + vehicle.Make +
+    "; Model: " + vehicle.Model +
+    "; Year: " + (vehicle.ModelYear || "Not available") +
+    "; Database trim: " + (vehicle.Trim || "Not available") +
+    ". Please confirm the vehicle details manually. " +
+    "Brake and tire service specifications have not been verified.";
+       
     } catch (error) {
         console.error("VIN decoding failed:", error);
 
