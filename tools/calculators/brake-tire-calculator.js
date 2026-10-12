@@ -453,7 +453,6 @@ async function decodeVehicleVIN() {
             vehicle.Model || "";
 
         const trim = document.getElementById("vehicleTrim");
-        // Preserve the trim entered by the user.
 if (trim && !trim.value.trim() && vehicle.Trim) {
     trim.value = vehicle.Trim;
 }
