@@ -342,27 +342,3 @@ function checkRearDrumSide(prefix, sideName) {
     result.className = "result-warning";
 }
 
-const problems = [];
-
-if (liningValue <= liningLimit) {
-    problems.push(
-        `${liningLabel} lining at or below minimum — replace`
-    );
-}
-
-if (rotorValue <= rotorLimit) {
-    problems.push(
-        `${rotorLabel} at or below discard thickness — replace`
-    );
-}
-
-        if (problems.length) {
-            result.textContent = problems.join(". ");
-            result.style.color = "#b91c1c";
-        } else {
-            result.textContent =
-                "Above entered minimum limits. Complete all other required inspections.";
-            result.style.color = "#15803d";
-        }
-    });
-}
