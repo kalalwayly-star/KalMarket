@@ -402,3 +402,88 @@ async function lookupVehicleInfo() {
             "Vehicle lookup is unavailable right now. Please try again later.";
     }
 }
+
+async function decodeVehicleVIN() {
+    const vinInput = document.getElementById("vehicleVIN");
+    const results = document.getElementById("vehicleLookupResults");
+    const vin = vinInput.value.trim().toUpperCase();
+    const year = document.getElementById("vehicleYear").value;
+
+    if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
+        results.textContent =
+            "Please enter a valid 17-character VIN.";
+        return;
+    }
+
+    results.textContent = "Decoding VIN...";
+
+    try {
+        let url =
+            "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/" +
+            encodeURIComponent(vin) +
+            "?format=json";
+
+        if (year) {
+            url += "&modelyear=" + encodeURIComponent(year);
+        }
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("VIN lookup failed.");
+        }
+
+        const data = await response.json();
+        const vehicle = data.Results && data.Results[0];
+
+        if (!vehicle || !vehicle.Make || !vehicle.Model) {
+            results.textContent =
+                "The database could not identify this vehicle. " +
+                "Check the VIN or try another source.";
+            return;
+        }
+
+        document.getElementById("vehicleYear").value =
+            vehicle.ModelYear || year;
+
+        document.getElementById("vehicleMake").value =
+            vehicle.Make || "";
+
+        document.getElementById("vehicleModel").value =
+            vehicle.Model || "";
+
+        const trim = document.getElementById("vehicleTrim");
+        if (trim && vehicle.Trim) trim.value = vehicle.Trim;
+
+        const engine = document.getElementById("vehicleEngine");
+        if (engine) {
+            engine.value = vehicle.EngineModel ||
+                vehicle.DisplacementL || engine.value;
+        }
+
+        const drive = document.getElementById("vehicleDrive");
+        if (drive && vehicle.DriveType) {
+            const driveType = vehicle.DriveType.toLowerCase();
+
+            if (driveType.includes("front")) drive.value = "FWD";
+            else if (driveType.includes("rear")) drive.value = "RWD";
+            else if (driveType.includes("all")) drive.value = "AWD";
+            else if (driveType.includes("4wd") ||
+                     driveType.includes("four")) drive.value = "4WD";
+        }
+
+        results.textContent =
+            "VIN decoded. Make: " + vehicle.Make +
+            "; Model: " + vehicle.Model +
+            "; Year: " + (vehicle.ModelYear || "Not available") +
+            "; Trim: " + (vehicle.Trim || "Not available") +
+            ". Confirm the details against the vehicle. " +
+            "Brake service limits have not been retrieved.";
+
+    } catch (error) {
+        console.error("VIN decoding failed:", error);
+
+        results.textContent =
+            "VIN lookup is unavailable right now. Please try again.";
+    }
+}
