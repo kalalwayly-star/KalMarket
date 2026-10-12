@@ -201,7 +201,6 @@ function checkTirePressure() {
         : "result-warning";
 }
 
-```javascript
 function checkFrontBrakes() {
     const vehicleCountry =
         document.getElementById("vehicleCountry").value;
@@ -250,7 +249,6 @@ function checkFrontBrakes() {
     checkFrontBrakeSide("frontLeft", "Front Left");
     checkFrontBrakeSide("frontRight", "Front Right");
 }
-```
 
 function checkFrontBrakeSide(prefix, sideName) {
     const pad = Number(document.getElementById(prefix + "Pad").value);
