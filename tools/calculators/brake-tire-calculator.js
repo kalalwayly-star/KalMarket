@@ -272,31 +272,33 @@ function checkFrontBrakeSide(prefix, sideName) {
         return;
     }
 
-    let padGuidance = "";
+   
+let padGuidance = "";
 
-    if (pad > 12) {
-        padGuidance =
-            "Above the typical new-pad range. Verify the measurement.";
-    } else if (pad >= 10) {
-        padGuidance =
-            "New or near-new range (typical).";
-    } else if (pad >= 6) {
-        padGuidance =
-            "Good / monitor during routine maintenance.";
-    } else if (pad >= 4) {
-        padGuidance =
-            "Fair / plan a brake inspection and replacement as needed.";
-    } else if (pad >= 3) {
-        padGuidance =
-            "Critical thickness range / prompt inspection required.";
-    } else if (pad >= 2) {
-        padGuidance =
-            "Very low pad thickness / urgent inspection required.";
-    } else {
-        padGuidance =
-            "Extremely low pad thickness / urgent inspection and " +
-            "replacement assessment required.";
-    }
+if (pad > 12) {
+    padGuidance =
+        "Above the typical new-pad range. Verify the measurement.";
+} else if (pad >= 10) {
+    padGuidance =
+        "New or near-new range (typically 10–12 mm).";
+} else if (pad >= 6) {
+    padGuidance =
+        "Good / Monitor: Plenty of life remaining; inspect during regular maintenance.";
+} else if (pad >= 4) {
+    padGuidance =
+        "Fair / Plan replacement: Start scheduling or budgeting for brake service.";
+} else if (pad >= 3) {
+    padGuidance =
+        "Critical threshold: Arrange prompt inspection and replacement assessment.";
+} else if (pad >= 2) {
+    padGuidance =
+        "Very low: Urgent brake inspection required.";
+} else {
+    padGuidance =
+        "Dangerously low: Urgent inspection and replacement assessment required; " +
+        "metal-to-metal contact may damage the rotor and reduce braking performance.";
+}
+
 
     result.textContent =
         sideName + ": Pad thickness " + pad.toFixed(1) + " mm. " +
