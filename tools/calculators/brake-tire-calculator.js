@@ -459,11 +459,13 @@ if (trim && !trim.value.trim() && vehicle.Trim) {
 }
 
         const engine = document.getElementById("vehicleEngine");
-        if (engine) {
-            engine.value = vehicle.EngineModel ||
-                vehicle.DisplacementL || engine.value;
-        }
 
+// Keep the engine information already entered by the user.
+if (engine && !engine.value.trim()) {
+    engine.value = vehicle.DisplacementL
+        ? vehicle.DisplacementL + " L"
+        : (vehicle.EngineModel || "");
+}
         const drive = document.getElementById("vehicleDrive");
         if (drive && !drive.value && vehicle.DriveType) {
             const driveType = vehicle.DriveType.toLowerCase();
