@@ -251,6 +251,22 @@ function checkFrontBrakes() {
 }
 
 
+const verifiedBrakePadSpecs = {};
+
+function getVerifiedBrakePadSpec(position) {
+    const year = document.getElementById("vehicleYear").value.trim();
+    const make = document.getElementById("vehicleMake").value.trim().toLowerCase();
+    const model = document.getElementById("vehicleModel").value.trim().toLowerCase();
+    const trim = document.getElementById("vehicleTrim").value.trim().toLowerCase();
+    const engine = document.getElementById("vehicleEngine").value.trim().toLowerCase();
+    const drive = document.getElementById("vehicleDrive").value.trim().toLowerCase();
+
+    const key = [
+        year, make, model, trim, engine, drive, position
+    ].join("|");
+
+    return verifiedBrakePadSpecs[key] || null;
+}
 function checkFrontBrakeSide(prefix, sideName) {
     const padInput = document.getElementById(prefix + "Pad");
     const rotorInput = document.getElementById(prefix + "Rotor");
