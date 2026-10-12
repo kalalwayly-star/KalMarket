@@ -250,7 +250,6 @@ function checkFrontBrakes() {
     checkFrontBrakeSide("frontRight", "Front Right");
 }
 
-```javascript
 function checkFrontBrakeSide(prefix, sideName) {
     const padInput = document.getElementById(prefix + "Pad");
     const rotorInput = document.getElementById(prefix + "Rotor");
@@ -308,7 +307,7 @@ function checkFrontBrakeSide(prefix, sideName) {
 
     result.className = "result-warning";
 }
-```
+
 function showRearBrakeFields() {
     const type = document.getElementById("rearBrakeType").value;
 
