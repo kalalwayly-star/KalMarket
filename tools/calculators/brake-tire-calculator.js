@@ -465,7 +465,7 @@ if (trim && !trim.value.trim() && vehicle.Trim) {
         }
 
         const drive = document.getElementById("vehicleDrive");
-        if (drive && vehicle.DriveType) {
+        if (drive && !drive.value && vehicle.DriveType) {
             const driveType = vehicle.DriveType.toLowerCase();
 
             if (driveType.includes("front")) drive.value = "FWD";
