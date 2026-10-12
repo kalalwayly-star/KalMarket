@@ -269,10 +269,14 @@ function checkFrontBrakeSide(prefix, sideName) {
         return;
     }
 
-    result.textContent =
-        sideName + ": Measurements recorded — waiting for verified vehicle specifications.";
+    const rotorDiameter =
+    document.getElementById("frontRotorDiameter").value;
 
-    result.className = "result-warning";
+result.textContent =
+    sideName + ": Measurements recorded. Selected front rotor diameter: " +
+    rotorDiameter + " mm. Waiting for verified vehicle-specific service limits.";
+
+result.className = "result-warning";
 }
 
 
