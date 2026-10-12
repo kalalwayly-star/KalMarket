@@ -201,6 +201,7 @@ function checkTirePressure() {
         : "result-warning";
 }
 
+```javascript
 function checkFrontBrakes() {
     const vehicleCountry =
         document.getElementById("vehicleCountry").value;
@@ -214,6 +215,9 @@ function checkFrontBrakes() {
     const vehicleModel =
         document.getElementById("vehicleModel").value.trim();
 
+    const rotorDiameter =
+        document.getElementById("frontRotorDiameter").value;
+
     if (!vehicleCountry || !vehicleYear || !vehicleMake || !vehicleModel) {
         alert(
             "Please select the vehicle market and year, " +
@@ -222,9 +226,31 @@ function checkFrontBrakes() {
         return;
     }
 
+    if (!rotorDiameter) {
+        alert("Please select the front rotor diameter.");
+        return;
+    }
+
+    if (rotorDiameter === "unknown") {
+        alert(
+            "Please confirm the front rotor diameter before " +
+            "checking the brake specifications."
+        );
+        return;
+    }
+
+    if (rotorDiameter === "other") {
+        alert(
+            "The rotor diameter was not matched to a verified " +
+            "specification. Do not use an assumed service limit."
+        );
+        return;
+    }
+
     checkFrontBrakeSide("frontLeft", "Front Left");
     checkFrontBrakeSide("frontRight", "Front Right");
 }
+```
 
 function checkFrontBrakeSide(prefix, sideName) {
     const pad = Number(document.getElementById(prefix + "Pad").value);
