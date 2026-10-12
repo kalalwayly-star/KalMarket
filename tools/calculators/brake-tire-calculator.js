@@ -250,6 +250,7 @@ function checkFrontBrakes() {
     checkFrontBrakeSide("frontRight", "Front Right");
 }
 
+
 function checkFrontBrakeSide(prefix, sideName) {
     const padInput = document.getElementById(prefix + "Pad");
     const rotorInput = document.getElementById(prefix + "Rotor");
@@ -266,37 +267,60 @@ function checkFrontBrakeSide(prefix, sideName) {
         pad <= 0 ||
         rotor <= 0
     ) {
-        result.textContent =
-            sideName + ": Enter valid pad and rotor measurements.";
-        result.className = "result-warning";
+        result.innerHTML = `
+            <div class="brake-result-box brake-warning">
+                <strong>MEASUREMENTS REQUIRED</strong>
+                <p>Enter valid pad and rotor measurements.</p>
+            </div>`;
         return;
     }
 
-   
-let padGuidance = "";
+    let rating;
+    let advice;
+    let cssClass;
 
-if (pad > 12) {
-    padGuidance =
-        "Above the typical new-pad range. Verify the measurement.";
-} else if (pad >= 10) {
-    padGuidance =
-        "New or near-new range (typically 10–12 mm).";
-} else if (pad >= 6) {
-    padGuidance =
-        "Good / Monitor: Plenty of life remaining; inspect during regular maintenance.";
-} else if (pad >= 4) {
-    padGuidance =
-        "Fair / Plan replacement: Start scheduling or budgeting for brake service.";
-} else if (pad >= 3) {
-    padGuidance =
-        "Critical threshold: Arrange prompt inspection and replacement assessment.";
-} else if (pad >= 2) {
-    padGuidance =
-        "Very low: Urgent brake inspection required.";
-} else {
-    padGuidance =
-        "Dangerously low: Urgent inspection and replacement assessment required; " +
-        "metal-to-metal contact may damage the rotor and reduce braking performance.";
+    if (pad > 12) {
+        rating = "VERIFY MEASUREMENT";
+        advice = "Check the measurement and confirm the pad specification.";
+        cssClass = "brake-warning";
+    } else if (pad >= 10) {
+        rating = "NEW / NEAR-NEW";
+        advice = "Pad thickness is in a typical new-pad range. Continue regular inspections.";
+        cssClass = "brake-good";
+    } else if (pad >= 6) {
+        rating = "GOOD — MONITOR";
+        advice = "Continue normal maintenance and recheck at the next service.";
+        cssClass = "brake-good";
+    } else if (pad >= 4) {
+        rating = "FAIR — PLAN REPLACEMENT";
+        advice = "Plan to replace the brake pads soon. Confirm the manufacturer's service limit.";
+        cssClass = "brake-warning";
+    } else if (pad >= 3) {
+        rating = "CRITICAL";
+        advice = "Arrange a prompt brake inspection and replacement assessment.";
+        cssClass = "brake-danger";
+    } else if (pad >= 2) {
+        rating = "VERY LOW";
+        advice = "Arrange an urgent brake inspection and replacement assessment.";
+        cssClass = "brake-danger";
+    } else {
+        rating = "DANGEROUSLY LOW";
+        advice = "Urgent inspection is required. Do not rely on this calculator alone to determine whether the vehicle is safe to drive.";
+        cssClass = "brake-danger";
+    }
+
+    result.innerHTML = `
+        <div class="brake-result-box ${cssClass}">
+            <strong>${sideName}: ${rating}</strong>
+            <p><b>Pad thickness:</b> ${pad.toFixed(1)} mm</p>
+            <p>${advice}</p>
+        </div>
+
+        <div class="brake-result-box brake-info">
+            <strong>ROTOR MEASUREMENT</strong>
+            <p><b>Measured thickness:</b> ${rotor.toFixed(2)} mm</p>
+            <p>Manufacturer's minimum thickness has not been verified. Do not rate the rotor as passing or failing until the correct specification is confirmed.</p>
+        </div>`;
 }
 
 
