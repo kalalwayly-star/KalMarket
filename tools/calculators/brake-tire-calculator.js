@@ -405,8 +405,8 @@ async function lookupVehicleInfo() {
 
 async function decodeVehicleVIN() {
     const vinInput = document.getElementById("vehicleVIN");
-    const results = document.getElementById("vehicleLookupResults");
-    const vin = vinInput.value.trim().toUpperCase();
+   const results = document.getElementById("vinDecodeResults");
+   const vin = vinInput.value.trim().toUpperCase();
     const year = document.getElementById("vehicleYear").value;
 
     if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
