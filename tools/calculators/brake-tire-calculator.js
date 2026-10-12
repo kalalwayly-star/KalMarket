@@ -323,17 +323,6 @@ function checkFrontBrakeSide(prefix, sideName) {
         </div>`;
 }
 
-
-    result.textContent =
-        sideName + ": Pad thickness " + pad.toFixed(1) + " mm. " +
-        padGuidance +
-        " Rotor thickness recorded: " + rotor.toFixed(2) +
-        " mm. Compare the rotor against the verified manufacturer " +
-        "minimum before determining whether it meets specifications.";
-
-    result.className = "result-warning";
-}
-
 function showRearBrakeFields() {
     const type = document.getElementById("rearBrakeType").value;
 
