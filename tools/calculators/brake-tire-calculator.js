@@ -395,8 +395,24 @@ ${spec ? `
         <div class="brake-result-box brake-info">
             <strong>ROTOR MEASUREMENT</strong>
             <p><b>Measured thickness:</b> ${rotor.toFixed(2)} mm</p>
-            <p>Manufacturer's minimum thickness has not been verified. Do not rate the rotor as passing or failing until the correct specification is confirmed.</p>
-        </div>`;
+${rotorSpec ? `
+    <p><b>New rotor thickness:</b> ${rotorSpec.newThicknessMm} mm</p>
+    <p><b>Minimum thickness:</b> ${rotorSpec.minimumThicknessMm} mm</p>
+    <p><b>Status:</b> ${rotorSpec.status}</p>
+    <p>
+        <b>Assessment:</b>
+        ${rotor <= rotorSpec.minimumThicknessMm
+            ? "At or below the listed minimum. Arrange a prompt brake inspection."
+            : "Above the listed minimum. Confirm the specification and inspect the rotor condition."}
+    </p>
+    <p><b>Source:</b>
+        <a href="${rotorSpec.sourceUrl}" target="_blank" rel="noopener noreferrer">
+            ${rotorSpec.source}
+        </a>
+    </p>
+` : `
+    <p><b>Vehicle-specific rotor specification:</b> Unavailable. Verify the manufacturer's minimum thickness before making a pass/fail assessment.</p>
+`}        </div>`;
 }
 
 if (spec && pad <= spec.minimumThicknessMm) {
