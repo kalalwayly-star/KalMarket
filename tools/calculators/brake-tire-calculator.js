@@ -401,9 +401,13 @@ ${rotorSpec ? `
     <p><b>Status:</b> ${rotorSpec.status}</p>
     <p>
         <b>Assessment:</b>
-        ${rotor <= rotorSpec.minimumThicknessMm
-            ? "At or below the listed minimum. Arrange a prompt brake inspection."
-            : "Above the listed minimum. Confirm the specification and inspect the rotor condition."}
+        
+${rotorSpec.status === "Provisional"
+    ? "PROVISIONAL RESULT: The measured thickness is at or below the listed minimum. Confirm the correct manufacturer specification before deciding on replacement."
+    : rotor <= rotorSpec.minimumThicknessMm
+        ? "REPLACEMENT REQUIRED: Rotor thickness is at or below the verified minimum service limit."
+        : "ABOVE MINIMUM: Rotor thickness is above the verified minimum. Inspect for cracks, scoring, heat damage, and other defects."}
+
     </p>
     <p><b>Source:</b>
         <a href="${rotorSpec.sourceUrl}" target="_blank" rel="noopener noreferrer">
