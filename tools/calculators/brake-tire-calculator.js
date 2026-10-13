@@ -305,6 +305,7 @@ rearRotor: {
 
 };
 
+
 function findVerifiedBrakePadSpec(position) {
     const year = document.getElementById("vehicleYear").value.trim();
     const make = document.getElementById("vehicleMake").value.trim().toLowerCase();
@@ -312,20 +313,23 @@ function findVerifiedBrakePadSpec(position) {
     const country = document.getElementById("vehicleCountry").value.trim().toLowerCase();
 
     const key = `${year}|${make}|${model}|${country}`;
-   console.log("Brake specification lookup key:", key);
-console.log("Available specification keys:", Object.keys(verifiedBrakePadSpecs));
+
+    console.log("Brake specification lookup key:", key);
+    console.log("Available specification keys:", Object.keys(verifiedBrakePadSpecs));
+
     const vehicleSpec = verifiedBrakePadSpecs[key];
 
-if (!vehicleSpec || !vehicleSpec[position]) {
-    return null;
+    if (!vehicleSpec || !vehicleSpec[position]) {
+        return null;
+    }
+
+    return {
+        ...vehicleSpec[position],
+        source: vehicleSpec.source,
+        sourceUrl: vehicleSpec.sourceUrl
+    };
 }
 
-return {
-    ...vehicleSpec[position],
-    source: vehicleSpec.source,
-    sourceUrl: vehicleSpec.sourceUrl
-};
-}
 
 function checkFrontBrakeSide(prefix, sideName) {
     const padInput = document.getElementById(prefix + "Pad");
