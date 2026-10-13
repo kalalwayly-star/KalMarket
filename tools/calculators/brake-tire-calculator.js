@@ -580,13 +580,17 @@ if (engine && !engine.value.trim()) {
                      driveType.includes("four")) drive.value = "4WD";
         }
 
-        results.textContent =
+        
+results.textContent =
     "VIN identification completed. Make: " + vehicle.Make +
     "; Model: " + vehicle.Model +
     "; Year: " + (vehicle.ModelYear || "Not available") +
     "; Database trim: " + (vehicle.Trim || "Not available") +
-    ". Please confirm the vehicle details manually. " +
+    ". Please confirm the vehicle details and select the " +
+    "vehicle market/country manually. Country of manufacture " +
+    "does not necessarily identify the original sales market. " +
     "Brake and tire service specifications have not been verified.";
+
        
     } catch (error) {
         console.error("VIN decoding failed:", error);
