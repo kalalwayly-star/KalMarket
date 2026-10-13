@@ -279,6 +279,33 @@ rearRotor: {
     }
 };
 
+"2016|honda|odyssey|canada": {
+    front: {
+        newThicknessMm: 12,
+        minimumThicknessMm: 1.6
+    },
+    rear: {
+        newThicknessMm: 10,
+        minimumThicknessMm: 1.6
+    },
+    frontRotor: {
+        newThicknessMm: 28,
+        minimumThicknessMm: 26,
+        status: "Provisional",
+        source: "Canadian replacement-parts catalog; verify exact vehicle specification",
+        sourceUrl: "https://www.tdotperformance.ca/performance-parts/brakes.html?product_list_limit=40&ymm=33728"
+    },
+    rearRotor: {
+        newThicknessMm: 11,
+        minimumThicknessMm: 9,
+        status: "Provisional",
+        source: "Canadian replacement-parts catalog; verify exact vehicle specification",
+        sourceUrl: "https://www.tdotperformance.ca/performance-parts/brakes.html?product_list_limit=40&ymm=33728"
+    },
+    source: "Honda Vehicle Service Quick Reference Guide, 2013–2017 models",
+    sourceUrl: "https://manuals.plus/m/6db4bf88f65e2aea0b894d8141a385608002977e5d927fcb47e3e02df36cafbf"
+},
+
 function findVerifiedBrakePadSpec(position) {
     const year = document.getElementById("vehicleYear").value.trim();
     const make = document.getElementById("vehicleMake").value.trim().toLowerCase();
