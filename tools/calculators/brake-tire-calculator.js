@@ -275,7 +275,15 @@ function findVerifiedBrakePadSpec(position) {
     const key = `${year}|${make}|${model}|${country}`;
     const vehicleSpec = verifiedBrakePadSpecs[key];
 
-    return vehicleSpec ? vehicleSpec[position] || null : null;
+if (!vehicleSpec || !vehicleSpec[position]) {
+    return null;
+}
+
+return {
+    ...vehicleSpec[position],
+    source: vehicleSpec.source,
+    sourceUrl: vehicleSpec.sourceUrl
+};
 }
 
 function checkFrontBrakeSide(prefix, sideName) {
