@@ -266,8 +266,7 @@ const verifiedBrakePadSpecs = {
     minimumThicknessMm: 26,
     status: "Provisional",
     source: "Replacement-parts catalog; confirm with the 2016 Honda service manual",
-    sourceUrl: "https://www.moparrepairconnect.ca/assets/docs/Brake%20Rotors%20%26%20Drums%20Application%20Guide%2003-2016.pdf"
-},
+sourceUrl: "https://www.hodyssey.net/634/thickness_and_parallelism.html"},
 rearRotor: {
     newThicknessMm: 11,
     minimumThicknessMm: 9,
