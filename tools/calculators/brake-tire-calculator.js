@@ -251,6 +251,33 @@ function checkFrontBrakes() {
 }
 
 
+const verifiedBrakePadSpecs = {
+    "2016|honda|odyssey|united states": {
+        front: {
+            newThicknessMm: 12,
+            minimumThicknessMm: 1.6
+        },
+        rear: {
+            newThicknessMm: 10,
+            minimumThicknessMm: 1.6
+        },
+        source: "Honda Vehicle Service Quick Reference Guide, 2013–2017 models",
+        sourceUrl: "https://manuals.plus/m/6db4bf88f65e2aea0b894d8141a385608002977e5d927fcb47e3e02df36cafbf"
+    }
+};
+
+function findVerifiedBrakePadSpec(position) {
+    const year = document.getElementById("vehicleYear").value.trim();
+    const make = document.getElementById("vehicleMake").value.trim().toLowerCase();
+    const model = document.getElementById("vehicleModel").value.trim().toLowerCase();
+    const country = document.getElementById("vehicleCountry").value.trim().toLowerCase();
+
+    const key = `${year}|${make}|${model}|${country}`;
+    const vehicleSpec = verifiedBrakePadSpecs[key];
+
+    return vehicleSpec ? vehicleSpec[position] || null : null;
+}
+
 function checkFrontBrakeSide(prefix, sideName) {
     const padInput = document.getElementById(prefix + "Pad");
     const rotorInput = document.getElementById(prefix + "Rotor");
