@@ -355,7 +355,11 @@ const spec = findVerifiedBrakePadSpec(axlePosition);
 ${spec ? `
     <p><b>New pad thickness:</b> ${spec.newThicknessMm} mm</p>
     <p><b>Minimum service limit:</b> ${spec.minimumThicknessMm} mm</p>
-    <p><b>Source:</b> Honda Vehicle Service Quick Reference Guide, 2013–2017 models</p>
+<p><b>Source:</b>
+    <a href="${spec.sourceUrl}" target="_blank" rel="noopener noreferrer">
+        ${spec.source}
+    </a>
+</p>
 ` : `
     <p><b>Vehicle-specific specification:</b> Unavailable — verify manufacturer data.</p>
 `}
