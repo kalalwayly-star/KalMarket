@@ -302,6 +302,9 @@ function checkFrontBrakeSide(prefix, sideName) {
         return;
     }
 
+const axlePosition = prefix.startsWith("front") ? "front" : "rear";
+const spec = findVerifiedBrakePadSpec(axlePosition);
+
     let rating;
     let advice;
     let cssClass;
@@ -348,6 +351,12 @@ function checkFrontBrakeSide(prefix, sideName) {
             <p><b>Measured thickness:</b> ${rotor.toFixed(2)} mm</p>
             <p>Manufacturer's minimum thickness has not been verified. Do not rate the rotor as passing or failing until the correct specification is confirmed.</p>
         </div>`;
+}
+
+if (spec && pad <= spec.minimumThicknessMm) {
+    rating = "AT OR BELOW SERVICE LIMIT";
+    advice = "The measured pad thickness has reached or fallen below the listed service limit. Arrange brake-pad replacement.";
+    cssClass = "brake-danger";
 }
 
 function showRearBrakeFields() {
