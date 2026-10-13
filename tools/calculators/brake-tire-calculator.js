@@ -450,11 +450,6 @@ ${rotorSpec.status === "Provisional"
 `}        </div>`;
 }
 
-if (spec && pad <= spec.minimumThicknessMm) {
-    rating = "AT OR BELOW SERVICE LIMIT";
-    advice = "The measured pad thickness has reached or fallen below the listed service limit. Arrange brake-pad replacement.";
-    cssClass = "brake-danger";
-}
 
 function showRearBrakeFields() {
     const type = document.getElementById("rearBrakeType").value;
