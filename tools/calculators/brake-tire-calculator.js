@@ -473,6 +473,25 @@ async function lookupVehicleInfo() {
     }
 }
 
+function checkBrakeSpecificationAvailability() {
+    const year = document.getElementById("vehicleYear").value.trim();
+    const make = document.getElementById("vehicleMake").value.trim();
+    const model = document.getElementById("vehicleModel").value.trim();
+    const results = document.getElementById("vehicleLookupResults");
+
+    if (!year || !make || !model) {
+        results.textContent =
+            "Enter the vehicle year, make, and model first.";
+        return;
+    }
+
+    results.textContent =
+        "Vehicle selected: " + year + " " + make + " " + model + ". " +
+        "A verified brake-pad thickness specification has not yet been " +
+        "found. Do not treat the general pad rating as a vehicle-specific " +
+        "pass/fail result.";
+}
+
 async function decodeVehicleVIN() {
     const vinInput = document.getElementById("vehicleVIN");
    const results = document.getElementById("vinDecodeResults");
