@@ -261,6 +261,20 @@ const verifiedBrakePadSpecs = {
             newThicknessMm: 10,
             minimumThicknessMm: 1.6
         },
+       frontRotor: {
+    newThicknessMm: 28,
+    minimumThicknessMm: 26,
+    status: "Provisional",
+    source: "Replacement-parts catalog; confirm with the 2016 Honda service manual",
+    sourceUrl: "https://www.moparrepairconnect.ca/assets/docs/Brake%20Rotors%20%26%20Drums%20Application%20Guide%2003-2016.pdf"
+},
+rearRotor: {
+    newThicknessMm: 11,
+    minimumThicknessMm: 9,
+    status: "Provisional",
+    source: "Honda Odyssey service-manual reference; exact model-year applicability unconfirmed",
+    sourceUrl: "https://www.hodyssey.net/634/thickness_and_parallelism.html"
+},
         source: "Honda Vehicle Service Quick Reference Guide, 2013–2017 models",
         sourceUrl: "https://manuals.plus/m/6db4bf88f65e2aea0b894d8141a385608002977e5d927fcb47e3e02df36cafbf"
     }
