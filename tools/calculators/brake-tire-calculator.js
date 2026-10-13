@@ -326,7 +326,20 @@ function checkFrontBrakeSide(prefix, sideName) {
 
 const axlePosition = prefix.startsWith("front") ? "front" : "rear";
 const spec = findVerifiedBrakePadSpec(axlePosition);
+   
+const vehicleYear = document.getElementById("vehicleYear").value.trim();
+const vehicleMake = document.getElementById("vehicleMake").value.trim().toLowerCase();
+const vehicleModel = document.getElementById("vehicleModel").value.trim().toLowerCase();
+const vehicleCountry = document.getElementById("vehicleCountry").value.trim().toLowerCase();
 
+const vehicleKey =
+    `${vehicleYear}|${vehicleMake}|${vehicleModel}|${vehicleCountry}`;
+
+const vehicleSpecs = verifiedBrakePadSpecs[vehicleKey];
+
+const rotorSpec = vehicleSpecs
+    ? vehicleSpecs[axlePosition + "Rotor"] || null
+    : null;
     let rating;
     let advice;
     let cssClass;
