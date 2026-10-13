@@ -276,7 +276,7 @@ rearRotor: {
 },
         source: "Honda Vehicle Service Quick Reference Guide, 2013–2017 models",
         sourceUrl: "https://manuals.plus/m/6db4bf88f65e2aea0b894d8141a385608002977e5d927fcb47e3e02df36cafbf"
-    }
+    },
 "2016|honda|odyssey|canada": {
     front: {
         newThicknessMm: 12,
