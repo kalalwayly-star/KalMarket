@@ -525,6 +525,21 @@ async function decodeVehicleVIN() {
         const data = await response.json();
         const vehicle = data.Results && data.Results[0];
 
+const countryField = document.getElementById("vehicleCountry");
+
+const countryOfManufacture =
+    vehicle && vehicle.PlantCountry
+        ? vehicle.PlantCountry.trim()
+        : "";
+
+if (countryField && countryOfManufacture) {
+    results.textContent =
+        "Country of manufacture reported by VIN database: " +
+        countryOfManufacture +
+        ". This does not confirm the original sales market. " +
+        "Please select the vehicle market manually.";
+}
+
         if (!vehicle || !vehicle.Make || !vehicle.Model) {
             results.textContent =
                 "The database could not identify this vehicle. " +
