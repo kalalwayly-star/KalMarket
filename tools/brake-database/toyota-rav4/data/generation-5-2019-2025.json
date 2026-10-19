@@ -1,0 +1,171 @@
+{
+  "make": "Toyota",
+  "model": "RAV4",
+  "generation": 5,
+  "model_year_start": 2019,
+  "model_year_end": 2025,
+  "database_status": "in_progress",
+  "configurations": [
+    {
+      "configuration_id": "rav4-g5-gas-fwd",
+      "powertrain": "gasoline",
+      "drivetrain": "FWD",
+      "market": "North America",
+      "status": "pending",
+      "brakes": {
+        "front_rotor": {
+          "diameter_mm": null,
+          "new_thickness_mm": null,
+          "minimum_thickness_mm": null,
+          "status": "pending"
+        },
+        "rear_rotor": {
+          "diameter_mm": null,
+          "new_thickness_mm": null,
+          "minimum_thickness_mm": null,
+          "status": "pending"
+        },
+        "front_pad": {
+          "new_friction_lining_mm": null,
+          "minimum_friction_lining_mm": null,
+          "status": "pending"
+        },
+        "rear_pad": {
+          "new_friction_lining_mm": null,
+          "minimum_friction_lining_mm": null,
+          "status": "pending"
+        }
+      },
+      "sources": []
+    },
+    {
+      "configuration_id": "rav4-g5-gas-awd",
+      "powertrain": "gasoline",
+      "drivetrain": "AWD",
+      "market": "North America",
+      "status": "pending",
+      "brakes": {
+        "front_rotor": {
+          "diameter_mm": null,
+          "new_thickness_mm": null,
+          "minimum_thickness_mm": null,
+          "status": "pending"
+        },
+        "rear_rotor": {
+          "diameter_mm": null,
+          "new_thickness_mm": null,
+          "minimum_thickness_mm": null,
+          "status": "pending"
+        },
+        "front_pad": {
+          "new_friction_lining_mm": null,
+          "minimum_friction_lining_mm": null,
+          "status": "pending"
+        },
+        "rear_pad": {
+          "new_friction_lining_mm": null,
+          "minimum_friction_lining_mm": null,
+          "status": "pending"
+        }
+      },
+      "sources": []
+    },
+    {
+      "configuration_id": "rav4-g5-hybrid-fwd",
+      "powertrain": "hybrid",
+      "drivetrain": "FWD",
+      "market": "North America",
+      "status": "pending",
+      "brakes": {
+        "front_rotor": {
+          "diameter_mm": null,
+          "new_thickness_mm": null,
+          "minimum_thickness_mm": null,
+          "status": "pending"
+        },
+        "rear_rotor": {
+          "diameter_mm": null,
+          "new_thickness_mm": null,
+          "minimum_thickness_mm": null,
+          "status": "pending"
+        },
+        "front_pad": {
+          "new_friction_lining_mm": null,
+          "minimum_friction_lining_mm": null,
+          "status": "pending"
+        },
+        "rear_pad": {
+          "new_friction_lining_mm": null,
+          "minimum_friction_lining_mm": null,
+          "status": "pending"
+        }
+      },
+      "sources": []
+    },
+    {
+      "configuration_id": "rav4-g5-hybrid-awd",
+      "powertrain": "hybrid",
+      "drivetrain": "AWD",
+      "market": "North America",
+      "status": "pending",
+      "brakes": {
+        "front_rotor": {
+          "diameter_mm": null,
+          "new_thickness_mm": null,
+          "minimum_thickness_mm": null,
+          "status": "pending"
+        },
+        "rear_rotor": {
+          "diameter_mm": null,
+          "new_thickness_mm": null,
+          "minimum_thickness_mm": null,
+          "status": "pending"
+        },
+        "front_pad": {
+          "new_friction_lining_mm": null,
+          "minimum_friction_lining_mm": null,
+          "status": "pending"
+        },
+        "rear_pad": {
+          "new_friction_lining_mm": null,
+          "minimum_friction_lining_mm": null,
+          "status": "pending"
+        }
+      },
+      "sources": []
+    },
+    {
+      "configuration_id": "rav4-g5-prime-awd",
+      "powertrain": "plug-in hybrid",
+      "drivetrain": "AWD",
+      "market": "North America",
+      "model_year_start": 2021,
+      "status": "pending",
+      "brakes": {
+        "front_rotor": {
+          "diameter_mm": null,
+          "new_thickness_mm": null,
+          "minimum_thickness_mm": null,
+          "status": "pending"
+        },
+        "rear_rotor": {
+          "diameter_mm": null,
+          "new_thickness_mm": null,
+          "minimum_thickness_mm": null,
+          "status": "pending"
+        },
+        "front_pad": {
+          "new_friction_lining_mm": null,
+          "minimum_friction_lining_mm": null,
+          "status": "pending"
+        },
+        "rear_pad": {
+          "new_friction_lining_mm": null,
+          "minimum_friction_lining_mm": null,
+          "status": "pending"
+        }
+      },
+      "sources": []
+    }
+  ]
+}

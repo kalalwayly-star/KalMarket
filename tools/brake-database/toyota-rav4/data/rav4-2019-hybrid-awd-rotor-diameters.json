@@ -1,0 +1,19 @@
+{
+  "record_id": "TOY-RAV4-2019-HYBRID-AWD-ROTORS",
+  "model_year": 2019,
+  "powertrain": "hybrid",
+  "drivetrain": "AWD",
+  "market": "North America",
+  "measurements": {
+    "front_rotor_diameter_mm": {
+      "candidate_value": 305,
+      "status": "needs_application_confirmation"
+    },
+    "rear_rotor_diameter_mm": {
+      "candidate_value": 281,
+      "status": "needs_application_confirmation"
+    }
+  },
+  "verification_status": "needs_application_confirmation",
+  "notes": "Candidate dimensions only. Confirm exact trim, build plant, and OEM part numbers before using these values in the calculator."
+}

@@ -1,0 +1,36 @@
+{
+  "record_id": "TOY-RAV4-2019-GAS-FWD-ROTORS",
+  "model_year": 2019,
+  "powertrain": "gasoline",
+  "drivetrain": "FWD",
+  "market": "North America",
+  "measurements": {
+    "front_rotor_diameter_mm": {
+      "candidate_value": 305,
+      "status": "needs_application_confirmation"
+    },
+    "rear_rotor_diameter_mm": {
+      "candidate_value": 281,
+      "status": "needs_application_confirmation"
+    }
+  },
+  "sources": [
+    {
+      "source_type": "parts_fitment",
+      "url": "https://www.tirerack.com/brakes/results.jsp?autoMake=Toyota&autoModClar=LE&autoModel=RAV4+FWD&autoYear=2019",
+      "supports": "305 mm front rotor listing for 2019 RAV4 FWD LE"
+    },
+    {
+      "source_type": "parts_fitment",
+      "url": "https://www.thewrenchmonkey.ca/auto-parts/toyota/rav4/2019/brake/disc-brake-rotor/",
+      "supports": "281 mm rear rotor listing for 2019 RAV4; exact FWD application requires confirmation"
+    },
+    {
+      "source_type": "OEM_parts_catalogue",
+      "url": "https://www.toyotapartsnow.com/parts-list/2019-toyota-rav4/brakes/brake-components",
+      "supports": "Separate FWD and AWD rear-brake diagrams and build-origin-specific OEM part numbers"
+    }
+  ],
+  "verification_status": "needs_application_confirmation",
+  "notes": "Candidate dimensions only. Confirm exact trim, build plant, and OEM application before using these values in the calculator."
+}

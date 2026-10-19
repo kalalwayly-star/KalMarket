@@ -1,0 +1,33 @@
+{
+  "record_id": "TOY-RAV4-PRIME-2021-REAR-ROTOR-APPLICATION",
+  "model_year": 2021,
+  "powertrain": "plug-in hybrid",
+  "drivetrain": "AWD",
+  "market": "North America",
+  "oem_rotor_applications": [
+    {
+      "part_number": "42431-42080",
+      "build_origin": "Japan-built",
+      "application_note": "Listed for AWD RAV4 Prime with plug-in hybrid system"
+    },
+    {
+      "part_number": "42431-06180",
+      "build_origin": "North American-built",
+      "application_note": "Listed for North American-built AWD application; confirm exact VIN fitment"
+    }
+  ],
+  "rear_rotor_diameter_mm": null,
+  "diameter_status": "pending_verification",
+  "sources": [
+    {
+      "source_type": "OEM_parts_catalogue",
+      "url": "https://www.toyotapartsnow.com/parts-list/2021-toyota-rav4-prime/brakes/rear-brakes"
+    },
+    {
+      "source_type": "OEM_parts_catalogue",
+      "url": "https://www.toyotapartsdeal.com/oem/toyota~disc~rr~42431-42080.html"
+    }
+  ],
+  "verification_status": "part_numbers_documented_diameter_pending",
+  "notes": "Confirm build origin and VIN-specific fitment before selecting a rotor. Do not infer rotor diameter from the part number."
+}

@@ -1,0 +1,43 @@
+{
+  "record_id": "",
+  "record_version": 1,
+  "vehicle": {
+    "make": "",
+    "model": "",
+    "model_year": null,
+    "market": "",
+    "powertrain": "",
+    "drivetrain": "",
+    "trim": [],
+    "engine": "",
+    "build_plant": null,
+    "production_date_range": null,
+    "brake_package": null,
+    "vin_applicability": null
+  },
+  "brakes": {
+    "front": {
+      "brake_type": null,
+      "pad_new_friction_lining_mm": {"value": null, "status": "pending", "source_ids": []},
+      "pad_minimum_friction_lining_mm": {"value": null, "status": "pending", "source_ids": []},
+      "rotor_new_thickness_mm": {"value": null, "status": "pending", "source_ids": []},
+      "rotor_minimum_thickness_mm": {"value": null, "status": "pending", "source_ids": []},
+      "rotor_diameter_mm": {"value": null, "status": "pending", "source_ids": []}
+    },
+    "rear": {
+      "brake_type": null,
+      "pad_new_friction_lining_mm": {"value": null, "status": "pending", "source_ids": []},
+      "pad_minimum_friction_lining_mm": {"value": null, "status": "pending", "source_ids": []},
+      "rotor_new_thickness_mm": {"value": null, "status": "pending", "source_ids": []},
+      "rotor_minimum_thickness_mm": {"value": null, "status": "pending", "source_ids": []},
+      "rotor_diameter_mm": {"value": null, "status": "pending", "source_ids": []},
+      "shoe_new_friction_lining_mm": {"value": null, "status": "pending", "source_ids": []},
+      "shoe_minimum_friction_lining_mm": {"value": null, "status": "pending", "source_ids": []},
+      "drum_maximum_inside_diameter_mm": {"value": null, "status": "pending", "source_ids": []}
+    }
+  },
+  "sources": [],
+  "application_verification": "pending",
+  "record_status": "pending",
+  "review_notes": ""
+}

@@ -1,0 +1,118 @@
+{
+  "record_id": "TOY-RAV4-PRIME-2021-FRONT-BRAKES-V2",
+  "record_version": 2,
+  "vehicle": {
+    "make": "Toyota",
+    "model": "RAV4 Prime SE",
+    "model_year": 2021,
+    "market": "North America",
+    "powertrain": "plug-in hybrid",
+    "drivetrain": "AWD",
+    "trim": ["SE"],
+    "engine": "",
+    "build_plant": null,
+    "production_date_range": null,
+    "brake_package": null,
+    "vin_applicability": null
+  },
+  "brakes": {
+    "front": {
+      "brake_type": "disc",
+      "pad_new_friction_lining_mm": {
+        "value": 12.0,
+        "status": "verified_from_service_manual",
+        "source_ids": ["TOY-RAV4-PRIME-2021-FRONT-MANUAL"]
+      },
+      "pad_minimum_friction_lining_mm": {
+        "value": 1.0,
+        "status": "verified_from_service_manual",
+        "source_ids": ["TOY-RAV4-PRIME-2021-FRONT-MANUAL"]
+      },
+      "rotor_new_thickness_mm": {
+        "value": 34.0,
+        "status": "verified_from_service_manual",
+        "source_ids": ["TOY-RAV4-PRIME-2021-FRONT-MANUAL"]
+      },
+      "rotor_minimum_thickness_mm": {
+        "value": 31.0,
+        "status": "verified_from_service_manual",
+        "source_ids": ["TOY-RAV4-PRIME-2021-FRONT-MANUAL"]
+      },
+      "rotor_diameter_mm": {
+        "value": null,
+        "status": "pending_verification",
+        "source_ids": []
+      }
+    },
+    "rear": {
+      "brake_type": null,
+      "pad_new_friction_lining_mm": {
+        "value": null,
+        "status": "pending",
+        "source_ids": []
+      },
+      "pad_minimum_friction_lining_mm": {
+        "value": null,
+        "status": "pending",
+        "source_ids": []
+      },
+      "rotor_new_thickness_mm": {
+        "value": null,
+        "status": "pending",
+        "source_ids": []
+      },
+      "rotor_minimum_thickness_mm": {
+        "value": null,
+        "status": "pending",
+        "source_ids": []
+      },
+      "rotor_diameter_mm": {
+        "value": null,
+        "status": "pending",
+        "source_ids": []
+      },
+      "shoe_new_friction_lining_mm": {
+        "value": null,
+        "status": "pending",
+        "source_ids": []
+      },
+      "shoe_minimum_friction_lining_mm": {
+        "value": null,
+        "status": "pending",
+        "source_ids": []
+      },
+      "drum_maximum_inside_diameter_mm": {
+        "value": null,
+        "status": "pending",
+        "source_ids": []
+      }
+    }
+  },
+  "sources": [
+    {
+      "source_id": "TOY-RAV4-PRIME-2021-FRONT-MANUAL",
+      "source_type": "vehicle_specific_service_manual",
+      "title": "2021 Toyota RAV4 Prime SE Front Brake Inspection",
+      "url": "https://lemon-manuals.la/Toyota/2021/RAV4%20Prime%20SE/Repair%20and%20Diagnosis%20%28Single%20Page%29/Brakes/Mechanical%20-%20Hydraulic/Brake%20System%20%28Front%29%20-%20Service%20Information%20%28PHEV%29/Front%20Brake/Inspection%20%5B06%2F2020%20-%2012%2F2021%5D/Procedure/",
+      "publication_or_revision_date": null,
+      "access_date": null,
+      "market": "North America",
+      "applicable_model_years": [2021],
+      "applicable_powertrain": ["plug-in hybrid"],
+      "applicable_drivetrain": ["AWD"],
+      "applicable_trim": ["SE"],
+      "applicable_build_plant": [],
+      "verified_measurements": [
+        "pad_new_friction_lining_mm",
+        "pad_minimum_friction_lining_mm",
+        "rotor_new_thickness_mm",
+        "rotor_minimum_thickness_mm"
+      ],
+      "verification_status": "measurements_documented_diameter_pending",
+      "review_notes": "Rotor diameter and broader vehicle fitment remain unverified. Confirm exact application before using this record for other configurations."
+    }
+  ],
+  "application_verification": "pending",
+  "record_status": "measurements_documented_diameter_pending",
+  "review_notes": "Converted from the existing front-brake record. Do not use this record to authorize a safety pass/fail result until the exact application and calculator verification rules have been reviewed."
+}

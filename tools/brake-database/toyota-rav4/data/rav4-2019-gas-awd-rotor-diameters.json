@@ -1,0 +1,31 @@
+{
+  "record_id": "TOY-RAV4-2019-GAS-AWD-ROTORS",
+  "model_year": 2019,
+  "powertrain": "gasoline",
+  "drivetrain": "AWD",
+  "market": "North America",
+  "measurements": {
+    "front_rotor_diameter_mm": {
+      "candidate_value": 305,
+      "status": "needs_application_confirmation"
+    },
+    "rear_rotor_diameter_mm": {
+      "candidate_value": 281,
+      "status": "needs_application_confirmation"
+    }
+  },
+  "sources": [
+    {
+      "source_type": "parts_fitment",
+      "url": "https://www.toyotapartsnow.com/parts-list/2019-toyota-rav4/brakes/brake-components",
+      "supports": "2019 OEM rotor part numbers and build-origin distinctions"
+    },
+    {
+      "source_type": "parts_fitment",
+      "url": "https://www.tirerack.com/brakes/results.jsp?autoMake=Toyota&autoModClar=LE&autoModel=RAV4+AWD&autoYear=2019",
+      "supports": "305 mm front and 281 mm rear rotor fitment"
+    }
+  ],
+  "verification_status": "needs_application_confirmation",
+  "notes": "Do not apply to hybrid or plug-in hybrid configurations without checking their exact application."
+}

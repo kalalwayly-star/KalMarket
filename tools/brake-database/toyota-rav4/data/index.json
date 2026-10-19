@@ -1,0 +1,67 @@
+{
+  "database_id": "toyota-rav4-brake-database",
+  "database_version": 1,
+  "market": "North America",
+  "model": "Toyota RAV4",
+  "generation": 5,
+  "model_years": {
+    "start": 2019,
+    "end": 2025
+  },
+  "records": [
+    {
+      "record_id": "rav4-g5-generation-configurations",
+      "file": "generation-5-2019-2025.json",
+      "record_type": "configuration_index",
+      "status": "pending"
+    },
+    {
+      "record_id": "rav4-2019-gas-awd-rotors",
+      "file": "rav4-2019-gas-awd-rotor-diameters.json",
+      "record_type": "rotor_dimensions",
+      "status": "needs_application_confirmation"
+    },
+    {
+      "record_id": "rav4-2019-gas-fwd-rotors",
+      "file": "rav4-2019-gas-fwd-rotor-diameters.json",
+      "record_type": "rotor_dimensions",
+      "status": "needs_application_confirmation"
+    },
+    {
+      "record_id": "rav4-2019-hybrid-awd-rotors",
+      "file": "rav4-2019-hybrid-awd-rotor-diameters.json",
+      "record_type": "rotor_dimensions",
+      "status": "needs_application_confirmation"
+    },
+    {
+      "record_id": "rav4-prime-2021-awd-rotors",
+      "file": "rav4-prime-2021-awd-rotor-diameters.json",
+      "record_type": "rotor_dimensions",
+      "status": "needs_application_confirmation"
+    },
+    {
+      "record_id": "rav4-prime-2021-front-brakes",
+      "file": "rav4-prime-2021-front-brake-specs.json",
+      "record_type": "front_brake_inspection",
+      "status": "measurements_documented_diameter_pending"
+    },
+    {
+      "record_id": "rav4-prime-2021-rear-brakes",
+      "file": "rav4-prime-2021-rear-brake-specs.json",
+      "record_type": "rear_brake_inspection",
+      "status": "pending"
+    },
+    {
+      "record_id": "rav4-prime-2021-rear-rotor-application",
+      "file": "rav4-prime-2021-rear-rotor-application.json",
+      "record_type": "oem_part_application",
+      "status": "part_numbers_documented_diameter_pending"
+    }
+  ],
+  "shared_files": [
+    "rav4-g5-inspection-source.json",
+    "replacement-guidance.json",
+    "source-template.json"
+  ],
+  "safety_rule": "Only use a measurement when its verification status and exact vehicle application meet the calculator's verification requirements."
+}
