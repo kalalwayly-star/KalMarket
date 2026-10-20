@@ -1,0 +1,34 @@
+{
+  "source_id": "TOY-RAV4-G5-INSPECTION-001",
+  "source_type": "repair_manual_reference",
+  "title": "Toyota RAV4 and RAV4 Hybrid brake inspection procedures",
+  "sources": [
+    {
+      "component": "front_brake",
+      "url": "https://estimate.mitchell.com/t3Portal/document/rm/RM3510U/xhtml/RM100000001FHJW.html",
+      "measurements": {
+        "pad_new_friction_lining_mm": 11.0,
+        "pad_minimum_friction_lining_mm": 1.0,
+        "rotor_new_thickness_mm": 28.0,
+        "rotor_minimum_thickness_mm": 25.0
+      }
+    },
+    {
+      "component": "rear_brake",
+      "url": "https://estimateca.mymitchell.com/t3Portal/document/rm/RM3510U/xhtml/RM100000001GILR.html",
+      "measurements": {
+        "pad_new_friction_lining_mm": 9.5,
+        "pad_minimum_friction_lining_mm": 1.0,
+        "rotor_new_thickness_mm": 12.0,
+        "rotor_minimum_thickness_mm": 10.5
+      }
+    }
+  ],
+  "applicable_model_years": [2019, 2025],
+  "market": "Coverage requires confirmation",
+  "applicable_powertrain": ["gasoline", "hybrid"],
+  "applicable_drivetrain": ["requires confirmation"],
+  "rotor_diameter_status": "pending",
+  "verification_status": "needs_application_confirmation",
+  "review_notes": "Do not apply these values universally until exact year, powertrain, drivetrain, market, and brake configuration are confirmed."
+}

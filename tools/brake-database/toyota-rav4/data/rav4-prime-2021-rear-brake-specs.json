@@ -1,0 +1,31 @@
+{
+  "record_id": "TOY-RAV4-PRIME-2021-REAR-BRAKES",
+  "model_year": 2021,
+  "powertrain": "plug-in hybrid",
+  "drivetrain": "AWD",
+  "market": "North America",
+  "measurements": {
+    "pad_new_friction_lining_mm": {
+      "value": null,
+      "status": "pending_verification"
+    },
+    "pad_minimum_friction_lining_mm": {
+      "value": null,
+      "status": "pending_verification"
+    },
+    "rotor_new_thickness_mm": {
+      "value": null,
+      "status": "pending_verification"
+    },
+    "rotor_minimum_thickness_mm": {
+      "value": null,
+      "status": "pending_verification"
+    },
+    "rotor_diameter_mm": {
+      "value": null,
+      "status": "pending_verification"
+    }
+  },
+  "verification_status": "pending",
+  "notes": "Do not substitute regular RAV4 or RAV4 Hybrid specifications. Confirm all measurements against the 2021 RAV4 Prime service information and exact vehicle application."
+}

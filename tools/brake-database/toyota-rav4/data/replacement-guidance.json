@@ -1,0 +1,10 @@
+{
+  "replacement_guidance": {
+    "pad_plan_replacement_at_or_below_mm": 3.0,
+    "pad_urgent_replacement_at_or_below_mm": 2.0,
+    "rotor_near_minimum_warning_margin_mm": 1.0,
+    "guidance_type": "general_workshop_guidance",
+    "manufacturer_minimum_overrides_guidance": true,
+    "notes": "General guidance only. Always apply the verified vehicle-specific manufacturer minimum and inspect for cracks, scoring, corrosion, uneven wear, and other damage."
+  }
+}
