@@ -1,0 +1,27 @@
+
+{
+  "id": "/",
+  "name": "KalMarket - Global Marketplace",
+  "short_name": "KalMarket",
+  "description": "Buy, sell, trade, and find local services worldwide.",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#ffffff",
+  "theme_color": "#123b70",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/assets/kalmarket-app-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/kalmarket-app-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
