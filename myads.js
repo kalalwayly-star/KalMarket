@@ -1,5 +1,4 @@
-import { auth, db } from "./firebase-config.js";
-
+import { auth, db, storage } from "./firebase-config.js";
 import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
@@ -9,10 +8,18 @@ import {
     query,
     where,
     getDocs,
+    getDoc,
     deleteDoc,
     doc,
-    updateDoc
+    updateDoc,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+import {
+    ref as storageRef,
+    uploadBytes,
+    getDownloadURL
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
 const symbolMap = {
     USD: "$",
     CAD: "$",
@@ -93,7 +100,11 @@ async function loadUserAds(userId) {
                         <p>👁️ ${ad.views || 0} views</p>
 
                         <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-
+<button onclick="editMyAd('${adId}')"
+    style="background:#1769aa;color:white;"
+    type="button">
+    Edit Ad
+</button>
     <button onclick="markAsSold('${adId}')"
         style="background:orange;"
         data-i18n="sold_btn">
@@ -234,3 +245,261 @@ window.markAsPending = async function(adId) {
     }
 
 };
+
+/* =========================
+   EDIT MY AD
+========================= */
+
+window.editMyAd = async function(adId) {
+    try {
+const adRef = doc(db, "marketplace_ads", adId);
+        
+
+        const adSnap = await getDoc(adRef);
+
+        if (!adSnap.exists()) {
+            alert("This ad could not be found.");
+            return;
+        }
+
+        const ad = adSnap.data();
+
+        if (ad.userId !== auth.currentUser?.uid) {
+            alert("You can only edit your own ads.");
+            return;
+        }
+
+        const currentImages = Array.isArray(ad.image)
+            ? ad.image
+            : (ad.image ? [ad.image] : []);
+
+        const form = document.createElement("div");
+        form.style.cssText = `
+            position:fixed;
+            inset:0;
+            z-index:99999;
+            background:rgba(0,0,0,0.65);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:15px;
+            overflow:auto;
+        `;
+
+        form.innerHTML = `
+            <div style="
+                background:white;
+                color:#222;
+                padding:22px;
+                border-radius:12px;
+                width:100%;
+                max-width:600px;
+                max-height:90vh;
+                overflow:auto;
+            ">
+                <h2>Edit Your Ad</h2>
+
+                <label>Title</label>
+                <input id="editAdTitle" type="text"
+                    maxlength="150"
+                    style="width:100%;padding:10px;margin:6px 0 14px;box-sizing:border-box;">
+
+                <label>Category</label>
+                <input id="editAdCategory" type="text"
+                    style="width:100%;padding:10px;margin:6px 0 14px;box-sizing:border-box;">
+
+                <label>Location</label>
+                <input id="editAdLocation" type="text"
+                    style="width:100%;padding:10px;margin:6px 0 14px;box-sizing:border-box;">
+
+                <label>Price</label>
+                <input id="editAdPrice" type="number" min="0" step="any"
+                    style="width:100%;padding:10px;margin:6px 0 14px;box-sizing:border-box;">
+
+                <label>Currency</label>
+                <input id="editAdCurrency" type="text" maxlength="5"
+                    style="width:100%;padding:10px;margin:6px 0 14px;box-sizing:border-box;">
+
+                <label>Description</label>
+                <textarea id="editAdDescription" rows="5"
+                    style="width:100%;padding:10px;margin:6px 0 14px;box-sizing:border-box;"></textarea>
+
+                <label>Add more photos</label>
+                <input id="editAdPhotos" type="file" accept="image/*" multiple
+                    style="display:block;margin:10px 0;">
+
+                <p id="editAdPhotoStatus"></p>
+
+                <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;">
+                    <button type="button" id="saveEditedAd"
+                        style="background:#167a35;color:white;padding:10px 16px;border:0;border-radius:6px;">
+                        Save Changes
+                    </button>
+
+                    <button type="button" id="cancelEditedAd"
+                        style="background:#666;color:white;padding:10px 16px;border:0;border-radius:6px;">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(form);
+
+        form.querySelector("#editAdTitle").value = ad.title || "";
+        form.querySelector("#editAdCategory").value = ad.category || "";
+        form.querySelector("#editAdLocation").value = ad.location || "";
+        form.querySelector("#editAdPrice").value = ad.price ?? "";
+        form.querySelector("#editAdCurrency").value = ad.currency || "CAD";
+        form.querySelector("#editAdDescription").value = ad.description || "";
+
+        form.querySelector("#cancelEditedAd").onclick = () => form.remove();
+
+        form.querySelector("#saveEditedAd").onclick = async () => {
+            const saveButton = form.querySelector("#saveEditedAd");
+            const title = form.querySelector("#editAdTitle").value.trim();
+            const category = form.querySelector("#editAdCategory").value.trim();
+            const adLocation = form.querySelector("#editAdLocation").value.trim();
+            const priceText = form.querySelector("#editAdPrice").value;
+            const currency = form.querySelector("#editAdCurrency").value.trim().toUpperCase();
+            const description = form.querySelector("#editAdDescription").value.trim();
+            const photoInput = form.querySelector("#editAdPhotos");
+            const status = form.querySelector("#editAdPhotoStatus");
+
+            if (!title) {
+                alert("Please enter an ad title.");
+                return;
+            }
+
+            if (priceText === "" || !Number.isFinite(Number(priceText)) || Number(priceText) < 0) {
+                alert("Please enter a valid price.");
+                return;
+            }
+
+            if (!currency) {
+                alert("Please enter a currency.");
+                return;
+            }
+
+            if (photoInput.files.length + currentImages.length > 10) {
+                alert("An ad can have a maximum of 10 photos.");
+                return;
+            }
+
+            saveButton.disabled = true;
+            saveButton.textContent = "Saving...";
+            status.textContent = "Saving your changes...";
+
+            try {
+                const finalImages = [...currentImages];
+
+                for (const file of Array.from(photoInput.files)) {
+                    if (!file.type.startsWith("image/")) {
+                        throw new Error("Please select image files only.");
+                    }
+
+                    const compressedFile = await compressImage(file);
+                    const fileRef = storageRef(
+                        storage,
+                        `ads/${Date.now()}_${Math.random().toString(36).slice(2)}_${compressedFile.name}`
+                    );
+
+                    const snapshot = await uploadBytes(fileRef, compressedFile);
+                    const url = await getDownloadURL(snapshot.ref);
+                    finalImages.push(url);
+                }
+
+                await updateDoc(adRef, {
+                    title,
+                    category: category || "Uncategorized",
+                    location: adLocation,
+                    price: Number(priceText),
+                    currency,
+                    description,
+                    image: finalImages,
+                    updatedAt: serverTimestamp()
+                });
+
+                alert("Your ad has been updated successfully.");
+                form.remove();
+                locationReloadSafely();
+            } catch (error) {
+                console.error("Failed to edit ad:", error);
+                alert("Could not save your changes: " + error.message);
+                saveButton.disabled = false;
+                saveButton.textContent = "Save Changes";
+                status.textContent = "";
+            }
+        };
+    } catch (error) {
+        console.error("Could not open edit form:", error);
+        alert("Could not open the edit form. Please try again.");
+    }
+};
+
+function locationReloadSafely() {
+    window.location.reload();
+}
+
+/* Compress photos before uploading them */
+async function compressImage(file, maxWidth = 800, quality = 0.7) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            img.src = e.target.result;
+        };
+
+        img.onload = () => {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+
+            if (!ctx) {
+                reject(new Error("Could not process this photo."));
+                return;
+            }
+
+            let width = img.width;
+            let height = img.height;
+
+            if (width > maxWidth) {
+                height *= maxWidth / width;
+                width = maxWidth;
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(img, 0, 0, width, height);
+
+            canvas.toBlob(
+                (blob) => {
+                    if (!blob) {
+                        reject(new Error("Photo compression failed."));
+                        return;
+                    }
+
+                    resolve(new File(
+                        [blob],
+                        file.name.replace(/\.[^.]+$/, "") + ".jpg",
+                        {
+                            type: "image/jpeg",
+                            lastModified: Date.now()
+                        }
+                    ));
+                },
+                "image/jpeg",
+                quality
+            );
+        };
+
+        img.onerror = () => reject(new Error("Could not read this photo."));
+        reader.onerror = () => reject(new Error("Could not open this photo."));
+
+        reader.readAsDataURL(file);
+    });
+}
+
+
+
+
