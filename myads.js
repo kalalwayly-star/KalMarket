@@ -364,6 +364,56 @@ const adRef = doc(db, "marketplace_ads", adId);
         form.querySelector("#editAdPrice").value = ad.price ?? "";
         form.querySelector("#editAdCurrency").value = ad.currency || "CAD";
         form.querySelector("#editAdDescription").value = ad.description || "";
+        
+        const existingPhotosContainer =
+            form.querySelector("#editAdExistingPhotos");
+
+        currentImages.forEach((url, index) => {
+            const photoCard = document.createElement("div");
+
+            photoCard.style.cssText = `
+                width:120px;
+                border:1px solid #ddd;
+                border-radius:8px;
+                padding:6px;
+                background:#f8f8f8;
+                text-align:center;
+            `;
+
+            const photo = document.createElement("img");
+            photo.src = url;
+            photo.alt = `Existing ad photo ${index + 1}`;
+            photo.loading = "lazy";
+            photo.style.cssText = `
+                width:100%;
+                height:100px;
+                object-fit:contain;
+                background:white;
+                border-radius:5px;
+            `;
+
+            const photoLabel = document.createElement("p");
+            photoLabel.textContent = `Photo ${index + 1}`;
+            photoLabel.style.cssText = `
+                margin:6px 0 0;
+                font-size:13px;
+                color:#333;
+            `;
+
+            photoCard.appendChild(photo);
+            photoCard.appendChild(photoLabel);
+            existingPhotosContainer.appendChild(photoCard);
+
+            photo.onerror = () => {
+                photoLabel.textContent = `Photo ${index + 1} unavailable`;
+            };
+        });
+
+        if (currentImages.length === 0) {
+            existingPhotosContainer.textContent =
+                "No existing photos were found for this ad.";
+        }
+
 
         form.querySelector("#cancelEditedAd").onclick = () => form.remove();
 
