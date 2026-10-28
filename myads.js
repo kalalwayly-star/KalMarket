@@ -84,10 +84,12 @@ async function loadUserAds(userId) {
             const ad = docSnap.data();
             const adId = docSnap.id;
 
-            const image = Array.isArray(ad.image)
-                ? ad.image[0]
-                : (ad.image || "https://via.placeholder.com/300");
-
+            const image = (
+    Array.isArray(ad.image) ? ad.image : [ad.image]
+).find(url =>
+    typeof url === "string" &&
+    url.startsWith("https://firebasestorage.googleapis.com/")
+) || "https://via.placeholder.com/300";
             html += `
 <div class="card" data-status="${ad.status || 'active'}">                 
 <img src="${image}" alt="${ad.title}" class="ad-image">
