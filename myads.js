@@ -401,9 +401,35 @@ const adRef = doc(db, "marketplace_ads", adId);
                 color:#333;
             `;
 
-            photoCard.appendChild(photo);
-            photoCard.appendChild(photoLabel);
-            existingPhotosContainer.appendChild(photoCard);
+           
+photoCard.appendChild(photo);
+
+const removeButton = document.createElement("button");
+removeButton.type = "button";
+removeButton.textContent = "Remove";
+removeButton.style.cssText = `
+    margin-top:8px;
+    padding:6px 10px;
+    background:#c62828;
+    color:white;
+    border:0;
+    border-radius:5px;
+    cursor:pointer;
+`;
+
+removeButton.onclick = () => {
+    keptImages = keptImages.filter(imageUrl => imageUrl !== url);
+    photoCard.remove();
+
+    const status = form.querySelector("#editAdPhotoStatus");
+    status.textContent =
+        "Photo marked for removal. Click Save Changes to confirm.";
+};
+
+photoCard.appendChild(photoLabel);
+photoCard.appendChild(removeButton);
+existingPhotosContainer.appendChild(photoCard);
+
 
             photo.onerror = () => {
                 photoLabel.textContent = `Photo ${index + 1} unavailable`;
