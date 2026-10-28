@@ -269,9 +269,13 @@ const adRef = doc(db, "marketplace_ads", adId);
             return;
         }
 
-        const currentImages = Array.isArray(ad.image)
-            ? ad.image
-            : (ad.image ? [ad.image] : []);
+        const currentImages = (Array.isArray(ad.image)
+    ? ad.image
+    : (ad.image ? [ad.image] : [])
+).filter(url =>
+    typeof url === "string" &&
+    url.startsWith("https://firebasestorage.googleapis.com/")
+);
 
         const form = document.createElement("div");
         form.style.cssText = `
