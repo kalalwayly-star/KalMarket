@@ -420,7 +420,7 @@ const adRef = doc(db, "marketplace_ads", adId);
                     price: Number(priceText),
                     currency,
                     description,
-                    image: finalImages,
+                    image: [...new Set(finalImages)],
                     updatedAt: serverTimestamp()
                 });
 
