@@ -330,6 +330,12 @@ const adRef = doc(db, "marketplace_ads", adId);
                 <textarea id="editAdDescription" rows="5"
                     style="width:100%;padding:10px;margin:6px 0 14px;box-sizing:border-box;"></textarea>
 
+                    <label>Existing photos</label>
+                <div id="editAdExistingPhotos"
+                    style="display:flex;gap:12px;flex-wrap:wrap;margin:10px 0 18px;">
+                </div>
+
+
                 <label>Add more photos</label>
                 <input id="editAdPhotos" type="file" accept="image/*" multiple
                     style="display:block;margin:10px 0;">
