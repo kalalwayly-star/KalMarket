@@ -367,7 +367,8 @@ const adRef = doc(db, "marketplace_ads", adId);
         
         const existingPhotosContainer =
             form.querySelector("#editAdExistingPhotos");
-
+        
+        let keptImages = [...currentImages];   
         currentImages.forEach((url, index) => {
             const photoCard = document.createElement("div");
 
