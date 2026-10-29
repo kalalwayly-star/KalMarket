@@ -470,8 +470,8 @@ existingPhotosContainer.appendChild(photoCard);
                 return;
             }
 
-            if (photoInput.files.length + currentImages.length > 10) {
-                alert("An ad can have a maximum of 10 photos.");
+if (photoInput.files.length + keptImages.length > 10) {
+    alert("An ad can have a maximum of 10 photos.");
                 return;
             }
 
