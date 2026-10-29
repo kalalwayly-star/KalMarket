@@ -480,8 +480,7 @@ existingPhotosContainer.appendChild(photoCard);
             status.textContent = "Saving your changes...";
 
             try {
-                const finalImages = [...currentImages];
-
+const finalImages = [...keptImages];
                 for (const file of Array.from(photoInput.files)) {
                     if (!file.type.startsWith("image/")) {
                         throw new Error("Please select image files only.");
