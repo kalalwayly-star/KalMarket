@@ -634,7 +634,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 console.log("TEST USER LOCATION:", userLocation);
     initMain();
     await trackVisitor();
-    await displayVisitorCount();
+    
 });
 
 
