@@ -21,7 +21,8 @@ import {
     updateDoc,
     increment,
     getDoc,
-    setDoc
+    setDoc,
+    runTransaction
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 const symbolMap = {
@@ -354,33 +355,97 @@ window.deleteAd = async function(firebaseId) {
     }
 };
 
+
+/* =========================
+   MONTHLY VISITOR COUNTER
+   ========================= */
+
+// Use Winnipeg time as the official reporting timezone
+function getCurrentVisitorMonth() {
+    const parts = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "America/Winnipeg",
+        year: "numeric",
+        month: "2-digit"
+    }).formatToParts(new Date());
+
+    const year = parts.find(p => p.type === "year").value;
+    const month = parts.find(p => p.type === "month").value;
+
+    return `${year}-${month}`;
+}
+
 async function trackVisitor() {
-    if (!sessionStorage.getItem("visited")) {
-        sessionStorage.setItem("visited", "true");
+    const currentMonth = getCurrentVisitorMonth();
 
-        const statsRef = doc(db, "site_stats", "global");
+    // Each browser counts once per month
+    const visitorKey = `kalmarket_visitor_${currentMonth}`;
 
-        await updateDoc(statsRef, {
-            visitors: increment(1)
-        }).catch(async () => {
-            await setDoc(statsRef, {
-                visitors: 1
+    if (localStorage.getItem(visitorKey)) {
+        return;
+    }
+
+    // Prevent duplicate counts from multiple tabs
+    localStorage.setItem(visitorKey, "counted");
+
+    try {
+        const statsRef = doc(
+            db,
+            "site_stats",
+            `monthly_${currentMonth}`
+        );
+
+        await runTransaction(db, async (transaction) => {
+            const snap = await transaction.get(statsRef);
+
+            const currentCount = snap.exists()
+                ? (snap.data().visitors || 0)
+                : 0;
+
+            transaction.set(statsRef, {
+                month: currentMonth,
+                visitors: currentCount + 1,
+                updatedAt: new Date()
             });
         });
+
+        console.log("Monthly visitor counted:", currentMonth);
+
+    } catch (error) {
+        // Allow another attempt if counting failed
+        localStorage.removeItem(visitorKey);
+
+        console.error("Visitor counter error:", error);
     }
 }
 
 async function displayVisitorCount() {
-    const statsRef = doc(db, "site_stats", "global");
-    const snap = await getDoc(statsRef);
+    try {
+        const currentMonth = getCurrentVisitorMonth();
 
-    const count = snap.exists() ? snap.data().visitors : 0;
+        const statsRef = doc(
+            db,
+            "site_stats",
+            `monthly_${currentMonth}`
+        );
 
-    const el = document.getElementById("visitorCount");
-    if (el) {
-        el.textContent = `👥 Visitors: ${count}`;
+        const snap = await getDoc(statsRef);
+
+        const count = snap.exists()
+            ? snap.data().visitors || 0
+            : 0;
+
+        const el = document.getElementById("visitorCount");
+
+        if (el) {
+            el.textContent =
+                `👥 Visitors This Month: ${count.toLocaleString()}`;
+        }
+
+    } catch (error) {
+        console.error("Could not display visitor count:", error);
     }
 }
+
 /* =========================
    FIX #2 — CATEGORY FILTER
 ========================= */
