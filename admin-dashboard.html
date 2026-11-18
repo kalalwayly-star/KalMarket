@@ -1,1 +1,244 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KalMarket Admin Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f3f6fa;
+            color: #263445;
+        }
+
+        .dashboard {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .header {
+            background: #123b70;
+            color: white;
+            padding: 22px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        button {
+            border: none;
+            border-radius: 6px;
+            padding: 10px 16px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .logout-button {
+            background: white;
+            color: #123b70;
+            font-weight: bold;
+        }
+
+        .section {
+            background: white;
+            margin-top: 22px;
+            padding: 22px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .section h2 {
+            margin-top: 0;
+            color: #123b70;
+        }
+
+        .visitor-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 15px;
+        }
+
+        .visitor-card {
+            background: #eef5fc;
+            padding: 20px;
+            border-radius: 9px;
+            border-left: 5px solid #1769aa;
+        }
+
+        .visitor-card p {
+            margin: 0 0 10px;
+            color: #536579;
+        }
+
+        .visitor-number {
+            font-size: 30px;
+            font-weight: bold;
+            color: #123b70;
+        }
+
+        .status {
+            color: #536579;
+            margin-top: 12px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #e5eaf0;
+            text-align: left;
+        }
+
+        th {
+            background: #f1f5f9;
+        }
+
+        .report-card {
+            border: 1px solid #e0e6ed;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 8px;
+            background: white;
+        }
+
+        .report-card button {
+            background: #c62828;
+            color: white;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <header class="header">
+        <div>
+            <h1>KalMarket Admin</h1>
+            <p>Private Administration Dashboard</p>
+        </div>
+
+        <button class="logout-button" onclick="window.adminLogout()">
+            Logout
+        </button>
+    </header>
+
+
+    <!-- VISITOR STATISTICS -->
+    <section class="section">
+
+        <h2>Website Visitors</h2>
+
+        <div class="visitor-cards">
+
+            <div class="visitor-card">
+                <p>This Month</p>
+                <div class="visitor-number" id="visitorCurrentMonth">—</div>
+                <small id="visitorMonthLabel">Loading...</small>
+            </div>
+
+            <div class="visitor-card">
+                <p>Previous Month</p>
+                <div class="visitor-number" id="visitorPreviousMonth">—</div>
+                <small id="visitorPreviousLabel">Loading...</small>
+            </div>
+
+        </div>
+
+        <p class="status" id="visitorStatsStatus">
+            Visitor statistics will appear here.
+        </p>
+
+    </section>
+
+
+    <!-- MONTHLY HISTORY -->
+    <section class="section">
+
+        <h2>Monthly Visitor History</h2>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Visitors</th>
+                    </tr>
+                </thead>
+
+                <tbody id="visitorHistory">
+                    <tr>
+                        <td colspan="2">Loading visitor history...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+
+    <!-- MARKETPLACE MODERATION -->
+    <section class="section">
+
+        <h2>Marketplace Ad Moderation</h2>
+
+        <div id="moderationList">
+            Loading marketplace ads...
+        </div>
+
+    </section>
+
+
+    <!-- REPORTED ADS -->
+    <section class="section">
+
+        <h2>Reported Ads</h2>
+
+        <div id="reportList">
+            Loading reports...
+        </div>
+
+    </section>
+
+</div>
+
+<script type="module" src="./admin.js"></script>
+
+</body>
+</html>
+
